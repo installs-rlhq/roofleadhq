@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RoofLeadHQ AI automatically books roofing jobs from your inbound calls, website forms, and Google Business Profile. Get more appointments while you're on the roof.">
+    <meta property="og:title" content="RoofLeadHQ AI • Book More Roofing Jobs Automatically">
+    <meta property="og:description" content="Stop getting leads. Start booking jobs. RoofLeadHQ AI qualifies every lead and books appointments 24/7.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>RoofLeadHQ AI • Book More Roofing Jobs Automatically</title>
+    <link rel="icon" href="./RoofLeadHQ.png" type="image/png">
+    <link rel="preload" href="roofleadhq-logo.jpeg" as="image">
+    <link rel="preload" href="./hero-contractor.png" as="image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        .hero-bg { background: linear-gradient(135deg, #1e2937, #334155); }
+        .section-header { font-family: 'Inter', sans-serif; font-weight: 700; }
+        button, a { transition: all 0.3s ease; }
+        input, textarea { transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .error-text { color: #dc2626; font-size: 0.875rem; margin-top: 0.25rem; display: none; }
+        .form-input.error { border-color: #dc2626; }
+        .form-input:focus { outline: none; box-shadow: 0 0 0 3px rgba(2, 132, 200, 0.1); }
+        details summary { transition: color 0.3s ease; }
+        details summary:hover { color: #0284c8; }
+        .primary-cta { @apply hover:scale-105 hover:shadow-xl; }
+    </style>
+</head>
+<body class="font-sans">
+
+    <!-- SKIP TO CONTENT -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-[#0284c8] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:z-50">Skip to main content</a>
+
+    <!-- NAV -->
+    <nav class="bg-[#0f172a] text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-screen-2xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <img src="roofleadhq-logo.jpeg" alt="RoofLeadHQ AI" class="h-12 w-auto rounded-3xl shadow-xl">
+            </div>
+            <div class="hidden lg:flex items-center gap-x-8 text-sm font-medium">
+                <a href="#how-it-works" class="hover:text-[#0284c8] transition-colors">How It Works</a>
+                <a href="#pricing" class="hover:text-[#0284c8] transition-colors">Pricing</a>
+                <a href="#why-trust-us" class="hover:text-[#0284c8] transition-colors">Why Trust Us</a>
+                <a href="#faq" class="hover:text-[#0284c8] transition-colors">FAQ</a>
+                <a href="#contact" class="hover:text-[#0284c8] transition-colors">Contact Us</a>
+                <button onclick="openSignUpPopup()" class="bg-[#f59e0b] hover:bg-orange-500 px-8 py-3 rounded-2xl font-semibold primary-cta text-white">Sign Up Now!</button>
+            </div>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="lg:hidden text-3xl" aria-label="Toggle navigation menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <nav id="mobile-menu" class="hidden lg:hidden bg-[#0f172a] text-white px-6 py-4 space-y-2 border-t border-slate-700" aria-label="Mobile navigation">
+        <a href="#how-it-works" class="block py-2 hover:text-[#0284c8] transition-colors">How It Works</a>
+        <a href="#pricing" class="block py-2 hover:text-[#0284c8] transition-colors">Pricing</a>
+        <a href="#why-trust-us" class="block py-2 hover:text-[#0284c8] transition-colors">Why Trust Us</a>
+        <a href="#faq" class="block py-2 hover:text-[#0284c8] transition-colors">FAQ</a>
+        <a href="#contact" class="block py-2 hover:text-[#0284c8] transition-colors">Contact Us</a>
+        <button onclick="openSignUpPopup()" class="block py-3 bg-[#f59e0b] hover:bg-orange-500 px-4 rounded-2xl font-semibold text-center transition-colors w-full text-white">Sign Up Now!</button>
+    </nav>
+
+    <!-- URGENCY BANNER -->
+    <div class="bg-[#0284c8] text-white text-center py-4 text-lg lg:text-xl font-black tracking-widest uppercase">STORM SEASON IS HERE! DON'T MISS ANOTHER LEAD!</div>
+
+    <!-- HERO SECTION - ENHANCED -->
+    <section id="main-content" class="hero-bg text-white py-20 lg:py-32">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 text-center">
+                    <div class="inline-flex items-center justify-center gap-x-2 bg-white/20 backdrop-blur-md text-white text-sm uppercase font-medium px-5 h-9 rounded-3xl border border-white/30 mx-auto">
+                        CUSTOM-BUILT SPECIFICALLY FOR ROOFING CONTRACTORS
+                    </div>
+                    <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-tighter section-header">STOP GETTING LEADS.<br>START BOOKING JOBS.</h1>
+                    <p class="text-xl lg:text-2xl text-white/90">Turn every inbound call, website form, and Google Business Profile inquiry into a booked appointment — automatically.</p>
+                    
+                                        <!-- CTA Buttons -->
+                    <div class="space-y-4 text-center">
+                        <button onclick="openSignUpPopup()" class="inline-flex items-center justify-center w-full md:w-auto gap-x-3 bg-[#f59e0b] hover:bg-orange-500 text-white text-lg font-bold px-12 py-6 rounded-3xl primary-cta shadow-lg mx-auto">
+                            Claim Your 7-Day Pilot! <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                        <p class="text-sm text-white/80">5+ Appointments or First Month Free!</p>
+                    </div>
+
+                    <button onclick="document.getElementById('demo-video').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center gap-x-2 text-white hover:text-[#f59e0b] font-semibold transition-colors">
+                        <i class="fa-solid fa-play-circle text-2xl" aria-hidden="true"></i> Watch 45-Second Demo
+                    </button>
+
+                    <!-- Trust Badges -->
+                    <div class="pt-6 space-y-3 border-t border-white/20">
+                        <p class="text-sm text-white/80"><i class="fa-solid fa-check text-emerald-400 mr-2" aria-hidden="true"></i>Google Business • Facebook • Your Website • Phone Calls • Texts</p>
+                        <p class="text-sm text-white/80"><i class="fa-solid fa-check text-emerald-400 mr-2" aria-hidden="true"></i>All 48 Contiguous States • Cancel Anytime</p>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <div class="lg:h-96 rounded-3xl overflow-hidden shadow-2xl">
+                        <video autoplay loop muted class="w-full h-full object-cover" poster="hero-contractor.png">
+                            <source src="hero-ai-demo.mp4" type="video/mp4">
+                            <img src="hero-contractor.png" alt="Hero Contractors" class="w-full h-full object-cover">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="py-20 lg:py-28 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-8 lg:p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-5xl mb-6" aria-hidden="true">⏰</div>
+                    <h3 class="text-2xl font-bold text-[#0f172a]">LEADS GO COLD IN MINUTES</h3>
+                    <p class="mt-4 text-slate-600">"A homeowner contacts 3 roofers at once. The first one to respond wins the job. If you're on a roof, driving, or off the clock -- you lose. A lead isn't a job. A booked appointment is."</p>
+                </div>
+                <div class="bg-slate-50 p-8 lg:p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-5xl mb-6" aria-hidden="true">📞</div>
+                    <h3 class="text-2xl font-bold text-[#0f172a]">MANUAL FOLLOW-UP EATS YOUR ENTIRE DAY</h3>
+                    <p class="mt-4 text-slate-600">"Chasing down addresses, asking about insurance, scheduling site visits -- it's hours of admin work that pulls you away from actual jobs. Other tools capture leads. RoofLeadHQ books them."</p>
+                </div>
+                <div class="bg-slate-50 p-8 lg:p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-5xl mb-6" aria-hidden="true">🌧️</div>
+                    <h3 class="text-2xl font-bold text-[#0f172a]">STORM SEASON HITS, AND YOU CAN'T KEEP UP</h3>
+                    <p class="mt-4 text-slate-600">"When hail drops or a storm rolls through, your inbox floods. Without a system, good leads slip through the cracks. Leads don't wait. Neither does RoofLeadHQ."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKS ON LEADS -->
+    <section class="py-20 lg:py-28 bg-[#f8fafc]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold text-[#0f172a] tracking-tight section-header">ROOFLEADHQ WORKS ON THE LEADS</p>YOU'RE ALREADY GETTING.</h2>
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white rounded-3xl p-8 flex flex-col items-center text-[#0284c8] shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <i class="fa-solid fa-map-marker-alt text-5xl mb-5" aria-hidden="true"></i>
+                    <span class="text-lg font-semibold text-slate-800 text-center">Google Business Profile inquiries</span>
+                </div>
+                <div class="bg-white rounded-3xl p-8 flex flex-col items-center text-[#0284c8] shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <i class="fa-brands fa-facebook text-5xl mb-5" aria-hidden="true"></i>
+                    <span class="text-lg font-semibold text-slate-800 text-center">Facebook & website form submissions</span>
+                </div>
+                <div class="bg-white rounded-3xl p-8 flex flex-col items-center text-[#0284c8] shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <i class="fa-solid fa-phone text-5xl mb-5" aria-hidden="true"></i>
+                    <span class="text-lg font-semibold text-slate-800 text-center">Direct calls, texts, and emails</span>
+                </div>
+                <div class="bg-white rounded-3xl p-8 flex flex-col items-center text-[#0284c8] shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <i class="fa-solid fa-inbox text-5xl mb-5" aria-hidden="true"></i>
+                    <span class="text-lg font-semibold text-slate-800 text-center">Any inbound lead that hits your phone or inbox</span>
+                </div>
+            </div>
+            <p class="mt-16 text-2xl max-w-3xl mx-auto text-slate-700">"RoofLeadHQ AI instantly qualifies every lead, books the appointment on your calendar, sends confirmations and reminders, and logs everything to your Leads Report -- all while you're on the roof."</p>
+            <p class="mt-8 text-[#0284c8] text-3xl font-bold section-header">From missed call to booked appointment — automatically.</p>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS - REDESIGNED 3-STEP -->
+    <section id="how-it-works" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <h2 class="text-4xl lg:text-5xl font-bold text-[#0f172a] text-center mb-20 section-header">HOW IT WORKS IN 3 SIMPLE STEPS</h2>
+            
+            <!-- 3-Step Process Grid -->
+            <div class="grid md:grid-cols-3 gap-12 mb-20">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-[#0284c8] to-[#0f172a] rounded-3xl p-12 mb-6 flex items-center justify-center h-48">
+                        <div class="text-4xl font-bold text-white">Step 1</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#0f172a] mb-4">Lead Arrives From Any Source</h3>
+                    <p class="text-slate-600">Google Business Profile, your website, Facebook, direct calls, texts — we handle them all within minutes, 24/7.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-[#f59e0b] to-[#ea580c] rounded-3xl p-12 mb-6 flex items-center justify-center h-48">
+                        <div class="text-4xl font-bold text-white">Step 2</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#0f172a] mb-4">Custom AI Qualifies & Books Instantly</h3>
+                    <p class="text-slate-600">Our AI asks the right questions, captures details, and adds the appointment directly to your calendar. No admin work.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl p-12 mb-6 flex items-center justify-center h-48">
+                        <div class="text-4xl font-bold text-white">Step 3</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#0f172a] mb-4">You Get Notified & Calendar Updates</h3>
+                    <p class="text-slate-600">Instant notifications, confirmations sent to the customer, and reminders before each appointment. Show up ready to close.</p>
+                </div>
+            </div>
+
+            <!-- Reports Section -->
+            <div class="mt-20 pt-16 border-t border-slate-200">
+                <h3 class="text-3xl font-bold text-[#0f172a] text-center mb-8 section-header">Your RoofLeadHQ Reports</h3>
+                <p class="text-xl text-slate-700 text-center mb-4 max-w-4xl mx-auto">RoofLeadHQ keeps you in the loop without the manual work. Every lead is automatically logged to your Leads Report the moment it comes in -- no spreadsheets, no data entry.</p>
+                <p class="text-xl text-[#0f172a] text-center font-semibold mb-10">You get:</p>
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-semibold text-[#0f172a] mb-4">“Instant notifications”</p>
+                        <p class="text-slate-600">when a new lead is captured or an appointment is booked</p>
+                    </div>
+                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-semibold text-[#0f172a] mb-4">“Weekly summaries”</p>
+                        <p class="text-slate-600">showing leads received, appointments booked, and follow-up status</p>
+                    </div>
+                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-semibold text-[#0f172a] mb-4">“Monthly reports”</p>
+                        <p class="text-slate-600">with a full breakdown of lead volume, booking rate, and pipeline activity</p>
+                    </div>
+                </div>
+                <p class="text-xl text-slate-700 text-center max-w-4xl mx-auto">Everything is tracked, organized, and sent to you automatically -- so you always know where your leads stand, even when you're on the roof.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section class="py-20 lg:py-28 bg-slate-100">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-[#0f172a] section-header">"Every lead, booked. Every call, answered. That's the difference."</h2>
+            </div>
+            <div class="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-lg">
+                <table class="w-full min-w-[900px] border-collapse border border-slate-200">
+                    <thead>
+                        <tr class="border-b border-slate-200">
+                            <th class="text-left py-7 px-8 font-bold text-[#0f172a] border-l border-r border-slate-200">What Matters to Roofing Businesses</th>
+                            <th class="text-center py-7 px-8 font-semibold text-slate-500 border-l border-r border-slate-200">Basic Chatbots & Cheap AI Tools</th>
+                            <th class="text-center py-7 px-8 font-bold bg-[#0284c8] text-white rounded-t-3xl border-l border-r border-slate-200">RoofLeadHQ</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-700 divide-y divide-slate-100">
+                        <tr><td class="py-7 px-8 font-medium border-l border-r border-slate-200">Monthly Cost</td><td class="text-center py-7 px-8 border-l border-r border-slate-200">$49-$399/mo ($250-$2,500 setup fee)</td><td class="text-center py-7 px-8 font-semibold border-l border-r border-slate-200">$399-$799/mo ($499 one-time setup fee)</td></tr>
+                        <tr><td class="py-7 px-8 font-medium border-l border-r border-slate-200">Where it works</td><td class="text-center py-7 px-8 border-l border-r border-slate-200">Website + Facebook/Instagram only</td><td class="text-center py-7 px-8 font-semibold border-l border-r border-slate-200">Everywhere your leads actually come from — inbound calls, website forms, Google Business Profile, Facebook, and direct texts</td></tr>
+                        <tr><td class="py-7 px-8 font-medium border-l border-r border-slate-200">What it actually does</td><td class="text-center py-7 px-8 border-l border-r border-slate-200">Sends simple replies</td><td class="text-center py-7 px-8 font-semibold border-l border-r border-slate-200">Qualifies leads, books real site visits/phone consults, sends confirmations & reminders</td></tr>
+                        <tr><td class="py-7 px-8 font-medium border-l border-r border-slate-200">Custom Setup</td><td class="text-center py-7 px-8 border-l border-r border-slate-200">Generic template, you configure it yourself</td><td class="text-center py-7 px-8 font-semibold border-l border-r border-slate-200">Custom-built specifically for your roofing business — we handle everything</td></tr>
+                        <tr><td class="py-7 px-8 font-medium border-l border-r border-slate-200">Guarantee</td><td class="text-center py-7 px-8 text-red-400 border-l border-r border-slate-200">None</td><td class="text-center py-7 px-8 font-semibold border-l border-r border-slate-200">5+ extra booked appointments in 7 days or your first month is free!</td></tr>
+                        <tr><td class="py-7 px-8 font-medium border-l border-r border-slate-200">Who manages it</td><td class="text-center py-7 px-8 border-l border-r border-slate-200">You do everything yourself</td><td class="text-center py-7 px-8 font-semibold border-l border-r border-slate-200">We build it, monitor it daily, and keep it updated</td></tr>
+                        <tr><td class="py-7 px-8 font-medium border-l border-r border-slate-200">Real result</td><td class="text-center py-7 px-8 border-l border-r border-slate-200">More chat messages</td><td class="text-center py-7 px-8 font-semibold border-l border-r border-slate-200">More actual site visits and closed roofing jobs</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="py-20 lg:py-32 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-[#0f172a] section-header">SIMPLE, TRANSPARENT PRICING.</h2>
+                <p class="text-2xl text-slate-700 mt-4">Stop getting leads. Start booking jobs.</p>
+            </div>
+                        <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+                <!-- Starter -->
+                <div class="bg-white rounded-3xl p-8 lg:p-10 border border-slate-200 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <h3 class="uppercase text-slate-500 font-black text-sm mb-6 text-center">ROOFLEADHQ STARTER</h3>
+                    <div class="flex items-baseline mb-8 justify-center"><span class="text-6xl font-bold">$399</span><span class="text-slate-500 ml-3 text-xl">/mo</span></div>
+                    <p class="text-sm text-slate-500 mb-8 text-center">+ $499 one-time setup fee</p>
+                    <ul class="space-y-4 text-sm mb-10 flex-grow">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Up to 100 leads/month</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>AI-powered SMS & email lead response (instant, 24/7)</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Lead qualification -- urgency, issue type, insurance status</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>AI-powered inbound voice calls -- every call answered, qualified, and booked</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Appointment booking directly to your calendar</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Automated appointment confirmations & reminders</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Automated follow-up texts & calls until the lead books or goes cold</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Unresponsive leads flagged after 48 hours -- no lead falls through the cracks</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Priority lead routing -- emergency leads flagged and escalated instantly</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Lead logging to your Leads Report (every lead, automatically)</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Instant booking notifications</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Weekly lead & booking summary</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Monthly performance report</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Dedicated setup & onboarding support</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Done-for-you custom setup</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>7-day pilot guarantee -- 5 qualified appointments or your first month is free</span></li>
+                    </ul>
+                    <button onclick="openSignUpPopup()" class="block text-center py-6 bg-[#0f172a] text-white rounded-3xl font-bold transition-all primary-cta w-full">Get Started — $399/mo</button>
+                </div>
+
+                <!-- Growth (Most Popular) -->
+                <div class="bg-white rounded-3xl p-8 lg:p-10 border border-slate-200 relative flex flex-col justify-between hover:shadow-xl transition-shadow ring-2 ring-[#0284c8]">
+                    <div class="absolute -top-3 right-6 bg-[#f59e0b] text-white text-xs font-bold px-4 py-1 rounded-full">MOST POPULAR</div>
+                    <h3 class="uppercase text-slate-500 font-black text-sm mb-6 text-center">ROOFLEADHQ GROWTH</h3>
+                    <div class="flex items-baseline mb-8 justify-center"><span class="text-6xl font-bold">$599</span><span class="text-slate-500 ml-3 text-xl">/mo</span></div>
+                    <p class="text-sm text-slate-500 mb-8 text-center">+ $499 one-time setup fee</p>
+                    <ul class="space-y-4 text-sm mb-10 flex-grow">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Up to 300 leads/month</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>AI-powered SMS & email lead response (instant, 24/7)</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Lead qualification -- urgency, issue type, insurance status</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>AI-powered inbound voice calls -- every call answered, qualified, and booked</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Appointment booking directly to your calendar</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Automated appointment confirmations & reminders</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Automated follow-up texts & calls until the lead books or goes cold</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Unresponsive leads flagged after 48 hours -- no lead falls through the cracks</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Priority lead routing -- emergency leads flagged and escalated instantly</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Lead logging to your Leads Report (every lead, automatically)</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Instant booking notifications</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Weekly lead & booking summary</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Monthly performance report</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Dedicated setup & onboarding support</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Done-for-you custom setup</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>7-day pilot guarantee -- 5 qualified appointments or your first month is free</span></li>
+                    </ul>
+                    <button onclick="openSignUpPopup()" class="block text-center py-6 bg-[#0284c8] text-white rounded-3xl font-bold transition-all primary-cta w-full">Get Started — $599/mo</button>
+                </div>
+
+                <!-- Elite -->
+                <div class="bg-white rounded-3xl p-8 lg:p-10 border border-slate-200 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <h3 class="uppercase text-slate-500 font-black text-sm mb-6 text-center">ROOFLEADHQ ELITE</h3>
+                    <div class="flex items-baseline mb-8 justify-center"><span class="text-6xl font-bold">$799</span><span class="text-slate-500 ml-3 text-xl">/mo</span></div>
+                    <p class="text-sm text-slate-500 mb-8 text-center">+ $499 one-time setup fee</p>
+                    <ul class="space-y-4 text-sm mb-10 flex-grow">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Up to 500 leads/month</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>AI-powered SMS & email lead response (instant, 24/7)</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Lead qualification -- urgency, issue type, insurance status</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>AI-powered inbound voice calls -- every call answered, qualified, and booked</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Appointment booking directly to your calendar</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Automated appointment confirmations & reminders</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Automated follow-up texts & calls until the lead books or goes cold</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Unresponsive leads flagged after 48 hours -- no lead falls through the cracks</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Priority lead routing -- emergency leads flagged and escalated instantly</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Lead logging to your Leads Report (every lead, automatically)</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Instant booking notifications</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Weekly lead & booking summary</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Monthly performance report</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Dedicated setup & onboarding support</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>Done-for-you custom setup</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1 font-bold" aria-hidden="true"></i><span>7-day pilot guarantee -- 5 qualified appointments or your first month is free</span></li>
+                    </ul>
+                    <button onclick="openSignUpPopup()" class="block text-center py-6 bg-[#0f172a] text-white rounded-3xl font-bold transition-all primary-cta w-full">Get Started — $799/mo</button>
+                </div>
+            </div>
+            <p class="text-center mt-6 text-sm text-slate-500">500+ leads/month? Contact us for custom pricing.</p>
+            <p class="text-center mt-16 text-slate-600 max-w-2xl mx-auto">We run the full 7-day pilot completely free, If RoofLeadHQ AI doesn't book at least 5 qualified appointments, your first month is free. The setup fee covers the non-refundable custom build.</p>
+        </div>
+    </section>
+
+    <!-- WHY ROOFERS TRUST US - REPLACES TESTIMONIALS -->
+    <section id="why-trust-us" class="py-20 lg:py-32 bg-gradient-to-br from-slate-50 to-slate-100">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <h2 class="text-4xl lg:text-5xl font-bold text-[#0f172a] text-center mb-16 section-header">Why Roofers Trust RoofLeadHQ</h2>
+
+            <!-- 7-Day Guarantee Box -->
+            <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-3xl p-12 lg:p-16 text-white text-center mb-20 shadow-xl">
+                <div class="text-6xl font-bold mb-4">✓</div>
+                <h3 class="text-3xl lg:text-4xl font-bold mb-6">Our 7-Day Guarantee</h3>
+                <p class="text-2xl font-semibold">5+ Extra Booked Appointments In 7 Days<br>Or Your First Month Is Free</p>
+                <p class="mt-6 text-white/90 text-lg max-w-2xl mx-auto">We're so confident in RoofLeadHQ that we'll custom-build your entire system and run it for 7 days at no charge. If we don't deliver 5+ extra qualified appointments, your first month is completely free. No risk. No strings attached.</p>
+            </div>
+
+            <!-- Founder Story -->
+            <div class="bg-white rounded-3xl p-12 lg:p-16 border border-slate-200 mb-20 shadow-lg">
+                <div class="max-w-3xl mx-auto">
+                    <h3 class="text-3xl font-bold text-[#0f172a] mb-6">My Story</h3>
+                    <p class="text-lg text-slate-700 leading-relaxed">I was talking to a friend in the roofing business one day, and he told me how many leads they miss because good, affordable systems to help book leads are hard to come by. He’d be up on the roof when a homeowner called, or miss multiple calls at 2 AM during storm season. By the time he checked his phone, they’d already booked with other roofers. He lost count of how many jobs he missed.</p>
+                    <p class="text-lg text-slate-700 leading-relaxed mt-4">Hearing his story made me realize there had to be a better way to help roofers like him. That’s when I built the first version of RoofLeadHQ AI — not as a generic chatbot, but as a custom system built specifically for roofing contractors. Now the RoofLeadHQ AI handles every lead 24/7, qualifies them, and books appointments directly on their calendar. They don't have to miss a qualified lead anymore.</p>
+                    <p class="text-lg text-slate-700 leading-relaxed mt-4">I’ve built RoofLeadHQ to help roofing contractors book more appointments, handle less admin work, and gain peace of mind knowing that no lead will ever go cold again.</p>
+                    <p class="text-xl font-bold text-[#0284c8] mt-6">Jason — RoofLeadHQ</p>
+                </div>
+            </div>
+
+                       <!-- RoofLeadHQ – ROI Calculator -->
+            <div class="max-w-5xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Left Side: Happy Contractors Image -->
+                    <div class="flex justify-center lg:justify-end order-2 lg:order-1">
+                        <img src="happy-contractors.png" 
+                             alt="Happy roofing contractors using RoofLeadHQ AI" 
+                             class="rounded-3xl shadow-2xl w-full max-w-md lg:max-w-none">
+                    </div>
+
+                    <!-- Right Side: ROI Calculator -->
+                    <div class="bg-white rounded-3xl p-8 lg:p-12 border border-slate-200 shadow-lg order-1 lg:order-2">
+                        <h3 class="text-3xl font-bold text-[#0f172a] mb-8 text-center">ROI Calculator</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Average Monthly Leads</label>
+                                <input type="number" id="monthly-leads" placeholder="e.g., 50" class="w-full px-6 py-4 border-2 border-slate-200 rounded-2xl focus:outline-none focus:border-[#0284c8] focus:ring-4 focus:ring-[#0284c8]/10" value="50">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Close Rate %</label>
+                                <input type="number" id="close-rate" placeholder="e.g., 25" class="w-full px-6 py-4 border-2 border-slate-200 rounded-2xl focus:outline-none focus:border-[#0284c8] focus:ring-4 focus:ring-[#0284c8]/10" value="25">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Average Job Value $</label>
+                                <input type="number" id="job-value" placeholder="e.g., 8000" class="w-full px-6 py-4 border-2 border-slate-200 rounded-2xl focus:outline-none focus:border-[#0284c8] focus:ring-4 focus:ring-[#0284c8]/10" value="8000">
+                            </div>
+                            <button onclick="calculateROI()" class="w-full py-6 bg-[#0284c8] hover:bg-[#1e40af] text-white font-bold rounded-2xl transition-all primary-cta mt-8">Calculate My Potential</button>
+                        </div>
+                        <div id="roi-result" class="mt-8 hidden">
+                            <div class="bg-gradient-to-r from-[#0284c8] to-emerald-500 rounded-2xl p-8 text-white">
+                                <p class="text-sm font-semibold opacity-90">With RoofLeadHQ (30% better response rate):</p>
+                                <p class="text-4xl font-bold mt-2"><span id="extra-jobs">0</span> Extra Jobs/Month</p>
+                                <p class="text-3xl font-bold text-white/90 mt-2">+$<span id="extra-revenue">0</span>/Month</p>
+                                <p class="text-sm opacity-90 mt-4">That's <span id="annual-revenue">$0</span> extra per year!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <h2 class="text-4xl lg:text-5xl font-bold text-[#0f172a] section-header text-center mb-16">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <details class="bg-slate-50 p-6 lg:p-8 rounded-3xl group border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"><summary class="font-bold text-lg cursor-pointer group-open:text-[#0284c8] transition-colors">Q: How long does setup take?</summary><p class="mt-4 text-slate-600 hidden group-open:block">Most roofing companies are up and running in less than a day. We handle the entire custom build and setup for you — no tech skills needed.</p></details>
+                <details class="bg-slate-50 p-6 lg:p-8 rounded-3xl group border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"><summary class="font-bold text-lg cursor-pointer group-open:text-[#0284c8] transition-colors">Q: Do I need to change how I get leads?</summary><p class="mt-4 text-slate-600 hidden group-open:block">We give you a dedicated number to use for your lead sources — Google Business Profile, website, Facebook, etc. That's the only change. From there, RoofLeadHQ AI handles everything automatically.</p></details>
+                <details class="bg-slate-50 p-6 lg:p-8 rounded-3xl group border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"><summary class="font-bold text-lg cursor-pointer group-open:text-[#0284c8] transition-colors">Q: What if a lead needs a human touch?</summary><p class="mt-4 text-slate-600 hidden group-open:block">You're always notified the moment a lead comes in. RoofLeadHQ AI handles the admin — you handle the relationship.</p></details>
+                <details class="bg-slate-50 p-6 lg:p-8 rounded-3xl group border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"><summary class="font-bold text-lg cursor-pointer group-open:text-[#0284c8] transition-colors">Q: Does it work during storm season when leads spike?</summary><p class="mt-4 text-slate-600 hidden group-open:block">That's exactly what it's built for. Whether you get 2 leads a week or 200, every single one gets an instant response.</p></details>
+                <details class="bg-slate-50 p-6 lg:p-8 rounded-3xl group border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"><summary class="font-bold text-lg cursor-pointer group-open:text-[#0284c8] transition-colors">Q: Does it handle insurance claims?</summary><p class="mt-4 text-slate-600 hidden group-open:block">Yes. RoofLeadHQ AI identifies insurance leads automatically and captures claim details upfront so you're prepared before the site visit.</p></details>
+                <details class="bg-slate-50 p-6 lg:p-8 rounded-3xl group border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"><summary class="font-bold text-lg cursor-pointer group-open:text-[#0284c8] transition-colors">Q: What states do you serve?</summary><p class="mt-4 text-slate-600 hidden group-open:block">All 48 contiguous states.</p></details>
+                <details class="bg-slate-50 p-6 lg:p-8 rounded-3xl group border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"><summary class="font-bold text-lg cursor-pointer group-open:text-[#0284c8] transition-colors">Q: How is this different from Angi or Thumbtack?</summary><p class="mt-4 text-slate-600 hidden group-open:block">Angi and Thumbtack charge you for leads you have to compete for. RoofLeadHQ AI works on leads you already get — from your inbound calls, website, and Google Business Profile — and converts them automatically.</p></details>
+                <details class="bg-slate-50 p-6 lg:p-8 rounded-3xl group border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"><summary class="font-bold text-lg cursor-pointer group-open:text-[#0284c8] transition-colors">Q: What does the 7-day pilot look like?</summary><p class="mt-4 text-slate-600 hidden group-open:block">We custom-build your entire RoofLeadHQ AI system and run it for 7 days at no monthly charge. If we don't book at least 5 extra appointments during that window, your first month is free. No risk, no long-term commitment. The non-refundable setup fee covers the entire custom build.</p></details>
+                <details class="bg-slate-50 p-6 lg:p-8 rounded-3xl group border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"><summary class="font-bold text-lg cursor-pointer group-open:text-[#0284c8] transition-colors">Q: What happens as AI gets better over time?</summary><p class="mt-4 text-slate-600 hidden group-open:block">You benefit automatically. As RoofLeadHQ AI improves — smarter qualification, better voice, faster booking — we update your system. Your price stays the same. Your results get better.</p></details>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMO VIDEO SECTION -->
+    <section id="demo-video" class="py-20 lg:py-32 bg-[#f8fafc]">
+        <div class="max-w-4xl mx-auto px-6 lg:px-10">
+            <h2 class="text-4xl lg:text-5xl font-bold text-[#0f172a] text-center mb-12 section-header">See RoofLeadHQ AI In Action</h2>
+            <div class="aspect-video bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
+                <video controls poster="hero-contractor.png" class="w-full h-full">
+                    <source src="hero-ai-demo.mp4" type="video/mp4">
+                    <p>Your browser doesn't support HTML5 video.</p>
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section id="get-started" class="py-20 lg:py-32 bg-[#0284c8] text-white">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                                 <div class="text-center lg:text-left">
+                    <!-- Logo - now smaller and perfectly centered above the text -->
+                    <div class="mx-auto w-32 h-32 bg-white rounded-full flex items-center justify-center mb-8">
+                        <img src="roofleadhq-logo.jpeg" alt="RoofLeadHQ AI" class="w-24 rounded-full">
+                    </div>
+                    <h2 class="text-5xl lg:text-6xl font-bold leading-tight mb-6">Have questions or<br>need custom pricing<br>before you start your<br>FREE 7-Day Pilot?</h2>
+                    <p class="text-xl text-white/90 mb-8">Send us a message and we'll reply within 24 hours<br>to answer your questions and help you get started.<br>Zero monthly fees to start.<br>Zero long-term contracts.</p>
+                    <div class="space-y-3">
+                        <p class="text-sm text-white/80"><i class="fa-solid fa-check text-emerald-300 mr-2" aria-hidden="true"></i>5+ appointments guaranteed or first month free</p>
+                        <p class="text-sm text-white/80"><i class="fa-solid fa-check text-emerald-300 mr-2" aria-hidden="true"></i>Custom setup included in $499 fee</p>
+                        <p class="text-sm text-white/80"><i class="fa-solid fa-check text-emerald-300 mr-2" aria-hidden="true"></i>Cancel anytime — no long-term contract</p>
+                    </div>
+                </div>
+                <form class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 lg:p-10 space-y-4" onsubmit="handleContactForm(event)" id="contact-form">
+                    <div>
+                        <input type="text" name="name" placeholder="Full Name" class="form-input w-full px-6 py-4 bg-white text-black rounded-2xl placeholder:text-gray-400" required aria-label="Your name" aria-describedby="name-error">
+                        <div id="name-error" class="error-text"></div>
+                    </div>
+                    <div>
+                        <input type="text" name="company" placeholder="Company Name" class="form-input w-full px-6 py-4 bg-white text-black rounded-2xl placeholder:text-gray-400" required aria-label="Company name" aria-describedby="company-error">
+                        <div id="company-error" class="error-text"></div>
+                    </div>
+                    <div>
+                        <input type="email" name="email" placeholder="Email" class="form-input w-full px-6 py-4 bg-white text-black rounded-2xl placeholder:text-gray-400" required aria-label="Email address" aria-describedby="email-error">
+                        <div id="email-error" class="error-text"></div>
+                    </div>
+                    <div>
+                        <input type="tel" name="phone" placeholder="Phone Number" class="form-input w-full px-6 py-4 bg-white text-black rounded-2xl placeholder:text-gray-400" required aria-label="Phone number" aria-describedby="phone-error">
+                        <div id="phone-error" class="error-text"></div>
+                    </div>
+                    <div>
+                        <textarea name="message" placeholder="Tell us more about your business and any questions you have." rows="4" class="form-input w-full px-6 py-4 bg-white text-black rounded-2xl placeholder:text-gray-400" aria-label="Your message"></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-full bg-white text-[#0284c8] py-6 rounded-3xl font-bold text-lg hover:bg-gray-100 transition-all primary-cta disabled:opacity-60 disabled:cursor-not-allowed">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOBILE FLOATING CTA -->
+    <div class="fixed bottom-4 left-4 right-4 z-40 lg:hidden">
+        <a href="#get-started" class="flex items-center justify-center gap-x-2 bg-[#f59e0b] hover:bg-orange-500 text-white font-bold px-6 py-4 rounded-2xl shadow-lg primary-cta w-full">
+            <i class="fa-solid fa-star" aria-hidden="true"></i> Get Free 7-Day Pilot
+        </a>
+    </div>
+
+              <!-- SIGN UP POPUP - IFRAME VERSION (FORM SHOWS IMMEDIATELY) -->
+    <div id="signup-popup" class="hidden fixed inset-0 z-[10000] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl shadow-2xl w-[95%] max-w-4xl mx-4 overflow-hidden relative" style="max-height: 95vh; height: 95vh;">
+            <button onclick="closeSignUpPopup()" 
+                    class="absolute top-5 right-5 z-20 bg-white text-gray-400 hover:text-gray-600 hover:bg-gray-100 w-11 h-11 flex items-center justify-center text-3xl rounded-full shadow-lg transition-all">
+                ✕
+            </button>
+            <iframe 
+                src="https://forms.fillout.com/t/siFYyegdNous" 
+                style="width: 100%; height: 100%; border: none;" 
+                allowfullscreen 
+                allow="camera; microphone; clipboard-write">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0f172a] text-white py-16 lg:py-20">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <img src="roofleadhq-logo.jpeg" alt="RoofLeadHQ AI" class="h-12 rounded-3xl mb-4">
+                    <p class="text-white/60 text-sm">Custom AI for roofing contractors.<br>More appointments. Less admin work.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Features</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="#" class="hover:text-white transition-colors">Lead Qualification</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Appointment Booking</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Insurance Leads</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="https://docs.google.com/document/d/e/2PACX-1vQ4w9hrs5KpiSbRD9jDIHXxclwcGqpS7dZgBRjqJ8s3FuJ94C0IGYlvjk9KIjChiAcIryulBZ8P9MNL/pub" target="_blank" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="https://docs.google.com/document/d/e/2PACX-1vR6RnAiQjZftiyqk2D09cA6R6syeOVAtCojC78qz9yJth9BvSnDWXQlslWzywm5gnQjuEy6lAzE0td6/pub" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white/60 text-sm">© 2026 RoofLeadHQ AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      console.log('%c✅ RoofLeadHQ AI Revamped Site Loaded Successfully', 'background:#f59e0b;color:#0f172a;padding:8px 12px;border-radius:4px;font-weight:bold');
+      
+                    // SIGN UP POPUP FUNCTIONS - IFRAME (INSTANT FORM LOAD)
+      function openSignUpPopup() {
+        const popup = document.getElementById('signup-popup');
+        popup.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeSignUpPopup() {
+        const popup = document.getElementById('signup-popup');
+        popup.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+      
+      // Close popup when clicking outside
+      document.getElementById('signup-popup')?.addEventListener('click', function(event) {
+        if (event.target === this) {
+          closeSignUpPopup();
+        }
+      });
+      
+      // ROI CALCULATOR
+      function calculateROI() {
+        const monthlyLeads = parseFloat(document.getElementById('monthly-leads').value) || 0;
+        const closeRate = parseFloat(document.getElementById('close-rate').value) || 0;
+        const jobValue = parseFloat(document.getElementById('job-value').value) || 0;
+        
+        if (monthlyLeads === 0 || closeRate === 0 || jobValue === 0) {
+          alert('Please enter all values');
+          return;
+        }
+        
+        const improvedCloseRate = closeRate * 1.3;
+        const currentBookedMonthly = (monthlyLeads * closeRate) / 100;
+        const improvedBookedMonthly = (monthlyLeads * improvedCloseRate) / 100;
+        const extraJobsMonthly = Math.round((improvedBookedMonthly - currentBookedMonthly) * 10) / 10;
+        const extraRevenueMonthly = Math.round(extraJobsMonthly * jobValue);
+        const extraRevenueAnnual = Math.round(extraRevenueMonthly * 12);
+        
+        document.getElementById('extra-jobs').textContent = extraJobsMonthly.toFixed(1);
+        document.getElementById('extra-revenue').textContent = extraRevenueMonthly.toLocaleString();
+        document.getElementById('annual-revenue').textContent = extraRevenueAnnual.toLocaleString();
+        document.getElementById('roi-result').classList.remove('hidden');
+      }
+      
+      function clearErrors() {
+        document.querySelectorAll('.error-text').forEach(el => {
+          el.style.display = 'none';
+          el.textContent = '';
+        });
+        document.querySelectorAll('.form-input').forEach(el => {
+          el.classList.remove('error');
+        });
+      }
+      
+      function showError(fieldName, message) {
+        const errorEl = document.getElementById(fieldName + '-error');
+        const inputEl = document.querySelector(`[name="${fieldName}"]`);
+        if (errorEl) {
+          errorEl.textContent = message;
+          errorEl.style.display = 'block';
+        }
+        if (inputEl) {
+          inputEl.classList.add('error');
+          inputEl.focus();
+        }
+      }
+      
+      function handleContactForm(event) {
+        event.preventDefault();
+        clearErrors();
+        
+        const form = event.target;
+        const submitBtn = document.getElementById('submit-btn');
+        const formData = new FormData(form);
+        const data = {
+          name: formData.get('name').trim(),
+          company: formData.get('company').trim(),
+          email: formData.get('email').trim(),
+          phone: formData.get('phone').trim(),
+          message: formData.get('message').trim()
+        };
+        
+        let hasErrors = false;
+        
+        if (!data.name) {
+          showError('name', 'Please enter your name');
+          hasErrors = true;
+        }
+        if (!data.company) {
+          showError('company', 'Please enter your company name');
+          hasErrors = true;
+        }
+        if (!data.email) {
+          showError('email', 'Please enter your email address');
+          hasErrors = true;
+        }
+        if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+          showError('email', 'Please enter a valid email address');
+          hasErrors = true;
+        }
+        if (!data.phone) {
+          showError('phone', 'Please enter your phone number');
+          hasErrors = true;
+        }
+        
+        if (hasErrors) return;
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        
+        setTimeout(() => {
+          console.log('Form submitted:', data);
+          submitBtn.textContent = '✓ Claim Submitted! Check Your Email';
+          form.reset();
+          clearErrors();
+          
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+          }, 4000);
+        }, 1500);
+      }
+      
+      document.querySelectorAll('.form-input').forEach(input => {
+        input.addEventListener('focus', function() {
+          this.classList.remove('error');
+          const errorEl = document.getElementById(this.name + '-error');
+          if (errorEl) {
+            errorEl.style.display = 'none';
+          }
+        });
+      });
+      
+      document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          document.getElementById('mobile-menu').classList.add('hidden');
+        });
+      });
+    </script>
+</body>
+</html>
