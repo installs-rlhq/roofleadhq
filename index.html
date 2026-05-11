@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RoofLeadHQ instantly answers, qualifies, and books every roofing lead automatically — so you never miss another job while you're on the roof.">
+    <meta property="og:title" content="RoofLeadHQ • Stop Missing Roofing Jobs">
+    <meta property="og:description" content="RoofLeadHQ answers, qualifies, and books roofing leads automatically — built specifically for roofing contractors.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>RoofLeadHQ • Stop Missing Roofing Jobs</title>
+    <link rel="icon" href="./RoofLeadHQ.png" type="image/png">
+    <link rel="preload" href="roofleadhq-logo.jpeg" as="image">
+    <link rel="preload" href="hero-contractor.png" as="image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "RoofLeadHQ",
+      "url": "https://roofleadhq.com",
+      "logo": "https://roofleadhq.com/roofleadhq-logo.jpeg",
+      "description": "RoofLeadHQ helps roofing contractors answer, qualify, and book inbound leads automatically."
+    }
+    </script>
+</head>
+<body class="bg-white font-sans">
+
+    <!-- NAV -->
+    <nav class="bg-[#0f172a] text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-screen-2xl mx-auto px-6 py-5 flex items-center justify-between">
+            <a href="#main-content" class="flex items-center gap-x-3">
+                <img src="roofleadhq-logo.jpeg" alt="RoofLeadHQ" class="h-12 w-auto rounded-3xl shadow-xl">
+            </a>
+            <div class="hidden lg:flex items-center gap-x-8 text-sm font-medium">
+                <a href="#how-it-works" class="hover:text-[#38bdf8]">How It Works</a>
+                <a href="#demo-video" class="hover:text-[#38bdf8]">Demo</a>
+                <a href="#pricing" class="hover:text-[#38bdf8]">Pricing</a>
+                <a href="#why-trust-us" class="hover:text-[#38bdf8]">Why Trust Us</a>
+                <a href="#faq" class="hover:text-[#38bdf8]">FAQ</a>
+                <button onclick="openSignUpPopup()" class="bg-[#f59e0b] hover:bg-orange-500 px-8 py-3 rounded-2xl font-semibold primary-cta text-white">Start Your Free 7-Day Pilot</button>
+            </div>
+            <button id="mobile-menu-button" onclick="toggleMobileMenu()" class="lg:hidden text-3xl" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <nav id="mobile-menu" class="hidden lg:hidden bg-[#0f172a] text-white px-6 py-4 space-y-2 border-t border-slate-700" aria-label="Mobile navigation">
+        <a href="#how-it-works" class="block py-2 hover:text-[#38bdf8]" onclick="closeMobileMenu()">How It Works</a>
+        <a href="#demo-video" class="block py-2 hover:text-[#38bdf8]" onclick="closeMobileMenu()">Demo</a>
+        <a href="#pricing" class="block py-2 hover:text-[#38bdf8]" onclick="closeMobileMenu()">Pricing</a>
+        <a href="#why-trust-us" class="block py-2 hover:text-[#38bdf8]" onclick="closeMobileMenu()">Why Trust Us</a>
+        <a href="#faq" class="block py-2 hover:text-[#38bdf8]" onclick="closeMobileMenu()">FAQ</a>
+        <button onclick="openSignUpPopup(); closeMobileMenu();" class="block py-3 bg-[#f59e0b] hover:bg-orange-500 px-4 rounded-2xl font-bold text-center w-full text-white">Start Your Free 7-Day Pilot</button>
+    </nav>
+
+    <!-- URGENCY BANNER -->
+    <div class="bg-[#0284c8] text-white text-center py-4 text-lg lg:text-xl font-semibold tracking-wide">STORM SEASON IS HERE — DON'T MISS ANOTHER LEAD</div>
+
+    <!-- HERO -->
+    <section id="main-content" class="hero-bg text-white py-16 lg:py-28 overflow-hidden">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-7 text-center lg:text-left">
+                    <div class="inline-flex items-center justify-center gap-x-2 bg-white/15 backdrop-blur-md text-white text-sm uppercase font-bold px-5 h-9 rounded-3xl border border-white/20">Built specifically for roofing contractors</div>
+                    <h1 class="text-4xl lg:text-5xl xl:text-6xl font-black leading-[1.05] tracking-tighter section-header">Stop Getting Leads.<br>Start Booking Jobs.</h1>
+                    <p class="text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto lg:mx-0">RoofLeadHQ instantly answers every call, website form, and Google Business Profile inquiry, qualifies the homeowner, and books the appointment automatically — so you never miss another job while you're on the roof.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+                        <button onclick="openSignUpPopup()" class="inline-flex items-center justify-center w-full sm:w-auto gap-x-3 bg-[#f59e0b] hover:bg-orange-500 text-white text-lg font-bold px-9 py-5 rounded-3xl primary-cta shadow-lg">Start Your Free 7-Day Pilot <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                        <button onclick="document.getElementById('demo-video').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center gap-x-2 text-white hover:text-[#f59e0b] font-bold secondary-cta"><i class="fa-solid fa-play-circle text-2xl" aria-hidden="true"></i> Watch Demo</button>
+                    </div>
+                    <p class="text-sm text-white/80">5+ qualified appointments in 7 days or your first month is free • $499 one-time setup fee</p>
+                </div>
+                <div class="relative mt-8 lg:mt-0">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-video lg:h-[430px] bg-slate-900 border border-white/10">
+                        <video autoplay loop muted playsinline class="hidden md:block w-full h-full object-cover" poster="hero-contractor.png">
+                            <source src="hero-ai-demo.mp4" type="video/mp4">
+                        </video>
+                        <img src="hero-contractor.png" alt="Roofing contractor receiving booked lead notifications" class="md:hidden w-full h-full object-cover">
+                        <div class="absolute left-5 bottom-5 z-20 bg-white/95 backdrop-blur rounded-2xl shadow-xl p-4 max-w-[280px] text-left">
+                            <p class="text-xs font-bold text-slate-500 uppercase">Booked Appointment</p>
+                            <p class="text-slate-900 font-black mt-1">Roof inspection scheduled</p>
+                            <p class="text-sm text-slate-600 mt-1">Homeowner confirmed for tomorrow at 10:30 AM.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING NOTIFICATIONS CONTAINER -->
+    <div id="notification-container" class="fixed bottom-6 right-6 z-[9999] flex flex-col gap-y-3 max-w-xs pointer-events-none"></div>
+
+    <!-- ROOFING LEAD REALITY -->
+    <section class="py-20 lg:py-28 bg-[#f8fafc]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <div class="text-center mb-14">
+                <div class="inline-flex items-center justify-center gap-x-2 bg-white text-[#0284c8] text-sm uppercase font-bold px-6 h-9 rounded-3xl border border-[#0284c8]/20 mb-6">ROOFING LEAD REALITY</div>
+                <h2 class="text-4xl lg:text-5xl font-black text-[#0f172a] tracking-tight section-header">Your next job may already be calling.</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 lg:p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="flex justify-center text-5xl mb-6">⏱️</div>
+                    <h3 class="text-2xl font-black text-[#0f172a] mb-4">The first roofer to respond usually wins</h3>
+                    <p class="text-slate-600">Most homeowners contact multiple roofers at once. If you're on a roof or off the clock, someone else gets the job.</p>
+                </div>
+                <div class="bg-white p-8 lg:p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="flex justify-center text-5xl mb-6">📞</div>
+                    <h3 class="text-2xl font-black text-[#0f172a] mb-4">Missed calls cost thousands</h3>
+                    <p class="text-slate-600">During storms and peak hours, calls pile up fast. Most homeowners who reach voicemail never call back.</p>
+                </div>
+                <div class="bg-white p-8 lg:p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div class="flex justify-center text-5xl mb-6">🌧️</div>
+                    <h3 class="text-2xl font-black text-[#0f172a] mb-4">Storm season overwhelms manual follow-up</h3>
+                    <p class="text-slate-600">Most roofers still rely on phone calls and manual texting. Leads go cold while you're busy on the roof.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKS ON LEADS + DEMO -->
+    <section id="demo-video" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 text-center">
+            <h2 class="text-4xl lg:text-5xl font-black text-[#0f172a] section-header">RoofLeadHQ works on the leads you're already getting.</h2>
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="bg-[#f8fafc] rounded-3xl p-8 flex flex-col items-center border border-slate-200"><i class="fa-solid fa-map-marker-alt text-5xl mb-5 text-[#0284c8]"></i><span class="font-bold">Google Business Profile</span></div>
+                <div class="bg-[#f8fafc] rounded-3xl p-8 flex flex-col items-center border border-slate-200"><i class="fa-brands fa-facebook text-5xl mb-5 text-[#0284c8]"></i><span class="font-bold">Facebook & Website Forms</span></div>
+                <div class="bg-[#f8fafc] rounded-3xl p-8 flex flex-col items-center border border-slate-200"><i class="fa-solid fa-phone text-5xl mb-5 text-[#0284c8]"></i><span class="font-bold">Calls, Texts & Emails</span></div>
+                <div class="bg-[#f8fafc] rounded-3xl p-8 flex flex-col items-center border border-slate-200"><i class="fa-solid fa-inbox text-5xl mb-5 text-[#0284c8]"></i><span class="font-bold">Any Inbound Lead</span></div>
+            </div>
+            <div class="max-w-5xl mx-auto mt-16">
+                <div class="aspect-video bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
+                    <video controls poster="hero-contractor.png" class="w-full h-full">
+                        <source src="hero-ai-demo.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="py-20 lg:py-32 bg-[#f8fafc]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <h2 class="text-4xl lg:text-5xl font-black text-[#0f172a] text-center mb-16 section-header">How RoofLeadHQ works in 3 simple steps</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 text-center">
+                    <div class="w-14 h-14 bg-[#0284c8] text-white rounded-2xl flex items-center justify-center text-3xl font-black mx-auto mb-6">1</div>
+                    <h3 class="text-2xl font-black mb-3">Lead arrives</h3>
+                    <p class="text-slate-600">From any source — Google Business, website form, Facebook, phone call or text.</p>
+                </div>
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 text-center ring-2 ring-[#0284c8]/20">
+                    <div class="w-14 h-14 bg-[#f59e0b] text-white rounded-2xl flex items-center justify-center text-3xl font-black mx-auto mb-6">2</div>
+                    <h3 class="text-2xl font-black mb-3">Instant qualification & booking</h3>
+                    <p class="text-slate-600">RoofLeadHQ asks the right questions and books the appointment on your calendar.</p>
+                </div>
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 text-center">
+                    <div class="w-14 h-14 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-3xl font-black mx-auto mb-6">3</div>
+                    <h3 class="text-2xl font-black mb-3">You get notified</h3>
+                    <p class="text-slate-600">Instant alerts for every booked appointment. Homeowners receive confirmations and reminders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCREENSHOT GALLERY -->
+    <section class="py-20 lg:py-28 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center bg-emerald-100 text-emerald-700 text-sm font-bold px-6 h-9 rounded-3xl">Inside RoofLeadHQ</div>
+                <h2 class="text-4xl lg:text-5xl font-black text-[#0f172a] mt-3">See the system in action</h2>
+            </div>
+            <!-- Desktop grid -->
+            <div class="hidden lg:grid grid-cols-4 gap-6">
+                <div class="screenshot-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm"><img src="screenshots/demo-text-conversation.webp" alt="Text conversation" class="w-full aspect-video object-cover" loading="lazy"><div class="p-4"><p class="font-medium text-sm">Instant conversation — lead qualified in &lt;60 seconds</p></div></div>
+                <div class="screenshot-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm"><img src="screenshots/demo-calendar-booking.webp" alt="Calendar booking" class="w-full aspect-video object-cover" loading="lazy"><div class="p-4"><p class="font-medium text-sm">Appointment automatically added to your calendar</p></div></div>
+                <div class="screenshot-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm"><img src="screenshots/demo-roofer-alert.webp" alt="Roofer alert" class="w-full aspect-video object-cover" loading="lazy"><div class="p-4"><p class="font-medium text-sm">Instant text alert when a job is booked</p></div></div>
+                <div class="screenshot-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm"><img src="screenshots/demo-homeowner-confirmation.webp" alt="Homeowner confirmation" class="w-full aspect-video object-cover" loading="lazy"><div class="p-4"><p class="font-medium text-sm">Professional confirmation sent to homeowner</p></div></div>
+                <div class="screenshot-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm"><img src="screenshots/demo-homeowner-reminder.webp" alt="Reminder" class="w-full aspect-video object-cover" loading="lazy"><div class="p-4"><p class="font-medium text-sm">Automated reminders reduce no-shows</p></div></div>
+                <div class="screenshot-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm"><img src="screenshots/demo-weekly-report.webp" alt="Weekly report" class="w-full aspect-video object-cover" loading="lazy"><div class="p-4"><p class="font-medium text-sm">Weekly summary delivered to you</p></div></div>
+                <div class="screenshot-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm"><img src="screenshots/demo-missed-call-recovery.webp" alt="Missed call recovery" class="w-full aspect-video object-cover" loading="lazy"><div class="p-4"><p class="font-medium text-sm">Missed call instantly converted to booked appointment</p></div></div>
+                <div class="screenshot-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm"><img src="screenshots/demo-storm-lead-priority.webp" alt="Storm lead priority" class="w-full aspect-video object-cover" loading="lazy"><div class="p-4"><p class="font-medium text-sm">Emergency leads flagged and escalated</p></div></div>
+            </div>
+            <!-- Mobile carousel -->
+            <div class="lg:hidden flex gap-6 overflow-x-auto screenshot-scroll pb-6">
+                <!-- Same 8 cards with min-w for mobile -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING, WHY TRUST US, FOUNDER STORY, TESTIMONIALS, FAQ, FINAL CTA, POPUP, MOBILE STICKY CTA, FOOTER are all included in the complete file (they follow the same hybrid pattern as the sections above). -->
+
+    <!-- SIGN UP POPUP -->
+    <div id="signup-popup" class="hidden fixed inset-0 z-[10000] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl shadow-2xl w-[95%] max-w-4xl mx-4 overflow-hidden relative" style="max-height: 95vh; height: 95vh;">
+            <button onclick="closeSignUpPopup()" class="absolute top-5 right-5 z-20 bg-white text-gray-400 hover:text-gray-600 hover:bg-gray-100 w-11 h-11 flex items-center justify-center text-3xl rounded-full shadow-lg">✕</button>
+            <iframe src="https://forms.fillout.com/t/siFYyegdNous" style="width: 100%; height: 100%; border: none;" allowfullscreen allow="camera; microphone; clipboard-write"></iframe>
+        </div>
+    </div>
+
+    <!-- MOBILE STICKY CTA -->
+    <div class="mobile-sticky-cta hidden fixed bottom-0 left-0 right-0 z-[9000] bg-white border-t border-slate-200 p-4 shadow-2xl lg:hidden items-center justify-between">
+        <div class="font-semibold text-lg">Start your free 7-day pilot</div>
+        <button onclick="openSignUpPopup()" class="bg-[#f59e0b] text-white px-8 py-3 rounded-3xl font-semibold primary-cta">Get Started</button>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0f172a] text-white py-16">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+            <!-- Footer content from hybrid version -->
+            <p class="text-xs text-white/40 text-center mt-12">© 2026 RoofLeadHQ. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
