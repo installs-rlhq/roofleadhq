@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy: #0f172a;
+  --blue: #0284c8;
+  --amber: #f59e0b;
+  --slate: #475569;
+  --light: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--navy);
+}
+
+.hero-bg {
+  background:
+    radial-gradient(circle at top right, rgba(2,132,200,.35), transparent 34%),
+    linear-gradient(135deg, #0f172a, #1e293b 50%, #334155);
+}
+
+.section-header {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+button,
+a {
+  transition: all 0.25s ease;
+}
+
+input,
+textarea {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.primary-cta {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.primary-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,.18);
+}
+
+.secondary-cta:hover {
+  transform: translateY(-1px);
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(2, 132, 200, 0.18);
+}
+
+details summary {
+  transition: color 0.25s ease;
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary:hover {
+  color: var(--blue);
+}
+
+.screenshot-card {
+  scroll-snap-align: start;
+  transition: all 0.3s ease;
+}
+
+.screenshot-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.18);
+}
+
+.screenshot-scroll {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.screenshot-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.notification {
+  animation: slideUp 0.4s ease forwards;
+}
+
+.notification.exiting {
+  animation: slideDown 0.35s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+.modal-panel {
+  transform: scale(.98);
+  opacity: 0;
+  transition: all .2s ease;
+}
+
+#signup-popup:not(.hidden) .modal-panel {
+  transform: scale(1);
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .mobile-sticky-cta {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+  .primary-cta:hover,
+  .secondary-cta:hover,
+  .screenshot-card:hover {
+    transform: none;
+  }
+}
