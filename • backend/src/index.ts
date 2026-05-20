@@ -1,22 +1,24 @@
 import express from 'express';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import config from './config/config';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = config.port;
 
 app.use(express.json());
 
 // Health check route
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', message: 'RoofLeadHQ backend is running' });
+  res.json({ 
+    status: 'ok', 
+    message: 'RoofLeadHQ backend is running',
+    environment: config.nodeEnv 
+  });
 });
 
-// Placeholder for future routes
+// Placeholder routes (we'll build these next)
 // app.use('/api/leads', leadRoutes);
-// app.use('/api/calls', callRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 RoofLeadHQ backend running on port ${PORT}`);
+  console.log(`Environment: ${config.nodeEnv}`);
 });
