@@ -2,7 +2,26 @@
 
 **Status:** Phase 1 core complete + robustness improvements done. All pipelines committed and pushed.
 
-## Completed So Far
+## Completed So Far (Updated 2026-05-21)
+
+**High Priority (All Done)**
+- Lobster runtime adapter (`scripts/lobster_runner.py`)
+- Retry + circuit breaker (`scripts/retry_utils.py`)
+- Supabase RLS + seed data
+- E2E test harness (83% pass rate)
+- Structured logging + observability
+
+**Medium Priority (Completed)**
+- Prompt template system for Retell/Vapi/SMS/Email (dynamic per client)
+- Webhook signature verification (Facebook, Retell, Vapi, Fillout, Stripe)
+- Client onboarding CLI (`scripts/onboard_client.py`)
+- Daily/weekly reporting email templates + generator
+- Monitoring & alerts (`scripts/monitor_alerts.py`)
+- A/B testing skeleton for follow-up cadences
+- Vercel deployment fix (vercel.json + api/)
+
+**Nice to Have (Partial)**
+- A/B testing module added (item #12)
 - Project structure + GitHub repo initialized
 - `master-config.json` foundation
 - 7 core `.lobster` pipelines:
