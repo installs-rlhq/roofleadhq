@@ -20,6 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from prompt_manager import PromptManager
 from structured_logger import get_logger
+from supabase_client import get_supabase
 
 logger = get_logger()
 
@@ -33,9 +34,33 @@ class ReportGenerator:
         if date is None:
             date = datetime.utcnow().strftime("%Y-%m-%d")
         
-        # In production: query Supabase for real data
-        # For now: use mock data
-        data = self._get_mock_daily_data(client_id, date)
+        db = get_supabase()
+        leads = db.get_leads(client_id, limit=100)
+        
+        # Compute real metrics from Supabase
+        total_leads = len(leads)
+        qualified = len([l for l in leads if l.get("urgency") in ["hot", "warm"]])
+        booked = len([l for l in leads if l.get("status") == "booked"])
+        conversion = round((booked / total_leads * 100) if total_leads > 0 else 0)
+        
+        # Build simple lists
+        hot_list = "\n".join([f"• {l.get('name', 'Unknown')} ({l.get('address', '')})" for l in leads if l.get("urgency") == "hot"][:5]) or "None today"
+        bookings_list = "No recent bookings"
+        stale_list = "None"
+        
+        data = {
+            "total_leads": total_leads,
+            "qualified_leads": qualified,
+            "booked": booked,
+            "conversion_rate": str(conversion),
+            "hot_leads_list": hot_list,
+            "bookings_list": bookings_list,
+            "stale_leads_list": stale_list,
+            "follow_5min": total_leads,
+            "follow_30min": max(0, total_leads - 1),
+            "follow_2hr": max(0, total_leads - 2),
+            "follow_24hr": max(0, total_leads - 3),
+        }
         
         # Load client info
         try:

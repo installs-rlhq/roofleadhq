@@ -23,7 +23,13 @@ from string import Template
 
 
 class PromptManager:
-    def __init__(self, prompts_dir: str = "prompts"):
+    def __init__(self, prompts_dir: str = None):
+        if prompts_dir is None:
+            # Try relative to this file first, then cwd
+            base = Path(__file__).parent.parent
+            prompts_dir = base / "prompts"
+            if not prompts_dir.exists():
+                prompts_dir = "prompts"
         self.prompts_dir = Path(prompts_dir)
         self.cache = {}  # Simple in-memory cache
 

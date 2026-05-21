@@ -61,7 +61,23 @@ class ClientOnboarder:
         
         self._save_config()
         
-        # 2. Generate onboarding checklist
+        # 2. Write to Supabase (real or mock)
+        try:
+            from supabase_client import get_supabase
+            db = get_supabase()
+            db.upsert_client({
+                "id": client_id,
+                "business_name": business_name,
+                "email": email,
+                "area_code": area_code,
+                "services": services or ["shingle", "metal", "flat"],
+                "tone": tone,
+                "status": "pilot"
+            })
+        except Exception as e:
+            print(f"Supabase write skipped: {e}")
+        
+        # 3. Generate onboarding checklist
         checklist = self._generate_checklist(client_id, business_name, email, area_code)
         
         # 3. Generate welcome message template

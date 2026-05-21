@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from structured_logger import get_logger
+from supabase_client import get_supabase
 
 logger = get_logger()
 
@@ -32,12 +33,18 @@ class Monitor:
 
     def check_failed_pipelines(self, hours: int = 24) -> List[Dict]:
         """Check for failed pipeline runs in the last N hours."""
-        # In production: query Supabase pipeline_runs where status='failed'
-        # Mock data for now
-        failed = [
-            {"pipeline": "follow-up", "client": "summit-roofing", "error": "Twilio rate limit", "time": "2026-05-21 03:14"},
-            {"pipeline": "booking", "client": "summit-roofing", "error": "Calendar API timeout", "time": "2026-05-21 04:22"},
-        ]
+        db = get_supabase()
+        runs = db.get_recent_pipeline_runs(hours)
+        failed = [r for r in runs if r.get("status") == "failed"]
+        
+        for f in failed:
+            self.alerts.append({
+                "severity": "high",
+                "type": "failed_pipeline",
+                "message": f"Pipeline '{f.get('pipeline')}' failed for {f.get('client_id')}: {f.get('error', 'Unknown error')}",
+                "time": f.get("started_at")
+            })
+        return failed
         
         if failed:
             for f in failed:
