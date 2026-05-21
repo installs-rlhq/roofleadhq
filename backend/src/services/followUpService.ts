@@ -1,3 +1,5 @@
+import supabase from '../integrations/supabase';
+
 interface FollowUp {
   leadId: string;
   type: 'sms' | 'email' | 'call';
@@ -7,13 +9,24 @@ interface FollowUp {
 
 class FollowUpService {
   async scheduleFollowUp(followUp: FollowUp) {
-    console.log('Scheduling follow-up:', followUp);
-    return { ...followUp, status: 'scheduled' };
+    const { data, error } = await supabase
+      .from('follow_ups')
+      .insert([followUp])
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
   }
 
-  async sendFollowUp(followUpId: string) {
-    console.log('Sending follow-up:', followUpId);
-    return { success: true };
+  async getPendingFollowUps() {
+    const { data, error } = await supabase
+      .from('follow_ups')
+      .select('*')
+      .eq('status', 'pending');
+
+    if (error) throw error;
+    return data;
   }
 }
 
