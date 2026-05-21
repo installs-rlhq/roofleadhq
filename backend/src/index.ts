@@ -1,5 +1,6 @@
 import express from 'express';
 import config from './config/config';
+import leadsRouter from './routes/leads';
 
 const app = express();
 const PORT = config.port;
@@ -14,6 +15,9 @@ app.get('/health', (req, res) => {
     environment: config.nodeEnv,
   });
 });
+
+// Routes
+app.use('/api/leads', leadsRouter);
 
 app.listen(PORT, () => {
   console.log(`🚀 RoofLeadHQ backend running on port ${PORT}`);
