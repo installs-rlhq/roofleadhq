@@ -1,3 +1,5 @@
+import supabase from '../integrations/supabase';
+
 interface Booking {
   leadId: string;
   preferredDate: string;
@@ -7,13 +9,26 @@ interface Booking {
 
 class BookingService {
   async createBooking(booking: Booking) {
-    console.log('Creating booking:', booking);
-    return { ...booking, id: 'temp-booking-id', status: 'pending' };
+    const { data, error } = await supabase
+      .from('bookings')
+      .insert([booking])
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
   }
 
   async confirmBooking(bookingId: string) {
-    console.log('Confirming booking:', bookingId);
-    return { success: true, status: 'confirmed' };
+    const { data, error } = await supabase
+      .from('bookings')
+      .update({ status: 'confirmed' })
+      .eq('id', bookingId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
   }
 }
 
