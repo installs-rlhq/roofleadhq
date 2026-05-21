@@ -1,16 +1,16 @@
 import { Router, Request, Response } from 'express';
+import leadService from '../services/leadService';
 
 const router = Router();
 
-// Facebook/Google form webhook
-router.post('/forms', (req: Request, res: Response) => {
-  console.log('Form submission received:', req.body);
-  res.status(200).json({ received: true });
-});
-
-// General webhook endpoint
-router.post('/', (req: Request, res: Response) => {
-  res.status(200).json({ message: 'Webhook received' });
+// Facebook / Google / Website form submissions
+router.post('/forms', async (req: Request, res: Response) => {
+  try {
+    const lead = await leadService.createLead(req.body);
+    res.status(201).json({ message: 'Lead created from form', lead });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to process form submission' });
+  }
 });
 
 export default router;
