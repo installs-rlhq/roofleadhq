@@ -27,14 +27,20 @@ jobs:
       - name: Check pipeline files exist
         run: |
           echo "Checking all referenced pipelines exist..."
-          python3 -c "
-          import json, os
-          with open('master-config.json') as f:
+          python3 -c '
+          import json
+          import os
+          with open("master-config.json") as f:
               config = json.load(f)
-          for name, path in config.get('pipelines', {}).items():
+          missing = []
+          for name, path in config.get("pipelines", {}).items():
               if not os.path.exists(path):
-                  print(f'⚠️  Missing pipeline: {path}')
+                  missing.append(path)
+                  print(f"WARNING: Missing pipeline: {path}")
               else:
-                  print(f'✅ Found: {path}')
-          print('Pipeline check complete')
-"
+                  print(f"OK: Found {path}")
+          if missing:
+              print(f"Pipeline check completed with {len(missing)} missing files")
+          else:
+              print("All pipelines present")
+          '
