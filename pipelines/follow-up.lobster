@@ -34,6 +34,17 @@ steps:
           template: "sms_followup_2"
         - delay_minutes: "{{ cadence.sms[3] }}"
           template: "sms_stale"
+    retry:
+      attempts: 3
+      backoff: "exponential"
+    on_error:
+      - name: Log SMS Failure
+        type: logging
+        action: record
+        input:
+          event: "sms_send_failed"
+          lead_id: "{{ lead.id }}"
+          error: "{{ error }}"
 
   - name: Schedule Voice Follow-ups
     type: retell

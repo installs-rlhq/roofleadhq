@@ -43,6 +43,14 @@ steps:
       created_at: "gte:{{ now() - 48h }}"
     output:
       existing: "{{ query_result }}"
+    on_error:
+      - name: Log Dedup Error
+        type: logging
+        action: record
+        input:
+          event: "lead_dedup_failed"
+          error: "{{ error }}"
+          lead_phone: "{{ steps.normalize_lead_data.lead.phone }}"
 
   - name: Check Duplicate
     type: conditional

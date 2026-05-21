@@ -31,6 +31,16 @@ steps:
         status: "{{ rules.status }}"  # hot, warm, cold, unqualified
         reason: "{{ rules.reason }}"
         priority: "{{ rules.priority }}"
+    retry:
+      attempts: 2
+      backoff: "exponential"
+    on_error:
+      - name: Fallback to Warm
+        type: transform
+        action: set_default
+        input:
+          status: "warm"
+          reason: "Rules engine failed - defaulting to warm lead"
 
   - name: Update Lead Status
     type: supabase
