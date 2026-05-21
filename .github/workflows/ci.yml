@@ -1,0 +1,40 @@
+name: RoofLeadHQ CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate master-config.json
+        run: |
+          echo "Validating master-config.json structure..."
+          python3 -c "
+          import json
+          with open('master-config.json') as f:
+              config = json.load(f)
+          required = ['system', 'defaults', 'pipelines']
+          for key in required:
+              assert key in config, f'Missing required key: {key}'
+          print('✅ master-config.json is valid')
+
+      - name: Check pipeline files exist
+        run: |
+          echo "Checking all referenced pipelines exist..."
+          python3 -c "
+          import json, os
+          with open('master-config.json') as f:
+              config = json.load(f)
+          for name, path in config.get('pipelines', {}).items():
+              if not os.path.exists(path):
+                  print(f'⚠️  Missing pipeline: {path}')
+              else:
+                  print(f'✅ Found: {path}')
+          print('Pipeline check complete')
+"
