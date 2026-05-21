@@ -38,6 +38,7 @@ def sync_client_to_vapi(client_id: str, client_config: dict):
     assistant_id = vapi_config.get("assistant_id")
     prompt = vapi_config.get("prompt")
     first_message = vapi_config.get("first_message")
+    phone_number = vapi_config.get("phone_number") or client_config.get("twilio_number")
 
     if not assistant_id:
         print(f"⚠️  No assistant_id for client: {client_id}")
