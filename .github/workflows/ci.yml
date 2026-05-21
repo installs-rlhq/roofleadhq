@@ -15,14 +15,7 @@ jobs:
       - name: Validate master-config.json
         run: |
           echo "Validating master-config.json structure..."
-          python3 -c "
-          import json
-          with open('master-config.json') as f:
-              config = json.load(f)
-          required = ['system', 'defaults', 'pipelines']
-          for key in required:
-              assert key in config, f'Missing required key: {key}'
-          print('✅ master-config.json is valid')
+          python3 scripts/validate-config.py
 
       - name: Check pipeline files exist
         run: |
