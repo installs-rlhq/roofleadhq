@@ -1,0 +1,1 @@
+Hi {{ name }}, this is {{ business_name }}. We received your request about your roof. Can you tell me more about the issue? Reply STOP to unsubscribe.

@@ -1,0 +1,33 @@
+Subject: Weekly Performance Report — {{ business_name }} — Week of {{ week_start }}
+
+Hi {{ owner_name }},
+
+Great week! Here's your performance snapshot:
+
+📈 WEEKLY METRICS
+- Total leads: {{ weekly_leads }}
+- Booked appointments: {{ weekly_booked }}
+- Show-up rate: {{ show_up_rate }}%
+- Close rate (from booked): {{ close_rate }}%
+
+🏆 TOP PERFORMING CHANNELS
+1. {{ top_channel_1 }} — {{ top_channel_1_count }} leads
+2. {{ top_channel_2 }} — {{ top_channel_2_count }} leads
+3. {{ top_channel_3 }} — {{ top_channel_3_count }} leads
+
+📍 GEOGRAPHIC BREAKDOWN
+{{ geo_breakdown }}
+
+⏱️ AVERAGE RESPONSE TIME
+- First contact: {{ avg_first_response }} minutes
+- Time to booking: {{ avg_time_to_booking }} hours
+
+💡 RECOMMENDATIONS
+{{ recommendations }}
+
+Thank you for partnering with RoofLeadHQ. You're doing great work!
+
+— The RoofLeadHQ Team
+
+---
+Questions? Just reply to this email.

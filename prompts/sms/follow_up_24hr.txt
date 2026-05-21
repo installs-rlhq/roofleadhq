@@ -1,0 +1,1 @@
+Hi {{ name }}, we haven't heard back. If you're still interested in roof repair/replacement, reply YES and we'll call you. Thanks!

@@ -1,0 +1,1 @@
+Hi {{ name }}, this is {{ business_name }} again. We specialize in {{ services }}. Would you like us to schedule a free inspection this week?

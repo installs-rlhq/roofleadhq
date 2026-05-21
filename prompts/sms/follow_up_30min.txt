@@ -1,0 +1,1 @@
+Hi {{ name }}, just following up on your roofing inquiry. We're here to help with {{ project_type }}. When's a good time for a quick call?

@@ -1,0 +1,37 @@
+Subject: Daily Lead Report — {{ business_name }} — {{ date }}
+
+Hi {{ owner_name }},
+
+Here's your daily summary for {{ date }}:
+
+📊 LEAD SUMMARY
+- Total new leads: {{ total_leads }}
+- Qualified (Hot/Warm): {{ qualified_leads }}
+- Booked appointments: {{ booked }}
+- Conversion rate: {{ conversion_rate }}%
+
+🔥 HOT LEADS (require immediate attention)
+{{ hot_leads_list }}
+
+📅 TODAY'S BOOKINGS
+{{ bookings_list }}
+
+⚠️ STALE LEADS (>48h no contact)
+{{ stale_leads_list }}
+
+💬 FOLLOW-UP STATUS
+- 5min SMS sent: {{ follow_5min }}
+- 30min SMS sent: {{ follow_30min }}
+- 2hr SMS sent: {{ follow_2hr }}
+- 24hr SMS sent: {{ follow_24hr }}
+
+Next steps:
+- Review hot leads and call within 15 minutes
+- Check stale leads for re-engagement
+
+Need help? Reply to this email or text our support line.
+
+— RoofLeadHQ Automation
+
+---
+Unsubscribe: {{ unsubscribe_link }}
