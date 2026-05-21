@@ -1,20 +1,9 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+import { logCall, getCalls } from '../controllers/callController';
 
 const router = Router();
 
-// Get call logs
-router.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'Get call logs - placeholder' });
-});
-
-// Handle incoming call webhook (from Vapi/Retell)
-router.post('/webhook', (req: Request, res: Response) => {
-  const callData = req.body;
-  
-  res.status(200).json({
-    message: 'Call webhook received',
-    callData
-  });
-});
+router.get('/', getCalls);
+router.post('/webhook', logCall);
 
 export default router;
