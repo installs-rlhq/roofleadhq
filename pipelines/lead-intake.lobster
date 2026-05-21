@@ -85,7 +85,7 @@ steps:
     action: insert
     table: leads
     input:
-      "{{ steps.normalize_lead_data.lead }}"
+      lead_data: "{{ steps.normalize_lead_data.lead }}"
       enriched_score: "{{ steps.enrich_lead.enriched_lead.score }}"
       tags: "{{ steps.enrich_lead.enriched_lead.tags }}"
       status: "new"
