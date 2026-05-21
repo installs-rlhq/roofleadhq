@@ -5,12 +5,34 @@
     "environment": "production",
     "timezone": "America/New_York"
   },
-  "clients": {},
+  "clients": {
+    "summit-roofing": {
+      "business_name": "Summit Roofing Pros",
+      "email": "owner@summitroofing.com",
+      "area_code": "720",
+      "services": [
+        "shingle",
+        "metal",
+        "flat"
+      ],
+      "tone": "professional_friendly",
+      "onboarded_at": "2026-05-21T05:11:25.650272Z",
+      "status": "pilot"
+    }
+  },
   "defaults": {
     "pilot_duration_days": 7,
     "follow_up_cadence": {
-      "sms": [5, 30, 120, 1440],
-      "voice": [1440, 4320]
+      "sms": [
+        5,
+        30,
+        120,
+        1440
+      ],
+      "voice": [
+        1440,
+        4320
+      ]
     },
     "sla": {
       "lead_response_minutes": 5,
