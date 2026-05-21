@@ -1,0 +1,61 @@
+{
+  "system": {
+    "name": "RoofLeadHQ",
+    "version": "0.1.0",
+    "environment": "production",
+    "timezone": "America/New_York"
+  },
+  "clients": {},
+  "defaults": {
+    "pilot_duration_days": 7,
+    "follow_up_cadence": {
+      "sms": [5, 30, 120, 1440],
+      "voice": [1440, 4320]
+    },
+    "sla": {
+      "lead_response_minutes": 5,
+      "stale_lead_hours": 24
+    },
+    "retell": {
+      "voice_id": "default",
+      "prompt_style": "professional_friendly"
+    },
+    "vapi": {
+      "assistant_id": null,
+      "prompt_style": "professional_friendly"
+    }
+  },
+  "webhooks": {
+    "facebook": {
+      "verify_token": "CHANGE_ME"
+    },
+    "retell": {
+      "webhook_secret": "CHANGE_ME"
+    }
+  },
+  "integrations": {
+    "stripe": {
+      "mode": "live"
+    },
+    "twilio": {
+      "account_sid": "CHANGE_ME"
+    },
+    "supabase": {
+      "url": "CHANGE_ME",
+      "anon_key": "CHANGE_ME"
+    },
+    "composio": {}
+  },
+  "pipelines": {
+    "roofer_onboarding": "pipelines/roofer-onboarding.lobster",
+    "lead_intake": "pipelines/lead-intake.lobster",
+    "qualification_routing": "pipelines/qualification-routing.lobster",
+    "follow_up": "pipelines/follow-up.lobster",
+    "booking": "pipelines/booking.lobster",
+    "stale_detection": "pipelines/stale-detection.lobster"
+  },
+  "reporting": {
+    "daily_summary_time": "08:00",
+    "weekly_summary_day": "Monday"
+  }
+}
