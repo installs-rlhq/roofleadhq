@@ -52,7 +52,8 @@
     "qualification_routing": "pipelines/qualification-routing.lobster",
     "follow_up": "pipelines/follow-up.lobster",
     "booking": "pipelines/booking.lobster",
-    "stale_detection": "pipelines/stale-detection.lobster"
+    "stale_detection": "pipelines/stale-detection.lobster",
+    "daily_reporting": "pipelines/daily-reporting.lobster"
   },
   "reporting": {
     "daily_summary_time": "08:00",
