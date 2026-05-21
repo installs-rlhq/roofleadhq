@@ -1,3 +1,5 @@
+import supabase from '../integrations/supabase';
+
 interface CallData {
   callId: string;
   phone: string;
@@ -8,12 +10,24 @@ interface CallData {
 
 class CallService {
   async logCall(callData: CallData) {
-    console.log('Logging call:', callData);
-    return { ...callData, loggedAt: new Date() };
+    const { data, error } = await supabase
+      .from('calls')
+      .insert([callData])
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
   }
 
   async getCalls() {
-    return [];
+    const { data, error } = await supabase
+      .from('calls')
+      .select('*')
+      .order('createdAt', { ascending: false });
+
+    if (error) throw error;
+    return data;
   }
 }
 
