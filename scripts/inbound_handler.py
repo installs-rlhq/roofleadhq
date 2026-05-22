@@ -21,6 +21,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts.structured_logger import get_logger
 from scripts.supabase_client import SupabaseClient
 from scripts.webhook_verifier import verify_webhook
+try:
+    from scripts.manual_outreach import ManualOutreachHandler
+    MANUAL_OUTREACH_AVAILABLE = True
+except Exception:
+    MANUAL_OUTREACH_AVAILABLE = False
 
 logger = get_logger()
 
