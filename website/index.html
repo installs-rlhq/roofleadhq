@@ -80,7 +80,7 @@
         <a href="#pricing" class="hover:text-[#38bdf8]">Pricing</a>
         <a href="#why-trust-us" class="hover:text-[#38bdf8]">Why Trust Us</a>
         <a href="#faq" class="hover:text-[#38bdf8]">FAQ</a>
-        <button data-open-signup-popup type="button" onclick="openSignUpPopup()" aria-label="Start your free 7-day pilot" class="bg-[#f59e0b] hover:bg-orange-500 px-7 py-3 rounded-2xl font-bold primary-cta text-white">Start Your Free 7-Day Pilot</button>
+        <button data-open-signup-popup type="button" onclick="openSignUpPopup()" aria-label="Start your 7-day pilot" class="bg-[#f59e0b] hover:bg-orange-500 px-7 py-3 rounded-2xl font-bold primary-cta text-white">Start Your 7-Day Pilot</button>
       </div>
 
       <button id="mobile-menu-button" class="lg:hidden text-3xl" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
@@ -94,7 +94,7 @@
     <a href="#pricing" class="block py-2 hover:text-[#38bdf8]" data-close-mobile-menu>Pricing</a>
     <a href="#why-trust-us" class="block py-2 hover:text-[#38bdf8]" data-close-mobile-menu>Why Trust Us</a>
     <a href="#faq" class="block py-2 hover:text-[#38bdf8]" data-close-mobile-menu>FAQ</a>
-    <button data-open-signup-popup type="button" onclick="openSignUpPopup(); closeMobileMenu();" aria-label="Start your free 7-day pilot" class="block py-3 bg-[#f59e0b] hover:bg-orange-500 px-4 rounded-2xl font-bold text-center w-full text-white">Start Your Free 7-Day Pilot</button>
+    <button data-open-signup-popup type="button" onclick="openSignUpPopup(); closeMobileMenu();" aria-label="Start your 7-day pilot" class="block py-3 bg-[#f59e0b] hover:bg-orange-500 px-4 rounded-2xl font-bold text-center w-full text-white">Start Your 7-Day Pilot</button>
   </nav>
 
   <!-- URGENCY BANNER -->
@@ -416,9 +416,18 @@
   <!-- PRICING -->
   <section id="pricing" class="py-20 lg:py-32 bg-white">
     <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
-      <div class="text-center mb-16">
+      <div class="text-center mb-10">
         <h2 class="text-4xl lg:text-5xl font-black text-[#0f172a] section-header">Simple Pricing Built Around Lead Volume</h2>
         <p class="text-xl text-slate-600 mt-4 max-w-3xl mx-auto">Every plan includes the same complete RoofLeadHQ system. The only difference is how many inbound leads your roofing business handles each month.</p>
+      </div>
+
+      <!-- Performance Stats Widget -->
+      <div class="max-w-2xl mx-auto mb-12 text-center">
+        <div class="inline-flex items-center gap-x-2 bg-emerald-50 text-emerald-700 text-sm font-semibold px-5 h-9 rounded-3xl border border-emerald-200 mb-4">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Trusted by roofing contractors across the U.S.</span>
+        </div>
+        <p class="text-slate-600">Join us to maximize your lead potential.</p>
       </div>
 
       <div class="grid lg:grid-cols-3 gap-8 items-stretch">
@@ -426,6 +435,7 @@
                     <h3 class="uppercase text-slate-500 font-black text-sm mb-4 text-center">Starter</h3>
           <div class="flex items-baseline mb-3 justify-center"><span class="text-6xl font-black">$399</span><span class="text-slate-500 ml-3 text-xl">/mo</span></div>
           <p class="text-sm text-slate-500 mb-8 text-center">+ $499 one-time custom setup fee</p>
+          <div class="text-center mb-4"><span class="inline-block text-xs px-3 py-1 bg-slate-200 text-slate-600 rounded-full">Up to 100 leads/mo</span></div>
 
           <ul class="space-y-4 text-sm mb-8 flex-grow">
             <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-500 mt-1" aria-hidden="true"></i><span><strong>Up to 100 leads/month</strong></span></li>
