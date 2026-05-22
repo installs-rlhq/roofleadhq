@@ -15,6 +15,7 @@ Usage:
 
 import argparse
 import json
+import os
 from datetime import datetime, timedelta
 from typing import List, Dict
 
@@ -28,14 +29,16 @@ logger = get_logger()
 
 try:
     import requests
-    VAPI_AVAILABLE = True
+    REQUESTS_AVAILABLE = True
 except Exception:
-    VAPI_AVAILABLE = False
+    REQUESTS_AVAILABLE = False
 
 
 class Monitor:
     def __init__(self):
         self.alerts = []
+        self.slack_webhook_url = os.getenv("SLACK_WEBHOOK_URL")
+        self.generic_webhook_url = os.getenv("ALERT_WEBHOOK_URL")
 
     def check_failed_pipelines(self, hours: int = 24) -> List[Dict]:
         """Check for failed Lobster pipeline runs in the last N hours."""
@@ -105,6 +108,7 @@ class Monitor:
         self.check_high_error_rate()
         self.check_vapi_call_failures()
         self.check_inbound_processing()
+        self.send_alerts()
         return self.alerts
 
     def print_alerts(self):
@@ -120,6 +124,68 @@ class Monitor:
             if "time" in alert:
                 print(f"   Time: {alert['time']}")
             print()
+
+    def send_alerts(self):
+        """Send alerts to Slack and/or generic webhook if configured."""
+        if not self.alerts:
+            return
+
+        slack_sent = False
+        webhook_sent = False
+
+        if self.slack_webhook_url and REQUESTS_AVAILABLE:
+            slack_sent = self._send_to_slack()
+        if self.generic_webhook_url and REQUESTS_AVAILABLE:
+            webhook_sent = self._send_to_generic_webhook()
+
+        if slack_sent or webhook_sent:
+            logger.info(f"Alerts sent via webhook(s)", slack=slack_sent, generic=webhook_sent)
+
+    def _format_slack_message(self) -> Dict:
+        """Create a clean Slack message from alerts."""
+        blocks = [
+            {
+                "type": "header",
+                "text": {"type": "plain_text", "text": "🚨 RoofLeadHQ Alert"}
+            }
+        ]
+
+        for alert in self.alerts[:5]:  # Limit to first 5
+            severity_emoji = {"critical": "🔴", "high": "🟠", "medium": "🟡"}.get(alert.get("severity"), "⚪")
+            text = f"{severity_emoji} *{alert['type']}* — {alert['message']}"
+            if alert.get("time"):
+                text += f"\n_{alert['time']}_"
+            blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": text}})
+
+        if len(self.alerts) > 5:
+            blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": f"_... and {len(self.alerts)-5} more alerts_"}})
+
+        return {"blocks": blocks}
+
+    def _send_to_slack(self) -> bool:
+        """Send formatted alert to Slack."""
+        try:
+            payload = self._format_slack_message()
+            response = requests.post(self.slack_webhook_url, json=payload, timeout=10)
+            return response.status_code == 200
+        except Exception as e:
+            logger.warning(f"Failed to send Slack alert: {e}")
+            return False
+
+    def _send_to_generic_webhook(self) -> bool:
+        """Send alerts to a generic webhook endpoint."""
+        try:
+            payload = {
+                "source": "roofleadhq",
+                "timestamp": datetime.utcnow().isoformat() + "Z",
+                "alert_count": len(self.alerts),
+                "alerts": self.alerts
+            }
+            response = requests.post(self.generic_webhook_url, json=payload, timeout=10)
+            return response.status_code in (200, 201, 204)
+        except Exception as e:
+            logger.warning(f"Failed to send generic webhook alert: {e}")
+            return False
 
 
 def main():
