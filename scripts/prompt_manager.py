@@ -61,13 +61,14 @@ class PromptManager:
         self.cache[cache_key] = content
         return content
 
-    def render(self, channel: str, template_name: str, variables: Dict[str, str]) -> str:
+    def render(self, channel: str, template_name: str, variables: Dict[str, str], format: str = "txt") -> str:
         """
         Render a prompt template with variables.
-        
-        Supports both {{ var }} and $var syntax.
+        Supports HTML (.html), Markdown (.md), and plain text (.txt).
         """
-        template_str = self.load(channel, template_name)
+        # Try format-specific file first (e.g. daily_report.html)
+        ext = format if format in ("html", "md") else "txt"
+        template_str = self._load_template_with_fallback(channel, template_name, ext)
         
         # Provide defaults for missing variables
         defaults = {
@@ -79,23 +80,33 @@ class PromptManager:
         
         merged = {**defaults, **variables}
         
-        # Support {{ var }} syntax (convert to $var for Template)
+        # Support {{ var }} syntax
         import re
-        # Replace {{ var }} with $var
         template_str = re.sub(r'\{\{\s*(\w+)\s*\}\}', r'$\1', template_str)
         
         template = Template(template_str)
         
         try:
             result = template.safe_substitute(merged)
-            # Also do direct {{ var }} replacement for any remaining
             for key, value in merged.items():
                 result = result.replace(f"{{{{ {key} }}}}", str(value))
                 result = result.replace(f"{{{{{key}}}}}", str(value))
             return result
         except Exception as e:
             print(f"ERROR rendering template: {e}")
-            return template_str  # Return raw template if rendering fails
+            return template_str
+
+    def _load_template_with_fallback(self, channel: str, template_name: str, ext: str) -> str:
+        """Load template with format fallback (.html -> .md -> .txt)."""
+        candidates = [
+            self.prompts_dir / channel / f"{template_name}.{ext}",
+            self.prompts_dir / channel / f"{template_name}.txt"
+        ]
+        for path in candidates:
+            if path.exists():
+                with open(path, "r") as f:
+                    return f.read()
+        raise FileNotFoundError(f"No template found for {channel}/{template_name} (tried {ext})")
 
     def list_templates(self, channel: str) -> list:
         """List all available templates for a channel."""

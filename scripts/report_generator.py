@@ -88,9 +88,12 @@ class ReportGenerator:
             "unsubscribe_link": "https://roofleadhq.com/unsubscribe"
         }
         
-        report = self.pm.render("email", "daily_report", variables)
+        # Generate both HTML and Markdown versions
+        html_report = self.pm.render("email", "daily_report", variables, format="html")
+        md_report = self.pm.render("email", "daily_report", variables, format="md")
+        
         logger.info(f"Generated daily report for {client_id}", client_id=client_id, date=date)
-        return report
+        return {"html": html_report, "markdown": md_report}
 
     def generate_weekly_report(self, client_id: str, week_start: str = None) -> str:
         """Generate weekly report."""
