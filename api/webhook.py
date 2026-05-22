@@ -20,6 +20,11 @@ from scripts.webhook_verifier import verify_webhook
 from scripts.structured_logger import get_logger
 logger = get_logger()
 
+# Inbound handler
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from scripts.inbound_handler import InboundHandler
+
 # Stripe imports (graceful fallback if not installed)
 try:
     import stripe
@@ -46,6 +51,8 @@ class handler(BaseHTTPRequestHandler):
             source = "fillout"
         elif "stripe" in self.path:
             source = "stripe"
+        elif "twilio" in self.path or "inbound" in self.path:
+            source = "twilio"
 
         # Verify signature for security
         signature = self.headers.get(
@@ -79,6 +86,9 @@ class handler(BaseHTTPRequestHandler):
         # Handle Stripe events
         if source == "stripe":
             result = self._handle_stripe_event(payload, body, signature)
+        # Handle inbound Twilio/Vapi calls and SMS
+        elif source in ("vapi", "twilio") or "inbound" in self.path:
+            result = self._handle_inbound_event(source, payload, body, signature)
         else:
             result = {
                 "received": True,
@@ -166,6 +176,37 @@ class handler(BaseHTTPRequestHandler):
         customer_id = subscription.get("customer")
         logger.info(f"Subscription updated: {status} for customer {customer_id}")
         # TODO: Update client subscription status
+
+    def _handle_inbound_event(self, source: str, payload: dict, raw_body: bytes, signature: str):
+        """Handle inbound calls/SMS from Twilio or Vapi."""
+        client_id = payload.get("client_id") or payload.get("metadata", {}).get("client_id", "test-roofing")
+        from_number = payload.get("from") or payload.get("From") or payload.get("caller", "unknown")
+        to_number = payload.get("to") or payload.get("To")
+
+        handler = InboundHandler()
+
+        if "sms" in self.path.lower() or payload.get("type") == "sms":
+            message = payload.get("body") or payload.get("message", "")
+            result = handler.handle_inbound_sms(
+                client_id=client_id,
+                from_number=from_number,
+                message=message,
+                to_number=to_number,
+                raw_body=raw_body,
+                signature=signature
+            )
+        else:
+            call_id = payload.get("call_id") or payload.get("CallSid")
+            result = handler.handle_inbound_call(
+                client_id=client_id,
+                from_number=from_number,
+                to_number=to_number,
+                call_id=call_id,
+                raw_body=raw_body,
+                signature=signature
+            )
+
+        return result
 
 
 if __name__ == "__main__":

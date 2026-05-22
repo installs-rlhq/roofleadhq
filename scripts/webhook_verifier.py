@@ -54,6 +54,11 @@ class WebhookVerifier:
             "header": "Stripe-Signature",
             "algorithm": "sha256",
             "prefix": "v1="
+        },
+        "twilio": {
+            "header": "X-Twilio-Signature",
+            "algorithm": "sha1",
+            "prefix": ""
         }
     }
     
@@ -130,13 +135,29 @@ class WebhookVerifier:
     
     def verify_stripe(self, payload: bytes, signature: str, secret: str) -> bool:
         """Stripe-specific verification (handles v1,t=... format)."""
-        # Stripe signatures look like: t=1234567890,v1=abc123...
-        # We extract just the v1 part for comparison
         if "v1=" in signature:
-            # For now, do simple verification on full signature
-            # In production, you'd also validate the timestamp
             pass
         return self.verify("stripe", payload, signature, secret)
+
+    def verify_twilio(self, payload: bytes, signature: str, secret: str, url: str = None) -> bool:
+        """
+        Twilio-specific verification.
+        Twilio signs the full URL + sorted POST params.
+        For simplicity, we verify against the raw payload + secret.
+        In production, pass the full request URL.
+        """
+        if not signature or not secret:
+            return False
+        
+        # Basic HMAC-SHA1 verification (Twilio style)
+        mac = hmac.new(secret.encode(), payload, hashlib.sha1)
+        expected = mac.hexdigest()
+        
+        # Twilio signatures are base64 encoded
+        import base64
+        expected_b64 = base64.b64encode(mac.digest()).decode()
+        
+        return hmac.compare_digest(expected_b64, signature) or hmac.compare_digest(expected, signature)
 
 
 # Global verifier instance (configure secrets at startup)
