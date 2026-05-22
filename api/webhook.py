@@ -113,7 +113,7 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps({
             "endpoint": "webhook",
             "methods": ["POST"],
-            "sources": ["facebook", "retell", "vapi", "stripe", "website"]
+            "sources": ["facebook", "retell", "vapi", "stripe", "twilio", "website"]
         }).encode())
         return
 
@@ -179,14 +179,24 @@ class handler(BaseHTTPRequestHandler):
 
     def _handle_inbound_event(self, source: str, payload: dict, raw_body: bytes, signature: str):
         """Handle inbound calls/SMS from Twilio or Vapi."""
+        # Support both JSON and Twilio form-encoded payloads
+        if isinstance(payload, dict) and not payload:
+            # Try to parse as form data if JSON failed
+            try:
+                from urllib.parse import parse_qs
+                form_data = parse_qs(raw_body.decode('utf-8', errors='ignore'))
+                payload = {k: v[0] if v else '' for k, v in form_data.items()}
+            except Exception:
+                pass
+
         client_id = payload.get("client_id") or payload.get("metadata", {}).get("client_id", "test-roofing")
         from_number = payload.get("from") or payload.get("From") or payload.get("caller", "unknown")
         to_number = payload.get("to") or payload.get("To")
 
         handler = InboundHandler()
 
-        if "sms" in self.path.lower() or payload.get("type") == "sms":
-            message = payload.get("body") or payload.get("message", "")
+        if "sms" in self.path.lower() or payload.get("SmsSid") or payload.get("Body"):
+            message = payload.get("body") or payload.get("Body") or payload.get("message", "")
             result = handler.handle_inbound_sms(
                 client_id=client_id,
                 from_number=from_number,
@@ -196,7 +206,7 @@ class handler(BaseHTTPRequestHandler):
                 signature=signature
             )
         else:
-            call_id = payload.get("call_id") or payload.get("CallSid")
+            call_id = payload.get("call_id") or payload.get("CallSid") or payload.get("id")
             result = handler.handle_inbound_call(
                 client_id=client_id,
                 from_number=from_number,
