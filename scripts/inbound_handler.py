@@ -32,6 +32,13 @@ except ImportError:
     LOBSTER_AVAILABLE = False
     LobsterRunner = None
 
+# Vapi follow-up caller
+try:
+    import requests
+    VAPI_AVAILABLE = True
+except ImportError:
+    VAPI_AVAILABLE = False
+
 
 class InboundHandler:
     def __init__(self, twilio_auth_token: str = None):
@@ -148,6 +155,63 @@ class InboundHandler:
             logger.info(f"Follow-up Email workflow triggered for {client_id}")
 
         logger.info(f"Follow-up workflow initiated", client=client_id, source=source, from_number=from_number)
+
+        # Attempt actual Vapi follow-up call if configured
+        self._trigger_vapi_followup_call(client_id, from_number, client_config)
+
+    def _trigger_vapi_followup_call(self, client_id: str, from_number: str, client_config: dict):
+        """Initiate a follow-up call via Vapi using the client's configured assistant."""
+        if not VAPI_AVAILABLE:
+            logger.info("Vapi not available - skipping follow-up call")
+            return
+
+        vapi_config = client_config.get("vapi", {})
+        assistant_id = vapi_config.get("assistant_id")
+        phone_number_id = vapi_config.get("phone_number_id")
+
+        if not assistant_id:
+            logger.info(f"No Vapi assistant_id configured for {client_id} - skipping call")
+            return
+
+        vapi_key = os.getenv("VAPI_PRIVATE_KEY")
+        if not vapi_key:
+            logger.warning("VAPI_PRIVATE_KEY not set - cannot initiate follow-up call")
+            return
+
+        try:
+            headers = {
+                "Authorization": f"Bearer {vapi_key}",
+                "Content-Type": "application/json"
+            }
+
+            payload = {
+                "assistantId": assistant_id,
+                "customer": {
+                    "number": from_number
+                }
+            }
+
+            if phone_number_id:
+                payload["phoneNumberId"] = phone_number_id
+
+            response = requests.post(
+                "https://api.vapi.ai/call",
+                headers=headers,
+                json=payload,
+                timeout=15
+            )
+
+            if response.status_code == 201:
+                data = response.json()
+                logger.info(f"Vapi follow-up call initiated", 
+                           client=client_id, 
+                           call_id=data.get("id"),
+                           status=data.get("status"))
+            else:
+                logger.warning(f"Vapi follow-up call failed: {response.status_code} - {response.text[:200]}")
+
+        except Exception as e:
+            logger.error(f"Error initiating Vapi follow-up call: {e}")
 
     def _trigger_lobster_pipeline(self, client_id: str, lead_data: dict, pipeline: str, client_config: dict):
         """Trigger appropriate Lobster pipeline based on client config."""
