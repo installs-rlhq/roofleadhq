@@ -19,7 +19,7 @@ VAPI_BASE_URL = "https://api.vapi.ai"
 VAPI_PRIVATE_KEY = os.getenv("VAPI_PRIVATE_KEY")
 
 
-def create_or_update_assistant(client_id: str, client_config: dict):
+def create_or_update_assistant(client_id: str, client_config: dict, full_config: dict = None):
     vapi_config = client_config.get("vapi", {})
     twilio_number = client_config.get("twilio_number")
 
@@ -27,6 +27,11 @@ def create_or_update_assistant(client_id: str, client_config: dict):
         "Authorization": f"Bearer {VAPI_PRIVATE_KEY}",
         "Content-Type": "application/json"
     }
+
+    # Get the default template assistant ID
+    template_assistant_id = vapi_config.get("template_assistant_id")
+    if not template_assistant_id and full_config:
+        template_assistant_id = full_config.get("defaults", {}).get("vapi", {}).get("template_assistant_id")
 
     payload = {
         "name": f"{client_config.get('business_name', client_id)} Assistant",
@@ -38,18 +43,43 @@ def create_or_update_assistant(client_id: str, client_config: dict):
         },
         "voice": {
             "provider": "11labs",
-            "voiceId": "21m00Tcm4TlvDq8ikWAM"  # Default professional voice
-        },
-        "phoneNumberId": vapi_config.get("phone_number_id")
+            "voiceId": "21m00Tcm4TlvDq8ikWAM"
+        }
     }
 
-    # Check if assistant already exists
+    # If no assistant_id exists for this client, try to clone from template
     assistant_id = vapi_config.get("assistant_id")
+
+    if not assistant_id and template_assistant_id:
+        # Clone from Appointment Receptionist template
+        print(f"Cloning from template assistant: {template_assistant_id}")
+        template_url = f"{VAPI_BASE_URL}/assistant/{template_assistant_id}"
+        template_resp = requests.get(template_url, headers=headers)
+        
+        if template_resp.status_code == 200:
+            template_data = template_resp.json()
+            # Start with template settings and override with client-specific values
+            payload = {
+                "name": f"{client_config.get('business_name', client_id)} Assistant",
+                "firstMessage": vapi_config.get("first_message") or template_data.get("firstMessage"),
+                "model": {
+                    "provider": template_data.get("model", {}).get("provider", "openai"),
+                    "model": template_data.get("model", {}).get("model", "gpt-4o"),
+                    "systemPrompt": vapi_config.get("prompt") or template_data.get("model", {}).get("systemPrompt")
+                },
+                "voice": template_data.get("voice", {
+                    "provider": "11labs",
+                    "voiceId": "21m00Tcm4TlvDq8ikWAM"
+                })
+            }
+        else:
+            print(f"Warning: Could not fetch template assistant ({template_resp.status_code})")
 
     if assistant_id:
         url = f"{VAPI_BASE_URL}/assistant/{assistant_id}"
         response = requests.patch(url, headers=headers, json=payload)
     else:
+        # When creating new assistant, do not include phoneNumberId
         url = f"{VAPI_BASE_URL}/assistant"
         response = requests.post(url, headers=headers, json=payload)
 
@@ -76,7 +106,7 @@ def main():
         print(f"❌ Client not found: {client_id}")
         sys.exit(1)
 
-    create_or_update_assistant(client_id, client_config)
+    create_or_update_assistant(client_id, client_config, config)
 
 
 if __name__ == "__main__":

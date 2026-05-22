@@ -31,7 +31,7 @@
       ],
       "tone": "professional_friendly",
       "vapi": {
-        "phone_number_id": "vapi_phone_18175874990",
+        "phone_number_id": "26d018ad-72a9-4fc7-8333-ff58d656fbd4",
         "assistant_id": "8456b00d-1463-4655-9dc5-30a52c5577d7",
         "phone_number": "+18175874990",
         "first_message": "Thanks for calling Test Roofing. How can we help you with your roofing needs today?",
@@ -64,6 +64,7 @@
     },
     "vapi": {
       "assistant_id": null,
+      "template_assistant_id": "d6da9bf9-04df-4fb2-af2c-022d2a510732",
       "prompt_style": "professional_friendly"
     }
   },
