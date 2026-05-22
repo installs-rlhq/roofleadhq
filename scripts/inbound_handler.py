@@ -24,6 +24,14 @@ from scripts.webhook_verifier import verify_webhook
 
 logger = get_logger()
 
+# Lobster runner (optional import)
+try:
+    from scripts.lobster_runner import LobsterRunner
+    LOBSTER_AVAILABLE = True
+except ImportError:
+    LOBSTER_AVAILABLE = False
+    LobsterRunner = None
+
 
 class InboundHandler:
     def __init__(self, twilio_auth_token: str = None):
@@ -68,7 +76,8 @@ class InboundHandler:
         except Exception as e:
             logger.warning(f"Failed to insert lead: {e}")
 
-        # Trigger follow-up workflow if configured
+        # Trigger Lobster pipeline + follow-up workflow
+        self._trigger_lobster_pipeline(client_id, lead_data, "lead-intake", client_config)
         self._trigger_follow_up_workflow(client_id, from_number, "inbound_call", client_config)
 
         return {
@@ -139,6 +148,34 @@ class InboundHandler:
             logger.info(f"Follow-up Email workflow triggered for {client_id}")
 
         logger.info(f"Follow-up workflow initiated", client=client_id, source=source, from_number=from_number)
+
+    def _trigger_lobster_pipeline(self, client_id: str, lead_data: dict, pipeline: str, client_config: dict):
+        """Trigger appropriate Lobster pipeline based on client config."""
+        if not LOBSTER_AVAILABLE:
+            logger.info(f"Lobster runner not available - skipping pipeline trigger")
+            return
+
+        pipeline_map = {
+            "lead-intake": "pipelines/lead-intake.lobster",
+            "qualification": "pipelines/qualification-routing.lobster",
+            "follow-up": "pipelines/follow-up.lobster"
+        }
+
+        pipeline_path = pipeline_map.get(pipeline)
+        if not pipeline_path or not Path(pipeline_path).exists():
+            logger.warning(f"Pipeline not found: {pipeline}")
+            return
+
+        try:
+            runner = LobsterRunner()
+            result = runner.run_pipeline(pipeline_path, {
+                "client_id": client_id,
+                "lead": lead_data,
+                "source": lead_data.get("source", "inbound")
+            })
+            logger.info(f"Lobster pipeline triggered: {pipeline}", client=client_id, result=result.get("status"))
+        except Exception as e:
+            logger.error(f"Failed to run Lobster pipeline {pipeline}: {e}")
 
 
 def main():
