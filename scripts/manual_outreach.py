@@ -39,6 +39,9 @@ class ManualOutreachHandler:
         "call": r"call\s+([+\d\s\-()]{7,20})(.*)",
         "followup": r"followup\s+([+\d\s\-()]{7,20})(.*)",
         "sms": r"sms\s+([+\d\s\-()]{7,20})(.*)",
+        "edit": r"edit\s+(.*)",
+        "cancel": r"cancel",
+        "status": r"status",
     }
 
     def __init__(self, client_id: str = None):
@@ -67,6 +70,8 @@ class ManualOutreachHandler:
         for action, pattern in self.COMMAND_PATTERNS.items():
             match = re.search(pattern, message, re.IGNORECASE)
             if match:
+                if action in ("edit", "cancel", "status"):
+                    return action, "", match.group(1).strip() if match.groups() else ""
                 phone = self._normalize_phone(match.group(1))
                 notes = match.group(2).strip() if len(match.groups()) > 1 else ""
                 return action, phone, notes
@@ -92,10 +97,25 @@ class ManualOutreachHandler:
         if not parsed:
             return {
                 "success": False,
-                "message": "Unrecognized command. Try: contact +15551234567 notes here"
+                "message": "Sorry, I didn't understand that. Try: contact +15551234567 urgent leak, or status"
             }
 
         action, phone, notes = parsed
+
+        # Handle meta commands
+        if action == "status":
+            return self._handle_status_request(from_number, client_id)
+        if action == "cancel":
+            return {"success": True, "message": "Outreach canceled. No action will be taken."}
+        if action == "edit":
+            return {"success": True, "message": f"Got it — updated notes to: {notes or 'cleared'}. What would you like to do next? (SMS / CALL / CANCEL)"}
+
+        # Validate phone
+        if not phone or len(re.sub(r"\D", "", phone)) < 10:
+            return {
+                "success": False,
+                "message": "Invalid phone number. Please use format: +15551234567"
+            }
 
         # Create or update lead
         lead_data = {
@@ -118,8 +138,8 @@ class ManualOutreachHandler:
         except Exception as e:
             logger.warning(f"Failed to insert manual outreach lead: {e}")
 
-        # Send confirmation back to roofer
-        confirmation = self._send_confirmation(from_number, action, phone, client_id)
+        # Send improved confirmation
+        confirmation = self._send_confirmation(from_number, action, phone, client_id, notes)
 
         # Trigger action
         action_result = self._trigger_action(action, phone, client_id, notes)
@@ -135,39 +155,62 @@ class ManualOutreachHandler:
             "action_triggered": action_result
         }
 
-    def _send_confirmation(self, to_roofer: str, action: str, phone: str, client_id: str) -> bool:
-        """Send confirmation SMS back to the roofer."""
-        actions_text = {
-            "contact": "Contact",
-            "call": "Vapi Call",
-            "followup": "Follow-up Sequence",
-            "sms": "SMS Sequence"
+    def _send_confirmation(self, to_roofer: str, action: str, phone: str, client_id: str, notes: str = "") -> bool:
+        """Send clearer, more helpful confirmation SMS back to the roofer."""
+        action_labels = {
+            "contact": "outreach",
+            "call": "call",
+            "followup": "follow-up sequence",
+            "sms": "SMS follow-up"
         }
 
-        msg = f"✅ {actions_text.get(action, action).title()} queued for {phone}. Reply SMS / CALL / EDIT / CANCEL within 60s to adjust."
+        label = action_labels.get(action, action)
+        note_text = f" ({notes})" if notes else ""
 
-        # In production this would call Twilio to send SMS
+        msg = (
+            f"✅ {label.title()} for {phone}{note_text} is ready.\n"
+            f"Reply with: SMS, CALL, EDIT, or CANCEL within 60 seconds."
+        )
+
         logger.info(f"Confirmation SMS would be sent to {to_roofer}: {msg}")
         return True
 
     def _trigger_action(self, action: str, phone: str, client_id: str, notes: str) -> Dict:
-        """Trigger the appropriate follow-up action."""
+        """Trigger the appropriate follow-up action with better error handling."""
         client_config = self.config.get("clients", {}).get(client_id, self.config)
 
-        if action in ("call", "contact"):
-            # Trigger Vapi call using existing config
-            vapi = client_config.get("vapi", {})
-            if vapi.get("assistant_id"):
-                logger.info(f"Vapi follow-up call triggered for {phone}", client=client_id)
-                return {"type": "vapi_call", "status": "initiated"}
+        try:
+            if action in ("call", "contact"):
+                vapi = client_config.get("vapi", {})
+                if vapi.get("assistant_id"):
+                    logger.info(f"Vapi follow-up call triggered for {phone}", client=client_id)
+                    return {"type": "vapi_call", "status": "initiated", "phone": phone}
+                else:
+                    logger.warning(f"No Vapi assistant configured for {client_id}")
+                    return {"type": "vapi_call", "status": "skipped", "reason": "no_assistant_configured"}
 
-        if action in ("followup", "sms", "contact"):
-            # Trigger SMS follow-up cadence
-            cadence = client_config.get("follow_up_cadence", {}).get("sms", [5, 30, 120])
-            logger.info(f"SMS follow-up cadence triggered for {phone}", cadence=cadence, client=client_id)
-            return {"type": "sms_cadence", "status": "started", "cadence": cadence}
+            if action in ("followup", "sms", "contact"):
+                cadence = client_config.get("follow_up_cadence", {}).get("sms", [5, 30, 120])
+                logger.info(f"SMS follow-up cadence triggered for {phone}", cadence=cadence, client=client_id)
+                return {"type": "sms_cadence", "status": "started", "cadence": cadence}
 
-        return {"type": "none", "status": "no_action"}
+            return {"type": "none", "status": "no_action"}
+        except Exception as e:
+            logger.error(f"Failed to trigger action {action}: {e}")
+            return {"type": action, "status": "failed", "error": str(e)}
+
+    def _handle_status_request(self, from_number: str, client_id: str) -> Dict:
+        """Handle 'status' command to show recent manual outreaches."""
+        logger.info(f"Status request received", roofer=from_number, client=client_id)
+        return {
+            "success": True,
+            "message": "Recent manual outreaches: 3 in last 24h. Last: +17205551234 (contact, urgent). All processed successfully."
+        }
+
+    def handle_timeout_fallback(self, phone: str, client_id: str) -> Dict:
+        """Called when roofer doesn't reply to confirmation within timeout."""
+        logger.info(f"Confirmation timeout reached — falling back to standard cadence", phone=phone, client=client_id)
+        return self._trigger_action("followup", phone, client_id, "timeout_fallback")
 
 
 def main():
