@@ -10,8 +10,9 @@ class ReportGenerator:
     def __init__(self, supabase_client=None):
         self.supabase_client = supabase_client
         self.template_env = Environment(
-            loader=FileSystemLoader("templates/emails"),
+            loader=FileSystemLoader("prompts/email"),
             autoescape=True
+        )
         )
 
     def load_client_config(self, roofer_id: str) -> Dict:
