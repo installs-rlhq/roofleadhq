@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard Overview - RoofLeadHQ</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; margin: 0; padding: 40px 20px; line-height: 1.5; color: #1f2937;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 620px; margin: 0 auto; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);">
+    
+    <!-- HEADER -->
+    <tr>
+      <td style="background: #1a365d; color: white; padding: 32px 40px; text-align: center;">
+        <img src="{{logo_url}}" alt="RoofLeadHQ" width="80" height="80" style="margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;">
+        <h1 style="margin: 0; font-size: 28px; font-weight: 700;">RoofLeadHQ</h1>
+        <p style="margin: 8px 0 0; font-size: 18px; opacity: 0.95;">Dashboard Overview</p>
+        <p style="margin: 4px 0 0; font-size: 15px; opacity: 0.8;">{{date}} • {{company_name}}</p>
+      </td>
+    </tr>
+
+    <!-- BODY -->
+    <tr>
+      <td style="padding: 40px;">
+        <p style="color: #334155; font-size: 16px; margin: 0 0 24px;">Hi {{first_name}},</p>
+        <p style="color: #334155; font-size: 15px; margin: 0 0 32px;">Here’s a quick visual snapshot of your current performance.</p>
+
+        <!-- METRICS -->
+        <table width="100%" cellpadding="0" cellspacing="16" role="presentation">
+          <tr>
+            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+              <div style="font-size: 13px; color: #64748b;">Total Leads</div>
+              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{total_leads}}</div>
+            </td>
+            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+              <div style="font-size: 13px; color: #64748b;">Hot Leads</div>
+              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{hot_leads}}</div>
+            </td>
+          </tr>
+          <tr>
+            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+              <div style="font-size: 13px; color: #64748b;">Appointments</div>
+              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{appointments}}</div>
+            </td>
+            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+              <div style="font-size: 13px; color: #64748b;">Close Rate</div>
+              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{close_rate}}%</div>
+            </td>
+          </tr>
+        </table>
+
+        <div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin: 32px 0; text-align: center;">
+          <strong style="color: #1a365d;">View Full Dashboard</strong><br>
+          <a href="https://yourdomain.com/dashboard" style="color: #2563eb; text-decoration: none; font-size: 15px;">https://yourdomain.com/dashboard</a>
+        </div>
+      </td>
+    </tr>
+
+    <!-- FOOTER -->
+    <tr>
+      <td style="background: #f1f5f9; padding: 24px 40px; text-align: center; font-size: 13px; color: # RoofLeadHQ • Professional Lead Management<br>
+            <a href="{{unsubscribe_url}}" style="color: #64748b;">Unsubscribe</a> • Generated on {{generated_date}}
+  </td>
+</tr>
+    </table>
+</body>
+</html>
