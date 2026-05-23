@@ -1,7 +1,7 @@
 cat > scripts/send_report.py << 'EOF'
 #!/usr/bin/env python3
 """
-Unified report sender for RoofLeadHQ.
+Unified report sender for RoofLeadHQ (testing).
 Usage:
     python scripts/send_report.py --type weekly
     python scripts/send_report.py --type monthly
@@ -17,22 +17,6 @@ sys.path.append("backend")
 from src.services.reports.sender import ReportSender
 
 
-def load_client_config(client_id: str) -> dict:
-    config_path = Path("config/clients") / f"{client_id}.json"
-    if not config_path.exists():
-        raise FileNotFoundError(f"Client config not found: {client_id}")
-
-    import json
-    with open(config_path) as f:
-        config = json.load(f)
-
-    email = config.get("email") or config.get("roofer_email")
-    if not email:
-        raise ValueError(f"No valid email for {client_id}")
-    config["email"] = email
-    return config
-
-
 def get_test_config() -> dict:
     """Fake client config for testing."""
     return {
@@ -45,7 +29,8 @@ def get_test_config() -> dict:
 
 def main():
     parser = argparse.ArgumentParser(description="Send RoofLeadHQ reports")
-    parser.add_argument("--type", required=True, choices=["weekly", "monthly", "dashboard"],
+    parser.add_argument("--type", required=True,
+                        choices=["weekly", "monthly", "dashboard"],
                         help="Type of report to send")
     args = parser.parse_args()
 
