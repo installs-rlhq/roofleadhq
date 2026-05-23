@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.reports.sender import ReportSender
+from backend.src.services.reports.sender import ReportSender
 
 def load_client_config(client_id: str) -> dict:
     """Helper to load from config/clients/*.json"""
