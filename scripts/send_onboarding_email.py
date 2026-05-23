@@ -30,7 +30,6 @@ def load_client_config(client_id: str) -> dict:
         raise ValueError(f"No valid email for {client_id}")
     config["email"] = email
 
-    # Default logo if not set
     if "logo_url" not in config:
         config["logo_url"] = "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"
 
