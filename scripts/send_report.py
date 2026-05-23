@@ -1,7 +1,7 @@
 cat > scripts/send_report.py << 'EOF'
 #!/usr/bin/env python3
 """
-Unified report sender for RoofLeadHQ (testing).
+Unified report sender for RoofLeadHQ.
 Usage:
     python scripts/send_report.py --type weekly
     python scripts/send_report.py --type monthly
