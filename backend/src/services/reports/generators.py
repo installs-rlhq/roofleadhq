@@ -13,7 +13,6 @@ class ReportGenerator:
             loader=FileSystemLoader("prompts/email"),
             autoescape=True
         )
-        )
 
     def load_client_config(self, roofer_id: str) -> Dict:
         """Load per-client config from config/clients/*.json (Supabase is still source of truth)."""
@@ -46,6 +45,7 @@ class ReportGenerator:
             "date_range": f"{start_date} – {end_date}",
             "company_name": client_config.get("company_name", "Your Roofing Company"),
             "first_name": client_config.get("first_name", "John"),
+            "email": client_config.get("email", client_config.get("roofer_email")),  # ← fixes UndefinedError: 'email'
             "total_leads": 34,
             "hot_leads": 5,
             "appointments": 8,
