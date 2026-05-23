@@ -1,44 +1,59 @@
+cat > scripts/run_weekly_reports.py << 'EOF'
 #!/usr/bin/env python3
 """
-Stand-alone script to run weekly reports.
-Schedule this via Lobster pipeline / cron.
+Production-ready weekly report runner.
+Loads client data from config/clients/*.json and sends via Resend.
 """
-import os
+
 import sys
 from pathlib import Path
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append("backend")
 
-from backend.src.services.reports.sender import ReportSender
+from src.services.reports.sender import ReportSender
+
 
 def load_client_config(client_id: str) -> dict:
-    """Helper to load from config/clients/*.json"""
+    """Load client configuration from JSON file."""
     config_path = Path("config/clients") / f"{client_id}.json"
     if config_path.exists():
         import json
         with open(config_path) as f:
-            return json.load(f)
-    return {"roofer_id": client_id}  # fallback
+            config = json.load(f)
+    else:
+        config = {"roofer_id": client_id}
+
+    # Ensure email is always present and valid
+    email = config.get("email") or config.get("roofer_email")
+    if not email:
+        raise ValueError(f"No email found for client {client_id}")
+    config["email"] = email
+
+    return config
+
 
 def main():
     sender = ReportSender()
 
-    client_config = {
-        "company_name": "Test Roofing",
-        "first_name": "Jason",
-        "email": "your-real-test@email.com",   # ← change to your test email
-        "logo_url": "https://yourdomain.com/logo.png"
-    }
+    # Add more client IDs here as needed
+    client_ids = ["summit-roofing-pros"]
 
     print("🚀 Starting weekly report run...")
-    try:
-        sender.send_weekly_report(
-            roofer_id="test",
-            client_config=client_config
-        )
-        print("✅ Weekly report sent successfully!")
-    except Exception as e:
-        print(f"❌ Error: {e}")
-        
+
+    for client_id in client_ids:
+        try:
+            client_config = load_client_config(client_id)
+            sender.send_weekly_report(
+                roofer_id=client_id,
+                client_config=client_config
+            )
+            print(f"✅ Sent report for {client_id}")
+        except Exception as e:
+            print(f"❌ Failed for {client_id}: {e}")
+
+    print("✅ Weekly reports completed!")
+
+
 if __name__ == "__main__":
     main()
+EOF
