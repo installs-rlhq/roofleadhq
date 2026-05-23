@@ -26,8 +26,10 @@ def main():
 
     # Load config for one (or many) clients
     client_config = load_client_config("summit-roofing-pros")
-    # Optional: override email for testing
-    # client_config["email"] = "yourtest@email.com"
+    
+    # Safety: ensure email always exists (prevents sender.py crash)
+    if "email" not in client_config:
+        client_config["email"] = client_config.get("roofer_email") or "yourtest@email.com"  # ← fallback
 
     print("🚀 Starting weekly report run...")
     try:
