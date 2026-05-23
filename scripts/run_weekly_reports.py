@@ -27,9 +27,10 @@ def main():
     # Load config for one (or many) clients
     client_config = load_client_config("summit-roofing-pros")
     
-    # Safety: ensure email always exists (prevents sender.py crash)
-    if "email" not in client_config:
-        client_config["email"] = client_config.get("roofer_email") or "yourtest@email.com"  # ← fallback
+    # Safety: ensure email always exists and is valid email = client_config.get("email") or client_config.get("roofer_email")
+        if not email:
+            email = "yourtest@email.com"
+            client_config["email"] = email
 
     print("🚀 Starting weekly report run...")
     try:
