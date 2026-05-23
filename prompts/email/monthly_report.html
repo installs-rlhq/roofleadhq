@@ -9,75 +9,79 @@
     
     <!-- HEADER -->
     <tr>
-      <td style="background: #1a365d; color: white; padding: 32px 40px; text-align: center;">
-        <img src="{{logo_url}}" alt="RoofLeadHQ" width="80" height="80" style="margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;">
-        <h1 style="margin: 0; font-size: 28px; font-weight: 700;">RoofLeadHQ</h1>
-        <p style="margin: 8px 0 0; font-size: 18px; opacity: 0.95;">Monthly Performance Report</p>
-        <p style="margin: 4px 0 0; font-size: 15px; opacity: 0.8;">{{month_year}} • {{company_name}}</p>
+      <td style="background: #1a365d; color: white; padding: 32px 40px; text-align: center; border-radius: 16px 16px 0 0;">
+        <img src="{{logo_url}}" alt="RoofLeadHQ" width="70" height="70" style="margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto;">
+        <h1 style="margin: 0; font-size: 26px; font-weight: 700;">Monthly Performance Report</h1>
+        <p style="margin: 6px 0 0; font-size: 15px; opacity: 0.9;">{{month_year}} • {{company_name}}</p>
       </td>
     </tr>
 
     <!-- BODY -->
     <tr>
       <td style="padding: 40px;">
-        <p style="color: #334155; font-size: 16px; margin: 0 0 24px;">Good morning, {{first_name}},</p>
-        <p style="color: #334155; font-size: 15px; margin: 0 0 32px;">Here's your complete monthly overview of leads and performance.</p>
+        <p style="color: #334155; font-size: 16px; margin: 0 0 8px;">Good morning, {{first_name}},</p>
+        <p style="color: #64748b; font-size: 14px; margin: 0 0 24px;">The metrics below show your current monthly performance compared to the previous month.</p>
 
-        <!-- METRICS -->
+        <!-- METRICS (2x2) -->
         <table width="100%" cellpadding="0" cellspacing="16" role="presentation">
           <tr>
-            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+            <td style="background: #f8fafc; border-radius: 12px; padding: 20px; text-align: center; width: 50%;">
               <div style="font-size: 13px; color: #64748b;">Total Leads (Month)</div>
-              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{total_leads_month}}</div>
-              <span style="color: {{leads_trend_color}};">{{leads_trend}}</span>
+              <div style="font-size: 28px; font-weight: 700; color: #1a365d;">{{total_leads_month}}</div>
+              <span style="color: {{leads_trend_color}}; font-size: 13px;">{{leads_trend}}</span>
             </td>
-            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+            <td style="background: #f8fafc; border-radius: 12px; padding: 20px; text-align: center; width: 50%;">
               <div style="font-size: 13px; color: #64748b;">Hot Leads</div>
-              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{hot_leads_month}}</div>
-              <span style="color: {{hot_trend_color}};">{{hot_trend}}</span>
+              <div style="font-size: 28px; font-weight: 700; color: #1a365d;">{{hot_leads_month}}</div>
+              <span style="color: {{hot_trend_color}}; font-size: 13px;">{{hot_trend}}</span>
             </td>
           </tr>
           <tr>
-            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+            <td style="background: #f8fafc; border-radius: 12px; padding: 20px; text-align: center; width: 50%;">
               <div style="font-size: 13px; color: #64748b;">Appointments Booked</div>
-              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{appointments_month}}</div>
-              <span style="color: {{appt_trend_color}};">{{appt_trend}}</span>
+              <div style="font-size: 28px; font-weight: 700; color: #1a365d;">{{appointments_month}}</div>
+              <span style="color: {{appt_trend_color}}; font-size: 13px;">{{appt_trend}}</span>
             </td>
-            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+            <td style="background: #f8fafc; border-radius: 12px; padding: 20px; text-align: center; width: 50%;">
               <div style="font-size: 13px; color: #64748b;">Close Rate</div>
-              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{close_rate_month
-              <span style="color: {{close_trend_color}};">{{close_trend}}</span>
-</td>
-</tr>
-</table>
-            <h3 style="color: #1a365d; font-size: 18px; margin: 40px 0 12px;">Leads Needing Attention</h3>
-                <table width="100%" cellpadding="12" cellspacing="0" style="border-collapse: collapse; background: #f8fafc; border-radius: 12px;">
-      <thead>
-        <tr style="background: #f1f5f9;">
-          <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Lead</th>
-          <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Source</th>
-          <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Status</th>
-<th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Last Activity</th>
-</tr>
-</thead>
-<tbody>
-{{leads_attention_rows}}
-</tbody>
-</table>
-    <div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin: 32px 0;">
-      <strong style="color: #1a365d;">Recommended Actions</strong><br>
-      {{recommended_actions}}
-    </div>
-  </td>
-</tr>
+              <div style="font-size: 28px; font-weight: 700; color: #1a365d;">{{close_rate_month}}%</div>
+              <span style="color: {{close_trend_color}}; font-size: 13px;">{{close_trend}}</span>
+            </td>
+          </tr>
+        </table>
+                <h3 style="color: #1a365d; font-size: 17px; margin: 36px 0 12px;">Leads Needing Attention</h3>
+        <table width="100%" cellpadding="12" cellspacing="0" style="border-collapse: collapse; background: #f8fafc; border-radius: 12px;">
+          <thead>
+            <tr style="background: #f1f5f9;">
+              <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Lead</th>
+              <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Source</th>
+              <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Status</th>
+              <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Last Activity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{leads_attention_rows}}
+          </tbody>
+        </table>
 
-<!-- FOOTER -->
-<tr>
-  <td style="background: #f1f5f9; padding: 24px 40px; text-align: center; font-size: 13px; color: #64748b;">
-    RoofLeadHQ • Professional Lead Management<br>
-    <a href="{{unsubscribe_url}}" style="color: #64748b;">Unsubscribe</a> • Generated on {{generated_date}}
-  </td>
-</tr>
-</table>
+        <div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin: 32px 0;">
+          <strong style="color: #1a365d;">Recommended Actions</strong><br>
+          {{recommended_actions}}
+        </div>
+
+        <p style="margin: 24px 0 0; font-size: 14px;">
+          <a href="https://yourdomain.com/dashboard" style="color: #2563eb; text-decoration: none;">See your full Dashboard for more details →</a>
+        </p>
+      </td>
+    </tr>
+
+    <!-- FOOTER -->
+    <tr>
+      <td style="background: #f1f5f9; padding: 28px 40px; text-align: center; font-size: 13px; color: #64748b;">
+        RoofLeadHQ • Professional Lead Management<br>
+        <a href="{{unsubscribe_url}}" style="color: #64748b;">Unsubscribe</a> • Generated on {{generated_date}}
+      </td>
+    </tr>
+  </table>
 </body>
 </html>
