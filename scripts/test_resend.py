@@ -15,7 +15,7 @@ def test_resend():
     html = "<h1>RoofLeadHQ Resend Test</h1><p>This is a test email from your report system. If you see this, Resend is working correctly.</p>"
     
     client.send_email(
-        to="yourtestemail@gmail.com",   # ← CHANGE THIS TO YOUR TEST EMAIL
+        to="installs@roofleadhq.com",   # ← CHANGE THIS TO YOUR TEST EMAIL
         subject="RoofLeadHQ Resend Test - Success",
         html=html
     )
