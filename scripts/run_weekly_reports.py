@@ -21,27 +21,24 @@ def load_client_config(client_id: str) -> dict:
     return {"roofer_id": client_id}  # fallback
 
 def main():
-    # supabase = get_supabase_client()   # ← uncomment and import when ready
-    sender = ReportSender()  # (supabase_client=supabase) when ready
+    sender = ReportSender()
 
-    # Load config for one (or many) clients
-    client_config = load_client_config("summit-roofing-pros")
-    
-    # Safety: ensure email always exists and is valid email = client_config.get("email") or client_config.get("roofer_email")
-        if not email:
-            email = "yourtest@email.com"
-            client_config["email"] = email
+    client_config = {
+        "company_name": "Test Roofing",
+        "first_name": "Jason",
+        "email": "your-real-test@email.com",   # ← change to your test email
+        "logo_url": "https://yourdomain.com/logo.png"
+    }
 
     print("🚀 Starting weekly report run...")
     try:
         sender.send_weekly_report(
-            roofer_id="summit-roofing-pros",
+            roofer_id="test",
             client_config=client_config
         )
+        print("✅ Weekly report sent successfully!")
     except Exception as e:
         print(f"❌ Error: {e}")
-    
-    print("✅ Weekly reports completed!")
-
+        
 if __name__ == "__main__":
     main()
