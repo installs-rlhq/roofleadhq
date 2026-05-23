@@ -4,20 +4,40 @@ cat > scripts/send_report.py << 'EOF'
 Unified report sender for RoofLeadHQ.
 Usage:
     python scripts/send_report.py --type weekly
-    python scripts/send_report.py --type monthly
+    python scripts/send_report.py --type monthly --client summit-roofing-pros
     python scripts/send_report.py --type dashboard
 """
 
 import sys
 import argparse
+from pathlib import Path
 
 sys.path.append("backend")
 
 from src.services.reports.sender import ReportSender
 
 
+def load_client_config(client_id: str) -> dict:
+    config_path = Path("config/clients") / f"{client_id}.json"
+    if not config_path.exists():
+        raise FileNotFoundError(f"Client config not found: {client_id}")
+
+    import json
+    with open(config_path) as f:
+        config = json.load(f)
+
+    email = config.get("email") or config.get("roofer_email")
+    if not email:
+        raise ValueError(f"No valid email for {client_id}")
+    config["email"] = email
+
+    if "logo_url" not in config:
+        config["logo_url"] = "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"
+
+    return config
+
+
 def get_test_config() -> dict:
-    """Realistic fake client config for testing and screenshots."""
     return {
         "company_name": "Summit Roofing Pros",
         "first_name": "Jason",
@@ -31,20 +51,25 @@ def main():
     parser.add_argument("--type", required=True,
                         choices=["weekly", "monthly", "dashboard"],
                         help="Type of report to send")
+    parser.add_argument("--client", help="Client ID from config/clients/")
     args = parser.parse_args()
 
     sender = ReportSender()
-    client_config = get_test_config()
+
+    if args.client:
+        client_config = load_client_config(args.client)
+    else:
+        client_config = get_test_config()
 
     print(f"🚀 Sending {args.type} report to {client_config['email']}...")
 
     try:
         if args.type == "weekly":
-            sender.send_weekly_report(roofer_id="test", client_config=client_config)
+            sender.send_weekly_report(roofer_id=args.client or "test", client_config=client_config)
         elif args.type == "monthly":
-            sender.send_monthly_report(roofer_id="test", client_config=client_config)
+            sender.send_monthly_report(roofer_id=args.client or "test", client_config=client_config)
         elif args.type == "dashboard":
-            sender.send_dashboard_email(roofer_id="test", client_config=client_config)
+            sender.send_dashboard_email(roofer_id=args.client or "test", client_config=client_config)
 
         print(f"✅ {args.type.capitalize()} report sent successfully!")
     except Exception as e:
