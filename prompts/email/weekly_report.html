@@ -7,88 +7,53 @@
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; margin: 0; padding: 40px 20px; line-height: 1.5; color: #1f2937;">
   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 620px; margin: 0 auto; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);">
     
-    <!-- HEADER -->
+    <!-- HEADER (with rounded corners) -->
     <tr>
-      <td style="background: #1a365d; color: white; padding: 32px 40px; text-align: center;">
-        <img src="{{logo_url}}" alt="RoofLeadHQ" width="80" height="80" style="margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;">
-        <h1 style="margin: 0; font-size: 28px; font-weight: 700;">RoofLeadHQ</h1>
-        <p style="margin: 8px 0 0; font-size: 18px; opacity: 0.95;">Weekly Performance Report</p>
-        <p style="margin: 4px 0 0; font-size: 15px; opacity: 0.8;">{{date_range}} • {{company_name}}</p>
+      <td style="background: #1a365d; color: white; padding: 32px 40px; text-align: center; border-radius: 16px 16px 0 0;">
+        <img src="{{logo_url}}" alt="RoofLeadHQ" width="70" height="70" style="margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto;">
+        <h1 style="margin: 0; font-size: 26px; font-weight: 700;">Weekly Performance Report</h1>
+        <p style="margin: 6px 0 0; font-size: 15px; opacity: 0.9;">{{date_range}} • {{company_name}}</p>
       </td>
     </tr>
 
     <!-- BODY -->
     <tr>
       <td style="padding: 40px;">
-        <p style="color: #334155; font-size: 16px; margin: 0 0 24px;">Good morning, {{first_name}},</p>
-        <p style="color: #334155; font-size: 15px; margin: 0 0 32px;">Here's what's happening with your leads this week.</p>
+        <p style="color: #334155; font-size: 16px; margin: 0 0 8px;">Good morning, {{first_name}},</p>
+        <p style="color: #64748b; font-size: 14px; margin: 0 0 24px;">The metrics below show your current performance compared to the previous week.</p>
 
-        <!-- METRICS -->
+        <!-- METRICS (2x2 grid) -->
         <table width="100%" cellpadding="0" cellspacing="16" role="presentation">
           <tr>
-            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+            <td style="background: #f8fafc; border-radius: 12px; padding: 20px; text-align: center; width: 50%;">
               <div style="font-size: 13px; color: #64748b;">Total Leads</div>
-              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{total_leads}}</div>
-              <span style="color: {{leads_trend_color}};">{{leads_trend}}</span>
+              <div style="font-size: 28px; font-weight: 700; color: #1a365d;">{{total_leads}}</div>
+              <span style="color: {{leads_trend_color}}; font-size: 13px;">{{leads_trend}}</span>
             </td>
-            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+            <td style="background: #f8fafc; border-radius: 12px; padding: 20px; text-align: center; width: 50%;">
               <div style="font-size: 13px; color: #64748b;">Hot Leads</div>
-              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{hot_leads}}</div>
-              <span style="color: {{hot_trend_color}};">{{hot_trend}}</span>
+              <div style="font-size: 28px; font-weight: 700; color: #1a365d;">{{hot_leads}}</div>
+              <span style="color: {{hot_trend_color}}; font-size: 13px;">{{hot_trend}}</span>
             </td>
           </tr>
           <tr>
-            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
+            <td style="background: #f8fafc; border-radius: 12px; padding: 20px; text-align: center; width: 50%;">
               <div style="font-size: 13px; color: #64748b;">Appointments</div>
-              <div style="font-size: 32px; font-weight: 700; color: #1a365d;">{{appointments}}</div>
-              <span style="color: {{appt_trend_color}};">{{appt_trend}}</span>
+              <div style="font-size: 28px; font-weight: 700; color: #1a365d;">{{appointments}}</div>
+              <span style="color: {{appt_trend_color}}; font-size: 13px;">{{appt_trend}}</span>
             </td>
-            <td style="background: #f8fafc; border-radius: 12px; padding: 24px; text-align: center;">
-              <div style="font-size: 13px; color: #64748b;">Close Rate</div>
-              <div style="font-size: 32px; font-weight: 700            {% for lead in leads_needing_attention %}
-            <tr>
-              <td style="padding: 12px 16px;">{{ lead.name }}<br><small>{{ lead.phone }}</small></td>
-              <td style="padding: 12px 16px;">{{ lead.source }}</td>
-              <td style="padding: 12px 16px;"><span style="background: #fee2e2; color: #1a365d; padding: 2px 8px; border-radius: 9999px; font-size: 12px;">{{ lead.status }}</span></td>
-              <td style="padding: 12px 16px;">{{ lead.last_activity }}</td>
-            </tr>
-            {% else %}
-            <tr><td colspan="4" style="padding: 20px; text-align: center; color: #64748b;">No leads needing attention this period.</td></tr>
-            {% endfor %}
-          </tbody>
-        </table>
-
-        <div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin: 32px 0;">
-          <strong style="color: #1a365d;">Recommended Actions</strong><br>
-          {{recommended_actions}}
-        </div>
-      </td>
-    </tr>
-
-    <!-- FOOTER -->
-    <tr>
-      <td style="background: #f1f5f9; padding: 24px 40px; text-align: center; font-size: 13px; color: #64748b;">
-        RoofLeadHQ • Professional Lead Management<br>
-        <a href="{{unsubscribe_url}}" style="color: #64748b;">Unsubscribe</a> • Generated on {{generated_date}}
-      </td>
-    </tr>
-  </table>
-</body>
-</html>
-%</div>
-          <span style="color: {{close_trend_color}};">{{close_trend}}</span>
+            <td style="background: #f8fafc; border-radius: 12px; padding: 20px; text-align: center; width: 50%;">
+            div style="font-size: 13px; color: #64748b;">Close Rate</div>
+<div style="font-size: 28px; font-weight: 700; color: #1a365d;">{{close_rate}}%</div>
+          <span style="color: {{close_trend_color}}; font-size: 13px;">{{close_trend}}</span>
         </td>
       </tr>
     </table>
 
-    <h3 style="color: #1a365d; font-size: 18px; margin: 40px 0 12px;">Leads Needing Attention</h3>
+    <h3 style="color: #1a365d; font-size: 17px; margin: 36px 0 12px;">Leads Needing Attention</h3>
     <table width="100%" cellpadding="12" cellspacing="0" style="border-collapse: collapse; background: #f8fafc; border-radius: 12px;">
       <thead>
-        <tr style="background: #f1f5f9;">
-          ...<tr style="background: #f1f5f9;">
-
-
-<th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Lead</th>
+        <tr style="background: #f1f5f9;"><th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Lead</th>
 <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Source</th>
 <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Status</th>
 <th style="text-align: left; padding: 12px 16px; font-size: 13px; color: #64748b;">Last Activity</th>
@@ -97,17 +62,21 @@
 <tbody>
 {{leads_attention_rows}}
 </tbody>
-</table>...
+</table>
     <div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin: 32px 0;">
       <strong style="color: #1a365d;">Recommended Actions</strong><br>
       {{recommended_actions}}
     </div>
+
+    <p style="margin: 24px 0 0; font-size: 14px;">
+      <a href="https://yourdomain.com/dashboard" style="color: #2563eb; text-decoration: none;">See your full Dashboard for more details →</a>
+    </p>
   </td>
 </tr>
 
 <!-- FOOTER -->
 <tr>
-  <td style="background: #f1f5f9; padding: 24px 40px; text-align: center; font-size: 13px; color: #64748b;">
+  <td style="background: #f1f5f9; padding: 28px 40px; text-align: center; font-size: 13px; color: #64748b;">
     RoofLeadHQ • Professional Lead Management<br>
     <a href="{{unsubscribe_url}}" style="color: #64748b;">Unsubscribe</a> • Generated on {{generated_date}}
   </td>
