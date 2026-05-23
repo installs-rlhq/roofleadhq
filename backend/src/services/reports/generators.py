@@ -72,18 +72,20 @@ class ReportGenerator:
         ]
 
         data = {
-            "logo_url": client_config.get("logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
-            "month_year": month_year,
-            "company_name": client_config.get("company_name", "Your Roofing Company"),
-            "first_name": client_config.get("first_name", "John"),
-            "total_leads_month": 142,
-            "hot_leads_month": 19,
-            "appoint "close_rate_month": 61,
+            "logo_url":
+        logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
+"month_year": month_year,
+"company_name": client_config.get("company_name", "Your Roofing Company"),
+"first_name": client_config.get("first_name", "John"),
+"total_leads_month": 142,
+"hot_leads_month": 19,
+"appointments_month": 31,
+"close_rate_month": 61,
 "leads_trend": "↑12",
 "leads_trend_color": "#10b981",
 "hot_trend": "↑4",
-                "hot_trend_color": "#10b981",
-        "appt_trend": "↑7",
+"hot_trend_color": "#10b981",
+"appt_trend": "↑7",
         "appt_trend_color": "#10b981",
         "close_trend": "↑5%",
 "close_trend_color": "#10b981",
@@ -121,3 +123,4 @@ def render_welcome_email(self, roofer_id: str, client_config: Dict) -> str:
     }
     template = self.template_env.get_template("onboarding/welcome.html")
     return template.render(**data)
+        EOF
