@@ -15,7 +15,7 @@ class ReportSender:
         subject = f"Weekly Performance Report – {client_config.get('company_name', 'Roofing Company')}"
         
         self.resend.send_email(
-            to=client_config["email"],
+            to=client_config.get("email") or client_config.get("roofer_email"),
             subject=subject,
             html=html,
         )
