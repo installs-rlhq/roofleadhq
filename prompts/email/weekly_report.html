@@ -61,7 +61,16 @@
             </tr>
           </thead>
           <tbody>
-            {{leads_attention_rows}}
+            {% for lead in leads_needing_attention %}
+            <tr>
+              <td style="padding: 12px 16px;">{{ lead.name }}<br><small>{{ lead.phone }}</small></td>
+              <td style="padding: 12px 16px;">{{ lead.source }}</td>
+              <td style="padding: 12px 16px;"><span style="background: #fee2e2; color: #1a365d; padding: 2px 8px; border-radius: 9999px; font-size: 12px;">{{ lead.status }}</span></td>
+              <td style="padding: 12px 16px;">{{ lead.last_activity }}</td>
+            </tr>
+            {% else %}
+            <tr><td colspan="4" style="padding: 20px; text-align: center; color: #64748b;">No leads needing attention this period.</td></tr>
+            {% endfor %}
           </tbody>
         </table>
 
