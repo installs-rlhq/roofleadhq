@@ -1,3 +1,4 @@
+cat > backend/src/services/reports/generators.py << 'EOF'
 from datetime import datetime, timedelta
 from jinja2 import Environment, FileSystemLoader
 from typing import List, Dict, Any
@@ -15,9 +16,10 @@ class ReportGenerator:
             autoescape=True
         )
 
-    def load_client_config(self, roofer_id: str) -> Dict:        
+    def load_client_config(self, roofer_id: str) -> Dict:
         config_path = Path("config/clients") / f"{roofer_id}.json"
-        if config_path.exists():with open(config_path) as f:
+        if config_path.exists():
+            with open(config_path) as f:
                 return json.load(f)
         return {"roofer_id": roofer_id}
 
@@ -76,49 +78,46 @@ class ReportGenerator:
             "first_name": client_config.get("first_name", "John"),
             "total_leads_month": 142,
             "hot_leads_month": 19,
-            "appointments_month": 31,
-            "close_rate_month": 61,
-            "leads_trend": "↑12",
-            "leads_trend_color": "#10b981",
-            "hot_trend": "↑4",
-            "hot_trend_color": "#10b981",
-            "appt_trend": "↑7",
-            "appt_trend_color": "#10b981",
-            "close_trend": "↑5%",
-            "close_trend_color": "#10b981",
-            "leads_needing_attention": leads_needing_attention,
-            "recommended_actions": "Focus on the 4 hot leads and 2 stale leads this month.<br>Consider tightening the 24-hour response window.",
-            "generated_date": datetime.now().strftime("%B %d, %Y"),
-            "unsubscribe_url": f"https://roofleadhq.com/unsubscribe?roofer_id={roofer_id}",
-        }
-        return data
+            "appoint "close_rate_month": 61,
+"leads_trend": "↑12",
+"leads_trend_color": "#10b981",
+"hot_trend": "↑4",
+                "hot_trend_color": "#10b981",
+        "appt_trend": "↑7",
+        "appt_trend_color": "#10b981",
+        "close_trend": "↑5%",
+"close_trend_color": "#10b981",
+"leads_needing_attention": leads_needing_attention,
+"recommended_actions": "Focus on the 4 hot leads and 2 stale leads this month.<br>Consider tightening the 24-hour response window.",
+"generated_date": datetime.now().strftime("%B %d, %Y"),
+"unsubscribe_url": f"https://roofleadhq.com/unsubscribe?roofer_id={roofer_id}",
+}
+return data def render_monthly_report(self, roofer_id: str, client_config: Dict) -> str:
+    data = self.generate_monthly_report_data(roofer_id, client_config)
+    template = self.template_env.get_template("monthly_report.html")
+    return template.render(**data)
 
-    def render_monthly_report(self, roofer_id: str, client_config: Dict) -> str:
-        data = self.generate_monthly_report_data(roofer_id, client_config)
-        template = self.template_env.get_template("monthly_report.html")
-        return template.render(**data)
+# ==================== DASHBOARD ====================
+def render_dashboard_email(self, roofer_id: str, client_config: Dict) -> str:
+    data = {
+        "logo_url": client_config.get("logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
+        "date": datetime.now().strftime("%B %d, %Y"),
+        "company_name": client_config.get("company_name", "Your Roofing Company"),
+        "first_name": client_config.get("first_name", "there"),
+        "total_leads": 34,
+        "hot_leads": 5,
+        "appointments": 8,
+        "close_rate": 57,
+    }
+    template = self.template_env.get_template("dashboard_email.html")
+    return template.render(**data)
 
-    # ==================== DASHBOARD ====================
-    def render_dashboard_email(self, roofer_id: str, client_config: Dict) -> str:
-        data = {
-            "logo_url": client_config.get("logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
-            "date": datetime.now().strftime("%B %d, %Y"),
-            "company_name": client_config.get("company_name", "Your Roofing Company"),
-            "first_name": client_config.get("first_name", "there"),
-            "total_leads": 34,
-            "hot_leads": 5,
-            "appointments": 8,
-            "close_rate": 57,
-        }
-        template = self.template_env.get_template("dashboard_email.html")
-        return template.render(**data)
-
-    # ==================== ONBOARDING ====================
-    def render_welcome_email(self, roofer_id: str, client_config: Dict) -> str:
-        data = {
-            "logo_url": client_config.get("logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
-            "company_name": client_config.get("company_name", "Your Roofing Company"),
-            "first_name": client_config.get("first_name", "there"),
-        }
-        template = self.template_env.get_template("onboarding/welcome.html")
-        return template.render(**data)
+# ==================== ONBOARDING ====================
+def render_welcome_email(self, roofer_id: str, client_config: Dict) -> str:
+    data = {
+        "logo_url": client_config.get("logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
+        "company_name": client_config.get("company_name", "Your Roofing Company"),
+        "first_name": client_config.get("first_name", "there"),
+    }
+    template = self.template_env.get_template("onboarding/welcome.html")
+    return template.render(**data)
