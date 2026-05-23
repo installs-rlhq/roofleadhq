@@ -10,7 +10,6 @@ Usage:
 
 import sys
 import argparse
-from pathlib import Path
 
 sys.path.append("backend")
 
@@ -18,7 +17,7 @@ from src.services.reports.sender import ReportSender
 
 
 def get_test_config() -> dict:
-    """Fake client config for testing."""
+    """Realistic fake client config for testing and screenshots."""
     return {
         "company_name": "Summit Roofing Pros",
         "first_name": "Jason",
