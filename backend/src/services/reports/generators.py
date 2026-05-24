@@ -101,22 +101,32 @@ class ReportGenerator:
         return template.render(**data)
 
     # ==================== DASHBOARD ====================
-    def render_dashboard_email(self, roofer_id: str, client_config: Dict) -> str:
-        data = {
-            "logo_url": client_config.get("logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
-            "date": datetime.now().strftime("%B %d, %Y"),
-            "company_name": client_config.get("company_name", "Your Roofing Company"),
-            "first_name": client_config.get("first_name", "there"),
-            "email": client_config.get("email") or client_config.get("roofer_email"),
-            "total_leads": 34,
-            "hot_leads": 5,
-            "appointments": 8,
-            "close_rate": 57,
-            "generated_date": datetime.now().strftime("%B %d, %Y"),
-            "unsubscribe_url": f"https://roofleadhq.com/unsubscribe?roofer_id={roofer_id}",
-        }
-        template = self.template_env.get_template("dashboard_email.html")
-        return template.render(**data)
+    def generate_dashboard_email_data(self, roofer_id: str, client_config: Dict) -> Dict[str, Any]:
+    leads_needing_attention = [
+        {"name": "Sarah M.", "phone": "+17205551234", "source": "Website", "status": "Hot", "last_activity": "2h ago"},
+        {"name": "Mike R.", "phone": "+17205559876", "source": "Facebook", "status": "Warm", "last_activity": "5h ago"},
+    ]
+
+    return {
+        "logo_url": client_config.get("logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
+        "date": datetime.now().strftime("%B %d, %Y"),
+        "company_name": client_config.get("company_name", "Your Roofing Company"),
+        "first_name": client_config.get("first_name", "there"),
+        "email": client_config.get("email") or client_config.get("roofer_email"),
+        "total_leads": 34,
+        "hot_leads": 5,
+        "appointments": 8,
+        "close_rate": 57,
+        "leads_needing_attention": leads_needing_attention,
+        "recommended_actions": "Focus follow-up on the 3 hot leads today.<br>Consider tightening the 24-hour response window.",
+        "generated_date": datetime.now().strftime("%B %d, %Y"),
+        "unsubscribe_url": f"https://roofleadhq.com/unsubscribe?roofer_id={roofer_id}",
+    }
+
+def render_dashboard_email(self, roofer_id: str, client_config: Dict) -> str:
+    data = self.generate_dashboard_email_data(roofer_id, client_config)
+    template = self.template_env.get_template("dashboard_email.html")
+    return template.render(**data)
 
     # ==================== ONBOARDING ====================
     def render_welcome_email(self, roofer_id: str, client_config: Dict) -> str:
