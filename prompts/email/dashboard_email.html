@@ -55,11 +55,11 @@
 
     <!-- FOOTER -->
     <tr>
-      <td style="background: #f1f5f9; padding: 28px 40px; text-align: center; font-size 748b;">
-RoofLeadHQ • Professional Lead Management<br>
-<a href="{{unsubscribe_url}}" style="color: #64748b;">Unsubscribe</a> • Generated on {{generated_date}}
-  </td>
-</tr>
-</table>
+      <td style="background: #f1f5f9; padding: 28px 40px; text-align: center; font-size: 13px; color: #64748b;">
+        RoofLeadHQ • Professional Lead Management<br>
+        <a href="{{unsubscribe_url | default('#')}}" style="color: #64748b;">Unsubscribe</a> • Generated on {{generated_date | default('today')}}
+      </td>
+    </tr>
+  </table>
 </body>
 </html>
