@@ -10,8 +10,14 @@ class ReportGenerator:
 
     def __init__(self, supabase_client=None):
         self.supabase_client = supabase_client
-        # Robust absolute path (works regardless of working directory)
-        template_dir = Path(__file__).resolve().parents[4] / "prompts" / "email"
+        # Go up from generators.py → reports → services → src → backend → project root
+        current = Path(__file__).resolve()
+        template_dir = current.parents[4] / "prompts" / "email"
+
+        if not template_dir.exists():
+            # Fallback: try one level shallower
+            template_dir = current.parents[3] / "prompts" / "email"
+
         self.template_env = Environment(
             loader=FileSystemLoader(template_dir),
             autoescape=True
@@ -119,7 +125,7 @@ class ReportGenerator:
             "generated_date": datetime.now().strftime("%B %d, %Y"),
             "unsubscribe_url": f"https://roofleadhq.com/unsubscribe?roofer_id={roofer_id}",
         }
-        template = self.template_env.get_template("dashboard.html")
+        template = self.template_env.get_template("dashboard_email.html")
         return template.render(**data)
 
     # ==================== ONBOARDING ====================
