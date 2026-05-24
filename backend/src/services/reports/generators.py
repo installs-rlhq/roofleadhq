@@ -4,7 +4,6 @@ from typing import List, Dict, Any
 import json
 from pathlib import Path
 
-
 class ReportGenerator:
     """Generates weekly/monthly report data and renders HTML using Jinja2."""
 
