@@ -1,0 +1,54 @@
+cat > prompts/email/dashboard_email.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Overview</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { display: flex; align-items: center; margin-bottom: 30px; }
+    .logo { height: 40px; }
+    .metric { background: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 16px; }
+    .metric-value { font-size: 28px; font-weight: 700; color: #0f172a; }
+    .metric-label { color: #64748b; font-size: 14px; }
+    .footer { margin-top: 40px; font-size: 12px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="{{ logo_url }}" class="logo" alt="Logo">
+    <h2 style="margin-left: 12px;">Dashboard Overview – {{ company_name }}</h2>
+  </div>
+
+  <p>Hi {{ first_name }},</p>
+  <p>Here's your latest dashboard snapshot as of {{ date }}.</p>
+
+  <div class="metric">
+    <div class="metric-value">{{ total_leads }}</div>
+    <div class="metric-label">Total Leads (Last 7 days)</div>
+  </div>
+
+  <div class="metric">
+    <div class="metric-value">{{ hot_leads }}</div>
+    <div class="metric-label">Hot Leads</div>
+  </div>
+
+  <div class="metric">
+    <div class="metric-value">{{ appointments }}</div>
+    <div class="metric-label">Appointments Booked</div>
+  </div>
+
+  <div class="metric">
+    <div class="metric-value">{{ close_rate }}%</div>
+    <div class="metric-label">Close Rate</div>
+  </div>
+
+  <p>Want the full weekly or monthly report? Just reply to this email.</p>
+
+  <div class="footer">
+    Generated {{ generated_date }}<br>
+    <a href="{{ unsubscribe_url }}">Unsubscribe</a>
+  </div>
+</body>
+</html>
+HTMLEOF
