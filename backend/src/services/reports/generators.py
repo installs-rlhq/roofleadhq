@@ -10,18 +10,34 @@ class ReportGenerator:
 
     def __init__(self, supabase_client=None):
         self.supabase_client = supabase_client
-        # Go up from generators.py → reports → services → src → backend → project root
-        current = Path(__file__).resolve()
-        template_dir = current.parents[4] / "prompts" / "email"
+        
+        # === ROBUST TEMPLATE PATH DETECTION WITH DEBUG ===
+        current_file = Path(__file__).resolve()
+        project_root = current_file.parents[4]   # backend/src/services/reports/generators.py → root
+        
+        possible_dirs = [
+            project_root / "prompts" / "email",   # correct spelling
+            project_root / "promps" / "email",    # your current folder name (typo)
+            project_root / "prompts/email",       # alternative flat structure
+            project_root / "promps/email",
+        ]
 
-        if not template_dir.exists():
-            # Fallback: try one level shallower
-            template_dir = current.parents[3] / "prompts" / "email"
+        template_dir = None
+        for candidate in possible_dirs:
+            if candidate.exists():
+                template_dir = candidate
+                print(f"✅ Found template directory: {template_dir}")
+                break
+        else:
+            # Final fallback - use current working directory
+            template_dir = Path.cwd() / "prompts" / "email"
+            print(f"⚠️  Using fallback template directory: {template_dir}")
 
         self.template_env = Environment(
             loader=FileSystemLoader(template_dir),
             autoescape=True
         )
+        print(f"📁 Jinja2 template search path set to: {template_dir}")
 
     def load_client_config(self, roofer_id: str) -> Dict:
         """Load per-client config from config/clients/*.json"""
