@@ -10,28 +10,18 @@ class ReportGenerator:
     """Generates weekly/monthly report data and renders HTML using Jinja2."""
 
     def __init__(self, supabase_client=None):
-        self.supabase_client = supabase_client
-        
-        # FORCE the exact folder you have in GitHub (promps)
-        cwd = Path.cwd()
-        template_dir = cwd / "promps" / "email"
-        
-        print(f"📍 Current working dir: {cwd}")
-        print(f"🔎 Looking for templates in: {template_dir}")
-        
-        if not template_dir.exists():
-            print(f"⚠️  promps/email NOT found → trying prompts/email")
-            template_dir = cwd / "prompts" / "email"
-        
-        if template_dir.exists():
-            print(f"✅ SUCCESS: Using template directory → {template_dir}")
-        else:
-            print(f"❌ STILL NOT FOUND: {template_dir}")
+    self.supabase_client = supabase_client
 
-        self.template_env = Environment(
-            loader=FileSystemLoader(template_dir),
-            autoescape=True
-        )
+    # Reliable path: go up from generators.py to project root
+    template_dir = Path(__file__).resolve().parents[4] / "prompts" / "email"
+
+    print(f"🔎 Template dir resolved to: {template_dir}")
+    print(f"📁 Exists? {template_dir.exists()}")
+
+    self.template_env = Environment(
+        loader=FileSystemLoader(template_dir),
+        autoescape=True
+    )
 
     # ==================== WEEKLY ====================
     def generate_weekly_report_data(self, roofer_id: str, client_config: Dict) -> Dict[str, Any]:
