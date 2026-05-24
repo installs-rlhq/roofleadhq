@@ -14,14 +14,14 @@ class ReportGenerator:
             loader=FileSystemLoader("prompts/email"),
             autoescape=True
         )
-
     def load_client_config(self, roofer_id: str) -> Dict:
         config_path = Path("config/clients") / f"{roofer_id}.json"
         if config_path.exists():
             with open(config_path) as f:
                 return json.load(f)
         return {"roofer_id": roofer_id}
-            # ==================== WEEKLY ====================
+
+    # ==================== WEEKLY ====================
     def generate_weekly_report_data(self, roofer_id: str, client_config: Dict) -> Dict[str, Any]:
         today = datetime.now()
         start_date = (today - timedelta(days=7)).strftime("%B %d")
