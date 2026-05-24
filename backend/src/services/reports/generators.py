@@ -4,6 +4,7 @@ from typing import Dict, Any
 import json
 from pathlib import Path
 
+print("🔥 generators.py is now LOADED")   # ← This will always print first
 
 class ReportGenerator:
     """Generates weekly/monthly report data and renders HTML using Jinja2."""
@@ -11,36 +12,26 @@ class ReportGenerator:
     def __init__(self, supabase_client=None):
         self.supabase_client = supabase_client
         
-        # === SIMPLE & RELIABLE PATH DETECTION ===
+        # FORCE the exact folder you have in GitHub (promps)
         cwd = Path.cwd()
-        print(f"📍 Current working directory: {cwd}")
+        template_dir = cwd / "promps" / "email"
+        
+        print(f"📍 Current working dir: {cwd}")
+        print(f"🔎 Looking for templates in: {template_dir}")
+        
+        if not template_dir.exists():
+            print(f"⚠️  promps/email NOT found → trying prompts/email")
+            template_dir = cwd / "prompts" / "email"
+        
+        if template_dir.exists():
+            print(f"✅ SUCCESS: Using template directory → {template_dir}")
+        else:
+            print(f"❌ STILL NOT FOUND: {template_dir}")
 
-        # Try both possible folder names (prompts or promps)
-        for folder_name in ["prompts", "promps"]:
-            template_dir = cwd / folder_name / "email"
-            if template_dir.exists():
-                print(f"✅ Found templates at: {template_dir}")
-                self.template_env = Environment(
-                    loader=FileSystemLoader(template_dir),
-                    autoescape=True
-                )
-                return
-
-        # Fallback if nothing found
-        template_dir = cwd / "prompts" / "email"
-        print(f"⚠️  No template folder found. Using fallback: {template_dir}")
         self.template_env = Environment(
             loader=FileSystemLoader(template_dir),
             autoescape=True
         )
-
-    def load_client_config(self, roofer_id: str) -> Dict:
-        """Load per-client config from config/clients/*.json"""
-        config_path = Path("config/clients") / f"{roofer_id}.json"
-        if config_path.exists():
-            with open(config_path) as f:
-                return json.load(f)
-        return {"roofer_id": roofer_id}
 
     # ==================== WEEKLY ====================
     def generate_weekly_report_data(self, roofer_id: str, client_config: Dict) -> Dict[str, Any]:
