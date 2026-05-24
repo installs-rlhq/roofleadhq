@@ -119,7 +119,7 @@ class ReportGenerator:
             "generated_date": datetime.now().strftime("%B %d, %Y"),
             "unsubscribe_url": f"https://roofleadhq.com/unsubscribe?roofer_id={roofer_id}",
         }
-        template = self.template_env.get_template("dashboard_email.html")
+        template = self.template_env.get_template("dashboard.html")
         return template.render(**data)
 
     # ==================== ONBOARDING ====================
