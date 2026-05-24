@@ -12,7 +12,7 @@ cat > prompts/email/dashboard_email.html << 'HTMLEOF'
     .metric-box { background: #f8fafc; padding: 20px; border-radius: 12px; text-align: center; }
     .metric-value { font-size: 32px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
     .metric-label { font-size: 14px; color: #64748b; }
-    .section { margin: 32px 0; }
+    .section { margin: 32px 0; background: #f8fafc; padding: 20px; border-radius: 12px; }
     .footer { margin-top: 48px; font-size: 13px; color: #64748b; }
     a { color: #1e40af; }
   </style>
@@ -25,7 +25,7 @@ cat > prompts/email/dashboard_email.html << 'HTMLEOF'
   </div>
 
   <p>Hi {{ first_name }},</p>
-  <p>Here's your current dashboard snapshot.</p>
+  <p>Here's your current dashboard snapshot for {{ company_name }}.</p>
 
   <div class="metric-grid">
     <div class="metric-box">
@@ -48,19 +48,21 @@ cat > prompts/email/dashboard_email.html << 'HTMLEOF'
 
   <div class="section">
     <strong>Leads Needing Attention</strong>
-    <ul>
+    <ul style="margin: 12px 0 0 0; padding-left: 20px;">
       {% for lead in leads_needing_attention %}
-      <li>{{ lead.name }} ({{ lead.status }}) — {{ lead.last_activity }}</li>
+      <li>{{ lead.name }} — {{ lead.status }} ({{ lead.last_activity }})</li>
       {% endfor %}
     </ul>
   </div>
 
   <div class="section">
     <strong>Recommended Actions</strong>
-    <p>{{ recommended_actions | safe }}</p>
+    <p style="margin: 8px 0 0 0;">{{ recommended_actions | safe }}</p>
   </div>
 
-  <p style="margin-top: 32px;"><a href="https://yourdomain.com/dashboard">Open Full Dashboard →</a></p>
+  <p style="margin-top: 32px; text-align: center;">
+    <a href="https://yourdomain.com/dashboard" style="background: #1e3a8a; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; display: inline-block;">Open Full Dashboard →</a>
+  </p>
 
   <div class="footer">
     <p>Best regards,<br>
