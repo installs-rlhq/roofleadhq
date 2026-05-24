@@ -11,33 +11,28 @@ class ReportGenerator:
     def __init__(self, supabase_client=None):
         self.supabase_client = supabase_client
         
-        # === ROBUST TEMPLATE PATH DETECTION WITH DEBUG ===
-        current_file = Path(__file__).resolve()
-        project_root = current_file.parents[4]   # backend/src/services/reports/generators.py → root
-        
-        possible_dirs = [
-            project_root / "prompts" / "email",   # correct spelling
-            project_root / "promps" / "email",    # your current folder name (typo)
-            project_root / "prompts/email",       # alternative flat structure
-            project_root / "promps/email",
-        ]
+        # === SIMPLE & RELIABLE PATH DETECTION ===
+        cwd = Path.cwd()
+        print(f"📍 Current working directory: {cwd}")
 
-        template_dir = None
-        for candidate in possible_dirs:
-            if candidate.exists():
-                template_dir = candidate
-                print(f"✅ Found template directory: {template_dir}")
-                break
-        else:
-            # Final fallback - use current working directory
-            template_dir = Path.cwd() / "prompts" / "email"
-            print(f"⚠️  Using fallback template directory: {template_dir}")
+        # Try both possible folder names (prompts or promps)
+        for folder_name in ["prompts", "promps"]:
+            template_dir = cwd / folder_name / "email"
+            if template_dir.exists():
+                print(f"✅ Found templates at: {template_dir}")
+                self.template_env = Environment(
+                    loader=FileSystemLoader(template_dir),
+                    autoescape=True
+                )
+                return
 
+        # Fallback if nothing found
+        template_dir = cwd / "prompts" / "email"
+        print(f"⚠️  No template folder found. Using fallback: {template_dir}")
         self.template_env = Environment(
             loader=FileSystemLoader(template_dir),
             autoescape=True
         )
-        print(f"📁 Jinja2 template search path set to: {template_dir}")
 
     def load_client_config(self, roofer_id: str) -> Dict:
         """Load per-client config from config/clients/*.json"""
