@@ -117,9 +117,18 @@ def render_dashboard_email(self, roofer_id: str, client_config: Dict) -> str:
 # ==================== ONBOARDING ====================
 def render_welcome_email(self, roofer_id: str, client_config: Dict) -> str:
     data = {
-        "logo_url": client_config.get("logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
-        "company_name": client_config.get("company_name", "Your Roofing Company"),
-        "first_name": client_config.get("first_name", "there"),
-    }
+    "logo_url": client_config.get("logo_url", "https://yourdomain.com/website/roofleadhq-logo-small-icon.png"),
+    "date": datetime.now().strftime("%B %d, %Y"),
+    "company_name": client_config.get("company_name", "Your Roofing Company"),
+    "first_name": client_config.get("first_name", "there"),
+    "email": client_config.get("email") or client_config.get("roofer_email"),  # already there
+    "total_leads": 34,
+    "hot_leads": 5,
+    "appointments": 8,
+    "close_rate": 57,
+    # Add these two lines:
+    "generated_date": datetime.now().strftime("%B %d, %Y"),
+    "unsubscribe_url": f"https://roofleadhq.com/unsubscribe?roofer_id={roofer_id}",
+}
     template = self.template_env.get_template("onboarding/welcome.html")
     return template.render(**data)
