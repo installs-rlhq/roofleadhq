@@ -11,12 +11,10 @@ class ReportGenerator:
 
     def __init__(self, supabase_client=None):
     self.supabase_client = supabase_client
+    template_dir = Path.cwd() / "prompts" / "email"
 
-    # Reliable path: go up from generators.py to project root
-    template_dir = Path(__file__).resolve().parents[4] / "prompts" / "email"
-
-    print(f"🔎 Template dir resolved to: {template_dir}")
-    print(f"📁 Exists? {template_dir.exists()}")
+    print(f"🔎 Using template dir: {template_dir}")
+    print(f"✅ Exists: {template_dir.exists()}")
 
     self.template_env = Environment(
         loader=FileSystemLoader(template_dir),
