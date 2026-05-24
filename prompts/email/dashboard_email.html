@@ -29,48 +29,46 @@ cat > prompts/email/dashboard_email.html << 'HTMLEOF'
 
   <div class="metric-grid">
     <div class="metric-box">
-      <div class="metric-value">{{ total_leads }}</div>
-      <div class="metric-label">Total Leads</div>
-    </div>
-    <div class="metric-box">
-      <div class="metric-value">{{ hot_leads }}</div>
-      <div class="metric-label">Hot Leads</div>
-    </div>
-    <div class="metric-box">
-      <div class="metric-value">{{ appointments }}</div>
-      <div class="metric-label">Appointments Booked</div>
-    </div>
-    <div class="metric-box">
-      <div class="metric-value">{{ close_rate }}%</div>
-      <div class="metric-label">Close Rate</div>
-    </div>
-  </div>
+      <div class="metric-value">{{ total_leads-label">Total Leads</div>
+</div>
+<div class="metric-box">
+<div class="metric-value">{{ hot_leads }}</div>
+<div class="metric-label">Hot Leads</div>
+</div>
+<div class="metric-box">
+<div class="metric-value">{{ appointments }}</div>
+<div class="metric-label">Appointments Booked</div>
+</div>
+<div class="metric-box">
+<div class="metric-value">{{ close_rate }}%</div>
+<div class="metric-label">Close Rate</div>
+</div>
+</div>
 
-  <div class="section">
-    <strong>Leads Needing Attention</strong>
-    <ul style="margin: 12px 0 0 0; padding-left: 20px;">
-      {% for lead in leads_needing_attention %}
-      <li>{{ lead.name }} — {{ lead.status }} ({{ lead.last_activity }})</li>
-      {% endfor %}
-    </ul>
-  </div>
+<div class="section">
+Leads Needing Attention
+  <ul style="margin: 12px 0 0 0; padding-left: 20px;">
+  {% for lead in leads_needing_attention %}
+  <li><strong>{{ lead.name }}</strong> — {{ lead.status }} ({{ lead.last_activity }}) via {{ lead.source }}</li>
+  {% endfor %}
+</ul>
+</div>
 
-  <div class="section">
-    <strong>Recommended Actions</strong>
-    <p style="margin: 8px 0 0 0;">{{ recommended_actions | safe }}</p>
-  </div>
+<div class="section">
+Recommended Actions
+<p style="margin: 8px 0 0 0;">{{ recommended_actions | safe }}</p>
+</div>
+<p style="margin-top: 32px; text-align: center;">
+<a href="https://yourdomain.com/dashboard" style="background: #1e3a8a; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; display: inline-block;">Open Full Dashboard →</a>
+</p>
 
-  <p style="margin-top: 32px; text-align: center;">
-    <a href="https://yourdomain.com/dashboard" style="background: #1e3a8a; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; display: inline-block;">Open Full Dashboard →</a>
-  </p>
-
-  <div class="footer">
-    <p>Best regards,<br>
-    <strong>Your RoofLeadHQ Team</strong></p>
-    <p style="font-size: 12px; margin-top: 24px;">
-      <a href="{{ unsubscribe_url }}">Unsubscribe</a>
-    </p>
-  </div>
+<div class="footer">
+<p>Best regards,<br>
+Your RoofLeadHQ Team</p>
+<p style="font-size: 12px; margin-top: 24px;">
+Unsubscribe
+</p>
+</div>
 </body>
 </html>
 HTMLEOF
