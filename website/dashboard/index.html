@@ -196,29 +196,29 @@
             metrics: [
                 { label: "New Leads", value: "9", trend: "↑3", color: "#10b981", period: "Today" },
                 { label: "Booked Inspections", value: "3", trend: "↓1", color: "#ef4444", period: "Today" },
-                { label: "Booking Rate", value: "34%", trend: "↑5%", color: "#10b981", period: "This Month", tooltip: "Booked inspections ÷ qualified leads." },
-                { label: "Avg. First Response Time", value: "42m", trend: "↓9m", color: "#10b981", period: "This Month" },
-                { label: "Leads Needing Attention", value: "7", trend: "↑2", color: "#ef4444", period: "Today" },
+                { label: "Booking Rate", value: "57%", trend: "↑5%", color: "#10b981", period: "This Month", tooltip: "Booked inspections ÷ qualified leads." },
+                { label: "Avg. First Response Time", value: "2m", trend: "↓9m", color: "#10b981", period: "This Month" },
+                { label: "Leads Needing Attention", value: "3", trend: "↑2", color: "#ef4444", period: "Today" },
                 { label: "Leads Handled Automatically", value: "34", trend: "↑12%", color: "#10b981", period: "This Month" },
                 { label: "Follow-Up Recovery", value: "12", trend: "↑4", color: "#10b981", period: "This Month" },
                 { label: "Confirmed Appointments", value: "8", trend: "↑1", color: "#10b981", period: "This Month" }
             ],
             leads: [
-                { name: "Sarah M.", issue: "Leak", source: "Website", priority: "Hot", status: "Needs Roofer", last: "2h ago" },
-                { name: "Mike R.", issue: "Storm Damage", source: "Facebook", priority: "Normal", status: "Waiting", last: "5h ago" },
-                { name: "Lisa K.", issue: "Replacement Estimate", source: "Direct Calls", priority: "Normal", status: "Stalled", last: "48h ago" }
+                { name: "Sarah M.", issue: "Leak", source: "Website", priority: "Hot", priorityColor: "#dc2626", status: "Needs Roofer", last: "2h ago" },
+                { name: "Mike R.", issue: "Storm Damage", source: "Facebook", priority: "Normal", priorityColor: "#000000", status: "Waiting", last: "5h ago" },
+                { name: "Lisa K.", issue: "Replacement Estimate", source: "Direct Calls", priority: "Normal", priorityColor: "#000000", status: "Stalled", last: "48h ago" }
             ],
             upcomingInspections: [
                 { name: "Sarah M.", issue: "Leak Inspection", time: "Today 3:30 PM", source: "Website", confirmation: "Confirmed", reminder: "Reminder Sent" },
                 { name: "Mike R.", issue: "Storm Damage Inspection", time: "Tomorrow 10:00 AM", source: "Facebook", confirmation: "Pending", reminder: "Pending" }
             ],
             topSources: [
-                { source: "Website", leads: 112, booked: 34, rate: "30%" },
-                { source: "Google Business", leads: 67, booked: 25, rate: "37%" },
-                { source: "Facebook", leads: 48, booked: 9, rate: "19%" },
+                { source: "Website", leads: 112, booked: 71, rate: "63%" },
+                { source: "Google Business", leads: 67, booked: 31, rate: "46%" },
+                { source: "Facebook", leads: 48, booked: 19, rate: "40%" },
                 { source: "Direct Calls", leads: 31, booked: 18, rate: "58%" },
-                { source: "Manual Outreach", leads: 14, booked: 4, rate: "29%" },
-                { source: "Referral / External", leads: 11, booked: 3, rate: "27%" }
+                { source: "Manual Outreach", leads: 14, booked: 6, rate: "43%" },
+                { source: "Referral / External", leads: 11, booked: 5, rate: "45%" }
             ],
             followUpPerformance: {
                 sent: 87,
