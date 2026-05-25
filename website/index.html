@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoofLeadHQ • Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .metric-card { transition: transform 0.2s ease; }
+    .metric-card:hover { transform: translateY(-2px); }
+    .status-hot { background-color: #fef2f2; color: #dc2626; }
+    .status-new { background-color: #f0f9ff; color: #0369a1; }
+    .status-booked { background-color: #f0fdf4; color: #16a34a; }
+  </style>
+</head>
+<body class="bg-slate-50">
+  <!-- Header -->
+  <div class="bg-white border-b">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-x-3">
+        <div class="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center">
+          <i class="fa-solid fa-home text-white text-xl"></i>
+        </div>
+        <div>
+          <span class="font-semibold text-xl text-slate-900">RoofLeadHQ</span>
+          <span class="text-xs text-slate-500 ml-1.5">Pilot</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-x-4">
+        <div class="text-right">
+          <div class="text-sm font-medium text-slate-900" id="business-name">Test Roofing</div>
+          <div class="text-xs text-slate-500" id="last-updated">Updated just now</div>
+        </div>
+        <div class="w-9 h-9 bg-slate-200 rounded-full flex items-center justify-center">
+          <i class="fa-solid fa-user text-slate-600"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 py-8">
+    
+    <!-- Overview Section -->
+    <div class="mb-10">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h1 class="text-3xl font-semibold text-slate-900">Good morning, John</h1>
+          <p class="text-slate-600 mt-1">Here's what's happening with your leads today.</p>
+        </div>
+        <div class="text-sm text-slate-500 flex items-center gap-x-2">
+          <i class="fa-solid fa-sync fa-sm"></i>
+          <span>Auto-refreshes every 5 min</span>
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="metrics-grid">
+        <!-- Populated by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Leads Needing Attention -->
+    <div class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-slate-900">Leads Needing Attention</h2>
+        <a href="#" class="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-x-1">
+          View all <i class="fa-solid fa-arrow-right fa-sm"></i>
+        </a>
+      </div>
+
+      <div class="bg-white rounded-2xl border shadow-sm overflow-hidden">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b bg-slate-50">
+              <th class="text-left px-6 py-3 text-xs font-medium text-slate-500">Lead</th>
+              <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Source</th>
+              <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Status</th>
+              <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Last Activity</th>
+              <th class="text-left px-6 py-3 text-xs font-medium text-slate-500">Action</th>
+            </tr>
+          </thead>
+          <tbody id="leads-table-body" class="divide-y text-sm">
+            <!-- Populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="bg-white border rounded-2xl p-6 hover:shadow transition">
+        <div class="flex items-center gap-x-3 mb-4">
+          <div class="w-9 h-9 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center">
+            <i class="fa-solid fa-sms"></i>
+          </div>
+          <div>
+            <div class="font-semibold">Manual Outreach</div>
+            <div class="text-xs text-slate-500">Send SMS or trigger call</div>
+          </div>
+        </div>
+        <button onclick="showManualOutreachModal()"
+                class="w-full mt-2 py-2.5 text-sm font-medium bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl transition">
+          Send Message
+        </button>
+      </div>
+
+      <div class="bg-white border rounded-2xl p-6 hover:shadow transition">
+        <div class="flex items-center gap-x-3 mb-4">
+          <div class="w-9 h-9 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+            <i class="fa-solid fa-chart-bar"></i>
+          </div>
+          <div>
+            <div class="font-semibold">View Reports</div>
+            <div class="text-xs text-slate-500">Daily, Weekly, Monthly</div>
+          </div>
+        </div>
+        <div class="flex gap-2 mt-2">
+          <button onclick="window.location.href='../prompts/email/daily_report.html'"
+                  class="flex-1 py-2 text-sm border rounded-xl hover:bg-slate-50">Daily</button>
+          <button onclick="window.location.href='../prompts/email/weekly_report.html'"
+                  class="flex-1 py-2 text-sm border rounded-xl hover:bg-slate-50">Weekly</button>
+        </div>
+      </div>
+
+      <div class="bg-white border rounded-2xl p-6 hover:shadow transition">
+        <div class="flex items-center gap-x-3 mb-4">
+          <div class="w-9 h-9 bg-violet-100 text-violet-600 rounded-xl flex items-center justify-center">
+            <i class="fa-solid fa-history"></i>
+          </div>
+          <div>
+            <div class="font-semibold">Recent Activity</div>
+            <div class="text-xs text-slate-500">Last 15 events</div>
+          </div>
+        </div>
+        <button onclick="showRecentActivity()"
+                class="w-full mt-2 py-2.5 text-sm font-medium border rounded-xl hover:bg-slate-50">
+          View Activity
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Manual Outreach Modal -->
+  <div id="outreach-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl w-full max-w-md mx-4 p-6">
+      <h3 class="font-semibold text-lg mb-4">Manual Lead Outreach</h3>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="text-sm text-slate-600">Phone Number</label>
+          <input id="outreach-phone" type="tel" placeholder="+15551234567" 
+                 class="w-full mt-1 border rounded-xl px-4 py-2.5 text-sm">
+        </div>
+        <div>
+          <label class="text-sm text-slate-600">Notes / Urgency</label>
+          <textarea id="outreach-notes" placeholder="Urgent leak on Main St" rows="3"
+                    class="w-full mt-1 border rounded-xl px-4 py-2.5 text-sm"></textarea>
+        </div>
+      </div>
+
+      <div class="flex gap-3 mt-6">
+        <button onclick="hideManualOutreachModal()"
+                class="flex-1 py-2.5 text-sm border rounded-xl">Cancel</button>
+        <button onclick="submitManualOutreach()"
+                class="flex-1 py-2.5 text-sm bg-emerald-600 text-white rounded-xl">Send Outreach</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tailwind script
+    function initTailwind() {
+      document.documentElement.style.setProperty('--accent', '#0f172a');
+    }
+
+    // Load Dashboard Data
+    async function loadDashboardData() {
+      const metricsContainer = document.getElementById('metrics-grid');
+      const leadsBody = document.getElementById('leads-table-body');
+
+      // Mock data (replace with Supabase fetch later)
+      const mockData = {
+        metrics: [
+          { label: "Total Leads", value: "14", trend: "↑ 3", period: "Today" },
+          { label: "Hot Leads", value: "5", trend: "↑ 2", period: "This Week" },
+          { label: "Appointments", value: "8", trend: "↓ 1", period: "This Week" },
+          { label: "Close Rate", value: "57%", trend: "↑ 12%", period: "This Month" },
+          { label: "Avg Response", value: "4.2h", trend: "↓ 1.1h", period: "This Week" }
+        ],
+        leads: [
+          { id: 1, name: "Sarah M.", phone: "+17205551234", source: "Website", status: "Hot", last: "2h ago", urgency: "high" },
+          { id: 2, name: "Mike R.", phone: "+13035559876", source: "Facebook", status: "New", last: "5h ago", urgency: "medium" },
+          { id: 3, name: "Lisa K.", phone: "+17205559876", source: "Retell", status: "Stale", last: "48h ago", urgency: "high" }
+        ]
+      };
+
+      // Render Metrics
+      metricsContainer.innerHTML = '';
+      mockData.metrics.forEach(m => {
+        const card = document.createElement('div');
+        card.className = 'metric-card bg-white border rounded-2xl p-5';
+        card.innerHTML = `
+          <div class="text-xs text-slate-500">${m.period}</div>
+          <div class="text-3xl font-semibold text-slate-900 mt-1">${m.value}</div>
+          <div class="flex items-center justify-between mt-3">
+            <div class="text-sm text-slate-600">${m.label}</div>
+            <div class="text-xs ${m.trend.startsWith('↑') ? 'text-emerald-600' : 'text-red-600'}">${m.trend}</div>
+          </div>
+        `;
+        metricsContainer.appendChild(card);
+      });
+
+      // Render Leads Needing Attention
+      leadsBody.innerHTML = '';
+      mockData.leads.forEach(lead => {
+        const row = document.createElement('tr');
+        row.className = 'hover:bg-slate-50';
+        row.innerHTML = `
+          <td class="px-6 py-4">
+            <div class="font-medium">${lead.name}</div>
+            <div class="text-xs text-slate-500">${lead.phone}</div>
+          </td>
+          <td class="px-4 py-4 text-sm text-slate-600">${lead.source}</td>
+          <td class="px-4 py-4">
+            <span class="px-3 py-0.5 text-xs rounded-full ${lead.status === 'Hot' ? 'status-hot' : lead.status === 'New' ? 'status-new' : 'bg-amber-100 text-amber-700'}">
+              ${lead.status}
+            </span>
+          </td>
+          <td class="px-4 py-4 text-sm text-slate-500">${lead.last}</td>
+          <td class="px-6 py-4">
+            <button onclick="triggerOutreach('${lead.phone}', '${lead.name}')"
+                    class="text-xs px-3 py-1 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">
+              Outreach
+            </button>
+          </td>
+        `;
+        leadsBody.appendChild(row);
+      });
+
+      // Update business name
+      document.getElementById('business-name').textContent = 'Test Roofing';
+      document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleTimeString();
+    }
+
+    // Manual Outreach Modal
+    function showManualOutreachModal() {
+      document.getElementById('outreach-modal').classList.remove('hidden');
+      document.getElementById('outreach-modal').classList.add('flex');
+    }
+
+    function hideManualOutreachModal() {
+      document.getElementById('outreach-modal').classList.add('hidden');
+      document.getElementById('outreach-modal').classList.remove('flex');
+    }
+
+    async function submitManualOutreach() {
+      const phone = document.getElementById('outreach-phone').value;
+      const notes = document.getElementById('outreach-notes').value;
+
+      if (!phone) {
+        alert('Please enter a phone number');
+        return;
+      }
+
+      // In production: call backend endpoint
+      console.log('Triggering manual outreach:', { phone, notes });
+
+      hideManualOutreachModal();
+      alert(`Outreach queued for ${phone}. Roofer will receive confirmation.`);
+    }
+
+    function triggerOutreach(phone, name) {
+      document.getElementById('outreach-phone').value = phone;
+      document.getElementById('outreach-notes').value = `Follow up with ${name}`;
+      showManualOutreachModal();
+    }
+
+    function showRecentActivity() {
+      alert('Recent Activity view coming soon in full dashboard.');
+    }
+
+    // Initialize
+    function initDashboard() {
+      initTailwind();
+      loadDashboardData();
+      console.log('%c[Roofer Dashboard] MVP loaded successfully', 'color:#64748b');
+    }
+
+    window.onload = initDashboard;
+  </script>
+</body>
+</html>
