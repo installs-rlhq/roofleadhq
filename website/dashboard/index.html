@@ -26,16 +26,12 @@
                 </div>
             </div>
             
-            <div class="flex items-center gap-x-4 text-sm">
-                <div class="text-right">
-                    <div class="text-xs text-blue-200">Last updated</div>
-                    <div id="last-updated" class="font-medium"></div>
+            <div class="flex items-center gap-x-4 text-sm text-right">
+                <div>
+                    <div class="font-semibold">ABC Roofing</div>
+                    <div class="text-xs text-blue-200">Updated <span id="last-updated"></span></div>
                 </div>
-                <a href="https://roofleadhq.com" 
-                   class="flex items-center gap-x-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-medium transition">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Back to Reports</span>
-                </a>
+                <img src="https://www.roofleadhq.com/roofleadhq-logo.jpeg" alt="ABC Roofing Logo" class="h-10 w-10 rounded-full object-cover border border-white/30" onerror="this.style.display='none'">
             </div>
         </div>
     </div>
@@ -48,7 +44,7 @@
             <p class="text-slate-600 mt-1">Here's what's happening with your leads today.</p>
         </div>
 
-        <!-- Metrics 3x3 Grid -->
+        <!-- 3x3 Metrics Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10" id="metrics-grid">
             <!-- Populated by JavaScript -->
         </div>
@@ -66,10 +62,12 @@
                 <table class="w-full">
                     <thead>
                         <tr class="border-b bg-slate-50">
-                            <th class="text-left px-6 py-3 text-xs font-medium text-slate-500">Lead</th>
+                            <th class="text-left px-6 py-3 text-xs font-medium text-slate-500">Homeowner</th>
+                            <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Issue</th>
                             <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Source</th>
+                            <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Priority</th>
                             <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Status</th>
-                            <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Last Activity</th>
+                            <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Last Touch</th>
                             <th class="text-left px-6 py-3 text-xs font-medium text-slate-500">Action</th>
                         </tr>
                     </thead>
@@ -80,37 +78,104 @@
             </div>
         </div>
 
-        <!-- Top Lead Sources + Recommended Actions -->
-        <div class="grid lg:grid-cols-2 gap-6">
+        <!-- Upcoming Booked Inspections -->
+        <div class="mb-10">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-semibold text-slate-900">Upcoming Booked Inspections</h2>
+                <a href="#" class="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-x-1">
+                    View all <i class="fa-solid fa-arrow-right fa-sm"></i>
+                </a>
+            </div>
+
+            <div class="bg-white rounded-2xl border shadow-sm overflow-hidden">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b bg-slate-50">
+                            <th class="text-left px-6 py-3 text-xs font-medium text-slate-500">Homeowner</th>
+                            <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Issue</th>
+                            <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Appointment Time</th>
+                            <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Source</th>
+                            <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Confirmation</th>
+                            <th class="text-left px-4 py-3 text-xs font-medium text-slate-500">Reminder</th>
+                        </tr>
+                    </thead>
+                    <tbody id="upcoming-inspections-body" class="divide-y text-sm">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Top Lead Sources + Follow-Up Performance -->
+        <div class="grid lg:grid-cols-2 gap-6 mb-10">
             
             <!-- Top Lead Sources -->
             <div class="bg-white border rounded-2xl p-6">
                 <h3 class="font-semibold text-lg mb-4">Top Lead Sources</h3>
-                <div id="top-sources" class="space-y-3">
-                    <!-- Populated by JavaScript -->
-                </div>
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="text-left py-2">Source</th>
+                            <th class="text-right py-2">Leads</th>
+                            <th class="text-right py-2">Booked</th>
+                            <th class="text-right py-2">Booking Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody id="top-sources-body">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
             </div>
 
-            <!-- Recommended Actions -->
+            <!-- Follow-Up Performance -->
             <div class="bg-white border rounded-2xl p-6">
-                <h3 class="font-semibold text-lg mb-4">Recommended Actions</h3>
-                <div class="text-slate-600 text-sm leading-relaxed" id="recommended-actions">
-                    <!-- Populated by JavaScript -->
+                <h3 class="font-semibold text-lg mb-4">Follow-Up Performance</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <div class="text-xs text-slate-500">Follow-Ups Sent</div>
+                        <div class="text-2xl font-semibold text-slate-900">87</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-500">Leads Recovered</div>
+                        <div class="text-2xl font-semibold text-slate-900">31</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-500">Unresponsive Leads</div>
+                        <div class="text-2xl font-semibold text-slate-900">12</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-500">Manual Outreach Sent</div>
+                        <div class="text-2xl font-semibold text-slate-900">19</div>
+                    </div>
                 </div>
+                <div class="mt-4 text-xs text-slate-500">
+                    Follow-ups pause from 9 PM to 8 AM local time.
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Actions -->
+        <div class="mb-10 bg-white border rounded-2xl p-6">
+            <h3 class="font-semibold text-lg mb-4">Recommended Actions</h3>
+            <div class="text-slate-600 text-sm leading-relaxed" id="recommended-actions">
+                <!-- Populated by JavaScript -->
             </div>
         </div>
 
         <!-- Manual Outreach -->
         <div class="mt-8 bg-white border rounded-2xl p-6">
-            <h3 class="font-semibold text-lg mb-4">Manual Outreach</h3>
+            <h3 class="font-semibold text-lg mb-2">Manual Outreach</h3>
+            <p class="text-sm text-slate-600 mb-4">
+                Got a lead from Angi, Thumbtack, a referral, or another source we do not automatically track? Send the homeowner’s number to your RoofLeadHQ system and we’ll start text follow-up from your connected number.
+            </p>
             <div class="flex gap-4">
-                <button onclick="alert('Send Message modal opening...')" 
+                <button onclick="alert('Send Text Outreach modal opening...')" 
                         class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-2xl transition">
-                    <i class="fa-solid fa-comment-dots mr-2"></i> Send Message
+                    <i class="fa-solid fa-comment-dots mr-2"></i> Send Text Outreach
                 </button>
-                <button onclick="alert('Phone Call modal opening...')" 
+                <button onclick="alert('Start Phone Call modal opening...')" 
                         class="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-2xl transition">
-                    <i class="fa-solid fa-phone mr-2"></i> Phone Call
+                    <i class="fa-solid fa-phone mr-2"></i> Start Phone Call
                 </button>
             </div>
         </div>
@@ -129,27 +194,40 @@
         const dashboardData = {
             lastUpdated: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
             metrics: [
-                { label: "Total Leads", value: "9", trend: "↑3", color: "#10b981", period: "Today" },
-                { label: "Appointments", value: "3", trend: "↓1", color: "#ef4444", period: "Today" },
-                { label: "Manual Leads", value: "4", trend: "↑2", color: "#10b981", period: "Today" },
-                { label: "Total Leads", value: "278", trend: "↑12", color: "#10b981", period: "This Month" },
-                { label: "Close Rate", value: "34%", trend: "↑5%", color: "#10b981", period: "This Month" },
-                { label: "Avg Response", value: "42m", trend: "↓9m", color: "#10b981", period: "This Month" }
+                { label: "New Leads", value: "9", trend: "↑3", color: "#10b981", period: "Today" },
+                { label: "Booked Inspections", value: "3", trend: "↓1", color: "#ef4444", period: "Today" },
+                { label: "Booking Rate", value: "34%", trend: "↑5%", color: "#10b981", period: "This Month", tooltip: "Booked inspections ÷ qualified leads." },
+                { label: "Avg. First Response Time", value: "42m", trend: "↓9m", color: "#10b981", period: "This Month" },
+                { label: "Leads Needing Attention", value: "7", trend: "↑2", color: "#ef4444", period: "Today" },
+                { label: "Leads Handled Automatically", value: "34", trend: "↑12%", color: "#10b981", period: "This Month" },
+                { label: "Follow-Up Recovery", value: "12", trend: "↑4", color: "#10b981", period: "This Month" },
+                { label: "Confirmed Appointments", value: "8", trend: "↑1", color: "#10b981", period: "This Month" }
             ],
             leads: [
-                { name: "Sarah M.", phone: "+17205551234", source: "Website", status: "Hot", statusColor: "#fee2e2", textColor: "#991b1b", last: "2h ago" },
-                { name: "Mike R.", phone: "+13035559876", source: "Facebook", status: "New", statusColor: "#f1f5f9", textColor: "#000000", last: "5h ago" },
-                { name: "Lisa K.", phone: "+17205554321", source: "Direct Calls", status: "Stale", statusColor: "#fefce8", textColor: "#000000", last: "48h ago" }
+                { name: "Sarah M.", issue: "Leak", source: "Website", priority: "Hot", status: "Needs Roofer", last: "2h ago" },
+                { name: "Mike R.", issue: "Storm Damage", source: "Facebook", priority: "Normal", status: "Waiting", last: "5h ago" },
+                { name: "Lisa K.", issue: "Replacement Estimate", source: "Direct Calls", priority: "Normal", status: "Stalled", last: "48h ago" }
+            ],
+            upcomingInspections: [
+                { name: "Sarah M.", issue: "Leak Inspection", time: "Today 3:30 PM", source: "Website", confirmation: "Confirmed", reminder: "Reminder Sent" },
+                { name: "Mike R.", issue: "Storm Damage Inspection", time: "Tomorrow 10:00 AM", source: "Facebook", confirmation: "Pending", reminder: "Pending" }
             ],
             topSources: [
-                { source: "Website", count: 112 },
-                { source: "Google Business", count: 67 },
-                { source: "Facebook", count: 48 },
-                { source: "Direct Calls", count: 31 },
-                { source: "Google Ads", count: 14 },
-                { source: "Email", count: 6 }
+                { source: "Website", leads: 112, booked: 34, rate: "30%" },
+                { source: "Google Business", leads: 67, booked: 25, rate: "37%" },
+                { source: "Facebook", leads: 48, booked: 9, rate: "19%" },
+                { source: "Direct Calls", leads: 31, booked: 18, rate: "58%" },
+                { source: "Manual Outreach", leads: 14, booked: 4, rate: "29%" },
+                { source: "Referral / External", leads: 11, booked: 3, rate: "27%" }
             ],
-            recommendedActions: "Focus follow-up on the 3 hot leads today.<br>Consider tightening the 24-hour response window this week."
+            followUpPerformance: {
+                sent: 87,
+                recovered: 31,
+                unresponsive: 12,
+                manualSent: 19
+            },
+            recommendedActions: "3 hot leads need manual follow-up. Call or text these before the end of the day.<br>Website leads are booking well this week. Keep your contact form and response flow active.<br>Manual Outreach created 4 booked inspections this week. Keep sending outside leads into RoofLeadHQ when you cannot respond immediately.",
+            manualOutreachNote: "Got a lead from Angi, Thumbtack, a referral, or another source we do not automatically track? Send the homeowner’s number to your RoofLeadHQ system and we’ll start text follow-up from your connected number."
         };
 
         function initDashboard() {
@@ -162,6 +240,7 @@
             dashboardData.metrics.forEach(m => {
                 const card = document.createElement('div');
                 card.className = 'metric-card bg-white border rounded-2xl p-5 cursor-pointer';
+                let tooltip = m.tooltip ? `title="${m.tooltip}"` : '';
                 card.innerHTML = `
                     <div class="text-xs text-slate-500">${m.period}</div>
                     <div class="text-3xl font-semibold text-slate-900 mt-1">${m.value}</div>
@@ -183,11 +262,16 @@
                 row.innerHTML = `
                     <td class="px-6 py-4">
                         <div class="font-medium">${lead.name}</div>
-                        <div class="text-xs text-slate-500">${lead.phone}</div>
                     </td>
+                    <td class="px-4 py-4 text-sm text-slate-600">${lead.issue}</td>
                     <td class="px-4 py-4 text-sm text-slate-600">${lead.source}</td>
                     <td class="px-4 py-4">
-                        <span class="px-3 py-0.5 text-xs rounded-full" style="background: ${lead.statusColor}; color: ${lead.textColor}">
+                        <span class="px-3 py-0.5 text-xs rounded-full font-semibold" style="background: #f1f5f9; color: #000000;">
+                            ${lead.priority}
+                        </span>
+                    </td>
+                    <td class="px-4 py-4">
+                        <span class="px-3 py-0.5 text-xs rounded-full" style="background: #f1f5f9; color: #000000;">
                             ${lead.status}
                         </span>
                     </td>
@@ -202,15 +286,36 @@
                 leadsBody.appendChild(row);
             });
 
-            // Top Sources
+            // Upcoming Booked Inspections
+            const inspectionsBody = document.getElementById('upcoming-inspections-body');
+            if (inspectionsBody) {
+                inspectionsBody.innerHTML = '';
+                dashboardData.upcomingInspections.forEach(ins => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-slate-50';
+                    row.innerHTML = `
+                        <td class="px-6 py-4">${ins.name}</td>
+                        <td class="px-4 py-4 text-sm text-slate-600">${ins.issue}</td>
+                        <td class="px-4 py-4 text-sm text-slate-600">${ins.time}</td>
+                        <td class="px-4 py-4 text-sm text-slate-600">${ins.source}</td>
+                        <td class="px-4 py-4 text-sm text-slate-600">${ins.confirmation}</td>
+                        <td class="px-4 py-4 text-sm text-slate-600">${ins.reminder}</td>
+                    `;
+                    inspectionsBody.appendChild(row);
+                });
+            }
+
+            // Top Sources with Booking Rate
             const sourcesContainer = document.getElementById('top-sources');
             sourcesContainer.innerHTML = '';
             dashboardData.topSources.forEach(s => {
                 const div = document.createElement('div');
-                div.className = 'flex justify-between text-sm';
+                div.className = 'flex justify-between text-sm border-b py-1';
                 div.innerHTML = `
                     <span>${s.source}</span>
-                    <span class="font-semibold">${s.count} leads</span>
+                    <span class="font-semibold">${s.leads} leads</span>
+                    <span class="font-semibold">${s.booked} booked</span>
+                    <span class="font-semibold text-emerald-600">${s.rate}</span>
                 `;
                 sourcesContainer.appendChild(div);
             });
