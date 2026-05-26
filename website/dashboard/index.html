@@ -171,11 +171,7 @@
             <div class="flex gap-4">
                 <button onclick="alert('Send Text Outreach modal opening...')" 
                         class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-2xl transition">
-                    <i class="fa-solid fa-comment-dots mr-2"></i> Send Text Outreach
-                </button>
-                <button onclick="alert('Start Phone Call modal opening...')" 
-                        class="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-2xl transition">
-                    <i class="fa-solid fa-phone mr-2"></i> Start Phone Call
+                    <i class="fa-solid fa-comment-dots mr-2"></i> Send Text for Outreach
                 </button>
             </div>
         </div>
@@ -194,12 +190,12 @@
         const dashboardData = {
             lastUpdated: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
             metrics: [
-                { label: "New Leads", value: "9", trend: "↑3", color: "#10b981", period: "Today" },
+                { label: "New Leads", value: "9 today / 112 this month", trend: "↑3", color: "#10b981", period: "Today" },
                 { label: "Booked Inspections", value: "3", trend: "↓1", color: "#ef4444", period: "Today" },
                 { label: "Booking Rate", value: "57%", trend: "↑5%", color: "#10b981", period: "This Month", tooltip: "Booked inspections ÷ qualified leads." },
                 { label: "Avg. First Response Time", value: "2m", trend: "↓9m", color: "#10b981", period: "This Month" },
                 { label: "Leads Needing Attention", value: "3", trend: "↑2", color: "#ef4444", period: "Today" },
-                { label: "Leads Handled Automatically", value: "34", trend: "↑12%", color: "#10b981", period: "This Month" },
+                { label: "Leads Handled Automatically", value: "34 leads +12%", trend: "↑12%", color: "#10b981", period: "This Month" },
                 { label: "Follow-Up Recovery", value: "12", trend: "↑4", color: "#10b981", period: "This Month" },
                 { label: "Confirmed Appointments", value: "8", trend: "↑1", color: "#10b981", period: "This Month" }
             ],
@@ -226,7 +222,7 @@
                 unresponsive: 12,
                 manualSent: 19
             },
-            recommendedActions: "3 hot leads need manual follow-up. Call or text these before the end of the day.<br>Website leads are booking well this week. Keep your contact form and response flow active.<br>Manual Outreach created 4 booked inspections this week. Keep sending outside leads into RoofLeadHQ when you cannot respond immediately.",
+            recommendedActions: "3 hot leads need manual follow-up. Call or text these before the end of the day.<br>Website leads are booking well this week. Keep your contact form and response flow active.<br>Manual Outreach created 4 booked inspections this week. Keep sending outside leads into RoofLeadHQ when you cannot respond immediately.<br>Google Business leads booked best this week. Consider asking recent customers for more Google reviews.<br>After-hours leads (11 PM–7 AM) are converting at 41%. Add a quick text follow-up in the morning.<br>Facebook leads have the lowest booking rate. Review the ad creative and landing page this week.","
             manualOutreachNote: "Got a lead from Angi, Thumbtack, a referral, or another source we do not automatically track? Send the homeowner’s number to your RoofLeadHQ system and we’ll start text follow-up from your connected number."
         };
 
