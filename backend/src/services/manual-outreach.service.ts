@@ -13,12 +13,21 @@ const supabaseService = createClient(
 const VALID_SOURCE_DETAILS = ['angi', 'thumbtack', 'referral', 'homeadvisor', 'other', 'unknown'] as const;
 type SourceDetail = typeof VALID_SOURCE_DETAILS[number];
 
+interface SourceContext {
+  twilio_from?: string;
+  twilio_to?: string;
+  message_sid?: string;
+  inbound_body?: string;
+  webhook_source?: 'twilio_manual_outreach';
+}
+
 interface ManualOutreachPayload {
   roofer_id: string;
   homeowner_phone: string;
   homeowner_name?: string;
   source_detail?: string;
   issue_description?: string;
+  source_context?: SourceContext;
 }
 
 interface ManualOutreachResult {
@@ -87,7 +96,12 @@ export async function createManualOutreach(
 
   // Insert workflow_events
   const workflowEvents = [
-    { roofer_id, lead_id: leadId, event_type: 'manual_outreach_received' },
+    {
+      roofer_id,
+      lead_id: leadId,
+      event_type: 'manual_outreach_received',
+      metadata: payload.source_context || null
+    },
     { roofer_id, lead_id: leadId, event_type: 'lead_created' },
     { roofer_id, lead_id: leadId, event_type: 'followup_scheduled' }
   ];
