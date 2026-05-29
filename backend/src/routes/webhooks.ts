@@ -62,6 +62,16 @@ router.post(
 
       const lowerBody = body.toLowerCase();
       let sourceDetail = 'unknown';
+      let command: 'start' | 'pause' | 'stop' | undefined;
+
+      if (lowerBody.startsWith('start ')) {
+        command = 'start';
+      } else if (lowerBody.startsWith('pause ')) {
+        command = 'pause';
+      } else if (lowerBody.startsWith('stop ')) {
+        command = 'stop';
+      }
+
       if (lowerBody.includes('angi')) sourceDetail = 'angi';
       else if (lowerBody.includes('thumbtack')) sourceDetail = 'thumbtack';
       else if (lowerBody.includes('referral')) sourceDetail = 'referral';
@@ -73,6 +83,7 @@ router.post(
         roofer_id: roofer.id,
         homeowner_phone: homeownerPhone,
         source_detail: sourceDetail,
+        command,
         source_context: {
           twilio_from: From,
           twilio_to: To,
