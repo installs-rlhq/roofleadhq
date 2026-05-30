@@ -163,17 +163,61 @@
         </div>
 
         <!-- Manual Outreach -->
-        <div class="mt-8 bg-white border rounded-2xl p-6">
-            <h3 class="font-semibold text-lg mb-2">Manual Outreach</h3>
-            <p class="text-sm text-slate-600 mb-4">
-                Got a lead from Angi, Thumbtack, a referral, or another source we do not automatically track? Send the homeowner’s number to your RoofLeadHQ system and we’ll start text follow-up from your connected number.
-            </p>
-            <div class="flex gap-4">
-                <button onclick="alert('Send Text Outreach modal opening...')" 
-                        class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-2xl transition">
-                    <i class="fa-solid fa-comment-dots mr-2"></i> Send Text for Outreach
-                </button>
+        <div class="mb-10 bg-white border rounded-2xl p-6">
+            <h3 class="font-semibold text-lg mb-4">Manual Outreach</h3>
+
+            <!-- KPI -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-slate-50 border rounded-xl p-5">
+                    <div class="text-xs text-slate-500">Manual Outreach Leads This Month</div>
+                    <div id="manual-outreach-kpi-count" class="text-3xl font-semibold text-slate-900 mt-1">0</div>
+                    <div id="manual-outreach-kpi-trend" class="text-sm text-slate-500 mt-1">No trend yet</div>
+                </div>
+                <div class="bg-slate-50 border rounded-xl p-5">
+                    <div class="text-xs text-slate-500 mb-2">Needs Attention</div>
+                    <div class="space-y-1 text-sm">
+                        <div>Paused: <span id="manual-outreach-paused">0</span></div>
+                        <div>Stopped: <span id="manual-outreach-stopped">0</span></div>
+                        <div>Needing Attention: <span id="manual-outreach-needing-attention">0</span></div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Recent Activity Table -->
+            <div class="bg-white border rounded-xl overflow-hidden mb-6">
+                <div class="px-5 py-3 border-b bg-slate-50">
+                    <span class="text-sm font-medium text-slate-500">Recent Manual Outreach Activity</span>
+                </div>
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b bg-slate-50">
+                            <th class="text-left px-5 py-2 text-xs font-medium text-slate-500">Phone</th>
+                            <th class="text-left px-4 py-2 text-xs font-medium text-slate-500">Source</th>
+                            <th class="text-left px-4 py-2 text-xs font-medium text-slate-500">Command</th>
+                            <th class="text-left px-4 py-2 text-xs font-medium text-slate-500">Date</th>
+                            <th class="text-left px-4 py-2 text-xs font-medium text-slate-500">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="manual-outreach-recent-activity" class="divide-y">
+                        <!-- Populated by loadManualOutreachData() -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Lead Sources -->
+            <div class="bg-slate-50 border rounded-xl p-5">
+                <div class="text-sm font-medium text-slate-500 mb-2">Manual Lead Sources</div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-1 text-sm">
+                    <div>Angi: <span id="manual-source-angi">0</span></div>
+                    <div>Thumbtack: <span id="manual-source-thumbtack">0</span></div>
+                    <div>HomeAdvisor: <span id="manual-source-homeadvisor">0</span></div>
+                    <div>Referral: <span id="manual-source-referral">0</span></div>
+                    <div>Other: <span id="manual-source-other">0</span></div>
+                    <div>Unknown: <span id="manual-source-unknown">0</span></div>
+                </div>
+            </div>
+
+            <div id="manual-outreach-error" class="hidden mt-3 text-sm text-red-600">Failed to load manual outreach data.</div>
         </div>
 
         <!-- CTA -->
@@ -223,7 +267,7 @@
                 manualSent: 19
             },
             recommendedActions: "3 hot leads need manual follow-up. Call or text these before the end of the day.<br>Website leads are booking well this week. Keep your contact form and response flow active.<br>Manual Outreach created 4 booked inspections this week. Keep sending outside leads into RoofLeadHQ when you cannot respond immediately.<br>Google Business leads booked best this week. Consider asking recent customers for more Google reviews.<br>After-hours leads (11 PM–7 AM) are converting at 41%. Add a quick text follow-up in the morning.<br>Facebook leads have the lowest booking rate. Review the ad creative and landing page this week.","
-            manualOutreachNote: "Got a lead from Angi, Thumbtack, a referral, or another source we do not automatically track? Send the homeowner’s number to your RoofLeadHQ system and we’ll start text follow-up from your connected number."
+            manualOutreachNote: "Use this section to monitor manual marketplace/referral lead follow-up activity. Manual outreach actions are read-only here for now."
         };
 
         function initDashboard() {
@@ -321,6 +365,105 @@
         }
 
         window.onload = initDashboard;
+
+        async function loadManualOutreachData() {
+            const errorEl = document.getElementById('manual-outreach-error');
+            if (errorEl) errorEl.classList.add('hidden');
+
+            try {
+                const res = await fetch('/api/dashboard/manual-outreach');
+                if (!res.ok) throw new Error('Request failed');
+                const data = await res.json();
+
+                // KPI
+                const countEl = document.getElementById('manual-outreach-kpi-count');
+                if (countEl) countEl.textContent = data.kpi?.manualOutreachLeadsThisMonth ?? 0;
+
+                const trendEl = document.getElementById('manual-outreach-kpi-trend');
+                if (trendEl) {
+                    trendEl.textContent = (data.kpi?.trend == null) ? 'No trend yet' : data.kpi.trend;
+                }
+
+                // Needs Attention
+                const pausedEl = document.getElementById('manual-outreach-paused');
+                if (pausedEl) pausedEl.textContent = data.needsAttention?.paused ?? 0;
+
+                const stoppedEl = document.getElementById('manual-outreach-stopped');
+                if (stoppedEl) stoppedEl.textContent = data.needsAttention?.stopped ?? 0;
+
+                const needingEl = document.getElementById('manual-outreach-needing-attention');
+                if (needingEl) needingEl.textContent = data.needsAttention?.needingAttention ?? 0;
+
+                // Sources
+                const sources = data.sources || {};
+                const setSource = (id, key) => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = sources[key] ?? 0;
+                };
+                setSource('manual-source-angi', 'angi');
+                setSource('manual-source-thumbtack', 'thumbtack');
+                setSource('manual-source-homeadvisor', 'homeadvisor');
+                setSource('manual-source-referral', 'referral');
+                setSource('manual-source-other', 'other');
+                setSource('manual-source-unknown', 'unknown');
+
+                // Recent Activity table (createElement + textContent only)
+                const tbody = document.getElementById('manual-outreach-recent-activity');
+                if (tbody) {
+                    tbody.textContent = '';
+                    const activity = data.recentActivity || [];
+                    if (activity.length === 0) {
+                        const row = document.createElement('tr');
+                        const cell = document.createElement('td');
+                        cell.colSpan = 5;
+                        cell.className = 'px-6 py-4 text-sm text-slate-500';
+                        cell.textContent = 'No recent manual outreach activity yet.';
+                        row.appendChild(cell);
+                        tbody.appendChild(row);
+                    } else {
+                        activity.forEach(item => {
+                            const row = document.createElement('tr');
+
+                            const phoneCell = document.createElement('td');
+                            phoneCell.className = 'px-6 py-3';
+                            phoneCell.textContent = item.phone || '';
+                            row.appendChild(phoneCell);
+
+                            const sourceCell = document.createElement('td');
+                            sourceCell.className = 'px-4 py-3';
+                            sourceCell.textContent = item.source || '';
+                            row.appendChild(sourceCell);
+
+                            const commandCell = document.createElement('td');
+                            commandCell.className = 'px-4 py-3';
+                            commandCell.textContent = item.command || '';
+                            row.appendChild(commandCell);
+
+                            const dateCell = document.createElement('td');
+                            dateCell.className = 'px-4 py-3';
+                            dateCell.textContent = item.date || '';
+                            row.appendChild(dateCell);
+
+                            const statusCell = document.createElement('td');
+                            statusCell.className = 'px-4 py-3';
+                            statusCell.textContent = item.status || '';
+                            row.appendChild(statusCell);
+
+                            tbody.appendChild(row);
+                        });
+                    }
+                }
+
+            } catch (err) {
+                if (errorEl) errorEl.classList.remove('hidden');
+                console.error('Manual outreach data error:', err);
+            }
+        }
+
+        // Load Manual Outreach data on DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            loadManualOutreachData();
+        });
     </script>
 </body>
 </html>
