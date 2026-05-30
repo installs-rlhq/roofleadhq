@@ -33,6 +33,7 @@ router.get('/manual-outreach', async (req: Request, res: Response) => {
       .from('workflow_events')
       .select('event_type, created_at, leads!inner(phone, source_detail)')
       .eq('roofer_id', rooferId)
+      .eq('leads.source_path', 'manual')
       .in('event_type', ['manual_outreach_received', 'followup_paused', 'followup_stopped'])
       .order('created_at', { ascending: false })
       .limit(8);
