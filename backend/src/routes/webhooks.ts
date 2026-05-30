@@ -57,7 +57,8 @@ router.post(
       const homeownerPhone = phoneMatch ? phoneMatch[1] : null;
 
       if (!homeownerPhone) {
-        return res.status(400).send('No valid E.164 phone number found in Body');
+        res.set('Content-Type', 'text/xml');
+        return res.status(200).send('<?xml version="1.0" encoding="UTF-8"?><Response></Response>');
       }
 
       const lowerBody = body.toLowerCase();
