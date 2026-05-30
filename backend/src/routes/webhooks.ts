@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import express from 'express';
+import twilio from 'twilio';
 import { createClient } from '@supabase/supabase-js';
 import config from '../config/config';
 import leadService from '../services/leadService';
@@ -20,8 +21,36 @@ router.post('/forms', async (req: Request, res: Response) => {
 // Dry-run Twilio Manual Outreach webhook
 router.post(
   '/twilio/manual-outreach',
-  express.urlencoded({ extended: false }),
+  express.urlencoded({
+    extended: false,
+    verify: (req, res, buf) => {
+      (req as any).rawBody = buf.toString('utf8');
+    }
+  }),
   async (req: Request, res: Response) => {
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const twilioSignature = req.header('X-Twilio-Signature');
+
+    if (!authToken) {
+      console.error('TWILIO_AUTH_TOKEN is not configured');
+      res.set('Content-Type', 'text/xml');
+      return res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><Response></Response>');
+    }
+
+    if (!twilioSignature) {
+      res.set('Content-Type', 'text/xml');
+      return res.status(403).send('<?xml version="1.0" encoding="UTF-8"?><Response></Response>');
+    }
+
+    const protocol = req.get('x-forwarded-proto') || req.protocol;
+    const url = `${protocol}://${req.get('host')}${req.originalUrl}`;
+    const isValid = twilio.validateRequest(authToken, twilioSignature, url, req.body);
+
+    if (!isValid) {
+      res.set('Content-Type', 'text/xml');
+      return res.status(403).send('<?xml version="1.0" encoding="UTF-8"?><Response></Response>');
+    }
+
     const { To, From, Body, MessageSid } = req.body;
 
     if (!To || !From || !Body) {
