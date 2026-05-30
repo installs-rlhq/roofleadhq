@@ -80,7 +80,29 @@ router.post(
         return res.status(404).send('Roofer not found for this Twilio number');
       }
 
-      // 2. Parse Body for phone and source
+      // 2. Duplicate MessageSid check after roofer is known
+      if (MessageSid) {
+        const { data: existingEvent, error: duplicateError } = await supabaseService
+          .from('workflow_events')
+          .select('id')
+          .eq('roofer_id', roofer.id)
+          .eq('event_type', 'manual_outreach_received')
+          .eq('metadata->>message_sid', MessageSid)
+          .maybeSingle();
+
+        if (duplicateError) {
+          console.error('Duplicate MessageSid check failed');
+          res.set('Content-Type', 'text/xml');
+          return res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><Response></Response>');
+        }
+
+        if (existingEvent) {
+          res.set('Content-Type', 'text/xml');
+          return res.status(200).send('<?xml version="1.0" encoding="UTF-8"?><Response></Response>');
+        }
+      }
+
+      // 3. Parse Body for phone and source
       const body = Body.trim();
       const phoneMatch = body.match(/(\+[1-9]\d{1,14})/);
       const homeownerPhone = phoneMatch ? phoneMatch[1] : null;
