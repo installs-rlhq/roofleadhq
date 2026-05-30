@@ -4,6 +4,7 @@ import leadsRouter from './routes/leads';
 import callsRouter from './routes/calls';
 import webhooksRouter from './routes/webhooks';
 import manualOutreachRouter from './routes/manual-outreach';
+import dashboardRouter from './routes/dashboard';
 import { errorHandler } from './middleware/errorHandler';
 
 const app = express();
@@ -16,6 +17,7 @@ app.use('/api/leads', leadsRouter);
 app.use('/api/calls', callsRouter);
 app.use('/webhooks', webhooksRouter);
 app.use('/api/manual-outreach', manualOutreachRouter);
+app.use('/api/dashboard', dashboardRouter);
 
 // Health check
 app.get('/health', (req, res) => {
