@@ -110,3 +110,24 @@ Verified behavior:
 - Booking creation remains gated by appointment_time.
 - No SMS, Google Calendar, Resend, or Lindy production triggers were enabled.
 
+
+## Supabase Booking Row Verification — 2026-05-31
+
+Verified booking row:
+
+- booking_id: 4ecbc0a1-4d7d-4283-ba16-7c3482dee929
+- roofer_id: be7efc94-bd68-43af-81b2-dc7b869b42df
+- lead_id: 959075a7-c7d0-46a8-94d9-1f218e033bad
+- appointment_type: site_visit
+- booked_time: 2026-06-06T14:00:00+00:00
+- calendar_provider: vapi
+- status: scheduled
+- is_qualified: true
+- qualification_status: qualified
+- counts_toward_confidence_promise: true
+- calendar_event_id: null
+- confirmation_sent_at: null
+- reminder_sent_at: null
+
+This confirms Vapi booking creation writes to Supabase only and does not trigger Google Calendar, SMS, Resend, or Lindy.
+
