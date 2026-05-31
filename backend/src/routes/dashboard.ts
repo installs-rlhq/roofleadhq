@@ -4,14 +4,7 @@ import config from '../config/config';
 
 const router = Router();
 
-const fallbackRooferId = 'be7efc94-bd68-43af-81b2-dc7b869b42df';
-
-const requestedRooferId =
-  typeof req.query.roofer_id === 'string' && req.query.roofer_id.trim().length > 0
-    ? req.query.roofer_id.trim()
-    : null;
-
-const rooferId = requestedRooferId || fallbackRooferId;
+const TEST_ROOFER_ID = 'be7efc94-bd68-43af-81b2-dc7b869b42df';
 
 const supabase = createClient(config.supabaseUrl, config.supabaseServiceRoleKey);
 
