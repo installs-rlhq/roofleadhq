@@ -371,7 +371,7 @@
             if (errorEl) errorEl.classList.add('hidden');
 
             try {
-                const res = await fetch('/api/dashboard/manual-outreach');
+                const res = await fetch('/api/dashboard/manual-outreach?roofer_id=be7efc94-bd68-43af-81b2-dc7b869b42df');
                 if (!res.ok) throw new Error('Request failed');
                 const data = await res.json();
 
