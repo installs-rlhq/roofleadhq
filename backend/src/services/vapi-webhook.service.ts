@@ -94,13 +94,24 @@ function firstBooleanValue(...values: unknown[]): boolean {
 export function normalizeVapiCallCompletedPayload(
   payload: VapiWebhookPayload
 ): NormalizedVapiDryRunPayload {
-  const call = payload.call ?? payload.message?.call ?? {};
-  const customer = call.customer ?? payload.customer ?? {};
-  const phoneNumber = call.phoneNumber ?? payload.phoneNumber ?? {};
-  const analysis = call.analysis ?? payload.analysis ?? {};
+  const message = payload.message ?? {};
+  const call = payload.call ?? message.call ?? {};
+  const customer = call.customer ?? message.customer ?? payload.customer ?? {};
+  const phoneNumber =
+    call.phoneNumber ??
+    message.phoneNumber ??
+    payload.phoneNumber ??
+    {};
+  const analysis =
+    call.analysis ??
+    message.analysis ??
+    payload.analysis ??
+    {};
   const structuredData =
     analysis.structuredData ??
     analysis.structured_data ??
+    message.structuredData ??
+    message.structured_data ??
     payload.structuredData ??
     payload.structured_data ??
     {};
@@ -112,7 +123,12 @@ export function normalizeVapiCallCompletedPayload(
     payload.callId,
     call.id,
     call.callId,
-    payload.message?.call?.id
+    call.provider_call_id,
+    call.providerCallId,
+    message.call_id,
+    message.callId,
+    message.provider_call_id,
+    message.providerCallId
   );
 
   const callerPhone = normalizePhone(
@@ -126,8 +142,12 @@ export function normalizeVapiCallCompletedPayload(
       customer.phone,
       customer.number,
       customer.phoneNumber,
-      payload.message?.customer?.phone,
-      payload.message?.customer?.number
+      message.caller_phone,
+      message.callerPhone,
+      message.from,
+      message.customer?.phone,
+      message.customer?.number,
+      message.customer?.phoneNumber
     )
   );
 
@@ -137,19 +157,25 @@ export function normalizeVapiCallCompletedPayload(
       payload.destination_number,
       payload.destinationNumber,
       payload.to,
+      call.roofer_destination_number,
       call.destination_number,
       call.destinationNumber,
       call.to,
       phoneNumber.number,
       phoneNumber.phoneNumber,
-      payload.message?.phoneNumber?.number,
-      payload.message?.phoneNumber?.phoneNumber
+      phoneNumber.twilioNumber,
+      message.roofer_destination_number,
+      message.destination_number,
+      message.destinationNumber,
+      message.to
     )
   );
 
   const appointmentBooked = firstBooleanValue(
     payload.appointment_booked,
     payload.appointmentBooked,
+    message.appointment_booked,
+    message.appointmentBooked,
     structuredData.appointment_booked,
     structuredData.appointmentBooked,
     structuredData.booked,
@@ -160,6 +186,8 @@ export function normalizeVapiCallCompletedPayload(
   const appointmentRequested = firstBooleanValue(
     payload.appointment_requested,
     payload.appointmentRequested,
+    message.appointment_requested,
+    message.appointmentRequested,
     structuredData.appointment_requested,
     structuredData.appointmentRequested,
     structuredData.requested_appointment,
@@ -171,6 +199,8 @@ export function normalizeVapiCallCompletedPayload(
   const appointmentTime = firstStringValue(
     payload.appointment_time,
     payload.appointmentTime,
+    message.appointment_time,
+    message.appointmentTime,
     structuredData.appointment_time,
     structuredData.appointmentTime,
     structuredData.preferred_time,
