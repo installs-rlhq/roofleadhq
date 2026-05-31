@@ -81,3 +81,30 @@ Safe first insert payload should use only:
 - issue_description
 - notes
 - owner_notified = false
+
+## Implementation Verification — 2026-05-31
+
+Implemented in commit:
+- 93583a1 feat(vapi): create lead for unmatched calls
+
+Verified behavior:
+- unmatched Vapi calls create a new lead
+- new lead uses source_path = phone
+- new lead uses source_detail = vapi
+- booked calls create lead status = booked
+- calls.lead_id is set to the new lead id
+- existing lead matching still works
+- duplicate provider_call_id still works
+- unknown roofer still returns 404
+- missing provider_call_id still returns 400
+
+Test result:
+- backend/scripts/test-vapi-calls-insert.sh passed 5/5.
+
+Still not enabled:
+- no booking creation
+- no follow_up creation
+- no SMS
+- no Calendar
+- no Resend
+- no Lindy
