@@ -114,3 +114,16 @@ If Calendar sync fails:
 ---
 
 **Planning complete.** No Calendar, SMS, Resend, Lindy, or follow-up automation implemented.
+## Disabled Calendar Sync Placeholder — 2026-05-31
+
+Implementation status:
+
+- Added disabled-by-default Calendar sync dry-run service.
+- Added script: backend/scripts/sync-vapi-calendar-bookings.js.
+- Calendar sync requires roofers.calendar_sync_enabled = true.
+- Current expected eligible count is 0 because all roofer flags default false.
+- No Google Calendar events are created.
+- No SMS is sent.
+- No Resend, Lindy, or follow-up automation is triggered.
+- This is a safe placeholder only. Real Google Calendar integration remains blocked until credentials, calendar ownership, retry behavior, and production enablement rules are explicitly approved.
+
