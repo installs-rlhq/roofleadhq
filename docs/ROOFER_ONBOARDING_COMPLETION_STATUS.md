@@ -155,3 +155,21 @@ Recommended improvements before first real client:
 3. Add a command template for the first actual roofer.
 4. Add a post-onboarding dashboard visibility check.
 5. Keep Calendar/SMS disabled until explicitly approved.
+
+## Dashboard Visibility Check Completed
+
+Dashboard visibility verification was added and passed.
+
+Script:
+
+backend/scripts/verify-roofer-dashboard-visibility.js
+
+ABC Roofing Test was updated with:
+
+service_area: Austin, TX
+
+Final readiness check passed without the previous service_area warning.
+
+Latest verified commit before this doc update:
+
+7182368 Update verify-roofer-onboarding-readiness.sh
