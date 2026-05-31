@@ -134,32 +134,95 @@ No writes should happen.
 
 ## 7. Calls Table Mapping
 
-The first write-enabled milestone should insert one row into calls.
+The first write-enabled milestone should insert one row into `calls`.
 
-Proposed mapping:
+The live `calls` table was verified before implementation planning. The first calls-only insert can proceed without creating or matching a lead because `calls.lead_id` is nullable.
+
+### Live Calls Table Columns Verified
+
+The following columns exist and are usable for the first calls-only insert:
+
+| calls column | Status | Notes |
+|---|---|---|
+| `id` | exists | UUID primary key, defaults to `gen_random_uuid()` |
+| `roofer_id` | exists | Required, foreign key to `roofers(id)` |
+| `lead_id` | exists | Nullable, foreign key to `leads(id)` with `ON DELETE SET NULL` |
+| `provider` | exists | Required, check constraint allows `vapi` and `retell` |
+| `provider_call_id` | exists | Nullable, protected by unique partial index when present |
+| `caller_phone` | exists | Nullable text |
+| `call_started_at` | exists | Nullable timestamp with time zone |
+| `call_ended_at` | exists | Nullable timestamp with time zone |
+| `duration_seconds` | exists | Nullable integer |
+| `transcript` | exists | Nullable text |
+| `summary` | exists | Nullable text |
+| `outcome` | exists | Nullable text |
+| `appointment_requested` | exists | Nullable boolean |
+| `appointment_booked` | exists | Nullable boolean |
+| `recording_url` | exists | Nullable text |
+| `raw_payload` | exists | Nullable jsonb |
+| `created_at` | exists | Defaults to `now()` |
+| `updated_at` | exists | Defaults to `now()` |
+
+### Columns Not Present
+
+The following columns do not currently exist and must not be referenced in the first implementation:
+
+| Proposed column | Live schema status | Implementation decision |
+|---|---|---|
+| `started_at` | missing | Use `call_started_at` instead |
+| `ended_at` | missing | Use `call_ended_at` instead |
+| `direction` | missing | Do not insert |
+| `status` | missing | Do not insert |
+| `appointment_time` | missing | Do not insert |
+
+### First Calls-Only Insert Mapping
+
+Use only live columns that already exist:
 
 | calls column | Source | Notes |
 |---|---|---|
-| roofer_id | Supabase lookup | Required |
-| lead_id | Matched or created lead | Not for first calls-only insert unless nullable |
-| provider | constant | Use vapi |
-| provider_call_id | normalized provider call ID | Required for idempotency |
-| caller_phone | normalized caller phone | Required if column exists |
-| direction | inferred or payload | Usually inbound |
-| status | payload or default | likely completed |
-| started_at | Vapi payload | Optional if available |
-| ended_at | Vapi payload | Optional if available |
-| duration_seconds | Vapi payload | Optional if available |
-| transcript | Vapi payload | Optional |
-| summary | Vapi payload | Optional |
-| outcome | structured data or analysis | Optional |
-| appointment_requested | normalized boolean | Optional |
-| appointment_booked | normalized boolean | Optional |
-| appointment_time | structured data | Optional |
-| raw_payload | full request body | Useful for debugging |
-| created_at | database default | Do not manually set unless needed |
+| `roofer_id` | Supabase roofer lookup | Required |
+| `lead_id` | none for first milestone | Set to `null` or omit |
+| `provider` | constant | Use `vapi` |
+| `provider_call_id` | normalized provider call ID | Required for idempotency |
+| `caller_phone` | normalized caller phone | Use normalized E.164 value |
+| `call_started_at` | Vapi payload if available | Optional |
+| `call_ended_at` | Vapi payload if available | Optional |
+| `duration_seconds` | Vapi payload if available | Optional |
+| `transcript` | Vapi payload if available | Optional |
+| `summary` | Vapi payload if available | Optional |
+| `outcome` | structured data or analysis if available | Optional |
+| `appointment_requested` | normalized boolean | Optional |
+| `appointment_booked` | normalized boolean | Optional |
+| `recording_url` | Vapi payload if available | Optional |
+| `raw_payload` | full request body | Store full webhook payload for debugging |
+| `created_at` | database default | Do not manually set |
+| `updated_at` | database default | Do not manually set |
 
-Actual implementation must confirm the live calls table columns before writing code.
+### First Calls-Only Insert Should Not Use
+
+Do not reference these fields in SQL or Supabase insert code until schema changes are approved:
+
+- `appointment_time`
+- `direction`
+- `status`
+- `started_at`
+- `ended_at`
+
+### Live Schema Readiness Conclusion
+
+The live `calls` table is ready for a narrow Vapi calls-only insert because:
+
+1. `roofer_id` exists and is required.
+2. `lead_id` is nullable.
+3. `provider = 'vapi'` is allowed by the provider check constraint.
+4. `provider_call_id` exists.
+5. `caller_phone` exists.
+6. `raw_payload` exists as `jsonb`.
+7. Transcript, summary, outcome, and appointment booleans already exist.
+8. The unique partial idempotency index exists on `(provider, provider_call_id)` where `provider_call_id is not null`.
+
+The first write milestone should still avoid lead creation, booking creation, follow-up creation, SMS, Calendar, Resend, and Lindy.
 
 ---
 
