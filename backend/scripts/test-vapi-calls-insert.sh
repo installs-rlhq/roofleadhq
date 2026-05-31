@@ -47,8 +47,10 @@ run_test() {
   PASS_COUNT=$((PASS_COUNT + 1))
 }
 
-PROVIDER_CALL_ID="vapi_insert_test_$(date +%s)"
-MATCH_PROVIDER_CALL_ID="vapi_match_test_$(date +%s)"
+TIMESTAMP="$(date +%s)"
+PROVIDER_CALL_ID="vapi_insert_test_$TIMESTAMP"
+MATCH_PROVIDER_CALL_ID="vapi_match_test_$TIMESTAMP"
+NEW_LEAD_PHONE="+1512555${TIMESTAMP: -4}"
 
 KNOWN_ROOFER_PAYLOAD='{
   "provider_call_id": "'"$PROVIDER_CALL_ID"'",
@@ -96,11 +98,12 @@ MISSING_PROVIDER_CALL_ID_PAYLOAD='{
 echo "Testing Vapi calls insert against: $ENDPOINT"
 echo "Provider call id: $PROVIDER_CALL_ID"
 echo "Match provider call id: $MATCH_PROVIDER_CALL_ID"
+echo "New lead phone: $NEW_LEAD_PHONE"
 
 run_test \
-  "Known roofer payload should insert one calls row with no lead match" \
+  "Known roofer payload should create lead and insert calls row" \
   "200" \
-  '"inserted":true' \
+  '"matched_lead_id":"' \
   "$KNOWN_ROOFER_PAYLOAD"
 
 run_test \

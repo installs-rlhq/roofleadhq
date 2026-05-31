@@ -384,6 +384,40 @@ async function findSingleMatchingLeadId(
   return matches[0]?.id ?? null;
 }
 
+async function createVapiLead(
+  supabase: any,
+  rooferId: string,
+  normalized: NormalizedVapiCallCompletedPayload
+): Promise<string | null> {
+  const leadPayload = {
+    roofer_id: rooferId,
+    phone: normalized.caller_phone,
+    source_path: 'phone',
+    source_detail: 'vapi',
+    status: normalized.appointment_booked ? 'booked' : 'needs_attention',
+    issue_description: normalized.summary,
+    notes: normalized.transcript,
+    owner_notified: false,
+  };
+
+  const { data, error } = await supabase
+    .from('leads')
+    .insert(leadPayload)
+    .select('id')
+    .single();
+
+  if (error) {
+    console.error('Vapi lead creation failed', {
+      code: error.code,
+      message: error.message,
+    });
+
+    return null;
+  }
+
+  return data?.id ?? null;
+}
+
 export async function processVapiCallCompleted(
   payload: VapiWebhookPayload
 ): Promise<VapiCallCompletedResult> {
@@ -463,11 +497,15 @@ export async function processVapiCallCompleted(
     };
   }
 
-  const matchedLeadId = await findSingleMatchingLeadId(
+  const existingLeadId = await findSingleMatchingLeadId(
     supabase,
     roofer.id,
     normalized.caller_phone
   );
+
+  const matchedLeadId =
+    existingLeadId ??
+    (await createVapiLead(supabase, roofer.id, normalized));
 
   const insertPayload = {
     roofer_id: roofer.id,
