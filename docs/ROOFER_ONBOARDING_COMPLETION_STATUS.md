@@ -28,6 +28,7 @@ Completed files:
 - backend/scripts/verify-roofer-flags-readonly.js
 - backend/scripts/onboard-roofer-dry-run.js
 - backend/scripts/onboard-roofer.js
+- Owner email duplicate check added to backend/scripts/onboard-roofer.js
 
 ## Verified Scripts
 
@@ -110,6 +111,16 @@ be7efc94-bd68-43af-81b2-dc7b869b42df
 The write script safely refused duplicate Twilio number:
 
 +15127123200
+
+because it already belongs to:
+
+ABC Roofing Test
+
+Owner email duplicate protection was verified.
+
+The script safely refused:
+
+test-roofer@roofleadhq.com
 
 because it already belongs to:
 
