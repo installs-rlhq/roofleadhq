@@ -52,7 +52,7 @@ MATCH_PROVIDER_CALL_ID="vapi_match_test_$(date +%s)"
 
 KNOWN_ROOFER_PAYLOAD='{
   "provider_call_id": "'"$PROVIDER_CALL_ID"'",
-  "caller_phone": "512-555-1234",
+  "caller_phone": "'"$NEW_LEAD_PHONE"'",
   "destination_number": "+15127123200",
   "call_started_at": "2026-06-05T10:00:00Z",
   "call_ended_at": "2026-06-05T10:03:15Z",
