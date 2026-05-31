@@ -17,22 +17,40 @@ ALTER TABLE roofers
 
 -- 2. Add Calendar sync tracking to bookings
 ALTER TABLE bookings
-  ADD COLUMN IF NOT EXISTS calendar_sync_status TEXT NOT NULL DEFAULT 'pending',
-  ADD COLUMN IF NOT EXISTS calendar_sync_error TEXT,
-  ADD COLUMN IF NOT EXISTS calendar_synced_at TIMESTAMPTZ;
+ ADD COLUMN IF NOT EXISTS calendar_sync_status TEXT NOT NULL DEFAULT 'pending',
+ ADD COLUMN IF NOT EXISTS calendar_sync_error TEXT,
+ ADD COLUMN IF NOT EXISTS calendar_synced_at TIMESTAMPTZ;
 
-ALTER TABLE bookings
-  ADD CONSTRAINT IF NOT EXISTS chk_calendar_sync_status
-  CHECK (calendar_sync_status IN ('pending', 'synced', 'failed', 'skipped'));
+DO $$
+BEGIN
+ IF NOT EXISTS (
+ SELECT 1
+ FROM pg_constraint
+ WHERE conname = 'chk_calendar_sync_status'
+ ) THEN
+ ALTER TABLE bookings
+ ADD CONSTRAINT chk_calendar_sync_status
+ CHECK (calendar_sync_status IN ('pending', 'synced', 'failed', 'skipped'));
+ END IF;
+END $$;
 
 -- 3. Add SMS confirmation tracking to bookings
 ALTER TABLE bookings
-  ADD COLUMN IF NOT EXISTS sms_confirmation_status TEXT NOT NULL DEFAULT 'pending',
-  ADD COLUMN IF NOT EXISTS sms_confirmation_error TEXT;
+ ADD COLUMN IF NOT EXISTS sms_confirmation_status TEXT NOT NULL DEFAULT 'pending',
+ ADD COLUMN IF NOT EXISTS sms_confirmation_error TEXT;
 
-ALTER TABLE bookings
-  ADD CONSTRAINT IF NOT EXISTS chk_sms_confirmation_status
-  CHECK (sms_confirmation_status IN ('pending', 'sent', 'failed', 'skipped'));
+DO $$
+BEGIN
+ IF NOT EXISTS (
+ SELECT 1
+ FROM pg_constraint
+ WHERE conname = 'chk_sms_confirmation_status'
+ ) THEN
+ ALTER TABLE bookings
+ ADD CONSTRAINT chk_sms_confirmation_status
+ CHECK (sms_confirmation_status IN ('pending', 'sent', 'failed', 'skipped'));
+ END IF;
+END $$;
 ```
 
 **Notes on the SQL:**
