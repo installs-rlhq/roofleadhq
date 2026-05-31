@@ -3,6 +3,7 @@
 **Status:** Planning / Specification Only  
 **Phase:** Phase 4 Prep  
 **Last Updated:** 2026-05-30  
+
 **Owner:** RoofLeadHQ  
 
 ## 1. Status and Scope
