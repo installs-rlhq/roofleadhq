@@ -90,3 +90,23 @@ Safe first booking insert later should use:
 - qualification_reason
 - counts_toward_confidence_promise = true
 - notes
+
+## Booking Creation Implementation Verification — 2026-05-31
+
+Verified commit:
+
+- 913f847 feat(vapi): create booking for scheduled calls
+
+Verified behavior:
+
+- Vapi call inserts still pass.
+- Existing lead matching still passes.
+- New lead creation still passes.
+- Duplicate provider_call_id still returns duplicate true.
+- Unknown roofer still returns 404 unknown_roofer.
+- Missing provider_call_id still returns 400 missing_required_field.
+- When appointment_booked = true and appointment_time exists, a bookings row is created.
+- Test booking_id returned successfully: 4ecbc0a1-4d7d-4283-ba16-7c3482dee929.
+- Booking creation remains gated by appointment_time.
+- No SMS, Google Calendar, Resend, or Lindy production triggers were enabled.
+
