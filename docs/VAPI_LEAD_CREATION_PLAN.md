@@ -55,3 +55,29 @@ Then:
 - Duplicate phone formats must stay normalized.
 - We should avoid creating duplicate leads.
 - Booked calls should not imply Calendar booking yet.
+
+## Read-Only Leads Column Verification — 2026-05-31
+
+Verified available fields for safe Vapi lead creation:
+
+- roofer_id
+- phone
+- source_path
+- source_detail
+- status
+- issue_description
+- notes
+- owner_notified
+- created_at
+- updated_at
+
+Safe first insert payload should use only:
+
+- roofer_id
+- phone
+- source_path = phone
+- source_detail = vapi
+- status
+- issue_description
+- notes
+- owner_notified = false
