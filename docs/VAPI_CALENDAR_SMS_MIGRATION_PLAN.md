@@ -101,6 +101,21 @@ Rollback is considered low-risk because the columns are additive and have safe d
 - No production enablement process defined for the new flags.
 - Schema changes must remain behind feature flags until all dependent systems are approved.
 
+## Live Migration Verification — 2026-05-31
+
+- Supabase migration was run successfully through SQL Editor.
+- Verified roofers.calendar_sync_enabled boolean default false not null.
+- Verified roofers.sms_confirmation_enabled boolean default false not null.
+- Verified bookings.calendar_sync_status text default pending not null.
+- Verified bookings.calendar_sync_error text nullable.
+- Verified bookings.calendar_synced_at timestamptz nullable.
+- Verified bookings.sms_confirmation_status text default pending not null.
+- Verified bookings.sms_confirmation_error text nullable.
+- Verified chk_calendar_sync_status constraint allows only pending, synced, failed, skipped.
+- Verified chk_sms_confirmation_status constraint allows only pending, sent, failed, skipped.
+- Calendar/SMS remain disabled because roofer flags default false.
+- No Calendar, SMS, Resend, Lindy, or follow-up automation was enabled.
+
 ## Explicit Statement
 
 **This is documentation only.**  
