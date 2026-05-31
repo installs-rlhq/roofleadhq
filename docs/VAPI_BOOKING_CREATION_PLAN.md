@@ -54,3 +54,39 @@ If appointment_booked = true but no appointment time exists:
 - Resend
 - Lindy
 - follow_ups
+
+## Read-Only Bookings Schema Verification — 2026-05-31
+
+Verified bookings columns:
+
+- id
+- roofer_id
+- lead_id
+- appointment_type
+- booked_time
+- calendar_event_id
+- calendar_provider
+- status
+- confirmation_sent_at
+- reminder_sent_at
+- is_qualified
+- qualification_status
+- qualification_reason
+- counts_toward_confidence_promise
+- notes
+- created_at
+- updated_at
+
+Safe first booking insert later should use:
+
+- roofer_id
+- lead_id
+- appointment_type = site_visit
+- booked_time
+- calendar_provider = vapi
+- status = scheduled
+- is_qualified = true
+- qualification_status = qualified
+- qualification_reason
+- counts_toward_confidence_promise = true
+- notes
