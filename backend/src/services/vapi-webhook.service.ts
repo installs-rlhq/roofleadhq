@@ -16,6 +16,7 @@ type NormalizedVapiCallCompletedPayload = {
   appointment_booked: boolean;
   appointment_requested: boolean;
   recording_url: string | null;
+  appointment_time: string | null;
 };
 
 type VapiCallCompletedResult = {
@@ -33,6 +34,7 @@ type VapiCallCompletedResult = {
   call_id?: string;
   provider_call_id?: string;
   matched_lead_id?: string | null;
+  booking_id?: string | null;
   error?:
     | 'missing_required_field'
     | 'unknown_roofer'
@@ -313,6 +315,17 @@ export function normalizeVapiCallCompletedPayload(
     message.recording?.url
   );
 
+  const appointmentTime = firstTimestampValue(
+    payload.appointment_time,
+    payload.appointmentTime,
+    message.appointment_time,
+    message.appointmentTime,
+    structuredData.appointment_time,
+    structuredData.appointmentTime,
+    structuredData.booked_time,
+    structuredData.bookedTime
+  );
+
   return {
     provider_call_id: providerCallId,
     caller_phone: callerPhone,
@@ -326,6 +339,7 @@ export function normalizeVapiCallCompletedPayload(
     appointment_booked: appointmentBooked,
     appointment_requested: appointmentRequested,
     recording_url: recordingUrl,
+    appointment_time: appointmentTime,
   };
 }
 
@@ -408,6 +422,84 @@ async function createVapiLead(
 
   if (error) {
     console.error('Vapi lead creation failed', {
+      code: error.code,
+      message: error.message,
+    });
+
+    return null;
+  }
+
+  return data?.id ?? null;
+}
+
+
+async function findExistingBookingId(
+  supabase: any,
+  leadId: string,
+  bookedTime: string
+): Promise<string | null> {
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('id')
+    .eq('lead_id', leadId)
+    .eq('booked_time', bookedTime)
+    .limit(1);
+
+  if (error) {
+    console.error('Vapi booking lookup failed', {
+      code: error.code,
+      message: error.message,
+    });
+
+    return null;
+  }
+
+  return data?.[0]?.id ?? null;
+}
+
+async function createVapiBooking(
+  supabase: any,
+  rooferId: string,
+  leadId: string,
+  normalized: NormalizedVapiCallCompletedPayload
+): Promise<string | null> {
+  if (!normalized.appointment_booked || !normalized.appointment_time) {
+    return null;
+  }
+
+  const existingBookingId = await findExistingBookingId(
+    supabase,
+    leadId,
+    normalized.appointment_time
+  );
+
+  if (existingBookingId) {
+    return existingBookingId;
+  }
+
+  const bookingPayload = {
+    roofer_id: rooferId,
+    lead_id: leadId,
+    appointment_type: 'site_visit',
+    booked_time: normalized.appointment_time,
+    calendar_provider: 'vapi',
+    status: 'scheduled',
+    is_qualified: true,
+    qualification_status: 'qualified',
+    qualification_reason:
+      normalized.summary ?? 'Vapi call indicated appointment was booked.',
+    counts_toward_confidence_promise: true,
+    notes: normalized.transcript,
+  };
+
+  const { data, error } = await supabase
+    .from('bookings')
+    .insert(bookingPayload)
+    .select('id')
+    .single();
+
+  if (error) {
+    console.error('Vapi booking creation failed', {
       code: error.code,
       message: error.message,
     });
@@ -507,6 +599,10 @@ export async function processVapiCallCompleted(
     existingLeadId ??
     (await createVapiLead(supabase, roofer.id, normalized));
 
+  const bookingId = matchedLeadId
+    ? await createVapiBooking(supabase, roofer.id, matchedLeadId, normalized)
+    : null;
+
   const insertPayload = {
     roofer_id: roofer.id,
     lead_id: matchedLeadId,
@@ -577,6 +673,7 @@ export async function processVapiCallCompleted(
     call_id: insertedCall.id,
     provider_call_id: normalized.provider_call_id,
     matched_lead_id: matchedLeadId,
+    booking_id: bookingId,
     roofer_id: roofer.id,
     roofer,
     normalized,

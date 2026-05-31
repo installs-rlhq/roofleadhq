@@ -64,6 +64,7 @@ KNOWN_ROOFER_PAYLOAD='{
   "outcome": "qualified_phone_lead",
   "appointment_booked": true,
   "appointment_requested": true,
+  "appointment_time": "2026-06-06T14:00:00Z",
   "recording_url": "https://example.com/test-recording.mp3"
 }'
 
@@ -103,7 +104,7 @@ echo "New lead phone: $NEW_LEAD_PHONE"
 run_test \
   "Known roofer payload should create lead and insert calls row" \
   "200" \
-  '"matched_lead_id":"' \
+  '"booking_id":"' \
   "$KNOWN_ROOFER_PAYLOAD"
 
 run_test \
