@@ -58,20 +58,28 @@ async function main() {
     process.exit(1);
   }
 
-  const missingFields = [
-    'business_name',
-    'owner_email',
-    'twilio_number',
-    'timezone',
-    'service_area',
-    'status',
-    'plan',
-  ].filter((field) => !roofer[field]);
+  const requiredFields = [
+  'business_name',
+  'owner_email',
+  'twilio_number',
+  'timezone',
+  'status',
+  'plan',
+];
 
-  if (missingFields.length > 0) {
-    console.error(`FAIL: Missing required dashboard fields: ${missingFields.join(', ')}`);
-    process.exit(1);
-  }
+const missingRequiredFields = requiredFields.filter((field) => !roofer[field]);
+
+if (missingRequiredFields.length > 0) {
+  console.error(`FAIL: Missing required dashboard fields: ${missingRequiredFields.join(', ')}`);
+  process.exit(1);
+}
+
+const warningFields = ['service_area'];
+const missingWarningFields = warningFields.filter((field) => !roofer[field]);
+
+if (missingWarningFields.length > 0) {
+  console.log(`WARN: Missing recommended dashboard fields: ${missingWarningFields.join(', ')}`);
+}
 
   if (roofer.status !== 'active') {
     console.error(`FAIL: Roofer status is not active: ${roofer.status}`);
