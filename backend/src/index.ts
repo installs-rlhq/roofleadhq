@@ -3,6 +3,7 @@ import config from './config/config';
 import leadsRouter from './routes/leads';
 import callsRouter from './routes/calls';
 import webhooksRouter from './routes/webhooks';
+import vapiWebhooksRouter from './routes/vapi-webhooks';
 import manualOutreachRouter from './routes/manual-outreach';
 import dashboardRouter from './routes/dashboard';
 import { errorHandler } from './middleware/errorHandler';
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/api/leads', leadsRouter);
 app.use('/api/calls', callsRouter);
 app.use('/webhooks', webhooksRouter);
+app.use('/webhooks/vapi', vapiWebhooksRouter);
 app.use('/api/manual-outreach', manualOutreachRouter);
 app.use('/api/dashboard', dashboardRouter);
 
