@@ -65,3 +65,25 @@ Not allowed yet:
 - Phone formats may not be normalized.
 - Matching must be scoped by roofer_id.
 - Do not attach calls across different roofers.
+
+## Read-Only Leads Schema Verification — 2026-05-31
+
+Verified from live Supabase sample rows:
+
+- leads phone column is `phone`
+- `homeowner_phone` does not exist
+- phone values are stored in E.164 format in current sample data
+- matching must use:
+  - calls.roofer_id = leads.roofer_id
+  - calls.caller_phone = leads.phone
+
+Confirmed useful leads columns:
+- id
+- roofer_id
+- homeowner_name
+- phone
+- source_path
+- source_detail
+- status
+- created_at
+- updated_at
