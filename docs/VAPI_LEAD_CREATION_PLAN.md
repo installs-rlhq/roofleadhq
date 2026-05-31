@@ -108,3 +108,20 @@ Still not enabled:
 - no Calendar
 - no Resend
 - no Lindy
+
+## Read-Only Linked Row Verification — 2026-05-31
+
+Verified created Vapi lead and linked call:
+
+- provider_call_id: vapi_insert_test_1780248758
+- call_id: 47e2bf17-39e4-480b-93c8-c00a7049fb87
+- lead_id: 6cacffa5-cf94-470c-a73a-658623cff745
+- roofer_id matched
+- caller_phone matched lead phone
+- lead source_path = phone
+- lead source_detail = vapi
+- lead status = booked
+- owner_notified = false
+
+Result:
+- read-only linked row verification passed
