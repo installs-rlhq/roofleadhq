@@ -84,15 +84,13 @@ The real raw Vapi payload must be verified against Vapi documentation and a safe
   "appointment_requested": false,
   "appointment_booked": false,
   "appointment_time": "ISO8601 string or null",
-  "raw_payload": {}
+   "raw_payload": {}
 }
+```
 
-## Terminal 1 — Chunk 3 of 4
+## 5. Supabase Record Mapping
 
-```bash
-cat >> docs/VAPI_PHONE_LEAD_PATH_SPEC.md <<'EOF'
 ### bookings
-
 Expected behavior:
 
 - Create a booking only when the appointment is confirmed/booked.
