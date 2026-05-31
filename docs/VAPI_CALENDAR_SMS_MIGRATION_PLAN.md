@@ -21,10 +21,18 @@ ALTER TABLE bookings
   ADD COLUMN IF NOT EXISTS calendar_sync_error TEXT,
   ADD COLUMN IF NOT EXISTS calendar_synced_at TIMESTAMPTZ;
 
+ALTER TABLE bookings
+  ADD CONSTRAINT IF NOT EXISTS chk_calendar_sync_status
+  CHECK (calendar_sync_status IN ('pending', 'synced', 'failed', 'skipped'));
+
 -- 3. Add SMS confirmation tracking to bookings
 ALTER TABLE bookings
   ADD COLUMN IF NOT EXISTS sms_confirmation_status TEXT NOT NULL DEFAULT 'pending',
   ADD COLUMN IF NOT EXISTS sms_confirmation_error TEXT;
+
+ALTER TABLE bookings
+  ADD CONSTRAINT IF NOT EXISTS chk_sms_confirmation_status
+  CHECK (sms_confirmation_status IN ('pending', 'sent', 'failed', 'skipped'));
 ```
 
 **Notes on the SQL:**
