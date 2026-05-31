@@ -2,7 +2,6 @@
 
 **Status:** Schema Ready / Documentation Only  
 **Date:** 2026-05-31  
-
 **Purpose:** Document Supabase schema readiness for the Vapi Phone Lead Path before implementation.
 
 ## 1. Current Status
