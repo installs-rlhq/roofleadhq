@@ -87,3 +87,28 @@ Confirmed useful leads columns:
 - status
 - created_at
 - updated_at
+
+## Implementation Verification — 2026-05-31
+
+Implemented in commit:
+- 9010b1b feat(vapi): match calls to existing leads
+
+Verified behavior:
+- Vapi calls still insert into public.calls.
+- If exactly one existing lead matches by roofer_id + phone, calls.lead_id is set.
+- If no lead matches, calls.lead_id remains null.
+- Duplicate provider_call_id still returns duplicate true.
+- Unknown roofer still returns 404.
+- Missing provider_call_id still returns 400.
+
+Test result:
+- backend/scripts/test-vapi-calls-insert.sh passed 5/5.
+
+Still not enabled:
+- no lead creation
+- no booking creation
+- no follow_up creation
+- no SMS
+- no Calendar
+- no Resend
+- no Lindy
