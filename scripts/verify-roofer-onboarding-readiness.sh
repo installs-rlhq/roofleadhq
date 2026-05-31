@@ -77,6 +77,37 @@ node /root/roofleadhq/backend/scripts/onboard-roofer-dry-run.js \
 echo "OK: onboarding dry-run script passed"
 
 echo
+echo "---- Onboarding Write Script Safe-Failure Check ----"
+set +e
+WRITE_CHECK_OUTPUT=$(node /root/roofleadhq/backend/scripts/onboard-roofer.js \
+  --business_name="Readiness Write Safety Test" \
+  --owner_full_name="Readiness Write Owner" \
+  --owner_email="readiness-write@example.com" \
+  --owner_cell_phone="+15551239991" \
+  --business_phone="+15551239992" \
+  --twilio_number="+15551239993" \
+  --timezone="America/Denver" \
+  --service_area="Denver, CO" \
+  --city="Denver" \
+  --state="CO" 2>&1)
+WRITE_CHECK_EXIT=$?
+set -e
+
+echo "$WRITE_CHECK_OUTPUT"
+
+if [ "$WRITE_CHECK_EXIT" -eq 0 ]; then
+  echo "FAIL: write script should not succeed without --confirm_write=true"
+  exit 1
+fi
+
+if echo "$WRITE_CHECK_OUTPUT" | grep -q "Dry-run only. Add --confirm_write=true to create the roofer."; then
+  echo "OK: write script safely refused to write without confirmation"
+else
+  echo "FAIL: write script did not show expected safe-failure message"
+  exit 1
+fi
+
+echo
 echo "---- Safety Flag Reminder ----"
 echo "New roofers must default to:"
 echo "calendar_sync_enabled = false"
