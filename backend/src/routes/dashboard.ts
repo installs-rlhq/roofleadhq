@@ -24,7 +24,12 @@ function maskPhone(phone: string | null): string {
 
 router.get('/manual-outreach', async (req: Request, res: Response) => {
   try {
-    const rooferId = TEST_ROOFER_ID;
+    const requestedRooferId =
+      typeof req.query.roofer_id === 'string' && req.query.roofer_id.trim().length > 0
+        ? req.query.roofer_id.trim()
+        : null;
+
+    const rooferId = requestedRooferId || TEST_ROOFER_ID;
     const firstOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString();
 
     const { count: kpiCount, error: kpiError } = await supabase
