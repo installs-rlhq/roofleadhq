@@ -32,6 +32,7 @@ type VapiCallCompletedResult = {
   duplicate?: boolean;
   call_id?: string;
   provider_call_id?: string;
+  matched_lead_id?: string | null;
   error?:
     | 'missing_required_field'
     | 'unknown_roofer'
@@ -353,6 +354,36 @@ async function findExistingCallId(
   return existingCall?.id ?? null;
 }
 
+async function findSingleMatchingLeadId(
+  supabase: any,
+  rooferId: string,
+  callerPhone: string
+): Promise<string | null> {
+  const { data, error } = await supabase
+    .from('leads')
+    .select('id')
+    .eq('roofer_id', rooferId)
+    .eq('phone', callerPhone)
+    .limit(2);
+
+  if (error) {
+    console.error('Vapi lead match lookup failed', {
+      code: error.code,
+      message: error.message,
+    });
+
+    return null;
+  }
+
+  const matches = (data ?? []) as Array<{ id?: string }>;
+
+  if (matches.length !== 1) {
+    return null;
+  }
+
+  return matches[0]?.id ?? null;
+}
+
 export async function processVapiCallCompleted(
   payload: VapiWebhookPayload
 ): Promise<VapiCallCompletedResult> {
@@ -432,9 +463,15 @@ export async function processVapiCallCompleted(
     };
   }
 
+  const matchedLeadId = await findSingleMatchingLeadId(
+    supabase,
+    roofer.id,
+    normalized.caller_phone
+  );
+
   const insertPayload = {
     roofer_id: roofer.id,
-    lead_id: null,
+    lead_id: matchedLeadId,
     provider: 'vapi',
     provider_call_id: normalized.provider_call_id,
     caller_phone: normalized.caller_phone,
@@ -501,6 +538,7 @@ export async function processVapiCallCompleted(
     duplicate: false,
     call_id: insertedCall.id,
     provider_call_id: normalized.provider_call_id,
+    matched_lead_id: matchedLeadId,
     roofer_id: roofer.id,
     roofer,
     normalized,

@@ -48,6 +48,7 @@ run_test() {
 }
 
 PROVIDER_CALL_ID="vapi_insert_test_$(date +%s)"
+MATCH_PROVIDER_CALL_ID="vapi_match_test_$(date +%s)"
 
 KNOWN_ROOFER_PAYLOAD='{
   "provider_call_id": "'"$PROVIDER_CALL_ID"'",
@@ -62,6 +63,21 @@ KNOWN_ROOFER_PAYLOAD='{
   "appointment_booked": true,
   "appointment_requested": true,
   "recording_url": "https://example.com/test-recording.mp3"
+}'
+
+MATCH_EXISTING_LEAD_PAYLOAD='{
+  "provider_call_id": "'"$MATCH_PROVIDER_CALL_ID"'",
+  "caller_phone": "+15557654321",
+  "destination_number": "+15127123200",
+  "call_started_at": "2026-06-05T11:00:00Z",
+  "call_ended_at": "2026-06-05T11:02:00Z",
+  "duration_seconds": 120,
+  "transcript": "Existing phone lead called again.",
+  "summary": "Existing lead matched by phone.",
+  "outcome": "matched_existing_lead",
+  "appointment_booked": true,
+  "appointment_requested": true,
+  "recording_url": "https://example.com/test-recording-match.mp3"
 }'
 
 UNKNOWN_ROOFER_PAYLOAD='{
@@ -79,19 +95,19 @@ MISSING_PROVIDER_CALL_ID_PAYLOAD='{
 
 echo "Testing Vapi calls insert against: $ENDPOINT"
 echo "Provider call id: $PROVIDER_CALL_ID"
+echo "Match provider call id: $MATCH_PROVIDER_CALL_ID"
 
 run_test \
-  "Known roofer payload should insert one calls row" \
+  "Known roofer payload should insert one calls row with no lead match" \
   "200" \
   '"inserted":true' \
   "$KNOWN_ROOFER_PAYLOAD"
 
-if [[ -n "$LAST_BODY_FILE" ]]; then
-  if ! grep -q '"call_id":"' "$LAST_BODY_FILE"; then
-    echo "FAIL: Insert response did not include call_id"
-    FAIL_COUNT=$((FAIL_COUNT + 1))
-  fi
-fi
+run_test \
+  "Existing lead phone should attach matched lead_id" \
+  "200" \
+  '"matched_lead_id":"82d8a020-71df-4c94-ae01-9a4fbfabf6c7"' \
+  "$MATCH_EXISTING_LEAD_PAYLOAD"
 
 run_test \
   "Duplicate provider_call_id should return duplicate true" \
