@@ -98,6 +98,25 @@ async function main() {
     process.exit(1);
   }
 
+    const { data: existingEmail, error: emailCheckError } = await supabase
+    .from('roofers')
+    .select('id,business_name,owner_email')
+    .eq('owner_email', required.owner_email)
+    .maybeSingle();
+
+  if (emailCheckError) {
+    console.error('FAIL: Could not check existing owner email');
+    console.error(emailCheckError.message);
+    process.exit(1);
+  }
+
+  if (existingEmail) {
+    console.error('FAIL: Owner email already belongs to:');
+    console.error(`Business: ${existingEmail.business_name}`);
+    console.error(`Roofer ID: ${existingEmail.id}`);
+    process.exit(1);
+  }
+  
   const { firstName, lastName } = splitName(required.owner_full_name);
 
   const payload = {
