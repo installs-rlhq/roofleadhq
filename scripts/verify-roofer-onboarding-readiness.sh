@@ -26,8 +26,12 @@ test -f docs/ROOFER_ONBOARDING_SCRIPT_PLAN.md && echo "OK: onboarding plan exist
 test -f backend/scripts/test-vapi-calls-insert.sh && echo "OK: Vapi calls test script exists"
 test -f backend/scripts/sync-vapi-calendar-bookings.js && echo "OK: Calendar sync dry-run script exists"
 
-echo
-echo
+echo "---- Backend Build Check ----"
+cd /root/roofleadhq/backend
+/root/.local/bin/npm run build
+cd /root/roofleadhq
+echo "OK: backend build passed"
+
 echo "---- Backend .env Presence ----"
 
 ENV_FILE="/root/roofleadhq/backend/.env"
