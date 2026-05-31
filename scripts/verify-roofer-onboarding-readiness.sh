@@ -58,6 +58,12 @@ else
 fi
 
 echo "OK: secret values were not printed"
+
+echo
+echo "---- Roofer Flags Read-Only DB Check ----"
+node /root/roofleadhq/backend/scripts/verify-roofer-flags-readonly.js
+echo "OK: roofer Calendar/SMS flags verified read-only"
+
 echo
 echo "---- Safety Flag Reminder ----"
 echo "New roofers must default to:"
