@@ -1,48 +1,18 @@
 # Vapi Schema Readiness
 
-**Status:** Planning / Documentation Only  
+**Status:** Schema Ready / Documentation Only  
 **Date:** 2026-05-31  
 **Purpose:** Document Supabase schema readiness for the Vapi Phone Lead Path before implementation.
 
-## Current Status
+## 1. Current Status
 
-The core Supabase schema is ready for the first Vapi Phone Lead Path implementation.
+Core Vapi Phone Lead Path columns and allowed values are ready.
 
-Confirmed ready:
+The production-grade duplicate protection index for Vapi/Retell call provider IDs has been applied and verified.
 
-- Required Vapi lead, call, booking, follow-up, workflow event, and roofer lookup tables exist.
-- Required columns exist.
-- Required allowed values exist.
-- Phone-number-to-roofer lookup is available through `roofers.twilio_number`.
-- One production-grade idempotency improvement is still required before enabling the production Vapi webhook.
+Verified index:
 
-This is documentation only.
-
-Do not implement Vapi yet.  
-Do not trigger real Vapi calls.  
-Do not send homeowner SMS.  
-Do not send roofer SMS.  
-Do not create Google Calendar events.  
-Do not trigger Resend emails.  
-Do not trigger Lindy production workflows.
-
-## Confirmed Tables
-
-The following Supabase tables were checked for Vapi implementation readiness:
-
-- `leads`
-- `calls`
-- `bookings`
-- `follow_ups`
-- `workflow_events`
-- `roofers`
-
-## Leads Readiness
-
-The `leads` table is ready for Vapi phone leads.
-
-Use:
-
-```text
-source_path = phone
-source_detail = vapi
+```sql
+CREATE UNIQUE INDEX calls_provider_call_id_unique_idx
+ON public.calls USING btree (provider, provider_call_id)
+WHERE (provider_call_id IS NOT NULL);
