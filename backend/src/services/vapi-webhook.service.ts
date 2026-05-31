@@ -329,7 +329,7 @@ export function normalizeVapiCallCompletedPayload(
 }
 
 async function findExistingCallId(
-  supabase: ReturnType<typeof createClient>,
+  supabase: any,
   providerCallId: string
 ): Promise<string | null> {
   const { data, error } = await supabase
@@ -348,7 +348,9 @@ async function findExistingCallId(
     return null;
   }
 
-  return data?.id ?? null;
+  const existingCall = data as { id?: string } | null;
+
+  return existingCall?.id ?? null;
 }
 
 export async function processVapiCallCompleted(
