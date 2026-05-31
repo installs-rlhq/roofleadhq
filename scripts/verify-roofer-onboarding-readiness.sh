@@ -65,6 +65,12 @@ node /root/roofleadhq/backend/scripts/verify-roofer-flags-readonly.js
 echo "OK: roofer Calendar/SMS flags verified read-only"
 
 echo
+echo "---- Dashboard Visibility Check ----"
+node /root/roofleadhq/backend/scripts/verify-roofer-dashboard-visibility.js \
+  --roofer_id="be7efc94-bd68-43af-81b2-dc7b869b42df"
+echo "OK: dashboard visibility check passed"
+
+echo
 echo "---- Onboarding Dry-Run Script Check ----"
 node /root/roofleadhq/backend/scripts/onboard-roofer-dry-run.js \
   --business_name="Readiness Demo Roofing" \
