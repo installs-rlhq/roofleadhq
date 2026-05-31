@@ -65,6 +65,18 @@ node /root/roofleadhq/backend/scripts/verify-roofer-flags-readonly.js
 echo "OK: roofer Calendar/SMS flags verified read-only"
 
 echo
+echo "---- Onboarding Dry-Run Script Check ----"
+node /root/roofleadhq/backend/scripts/onboard-roofer-dry-run.js \
+  --business_name="Readiness Demo Roofing" \
+  --owner_name="Readiness Demo Owner" \
+  --owner_email="readiness-demo@example.com" \
+  --owner_phone="+15551234567" \
+  --twilio_number="+15557654321" \
+  --timezone="America/Denver" \
+  --service_area="Denver, CO"
+echo "OK: onboarding dry-run script passed"
+
+echo
 echo "---- Safety Flag Reminder ----"
 echo "New roofers must default to:"
 echo "calendar_sync_enabled = false"
