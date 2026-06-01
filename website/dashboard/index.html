@@ -229,241 +229,283 @@
         </div>
     </div>
 
-    <script>
-        // Demo Data Object - Growth tier (~275 leads/month)
-        const dashboardData = {
-            lastUpdated: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            metrics: [
-                { label: "New Leads", value: "9 today / 112 this month", trend: "↑3", color: "#10b981", period: "Today" },
-                { label: "Booked Inspections", value: "3", trend: "↓1", color: "#ef4444", period: "Today" },
-                { label: "Booking Rate", value: "57%", trend: "↑5%", color: "#10b981", period: "This Month", tooltip: "Booked inspections ÷ qualified leads." },
-                { label: "Avg. First Response Time", value: "2m", trend: "↓9m", color: "#10b981", period: "This Month" },
-                { label: "Leads Needing Attention", value: "3", trend: "↑2", color: "#ef4444", period: "Today" },
-                { label: "Leads Handled Automatically", value: "34 leads +12%", trend: "↑12%", color: "#10b981", period: "This Month" },
-                { label: "Follow-Up Recovery", value: "12", trend: "↑4", color: "#10b981", period: "This Month" },
-                { label: "Confirmed Appointments", value: "8", trend: "↑1", color: "#10b981", period: "This Month" }
-            ],
-            leads: [
-                { name: "Sarah M.", issue: "Leak", source: "Website", priority: "Hot", priorityColor: "#dc2626", status: "Needs Roofer", last: "2h ago" },
-                { name: "Mike R.", issue: "Storm Damage", source: "Facebook", priority: "Normal", priorityColor: "#000000", status: "Waiting", last: "5h ago" },
-                { name: "Lisa K.", issue: "Replacement Estimate", source: "Direct Calls", priority: "Normal", priorityColor: "#000000", status: "Stalled", last: "48h ago" }
-            ],
-            upcomingInspections: [
-                { name: "Sarah M.", issue: "Leak Inspection", time: "Today 3:30 PM", source: "Website", confirmation: "Confirmed", reminder: "Reminder Sent" },
-                { name: "Mike R.", issue: "Storm Damage Inspection", time: "Tomorrow 10:00 AM", source: "Facebook", confirmation: "Pending", reminder: "Pending" }
-            ],
-            topSources: [
-                { source: "Website", leads: 112, booked: 71, rate: "63%" },
-                { source: "Google Business", leads: 67, booked: 31, rate: "46%" },
-                { source: "Facebook", leads: 48, booked: 19, rate: "40%" },
-                { source: "Direct Calls", leads: 31, booked: 18, rate: "58%" },
-                { source: "Manual Outreach", leads: 14, booked: 6, rate: "43%" },
-                { source: "Referral / External", leads: 11, booked: 5, rate: "45%" }
-            ],
-            followUpPerformance: {
-                sent: 87,
-                recovered: 31,
-                unresponsive: 12,
-                manualSent: 19
-            },
-            recommendedActions: "3 hot leads need manual follow-up. Call or text these before the end of the day.<br>Website leads are booking well this week. Keep your contact form and response flow active.<br>Manual Outreach created 4 booked inspections this week. Keep sending outside leads into RoofLeadHQ when you cannot respond immediately.<br>Google Business leads booked best this week. Consider asking recent customers for more Google reviews.<br>After-hours leads (11 PM–7 AM) are converting at 41%. Add a quick text follow-up in the morning.<br>Facebook leads have the lowest booking rate. Review the ad creative and landing page this week.","
-            manualOutreachNote: "Use this section to monitor manual marketplace/referral lead follow-up activity. Manual outreach actions are read-only here for now."
-        };
+   <script>
+    const TEST_ROOFER_ID = 'be7efc94-bd68-43af-81b2-dc7b869b42df';
 
-        function initDashboard() {
-            // Last Updated
-            document.getElementById('last-updated').textContent = dashboardData.lastUpdated;
+    function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value ?? '';
+    }
 
-            // Metrics 3x3 Grid
-            const metricsContainer = document.getElementById('metrics-grid');
-            metricsContainer.innerHTML = '';
-            dashboardData.metrics.forEach(m => {
-                const card = document.createElement('div');
-                card.className = 'metric-card bg-white border rounded-2xl p-5 cursor-pointer';
-                let tooltip = m.tooltip ? `title="${m.tooltip}"` : '';
-                card.innerHTML = `
-                    <div class="text-xs text-slate-500">${m.period}</div>
-                    <div class="text-3xl font-semibold text-slate-900 mt-1">${m.value}</div>
-                    <div class="flex items-center justify-between mt-3">
-                        <div class="text-sm text-slate-600">${m.label}</div>
-                        <div class="text-xs" style="color: ${m.color}">${m.trend}</div>
-                    </div>
-                `;
-                card.onclick = () => alert(`Filtering by ${m.label} coming soon`);
-                metricsContainer.appendChild(card);
-            });
+    function clearElement(el) {
+        if (el) el.textContent = '';
+    }
 
-            // Leads Table
-            const leadsBody = document.getElementById('leads-table-body');
-            leadsBody.innerHTML = '';
-            dashboardData.leads.forEach(lead => {
-                const row = document.createElement('tr');
-                row.className = 'hover:bg-slate-50';
-                row.innerHTML = `
-                    <td class="px-6 py-4">
-                        <div class="font-medium">${lead.name}</div>
-                    </td>
-                    <td class="px-4 py-4 text-sm text-slate-600">${lead.issue}</td>
-                    <td class="px-4 py-4 text-sm text-slate-600">${lead.source}</td>
-                    <td class="px-4 py-4">
-                        <span class="px-3 py-0.5 text-xs rounded-full font-semibold" style="background: #f1f5f9; color: #000000;">
-                            ${lead.priority}
-                        </span>
-                    </td>
-                    <td class="px-4 py-4">
-                        <span class="px-3 py-0.5 text-xs rounded-full" style="background: #f1f5f9; color: #000000;">
-                            ${lead.status}
-                        </span>
-                    </td>
-                    <td class="px-4 py-4 text-sm text-slate-500">${lead.last}</td>
-                    <td class="px-6 py-4">
-                        <button onclick="alert('Outreach modal opening...')" 
-                                class="text-xs px-3 py-1 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">
-                            Outreach
-                        </button>
-                    </td>
-                `;
-                leadsBody.appendChild(row);
-            });
+    function appendEmptyRow(tbody, colSpan, message) {
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.colSpan = colSpan;
+        cell.className = 'px-6 py-4 text-sm text-slate-500';
+        cell.textContent = message;
+        row.appendChild(cell);
+        tbody.appendChild(row);
+    }
 
-            // Upcoming Booked Inspections
-            const inspectionsBody = document.getElementById('upcoming-inspections-body');
-            if (inspectionsBody) {
-                inspectionsBody.innerHTML = '';
-                dashboardData.upcomingInspections.forEach(ins => {
-                    const row = document.createElement('tr');
-                    row.className = 'hover:bg-slate-50';
-                    row.innerHTML = `
-                        <td class="px-6 py-4">${ins.name}</td>
-                        <td class="px-4 py-4 text-sm text-slate-600">${ins.issue}</td>
-                        <td class="px-4 py-4 text-sm text-slate-600">${ins.time}</td>
-                        <td class="px-4 py-4 text-sm text-slate-600">${ins.source}</td>
-                        <td class="px-4 py-4 text-sm text-slate-600">${ins.confirmation}</td>
-                        <td class="px-4 py-4 text-sm text-slate-600">${ins.reminder}</td>
-                    `;
-                    inspectionsBody.appendChild(row);
-                });
-            }
+    function createCell(className, value) {
+        const cell = document.createElement('td');
+        cell.className = className;
+        cell.textContent = value ?? '';
+        return cell;
+    }
 
-            // Top Sources with Booking Rate
-            const sourcesContainer = document.getElementById('top-sources');
-            sourcesContainer.innerHTML = '';
-            dashboardData.topSources.forEach(s => {
-                const div = document.createElement('div');
-                div.className = 'flex justify-between text-sm border-b py-1';
-                div.innerHTML = `
-                    <span>${s.source}</span>
-                    <span class="font-semibold">${s.leads} leads</span>
-                    <span class="font-semibold">${s.booked} booked</span>
-                    <span class="font-semibold text-emerald-600">${s.rate}</span>
-                `;
-                sourcesContainer.appendChild(div);
-            });
+    function renderMetrics(metrics) {
+        const metricsContainer = document.getElementById('metrics-grid');
+        if (!metricsContainer) return;
 
-            // Recommended Actions
-            document.getElementById('recommended-actions').innerHTML = dashboardData.recommendedActions;
+        clearElement(metricsContainer);
+
+        const items = Array.isArray(metrics) ? metrics : [];
+        if (items.length === 0) {
+            const empty = document.createElement('div');
+            empty.className = 'bg-white border rounded-2xl p-5 text-sm text-slate-500';
+            empty.textContent = 'No dashboard metrics available yet.';
+            metricsContainer.appendChild(empty);
+            return;
         }
 
-        window.onload = initDashboard;
+        items.forEach(metric => {
+            const card = document.createElement('div');
+            card.className = 'metric-card bg-white border rounded-2xl p-5';
 
-        async function loadManualOutreachData() {
-            const errorEl = document.getElementById('manual-outreach-error');
-            if (errorEl) errorEl.classList.add('hidden');
+            const period = document.createElement('div');
+            period.className = 'text-xs text-slate-500';
+            period.textContent = metric.period || 'Current';
 
-            try {
-                const res = await fetch('/api/dashboard/manual-outreach?roofer_id=be7efc94-bd68-43af-81b2-dc7b869b42df');
-                if (!res.ok) throw new Error('Request failed');
-                const data = await res.json();
+            const value = document.createElement('div');
+            value.className = 'text-3xl font-semibold text-slate-900 mt-1';
+            value.textContent = metric.value ?? '0';
 
-                // KPI
-                const countEl = document.getElementById('manual-outreach-kpi-count');
-                if (countEl) countEl.textContent = data.kpi?.manualOutreachLeadsThisMonth ?? 0;
+            const footer = document.createElement('div');
+            footer.className = 'flex items-center justify-between mt-3';
 
-                const trendEl = document.getElementById('manual-outreach-kpi-trend');
-                if (trendEl) {
-                    trendEl.textContent = (data.kpi?.trend == null) ? 'No trend yet' : data.kpi.trend;
-                }
+            const label = document.createElement('div');
+            label.className = 'text-sm text-slate-600';
+            label.textContent = metric.label || '';
 
-                // Needs Attention
-                const pausedEl = document.getElementById('manual-outreach-paused');
-                if (pausedEl) pausedEl.textContent = data.needsAttention?.paused ?? 0;
+            const trend = document.createElement('div');
+            trend.className = 'text-xs text-slate-500';
+            trend.textContent = metric.trend || '';
 
-                const stoppedEl = document.getElementById('manual-outreach-stopped');
-                if (stoppedEl) stoppedEl.textContent = data.needsAttention?.stopped ?? 0;
+            footer.appendChild(label);
+            footer.appendChild(trend);
 
-                const needingEl = document.getElementById('manual-outreach-needing-attention');
-                if (needingEl) needingEl.textContent = data.needsAttention?.needingAttention ?? 0;
+            card.appendChild(period);
+            card.appendChild(value);
+            card.appendChild(footer);
 
-                // Sources
-                const sources = data.sources || {};
-                const setSource = (id, key) => {
-                    const el = document.getElementById(id);
-                    if (el) el.textContent = sources[key] ?? 0;
-                };
-                setSource('manual-source-angi', 'angi');
-                setSource('manual-source-thumbtack', 'thumbtack');
-                setSource('manual-source-homeadvisor', 'homeadvisor');
-                setSource('manual-source-referral', 'referral');
-                setSource('manual-source-other', 'other');
-                setSource('manual-source-unknown', 'unknown');
-
-                // Recent Activity table (createElement + textContent only)
-                const tbody = document.getElementById('manual-outreach-recent-activity');
-                if (tbody) {
-                    tbody.textContent = '';
-                    const activity = data.recentActivity || [];
-                    if (activity.length === 0) {
-                        const row = document.createElement('tr');
-                        const cell = document.createElement('td');
-                        cell.colSpan = 5;
-                        cell.className = 'px-6 py-4 text-sm text-slate-500';
-                        cell.textContent = 'No recent manual outreach activity yet.';
-                        row.appendChild(cell);
-                        tbody.appendChild(row);
-                    } else {
-                        activity.forEach(item => {
-                            const row = document.createElement('tr');
-
-                            const phoneCell = document.createElement('td');
-                            phoneCell.className = 'px-6 py-3';
-                            phoneCell.textContent = item.phone || '';
-                            row.appendChild(phoneCell);
-
-                            const sourceCell = document.createElement('td');
-                            sourceCell.className = 'px-4 py-3';
-                            sourceCell.textContent = item.source || '';
-                            row.appendChild(sourceCell);
-
-                            const commandCell = document.createElement('td');
-                            commandCell.className = 'px-4 py-3';
-                            commandCell.textContent = item.command || '';
-                            row.appendChild(commandCell);
-
-                            const dateCell = document.createElement('td');
-                            dateCell.className = 'px-4 py-3';
-                            dateCell.textContent = item.date || '';
-                            row.appendChild(dateCell);
-
-                            const statusCell = document.createElement('td');
-                            statusCell.className = 'px-4 py-3';
-                            statusCell.textContent = item.status || '';
-                            row.appendChild(statusCell);
-
-                            tbody.appendChild(row);
-                        });
-                    }
-                }
-
-            } catch (err) {
-                if (errorEl) errorEl.classList.remove('hidden');
-                console.error('Manual outreach data error:', err);
-            }
-        }
-
-        // Load Manual Outreach data on DOM ready
-        document.addEventListener('DOMContentLoaded', () => {
-            loadManualOutreachData();
+            metricsContainer.appendChild(card);
         });
-    </script>
+    }
+
+    function renderLeadsNeedingAttention(leads) {
+        const leadsBody = document.getElementById('leads-table-body');
+        if (!leadsBody) return;
+
+        clearElement(leadsBody);
+
+        const items = Array.isArray(leads) ? leads : [];
+        if (items.length === 0) {
+            appendEmptyRow(leadsBody, 7, 'No leads need attention right now.');
+            return;
+        }
+
+        items.forEach(lead => {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-slate-50';
+
+            row.appendChild(createCell('px-6 py-4 font-medium', lead.name || lead.homeowner_name || 'Unknown homeowner'));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', lead.issue || lead.issue_description || ''));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', lead.source || lead.source_detail || lead.source_path || ''));
+
+            const priorityCell = document.createElement('td');
+            priorityCell.className = 'px-4 py-4';
+            const priority = document.createElement('span');
+            priority.className = 'px-3 py-0.5 text-xs rounded-full font-semibold bg-slate-100 text-slate-900';
+            priority.textContent = lead.priority || lead.urgency || 'Normal';
+            priorityCell.appendChild(priority);
+            row.appendChild(priorityCell);
+
+            const statusCell = document.createElement('td');
+            statusCell.className = 'px-4 py-4';
+            const status = document.createElement('span');
+            status.className = 'px-3 py-0.5 text-xs rounded-full bg-slate-100 text-slate-900';
+            status.textContent = lead.status || 'needs_attention';
+            statusCell.appendChild(status);
+            row.appendChild(statusCell);
+
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-500', lead.last || lead.last_contact || lead.created_at || ''));
+
+            const actionCell = document.createElement('td');
+            actionCell.className = 'px-6 py-4 text-xs text-slate-500';
+            actionCell.textContent = lead.recommended_action || 'Review';
+            row.appendChild(actionCell);
+
+            leadsBody.appendChild(row);
+        });
+    }
+
+    function renderUpcomingInspections(inspections) {
+        const inspectionsBody = document.getElementById('upcoming-inspections-body');
+        if (!inspectionsBody) return;
+
+        clearElement(inspectionsBody);
+
+        const items = Array.isArray(inspections) ? inspections : [];
+        if (items.length === 0) {
+            appendEmptyRow(inspectionsBody, 6, 'No upcoming booked inspections yet.');
+            return;
+        }
+
+        items.forEach(inspection => {
+            const row = document.createElement('tr');
+            row.className = 'hover:bg-slate-50';
+
+            row.appendChild(createCell('px-6 py-4', inspection.name || inspection.homeowner_name || 'Unknown homeowner'));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.issue || inspection.issue_description || 'Inspection'));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.time || inspection.scheduled_at || inspection.start_time || ''));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.source || inspection.source_detail || inspection.source_path || ''));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.confirmation || inspection.confirmation_status || 'Pending'));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.reminder || inspection.reminder_status || 'Pending'));
+
+            inspectionsBody.appendChild(row);
+        });
+    }
+
+    function renderTopSources(sources) {
+        const sourcesBody = document.getElementById('top-sources-body');
+        if (!sourcesBody) return;
+
+        clearElement(sourcesBody);
+
+        const items = Array.isArray(sources) ? sources : [];
+        if (items.length === 0) {
+            appendEmptyRow(sourcesBody, 4, 'No source performance data yet.');
+            return;
+        }
+
+        items.forEach(source => {
+            const row = document.createElement('tr');
+
+            row.appendChild(createCell('px-6 py-3 text-sm text-slate-700', source.source || source.source_detail || source.source_path || 'Unknown'));
+            row.appendChild(createCell('px-4 py-3 text-sm text-slate-700', source.leads ?? source.lead_count ?? 0));
+            row.appendChild(createCell('px-4 py-3 text-sm text-slate-700', source.booked ?? source.booked_count ?? 0));
+            row.appendChild(createCell('px-4 py-3 text-sm font-semibold text-slate-900', source.rate || source.booking_rate || '0%'));
+
+            sourcesBody.appendChild(row);
+        });
+    }
+
+    function renderRecommendedActions(actions) {
+        const container = document.getElementById('recommended-actions');
+        if (!container) return;
+
+        clearElement(container);
+
+        const items = Array.isArray(actions) ? actions : [];
+        if (items.length === 0) {
+            container.textContent = 'No recommended actions right now.';
+            return;
+        }
+
+        const list = document.createElement('ul');
+        list.className = 'space-y-2';
+
+        items.forEach(action => {
+            const item = document.createElement('li');
+            item.textContent = typeof action === 'string' ? action : action.text || action.recommendation || '';
+            list.appendChild(item);
+        });
+
+        container.appendChild(list);
+    }
+
+    async function loadDashboardOverviewData() {
+        try {
+            const res = await fetch(`/api/dashboard/overview?roofer_id=${TEST_ROOFER_ID}`);
+            if (!res.ok) throw new Error('Dashboard overview request failed');
+
+            const data = await res.json();
+
+            setText('last-updated', new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+
+            renderMetrics(data.metrics);
+            renderLeadsNeedingAttention(data.leadsNeedingAttention);
+            renderUpcomingInspections(data.upcomingInspections);
+            renderTopSources(data.topSources);
+            renderRecommendedActions(data.recommendedActions);
+        } catch (err) {
+            console.error('Dashboard overview data error:', err);
+            renderMetrics([]);
+            renderLeadsNeedingAttention([]);
+            renderUpcomingInspections([]);
+            renderTopSources([]);
+            renderRecommendedActions(['Dashboard overview data could not be loaded.']);
+        }
+    }
+
+    async function loadManualOutreachData() {
+        const errorEl = document.getElementById('manual-outreach-error');
+        if (errorEl) errorEl.classList.add('hidden');
+
+        try {
+            const res = await fetch(`/api/dashboard/manual-outreach?roofer_id=${TEST_ROOFER_ID}`);
+            if (!res.ok) throw new Error('Request failed');
+            const data = await res.json();
+
+            setText('manual-outreach-kpi-count', data.kpi?.manualOutreachLeadsThisMonth ?? 0);
+            setText('manual-outreach-kpi-trend', data.kpi?.trend == null ? 'No trend yet' : data.kpi.trend);
+            setText('manual-outreach-paused', data.needsAttention?.paused ?? 0);
+            setText('manual-outreach-stopped', data.needsAttention?.stopped ?? 0);
+            setText('manual-outreach-needing-attention', data.needsAttention?.needingAttention ?? 0);
+
+            const sources = data.sources || {};
+            setText('manual-source-angi', sources.angi ?? 0);
+            setText('manual-source-thumbtack', sources.thumbtack ?? 0);
+            setText('manual-source-homeadvisor', sources.homeadvisor ?? 0);
+            setText('manual-source-referral', sources.referral ?? 0);
+            setText('manual-source-other', sources.other ?? 0);
+            setText('manual-source-unknown', sources.unknown ?? 0);
+
+            const tbody = document.getElementById('manual-outreach-recent-activity');
+            if (!tbody) return;
+
+            clearElement(tbody);
+
+            const activity = Array.isArray(data.recentActivity) ? data.recentActivity : [];
+            if (activity.length === 0) {
+                appendEmptyRow(tbody, 5, 'No recent manual outreach activity yet.');
+                return;
+            }
+
+            activity.forEach(item => {
+                const row = document.createElement('tr');
+                row.appendChild(createCell('px-6 py-3', item.phone || ''));
+                row.appendChild(createCell('px-4 py-3', item.source || ''));
+                row.appendChild(createCell('px-4 py-3', item.command || ''));
+                row.appendChild(createCell('px-4 py-3', item.date || ''));
+                row.appendChild(createCell('px-4 py-3', item.status || ''));
+                tbody.appendChild(row);
+            });
+        } catch (err) {
+            if (errorEl) errorEl.classList.remove('hidden');
+            console.error('Manual outreach data error:', err);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadDashboardOverviewData();
+        loadManualOutreachData();
+    });
+</script>
 </body>
 </html>
