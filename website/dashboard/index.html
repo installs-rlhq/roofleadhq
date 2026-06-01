@@ -323,9 +323,9 @@
             const row = document.createElement('tr');
             row.className = 'hover:bg-slate-50';
 
-            row.appendChild(createCell('px-6 py-4 font-medium', lead.name || lead.homeowner_name || 'Unknown homeowner'));
-            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', lead.issue || lead.issue_description || ''));
-            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', lead.source || lead.source_detail || lead.source_path || ''));
+            row.appendChild(createCell('px-6 py-4 font-medium', lead.homeownerName || lead.name || lead.homeowner_name || 'Unknown homeowner'));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', lead.issueDescription || lead.issue || lead.issue_description || ''));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', lead.sourceDetail || lead.sourcePath || lead.source || lead.source_detail || lead.source_path || ''));
 
             const priorityCell = document.createElement('td');
             priorityCell.className = 'px-4 py-4';
