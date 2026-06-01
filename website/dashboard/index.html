@@ -343,7 +343,7 @@
             statusCell.appendChild(status);
             row.appendChild(statusCell);
 
-            row.appendChild(createCell('px-4 py-4 text-sm text-slate-500', lead.last || lead.last_contact || lead.created_at || ''));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-500', lead.updatedAt || lead.createdAt || lead.last || lead.last_contact || lead.created_at || ''));
 
             const actionCell = document.createElement('td');
             actionCell.className = 'px-6 py-4 text-xs text-slate-500';
@@ -370,12 +370,12 @@
             const row = document.createElement('tr');
             row.className = 'hover:bg-slate-50';
 
-            row.appendChild(createCell('px-6 py-4', inspection.name || inspection.homeowner_name || 'Unknown homeowner'));
-            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.issue || inspection.issue_description || 'Inspection'));
-            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.time || inspection.scheduled_at || inspection.start_time || ''));
-            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.source || inspection.source_detail || inspection.source_path || ''));
-            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.confirmation || inspection.confirmation_status || 'Pending'));
-            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.reminder || inspection.reminder_status || 'Pending'));
+            row.appendChild(createCell('px-6 py-4', inspection.homeownerName || inspection.name || inspection.homeowner_name || 'Unknown homeowner'));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.issueDescription || inspection.issue || inspection.issue_description || 'Inspection'));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.bookedTime || inspection.time || inspection.scheduled_at || inspection.start_time || ''));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.sourceDetail || inspection.sourcePath || inspection.source || inspection.source_detail || inspection.source_path || ''));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.confirmationStatus || inspection.confirmation || inspection.confirmation_status || 'Pending'));
+            row.appendChild(createCell('px-4 py-4 text-sm text-slate-600', inspection.reminderStatus || inspection.reminder || inspection.reminder_status || 'Pending'));
 
             inspectionsBody.appendChild(row);
         });
@@ -396,10 +396,10 @@
         items.forEach(source => {
             const row = document.createElement('tr');
 
-            row.appendChild(createCell('px-6 py-3 text-sm text-slate-700', source.source || source.source_detail || source.source_path || 'Unknown'));
+            row.appendChild(createCell('px-6 py-3 text-sm text-slate-700', source.sourceDetail || source.sourcePath || source.source || source.source_detail || source.source_path || 'Unknown'));
             row.appendChild(createCell('px-4 py-3 text-sm text-slate-700', source.leads ?? source.lead_count ?? 0));
             row.appendChild(createCell('px-4 py-3 text-sm text-slate-700', source.booked ?? source.booked_count ?? 0));
-            row.appendChild(createCell('px-4 py-3 text-sm font-semibold text-slate-900', source.rate || source.booking_rate || '0%'));
+            row.appendChild(createCell('px-4 py-3 text-sm font-semibold text-slate-900', source.bookingRate != null ? `${source.bookingRate}%` : source.rate || source.booking_rate || '0%'));
 
             sourcesBody.appendChild(row);
         });
