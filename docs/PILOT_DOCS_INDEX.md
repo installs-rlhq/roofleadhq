@@ -111,8 +111,9 @@ Do not enable these without explicit approval:
 For a real client:
 
 1. Read readiness checklist.
-2. Complete client setup checklist.
-3. Run dashboard and Twilio verification.
-4. Use go-live decision checklist.
-5. Operate daily with daily operations checklist.
-6. Follow founder-led runbook for exceptions.
+2. Collect client intake details.
+3. Complete client setup checklist.
+4. Follow first client go-live sequence.
+5. Use go-live decision checklist.
+6. Operate daily with daily operations checklist.
+7. Follow founder-led runbook for exceptions.
