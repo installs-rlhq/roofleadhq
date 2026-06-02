@@ -237,9 +237,11 @@
 
     function getDashboardAccessToken() {
         const existingToken = window.localStorage.getItem('roofleadhq_dashboard_access_token');
-        if (existingToken) return existingToken;
+        if (existingToken) return existingToken.trim();
 
-        const token = window.prompt('Enter dashboard access token');
+        const rawToken = window.prompt('Enter dashboard access token');
+        const token = rawToken ? rawToken.trim() : '';
+
         if (!token) return '';
 
         window.localStorage.setItem('roofleadhq_dashboard_access_token', token);
