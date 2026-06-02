@@ -54,7 +54,7 @@
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-xl font-semibold text-slate-900">Leads Needing Attention</h2>
                 <span class="text-sm text-slate-400 flex items-center gap-x-1">
-                    View all
+                    Summary
                 </span>
             </div>
 
@@ -83,7 +83,7 @@
             <div class="flex items-center justify-between mb-4">
                 <h2 class="text-xl font-semibold text-slate-900">Upcoming Booked Inspections</h2>
                 <span class="text-sm text-slate-400 flex items-center gap-x-1">
-                    View all
+                    Summary
                 </span>
             </div>
 
@@ -222,9 +222,13 @@
 
         <!-- CTA -->
         <div class="mt-10 text-center">
-            <span class="inline-flex items-center justify-center bg-slate-200 text-slate-500 font-semibold px-8 py-4 rounded-2xl text-lg">
-                Full Dashboard View
-            </span>
+            <button
+                id="reset-dashboard-token"
+                type="button"
+                class="inline-flex items-center justify-center bg-slate-200 text-slate-600 font-semibold px-8 py-4 rounded-2xl text-lg"
+            >
+                Reset Dashboard Token
+            </button>
         </div>
     </div>
 
@@ -534,6 +538,14 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        const resetButton = document.getElementById('reset-dashboard-token');
+        if (resetButton) {
+            resetButton.addEventListener('click', () => {
+                window.localStorage.removeItem('roofleadhq_dashboard_access_token');
+                window.location.reload();
+            });
+        }
+
         loadDashboardOverviewData();
         loadManualOutreachData();
     });
