@@ -5,6 +5,28 @@ const router = Router();
 
 router.get('/admin-errors', async (req: Request, res: Response) => {
   try {
+    const expectedToken = process.env.INTERNAL_ADMIN_TOKEN;
+
+    if (!expectedToken) {
+      console.error('Internal admin token is not configured');
+      return res.status(500).json({
+        error: 'Internal admin access is not configured',
+      });
+    }
+
+    const providedToken =
+      typeof req.headers['x-internal-admin-token'] === 'string'
+        ? req.headers['x-internal-admin-token']
+        : typeof req.query.token === 'string'
+          ? req.query.token
+          : '';
+
+    if (providedToken !== expectedToken) {
+      return res.status(401).json({
+        error: 'Unauthorized',
+      });
+    }
+
     const rooferId =
       typeof req.query.roofer_id === 'string' && req.query.roofer_id.trim().length > 0
         ? req.query.roofer_id.trim()

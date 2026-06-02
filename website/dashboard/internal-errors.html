@@ -253,7 +253,26 @@
       if (limit) params.set('limit', limit);
 
       try {
-        const response = await fetch(`${API_BASE}?${params.toString()}`);
+        const token = window.localStorage.getItem('roofleadhq_internal_admin_token') || window.prompt('Enter internal admin token');
+
+        if (!token) {
+          status.textContent = 'Internal admin token is required.';
+          return;
+        }
+
+        window.localStorage.setItem('roofleadhq_internal_admin_token', token);
+
+        const response = await fetch(`${API_BASE}?${params.toString()}`, {
+          headers: {
+            'x-internal-admin-token': token,
+          },
+        });
+
+        if (response.status === 401) {
+          window.localStorage.removeItem('roofleadhq_internal_admin_token');
+          status.textContent = 'Unauthorized. Refresh and enter the correct internal admin token.';
+          return;
+        }
 
         if (!response.ok) {
           throw new Error('Request failed');
