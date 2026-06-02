@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/dashboard", "destination": "/dashboard/index.html" },
+    { "source": "/dashboard/internal-errors.html", "destination": "/dashboard/internal-errors.html" },
     { "source": "/dashboard/(.*)", "destination": "/dashboard/index.html" }
   ]
 }
