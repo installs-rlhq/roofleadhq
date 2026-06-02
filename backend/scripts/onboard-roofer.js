@@ -2,6 +2,7 @@
 
 require('dotenv').config({ path: '/root/roofleadhq/backend/.env' });
 
+const crypto = require('crypto');
 const { createClient } = require('@supabase/supabase-js');
 
 function getArg(name) {
@@ -20,6 +21,23 @@ function splitName(fullName) {
     firstName: parts[0] || '',
     lastName: parts.slice(1).join(' ') || '',
   };
+}
+
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
+
+function createDashboardToken() {
+  return `rlhq_dash_${crypto.randomBytes(32).toString('hex')}`;
+}
+
+function hashDashboardToken(token) {
+  return crypto.createHash('sha256').update(token).digest('hex');
 }
 
 async function main() {
@@ -116,8 +134,51 @@ async function main() {
     console.error(`Roofer ID: ${existingEmail.id}`);
     process.exit(1);
   }
+
+  const { data: existingBusiness, error: businessCheckError } = await supabase
+    .from('roofers')
+    .select('id,business_name,owner_email')
+    .eq('business_name', required.business_name)
+    .maybeSingle();
+
+  if (businessCheckError) {
+    console.error('FAIL: Could not check existing business name');
+    console.error(businessCheckError.message);
+    process.exit(1);
+  }
+
+  if (existingBusiness) {
+    console.error('FAIL: Business name already exists:');
+    console.error(`Business: ${existingBusiness.business_name}`);
+    console.error(`Owner email: ${existingBusiness.owner_email}`);
+    console.error(`Roofer ID: ${existingBusiness.id}`);
+    process.exit(1);
+  }
   
   const { firstName, lastName } = splitName(required.owner_full_name);
+  const dashboardToken = createDashboardToken();
+  const dashboardSlug = slugify(required.business_name);
+  const now = new Date().toISOString();
+
+  const { data: existingSlug, error: slugCheckError } = await supabase
+    .from('roofers')
+    .select('id,business_name,dashboard_slug')
+    .eq('dashboard_slug', dashboardSlug)
+    .maybeSingle();
+
+  if (slugCheckError) {
+    console.error('FAIL: Could not check existing dashboard slug');
+    console.error(slugCheckError.message);
+    process.exit(1);
+  }
+
+  if (existingSlug) {
+    console.error('FAIL: Dashboard slug already belongs to:');
+    console.error(`Business: ${existingSlug.business_name}`);
+    console.error(`Roofer ID: ${existingSlug.id}`);
+    console.error(`Dashboard slug: ${existingSlug.dashboard_slug}`);
+    process.exit(1);
+  }
 
   const payload = {
     business_name: required.business_name,
@@ -139,6 +200,11 @@ async function main() {
     twilio_number_purchased: false,
     confidence_promise_enabled: true,
     lead_volume_limit: 100,
+    dashboard_access_token_hash: hashDashboardToken(dashboardToken),
+    dashboard_access_enabled: true,
+    dashboard_slug: dashboardSlug,
+    dashboard_token_created_at: now,
+    dashboard_token_last_rotated_at: now,
     notes: 'Created by backend/scripts/onboard-roofer.js',
   };
 
@@ -158,7 +224,7 @@ async function main() {
   const { data: created, error: insertError } = await supabase
     .from('roofers')
     .insert(payload)
-    .select('id,business_name,owner_email,twilio_number,timezone,service_area,calendar_sync_enabled,sms_confirmation_enabled,status,plan')
+    .select('id,business_name,owner_email,twilio_number,timezone,service_area,calendar_sync_enabled,sms_confirmation_enabled,status,plan,dashboard_access_enabled,dashboard_slug')
     .single();
 
   if (insertError) {
@@ -179,6 +245,13 @@ async function main() {
   console.log(`SMS confirmation enabled: ${created.sms_confirmation_enabled}`);
   console.log(`Status: ${created.status}`);
   console.log(`Plan: ${created.plan}`);
+  console.log(`Dashboard access enabled: ${created.dashboard_access_enabled}`);
+  console.log(`Dashboard slug: ${created.dashboard_slug}`);
+
+  console.log('');
+  console.log('---- Dashboard Access Token ----');
+  console.log('SAVE THIS TOKEN PRIVATELY. It will not be shown again.');
+  console.log(dashboardToken);
 
   console.log('');
   console.log('Writes performed: yes');
