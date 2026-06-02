@@ -46,21 +46,21 @@ Replace values before running:
 
 cd /root/roofleadhq
 
-backend/scripts/onboard-roofer-dry-run.js \
+/root/.local/bin/node backend/scripts/onboard-roofer.js \
   --business_name="ROOFER BUSINESS NAME" \
-  --owner_name="OWNER FULL NAME" \
+  --owner_full_name="OWNER FULL NAME" \
   --owner_email="OWNER EMAIL" \
-  --owner_phone="+15551234567" \
+  --owner_cell_phone="+15551234567" \
+  --business_phone="+15551234568" \
   --twilio_number="+15557654321" \
   --timezone="America/Denver" \
-  --service_area="Denver, CO"
+  --service_area="Denver, CO" \
+  --city="Denver" \
+  --state="CO"
 
 Expected safe output:
 
-Writes performed: no
-SMS sent: no
-Calendar events created: no
-Vapi triggered: no
+Dry-run only. Add --confirm_write=true to create the roofer.
 
 ## Real Onboarding Write Command
 
@@ -70,7 +70,7 @@ Replace values before running:
 
 cd /root/roofleadhq
 
-backend/scripts/onboard-roofer.js \
+/root/.local/bin/node backend/scripts/onboard-roofer.js \
   --business_name="ROOFER BUSINESS NAME" \
   --owner_full_name="OWNER FULL NAME" \
   --owner_email="OWNER EMAIL" \

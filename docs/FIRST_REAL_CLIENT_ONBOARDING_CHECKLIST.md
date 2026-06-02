@@ -19,7 +19,7 @@ git log --oneline -5
 
 ## Current Verified Commit Before This Checklist
 
-171408b Update ROOFER_ONBOARDING_COMPLETION_STATUS.md
+888da65 feat(onboarding): generate dashboard access token
 
 ## Pre-Onboarding Requirements
 
@@ -69,21 +69,21 @@ Terminal 1:
 
 cd /root/roofleadhq
 
-backend/scripts/onboard-roofer-dry-run.js \
+/root/.local/bin/node backend/scripts/onboard-roofer.js \
   --business_name="REAL ROOFER BUSINESS NAME" \
-  --owner_name="REAL OWNER FULL NAME" \
+  --owner_full_name="REAL OWNER FULL NAME" \
   --owner_email="REAL OWNER EMAIL" \
-  --owner_phone="+15551234567" \
+  --owner_cell_phone="+15551234567" \
+  --business_phone="+15551234568" \
   --twilio_number="+15557654321" \
   --timezone="America/Denver" \
-  --service_area="Denver, CO"
+  --service_area="Denver, CO" \
+  --city="Denver" \
+  --state="CO"
 
 Expected:
 
-Writes performed: no
-SMS sent: no
-Calendar events created: no
-Vapi triggered: no
+Dry-run only. Add --confirm_write=true to create the roofer.
 
 ## Step 3: Run Real Onboarding Write
 
@@ -93,7 +93,7 @@ Terminal 1:
 
 cd /root/roofleadhq
 
-backend/scripts/onboard-roofer.js \
+/root/.local/bin/node backend/scripts/onboard-roofer.js \
   --business_name="REAL ROOFER BUSINESS NAME" \
   --owner_full_name="REAL OWNER FULL NAME" \
   --owner_email="REAL OWNER EMAIL" \
