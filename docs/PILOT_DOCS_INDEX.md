@@ -28,9 +28,15 @@ Covers:
 - Safety flags
 - Billing/agreement
 
+## Go-Live Sequence
+
+3. `docs/FIRST_CLIENT_GO_LIVE_SEQUENCE.md`
+
+Use this as the exact step-by-step sequence from client intake to safe founder-led go-live.
+
 ## Go-Live Decision
 
-3. `docs/PILOT_GO_LIVE_DECISION_CHECKLIST.md`
+4. `docs/PILOT_GO_LIVE_DECISION_CHECKLIST.md`
 
 Use this immediately before allowing a pilot client to go live.
 
@@ -45,7 +51,7 @@ Covers:
 
 ## Daily Operations
 
-4. `docs/DAILY_PILOT_OPERATIONS_CHECKLIST.md`
+5. `docs/DAILY_PILOT_OPERATIONS_CHECKLIST.md`
 
 Use this every day during the pilot.
 
@@ -62,7 +68,7 @@ Covers:
 
 ## Founder-Led Runbook
 
-5. `docs/FOUNDER_LED_PILOT_RUNBOOK.md`
+6. `docs/FOUNDER_LED_PILOT_RUNBOOK.md`
 
 Use this as the operating guide for running the first paid pilot manually and safely.
 
