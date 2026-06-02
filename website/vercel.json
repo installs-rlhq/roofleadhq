@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/api/(.*)", "destination": "http://srv1677832.hstgr.cloud:3000/api/$1" },
     { "source": "/dashboard", "destination": "/dashboard/index.html" },
     { "source": "/dashboard/internal-errors.html", "destination": "/dashboard/internal-errors.html" },
     { "source": "/dashboard/(.*)", "destination": "/dashboard/index.html" }
