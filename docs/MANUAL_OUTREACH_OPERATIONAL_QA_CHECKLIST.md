@@ -211,3 +211,32 @@ Manual Outreach backend QA was run against the current backend with homeowner-fa
 
 No homeowner SMS, roofer SMS, Calendar, Vapi, Resend, or Lindy production triggers were enabled during QA.
 
+## Dashboard Visibility QA 2026-06-02
+
+Manual Outreach dashboard API was tested with the Test Roofing dashboard access token.
+
+### Passed
+
+- Token resolved to Test Roofing.
+- Direct Supabase manual lead count returned 13 manual leads.
+- Dashboard API returned 6 manual leads this month.
+- Dashboard API returned 8 recent activity rows.
+- Recent activity included:
+  - start
+  - pause
+  - stop
+- Source breakdown populated:
+  - angi
+  - thumbtack
+  - homeadvisor
+  - referral
+  - other
+  - unknown
+- Pause and stop activity appeared in the API response.
+- Dashboard token security stayed enforced:
+  - Request without token returned Unauthorized.
+
+### Verified Safety
+
+Dashboard visibility QA did not enable homeowner SMS, roofer SMS, Calendar, Vapi, Resend, or Lindy production triggers.
+
