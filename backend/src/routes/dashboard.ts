@@ -1,36 +1,48 @@
 import { Router, Request, Response } from 'express';
+import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
 import config from '../config/config';
 
 const router = Router();
 
-function requireDashboardAccess(req: Request, res: Response): boolean {
-  const expectedToken = process.env.DASHBOARD_ACCESS_TOKEN;
+const supabase = createClient(config.supabaseUrl, config.supabaseServiceRoleKey);
 
-  if (!expectedToken) {
-    console.error('Dashboard access token is not configured');
-    res.status(500).json({ error: 'Dashboard access is not configured' });
-    return false;
-  }
-
-  const providedToken =
-    typeof req.headers['x-dashboard-access-token'] === 'string'
-      ? req.headers['x-dashboard-access-token']
-      : typeof req.query.token === 'string'
-        ? req.query.token
-        : '';
-
-  if (providedToken !== expectedToken) {
-    res.status(401).json({ error: 'Unauthorized' });
-    return false;
-  }
-
-  return true;
+function getDashboardToken(req: Request): string {
+  return typeof req.headers['x-dashboard-access-token'] === 'string'
+    ? req.headers['x-dashboard-access-token'].trim()
+    : typeof req.query.token === 'string'
+      ? req.query.token.trim()
+      : '';
 }
 
-const TEST_ROOFER_ID = 'be7efc94-bd68-43af-81b2-dc7b869b42df';
+function hashDashboardToken(token: string): string {
+  return crypto.createHash('sha256').update(token).digest('hex');
+}
 
-const supabase = createClient(config.supabaseUrl, config.supabaseServiceRoleKey);
+async function resolveDashboardRooferId(req: Request, res: Response): Promise<string | null> {
+  const providedToken = getDashboardToken(req);
+
+  if (!providedToken) {
+    res.status(401).json({ error: 'Unauthorized' });
+    return null;
+  }
+
+  const tokenHash = hashDashboardToken(providedToken);
+
+  const { data, error } = await supabase
+    .from('roofers')
+    .select('id')
+    .eq('dashboard_access_token_hash', tokenHash)
+    .eq('dashboard_access_enabled', true)
+    .single();
+
+  if (error || !data?.id) {
+    res.status(401).json({ error: 'Unauthorized' });
+    return null;
+  }
+
+  return data.id;
+}
 
 function maskPhone(phone: string | null): string {
   if (!phone) return '(***) ***-0000';
@@ -41,13 +53,8 @@ function maskPhone(phone: string | null): string {
 
 router.get('/manual-outreach', async (req: Request, res: Response) => {
   try {
-    if (!requireDashboardAccess(req, res)) return;
-    const requestedRooferId =
-      typeof req.query.roofer_id === 'string' && req.query.roofer_id.trim().length > 0
-        ? req.query.roofer_id.trim()
-        : null;
-
-    const rooferId = requestedRooferId || TEST_ROOFER_ID;
+    const rooferId = await resolveDashboardRooferId(req, res);
+    if (!rooferId) return;
     const firstOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString();
 
     const { count: kpiCount, error: kpiError } = await supabase
@@ -163,13 +170,8 @@ router.get('/manual-outreach', async (req: Request, res: Response) => {
 
 router.get('/overview', async (req: Request, res: Response) => {
   try {
-    if (!requireDashboardAccess(req, res)) return;
-    const requestedRooferId =
-      typeof req.query.roofer_id === 'string' && req.query.roofer_id.trim().length > 0
-        ? req.query.roofer_id.trim()
-        : null;
-
-    const rooferId = requestedRooferId || TEST_ROOFER_ID;
+    const rooferId = await resolveDashboardRooferId(req, res);
+    if (!rooferId) return;
     const now = new Date().toISOString();
     const firstOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString();
 

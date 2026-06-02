@@ -233,7 +233,6 @@
     </div>
 
    <script>
-    const TEST_ROOFER_ID = 'be7efc94-bd68-43af-81b2-dc7b869b42df';
 
     function getDashboardAccessToken() {
         const existingToken = window.localStorage.getItem('roofleadhq_dashboard_access_token');
@@ -473,7 +472,7 @@
 
     async function loadDashboardOverviewData() {
         try {
-            const res = await fetchDashboardJson(`/api/dashboard/overview?roofer_id=${TEST_ROOFER_ID}`);
+            const res = await fetchDashboardJson(`/api/dashboard/overview`);
             if (!res.ok) throw new Error('Dashboard overview request failed');
 
             const data = await res.json();
@@ -500,7 +499,7 @@
         if (errorEl) errorEl.classList.add('hidden');
 
         try {
-            const res = await fetchDashboardJson(`/api/dashboard/manual-outreach?roofer_id=${TEST_ROOFER_ID}`);
+            const res = await fetchDashboardJson(`/api/dashboard/manual-outreach`);
             if (!res.ok) throw new Error('Request failed');
             const data = await res.json();
 
