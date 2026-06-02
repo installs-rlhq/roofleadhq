@@ -55,3 +55,13 @@ Additional verification completed after public API proxy was added:
 - Public dashboard frontend sends token with `x-dashboard-access-token`.
 - Public dashboard APIs return `401 Unauthorized` without token.
 - `GET /api/internal/admin-errors` remains protected by `INTERNAL_ADMIN_TOKEN`.
+
+## Browser Verification
+
+Additional browser verification completed:
+
+- Public dashboard prompts for `DASHBOARD_ACCESS_TOKEN`.
+- Correct dashboard token loads KPI data successfully.
+- Placeholder "View all" labels were replaced with "Summary".
+- Placeholder "Full Dashboard View" was replaced with "Reset Dashboard Token".
+- Reset Dashboard Token clears the saved browser token and reloads the page.
