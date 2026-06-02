@@ -76,12 +76,17 @@ Covers:
 - Expansion gates
 - Success criteria
 
+## Intake And Onboarding Docs
+
+- `docs/REAL_PILOT_CLIENT_INTAKE_TEMPLATE.md`
+- `docs/ROOFER_ONBOARDING_READINESS_VERIFICATION.md`
+- `docs/ROOFER_ONBOARDING_COMMANDS.md`
+- `docs/FIRST_REAL_CLIENT_ONBOARDING_CHECKLIST.md`
+
 ## Related Verification Docs
 
 - `docs/MANUAL_OUTREACH_OPERATIONAL_QA_CHECKLIST.md`
 - `docs/TWILIO_MANUAL_OUTREACH_HARDENING_VERIFICATION.md`
-- `docs/ROOFER_ONBOARDING_COMMANDS.md`
-- `docs/FIRST_REAL_CLIENT_ONBOARDING_CHECKLIST.md`
 
 ## Current Safety Rule
 
