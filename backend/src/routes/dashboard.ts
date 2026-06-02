@@ -4,6 +4,30 @@ import config from '../config/config';
 
 const router = Router();
 
+function requireDashboardAccess(req: Request, res: Response): boolean {
+  const expectedToken = process.env.DASHBOARD_ACCESS_TOKEN;
+
+  if (!expectedToken) {
+    console.error('Dashboard access token is not configured');
+    res.status(500).json({ error: 'Dashboard access is not configured' });
+    return false;
+  }
+
+  const providedToken =
+    typeof req.headers['x-dashboard-access-token'] === 'string'
+      ? req.headers['x-dashboard-access-token']
+      : typeof req.query.token === 'string'
+        ? req.query.token
+        : '';
+
+  if (providedToken !== expectedToken) {
+    res.status(401).json({ error: 'Unauthorized' });
+    return false;
+  }
+
+  return true;
+}
+
 const TEST_ROOFER_ID = 'be7efc94-bd68-43af-81b2-dc7b869b42df';
 
 const supabase = createClient(config.supabaseUrl, config.supabaseServiceRoleKey);
@@ -17,6 +41,7 @@ function maskPhone(phone: string | null): string {
 
 router.get('/manual-outreach', async (req: Request, res: Response) => {
   try {
+    if (!requireDashboardAccess(req, res)) return;
     const requestedRooferId =
       typeof req.query.roofer_id === 'string' && req.query.roofer_id.trim().length > 0
         ? req.query.roofer_id.trim()
@@ -138,6 +163,7 @@ router.get('/manual-outreach', async (req: Request, res: Response) => {
 
 router.get('/overview', async (req: Request, res: Response) => {
   try {
+    if (!requireDashboardAccess(req, res)) return;
     const requestedRooferId =
       typeof req.query.roofer_id === 'string' && req.query.roofer_id.trim().length > 0
         ? req.query.roofer_id.trim()

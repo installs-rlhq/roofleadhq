@@ -231,6 +231,38 @@
    <script>
     const TEST_ROOFER_ID = 'be7efc94-bd68-43af-81b2-dc7b869b42df';
 
+    function getDashboardAccessToken() {
+        const existingToken = window.localStorage.getItem('roofleadhq_dashboard_access_token');
+        if (existingToken) return existingToken;
+
+        const token = window.prompt('Enter dashboard access token');
+        if (!token) return '';
+
+        window.localStorage.setItem('roofleadhq_dashboard_access_token', token);
+        return token;
+    }
+
+    async function fetchDashboardJson(url) {
+        const token = getDashboardAccessToken();
+
+        if (!token) {
+            throw new Error('Dashboard access token is required.');
+        }
+
+        const response = await fetch(url, {
+            headers: {
+                'x-dashboard-access-token': token,
+            },
+        });
+
+        if (response.status === 401) {
+            window.localStorage.removeItem('roofleadhq_dashboard_access_token');
+            throw new Error('Unauthorized. Refresh and enter the correct dashboard access token.');
+        }
+
+        return response;
+    }
+
     function setText(id, value) {
         const el = document.getElementById(id);
         if (el) el.textContent = value ?? '';
@@ -430,7 +462,7 @@
 
     async function loadDashboardOverviewData() {
         try {
-            const res = await fetch(`/api/dashboard/overview?roofer_id=${TEST_ROOFER_ID}`);
+            const res = await fetchDashboardJson(`/api/dashboard/overview?roofer_id=${TEST_ROOFER_ID}`);
             if (!res.ok) throw new Error('Dashboard overview request failed');
 
             const data = await res.json();
@@ -457,7 +489,7 @@
         if (errorEl) errorEl.classList.add('hidden');
 
         try {
-            const res = await fetch(`/api/dashboard/manual-outreach?roofer_id=${TEST_ROOFER_ID}`);
+            const res = await fetchDashboardJson(`/api/dashboard/manual-outreach?roofer_id=${TEST_ROOFER_ID}`);
             if (!res.ok) throw new Error('Request failed');
             const data = await res.json();
 
