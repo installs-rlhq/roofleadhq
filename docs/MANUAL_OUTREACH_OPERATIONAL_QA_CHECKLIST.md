@@ -182,3 +182,32 @@ Do not enable homeowner-facing SMS until these are complete:
 Manual Outreach is safe for backend tracking tests.
 
 Manual Outreach is not yet approved for live homeowner-facing SMS.
+
+## QA Results 2026-06-02
+
+Manual Outreach backend QA was run against the current backend with homeowner-facing SMS still disabled.
+
+### Passed
+
+- Source mapping:
+  - angi returned 200 and stored source_detail = angi
+  - thumbtack returned 200 and stored source_detail = thumbtack
+  - referral returned 200 and stored source_detail = referral
+  - homeadvisor returned 200 and stored source_detail = homeadvisor
+  - other returned 200 and stored source_detail = other
+  - unknown fallback returned 200 and stored source_detail = unknown
+
+- Bad input:
+  - Body without E.164 phone returned 200 and did not send SMS.
+  - Unknown roofer Twilio number returned 404.
+
+- Commands:
+  - pause returned 200.
+  - stop returned 200.
+  - pause skipped scheduled follow_ups and created followup_paused.
+  - stop skipped scheduled follow_ups, set stopped_reason = roofer_stopped, and created followup_stopped.
+
+### Verified Safety
+
+No homeowner SMS, roofer SMS, Calendar, Vapi, Resend, or Lindy production triggers were enabled during QA.
+
