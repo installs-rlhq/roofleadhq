@@ -44,3 +44,14 @@ Protected internal API:
 - `214fd8e fix(admin): protect internal errors endpoint with token`
 - `9d32671 fix(vercel): proxy api requests to backend`
 - `fb7fb84 fix(vercel): allow internal errors dashboard page`
+
+## Security Update
+
+Additional verification completed after public API proxy was added:
+
+- `GET /api/dashboard/overview` now requires `DASHBOARD_ACCESS_TOKEN`.
+- `GET /api/dashboard/manual-outreach` now requires `DASHBOARD_ACCESS_TOKEN`.
+- Public dashboard frontend prompts for dashboard access token.
+- Public dashboard frontend sends token with `x-dashboard-access-token`.
+- Public dashboard APIs return `401 Unauthorized` without token.
+- `GET /api/internal/admin-errors` remains protected by `INTERNAL_ADMIN_TOKEN`.
