@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internal Admin Errors | RoofLeadHQ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100">
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <header class="mb-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-amber-400">Internal Tool Only</p>
+      <h1 class="mt-2 text-3xl font-bold tracking-tight text-white">Internal Admin Errors</h1>
+      <p class="mt-2 max-w-3xl text-sm text-slate-300">
+        Read-only workflow health view for RoofLeadHQ. This page does not send messages, trigger calls,
+        create calendar events, or retry workflows.
+      </p>
+    </header>
+
+    <section class="mb-6 rounded-2xl border border-slate-800 bg-slate-900 p-4">
+      <div class="grid gap-4 md:grid-cols-[1fr_160px_auto]">
+        <label class="block">
+          <span class="text-sm font-medium text-slate-300">Roofer ID</span>
+          <input
+            id="roofer-id-input"
+            class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white outline-none focus:border-amber-400"
+            value="be7efc94-bd68-43af-81b2-dc7b869b42df"
+          />
+        </label>
+
+        <label class="block">
+          <span class="text-sm font-medium text-slate-300">Limit</span>
+          <select
+            id="limit-select"
+            class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white outline-none focus:border-amber-400"
+          >
+            <option value="10">10</option>
+            <option value="25" selected>25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </label>
+
+        <div class="flex items-end">
+          <button
+            id="refresh-button"
+            class="w-full rounded-lg bg-amber-400 px-4 py-2 text-sm font-bold text-slate-950 hover:bg-amber-300"
+            type="button"
+          >
+            Refresh
+          </button>
+        </div>
+      </div>
+
+      <p id="status-message" class="mt-3 text-sm text-slate-400">Loading internal admin errors...</p>
+    </section>
+
+    <section id="kpi-grid" class="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"></section>
+
+    <div id="sections-container" class="space-y-6"></div>
+  </main>
+
+  <script>
+    const API_BASE = '/api/internal/admin-errors';
+
+    const sectionConfigs = [
+      {
+        key: 'recentWorkflowErrors',
+        title: 'Recent Workflow Errors',
+        columns: [
+          ['created_at', 'Created'],
+          ['business_name', 'Roofer'],
+          ['homeowner_name', 'Homeowner'],
+          ['event_type', 'Event Type'],
+          ['summary', 'Summary']
+        ]
+      },
+      {
+        key: 'failedMessages',
+        title: 'Failed Messages',
+        columns: [
+          ['created_at', 'Created'],
+          ['business_name', 'Roofer'],
+          ['homeowner_name', 'Homeowner'],
+          ['channel', 'Channel'],
+          ['provider', 'Provider'],
+          ['direction', 'Direction'],
+          ['status', 'Status'],
+          ['error_summary', 'Error']
+        ]
+      },
+      {
+        key: 'stuckFollowups',
+        title: 'Stuck Or Overdue Follow-Ups',
+        columns: [
+          ['due_at', 'Due'],
+          ['business_name', 'Roofer'],
+          ['homeowner_name', 'Homeowner'],
+          ['followup_type', 'Follow-Up Type'],
+          ['status', 'Status'],
+          ['stopped_reason', 'Stopped Reason']
+        ]
+      },
+      {
+        key: 'bookingFailures',
+        title: 'Booking Failures',
+        columns: [
+          ['created_at', 'Created'],
+          ['business_name', 'Roofer'],
+          ['homeowner_name', 'Homeowner'],
+          ['requested_time', 'Requested Time'],
+          ['failure_summary', 'Failure Summary']
+        ]
+      },
+      {
+        key: 'vapiReviewNeeded',
+        title: 'Vapi Calls Needing Review',
+        columns: [
+          ['created_at', 'Created'],
+          ['business_name', 'Roofer'],
+          ['homeowner_name', 'Homeowner'],
+          ['caller_phone', 'Caller'],
+          ['provider_call_id', 'Provider Call ID'],
+          ['missing_fields', 'Missing Fields'],
+          ['summary', 'Summary']
+        ]
+      },
+      {
+        key: 'unmatchedMessages',
+        title: 'Unmatched Inbound Messages',
+        columns: [
+          ['created_at', 'Created'],
+          ['business_name', 'Roofer'],
+          ['from_number', 'From'],
+          ['to_number', 'To'],
+          ['channel', 'Channel'],
+          ['body_preview', 'Preview'],
+          ['reason', 'Reason']
+        ]
+      }
+    ];
+
+    const kpiLabels = [
+      ['workflowErrors', 'Workflow Errors'],
+      ['failedMessages', 'Failed Messages'],
+      ['overdueFollowups', 'Overdue Follow-Ups'],
+      ['bookingFailures', 'Booking Failures'],
+      ['vapiReviewNeeded', 'Vapi Review Needed'],
+      ['unmatchedMessages', 'Unmatched Messages']
+    ];
+
+    function formatValue(value) {
+      if (Array.isArray(value)) return value.join(', ');
+      if (value === null || value === undefined || value === '') return '—';
+      return String(value);
+    }
+
+    function formatDate(value) {
+      if (!value) return '—';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value);
+      return date.toLocaleString();
+    }
+
+    function appendText(parent, tag, text, className) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      element.textContent = text;
+      parent.appendChild(element);
+      return element;
+    }
+
+    function renderKpis(kpi) {
+      const grid = document.getElementById('kpi-grid');
+      const cards = kpiLabels.map(([key, label]) => {
+        const card = document.createElement('article');
+        card.className = 'rounded-2xl border border-slate-800 bg-slate-900 p-4';
+        appendText(card, 'p', label, 'text-xs font-semibold uppercase tracking-wide text-slate-400');
+        appendText(card, 'p', formatValue(kpi?.[key] ?? 0), 'mt-2 text-3xl font-bold text-white');
+        return card;
+      });
+      grid.replaceChildren(...cards);
+    }
+
+    function renderSection(config, rows) {
+      const section = document.createElement('section');
+      section.className = 'rounded-2xl border border-slate-800 bg-slate-900 p-4';
+
+      appendText(section, 'h2', config.title, 'text-xl font-bold text-white');
+
+      if (!rows || rows.length === 0) {
+        appendText(section, 'p', 'No items found.', 'mt-4 rounded-lg border border-slate-800 bg-slate-950 p-4 text-sm text-slate-400');
+        return section;
+      }
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'mt-4 overflow-x-auto';
+
+      const table = document.createElement('table');
+      table.className = 'min-w-full divide-y divide-slate-800 text-left text-sm';
+
+      const thead = document.createElement('thead');
+      const headRow = document.createElement('tr');
+
+      config.columns.forEach(([, label]) => {
+        appendText(headRow, 'th', label, 'whitespace-nowrap px-3 py-2 text-xs font-semibold uppercase tracking-wide text-slate-400');
+      });
+
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      tbody.className = 'divide-y divide-slate-800';
+
+      rows.forEach((row) => {
+        const tr = document.createElement('tr');
+
+        config.columns.forEach(([key]) => {
+          const td = document.createElement('td');
+          td.className = 'max-w-xs px-3 py-3 align-top text-slate-200';
+
+          const isDateField = key.includes('created_at') || key.includes('due_at') || key.includes('time');
+          td.textContent = isDateField ? formatDate(row[key]) : formatValue(row[key]);
+
+          tr.appendChild(td);
+        });
+
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      wrapper.appendChild(table);
+      section.appendChild(wrapper);
+
+      return section;
+    }
+
+    function renderSections(data) {
+      const container = document.getElementById('sections-container');
+      const sections = sectionConfigs.map((config) => renderSection(config, data?.[config.key] || []));
+      container.replaceChildren(...sections);
+    }
+
+    async function loadAdminErrors() {
+      const status = document.getElementById('status-message');
+      const rooferId = document.getElementById('roofer-id-input').value.trim();
+      const limit = document.getElementById('limit-select').value;
+
+      status.textContent = 'Loading internal admin errors...';
+
+      const params = new URLSearchParams();
+      if (rooferId) params.set('roofer_id', rooferId);
+      if (limit) params.set('limit', limit);
+
+      try {
+        const response = await fetch(`${API_BASE}?${params.toString()}`);
+
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+
+        const data = await response.json();
+        renderKpis(data.kpi);
+        renderSections(data);
+        status.textContent = 'Loaded. Read-only view.';
+      } catch (error) {
+        renderKpis({});
+        renderSections({});
+        status.textContent = 'Could not load internal admin errors. Check backend logs.';
+      }
+    }
+
+    document.getElementById('refresh-button').addEventListener('click', loadAdminErrors);
+    document.addEventListener('DOMContentLoaded', loadAdminErrors);
+  </script>
+</body>
+</html>
