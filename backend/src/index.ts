@@ -6,6 +6,7 @@ import webhooksRouter from './routes/webhooks';
 import vapiWebhooksRouter from './routes/vapi-webhooks';
 import manualOutreachRouter from './routes/manual-outreach';
 import dashboardRouter from './routes/dashboard';
+import internalAdminRouter from './routes/internal-admin';
 import { errorHandler } from './middleware/errorHandler';
 
 const app = express();
@@ -20,6 +21,7 @@ app.use('/webhooks', webhooksRouter);
 app.use('/webhooks/vapi', vapiWebhooksRouter);
 app.use('/api/manual-outreach', manualOutreachRouter);
 app.use('/api/dashboard', dashboardRouter);
+app.use('/api/internal', internalAdminRouter);
 
 // Health check
 app.get('/health', (req, res) => {
