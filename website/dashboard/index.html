@@ -263,7 +263,12 @@
 
         if (response.status === 401) {
             window.localStorage.removeItem('roofleadhq_dashboard_access_token');
-            throw new Error('Unauthorized. Refresh and enter the correct dashboard access token.');
+            throw new Error('Unauthorized: dashboard token was rejected.');
+        }
+
+        if (!response.ok) {
+            const body = await response.text();
+            throw new Error(`Request failed with status ${response.status}: ${body.slice(0, 160)}`);
         }
 
         return response;
@@ -486,7 +491,7 @@
             renderLeadsNeedingAttention([]);
             renderUpcomingInspections([]);
             renderTopSources([]);
-            renderRecommendedActions(['Dashboard overview data could not be loaded.']);
+            renderRecommendedActions([`Dashboard overview data could not be loaded: ${err.message}`]);
         }
     }
 
