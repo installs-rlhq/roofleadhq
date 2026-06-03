@@ -169,3 +169,27 @@ Run with:
 
     cd /root/roofleadhq
     node backend/scripts/verify-sms-dispatcher-planner.js
+
+### SMS Dispatcher Data Shape Read-Only Verification
+
+Script:
+
+- `backend/scripts/verify-sms-dispatcher-data-shape-readonly.js`
+
+Verified:
+
+- Due scheduled follow-ups can be read with related lead data.
+- Due scheduled follow-ups can be read with related roofer data.
+- Inspected follow-ups have lead relation data.
+- Inspected follow-ups have roofer relation data.
+- Homeowner phone presence can be checked.
+- Roofer SMS flag can be checked.
+- Roofer timezone can be checked.
+- No writes were performed.
+- No SMS was sent.
+- No Twilio calls were made.
+
+Run with:
+
+    cd /root/roofleadhq
+    node backend/scripts/verify-sms-dispatcher-data-shape-readonly.js

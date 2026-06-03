@@ -110,6 +110,7 @@ Covers:
 - `backend/scripts/verify-sms-schema-readiness-readonly.js`
 - `backend/scripts/verify-sms-optout-workflow.js`
 - `backend/scripts/verify-sms-dispatcher-planner.js`
+- `backend/scripts/verify-sms-dispatcher-data-shape-readonly.js`
 
 ## Current Safety Rule
 
