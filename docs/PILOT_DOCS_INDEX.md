@@ -96,6 +96,12 @@ Covers:
 - `docs/MANUAL_OUTREACH_OPERATIONAL_QA_CHECKLIST.md`
 - `docs/TWILIO_MANUAL_OUTREACH_HARDENING_VERIFICATION.md`
 
+## SMS Planning Docs
+
+- `docs/HOMEOWNER_SMS_COMPLIANCE_TEMPLATE_PLAN.md`
+- `docs/SMS_OPTOUT_QUIET_HOUR_IMPLEMENTATION_PLAN.md`
+- `docs/SMS_CURRENT_CODE_INSPECTION.md`
+
 ## Current Safety Rule
 
 Do not enable these without explicit approval:
