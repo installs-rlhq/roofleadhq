@@ -44,6 +44,10 @@ The verification script passed these cases:
 - duplicate send blocks sends.
 - quiet hours reschedule sends.
 - allowed window permits eligible sends.
+- STOP opt-out detected.
+- lowercase stop opt-out detected.
+- UNSUBSCRIBE opt-out detected.
+- normal homeowner replies are not treated as opt-out.
 
 ## Build Verification
 
