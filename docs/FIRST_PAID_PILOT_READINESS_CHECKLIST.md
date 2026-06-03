@@ -8,6 +8,8 @@ Manual Outreach is verified for backend hardening, operational QA, and dashboard
 
 Dashboard token auth is working.
 
+SMS safety, opt-out workflow, dispatcher planner, dispatcher data shape, and dispatcher execution planning are verified in test-only/read-only mode.
+
 Onboarding script creates dashboard access tokens and keeps production action flags disabled.
 
 No live homeowner SMS, roofer SMS, Calendar, Vapi, Resend, or Lindy production triggers are enabled.
@@ -60,10 +62,11 @@ Status: Verified for safe non-SMS pilot use
 - Follow-up templates approved
 - Opt-out handling approved
 - Quiet-hour rules approved
-- Dispatcher safety verified
-- Failed message logging verified
+- Dispatcher safety verified in test-only/read-only mode
+- Dispatcher execution planner verified with no writes and no SMS sent
+- Failed message logging not live-enabled
 
-Status: Not ready / disabled
+Status: Planning/test-only verified; production SMS still disabled
 
 ### 5. Vapi Phone Lead Path
 
@@ -115,8 +118,8 @@ Status: Partially ready
 
 ## Current Pilot Blockers
 
-1. Homeowner SMS templates and opt-out handling are not approved.
-2. Follow-up dispatcher is not live-safe.
+1. Homeowner SMS templates are not approved for live sending.
+2. Follow-up dispatcher is verified only in test/read-only mode and is not live-enabled.
 3. Calendar booking automation is not enabled.
 4. Vapi write path is not enabled.
 5. Internal pilot monitoring checklist needs to be finalized.
@@ -134,8 +137,8 @@ Use a founder-led, controlled pilot:
 
 ## Next Recommended Task
 
-Create a simple daily pilot operations checklist for Jason.
+Finalize internal pilot monitoring and client-facing setup/payment flow.
 
 Purpose:
-Make sure the first paid pilot can be monitored safely without relying on unfinished automation.
+Make sure the first paid pilot can be monitored safely while SMS, Calendar, Vapi, Resend, and Lindy production actions remain disabled unless explicitly approved.
 
