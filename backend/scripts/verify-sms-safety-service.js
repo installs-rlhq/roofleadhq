@@ -23,7 +23,7 @@ execFileSync(
   { stdio: 'inherit' }
 );
 
-const { evaluateSmsSafety } = require(compiledJs);
+const { evaluateSmsSafety, parseSmsOptOut } = require(compiledJs);
 
 function assertCase(name, input, expected) {
   const result = evaluateSmsSafety(input);
@@ -126,6 +126,23 @@ assertCase('Allowed window permits eligible sends', base, {
   action: 'send',
   reason: 'eligible'
 });
+
+function assertOptOut(name, body, expected) {
+  const result = parseSmsOptOut(body);
+  if (result.isOptOut !== expected.isOptOut || result.keyword !== expected.keyword) {
+    console.error(`FAIL: ${name}`);
+    console.error('Expected:', expected);
+    console.error('Received:', result);
+    process.exit(1);
+  }
+
+  console.log(`PASS: ${name} -> optOut=${result.isOptOut}${result.keyword ? '/' + result.keyword : ''}`);
+}
+
+assertOptOut('STOP opt-out detected', 'STOP', { isOptOut: true, keyword: 'STOP' });
+assertOptOut('lowercase stop opt-out detected', 'stop', { isOptOut: true, keyword: 'STOP' });
+assertOptOut('UNSUBSCRIBE opt-out detected', ' UNSUBSCRIBE ', { isOptOut: true, keyword: 'UNSUBSCRIBE' });
+assertOptOut('normal reply is not opt-out', 'Yes, tomorrow works', { isOptOut: false });
 
 console.log('OK: SMS safety service verification passed.');
 console.log('No writes performed.');

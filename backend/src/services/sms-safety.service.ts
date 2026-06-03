@@ -55,6 +55,30 @@ export function isValidE164(phone: string): boolean {
   return /^\+[1-9]\d{1,14}$/.test(phone);
 }
 
+const OPT_OUT_KEYWORDS = new Set([
+  'STOP',
+  'STOPALL',
+  'UNSUBSCRIBE',
+  'CANCEL',
+  'END',
+  'QUIT'
+]);
+
+export interface SmsOptOutDecision {
+  isOptOut: boolean;
+  keyword?: string;
+}
+
+export function parseSmsOptOut(messageBody: string): SmsOptOutDecision {
+  const normalized = messageBody.trim().toUpperCase();
+
+  if (OPT_OUT_KEYWORDS.has(normalized)) {
+    return { isOptOut: true, keyword: normalized };
+  }
+
+  return { isOptOut: false };
+}
+
 function getLocalParts(date: Date, timeZone: string): {
   year: number;
   month: number;
