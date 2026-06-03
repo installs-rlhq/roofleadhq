@@ -105,6 +105,7 @@ Covers:
 - `docs/SMS_SAFETY_SERVICE_IMPLEMENTATION_PLAN.md`
 - `docs/SMS_SAFETY_SCHEMA_READINESS.md`
 - `docs/SMS_SAFETY_SERVICE_VERIFICATION.md`
+- `docs/SMS_DISPATCHER_IMPLEMENTATION_PLAN.md`
 - `backend/scripts/verify-sms-safety-service.js`
 
 ## Current Safety Rule
