@@ -67,7 +67,8 @@ Status: Required before go-live
 ### Billing / Agreement
 
 - Setup fee paid or intentionally waived
-- Monthly plan selected
+- Monthly plan selected or pilot billing terms documented
+- Payment method/process documented
 - Founder-led launch expectations explained
 - First-Month Confidence Promise explained
 - No hard appointment guarantee promised

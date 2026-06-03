@@ -82,8 +82,9 @@ Confirm roofer understands:
 
 Confirm:
 
-- Setup payment completed
-- Monthly plan selected
+- Setup payment completed or intentionally waived
+- Monthly plan selected or pilot billing terms documented
+- Payment method/process documented
 - Founder-led launch expectations explained
 - First-Month Confidence Promise explained
 - No hard appointment guarantee promised
