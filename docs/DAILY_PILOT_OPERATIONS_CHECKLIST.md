@@ -90,6 +90,25 @@ Confirm:
 - No live Vapi production actions
 - No Resend/Lindy production triggers
 
+Run SMS read-only safety checks:
+
+```bash
+node backend/scripts/verify-sms-schema-readiness-readonly.js
+node backend/scripts/verify-sms-safety-service.js
+node backend/scripts/verify-sms-optout-workflow.js
+node backend/scripts/verify-sms-dispatcher-planner.js
+node backend/scripts/verify-sms-dispatcher-data-shape-readonly.js
+node backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js
+```
+
+Pass condition:
+
+- All SMS checks pass.
+- `send: 0` unless production SMS has been explicitly approved.
+- No writes are performed.
+- No SMS is sent.
+- No Twilio calls are made.
+
 ## 7. Booked Inspections
 
 Confirm:
