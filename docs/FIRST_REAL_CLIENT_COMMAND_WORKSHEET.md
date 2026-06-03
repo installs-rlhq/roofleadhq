@@ -21,6 +21,18 @@ SERVICE_AREA=""
 CITY=""
 STATE=""
 
+SETUP_PAYMENT_STATUS=""
+MONTHLY_PLAN_OR_PILOT_TERMS=""
+PAYMENT_METHOD_PROCESS=""
+
+## Billing / Agreement Checks
+
+Fill these in before go-live:
+
+- SETUP_PAYMENT_STATUS: completed or intentionally waived
+- MONTHLY_PLAN_OR_PILOT_TERMS: selected plan or documented pilot terms
+- PAYMENT_METHOD_PROCESS: Stripe, invoice, manual payment, or documented waiver
+
 ## Required Format Checks
 
 Phone numbers must be E.164 format.
@@ -93,3 +105,4 @@ Verify:
 - No SMS sent
 - No Calendar event created
 - No Vapi triggered
+- Billing/agreement confirmed before go-live
