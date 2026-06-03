@@ -139,3 +139,33 @@ Run with:
     cd /root/roofleadhq
     node backend/scripts/verify-sms-optout-workflow.js
 
+
+### SMS Dispatcher Planner Verification
+
+Script:
+
+- `backend/scripts/verify-sms-dispatcher-planner.js`
+
+Verified:
+
+- `initial` maps to `manual_outreach_initial`.
+- `2h` maps to `followup_2h`.
+- `12h` maps to `followup_12h`.
+- `24h` maps to `followup_24h`.
+- `48h` is not approved without an explicit template.
+- Unknown follow-up type is blocked.
+- Eligible scheduled follow-up plans send.
+- Roofer SMS disabled blocks send.
+- Duplicate send blocks send.
+- Quiet hours blocks immediate send and returns a reschedule plan.
+- opted_out lead blocks send.
+- Missing scheduled_for blocks send.
+- Unapproved follow-up type blocks send.
+- No writes were performed.
+- No SMS was sent.
+- No Twilio calls were made.
+
+Run with:
+
+    cd /root/roofleadhq
+    node backend/scripts/verify-sms-dispatcher-planner.js
