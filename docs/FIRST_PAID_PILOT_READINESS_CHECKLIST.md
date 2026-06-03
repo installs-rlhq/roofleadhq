@@ -122,8 +122,8 @@ Status: Partially ready
 2. Follow-up dispatcher is verified only in test/read-only mode and is not live-enabled.
 3. Calendar booking automation is not enabled.
 4. Vapi write path is not enabled.
-5. Internal pilot monitoring checklist needs to be finalized.
-6. Client-facing setup/payment flow needs final confirmation.
+5. Internal pilot monitoring checklist is documented and ready for founder-led use.
+6. Client-facing setup/payment flow is documented; per-client payment/waiver must be confirmed before go-live.
 
 ## Recommended First Paid Pilot Model
 
