@@ -48,6 +48,9 @@ The verification script passed these cases:
 - lowercase stop opt-out detected.
 - UNSUBSCRIBE opt-out detected.
 - normal homeowner replies are not treated as opt-out.
+- opt-out workflow can be planned without writes.
+- non-opt-out workflow is ignored.
+- invalid phone opt-out workflow is blocked.
 
 ## Build Verification
 
