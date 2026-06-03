@@ -127,6 +127,51 @@ assertCase('Allowed window permits eligible sends', base, {
   reason: 'eligible'
 });
 
+
+assertCase('7:59 AM local time blocks sends', {
+  ...base,
+  rooferTimezone: 'America/Denver',
+  scheduledFor: '2026-01-15T14:50:00.000Z',
+  currentTime: '2026-01-15T14:59:00.000Z'
+}, {
+  allowed: false,
+  action: 'reschedule',
+  reason: 'quiet_hours'
+});
+
+assertCase('8:00 AM local time permits sends', {
+  ...base,
+  rooferTimezone: 'America/Denver',
+  scheduledFor: '2026-01-15T14:50:00.000Z',
+  currentTime: '2026-01-15T15:00:00.000Z'
+}, {
+  allowed: true,
+  action: 'send',
+  reason: 'eligible'
+});
+
+assertCase('8:59 PM local time permits sends', {
+  ...base,
+  rooferTimezone: 'America/Denver',
+  scheduledFor: '2026-01-16T03:50:00.000Z',
+  currentTime: '2026-01-16T03:59:00.000Z'
+}, {
+  allowed: true,
+  action: 'send',
+  reason: 'eligible'
+});
+
+assertCase('9:00 PM local time blocks sends', {
+  ...base,
+  rooferTimezone: 'America/Denver',
+  scheduledFor: '2026-01-16T03:50:00.000Z',
+  currentTime: '2026-01-16T04:00:00.000Z'
+}, {
+  allowed: false,
+  action: 'reschedule',
+  reason: 'quiet_hours'
+});
+
 function assertOptOut(name, body, expected) {
   const result = parseSmsOptOut(body);
   if (result.isOptOut !== expected.isOptOut || result.keyword !== expected.keyword) {
