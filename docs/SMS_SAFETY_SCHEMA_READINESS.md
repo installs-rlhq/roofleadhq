@@ -188,3 +188,27 @@ Proposed verification script:
 The service must not call Twilio.
 The script must not send SMS.
 Production sends require explicit approval.
+
+## PostgreSQL CHECK Constraint Inspection
+
+Date: 2026-06-02
+
+A manual read-only Supabase SQL Editor inspection verified CHECK constraints for SMS safety planning.
+
+Verified constraints:
+
+- `public.leads.status` includes `opted_out`.
+- `public.follow_ups.status` includes `scheduled`, `sent`, `skipped`, `failed`, and `cancelled`.
+- `public.follow_ups.followup_type` includes `initial`, `2h`, `12h`, `24h`, `48h`, `reminder`, and `manual_outreach`.
+- `public.messages.channel` includes `sms`.
+- `public.messages.direction` includes `inbound` and `outbound`.
+- `public.roofers.status` includes `active`, `paused`, and `cancelled`.
+
+No blocking constraint issue was found for planning/test-only SMS safety service work.
+
+Notes:
+
+- `messages.status` did not appear with a CHECK constraint in this inspection.
+- `workflow_events` did not appear with CHECK constraints in this inspection.
+- This is acceptable for planning/test-only SMS safety work.
+- Production SMS activation still requires explicit approval and separate sender/write-path verification.
