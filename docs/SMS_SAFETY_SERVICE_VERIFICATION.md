@@ -44,6 +44,10 @@ The verification script passed these cases:
 - duplicate send blocks sends.
 - quiet hours reschedule sends.
 - allowed window permits eligible sends.
+- 7:59 AM local time blocks sends.
+- 8:00 AM local time permits sends.
+- 8:59 PM local time permits sends.
+- 9:00 PM local time blocks sends.
 - STOP opt-out detected.
 - lowercase stop opt-out detected.
 - UNSUBSCRIBE opt-out detected.
