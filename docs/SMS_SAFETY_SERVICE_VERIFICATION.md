@@ -89,3 +89,53 @@ Add opt-out parsing as test-only logic.
 It should not send SMS.
 It should not call Twilio.
 It should not update Supabase until separately approved.
+
+## Additional Verification Scripts
+
+Date: 2026-06-02
+
+### SMS Schema Readiness Read-Only Verification
+
+Script:
+
+- `backend/scripts/verify-sms-schema-readiness-readonly.js`
+
+Verified:
+
+- Required SMS safety columns are queryable.
+- No roofers have `sms_confirmation_enabled=true`.
+- No writes were performed.
+- No SMS was sent.
+- No Twilio calls were made.
+
+Run with:
+
+    cd /root/roofleadhq
+    node backend/scripts/verify-sms-schema-readiness-readonly.js
+
+### SMS Opt-Out Workflow Verification
+
+Script:
+
+- `backend/scripts/verify-sms-optout-workflow.js`
+
+Verified:
+
+- STOP plans lead `opted_out`.
+- Lowercase stop plans lead `opted_out`.
+- UNSUBSCRIBE plans lead `opted_out`.
+- Normal reply does nothing.
+- Invalid phone is blocked.
+- Missing roofer data is blocked.
+- Missing lead data is blocked.
+- Pending follow-up IDs are planned as skipped.
+- Workflow event plan includes keyword, message SID, and homeowner phone.
+- No writes were performed.
+- No SMS was sent.
+- No Twilio calls were made.
+
+Run with:
+
+    cd /root/roofleadhq
+    node backend/scripts/verify-sms-optout-workflow.js
+

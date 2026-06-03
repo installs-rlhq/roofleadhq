@@ -128,11 +128,40 @@ The current schema appears sufficient for:
 - workflow event audit trail
 - duplicate-send audit using follow_up_id and messages/provider fields
 
+## Read-Only Supabase Verification
+
+Date: 2026-06-02
+
+A read-only Supabase service-role check verified that these SMS safety columns are queryable:
+
+- roofers: id, business_name, sms_confirmation_enabled, timezone, twilio_number, status
+- leads: id, roofer_id, phone, status, source_path, source_detail
+- follow_ups: id, roofer_id, lead_id, status, followup_type, scheduled_for, sent_at, skipped_reason, stopped_reason, message_body
+- messages: id, roofer_id, lead_id, channel, direction, status, provider, provider_message_id, error_message, from_number, to_number, sent_at, received_at, message_body
+- workflow_events: id, roofer_id, lead_id, event_type, event_status, event_source, description, metadata
+
+Result:
+
+- PASS: Read-only SMS schema readiness check passed.
+- PASS: No roofers have sms_confirmation_enabled=true.
+- No writes were performed.
+- No SMS was sent.
+- No Twilio calls were made.
+
+Reusable verifier added:
+
+- backend/scripts/verify-sms-schema-readiness-readonly.js
+
+Run with:
+
+    cd /root/roofleadhq
+    node backend/scripts/verify-sms-schema-readiness-readonly.js
+
 ## Remaining Uncertainty
 
 Direct PostgreSQL CHECK constraint definitions were not inspected because no direct DATABASE_URL or Postgres connection string is available in backend/.env.
 
-The repo and docs indicate opted_out and stopped_reason are supported, but raw database constraints should be verified later through Supabase SQL editor or a safe server-side introspection method before production SMS activation.
+The repo and Supabase read-only checks indicate opted_out, stopped_reason, and required SMS audit columns are supported, but raw database constraints should still be verified later through Supabase SQL editor or a safe server-side introspection method before production SMS activation.
 
 ## Not Approved
 
