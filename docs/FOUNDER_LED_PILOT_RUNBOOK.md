@@ -41,10 +41,30 @@ Do not enable:
 
 1. Check backend health.
 2. Check dashboard token access.
-3. Review leads needing attention.
-4. Review Manual Outreach activity.
-5. Review upcoming booked inspections.
-6. Note urgent follow-ups.
+3. Run SMS read-only safety checks.
+4. Review leads needing attention.
+5. Review Manual Outreach activity.
+6. Review upcoming booked inspections.
+7. Note urgent follow-ups.
+
+SMS read-only safety checks:
+
+```bash
+node backend/scripts/verify-sms-schema-readiness-readonly.js
+node backend/scripts/verify-sms-safety-service.js
+node backend/scripts/verify-sms-optout-workflow.js
+node backend/scripts/verify-sms-dispatcher-planner.js
+node backend/scripts/verify-sms-dispatcher-data-shape-readonly.js
+node backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js
+```
+
+Pass condition:
+
+- All checks pass.
+- `send: 0` unless production SMS has been explicitly approved.
+- No writes are performed.
+- No SMS is sent.
+- No Twilio calls are made.
 
 ### Midday
 
