@@ -224,3 +224,91 @@ export function evaluateSmsSafety(input: SmsSafetyInput): SmsSafetyDecision {
 
   return { allowed: true, action: 'send', reason: 'eligible' };
 }
+
+export interface SmsOptOutWorkflowInput {
+  rooferId?: string;
+  leadId?: string;
+  homeownerPhone: string;
+  inboundBody: string;
+  messageSid?: string;
+  pendingFollowUpIds?: string[];
+}
+
+export interface SmsOptOutWorkflowPlan {
+  shouldProcess: boolean;
+  reason: 'opt_out_detected' | 'not_opt_out' | 'missing_required_field' | 'invalid_phone';
+  keyword?: string;
+  leadUpdate?: {
+    id: string;
+    status: 'opted_out';
+  };
+  followUpUpdates: Array<{
+    id: string;
+    status: 'skipped';
+    stopped_reason: 'homeowner_opted_out';
+  }>;
+  workflowEvent?: {
+    event_type: 'homeowner_opted_out';
+    event_source: 'sms_safety_service';
+    event_status: 'planned';
+    metadata: {
+      keyword: string;
+      message_sid?: string;
+      homeowner_phone: string;
+    };
+  };
+}
+
+export function planSmsOptOutWorkflow(input: SmsOptOutWorkflowInput): SmsOptOutWorkflowPlan {
+  if (!input.rooferId || !input.leadId || !input.homeownerPhone || !input.inboundBody) {
+    return {
+      shouldProcess: false,
+      reason: 'missing_required_field',
+      followUpUpdates: []
+    };
+  }
+
+  if (!isValidE164(input.homeownerPhone)) {
+    return {
+      shouldProcess: false,
+      reason: 'invalid_phone',
+      followUpUpdates: []
+    };
+  }
+
+  const optOut = parseSmsOptOut(input.inboundBody);
+
+  if (!optOut.isOptOut || !optOut.keyword) {
+    return {
+      shouldProcess: false,
+      reason: 'not_opt_out',
+      followUpUpdates: []
+    };
+  }
+
+  return {
+    shouldProcess: true,
+    reason: 'opt_out_detected',
+    keyword: optOut.keyword,
+    leadUpdate: {
+      id: input.leadId,
+      status: 'opted_out'
+    },
+    followUpUpdates: (input.pendingFollowUpIds || []).map((id) => ({
+      id,
+      status: 'skipped',
+      stopped_reason: 'homeowner_opted_out'
+    })),
+    workflowEvent: {
+      event_type: 'homeowner_opted_out',
+      event_source: 'sms_safety_service',
+      event_status: 'planned',
+      metadata: {
+        keyword: optOut.keyword,
+        message_sid: input.messageSid,
+        homeowner_phone: input.homeownerPhone
+      }
+    }
+  };
+}
+

@@ -23,7 +23,7 @@ execFileSync(
   { stdio: 'inherit' }
 );
 
-const { evaluateSmsSafety, parseSmsOptOut } = require(compiledJs);
+const { evaluateSmsSafety, parseSmsOptOut, planSmsOptOutWorkflow } = require(compiledJs);
 
 function assertCase(name, input, expected) {
   const result = evaluateSmsSafety(input);
@@ -143,6 +143,56 @@ assertOptOut('STOP opt-out detected', 'STOP', { isOptOut: true, keyword: 'STOP' 
 assertOptOut('lowercase stop opt-out detected', 'stop', { isOptOut: true, keyword: 'STOP' });
 assertOptOut('UNSUBSCRIBE opt-out detected', ' UNSUBSCRIBE ', { isOptOut: true, keyword: 'UNSUBSCRIBE' });
 assertOptOut('normal reply is not opt-out', 'Yes, tomorrow works', { isOptOut: false });
+
+
+function assertOptOutWorkflow(name, input, expected) {
+  const result = planSmsOptOutWorkflow(input);
+  const pass = Object.entries(expected).every(([key, value]) => result[key] === value);
+
+  if (!pass) {
+    console.error(`FAIL: ${name}`);
+    console.error('Expected:', expected);
+    console.error('Received:', result);
+    process.exit(1);
+  }
+
+  console.log(`PASS: ${name} -> ${result.reason}`);
+}
+
+assertOptOutWorkflow('Opt-out workflow planned without writes', {
+  rooferId: 'roofer-test',
+  leadId: 'lead-test',
+  homeownerPhone: '+15551234567',
+  inboundBody: 'STOP',
+  messageSid: 'SM-test',
+  pendingFollowUpIds: ['fu-1', 'fu-2']
+}, {
+  shouldProcess: true,
+  reason: 'opt_out_detected',
+  keyword: 'STOP'
+});
+
+assertOptOutWorkflow('Non-opt-out workflow ignored', {
+  rooferId: 'roofer-test',
+  leadId: 'lead-test',
+  homeownerPhone: '+15551234567',
+  inboundBody: 'Yes, tomorrow works',
+  pendingFollowUpIds: ['fu-1']
+}, {
+  shouldProcess: false,
+  reason: 'not_opt_out'
+});
+
+assertOptOutWorkflow('Invalid phone opt-out workflow blocked', {
+  rooferId: 'roofer-test',
+  leadId: 'lead-test',
+  homeownerPhone: '5551234567',
+  inboundBody: 'STOP',
+  pendingFollowUpIds: ['fu-1']
+}, {
+  shouldProcess: false,
+  reason: 'invalid_phone'
+});
 
 console.log('OK: SMS safety service verification passed.');
 console.log('No writes performed.');
