@@ -124,7 +124,38 @@ Confirm:
 - Manual Outreach command path is safe
 - No homeowner SMS is sent automatically
 
-## Step 10: Use Go-Live Decision Checklist
+## Step 10: Confirm Billing / Agreement
+
+Before go-live, confirm:
+
+- Setup payment completed or intentionally waived
+- Monthly plan selected or pilot billing terms documented
+- Payment method/process documented
+- Founder-led launch expectations explained
+- First-Month Confidence Promise explained
+- No hard appointment guarantee promised
+
+## Step 11: Run SMS Read-Only Safety Checks
+
+Terminal 1:
+
+cd /root/roofleadhq
+node backend/scripts/verify-sms-schema-readiness-readonly.js
+node backend/scripts/verify-sms-safety-service.js
+node backend/scripts/verify-sms-optout-workflow.js
+node backend/scripts/verify-sms-dispatcher-planner.js
+node backend/scripts/verify-sms-dispatcher-data-shape-readonly.js
+node backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js
+
+Pass condition:
+
+- All checks pass.
+- send: 0 unless production SMS has been explicitly approved.
+- No writes are performed.
+- No SMS is sent.
+- No Twilio calls are made.
+
+## Step 12: Use Go-Live Decision Checklist
 
 Use:
 
@@ -132,7 +163,7 @@ Use:
 
 Go live only if all required checks pass.
 
-## Step 11: Operate Daily
+## Step 13: Operate Daily
 
 Use:
 
