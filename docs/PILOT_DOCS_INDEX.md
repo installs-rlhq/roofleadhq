@@ -103,6 +103,7 @@ Covers:
 - `docs/SMS_CURRENT_CODE_INSPECTION.md`
 - `docs/SMS_SAFETY_SERVICE_IMPLEMENTATION_PLAN.md`
 - `docs/SMS_SAFETY_SCHEMA_READINESS.md`
+- `backend/scripts/verify-sms-safety-service.js`
 
 ## Current Safety Rule
 
