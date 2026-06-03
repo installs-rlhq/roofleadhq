@@ -34,6 +34,8 @@ Covers:
 
 Use this as the exact step-by-step sequence from client intake to safe founder-led go-live.
 
+Includes billing/agreement confirmation and SMS read-only safety checks before go-live.
+
 ## Go-Live Decision
 
 4. `docs/PILOT_GO_LIVE_DECISION_CHECKLIST.md`
