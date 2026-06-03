@@ -106,6 +106,9 @@ Covers:
 - `docs/SMS_SAFETY_SCHEMA_READINESS.md`
 - `docs/SMS_SAFETY_SERVICE_VERIFICATION.md`
 - `docs/SMS_DISPATCHER_IMPLEMENTATION_PLAN.md`
+- `docs/SMS_CHECK_CONSTRAINT_READINESS_VERIFICATION.md`
+- `docs/SMS_DISPATCHER_EXECUTION_PLAN.md`
+- `docs/SMS_DISPATCHER_EXECUTION_PLAN_VERIFICATION.md`
 - `backend/scripts/verify-sms-safety-service.js`
 - `backend/scripts/verify-sms-schema-readiness-readonly.js`
 - `backend/scripts/verify-sms-optout-workflow.js`
