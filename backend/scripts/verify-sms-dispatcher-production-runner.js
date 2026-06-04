@@ -17,6 +17,7 @@ const sourceFiles = [
 
 const staticCheckFiles = [
   'backend/src/services/sms-dispatcher-production-runner.service.ts',
+  'backend/scripts/run-sms-dispatcher-production-runner.js',
   'backend/scripts/verify-sms-dispatcher-production-runner.js'
 ];
 
@@ -240,6 +241,7 @@ function runStaticSafetyChecks() {
     return (
       /\.(ts|js)$/.test(relativePath) &&
       relativePath !== 'backend/src/services/sms-dispatcher-production-runner.service.ts' &&
+      relativePath !== 'backend/scripts/run-sms-dispatcher-production-runner.js' &&
       relativePath !== 'backend/scripts/verify-sms-dispatcher-production-runner.js'
     );
   });
@@ -256,6 +258,20 @@ function runStaticSafetyChecks() {
       `${relativePath} does not invoke production runner`
     );
   }
+}
+
+function cliEnv(overrides = {}) {
+  return {
+    SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE: 'false',
+    SMS_DISPATCHER_PRODUCTION_RUNNER: 'false',
+    SMS_DISPATCHER_PRODUCTION_TARGET: '',
+    SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: '',
+    SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE: '',
+    SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'false',
+    SMS_DB_EXECUTOR_TARGET: '',
+    SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN: 'false',
+    ...overrides
+  };
 }
 
 for (const [, source, output] of sourceFiles) {
@@ -287,6 +303,9 @@ const {
 const {
   SMS_DISPATCHER_DB_EXECUTOR_TARGET
 } = require('/tmp/sms-dispatcher-db-write-executor.production-runner-verify.js');
+const {
+  runProductionRunnerCli
+} = require(path.join(repoRoot, 'backend/scripts/run-sms-dispatcher-production-runner.js'));
 
 const productionGate = {
   allowProductionRunner: true,
@@ -421,6 +440,71 @@ const dbExecutorGate = {
   assert(cappedResult.routeAdded === false, 'production runner reports no route added');
   assert(cappedResult.cronAdded === false, 'production runner reports no cron added');
   assert(cappedResult.productionDispatcherActivated === true, 'explicit function invocation can activate gated DB writes');
+
+  const cliDefaultOutput = await runProductionRunnerCli(cliEnv(), []);
+  assert(cliDefaultOutput.mode === 'fake', 'CLI default uses fake mode');
+  assert(cliDefaultOutput.result.failedClosed === true, 'CLI default result fails closed');
+  assert(cliDefaultOutput.result.reason === 'missing_production_runner_gate', 'CLI default requires production runner gate');
+  assert(cliDefaultOutput.result.noSmsSent === true, 'CLI default reports no SMS sent');
+  assert(cliDefaultOutput.result.noTwilioCallsMade === true, 'CLI default reports no Twilio calls');
+
+  const cliFakeSuccessOutput = await runProductionRunnerCli(
+    cliEnv({
+      SMS_DISPATCHER_PRODUCTION_RUNNER: 'true',
+      SMS_DISPATCHER_PRODUCTION_TARGET: SMS_DISPATCHER_PRODUCTION_RUNNER_TARGET,
+      SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: allowedRooferId,
+      SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE: '1',
+      SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'true',
+      SMS_DB_EXECUTOR_TARGET: SMS_DISPATCHER_DB_EXECUTOR_TARGET,
+      SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN: 'true'
+    }),
+    []
+  );
+  assert(cliFakeSuccessOutput.result.failedClosed === false, 'CLI fake mode can run with explicit gates');
+  assert(cliFakeSuccessOutput.mode === 'fake', 'CLI gated fake run stays in fake mode');
+  assert(cliFakeSuccessOutput.liveSupabaseRequested === false, 'CLI gated fake run does not request live Supabase');
+  assert(cliFakeSuccessOutput.result.applied === true, 'CLI gated fake run applies fake DB writes');
+  assert(cliFakeSuccessOutput.result.selectedPlanCount === 1, 'CLI gated fake run verifies output shape');
+  assert(cliFakeSuccessOutput.result.noSmsSent === true, 'CLI gated fake run reports no SMS sent');
+  assert(cliFakeSuccessOutput.result.noTwilioCallsMade === true, 'CLI gated fake run reports no Twilio calls');
+  assert(cliFakeSuccessOutput.result.routeAdded === false, 'CLI gated fake run reports no route added');
+  assert(cliFakeSuccessOutput.result.cronAdded === false, 'CLI gated fake run reports no cron added');
+
+  const cliLiveMissingFlagOutput = await runProductionRunnerCli(
+    cliEnv({
+      SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE: 'true',
+      SMS_DISPATCHER_PRODUCTION_RUNNER: 'true',
+      SMS_DISPATCHER_PRODUCTION_TARGET: SMS_DISPATCHER_PRODUCTION_RUNNER_TARGET,
+      SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: allowedRooferId,
+      SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'true',
+      SMS_DB_EXECUTOR_TARGET: SMS_DISPATCHER_DB_EXECUTOR_TARGET,
+      SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN: 'true'
+    }),
+    []
+  );
+  assert(cliLiveMissingFlagOutput.result.failedClosed === true, 'CLI live mode missing CLI flag exits failed closed');
+  assert(cliLiveMissingFlagOutput.mode === 'live_blocked', 'CLI live mode missing CLI flag is blocked');
+  assert(cliLiveMissingFlagOutput.result.reason === 'missing_live_supabase_cli_gate', 'CLI live mode missing CLI flag reports reason');
+  assert(cliLiveMissingFlagOutput.result.noSmsSent === true, 'CLI live mode missing CLI flag reports no SMS sent');
+  assert(cliLiveMissingFlagOutput.result.noTwilioCallsMade === true, 'CLI live mode missing CLI flag reports no Twilio calls');
+
+  const cliLiveMissingEnvGateOutput = await runProductionRunnerCli(
+    cliEnv({
+      SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE: 'true',
+      SMS_DISPATCHER_PRODUCTION_RUNNER: 'false',
+      SMS_DISPATCHER_PRODUCTION_TARGET: SMS_DISPATCHER_PRODUCTION_RUNNER_TARGET,
+      SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: allowedRooferId,
+      SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'true',
+      SMS_DB_EXECUTOR_TARGET: SMS_DISPATCHER_DB_EXECUTOR_TARGET,
+      SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN: 'true'
+    }),
+    ['--allow-live-supabase-production-runner', '--production-runner']
+  );
+  assert(cliLiveMissingEnvGateOutput.result.failedClosed === true, 'CLI live mode missing env gate exits failed closed');
+  assert(cliLiveMissingEnvGateOutput.mode === 'live_blocked', 'CLI live mode missing env gate is blocked');
+  assert(cliLiveMissingEnvGateOutput.result.reason === 'missing_live_supabase_env_gate', 'CLI live mode missing env gate reports reason');
+  assert(cliLiveMissingEnvGateOutput.result.noSmsSent === true, 'CLI live mode missing env gate reports no SMS sent');
+  assert(cliLiveMissingEnvGateOutput.result.noTwilioCallsMade === true, 'CLI live mode missing env gate reports no Twilio calls');
 
   console.log('PASS: SMS dispatcher production runner scaffold verification passed.');
   console.log('No live database writes performed.');

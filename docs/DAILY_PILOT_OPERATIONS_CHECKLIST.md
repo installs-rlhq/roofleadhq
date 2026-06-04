@@ -141,6 +141,8 @@ Gated live-write verifier status:
 - The gated manual runner DB test sent no SMS, made no Twilio calls, and did not enable any route, cron, scheduler, or production dispatcher.
 - `backend/src/services/sms-dispatcher-production-runner.service.ts` is a disabled production runner scaffold only. It has no SMS/Twilio send path, no route, no cron/scheduler, and no auto-start.
 - Do not invoke the production runner with DB write gates unless production runner env gates, DB executor env gates, allowed roofer UUIDs, and batch scope have been explicitly approved.
+- `backend/scripts/run-sms-dispatcher-production-runner.js` is an explicit CLI wrapper only. Default mode uses fake Supabase and fails closed unless gated.
+- Do not run the production runner CLI against live Supabase unless `SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE=true`, both live CLI flags, production runner gates, DB executor gates, allowed roofer UUIDs, and batch scope have all been explicitly approved.
 
 ## 7. Booked Inspections
 

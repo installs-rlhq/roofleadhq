@@ -24,6 +24,7 @@ No cron or live dispatcher execution was enabled.
 - `backend/scripts/verify-sms-dispatcher-production-runner.js`
 - `backend/scripts/run-sms-dispatcher-dry-run.js`
 - `backend/scripts/run-sms-dispatcher-manual-test-only.js`
+- `backend/scripts/run-sms-dispatcher-production-runner.js`
 - `backend/src/services/sms-dispatcher-write-plan.service.ts`
 - `backend/src/services/sms-dispatcher-mock-write-executor.service.ts`
 - `backend/src/services/sms-dispatcher-dry-run-executor.service.ts`
@@ -625,3 +626,62 @@ Safety confirmation:
 - No route, cron, scheduler, or production dispatcher auto-start was enabled.
 - The scaffold can apply DB writes only when explicitly invoked as a function with every production runner and DB executor gate present.
 - Production SMS sending still requires a separate Twilio send path, separate approval, and separate verification.
+
+## Disabled production dispatcher runner CLI wrapper added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `80258a6 feat(sms): add gated production dispatcher scaffold`
+
+Added:
+
+- `backend/scripts/run-sms-dispatcher-production-runner.js`
+
+Updated:
+
+- `backend/scripts/verify-sms-dispatcher-production-runner.js`
+
+Purpose:
+
+Add an explicit CLI wrapper for invoking the production runner scaffold later while keeping default behavior disabled and fail-closed.
+
+Default behavior:
+
+- Uses fake Supabase by default.
+- Fails closed without production runner gates.
+- Sends no SMS.
+- Makes no Twilio calls.
+- Adds no route.
+- Adds no cron or scheduler.
+- Does not auto-start from the backend app.
+
+Live Supabase mode requires all of:
+
+- `SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE=true`
+- `SMS_DISPATCHER_PRODUCTION_RUNNER=true`
+- `SMS_DISPATCHER_PRODUCTION_TARGET=sms_dispatcher_production_runner`
+- `SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS` with at least one comma-separated UUID
+- `SMS_DISPATCHER_DB_EXECUTOR_WRITE=true`
+- `SMS_DB_EXECUTOR_TARGET=sms_dispatcher_db_executor`
+- `SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN=true`
+- `--allow-live-supabase-production-runner`
+- `--production-runner`
+
+Verifier result:
+
+- Uses fake Supabase only.
+- Verifies CLI default fake mode fails closed.
+- Verifies explicitly gated fake mode returns the expected output shape and applies only fake DB writes.
+- Verifies live mode with missing CLI flags fails closed before live Supabase construction.
+- Verifies live mode with missing env gates fails closed before live Supabase construction.
+- Static checks verify the CLI wrapper has no SMS provider send call, no Twilio import/client usage, no route registration, no cron/scheduler activation, and no app auto-start.
+
+Safety confirmation:
+
+- No live database writes were run in this batch.
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher auto-start was enabled.
+- The CLI wrapper is only an explicit invocation path and remains blocked from live Supabase unless every live env and CLI gate is present.
