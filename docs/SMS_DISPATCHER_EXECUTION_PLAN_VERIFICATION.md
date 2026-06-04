@@ -22,6 +22,7 @@ No cron or live dispatcher execution was enabled.
 - `backend/scripts/verify-sms-dispatcher-db-write-executor.js`
 - `backend/scripts/verify-sms-dispatcher-manual-test-runner.js`
 - `backend/scripts/verify-sms-dispatcher-production-runner.js`
+- `backend/scripts/verify-sms-twilio-send-adapter.js`
 - `backend/scripts/prepare-sms-dispatcher-production-runner-live-test-readonly.js`
 - `backend/scripts/run-sms-dispatcher-dry-run.js`
 - `backend/scripts/run-sms-dispatcher-manual-test-only.js`
@@ -32,6 +33,7 @@ No cron or live dispatcher execution was enabled.
 - `backend/src/services/sms-dispatcher-db-write-executor.service.ts`
 - `backend/src/services/sms-dispatcher-manual-test-runner.service.ts`
 - `backend/src/services/sms-dispatcher-production-runner.service.ts`
+- `backend/src/services/sms-twilio-send-adapter.service.ts`
 - `backend/src/services/sms-duplicate-send-detector.service.ts`
 - `backend/src/services/sms-dispatcher-planner.service.ts`
 - `backend/src/services/sms-safety.service.ts`
@@ -861,3 +863,56 @@ Safety confirmation:
 - No SMS was sent.
 - No Twilio calls were made.
 - No route, cron, scheduler, or production dispatcher auto-start was enabled.
+
+## Disabled Twilio SMS send adapter scaffold added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `6806180 docs(sms): record production runner live db test`
+
+Added:
+
+- `backend/src/services/sms-twilio-send-adapter.service.ts`
+- `backend/scripts/verify-sms-twilio-send-adapter.js`
+
+Purpose:
+
+Add a disabled Twilio SMS send adapter scaffold for a future live SMS send path without wiring it into the production runner, app startup, routes, cron, scheduler, or any auto-start path.
+
+Future adapter contract:
+
+- `roofer_id`
+- `lead_id`
+- `to`
+- `from`
+- `body`
+- `provider_message_id`
+- `status`
+- `error`
+
+Future live send gates:
+
+- `SMS_TWILIO_SEND_ADAPTER=true`
+- `SMS_TWILIO_SEND_TARGET=sms_twilio_send_adapter`
+- `SMS_TWILIO_CONFIRM_SEND=true`
+
+Verifier result:
+
+- Uses fake verification only.
+- Default mode fails closed with `missing_send_gate`.
+- Missing required fields fail closed.
+- Fake mode returns the future adapter contract shape and a fake provider message id.
+- Non-fake mode without Twilio credentials fails closed before constructing a live Twilio client.
+- Static checks verify the adapter is not imported by the production runner.
+- Static checks verify the adapter is not imported or invoked by app startup, routes, scripts, cron-like code, or scheduler paths.
+- Static checks verify no route, cron, scheduler, or auto-start was added.
+
+Safety confirmation:
+
+- No live SMS was sent.
+- No live Twilio client was constructed during verification.
+- The adapter remains disabled by default.
+- The adapter is not wired into production runner execution.
+- No route, cron, scheduler, or auto-start was enabled.

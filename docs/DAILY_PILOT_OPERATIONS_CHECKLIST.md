@@ -105,6 +105,7 @@ node backend/scripts/verify-sms-dispatcher-dry-run-executor.js
 node backend/scripts/verify-sms-dispatcher-db-write-executor.js
 node backend/scripts/verify-sms-dispatcher-manual-test-runner.js
 node backend/scripts/verify-sms-dispatcher-production-runner.js
+node backend/scripts/verify-sms-twilio-send-adapter.js
 node backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js --static-only
 node backend/scripts/prepare-sms-dispatcher-production-runner-live-test-readonly.js --static-only
 node backend/scripts/verify-sms-test-roofer-enable-sms-live-test.js
@@ -124,6 +125,7 @@ Pass condition:
 - DB write executor verifier uses fake Supabase only and confirms live DB writes are gated off by default.
 - Manual test-only runner verifier uses fake Supabase only and confirms manual and DB executor gates are required.
 - Production runner verifier uses fake Supabase only and confirms production runner gates, DB executor gates, batch cap, and allowed roofer allowlist are required.
+- Twilio send adapter verifier uses fake verification only and confirms the adapter is disabled by default, sends no live SMS, constructs no live Twilio client, and is not imported by app, routes, cron, scheduler, or production runner paths.
 - Manual runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, or production dispatcher activation.
 - Production runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, scheduler, or production dispatcher auto-start.
 - Test roofer SMS enable verifier fails closed by default and confirms the only allowed gated update is `roofers.sms_confirmation_enabled=true` for the known test roofer.
@@ -151,6 +153,8 @@ Gated live-write verifier status:
 - Production runner live mode now requires `SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID` and `--approved-follow-up-id <uuid>` so DB execution can only target the reviewed follow-up candidate.
 - Gated production runner live DB test was verified on 2026-06-04 with run id `production-runner-live-prep-2026-06-04T20-44-57-941z`: approved follow-up `167bd260-5e06-45dd-b5b0-336915d5f5ac`, `applied=true`, `failedClosed=false`, message insert `7f49aee1-cb06-465e-9e57-2baa43c717d9`, follow-up update `167bd260-5e06-45dd-b5b0-336915d5f5ac`, workflow event insert `5975e5da-15e7-419e-9212-ff85876c1d51`.
 - The gated production runner live DB test sent no SMS, made no Twilio calls, added no route, added no cron/scheduler, enabled no auto-start, and confirmed the exact approved follow-up guard worked.
+- `backend/src/services/sms-twilio-send-adapter.service.ts` is a disabled Twilio send adapter scaffold only. It is not wired into the production runner, app startup, routes, cron, scheduler, or auto-start paths.
+- Do not run or wire the Twilio send adapter for live SMS unless `SMS_TWILIO_SEND_ADAPTER=true`, `SMS_TWILIO_SEND_TARGET=sms_twilio_send_adapter`, `SMS_TWILIO_CONFIRM_SEND=true`, Twilio credentials, message scope, and explicit live-send approval have all been reviewed.
 
 ## 7. Booked Inspections
 
