@@ -104,6 +104,7 @@ node backend/scripts/verify-sms-dispatcher-mock-write-executor.js
 node backend/scripts/verify-sms-dispatcher-dry-run-executor.js
 node backend/scripts/verify-sms-dispatcher-db-write-executor.js
 node backend/scripts/verify-sms-dispatcher-manual-test-runner.js
+node backend/scripts/verify-sms-dispatcher-production-runner.js
 node backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js --static-only
 node backend/scripts/verify-sms-test-roofer-enable-sms-live-test.js
 node backend/scripts/run-sms-dispatcher-dry-run.js
@@ -121,6 +122,7 @@ Pass condition:
 - Mock write execution is in-memory/test-only.
 - DB write executor verifier uses fake Supabase only and confirms live DB writes are gated off by default.
 - Manual test-only runner verifier uses fake Supabase only and confirms manual and DB executor gates are required.
+- Production runner verifier uses fake Supabase only and confirms production runner gates, DB executor gates, batch cap, and allowed roofer allowlist are required.
 - Manual runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, or production dispatcher activation.
 - Test roofer SMS enable verifier fails closed by default and confirms the only allowed gated update is `roofers.sms_confirmation_enabled=true` for the known test roofer.
 - No route, cron, or production dispatcher activation is present.
@@ -137,6 +139,8 @@ Gated live-write verifier status:
 - Do not rerun `backend/scripts/verify-sms-test-roofer-enable-sms-live-test.js` with live-write gates unless explicitly re-approving this test-only flag state.
 - Gated live manual test-only runner DB write was verified on 2026-06-04 with run id `manual-runner-live-prep-2026-06-04T20-19-31-541z`: action `send`, reason `eligible`, message insert `d4dce011-12fc-47d4-ba22-e0163384e2ac`, follow-up update `8747ca7c-acc8-4675-bbdc-c932dfdc96cb`, workflow event insert `84f71217-bf9b-4ebe-ae3f-1a847af476c6`, `applied=true`, `failedClosed=false`.
 - The gated manual runner DB test sent no SMS, made no Twilio calls, and did not enable any route, cron, scheduler, or production dispatcher.
+- `backend/src/services/sms-dispatcher-production-runner.service.ts` is a disabled production runner scaffold only. It has no SMS/Twilio send path, no route, no cron/scheduler, and no auto-start.
+- Do not invoke the production runner with DB write gates unless production runner env gates, DB executor env gates, allowed roofer UUIDs, and batch scope have been explicitly approved.
 
 ## 7. Booked Inspections
 

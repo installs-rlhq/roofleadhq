@@ -21,6 +21,7 @@ No cron or live dispatcher execution was enabled.
 - `backend/scripts/verify-sms-dispatcher-dry-run-executor.js`
 - `backend/scripts/verify-sms-dispatcher-db-write-executor.js`
 - `backend/scripts/verify-sms-dispatcher-manual-test-runner.js`
+- `backend/scripts/verify-sms-dispatcher-production-runner.js`
 - `backend/scripts/run-sms-dispatcher-dry-run.js`
 - `backend/scripts/run-sms-dispatcher-manual-test-only.js`
 - `backend/src/services/sms-dispatcher-write-plan.service.ts`
@@ -28,6 +29,7 @@ No cron or live dispatcher execution was enabled.
 - `backend/src/services/sms-dispatcher-dry-run-executor.service.ts`
 - `backend/src/services/sms-dispatcher-db-write-executor.service.ts`
 - `backend/src/services/sms-dispatcher-manual-test-runner.service.ts`
+- `backend/src/services/sms-dispatcher-production-runner.service.ts`
 - `backend/src/services/sms-duplicate-send-detector.service.ts`
 - `backend/src/services/sms-dispatcher-planner.service.ts`
 - `backend/src/services/sms-safety.service.ts`
@@ -45,6 +47,8 @@ The mock write executor validates proposed write sequencing in memory only. It a
 The DB write executor can apply approved write plans to Supabase only when both the write plan live gate and executor live DB gate are present. It remains disabled/fail-closed by default.
 
 The manual test-only runner wires dry-run planning to write-plan execution through the gated DB executor. It defaults to fake Supabase and requires explicit manual runner gates, DB executor gates, an approved roofer id, and a capped batch size.
+
+The production runner scaffold wires dry-run planning to the gated DB executor, but remains disabled by default. It requires explicit production runner gates, DB executor gates, a nonempty approved roofer UUID allowlist, and a capped batch size.
 
 Final result:
 
@@ -67,6 +71,7 @@ All inspected rows were skipped because roofer SMS is disabled.
 - Mock write execution is in-memory/test-only.
 - DB write execution remains disabled unless explicit live DB gates are present.
 - Manual test-only runner remains disabled unless explicit manual and DB executor gates are present.
+- Production runner scaffold remains disabled unless explicit production runner gates, DB executor gates, and allowed roofer ids are present.
 - The dry-run executor defaults to read-only dry-run mode.
 - `dryRun=false` is blocked by verifier coverage.
 - No cron or scheduler was enabled.
@@ -567,3 +572,56 @@ Safety confirmation:
 - No route, cron, scheduler, or production dispatcher was enabled.
 - This verified only the explicit gated manual test-only runner DB write path.
 - Production SMS dispatcher activation still requires separate approval.
+
+## Disabled/gated production dispatcher runner scaffold added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `54a315d docs(sms): record manual runner live db test`
+
+Added:
+
+- `backend/src/services/sms-dispatcher-production-runner.service.ts`
+- `backend/scripts/verify-sms-dispatcher-production-runner.js`
+
+Purpose:
+
+Add a disabled-by-default production-safe SMS dispatcher runner scaffold that can reuse the dry-run executor and gated DB write executor without adding SMS sending, Twilio, route registration, cron/scheduler activation, or application auto-start.
+
+Production runner gates required:
+
+- `SMS_DISPATCHER_PRODUCTION_RUNNER=true`
+- `SMS_DISPATCHER_PRODUCTION_TARGET=sms_dispatcher_production_runner`
+- `SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS` with at least one comma-separated UUID
+- `SMS_DISPATCHER_DB_EXECUTOR_WRITE=true`
+- `SMS_DB_EXECUTOR_TARGET=sms_dispatcher_db_executor`
+- `SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN=true`
+
+Batch behavior:
+
+- `SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE` is supported.
+- Default batch size is `1`.
+- Batch size is capped at `10`.
+- Invalid batch sizes fail closed.
+
+Verifier result:
+
+- Uses fake Supabase only.
+- Default mode fails closed before any Supabase call.
+- Missing allowlist fails closed before any Supabase call.
+- Wrong production runner target fails closed before any Supabase call.
+- Missing DB executor gates fail closed and write nothing.
+- Batch cap was verified at `10`.
+- Allowed roofer filtering was verified with mixed allowed/disallowed fake follow-ups.
+- Static checks verified no SMS provider send call, no Twilio import/client usage, no route registration, no cron/scheduler activation, and no app/script auto-start outside the verifier.
+
+Safety confirmation:
+
+- No live database writes were run in this batch.
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher auto-start was enabled.
+- The scaffold can apply DB writes only when explicitly invoked as a function with every production runner and DB executor gate present.
+- Production SMS sending still requires a separate Twilio send path, separate approval, and separate verification.
