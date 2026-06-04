@@ -149,6 +149,8 @@ Gated live-write verifier status:
 - Do not run the printed production runner live command without explicit approval and a fresh review of the selected candidate, allowed roofer allowlist, duplicate scope, and batch size.
 - Approved production runner live test attempt `production-runner-live-prep-2026-06-04T20-44-57-941z` failed closed safely after selecting different follow-up `3c83aef7-3838-4173-9ee6-b76453bec1e9` with `duplicate_message_found`; no writes, SMS, or Twilio calls happened.
 - Production runner live mode now requires `SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID` and `--approved-follow-up-id <uuid>` so DB execution can only target the reviewed follow-up candidate.
+- Gated production runner live DB test was verified on 2026-06-04 with run id `production-runner-live-prep-2026-06-04T20-44-57-941z`: approved follow-up `167bd260-5e06-45dd-b5b0-336915d5f5ac`, `applied=true`, `failedClosed=false`, message insert `7f49aee1-cb06-465e-9e57-2baa43c717d9`, follow-up update `167bd260-5e06-45dd-b5b0-336915d5f5ac`, workflow event insert `5975e5da-15e7-419e-9212-ff85876c1d51`.
+- The gated production runner live DB test sent no SMS, made no Twilio calls, added no route, added no cron/scheduler, enabled no auto-start, and confirmed the exact approved follow-up guard worked.
 
 ## 7. Booked Inspections
 

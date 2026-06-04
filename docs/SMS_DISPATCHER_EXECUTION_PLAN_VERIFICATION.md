@@ -802,6 +802,42 @@ Failed-closed live runner result:
 - No Twilio calls were made.
 - No route, cron, scheduler, or production dispatcher auto-start was enabled.
 
+## Gated production runner live DB test verified
+
+Date: 2026-06-04
+
+Latest verified commit before this live test:
+
+- `44883c5 fix(sms): require approved production followup`
+
+Verified gated run:
+
+- Mode: `live`
+- Run ID: `production-runner-live-prep-2026-06-04T20-44-57-941z`
+- Roofer ID: `be7efc94-bd68-43af-81b2-dc7b869b42df`
+- Approved follow-up ID: `167bd260-5e06-45dd-b5b0-336915d5f5ac`
+- Result `applied`: `true`
+- `failedClosed`: `false`
+- Reason: `applied`
+- `dryRunPlanCount`: `50`
+- `selectedPlanCount`: `1`
+
+DB operation ids:
+
+- Message insert ID: `7f49aee1-cb06-465e-9e57-2baa43c717d9`
+- Follow-up update ID: `167bd260-5e06-45dd-b5b0-336915d5f5ac`
+- Workflow event insert ID: `5975e5da-15e7-419e-9212-ff85876c1d51`
+
+Safety confirmation:
+
+- No SMS was sent.
+- No Twilio calls were made.
+- No route was added.
+- No cron was added.
+- No scheduler was added.
+- No production dispatcher auto-start was enabled.
+- The exact approved follow-up guard worked and selected only the reviewed follow-up.
+
 Fix added:
 
 - New env gate: `SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID`
