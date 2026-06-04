@@ -97,6 +97,7 @@ node backend/scripts/verify-sms-schema-readiness-readonly.js
 node backend/scripts/verify-sms-safety-service.js
 node backend/scripts/verify-sms-optout-workflow.js
 node backend/scripts/verify-sms-dispatcher-planner.js
+node backend/scripts/verify-sms-send-intent-planner.js
 node backend/scripts/verify-sms-dispatcher-data-shape-readonly.js
 node backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js
 node backend/scripts/verify-sms-dispatcher-write-plan.js
@@ -126,6 +127,7 @@ Pass condition:
 - Manual test-only runner verifier uses fake Supabase only and confirms manual and DB executor gates are required.
 - Production runner verifier uses fake Supabase only and confirms production runner gates, DB executor gates, batch cap, and allowed roofer allowlist are required.
 - Twilio send adapter verifier uses fake verification only and confirms the adapter is disabled by default, sends no live SMS, constructs no live Twilio client, and is not imported by app, routes, cron, scheduler, or production runner paths.
+- Send-intent planner verifier uses fake verification only and confirms the planner fail-closes, requires exact approved follow-up matching, and makes no SMS or Twilio calls.
 - Manual runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, or production dispatcher activation.
 - Production runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, scheduler, or production dispatcher auto-start.
 - Test roofer SMS enable verifier fails closed by default and confirms the only allowed gated update is `roofers.sms_confirmation_enabled=true` for the known test roofer.
@@ -154,6 +156,7 @@ Gated live-write verifier status:
 - Gated production runner live DB test was verified on 2026-06-04 with run id `production-runner-live-prep-2026-06-04T20-44-57-941z`: approved follow-up `167bd260-5e06-45dd-b5b0-336915d5f5ac`, `applied=true`, `failedClosed=false`, message insert `7f49aee1-cb06-465e-9e57-2baa43c717d9`, follow-up update `167bd260-5e06-45dd-b5b0-336915d5f5ac`, workflow event insert `5975e5da-15e7-419e-9212-ff85876c1d51`.
 - The gated production runner live DB test sent no SMS, made no Twilio calls, added no route, added no cron/scheduler, enabled no auto-start, and confirmed the exact approved follow-up guard worked.
 - `backend/src/services/sms-twilio-send-adapter.service.ts` is a disabled Twilio send adapter scaffold only. It is not wired into the production runner, app startup, routes, cron, scheduler, or auto-start paths.
+- `backend/src/services/sms-send-intent-planner.service.ts` is a read-only future Twilio send-intent planner only. It does not send SMS, call Twilio, or write the database.
 - Do not run or wire the Twilio send adapter for live SMS unless `SMS_TWILIO_SEND_ADAPTER=true`, `SMS_TWILIO_SEND_TARGET=sms_twilio_send_adapter`, `SMS_TWILIO_CONFIRM_SEND=true`, Twilio credentials, message scope, and explicit live-send approval have all been reviewed.
 
 ## 7. Booked Inspections

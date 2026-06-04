@@ -18,6 +18,7 @@ No cron or live scheduler is enabled.
 - SMS schema readiness read-only verification passes.
 - SMS safety service verification passes.
 - SMS dispatcher planner verification passes.
+- SMS send intent planner verification passes.
 - SMS dispatcher data shape read-only verification passes.
 - PostgreSQL CHECK constraints support planning/test-only SMS safety work.
 - Existing roofers have SMS disabled.
@@ -121,6 +122,7 @@ The next safe implementation, if approved later, should be a verifier script tha
 Recommended file:
 
 - `backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js`
+- `backend/scripts/verify-sms-send-intent-planner.js`
 
 ## Future Write-Enabled Milestones
 
