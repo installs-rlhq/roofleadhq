@@ -104,6 +104,7 @@ node backend/scripts/verify-sms-dispatcher-mock-write-executor.js
 node backend/scripts/verify-sms-dispatcher-dry-run-executor.js
 node backend/scripts/verify-sms-dispatcher-db-write-executor.js
 node backend/scripts/verify-sms-dispatcher-manual-test-runner.js
+node backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js --static-only
 node backend/scripts/run-sms-dispatcher-dry-run.js
 ```
 
@@ -119,6 +120,7 @@ Pass condition:
 - Mock write execution is in-memory/test-only.
 - DB write executor verifier uses fake Supabase only and confirms live DB writes are gated off by default.
 - Manual test-only runner verifier uses fake Supabase only and confirms manual and DB executor gates are required.
+- Manual runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, or production dispatcher activation.
 - No route, cron, or production dispatcher activation is present.
 
 Gated live-write verifier status:
@@ -128,6 +130,7 @@ Gated live-write verifier status:
 - Duplicate rerun failed closed with `duplicate_test_message_found`.
 - Do not rerun the gated live-write verifier without explicit approval and fresh reviewed candidate IDs.
 - Do not run `backend/scripts/run-sms-dispatcher-manual-test-only.js` against live Supabase without explicit approval, reviewed candidate scope, approved roofer id, and all manual runner plus DB executor gates.
+- `backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js` is read-only prep only; its printed live runner command is not approved by default.
 
 ## 7. Booked Inspections
 

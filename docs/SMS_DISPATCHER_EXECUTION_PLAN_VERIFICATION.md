@@ -358,3 +358,83 @@ Safety confirmation:
 - The verifier uses fake Supabase only.
 - The CLI runner uses fake Supabase unless explicit live Supabase flags and environment gates are provided.
 - Production SMS dispatcher activation still requires separate approval.
+
+## Manual runner live test read-only prep added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `ae1dbb6 feat(sms): add manual test-only dispatcher runner`
+
+Added:
+
+- `backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js`
+
+Purpose:
+
+Prepare a future manual test-only dispatcher runner live DB test by selecting exactly one deterministic safe real Supabase candidate without writing anything.
+
+Candidate requirements:
+
+- Roofer id must be the current verified test roofer: `be7efc94-bd68-43af-81b2-dc7b869b42df`.
+- `follow_ups.status` must be `scheduled`.
+- `follow_ups.scheduled_for` must be due.
+- `follow_ups.sent_at`, `skipped_reason`, and `stopped_reason` must be null.
+- Related lead must match the follow-up and test roofer.
+- Lead phone must be E.164-shaped.
+- Lead status must not be `opted_out`, `booked`, `cancelled`, or `lost`.
+- Related roofer must match the known test roofer.
+- Follow-up type must map to an approved dispatcher template type.
+- Message body must be present so duplicate scope can be checked.
+- Safe candidates are ordered by `scheduled_for` ascending.
+- Safe candidates are then ordered by `created_at` ascending when available.
+- Safe candidates are finally ordered by `id` ascending as a deterministic tie-breaker.
+- The script fails closed unless it can select exactly one deterministic candidate.
+
+Duplicate checks:
+
+- No existing outbound SMS `messages` row may match the same roofer, lead, and message body.
+- No existing `messages.provider_message_id` may match the suggested provider test id.
+
+Read-only prep result:
+
+- Selected follow-up id: `8747ca7c-acc8-4675-bbdc-c932dfdc96cb`
+- Selected lead id: `45532f48-0ac9-4dde-bb8e-b8cb2b2761f5`
+- Suggested run id: `manual-runner-live-prep-2026-06-04T20-06-55-846z`
+- Duplicate body count: `0`
+- Duplicate provider test id count: `0`
+
+Future command printed by prep script:
+
+```bash
+export SMS_MANUAL_TEST_USE_LIVE_SUPABASE=true
+export SMS_MANUAL_TEST_ONLY=true
+export SMS_MANUAL_TEST_RUNNER=true
+export SMS_MANUAL_TEST_TARGET=sms_dispatcher_manual_test_runner
+export SMS_MANUAL_TEST_ROOFER_ID=be7efc94-bd68-43af-81b2-dc7b869b42df
+export SMS_MANUAL_TEST_RUN_ID=manual-runner-live-prep-2026-06-04T20-06-55-846z
+export SMS_MANUAL_TEST_MAX_BATCH_SIZE=1
+export SMS_DISPATCHER_DB_EXECUTOR_WRITE=true
+export SMS_DB_EXECUTOR_TARGET=sms_dispatcher_db_executor
+export SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN=true
+
+node backend/scripts/run-sms-dispatcher-manual-test-only.js \
+  --test-only \
+  --allow-live-supabase-manual-test \
+  --approved-roofer-id be7efc94-bd68-43af-81b2-dc7b869b42df \
+  --max-batch-size 1
+```
+
+Do not run the future command until explicit live-write approval is given.
+
+Safety confirmation:
+
+- No inserts were performed.
+- No updates were performed.
+- No upserts were performed.
+- No deletes were performed.
+- No live DB writes were run.
+- No SMS was sent.
+- No Twilio import or call was made.
+- No route, cron, scheduler, or production dispatcher was enabled.
