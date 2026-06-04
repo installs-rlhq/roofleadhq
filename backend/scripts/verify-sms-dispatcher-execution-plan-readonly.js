@@ -10,8 +10,10 @@ require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 const repoRoot = path.join(__dirname, '..', '..');
 const serviceTs = path.join(repoRoot, 'backend/src/services/sms-dispatcher-planner.service.ts');
 const safetyTs = path.join(repoRoot, 'backend/src/services/sms-safety.service.ts');
+const duplicateDetectorTs = path.join(repoRoot, 'backend/src/services/sms-duplicate-send-detector.service.ts');
 const compiledPlannerJs = '/tmp/sms-dispatcher-planner.execution-readonly.js';
 const compiledSafetyJs = '/tmp/sms-safety.execution-readonly.js';
+const compiledDuplicateDetectorJs = '/tmp/sms-duplicate-send-detector.execution-readonly.js';
 
 console.log('=== RoofLeadHQ SMS Dispatcher Execution Plan Read-Only Verification ===');
 console.log('No writes are performed.');
@@ -37,6 +39,7 @@ function compile(sourcePath, outputPath) {
 }
 
 compile(safetyTs, compiledSafetyJs);
+compile(duplicateDetectorTs, compiledDuplicateDetectorJs);
 compile(serviceTs, compiledPlannerJs);
 
 const Module = require('module');
@@ -46,83 +49,20 @@ Module._load = function patchedLoad(request, parent, isMain) {
   if (request === './sms-safety.service') {
     return require(compiledSafetyJs);
   }
+  if (request === './sms-duplicate-send-detector.service') {
+    return require(compiledDuplicateDetectorJs);
+  }
 
   return originalLoad(request, parent, isMain);
 };
 
 const { planSmsDispatch } = require(compiledPlannerJs);
+const { detectDuplicateSmsSend } = require(compiledDuplicateDetectorJs);
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
-
-async function detectDuplicateSend(supabaseClient, followUp) {
-  const followUpId = followUp?.id;
-
-  if (!followUpId || !followUp?.roofer_id || !followUp?.lead_id) {
-    return {
-      duplicateSendExists: true,
-      lookupError: 'missing follow-up duplicate lookup fields',
-      lookupSource: 'missing_required_field'
-    };
-  }
-
-  const { data: workflowEvents, error: workflowEventError } = await supabaseClient
-    .from('workflow_events')
-    .select('id')
-    .eq('roofer_id', followUp.roofer_id)
-    .eq('lead_id', followUp.lead_id)
-    .contains('metadata', { follow_up_id: followUpId })
-    .or('event_type.ilike.%sms%,event_source.ilike.%sms%,description.ilike.%sms%')
-    .limit(1);
-
-  if (workflowEventError) {
-    return {
-      duplicateSendExists: true,
-      lookupError: workflowEventError.message,
-      lookupSource: 'workflow_events'
-    };
-  }
-
-  if (workflowEvents.length > 0) {
-    return {
-      duplicateSendExists: true,
-      lookupSource: 'workflow_events.metadata.follow_up_id'
-    };
-  }
-
-  let messageQuery = supabaseClient
-    .from('messages')
-    .select('id')
-    .eq('roofer_id', followUp.roofer_id)
-    .eq('lead_id', followUp.lead_id)
-    .eq('channel', 'sms')
-    .eq('direction', 'outbound')
-    .not('sent_at', 'is', null)
-    .limit(1);
-
-  if (followUp.message_body) {
-    messageQuery = messageQuery.eq('message_body', followUp.message_body);
-  }
-
-  const { data: messages, error: messageError } = await messageQuery;
-
-  if (messageError) {
-    return {
-      duplicateSendExists: true,
-      lookupError: messageError.message,
-      lookupSource: 'messages'
-    };
-  }
-
-  return {
-    duplicateSendExists: messages.length > 0,
-    lookupSource: followUp.message_body
-      ? 'messages.roofer_id.lead_id.message_body.sent_at'
-      : 'messages.roofer_id.lead_id.sent_at'
-  };
-}
 
 (async () => {
   const now = new Date().toISOString();
@@ -172,7 +112,7 @@ async function detectDuplicateSend(supabaseClient, followUp) {
       continue;
     }
 
-    const duplicateLookup = await detectDuplicateSend(supabase, row);
+    const duplicateLookup = await detectDuplicateSmsSend(supabase, row);
 
     const plan = planSmsDispatch({
       followUp: {

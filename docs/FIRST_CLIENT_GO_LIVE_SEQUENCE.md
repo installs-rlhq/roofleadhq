@@ -146,6 +146,8 @@ node backend/scripts/verify-sms-optout-workflow.js
 node backend/scripts/verify-sms-dispatcher-planner.js
 node backend/scripts/verify-sms-dispatcher-data-shape-readonly.js
 node backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js
+node backend/scripts/verify-sms-dispatcher-dry-run-executor.js
+node backend/scripts/run-sms-dispatcher-dry-run.js
 
 Pass condition:
 
@@ -154,6 +156,7 @@ Pass condition:
 - No writes are performed.
 - No SMS is sent.
 - No Twilio calls are made.
+- The dry-run executor returns plan results only.
 
 ## Step 12: Use Go-Live Decision Checklist
 
