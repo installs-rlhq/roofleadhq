@@ -33,9 +33,9 @@ function getArgValue(flag) {
   return process.argv[index + 1] || null;
 }
 
-function buildPayload(runId) {
+function buildPayload(runId, rooferId) {
   return {
-    roofer_id: null,
+    roofer_id: rooferId,
     lead_id: null,
     event_type: EVENT_TYPE,
     event_source: EVENT_SOURCE,
@@ -45,6 +45,7 @@ function buildPayload(runId) {
       test_only: true,
       live_test: true,
       run_id: runId,
+      roofer_id: rooferId,
       verifier: VERIFIER,
       writes_allowed: [WORKFLOW_EVENTS_TABLE],
       messages_written: false,
@@ -58,7 +59,10 @@ function buildPayload(runId) {
 function gateStatus(env = process.env, argv = process.argv) {
   const cliRunIdIndex = argv.indexOf('--run-id');
   const cliRunId = cliRunIdIndex === -1 ? null : argv[cliRunIdIndex + 1] || null;
+  const cliRooferIdIndex = argv.indexOf('--roofer-id');
+  const cliRooferId = cliRooferIdIndex === -1 ? null : argv[cliRooferIdIndex + 1] || null;
   const envRunId = env.SMS_LIVE_TEST_RUN_ID || null;
+  const envRooferId = env.SMS_LIVE_TEST_ROOFER_ID || null;
   const checks = [
     {
       name: 'SMS_WORKFLOW_EVENTS_LIVE_TEST_WRITE=true',
@@ -71,6 +75,10 @@ function gateStatus(env = process.env, argv = process.argv) {
     {
       name: 'SMS_LIVE_TEST_RUN_ID present',
       passed: Boolean(envRunId)
+    },
+    {
+      name: 'SMS_LIVE_TEST_ROOFER_ID present',
+      passed: Boolean(envRooferId)
     },
     {
       name: '--allow-live-supabase-write',
@@ -87,6 +95,10 @@ function gateStatus(env = process.env, argv = process.argv) {
     {
       name: '--run-id matches SMS_LIVE_TEST_RUN_ID',
       passed: Boolean(cliRunId && envRunId && cliRunId === envRunId)
+    },
+    {
+      name: '--roofer-id matches SMS_LIVE_TEST_ROOFER_ID',
+      passed: Boolean(cliRooferId && envRooferId && cliRooferId === envRooferId)
     }
   ];
 
@@ -94,7 +106,9 @@ function gateStatus(env = process.env, argv = process.argv) {
     allPassed: checks.every((check) => check.passed),
     checks,
     runId: envRunId,
-    cliRunId
+    cliRunId,
+    rooferId: envRooferId,
+    cliRooferId
   };
 }
 
@@ -163,7 +177,11 @@ async function findExistingAuditRows(supabase, runId) {
     .limit(2);
 }
 
-async function performWorkflowEventLiveTestWrite(supabase, runId) {
+async function performWorkflowEventLiveTestWrite(supabase, runId, rooferId) {
+  if (!rooferId) {
+    return { applied: false, failedClosed: true, reason: 'missing_test_roofer_id' };
+  }
+
   const existing = await findExistingAuditRows(supabase, runId);
 
   if (existing.error) {
@@ -174,7 +192,7 @@ async function performWorkflowEventLiveTestWrite(supabase, runId) {
     return { applied: false, failedClosed: true, reason: 'duplicate_test_audit_row_found' };
   }
 
-  const payload = buildPayload(runId);
+  const payload = buildPayload(runId, rooferId);
   const inserted = await supabase.from(WORKFLOW_EVENTS_TABLE).insert(payload);
 
   if (inserted.error) {
@@ -197,6 +215,8 @@ async function performWorkflowEventLiveTestWrite(supabase, runId) {
 
   if (
     metadata.test_only !== true ||
+    rows[0].roofer_id !== rooferId ||
+    metadata.roofer_id !== rooferId ||
     metadata.messages_written !== false ||
     metadata.follow_ups_updated !== false ||
     metadata.sms_sent !== false ||
@@ -245,25 +265,8 @@ async function runSafeVerification() {
   assert(closed.checks.some((check) => !check.passed), 'default run has missing gates');
 
   const envRunId = 'safe-run-id';
-  const mismatch = gateStatus(
-    {
-      SMS_WORKFLOW_EVENTS_LIVE_TEST_WRITE: 'true',
-      SMS_LIVE_WRITE_TARGET: WORKFLOW_EVENTS_TABLE,
-      SMS_LIVE_TEST_RUN_ID: envRunId
-    },
-    [
-      'node',
-      scriptPath,
-      '--allow-live-supabase-write',
-      '--workflow-events-only',
-      '--test-only',
-      '--run-id',
-      'different-run-id'
-    ]
-  );
-  assert(mismatch.allPassed === false, 'run-id mismatch fails closed');
-
-  const open = gateStatus(
+  const envRooferId = 'be7efc94-bd68-43af-81b2-dc7b869b42df';
+  const missingRoofer = gateStatus(
     {
       SMS_WORKFLOW_EVENTS_LIVE_TEST_WRITE: 'true',
       SMS_LIVE_WRITE_TARGET: WORKFLOW_EVENTS_TABLE,
@@ -279,22 +282,91 @@ async function runSafeVerification() {
       envRunId
     ]
   );
+  assert(missingRoofer.allPassed === false, 'missing roofer id fails closed');
+
+  const mismatch = gateStatus(
+    {
+      SMS_WORKFLOW_EVENTS_LIVE_TEST_WRITE: 'true',
+      SMS_LIVE_WRITE_TARGET: WORKFLOW_EVENTS_TABLE,
+      SMS_LIVE_TEST_RUN_ID: envRunId,
+      SMS_LIVE_TEST_ROOFER_ID: envRooferId
+    },
+    [
+      'node',
+      scriptPath,
+      '--allow-live-supabase-write',
+      '--workflow-events-only',
+      '--test-only',
+      '--run-id',
+      'different-run-id',
+      '--roofer-id',
+      envRooferId
+    ]
+  );
+  assert(mismatch.allPassed === false, 'run-id mismatch fails closed');
+
+  const rooferMismatch = gateStatus(
+    {
+      SMS_WORKFLOW_EVENTS_LIVE_TEST_WRITE: 'true',
+      SMS_LIVE_WRITE_TARGET: WORKFLOW_EVENTS_TABLE,
+      SMS_LIVE_TEST_RUN_ID: envRunId,
+      SMS_LIVE_TEST_ROOFER_ID: envRooferId
+    },
+    [
+      'node',
+      scriptPath,
+      '--allow-live-supabase-write',
+      '--workflow-events-only',
+      '--test-only',
+      '--run-id',
+      envRunId,
+      '--roofer-id',
+      'different-roofer-id'
+    ]
+  );
+  assert(rooferMismatch.allPassed === false, 'roofer-id mismatch fails closed');
+
+  const open = gateStatus(
+    {
+      SMS_WORKFLOW_EVENTS_LIVE_TEST_WRITE: 'true',
+      SMS_LIVE_WRITE_TARGET: WORKFLOW_EVENTS_TABLE,
+      SMS_LIVE_TEST_RUN_ID: envRunId,
+      SMS_LIVE_TEST_ROOFER_ID: envRooferId
+    },
+    [
+      'node',
+      scriptPath,
+      '--allow-live-supabase-write',
+      '--workflow-events-only',
+      '--test-only',
+      '--run-id',
+      envRunId,
+      '--roofer-id',
+      envRooferId
+    ]
+  );
   assert(open.allPassed === true, 'all explicit gates can be satisfied');
 
-  const duplicateFake = createFakeSupabase([{ id: 'existing-1', ...buildPayload(envRunId) }]);
-  const duplicateResult = await performWorkflowEventLiveTestWrite(duplicateFake.client, envRunId);
+  const missingRooferResult = await performWorkflowEventLiveTestWrite(createFakeSupabase().client, envRunId, null);
+  assert(missingRooferResult.failedClosed === true, 'write path missing roofer id fails closed');
+  assert(missingRooferResult.reason === 'missing_test_roofer_id', 'write path missing roofer id returns missing_test_roofer_id');
+
+  const duplicateFake = createFakeSupabase([{ id: 'existing-1', ...buildPayload(envRunId, envRooferId) }]);
+  const duplicateResult = await performWorkflowEventLiveTestWrite(duplicateFake.client, envRunId, envRooferId);
   assert(duplicateResult.failedClosed === true, 'duplicate test audit row fails closed');
   assert(duplicateResult.reason === 'duplicate_test_audit_row_found', 'duplicate row prevents insert');
   assert(duplicateFake.calls.every((call) => call.method !== 'insert'), 'duplicate path performs no insert');
 
   const fake = createFakeSupabase();
-  const fakeResult = await performWorkflowEventLiveTestWrite(fake.client, envRunId);
+  const fakeResult = await performWorkflowEventLiveTestWrite(fake.client, envRunId, envRooferId);
   assert(fakeResult.applied === true, 'valid gated path applies to fake Supabase');
   assert(fakeResult.failedClosed === false, 'valid gated fake path does not fail closed');
   assert(fake.calls.filter((call) => call.method === 'insert').length === 1, 'fake path performs one workflow_events insert');
   assert(fake.calls.every((call) => call.table === WORKFLOW_EVENTS_TABLE), 'fake path only targets workflow_events');
   assert(fake.rows.length === 1, 'fake path records one test audit row');
+  assert(fake.rows[0].roofer_id === envRooferId, 'fake inserted row has test roofer_id');
   assert(fake.rows[0].metadata.test_only === true, 'fake inserted row is test-only');
+  assert(fake.rows[0].metadata.roofer_id === envRooferId, 'fake inserted metadata has test roofer_id');
   assert(fake.rows[0].metadata.messages_written === false, 'fake inserted row records no messages written');
   assert(fake.rows[0].metadata.follow_ups_updated === false, 'fake inserted row records no follow_ups updated');
   assert(fake.rows[0].metadata.sms_sent === false, 'fake inserted row records no SMS sent');
@@ -324,6 +396,7 @@ async function runLiveWriteIfGated() {
   runStaticSafetyChecks();
 
   const runId = getArgValue('--run-id');
+  const rooferId = getArgValue('--roofer-id');
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
 
@@ -334,7 +407,7 @@ async function runLiveWriteIfGated() {
 
   const { createClient } = require('@supabase/supabase-js');
   const supabase = createClient(supabaseUrl, supabaseKey);
-  const result = await performWorkflowEventLiveTestWrite(supabase, runId);
+  const result = await performWorkflowEventLiveTestWrite(supabase, runId, rooferId);
 
   if (!result.applied) {
     console.error(`FAIL: live workflow_events test write failed closed: ${result.reason}`);
