@@ -100,6 +100,7 @@ node backend/scripts/verify-sms-dispatcher-planner.js
 node backend/scripts/verify-sms-dispatcher-data-shape-readonly.js
 node backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js
 node backend/scripts/verify-sms-dispatcher-write-plan.js
+node backend/scripts/verify-sms-dispatcher-mock-write-executor.js
 node backend/scripts/verify-sms-dispatcher-dry-run-executor.js
 node backend/scripts/run-sms-dispatcher-dry-run.js
 ```
@@ -113,6 +114,7 @@ Pass condition:
 - No Twilio calls are made.
 - The dry-run executor returns plan results only.
 - Proposed write plans require a live write gate.
+- Mock write execution is in-memory/test-only.
 
 ## 7. Booked Inspections
 

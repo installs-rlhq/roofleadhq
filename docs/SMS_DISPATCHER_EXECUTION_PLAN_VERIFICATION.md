@@ -17,9 +17,11 @@ No cron or live dispatcher execution was enabled.
 
 - `backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js`
 - `backend/scripts/verify-sms-dispatcher-write-plan.js`
+- `backend/scripts/verify-sms-dispatcher-mock-write-executor.js`
 - `backend/scripts/verify-sms-dispatcher-dry-run-executor.js`
 - `backend/scripts/run-sms-dispatcher-dry-run.js`
 - `backend/src/services/sms-dispatcher-write-plan.service.ts`
+- `backend/src/services/sms-dispatcher-mock-write-executor.service.ts`
 - `backend/src/services/sms-dispatcher-dry-run-executor.service.ts`
 - `backend/src/services/sms-duplicate-send-detector.service.ts`
 - `backend/src/services/sms-dispatcher-planner.service.ts`
@@ -32,6 +34,8 @@ The read-only verifier inspected due scheduled follow-ups, built dispatcher plan
 The dry-run executor scaffold returns plan results only. It uses the SMS safety service, dispatcher planner, and duplicate-send detector, but it does not write follow-ups, insert messages, insert workflow events, send SMS, or call Twilio.
 
 The write-plan scaffold returns proposed `messages`, `follow_ups`, and `workflow_events` payloads only. Every write plan includes `requiresLiveWriteGate: true`.
+
+The mock write executor validates proposed write sequencing in memory only. It accepts write-plan objects and does not accept Supabase clients.
 
 Final result:
 
@@ -51,6 +55,7 @@ All inspected rows were skipped because roofer SMS is disabled.
 - No messages were inserted.
 - No workflow events were inserted.
 - Write plans are proposed payloads only.
+- Mock write execution is in-memory/test-only.
 - The dry-run executor defaults to read-only dry-run mode.
 - `dryRun=false` is blocked by verifier coverage.
 - No cron or scheduler was enabled.
