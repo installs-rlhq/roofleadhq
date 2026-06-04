@@ -102,6 +102,7 @@ node backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js
 node backend/scripts/verify-sms-dispatcher-write-plan.js
 node backend/scripts/verify-sms-dispatcher-mock-write-executor.js
 node backend/scripts/verify-sms-dispatcher-dry-run-executor.js
+node backend/scripts/verify-sms-dispatcher-db-write-executor.js
 node backend/scripts/run-sms-dispatcher-dry-run.js
 ```
 
@@ -115,6 +116,7 @@ Pass condition:
 - The dry-run executor returns plan results only.
 - Proposed write plans require a live write gate.
 - Mock write execution is in-memory/test-only.
+- DB write executor verifier uses fake Supabase only and confirms live DB writes are gated off by default.
 - No route, cron, or production dispatcher activation is present.
 
 Gated live-write verifier status:

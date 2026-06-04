@@ -19,10 +19,12 @@ No cron or live dispatcher execution was enabled.
 - `backend/scripts/verify-sms-dispatcher-write-plan.js`
 - `backend/scripts/verify-sms-dispatcher-mock-write-executor.js`
 - `backend/scripts/verify-sms-dispatcher-dry-run-executor.js`
+- `backend/scripts/verify-sms-dispatcher-db-write-executor.js`
 - `backend/scripts/run-sms-dispatcher-dry-run.js`
 - `backend/src/services/sms-dispatcher-write-plan.service.ts`
 - `backend/src/services/sms-dispatcher-mock-write-executor.service.ts`
 - `backend/src/services/sms-dispatcher-dry-run-executor.service.ts`
+- `backend/src/services/sms-dispatcher-db-write-executor.service.ts`
 - `backend/src/services/sms-duplicate-send-detector.service.ts`
 - `backend/src/services/sms-dispatcher-planner.service.ts`
 - `backend/src/services/sms-safety.service.ts`
@@ -36,6 +38,8 @@ The dry-run executor scaffold returns plan results only. It uses the SMS safety 
 The write-plan scaffold returns proposed `messages`, `follow_ups`, and `workflow_events` payloads only. Every write plan includes `requiresLiveWriteGate: true`.
 
 The mock write executor validates proposed write sequencing in memory only. It accepts write-plan objects and does not accept Supabase clients.
+
+The DB write executor can apply approved write plans to Supabase only when both the write plan live gate and executor live DB gate are present. It remains disabled/fail-closed by default.
 
 Final result:
 
@@ -56,6 +60,7 @@ All inspected rows were skipped because roofer SMS is disabled.
 - No workflow events were inserted.
 - Write plans are proposed payloads only.
 - Mock write execution is in-memory/test-only.
+- DB write execution remains disabled unless explicit live DB gates are present.
 - The dry-run executor defaults to read-only dry-run mode.
 - `dryRun=false` is blocked by verifier coverage.
 - No cron or scheduler was enabled.
@@ -237,4 +242,52 @@ Safety confirmation:
 - No Twilio calls were made.
 - No route, cron, scheduler, or production dispatcher was enabled.
 - This verified only the explicit gated test write path.
+- Production SMS dispatcher activation still requires separate approval.
+
+## Disabled/gated dispatcher DB write executor added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `8d61ab3 docs(sms): record gated db live test`
+
+Added:
+
+- `backend/src/services/sms-dispatcher-db-write-executor.service.ts`
+- `backend/scripts/verify-sms-dispatcher-db-write-executor.js`
+
+Purpose:
+
+Add the real Follow-Up Dispatcher DB executor that can apply an approved write plan to Supabase while remaining disabled unless explicit live DB gates are present.
+
+Supported gated write operations:
+
+- `messages` insert
+- `follow_ups` update
+- `workflow_events` insert
+
+Gate requirements:
+
+- The write plan must include `requiresLiveWriteGate: true`.
+- The executor input gate must include `allowLiveDbWrite: true`.
+- The executor input gate must include `liveWriteTarget: sms_dispatcher_db_executor`.
+- The executor input gate must include `confirmWritePlan: true`.
+
+Verifier result:
+
+- Default mode fails closed and writes nothing.
+- Missing write-plan gate fails closed and writes nothing.
+- Duplicate message detection blocks `messages` insert and writes nothing.
+- Valid fake Supabase path applies one `messages` insert, one `follow_ups` update, and one `workflow_events` insert.
+- Post-write verification checks inserted/updated rows in the fake Supabase store.
+- Static checks verify no Twilio import/client usage, no SMS provider send call, no route registration, no cron/scheduler activation, and no production dispatcher activation.
+
+Safety confirmation:
+
+- No live database writes were run in this batch.
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher was enabled.
+- The verifier uses fake Supabase only.
 - Production SMS dispatcher activation still requires separate approval.
