@@ -57,6 +57,73 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+async function detectDuplicateSend(supabaseClient, followUp) {
+  const followUpId = followUp?.id;
+
+  if (!followUpId || !followUp?.roofer_id || !followUp?.lead_id) {
+    return {
+      duplicateSendExists: true,
+      lookupError: 'missing follow-up duplicate lookup fields',
+      lookupSource: 'missing_required_field'
+    };
+  }
+
+  const { data: workflowEvents, error: workflowEventError } = await supabaseClient
+    .from('workflow_events')
+    .select('id')
+    .eq('roofer_id', followUp.roofer_id)
+    .eq('lead_id', followUp.lead_id)
+    .contains('metadata', { follow_up_id: followUpId })
+    .or('event_type.ilike.%sms%,event_source.ilike.%sms%,description.ilike.%sms%')
+    .limit(1);
+
+  if (workflowEventError) {
+    return {
+      duplicateSendExists: true,
+      lookupError: workflowEventError.message,
+      lookupSource: 'workflow_events'
+    };
+  }
+
+  if (workflowEvents.length > 0) {
+    return {
+      duplicateSendExists: true,
+      lookupSource: 'workflow_events.metadata.follow_up_id'
+    };
+  }
+
+  let messageQuery = supabaseClient
+    .from('messages')
+    .select('id')
+    .eq('roofer_id', followUp.roofer_id)
+    .eq('lead_id', followUp.lead_id)
+    .eq('channel', 'sms')
+    .eq('direction', 'outbound')
+    .not('sent_at', 'is', null)
+    .limit(1);
+
+  if (followUp.message_body) {
+    messageQuery = messageQuery.eq('message_body', followUp.message_body);
+  }
+
+  const { data: messages, error: messageError } = await messageQuery;
+
+  if (messageError) {
+    return {
+      duplicateSendExists: true,
+      lookupError: messageError.message,
+      lookupSource: 'messages'
+    };
+  }
+
+  return {
+    duplicateSendExists: messages.length > 0,
+    lookupSource: followUp.message_body
+      ? 'messages.roofer_id.lead_id.message_body.sent_at'
+      : 'messages.roofer_id.lead_id.sent_at'
+  };
+}
+
 (async () => {
   const now = new Date().toISOString();
 
@@ -105,6 +172,8 @@ const supabase = createClient(
       continue;
     }
 
+    const duplicateLookup = await detectDuplicateSend(supabase, row);
+
     const plan = planSmsDispatch({
       followUp: {
         id: row.id,
@@ -126,7 +195,7 @@ const supabase = createClient(
         timezone: roofer.timezone
       },
       currentTime: now,
-      duplicateSendExists: false
+      duplicateSendExists: duplicateLookup.duplicateSendExists
     });
 
     if (plan.action === 'send') sendCount += 1;
@@ -143,6 +212,9 @@ const supabase = createClient(
       action: plan.action,
       reason: plan.reason,
       should_send: plan.shouldSend,
+      duplicate_send_exists: duplicateLookup.duplicateSendExists,
+      duplicate_lookup_source: duplicateLookup.lookupSource,
+      duplicate_lookup_error: duplicateLookup.lookupError || null,
       rescheduled_for: plan.rescheduledFor || null
     });
   }
