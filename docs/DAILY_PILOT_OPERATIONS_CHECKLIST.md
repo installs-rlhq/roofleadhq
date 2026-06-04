@@ -133,7 +133,8 @@ Gated live-write verifier status:
 - Do not rerun the gated live-write verifier without explicit approval and fresh reviewed candidate IDs.
 - Do not run `backend/scripts/run-sms-dispatcher-manual-test-only.js` against live Supabase without explicit approval, reviewed candidate scope, approved roofer id, and all manual runner plus DB executor gates.
 - `backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js` is read-only prep only; its printed live runner command is not approved by default.
-- Do not run `backend/scripts/verify-sms-test-roofer-enable-sms-live-test.js` with live-write gates unless explicitly approving the known test roofer SMS flag change for send-path DB testing.
+- The known test roofer SMS flag was enabled on 2026-06-04 for manual runner send-path DB testing: `sms_confirmation_enabled=false` -> `true`.
+- Do not rerun `backend/scripts/verify-sms-test-roofer-enable-sms-live-test.js` with live-write gates unless explicitly re-approving this test-only flag state.
 
 ## 7. Booked Inspections
 

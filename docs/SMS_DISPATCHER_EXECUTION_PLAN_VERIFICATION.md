@@ -493,3 +493,33 @@ Safety confirmation:
 - No route, cron, scheduler, or production dispatcher was enabled.
 - This verifier enables only the known test roofer when every explicit gate is present.
 - Production SMS activation still requires separate approval.
+
+## Known test roofer SMS flag live update verified
+
+Date: 2026-06-04
+
+Latest verified commit before this live update:
+
+- `3ad7a21 test(sms): add gated test roofer sms enable verifier`
+
+Script:
+
+- `backend/scripts/verify-sms-test-roofer-enable-sms-live-test.js`
+
+Purpose:
+
+Prepare the send-path DB write test for the manual test-only dispatcher runner.
+
+Verified gated update:
+
+- Roofer ID: `be7efc94-bd68-43af-81b2-dc7b869b42df`
+- Old `sms_confirmation_enabled`: `false`
+- New `sms_confirmation_enabled`: `true`
+
+Safety confirmation:
+
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher was enabled.
+- This update only changed the known test roofer SMS confirmation flag.
+- Production SMS activation still requires separate approval.
