@@ -106,6 +106,7 @@ node backend/scripts/verify-sms-dispatcher-db-write-executor.js
 node backend/scripts/verify-sms-dispatcher-manual-test-runner.js
 node backend/scripts/verify-sms-dispatcher-production-runner.js
 node backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js --static-only
+node backend/scripts/prepare-sms-dispatcher-production-runner-live-test-readonly.js --static-only
 node backend/scripts/verify-sms-test-roofer-enable-sms-live-test.js
 node backend/scripts/run-sms-dispatcher-dry-run.js
 ```
@@ -124,6 +125,7 @@ Pass condition:
 - Manual test-only runner verifier uses fake Supabase only and confirms manual and DB executor gates are required.
 - Production runner verifier uses fake Supabase only and confirms production runner gates, DB executor gates, batch cap, and allowed roofer allowlist are required.
 - Manual runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, or production dispatcher activation.
+- Production runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, scheduler, or production dispatcher auto-start.
 - Test roofer SMS enable verifier fails closed by default and confirms the only allowed gated update is `roofers.sms_confirmation_enabled=true` for the known test roofer.
 - No route, cron, or production dispatcher activation is present.
 
@@ -143,6 +145,8 @@ Gated live-write verifier status:
 - Do not invoke the production runner with DB write gates unless production runner env gates, DB executor env gates, allowed roofer UUIDs, and batch scope have been explicitly approved.
 - `backend/scripts/run-sms-dispatcher-production-runner.js` is an explicit CLI wrapper only. Default mode uses fake Supabase and fails closed unless gated.
 - Do not run the production runner CLI against live Supabase unless `SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE=true`, both live CLI flags, production runner gates, DB executor gates, allowed roofer UUIDs, and batch scope have all been explicitly approved.
+- `backend/scripts/prepare-sms-dispatcher-production-runner-live-test-readonly.js` selected future production runner live test candidate `167bd260-5e06-45dd-b5b0-336915d5f5ac` for lead `2fbcae6f-1a0d-4709-9c17-e1c5158b8d0e` on 2026-06-04 without writes, SMS, Twilio, route, cron, or production runner execution.
+- Do not run the printed production runner live command without explicit approval and a fresh review of the selected candidate, allowed roofer allowlist, duplicate scope, and batch size.
 
 ## 7. Booked Inspections
 

@@ -22,6 +22,7 @@ No cron or live dispatcher execution was enabled.
 - `backend/scripts/verify-sms-dispatcher-db-write-executor.js`
 - `backend/scripts/verify-sms-dispatcher-manual-test-runner.js`
 - `backend/scripts/verify-sms-dispatcher-production-runner.js`
+- `backend/scripts/prepare-sms-dispatcher-production-runner-live-test-readonly.js`
 - `backend/scripts/run-sms-dispatcher-dry-run.js`
 - `backend/scripts/run-sms-dispatcher-manual-test-only.js`
 - `backend/scripts/run-sms-dispatcher-production-runner.js`
@@ -685,3 +686,87 @@ Safety confirmation:
 - No Twilio calls were made.
 - No route, cron, scheduler, or production dispatcher auto-start was enabled.
 - The CLI wrapper is only an explicit invocation path and remains blocked from live Supabase unless every live env and CLI gate is present.
+
+## Production runner live test read-only prep added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `d4e4fe7 feat(sms): add gated production dispatcher cli`
+
+Added:
+
+- `backend/scripts/prepare-sms-dispatcher-production-runner-live-test-readonly.js`
+
+Purpose:
+
+Prepare a future production runner CLI live Supabase DB test by selecting exactly one deterministic safe candidate for the known test roofer without writing anything and without running the production runner CLI.
+
+Known test roofer:
+
+- `be7efc94-bd68-43af-81b2-dc7b869b42df`
+
+Read-only prep requirements:
+
+- Known test roofer must resolve exactly once.
+- Known test roofer must have `sms_confirmation_enabled=true`.
+- Known test roofer `status` must be `active` when the status column exists.
+- Known test roofer Twilio number is checked only as metadata presence and is not used.
+- Candidate `follow_ups.roofer_id` must match the known test roofer.
+- Candidate `follow_ups.status` must be `scheduled`.
+- Candidate `follow_ups.scheduled_for` must be due.
+- Candidate `follow_ups.sent_at`, `skipped_reason`, and `stopped_reason` must be null.
+- Candidate lead must match the follow-up and known test roofer.
+- Candidate lead phone must be E.164-shaped.
+- Candidate lead status must not be `opted_out`, `booked`, `cancelled`, or `lost`.
+- Candidate follow-up type must map to an approved SMS dispatcher template type.
+- Candidate message body must be present.
+- Candidates are ordered by `scheduled_for` ascending.
+- Candidates are then ordered by `created_at` ascending when available.
+- Candidates are finally ordered by `id` ascending as a deterministic tie-breaker.
+- Duplicate protection checks no existing outbound SMS `messages` row for the same roofer, lead, and message body.
+- Duplicate protection also checks no existing `messages.provider_message_id` for the generated production runner provider test id.
+
+Read-only prep result:
+
+- Selected follow-up id: `167bd260-5e06-45dd-b5b0-336915d5f5ac`
+- Selected lead id: `2fbcae6f-1a0d-4709-9c17-e1c5158b8d0e`
+- Suggested run id: `production-runner-live-prep-2026-06-04T20-42-33-711z`
+- Duplicate body count: `0`
+- Duplicate provider test id count: `0`
+- Due scheduled follow-ups inspected: `50`
+- Safe candidates after filters: `3`
+- `created_at` ordering available: `true`
+
+Future command printed by prep script:
+
+```bash
+export SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE=true
+export SMS_DISPATCHER_PRODUCTION_RUNNER=true
+export SMS_DISPATCHER_PRODUCTION_TARGET=sms_dispatcher_production_runner
+export SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS=be7efc94-bd68-43af-81b2-dc7b869b42df
+export SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE=1
+export SMS_DISPATCHER_PRODUCTION_LIVE_TEST_RUN_ID=production-runner-live-prep-2026-06-04T20-42-33-711z
+export SMS_DISPATCHER_DB_EXECUTOR_WRITE=true
+export SMS_DB_EXECUTOR_TARGET=sms_dispatcher_db_executor
+export SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN=true
+
+node backend/scripts/run-sms-dispatcher-production-runner.js \
+  --allow-live-supabase-production-runner \
+  --production-runner
+```
+
+Do not run the future command until explicit live-write approval is given.
+
+Safety confirmation:
+
+- No inserts were performed.
+- No updates were performed.
+- No upserts were performed.
+- No deletes were performed.
+- No live DB writes were run.
+- No SMS was sent.
+- No Twilio import, client, or call was made.
+- No route, cron, scheduler, or production dispatcher auto-start was enabled.
+- The production runner live CLI was not run.
