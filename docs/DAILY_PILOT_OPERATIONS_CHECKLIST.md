@@ -103,6 +103,7 @@ node backend/scripts/verify-sms-dispatcher-write-plan.js
 node backend/scripts/verify-sms-dispatcher-mock-write-executor.js
 node backend/scripts/verify-sms-dispatcher-dry-run-executor.js
 node backend/scripts/run-sms-dispatcher-dry-run.js
+node backend/scripts/verify-sms-dispatcher-db-write-live-test.js
 ```
 
 Pass condition:
@@ -115,6 +116,8 @@ Pass condition:
 - The dry-run executor returns plan results only.
 - Proposed write plans require a live write gate.
 - Mock write execution is in-memory/test-only.
+- The DB write live-test verifier fails closed unless explicit test-only live-write gates are present.
+- No route, cron, or production dispatcher activation is present.
 
 ## 7. Booked Inspections
 

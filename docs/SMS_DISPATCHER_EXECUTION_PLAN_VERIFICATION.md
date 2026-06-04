@@ -92,3 +92,46 @@ Safety confirmation:
 - No `messages` row was written.
 - No `follow_ups` row was updated.
 - No route, cron, or production dispatcher was enabled.
+
+## Gated messages/follow_ups DB write verifier added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `f57e8a7 docs(sms): record workflow event live test write`
+
+Added:
+
+- `backend/scripts/verify-sms-dispatcher-db-write-live-test.js`
+
+Default verifier behavior:
+
+- Fails closed unless all explicit test-only live-write gates are present.
+- Uses fake Supabase by default.
+- Performs no live database writes in the default verification path.
+- Verifies a guarded `messages` insert shape.
+- Verifies a guarded `follow_ups` update shape.
+- Verifies duplicate protection before writes.
+- Verifies post-write row counts and field values after fake writes.
+- Statically checks there is no Twilio import/call, no SMS send call, no route, no cron/scheduler, and no production dispatcher activation.
+
+Live gated path, not run in this batch, requires all of:
+
+- `SMS_DISPATCHER_DB_LIVE_TEST_WRITE=true`
+- `SMS_LIVE_WRITE_TARGET=messages_follow_ups`
+- `SMS_LIVE_TEST_RUN_ID`
+- `SMS_LIVE_TEST_ROOFER_ID`
+- `SMS_LIVE_TEST_LEAD_ID`
+- `SMS_LIVE_TEST_FOLLOW_UP_ID`
+- `--allow-live-supabase-write`
+- `--messages-follow-ups-only`
+- `--test-only`
+- matching `--run-id`, `--roofer-id`, `--lead-id`, and `--follow-up-id`
+
+Safety confirmation:
+
+- No live writes were run in this batch.
+- No SMS was sent.
+- No Twilio call was made.
+- No route, cron, scheduler, or production dispatcher was enabled.
