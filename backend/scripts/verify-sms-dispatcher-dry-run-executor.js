@@ -19,6 +19,10 @@ const sourceFiles = [
     output: '/tmp/sms-duplicate-send-detector.dry-run-verify.js'
   },
   {
+    source: path.join(repoRoot, 'backend/src/services/sms-dispatcher-write-plan.service.ts'),
+    output: '/tmp/sms-dispatcher-write-plan.dry-run-verify.js'
+  },
+  {
     source: path.join(repoRoot, 'backend/src/services/sms-dispatcher-dry-run-executor.service.ts'),
     output: '/tmp/sms-dispatcher-dry-run-executor.verify.js'
   }
@@ -58,6 +62,9 @@ Module._load = function patchedLoad(request, parent, isMain) {
   }
   if (request === './sms-duplicate-send-detector.service') {
     return require('/tmp/sms-duplicate-send-detector.dry-run-verify.js');
+  }
+  if (request === './sms-dispatcher-write-plan.service') {
+    return require('/tmp/sms-dispatcher-write-plan.dry-run-verify.js');
   }
 
   return originalLoad(request, parent, isMain);
@@ -198,6 +205,10 @@ const dueFollowUp = {
   assert(eligible.noSmsSent === true, 'executor reports no SMS sent');
   assert(eligible.noTwilioCallsMade === true, 'executor reports no Twilio calls');
   assert(eligible.counts.send === 1, 'eligible row is planned only, not sent');
+  assert(eligible.plans[0].writePlan.requiresLiveWriteGate === true, 'write plan requires live write gate');
+  assert(Boolean(eligible.plans[0].writePlan.messageInsertPlan), 'eligible row includes proposed message insert payload');
+  assert(Boolean(eligible.plans[0].writePlan.followUpUpdatePlan), 'eligible row includes proposed follow-up update payload');
+  assert(Boolean(eligible.plans[0].writePlan.workflowEventInsertPlan), 'eligible row includes proposed workflow event payload');
 
   const duplicateMock = createMockSupabase({
     followUps: [dueFollowUp],
@@ -209,6 +220,8 @@ const dueFollowUp = {
   });
   assert(duplicate.counts.send === 0, 'duplicate send is not planned as send');
   assert(duplicate.plans[0].reason === 'duplicate_send', 'duplicate reason is duplicate_send');
+  assert(duplicate.plans[0].writePlan.messageInsertPlan === null, 'duplicate has no message insert plan');
+  assert(duplicate.plans[0].writePlan.workflowEventInsertPlan.event_type === 'sms_skip_planned', 'duplicate creates skip audit plan');
 
   const lookupErrorMock = createMockSupabase({
     followUps: [dueFollowUp],

@@ -22,6 +22,10 @@ const sourceFiles = [
     output: '/tmp/sms-duplicate-send-detector.dry-run.js'
   },
   {
+    source: path.join(repoRoot, 'backend/src/services/sms-dispatcher-write-plan.service.ts'),
+    output: '/tmp/sms-dispatcher-write-plan.dry-run.js'
+  },
+  {
     source: path.join(repoRoot, 'backend/src/services/sms-dispatcher-dry-run-executor.service.ts'),
     output: '/tmp/sms-dispatcher-dry-run-executor.js'
   }
@@ -66,6 +70,9 @@ Module._load = function patchedLoad(request, parent, isMain) {
   }
   if (request === './sms-duplicate-send-detector.service') {
     return require('/tmp/sms-duplicate-send-detector.dry-run.js');
+  }
+  if (request === './sms-dispatcher-write-plan.service') {
+    return require('/tmp/sms-dispatcher-write-plan.dry-run.js');
   }
 
   return originalLoad(request, parent, isMain);

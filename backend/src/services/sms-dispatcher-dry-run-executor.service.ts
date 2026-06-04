@@ -7,6 +7,10 @@ import {
   type SmsDispatcherPlan,
   type SmsDispatcherPlannedAction
 } from './sms-dispatcher-planner.service';
+import {
+  buildSmsDispatcherWritePlan,
+  type SmsDispatcherWritePlan
+} from './sms-dispatcher-write-plan.service';
 
 export interface SmsDispatcherDryRunExecutorInput {
   supabase: any;
@@ -29,6 +33,7 @@ export interface SmsDispatcherDryRunPlanResult {
   duplicate_lookup_source?: string;
   duplicate_lookup_error?: string | null;
   rescheduled_for?: string | null;
+  writePlan?: SmsDispatcherWritePlan;
 }
 
 export interface SmsDispatcherDryRunExecutorResult {
@@ -171,7 +176,24 @@ export async function executeSmsDispatcherDryRun(
       duplicate_send_exists: duplicateLookup.duplicateSendExists,
       duplicate_lookup_source: duplicateLookup.lookupSource,
       duplicate_lookup_error: duplicateLookup.lookupError || null,
-      rescheduled_for: plan.rescheduledFor || null
+      rescheduled_for: plan.rescheduledFor || null,
+      writePlan: buildSmsDispatcherWritePlan({
+        followUpId: row.id,
+        rooferId: row.roofer_id,
+        leadId: row.lead_id,
+        toNumber: lead.phone,
+        fromNumber: null,
+        messageBody: plan.messageBody,
+        templateType: plan.templateType,
+        action: plan.action,
+        reason: plan.reason,
+        shouldSend: plan.shouldSend,
+        rescheduledFor: plan.rescheduledFor || null,
+        currentTime,
+        duplicateSendExists: duplicateLookup.duplicateSendExists,
+        duplicateLookupSource: duplicateLookup.lookupSource,
+        duplicateLookupError: duplicateLookup.lookupError || null
+      })
     });
   }
 
