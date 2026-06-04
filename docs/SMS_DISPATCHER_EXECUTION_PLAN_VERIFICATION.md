@@ -4,7 +4,7 @@ Date: 2026-06-02
 
 ## Purpose
 
-Record verification of the SMS dispatcher execution plan read-only verifier, send-intent planner verifier, and dry-run executor scaffold.
+Record verification of the SMS dispatcher execution plan read-only verifier, send-intent planner verifier, production send-intent bridge verifier, and dry-run executor scaffold.
 
 This is planning and verification only.
 
@@ -17,6 +17,7 @@ No cron or live dispatcher execution was enabled.
 
 - `backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js`
 - `backend/scripts/verify-sms-send-intent-planner.js`
+- `backend/scripts/verify-sms-production-send-intent-bridge.js`
 - `backend/scripts/verify-sms-dispatcher-write-plan.js`
 - `backend/scripts/verify-sms-dispatcher-mock-write-executor.js`
 - `backend/scripts/verify-sms-dispatcher-dry-run-executor.js`
@@ -30,6 +31,7 @@ No cron or live dispatcher execution was enabled.
 - `backend/scripts/run-sms-dispatcher-production-runner.js`
 - `backend/src/services/sms-dispatcher-write-plan.service.ts`
 - `backend/src/services/sms-send-intent-planner.service.ts`
+- `backend/src/services/sms-production-send-intent-bridge.service.ts`
 - `backend/src/services/sms-dispatcher-mock-write-executor.service.ts`
 - `backend/src/services/sms-dispatcher-dry-run-executor.service.ts`
 - `backend/src/services/sms-dispatcher-db-write-executor.service.ts`
@@ -45,6 +47,8 @@ No cron or live dispatcher execution was enabled.
 The read-only verifier inspected due scheduled follow-ups, built dispatcher planner inputs, called `planSmsDispatch()`, and printed planned actions.
 
 The send-intent planner verifier fails closed on missing required fields, exact approved follow-up mismatches, and invalid E.164 numbers, and it returns a future Twilio send intent only for the approved fake case. It does not send SMS, call Twilio, or write to the database.
+
+The production send-intent bridge verifier fails closed when the production runner application is not a send/eligible application, when the approved follow-up id is missing or mismatched, and when the bridged message payload is incomplete or invalid. It delegates to the send-intent planner only and does not send SMS, call Twilio, or write to the database.
 
 The dry-run executor scaffold returns plan results only. It uses the SMS safety service, dispatcher planner, and duplicate-send detector, but it does not write follow-ups, insert messages, insert workflow events, send SMS, or call Twilio.
 
@@ -84,6 +88,7 @@ All inspected rows were skipped because roofer SMS is disabled.
 - `dryRun=false` is blocked by verifier coverage.
 - No cron or scheduler was enabled.
 - The send-intent planner is fake/read-only only and requires exact approved follow-up matching before returning a future send intent.
+- The production send-intent bridge is fake/read-only only and only translates approved production runner output into the send-intent planner.
 
 ## Final Decision
 

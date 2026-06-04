@@ -98,6 +98,7 @@ node backend/scripts/verify-sms-safety-service.js
 node backend/scripts/verify-sms-optout-workflow.js
 node backend/scripts/verify-sms-dispatcher-planner.js
 node backend/scripts/verify-sms-send-intent-planner.js
+node backend/scripts/verify-sms-production-send-intent-bridge.js
 node backend/scripts/verify-sms-dispatcher-data-shape-readonly.js
 node backend/scripts/verify-sms-dispatcher-execution-plan-readonly.js
 node backend/scripts/verify-sms-dispatcher-write-plan.js
@@ -128,6 +129,7 @@ Pass condition:
 - Production runner verifier uses fake Supabase only and confirms production runner gates, DB executor gates, batch cap, and allowed roofer allowlist are required.
 - Twilio send adapter verifier uses fake verification only and confirms the adapter is disabled by default, sends no live SMS, constructs no live Twilio client, and is not imported by app, routes, cron, scheduler, or production runner paths.
 - Send-intent planner verifier uses fake verification only and confirms the planner fail-closes, requires exact approved follow-up matching, and makes no SMS or Twilio calls.
+- Production send-intent bridge verifier uses fake verification only and confirms the bridge only calls the send-intent planner, fails closed on non-send or non-eligible application results, and makes no SMS or Twilio calls.
 - Manual runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, or production dispatcher activation.
 - Production runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, scheduler, or production dispatcher auto-start.
 - Test roofer SMS enable verifier fails closed by default and confirms the only allowed gated update is `roofers.sms_confirmation_enabled=true` for the known test roofer.
@@ -157,6 +159,7 @@ Gated live-write verifier status:
 - The gated production runner live DB test sent no SMS, made no Twilio calls, added no route, added no cron/scheduler, enabled no auto-start, and confirmed the exact approved follow-up guard worked.
 - `backend/src/services/sms-twilio-send-adapter.service.ts` is a disabled Twilio send adapter scaffold only. It is not wired into the production runner, app startup, routes, cron, scheduler, or auto-start paths.
 - `backend/src/services/sms-send-intent-planner.service.ts` is a read-only future Twilio send-intent planner only. It does not send SMS, call Twilio, or write the database.
+- `backend/src/services/sms-production-send-intent-bridge.service.ts` is a fake-only bridge from production runner output to the send-intent planner. It does not send SMS, call Twilio, write the database, or enable automation.
 - Do not run or wire the Twilio send adapter for live SMS unless `SMS_TWILIO_SEND_ADAPTER=true`, `SMS_TWILIO_SEND_TARGET=sms_twilio_send_adapter`, `SMS_TWILIO_CONFIRM_SEND=true`, Twilio credentials, message scope, and explicit live-send approval have all been reviewed.
 
 ## 7. Booked Inspections
