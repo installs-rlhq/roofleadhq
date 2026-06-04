@@ -83,11 +83,11 @@ Do not enable without explicit approval:
 
 ## Billing / Agreement
 
-Setup payment completed or intentionally waived:
+Setup payment status documented, including paid, waived, or deferred terms:
 
-Monthly plan selected or pilot billing terms documented:
+Pilot billing terms documented, including plan, waived period, deferred start, or non-billable pilot status:
 
-Payment method/process documented:
+Payment method/process documented, if applicable:
 
 Founder-led launch expectations explained:
 
