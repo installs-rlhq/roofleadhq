@@ -103,7 +103,6 @@ node backend/scripts/verify-sms-dispatcher-write-plan.js
 node backend/scripts/verify-sms-dispatcher-mock-write-executor.js
 node backend/scripts/verify-sms-dispatcher-dry-run-executor.js
 node backend/scripts/run-sms-dispatcher-dry-run.js
-node backend/scripts/verify-sms-dispatcher-db-write-live-test.js
 ```
 
 Pass condition:
@@ -116,8 +115,14 @@ Pass condition:
 - The dry-run executor returns plan results only.
 - Proposed write plans require a live write gate.
 - Mock write execution is in-memory/test-only.
-- The DB write live-test verifier fails closed unless explicit test-only live-write gates are present.
 - No route, cron, or production dispatcher activation is present.
+
+Gated live-write verifier status:
+
+- `backend/scripts/verify-sms-dispatcher-db-write-live-test.js` is not part of routine daily read-only checks.
+- First gated test-only `messages`/`follow_ups` DB write was verified on 2026-06-04 with run id `db-live-prep-2026-06-04T19-36-05-696z`.
+- Duplicate rerun failed closed with `duplicate_test_message_found`.
+- Do not rerun the gated live-write verifier without explicit approval and fresh reviewed candidate IDs.
 
 ## 7. Booked Inspections
 

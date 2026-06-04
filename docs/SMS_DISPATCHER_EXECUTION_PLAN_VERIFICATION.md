@@ -202,3 +202,39 @@ Safety confirmation:
 - No SMS is sent.
 - No Twilio import or call is made.
 - No route, cron, scheduler, or production dispatcher is enabled.
+
+## First gated messages/follow_ups DB live test verified
+
+Date: 2026-06-04
+
+Latest verified commit before this live test:
+
+- `b57e363 test(sms): add read-only db live test prep`
+
+Script:
+
+- `backend/scripts/verify-sms-dispatcher-db-write-live-test.js`
+
+Verified gated run:
+
+- Run ID: `db-live-prep-2026-06-04T19-36-05-696z`
+- Roofer ID: `be7efc94-bd68-43af-81b2-dc7b869b42df`
+- Lead ID: `2158d4d9-c533-4074-8019-471c686f4418`
+- Follow-up ID: `f2e18e52-3dea-45a3-aa6b-1f578a5af85d`
+- Message ID inserted: `0b2e106c-2876-4469-8a51-6188f232d537`
+- Follow-up updated: `f2e18e52-3dea-45a3-aa6b-1f578a5af85d`
+
+Verified result:
+
+- One gated, test-only Supabase row was inserted into `messages`.
+- One gated, test-only Supabase row was updated in `follow_ups`.
+- Duplicate protection was verified by rerunning the same run id.
+- Duplicate rerun failed closed with `duplicate_test_message_found`.
+
+Safety confirmation:
+
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher was enabled.
+- This verified only the explicit gated test write path.
+- Production SMS dispatcher activation still requires separate approval.
