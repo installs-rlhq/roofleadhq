@@ -135,3 +135,70 @@ Safety confirmation:
 - No SMS was sent.
 - No Twilio call was made.
 - No route, cron, scheduler, or production dispatcher was enabled.
+
+## Gated messages/follow_ups live test Terminal 1 prep added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `871efb5 test(sms): add gated db write verifier`
+
+Added:
+
+- `backend/scripts/prepare-sms-dispatcher-db-live-test-readonly.js`
+
+Purpose:
+
+Prepare the first real gated Supabase `messages`/`follow_ups` live test by selecting exactly one deterministic safe candidate for the existing gated verifier.
+
+This prep script is read-only only. It does not run the live verifier.
+
+Candidate requirements:
+
+- Roofer id must be the current verified test roofer: `be7efc94-bd68-43af-81b2-dc7b869b42df`.
+- Exactly one matching `roofers` row must exist.
+- `follow_ups.roofer_id` must match the test roofer.
+- `follow_ups.status` must be `scheduled`.
+- `follow_ups.lead_id` must be present.
+- `follow_ups.sent_at`, `skipped_reason`, and `stopped_reason` must be null.
+- `follow_ups.followup_type` must map to an approved SMS dispatcher template type.
+- Related `leads.id` and `leads.roofer_id` must match the follow-up and test roofer.
+- Lead phone must be E.164-shaped.
+- Lead status must not be `opted_out`, `booked`, `cancelled`, or `lost`.
+- Safe candidates are ordered by `scheduled_for` ascending.
+- Safe candidates are then ordered by `created_at` ascending when available.
+- Safe candidates are finally ordered by `id` ascending as a deterministic tie-breaker.
+- Suggested verifier run id must not already have a duplicate test-only `messages.provider_message_id`.
+- The script fails closed unless it can select exactly one deterministic candidate follow-up.
+
+Terminal 1 prep commands:
+
+```bash
+cd /root/roofleadhq
+
+node backend/scripts/prepare-sms-dispatcher-db-live-test-readonly.js --static-only
+
+node backend/scripts/prepare-sms-dispatcher-db-live-test-readonly.js \
+  --roofer-id be7efc94-bd68-43af-81b2-dc7b869b42df
+```
+
+The second command prints the values to export for the existing gated verifier:
+
+```bash
+export SMS_LIVE_TEST_ROOFER_ID=...
+export SMS_LIVE_TEST_LEAD_ID=...
+export SMS_LIVE_TEST_FOLLOW_UP_ID=...
+export SMS_LIVE_TEST_RUN_ID=...
+```
+
+Do not run the existing gated live verifier until the printed candidate values have been reviewed and an explicit live-write approval is given.
+
+Safety confirmation:
+
+- No inserts are performed.
+- No updates are performed.
+- No deletes are performed.
+- No SMS is sent.
+- No Twilio import or call is made.
+- No route, cron, scheduler, or production dispatcher is enabled.
