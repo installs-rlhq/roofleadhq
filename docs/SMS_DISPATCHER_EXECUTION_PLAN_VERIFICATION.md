@@ -20,11 +20,14 @@ No cron or live dispatcher execution was enabled.
 - `backend/scripts/verify-sms-dispatcher-mock-write-executor.js`
 - `backend/scripts/verify-sms-dispatcher-dry-run-executor.js`
 - `backend/scripts/verify-sms-dispatcher-db-write-executor.js`
+- `backend/scripts/verify-sms-dispatcher-manual-test-runner.js`
 - `backend/scripts/run-sms-dispatcher-dry-run.js`
+- `backend/scripts/run-sms-dispatcher-manual-test-only.js`
 - `backend/src/services/sms-dispatcher-write-plan.service.ts`
 - `backend/src/services/sms-dispatcher-mock-write-executor.service.ts`
 - `backend/src/services/sms-dispatcher-dry-run-executor.service.ts`
 - `backend/src/services/sms-dispatcher-db-write-executor.service.ts`
+- `backend/src/services/sms-dispatcher-manual-test-runner.service.ts`
 - `backend/src/services/sms-duplicate-send-detector.service.ts`
 - `backend/src/services/sms-dispatcher-planner.service.ts`
 - `backend/src/services/sms-safety.service.ts`
@@ -40,6 +43,8 @@ The write-plan scaffold returns proposed `messages`, `follow_ups`, and `workflow
 The mock write executor validates proposed write sequencing in memory only. It accepts write-plan objects and does not accept Supabase clients.
 
 The DB write executor can apply approved write plans to Supabase only when both the write plan live gate and executor live DB gate are present. It remains disabled/fail-closed by default.
+
+The manual test-only runner wires dry-run planning to write-plan execution through the gated DB executor. It defaults to fake Supabase and requires explicit manual runner gates, DB executor gates, an approved roofer id, and a capped batch size.
 
 Final result:
 
@@ -61,6 +66,7 @@ All inspected rows were skipped because roofer SMS is disabled.
 - Write plans are proposed payloads only.
 - Mock write execution is in-memory/test-only.
 - DB write execution remains disabled unless explicit live DB gates are present.
+- Manual test-only runner remains disabled unless explicit manual and DB executor gates are present.
 - The dry-run executor defaults to read-only dry-run mode.
 - `dryRun=false` is blocked by verifier coverage.
 - No cron or scheduler was enabled.
@@ -290,4 +296,65 @@ Safety confirmation:
 - No Twilio calls were made.
 - No route, cron, scheduler, or production dispatcher was enabled.
 - The verifier uses fake Supabase only.
+- Production SMS dispatcher activation still requires separate approval.
+
+## Manual test-only dispatcher runner added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `a42ec4c feat(sms): add gated db write executor`
+
+Added:
+
+- `backend/src/services/sms-dispatcher-manual-test-runner.service.ts`
+- `backend/scripts/run-sms-dispatcher-manual-test-only.js`
+- `backend/scripts/verify-sms-dispatcher-manual-test-runner.js`
+
+Purpose:
+
+Wire planner -> write plan -> gated DB executor behind a disabled manual test-only runner.
+
+Runner behavior:
+
+- Uses `executeSmsDispatcherDryRun()` to find due `follow_ups` and build write plans.
+- Applies selected write plans through `executeSmsDispatcherDbWritePlan()`.
+- Uses fake Supabase by default in the CLI runner.
+- Requires an explicit manual runner gate.
+- Requires the explicit DB executor gate.
+- Requires an approved roofer id.
+- Defaults to batch size `1`.
+- Caps batch size at `3`.
+- Remains test-only.
+
+Manual runner gate requirements:
+
+- `testOnly: true`
+- `allowManualTestRunner: true`
+- `runnerTarget: sms_dispatcher_manual_test_runner`
+- `approvedRooferId`
+
+DB executor gate requirements:
+
+- `allowLiveDbWrite: true`
+- `liveWriteTarget: sms_dispatcher_db_executor`
+- `confirmWritePlan: true`
+
+Verifier result:
+
+- Default mode fails closed and writes nothing.
+- Fake mode applies through the gated DB executor.
+- Live-style mode without every gate fails closed and writes nothing.
+- Batch size is capped.
+- Static checks verify no Twilio import/client usage, no SMS provider send call, no route registration, no cron/scheduler activation, and no production dispatcher activation.
+
+Safety confirmation:
+
+- No live database writes were run in this batch.
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher was enabled.
+- The verifier uses fake Supabase only.
+- The CLI runner uses fake Supabase unless explicit live Supabase flags and environment gates are provided.
 - Production SMS dispatcher activation still requires separate approval.
