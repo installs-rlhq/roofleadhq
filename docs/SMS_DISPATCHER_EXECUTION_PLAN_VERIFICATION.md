@@ -65,3 +65,30 @@ All inspected rows were skipped because roofer SMS is disabled.
 PASS for planning/test-only dispatcher execution verification.
 
 Production SMS activation still requires explicit approval and separate write-path, duplicate-send, Twilio-send, and cron verification.
+
+## Gated workflow_events live test write verified
+
+Date: 2026-06-04
+
+Latest verified commit before live-write verification:
+
+- `abe76bb fix(sms): include roofer id in live test verification`
+
+Verified result:
+
+- One gated, test-only Supabase insert was performed into `workflow_events`.
+- Inserted row id: `bb869013-e606-4cb4-a743-082498e0465a`
+- Test roofer id: `be7efc94-bd68-43af-81b2-dc7b869b42df`
+- Event type: `sms_live_test_audit_insert`
+- Event source: `sms_dispatcher_test_audit_writer`
+- Event status: `test_only`
+- Duplicate protection was verified by rerunning the same run id.
+- Duplicate rerun failed closed with `duplicate_test_audit_row_found`.
+
+Safety confirmation:
+
+- No SMS was sent.
+- No Twilio call was made.
+- No `messages` row was written.
+- No `follow_ups` row was updated.
+- No route, cron, or production dispatcher was enabled.
