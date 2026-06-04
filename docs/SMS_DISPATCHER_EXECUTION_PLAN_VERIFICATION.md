@@ -438,3 +438,58 @@ Safety confirmation:
 - No SMS was sent.
 - No Twilio import or call was made.
 - No route, cron, scheduler, or production dispatcher was enabled.
+
+## Test roofer SMS enable live-write verifier added
+
+Date: 2026-06-04
+
+Latest verified commit before this batch:
+
+- `5e3d7ed test(sms): add manual runner live prep`
+
+Added:
+
+- `backend/scripts/verify-sms-test-roofer-enable-sms-live-test.js`
+
+Purpose:
+
+Prepare the known test roofer for a future manual runner send-path DB write test by adding a gated verifier that can set only `roofers.sms_confirmation_enabled=true` for the known test roofer.
+
+Known test roofer:
+
+- `be7efc94-bd68-43af-81b2-dc7b869b42df`
+
+Live write gates required:
+
+- `SMS_TEST_ROOFER_ENABLE_SMS_WRITE=true`
+- `SMS_TEST_ROOFER_TARGET=known_test_roofer_sms_enable`
+- `SMS_TEST_ROOFER_ID=be7efc94-bd68-43af-81b2-dc7b869b42df`
+- `--allow-live-supabase-write`
+- `--known-test-roofer-only`
+- `--enable-sms-confirmation`
+
+Only allowed live update:
+
+- Table: `roofers`
+- Row id: `be7efc94-bd68-43af-81b2-dc7b869b42df`
+- Payload: `{ sms_confirmation_enabled: true }`
+
+Verifier result:
+
+- Default mode fails closed and writes nothing.
+- Wrong target fails closed.
+- Wrong roofer id fails closed.
+- Missing CLI gate fails closed.
+- Missing test roofer row fails closed before update.
+- Valid fake Supabase path updates exactly one `roofers` row.
+- Fake path verifies old/new `sms_confirmation_enabled` values.
+- Static checks verify no inserts, no upserts, no deletes, exactly one update call site, only the `roofers` table target constant, no Twilio, no SMS send, no route, no cron/scheduler, and no production dispatcher activation.
+
+Safety confirmation:
+
+- No live write was run in this batch.
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher was enabled.
+- This verifier enables only the known test roofer when every explicit gate is present.
+- Production SMS activation still requires separate approval.
