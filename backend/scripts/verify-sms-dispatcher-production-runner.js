@@ -266,6 +266,7 @@ function cliEnv(overrides = {}) {
     SMS_DISPATCHER_PRODUCTION_RUNNER: 'false',
     SMS_DISPATCHER_PRODUCTION_TARGET: '',
     SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: '',
+    SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID: '',
     SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE: '',
     SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'false',
     SMS_DB_EXECUTOR_TARGET: '',
@@ -335,6 +336,7 @@ const dbExecutorGate = {
       SMS_DISPATCHER_PRODUCTION_RUNNER: 'true',
       SMS_DISPATCHER_PRODUCTION_TARGET: SMS_DISPATCHER_PRODUCTION_RUNNER_TARGET,
       SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: allowedRooferId,
+      SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID: 'production-followup-2',
       SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE: '99',
       SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'true',
       SMS_DB_EXECUTOR_TARGET: SMS_DISPATCHER_DB_EXECUTOR_TARGET,
@@ -345,6 +347,7 @@ const dbExecutorGate = {
   );
   assert(envInput.maxBatchSize === SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE, 'env input applies batch cap');
   assert(envInput.productionGate.allowedRooferIds[0] === allowedRooferId, 'env input applies allowed roofer allowlist');
+  assert(envInput.productionGate.approvedFollowUpId === 'production-followup-2', 'env input applies approved follow-up id');
 
   const defaultFake = createFakeSupabase();
   const defaultResult = await executeSmsDispatcherProductionRunner({
@@ -441,6 +444,78 @@ const dbExecutorGate = {
   assert(cappedResult.cronAdded === false, 'production runner reports no cron added');
   assert(cappedResult.productionDispatcherActivated === true, 'explicit function invocation can activate gated DB writes');
 
+  const exactFollowUpFake = createFakeSupabase({
+    followUps: [
+      dueFollowUp(1, allowedRooferId),
+      dueFollowUp(2, allowedRooferId),
+      dueFollowUp(3, otherRooferId)
+    ]
+  });
+  const exactFollowUpResult = await executeSmsDispatcherProductionRunner({
+    supabase: exactFollowUpFake,
+    productionGate: {
+      ...productionGate,
+      approvedFollowUpId: 'production-followup-2'
+    },
+    dbExecutorGate,
+    maxBatchSize: 1,
+    currentTime: '2026-06-04T18:00:00.000Z'
+  });
+  assert(exactFollowUpResult.applied === true, 'approved follow-up filter applies exact matching plan');
+  assert(exactFollowUpResult.selectedPlanCount === 1, 'approved follow-up filter selects exactly one plan');
+  assert(exactFollowUpResult.applications[0].follow_up_id === 'production-followup-2', 'approved follow-up filter selects requested follow-up only');
+  assert(exactFollowUpFake.rows.messages.length === 1, 'approved follow-up filter writes one fake message');
+  assert(exactFollowUpFake.rows.messages[0].lead_id === 'production-lead-2', 'approved follow-up filter writes selected follow-up lead only');
+
+  const wrongFollowUpFake = createFakeSupabase({
+    followUps: [
+      dueFollowUp(1, allowedRooferId),
+      dueFollowUp(2, allowedRooferId)
+    ]
+  });
+  const wrongFollowUpResult = await executeSmsDispatcherProductionRunner({
+    supabase: wrongFollowUpFake,
+    productionGate: {
+      ...productionGate,
+      approvedFollowUpId: 'missing-followup'
+    },
+    dbExecutorGate,
+    maxBatchSize: 1,
+    currentTime: '2026-06-04T18:00:00.000Z'
+  });
+  assert(wrongFollowUpResult.failedClosed === true, 'wrong approved follow-up id fails closed');
+  assert(wrongFollowUpResult.reason === 'no_approved_follow_up_plan', 'wrong approved follow-up id reports no approved plan');
+  assert(mutatingCallCount(wrongFollowUpFake) === 0, 'wrong approved follow-up id writes nothing');
+
+  const duplicateApprovedFollowUpFake = createFakeSupabase({
+    followUps: [
+      dueFollowUp(1, allowedRooferId),
+      {
+        ...dueFollowUp(2, allowedRooferId),
+        id: 'production-followup-1',
+        lead_id: 'production-lead-duplicate',
+        leads: {
+          id: 'production-lead-duplicate',
+          phone: '+15551234999',
+          status: 'new'
+        }
+      }
+    ]
+  });
+  const duplicateApprovedFollowUpResult = await executeSmsDispatcherProductionRunner({
+    supabase: duplicateApprovedFollowUpFake,
+    productionGate: {
+      ...productionGate,
+      approvedFollowUpId: 'production-followup-1'
+    },
+    dbExecutorGate,
+    maxBatchSize: 1,
+    currentTime: '2026-06-04T18:00:00.000Z'
+  });
+  assert(duplicateApprovedFollowUpResult.failedClosed === true, 'duplicate approved follow-up matches fail closed');
+  assert(duplicateApprovedFollowUpResult.reason === 'multiple_approved_follow_up_plans', 'duplicate approved follow-up matches report reason');
+  assert(mutatingCallCount(duplicateApprovedFollowUpFake) === 0, 'duplicate approved follow-up matches write nothing');
+
   const cliDefaultOutput = await runProductionRunnerCli(cliEnv(), []);
   assert(cliDefaultOutput.mode === 'fake', 'CLI default uses fake mode');
   assert(cliDefaultOutput.result.failedClosed === true, 'CLI default result fails closed');
@@ -453,6 +528,7 @@ const dbExecutorGate = {
       SMS_DISPATCHER_PRODUCTION_RUNNER: 'true',
       SMS_DISPATCHER_PRODUCTION_TARGET: SMS_DISPATCHER_PRODUCTION_RUNNER_TARGET,
       SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: allowedRooferId,
+      SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID: 'production-cli-followup-1',
       SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE: '1',
       SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'true',
       SMS_DB_EXECUTOR_TARGET: SMS_DISPATCHER_DB_EXECUTOR_TARGET,
@@ -476,6 +552,7 @@ const dbExecutorGate = {
       SMS_DISPATCHER_PRODUCTION_RUNNER: 'true',
       SMS_DISPATCHER_PRODUCTION_TARGET: SMS_DISPATCHER_PRODUCTION_RUNNER_TARGET,
       SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: allowedRooferId,
+      SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID: 'production-cli-followup-1',
       SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'true',
       SMS_DB_EXECUTOR_TARGET: SMS_DISPATCHER_DB_EXECUTOR_TARGET,
       SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN: 'true'
@@ -488,12 +565,31 @@ const dbExecutorGate = {
   assert(cliLiveMissingFlagOutput.result.noSmsSent === true, 'CLI live mode missing CLI flag reports no SMS sent');
   assert(cliLiveMissingFlagOutput.result.noTwilioCallsMade === true, 'CLI live mode missing CLI flag reports no Twilio calls');
 
+  const cliLiveMissingApprovedFollowUpOutput = await runProductionRunnerCli(
+    cliEnv({
+      SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE: 'true',
+      SMS_DISPATCHER_PRODUCTION_RUNNER: 'true',
+      SMS_DISPATCHER_PRODUCTION_TARGET: SMS_DISPATCHER_PRODUCTION_RUNNER_TARGET,
+      SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: allowedRooferId,
+      SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'true',
+      SMS_DB_EXECUTOR_TARGET: SMS_DISPATCHER_DB_EXECUTOR_TARGET,
+      SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN: 'true'
+    }),
+    ['--allow-live-supabase-production-runner', '--production-runner']
+  );
+  assert(cliLiveMissingApprovedFollowUpOutput.result.failedClosed === true, 'CLI live mode missing approved follow-up id exits failed closed');
+  assert(cliLiveMissingApprovedFollowUpOutput.mode === 'live_blocked', 'CLI live mode missing approved follow-up id is blocked');
+  assert(cliLiveMissingApprovedFollowUpOutput.result.reason === 'missing_live_supabase_env_gate', 'CLI live mode missing approved follow-up id reports env gate reason');
+  assert(cliLiveMissingApprovedFollowUpOutput.result.noSmsSent === true, 'CLI live mode missing approved follow-up id reports no SMS sent');
+  assert(cliLiveMissingApprovedFollowUpOutput.result.noTwilioCallsMade === true, 'CLI live mode missing approved follow-up id reports no Twilio calls');
+
   const cliLiveMissingEnvGateOutput = await runProductionRunnerCli(
     cliEnv({
       SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE: 'true',
       SMS_DISPATCHER_PRODUCTION_RUNNER: 'false',
       SMS_DISPATCHER_PRODUCTION_TARGET: SMS_DISPATCHER_PRODUCTION_RUNNER_TARGET,
       SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS: allowedRooferId,
+      SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID: 'production-cli-followup-1',
       SMS_DISPATCHER_DB_EXECUTOR_WRITE: 'true',
       SMS_DB_EXECUTOR_TARGET: SMS_DISPATCHER_DB_EXECUTOR_TARGET,
       SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN: 'true'

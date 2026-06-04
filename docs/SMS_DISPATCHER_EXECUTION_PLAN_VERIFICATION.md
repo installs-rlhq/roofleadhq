@@ -597,6 +597,7 @@ Production runner gates required:
 - `SMS_DISPATCHER_PRODUCTION_RUNNER=true`
 - `SMS_DISPATCHER_PRODUCTION_TARGET=sms_dispatcher_production_runner`
 - `SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS` with at least one comma-separated UUID
+- `SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID` when live Supabase mode is requested
 - `SMS_DISPATCHER_DB_EXECUTOR_WRITE=true`
 - `SMS_DB_EXECUTOR_TARGET=sms_dispatcher_db_executor`
 - `SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN=true`
@@ -669,6 +670,7 @@ Live Supabase mode requires all of:
 - `SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN=true`
 - `--allow-live-supabase-production-runner`
 - `--production-runner`
+- `--approved-follow-up-id <uuid>` when live Supabase mode is requested
 
 Verifier result:
 
@@ -677,6 +679,9 @@ Verifier result:
 - Verifies explicitly gated fake mode returns the expected output shape and applies only fake DB writes.
 - Verifies live mode with missing CLI flags fails closed before live Supabase construction.
 - Verifies live mode with missing env gates fails closed before live Supabase construction.
+- Verifies live mode with missing approved follow-up id fails closed before live Supabase construction.
+- Verifies approved follow-up id filtering selects only the exact requested follow-up.
+- Verifies wrong or duplicate approved follow-up matches fail closed and write nothing.
 - Static checks verify the CLI wrapper has no SMS provider send call, no Twilio import/client usage, no route registration, no cron/scheduler activation, and no app auto-start.
 
 Safety confirmation:
@@ -746,6 +751,7 @@ export SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE=true
 export SMS_DISPATCHER_PRODUCTION_RUNNER=true
 export SMS_DISPATCHER_PRODUCTION_TARGET=sms_dispatcher_production_runner
 export SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS=be7efc94-bd68-43af-81b2-dc7b869b42df
+export SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID=167bd260-5e06-45dd-b5b0-336915d5f5ac
 export SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE=1
 export SMS_DISPATCHER_PRODUCTION_LIVE_TEST_RUN_ID=production-runner-live-prep-2026-06-04T20-42-33-711z
 export SMS_DISPATCHER_DB_EXECUTOR_WRITE=true
@@ -754,7 +760,8 @@ export SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN=true
 
 node backend/scripts/run-sms-dispatcher-production-runner.js \
   --allow-live-supabase-production-runner \
-  --production-runner
+  --production-runner \
+  --approved-follow-up-id 167bd260-5e06-45dd-b5b0-336915d5f5ac
 ```
 
 Do not run the future command until explicit live-write approval is given.
@@ -770,3 +777,51 @@ Safety confirmation:
 - No Twilio import, client, or call was made.
 - No route, cron, scheduler, or production dispatcher auto-start was enabled.
 - The production runner live CLI was not run.
+
+## Production runner live test failed closed on unapproved selected follow-up
+
+Date: 2026-06-04
+
+Latest verified commit before this fix:
+
+- `716a2ea test(sms): add production runner live prep`
+
+Approved prep candidate:
+
+- Run ID: `production-runner-live-prep-2026-06-04T20-44-57-941z`
+- Roofer ID: `be7efc94-bd68-43af-81b2-dc7b869b42df`
+- Lead ID: `2fbcae6f-1a0d-4709-9c17-e1c5158b8d0e`
+- Follow-up ID: `167bd260-5e06-45dd-b5b0-336915d5f5ac`
+
+Failed-closed live runner result:
+
+- Actual selected follow-up ID: `3c83aef7-3838-4173-9ee6-b76453bec1e9`
+- Failed closed reason: `duplicate_message_found`
+- No writes happened.
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher auto-start was enabled.
+
+Fix added:
+
+- New env gate: `SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID`
+- New CLI flag: `--approved-follow-up-id <uuid>`
+- Live Supabase mode fails closed before Supabase construction unless an approved follow-up id is present.
+- Runner filters dry-run plans by both allowed roofer ids and exact approved follow-up id when provided.
+- Runner fails closed with `no_approved_follow_up_plan` if no exact approved follow-up plan is found.
+- Runner fails closed with `multiple_approved_follow_up_plans` if more than one exact approved follow-up plan is found.
+- Fake mode remains runnable without approved follow-up id unless live Supabase is requested.
+
+Verifier coverage added:
+
+- Live mode missing approved follow-up id fails closed.
+- Approved follow-up id filter selects only the exact requested follow-up.
+- Wrong approved follow-up id fails closed and writes nothing.
+- Duplicate approved follow-up plan matches fail closed and write nothing.
+
+Safety confirmation:
+
+- No live database writes were run in this fix.
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher auto-start was enabled.

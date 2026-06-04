@@ -30,6 +30,12 @@ function compile(sourcePath, outputPath) {
   fs.writeFileSync(outputPath, output);
 }
 
+function getArgValue(flag, argv = process.argv) {
+  const index = argv.indexOf(flag);
+  if (index === -1) return null;
+  return argv[index + 1] || null;
+}
+
 function hasLiveCliGate(argv = process.argv) {
   return (
     argv.includes('--allow-live-supabase-production-runner') &&
@@ -49,6 +55,7 @@ function hasLiveEnvGate(env = process.env) {
   return (
     env.SMS_DISPATCHER_PRODUCTION_RUNNER === 'true' &&
     env.SMS_DISPATCHER_PRODUCTION_TARGET === 'sms_dispatcher_production_runner' &&
+    Boolean(env.SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID) &&
     env.SMS_DISPATCHER_DB_EXECUTOR_WRITE === 'true' &&
     env.SMS_DB_EXECUTOR_TARGET === 'sms_dispatcher_db_executor' &&
     env.SMS_DB_EXECUTOR_CONFIRM_WRITE_PLAN === 'true' &&
@@ -71,6 +78,7 @@ function failedClosedCliResult(reason, error) {
     requestedBatchSize: 1,
     cappedBatchSize: 1,
     allowedRooferIds: [],
+    approvedFollowUpId: undefined,
     dryRunPlanCount: 0,
     selectedPlanCount: 0,
     applications: [],
@@ -262,7 +270,16 @@ const {
 } = require('/tmp/sms-dispatcher-production-runner.js');
 
 async function runProductionRunnerCli(env = process.env, argv = process.argv) {
-  if (liveSupabaseRequested(env) && !hasLiveCliGate(argv)) {
+  const approvedFollowUpId =
+    getArgValue('--approved-follow-up-id', argv) ||
+    env.SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID ||
+    undefined;
+  const effectiveEnv = {
+    ...env,
+    SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID: approvedFollowUpId
+  };
+
+  if (liveSupabaseRequested(effectiveEnv) && !hasLiveCliGate(argv)) {
     return {
       mode: 'live_blocked',
       liveSupabaseRequested: true,
@@ -273,32 +290,36 @@ async function runProductionRunnerCli(env = process.env, argv = process.argv) {
     };
   }
 
-  if (liveSupabaseRequested(env) && !hasLiveEnvGate(env)) {
+  if (liveSupabaseRequested(effectiveEnv) && !hasLiveEnvGate(effectiveEnv)) {
     return {
       mode: 'live_blocked',
       liveSupabaseRequested: true,
       result: failedClosedCliResult(
         'missing_live_supabase_env_gate',
-        'Live Supabase production runner requires production runner env gates, DB executor env gates, and allowed roofer UUIDs'
+        'Live Supabase production runner requires production runner env gates, DB executor env gates, allowed roofer UUIDs, and an approved follow-up id'
       )
     };
   }
 
   const allowedRooferIds = parseSmsDispatcherProductionAllowedRooferIds(
-    env.SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS
+    effectiveEnv.SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS
   );
   const defaultRooferId = allowedRooferIds[0] || '11111111-1111-4111-8111-111111111111';
-  const supabase = await buildSupabase(defaultRooferId, env, argv);
+  const supabase = await buildSupabase(defaultRooferId, effectiveEnv, argv);
   const input = buildSmsDispatcherProductionRunnerInputFromEnv(
-    env,
+    effectiveEnv,
     supabase,
-    env.SMS_DISPATCHER_PRODUCTION_CURRENT_TIME || '2026-06-04T18:00:00.000Z'
+    effectiveEnv.SMS_DISPATCHER_PRODUCTION_CURRENT_TIME || '2026-06-04T18:00:00.000Z'
   );
+  input.productionGate = {
+    ...input.productionGate,
+    requireApprovedFollowUpId: liveSupabaseRequested(effectiveEnv)
+  };
   const result = await executeSmsDispatcherProductionRunner(input);
 
   return {
-    mode: liveModeRequested(env, argv) ? 'live' : 'fake',
-    liveSupabaseRequested: liveSupabaseRequested(env),
+    mode: liveModeRequested(effectiveEnv, argv) ? 'live' : 'fake',
+    liveSupabaseRequested: liveSupabaseRequested(effectiveEnv),
     result
   };
 }

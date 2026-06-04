@@ -19,6 +19,8 @@ export interface SmsDispatcherProductionRunnerGate {
   allowProductionRunner?: boolean;
   runnerTarget?: string;
   allowedRooferIds?: string[];
+  approvedFollowUpId?: string;
+  requireApprovedFollowUpId?: boolean;
 }
 
 export interface SmsDispatcherProductionRunnerInput {
@@ -34,9 +36,12 @@ export type SmsDispatcherProductionRunnerReason =
   | 'missing_supabase_client'
   | 'missing_production_runner_gate'
   | 'missing_allowed_roofer_ids'
+  | 'missing_approved_follow_up_id'
   | 'invalid_batch_size'
   | 'dry_run_failed_closed'
   | 'no_allowed_roofer_plans'
+  | 'no_approved_follow_up_plan'
+  | 'multiple_approved_follow_up_plans'
   | 'db_executor_failed_closed';
 
 export interface SmsDispatcherProductionRunnerPlanApplication {
@@ -59,6 +64,7 @@ export interface SmsDispatcherProductionRunnerResult {
   requestedBatchSize: number;
   cappedBatchSize: number;
   allowedRooferIds: string[];
+  approvedFollowUpId?: string;
   dryRunPlanCount: number;
   selectedPlanCount: number;
   applications: SmsDispatcherProductionRunnerPlanApplication[];
@@ -105,7 +111,8 @@ export function buildSmsDispatcherProductionRunnerInputFromEnv(
       runnerTarget: env.SMS_DISPATCHER_PRODUCTION_TARGET,
       allowedRooferIds: parseSmsDispatcherProductionAllowedRooferIds(
         env.SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS
-      )
+      ),
+      approvedFollowUpId: env.SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID || undefined
     },
     dbExecutorGate: {
       allowLiveDbWrite: env.SMS_DISPATCHER_DB_EXECUTOR_WRITE === 'true',
@@ -120,6 +127,7 @@ function baseResult(
   requestedBatchSize: number,
   cappedBatchSize: number,
   allowedRooferIds: string[] = [],
+  approvedFollowUpId?: string,
   failedClosed = true,
   error?: string
 ): SmsDispatcherProductionRunnerResult {
@@ -135,6 +143,7 @@ function baseResult(
     requestedBatchSize,
     cappedBatchSize,
     allowedRooferIds,
+    approvedFollowUpId,
     dryRunPlanCount: 0,
     selectedPlanCount: 0,
     applications: [],
@@ -170,13 +179,26 @@ export async function executeSmsDispatcherProductionRunner(
   const cappedBatchSize = parseSmsDispatcherProductionMaxBatchSize(requestedBatchSize);
   const allowedRooferIds = input.productionGate?.allowedRooferIds || [];
   const allowedRooferIdSet = new Set(allowedRooferIds);
+  const approvedFollowUpId = input.productionGate?.approvedFollowUpId;
 
   if (!input.supabase) {
-    return baseResult('missing_supabase_client', requestedBatchSize, cappedBatchSize, allowedRooferIds);
+    return baseResult(
+      'missing_supabase_client',
+      requestedBatchSize,
+      cappedBatchSize,
+      allowedRooferIds,
+      approvedFollowUpId
+    );
   }
 
   if (cappedBatchSize < 1) {
-    return baseResult('invalid_batch_size', requestedBatchSize, cappedBatchSize, allowedRooferIds);
+    return baseResult(
+      'invalid_batch_size',
+      requestedBatchSize,
+      cappedBatchSize,
+      allowedRooferIds,
+      approvedFollowUpId
+    );
   }
 
   if (!hasProductionRunnerGate(input.productionGate)) {
@@ -184,7 +206,8 @@ export async function executeSmsDispatcherProductionRunner(
       'missing_production_runner_gate',
       requestedBatchSize,
       cappedBatchSize,
-      allowedRooferIds
+      allowedRooferIds,
+      approvedFollowUpId
     );
   }
 
@@ -193,7 +216,18 @@ export async function executeSmsDispatcherProductionRunner(
       'missing_allowed_roofer_ids',
       requestedBatchSize,
       cappedBatchSize,
-      allowedRooferIds
+      allowedRooferIds,
+      approvedFollowUpId
+    );
+  }
+
+  if (input.productionGate?.requireApprovedFollowUpId === true && !approvedFollowUpId) {
+    return baseResult(
+      'missing_approved_follow_up_id',
+      requestedBatchSize,
+      cappedBatchSize,
+      allowedRooferIds,
+      approvedFollowUpId
     );
   }
 
@@ -201,7 +235,7 @@ export async function executeSmsDispatcherProductionRunner(
     supabase: input.supabase,
     dryRun: true,
     currentTime: input.currentTime,
-    limit: cappedBatchSize
+    limit: approvedFollowUpId ? Math.max(cappedBatchSize, 50) : cappedBatchSize
   });
 
   if (dryRun.failedClosed) {
@@ -210,6 +244,7 @@ export async function executeSmsDispatcherProductionRunner(
       requestedBatchSize,
       cappedBatchSize,
       allowedRooferIds,
+      approvedFollowUpId,
       true,
       dryRun.lookupError
     );
@@ -220,19 +255,50 @@ export async function executeSmsDispatcherProductionRunner(
   const selectedPlans = dryRun.plans
     .filter((plan) => {
       const rooferId = writePlanRooferId(plan);
-      return Boolean(plan.writePlan && rooferId && allowedRooferIdSet.has(rooferId));
+      return Boolean(
+        plan.writePlan &&
+          rooferId &&
+          allowedRooferIdSet.has(rooferId) &&
+          (!approvedFollowUpId || plan.follow_up_id === approvedFollowUpId)
+      );
     })
     .slice(0, cappedBatchSize);
 
   if (selectedPlans.length === 0) {
     const empty = baseResult(
-      'no_allowed_roofer_plans',
+      approvedFollowUpId ? 'no_approved_follow_up_plan' : 'no_allowed_roofer_plans',
       requestedBatchSize,
       cappedBatchSize,
-      allowedRooferIds
+      allowedRooferIds,
+      approvedFollowUpId
     );
     empty.dryRunPlanCount = dryRun.plans.length;
     return empty;
+  }
+
+  if (approvedFollowUpId) {
+    const exactMatchCount = dryRun.plans.filter((plan) => {
+      const rooferId = writePlanRooferId(plan);
+      return Boolean(
+        plan.writePlan &&
+          plan.follow_up_id === approvedFollowUpId &&
+          rooferId &&
+          allowedRooferIdSet.has(rooferId)
+      );
+    }).length;
+
+    if (exactMatchCount > 1) {
+      const multiple = baseResult(
+        'multiple_approved_follow_up_plans',
+        requestedBatchSize,
+        cappedBatchSize,
+        allowedRooferIds,
+        approvedFollowUpId
+      );
+      multiple.dryRunPlanCount = dryRun.plans.length;
+      multiple.selectedPlanCount = exactMatchCount;
+      return multiple;
+    }
   }
 
   const applications: SmsDispatcherProductionRunnerPlanApplication[] = [];
@@ -265,6 +331,7 @@ export async function executeSmsDispatcherProductionRunner(
         requestedBatchSize,
         cappedBatchSize,
         allowedRooferIds,
+        approvedFollowUpId,
         dryRunPlanCount: dryRun.plans.length,
         selectedPlanCount: selectedPlans.length,
         applications
@@ -284,6 +351,7 @@ export async function executeSmsDispatcherProductionRunner(
     requestedBatchSize,
     cappedBatchSize,
     allowedRooferIds,
+    approvedFollowUpId,
     dryRunPlanCount: dryRun.plans.length,
     selectedPlanCount: selectedPlans.length,
     applications

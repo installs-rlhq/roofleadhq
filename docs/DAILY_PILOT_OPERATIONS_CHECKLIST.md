@@ -144,9 +144,11 @@ Gated live-write verifier status:
 - `backend/src/services/sms-dispatcher-production-runner.service.ts` is a disabled production runner scaffold only. It has no SMS/Twilio send path, no route, no cron/scheduler, and no auto-start.
 - Do not invoke the production runner with DB write gates unless production runner env gates, DB executor env gates, allowed roofer UUIDs, and batch scope have been explicitly approved.
 - `backend/scripts/run-sms-dispatcher-production-runner.js` is an explicit CLI wrapper only. Default mode uses fake Supabase and fails closed unless gated.
-- Do not run the production runner CLI against live Supabase unless `SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE=true`, both live CLI flags, production runner gates, DB executor gates, allowed roofer UUIDs, and batch scope have all been explicitly approved.
+- Do not run the production runner CLI against live Supabase unless `SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE=true`, both live CLI flags, production runner gates, DB executor gates, allowed roofer UUIDs, exact approved follow-up id, and batch scope have all been explicitly approved.
 - `backend/scripts/prepare-sms-dispatcher-production-runner-live-test-readonly.js` selected future production runner live test candidate `167bd260-5e06-45dd-b5b0-336915d5f5ac` for lead `2fbcae6f-1a0d-4709-9c17-e1c5158b8d0e` on 2026-06-04 without writes, SMS, Twilio, route, cron, or production runner execution.
 - Do not run the printed production runner live command without explicit approval and a fresh review of the selected candidate, allowed roofer allowlist, duplicate scope, and batch size.
+- Approved production runner live test attempt `production-runner-live-prep-2026-06-04T20-44-57-941z` failed closed safely after selecting different follow-up `3c83aef7-3838-4173-9ee6-b76453bec1e9` with `duplicate_message_found`; no writes, SMS, or Twilio calls happened.
+- Production runner live mode now requires `SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID` and `--approved-follow-up-id <uuid>` so DB execution can only target the reviewed follow-up candidate.
 
 ## 7. Booked Inspections
 

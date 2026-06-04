@@ -101,6 +101,7 @@ function runStaticSafetyChecks() {
   const source = fs.readFileSync(__filename, 'utf8');
   const twilioImportPattern = new RegExp("require\\(['\"]" + 'twilio' + "['\"]\\)|from ['\"]" + 'twilio' + "['\"]");
   const twilioClientPattern = new RegExp('new ' + 'Twilio|' + 'twilio' + '\\(', 'i');
+  const productionRunnerPattern = new RegExp('executeSmsDispatcher' + 'ProductionRunner\\s*\\(');
   const forbidden = [
     { pattern: /\.insert\s*\(/, label: 'Supabase insert call' },
     { pattern: /\.update\s*\(/, label: 'Supabase update call' },
@@ -112,7 +113,7 @@ function runStaticSafetyChecks() {
     { pattern: /\.messages\.create\s*\(/, label: 'SMS provider send call' },
     { pattern: /\bapp\.(get|post|put|patch|delete)\s*\(/, label: 'route registration' },
     { pattern: /scheduleJob\s*\(|setInterval\s*\(|cron\s*\./i, label: 'cron or scheduler activation' },
-    { pattern: /executeSmsDispatcherProductionRunner\s*\(/, label: 'production runner invocation' },
+    { pattern: productionRunnerPattern, label: 'production runner invocation' },
     { pattern: /runProductionSmsDispatcher\s*\(/i, label: 'production dispatcher auto-start' }
   ];
 
@@ -377,6 +378,7 @@ async function main() {
   console.log('export SMS_DISPATCHER_PRODUCTION_RUNNER=true');
   console.log(`export SMS_DISPATCHER_PRODUCTION_TARGET=${PRODUCTION_RUNNER_TARGET}`);
   console.log(`export SMS_DISPATCHER_PRODUCTION_ALLOWED_ROOFER_IDS=${TEST_ROOFER_ID}`);
+  console.log(`export SMS_DISPATCHER_PRODUCTION_APPROVED_FOLLOW_UP_ID=${candidate.id}`);
   console.log(`export SMS_DISPATCHER_PRODUCTION_MAX_BATCH_SIZE=${MAX_BATCH_SIZE}`);
   console.log(`export SMS_DISPATCHER_PRODUCTION_LIVE_TEST_RUN_ID=${runId}`);
   console.log('export SMS_DISPATCHER_DB_EXECUTOR_WRITE=true');
@@ -386,7 +388,8 @@ async function main() {
   console.log('=== FUTURE PRODUCTION RUNNER LIVE TEST COMMAND - DO NOT RUN WITHOUT APPROVAL ===');
   console.log('node backend/scripts/run-sms-dispatcher-production-runner.js \\');
   console.log('  --allow-live-supabase-production-runner \\');
-  console.log('  --production-runner');
+  console.log('  --production-runner \\');
+  console.log(`  --approved-follow-up-id ${candidate.id}`);
   console.log('PASS: read-only production runner live test prep completed.');
 }
 
