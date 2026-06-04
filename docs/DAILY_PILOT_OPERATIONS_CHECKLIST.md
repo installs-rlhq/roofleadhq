@@ -160,6 +160,7 @@ Gated live-write verifier status:
 - `backend/src/services/sms-twilio-send-adapter.service.ts` is a disabled Twilio send adapter scaffold only. It is not wired into the production runner, app startup, routes, cron, scheduler, or auto-start paths.
 - `backend/src/services/sms-send-intent-planner.service.ts` is a read-only future Twilio send-intent planner only. It does not send SMS, call Twilio, or write the database.
 - `backend/src/services/sms-production-send-intent-bridge.service.ts` is a fake-only bridge from production runner output to the send-intent planner. It does not send SMS, call Twilio, write the database, or enable automation.
+- Production runner fake verification now checks the production send-intent bridge can turn an exact approved eligible fake application into a future Twilio send intent while mismatches, non-send actions, and non-eligible send actions fail closed with no SMS and no Twilio calls.
 - Do not run or wire the Twilio send adapter for live SMS unless `SMS_TWILIO_SEND_ADAPTER=true`, `SMS_TWILIO_SEND_TARGET=sms_twilio_send_adapter`, `SMS_TWILIO_CONFIRM_SEND=true`, Twilio credentials, message scope, and explicit live-send approval have all been reviewed.
 
 ## 7. Booked Inspections

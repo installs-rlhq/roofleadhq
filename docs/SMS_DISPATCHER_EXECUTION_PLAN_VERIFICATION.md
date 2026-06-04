@@ -926,3 +926,18 @@ Safety confirmation:
 - The adapter remains disabled by default.
 - The adapter is not wired into production runner execution.
 - No route, cron, scheduler, or auto-start was enabled.
+
+## Production runner fake send-intent bridge verification added
+
+Goal:
+Verify that the production runner fake verifier can exercise the production send-intent bridge without wiring Twilio, sending SMS, running live database writes, adding routes, adding cron, adding schedulers, or enabling auto-start.
+
+Coverage:
+- Exact approved eligible fake production runner application can produce a future Twilio send intent.
+- Send intent provider is `twilio`.
+- Approved follow-up mismatch fails closed.
+- Non-send application fails closed.
+- Non-eligible send application fails closed.
+- All bridge verification cases report `noSmsSent=true` and `noTwilioCallsMade=true`.
+- Twilio adapter remains isolated and is not imported or called by the production runner verifier.
+

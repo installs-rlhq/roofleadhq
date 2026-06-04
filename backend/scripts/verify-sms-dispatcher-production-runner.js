@@ -12,6 +12,8 @@ const sourceFiles = [
   ['sms-dispatcher-write-plan.service', 'backend/src/services/sms-dispatcher-write-plan.service.ts', '/tmp/sms-dispatcher-write-plan.production-runner-verify.js'],
   ['sms-dispatcher-dry-run-executor.service', 'backend/src/services/sms-dispatcher-dry-run-executor.service.ts', '/tmp/sms-dispatcher-dry-run-executor.production-runner-verify.js'],
   ['sms-dispatcher-db-write-executor.service', 'backend/src/services/sms-dispatcher-db-write-executor.service.ts', '/tmp/sms-dispatcher-db-write-executor.production-runner-verify.js'],
+  ['sms-send-intent-planner.service', 'backend/src/services/sms-send-intent-planner.service.ts', '/tmp/sms-send-intent-planner.production-runner-verify.js'],
+  ['sms-production-send-intent-bridge.service', 'backend/src/services/sms-production-send-intent-bridge.service.ts', '/tmp/sms-production-send-intent-bridge.production-runner-verify.js'],
   ['sms-dispatcher-production-runner.service', 'backend/src/services/sms-dispatcher-production-runner.service.ts', '/tmp/sms-dispatcher-production-runner.verify.js']
 ];
 
@@ -242,7 +244,8 @@ function runStaticSafetyChecks() {
       /\.(ts|js)$/.test(relativePath) &&
       relativePath !== 'backend/src/services/sms-dispatcher-production-runner.service.ts' &&
       relativePath !== 'backend/scripts/run-sms-dispatcher-production-runner.js' &&
-      relativePath !== 'backend/scripts/verify-sms-dispatcher-production-runner.js'
+      relativePath !== 'backend/scripts/verify-sms-dispatcher-production-runner.js' &&
+      relativePath !== 'backend/scripts/verify-sms-twilio-send-adapter.js'
     );
   });
 
@@ -304,6 +307,9 @@ const {
 const {
   SMS_DISPATCHER_DB_EXECUTOR_TARGET
 } = require('/tmp/sms-dispatcher-db-write-executor.production-runner-verify.js');
+const {
+  bridgeProductionRunnerToSmsSendIntent
+} = require('/tmp/sms-production-send-intent-bridge.production-runner-verify.js');
 const {
   runProductionRunnerCli
 } = require(path.join(repoRoot, 'backend/scripts/run-sms-dispatcher-production-runner.js'));
@@ -466,6 +472,97 @@ const dbExecutorGate = {
   assert(exactFollowUpResult.applications[0].follow_up_id === 'production-followup-2', 'approved follow-up filter selects requested follow-up only');
   assert(exactFollowUpFake.rows.messages.length === 1, 'approved follow-up filter writes one fake message');
   assert(exactFollowUpFake.rows.messages[0].lead_id === 'production-lead-2', 'approved follow-up filter writes selected follow-up lead only');
+
+  const exactFollowUpApplication = exactFollowUpResult.applications[0];
+  const exactFollowUpSendIntent = bridgeProductionRunnerToSmsSendIntent({
+    application: {
+      follow_up_id: exactFollowUpApplication.follow_up_id,
+      roofer_id: exactFollowUpApplication.roofer_id,
+      lead_id: 'production-lead-2',
+      action: exactFollowUpApplication.action,
+      reason: exactFollowUpApplication.reason
+    },
+    writePlan: {
+      messageInsertPlan: {
+        lead_id: 'production-lead-2',
+        to_number: '+15551234002',
+        from_number: '+15550000001',
+        message_body: 'Production dispatcher scaffold follow-up 2.'
+      }
+    },
+    approved_follow_up_id: 'production-followup-2',
+    run_id: 'production-runner-bridge-fake-verify'
+  });
+  assert(exactFollowUpSendIntent.bridgedFromProductionRunner === true, 'production runner fake application bridges to send-intent planner');
+  assert(exactFollowUpSendIntent.shouldSend === true, 'production runner fake eligible application can produce send intent');
+  assert(exactFollowUpSendIntent.sendIntent.provider === 'twilio', 'production runner fake send intent provider is twilio');
+  assert(exactFollowUpSendIntent.noSmsSent === true, 'production runner fake send intent sends no SMS');
+  assert(exactFollowUpSendIntent.noTwilioCallsMade === true, 'production runner fake send intent makes no Twilio calls');
+
+  const mismatchedSendIntent = bridgeProductionRunnerToSmsSendIntent({
+    application: {
+      follow_up_id: exactFollowUpApplication.follow_up_id,
+      roofer_id: exactFollowUpApplication.roofer_id,
+      lead_id: 'production-lead-2',
+      action: exactFollowUpApplication.action,
+      reason: exactFollowUpApplication.reason
+    },
+    writePlan: {
+      messageInsertPlan: {
+        lead_id: 'production-lead-2',
+        to_number: '+15551234002',
+        from_number: '+15550000001',
+        message_body: 'Production dispatcher scaffold follow-up 2.'
+      }
+    },
+    approved_follow_up_id: 'wrong-followup',
+    run_id: 'production-runner-bridge-fake-verify'
+  });
+  assert(mismatchedSendIntent.shouldSend === false, 'production runner bridge approved follow-up mismatch fails closed');
+  assert(mismatchedSendIntent.reason === 'approved_follow_up_mismatch', 'production runner bridge mismatch reports approved follow-up mismatch');
+  assert(mismatchedSendIntent.noSmsSent === true, 'production runner bridge mismatch sends no SMS');
+  assert(mismatchedSendIntent.noTwilioCallsMade === true, 'production runner bridge mismatch makes no Twilio calls');
+
+  const nonSendSendIntent = bridgeProductionRunnerToSmsSendIntent({
+    application: {
+      follow_up_id: 'production-followup-skip',
+      roofer_id: allowedRooferId,
+      lead_id: 'production-lead-skip',
+      action: 'skip',
+      reason: 'quiet_hours'
+    },
+    writePlan: {
+      messageInsertPlan: null
+    },
+    approved_follow_up_id: 'production-followup-skip',
+    run_id: 'production-runner-bridge-fake-verify'
+  });
+  assert(nonSendSendIntent.shouldSend === false, 'production runner bridge non-send application fails closed');
+  assert(nonSendSendIntent.noSmsSent === true, 'production runner bridge non-send sends no SMS');
+  assert(nonSendSendIntent.noTwilioCallsMade === true, 'production runner bridge non-send makes no Twilio calls');
+
+  const nonEligibleSendIntent = bridgeProductionRunnerToSmsSendIntent({
+    application: {
+      follow_up_id: 'production-followup-noneligible',
+      roofer_id: allowedRooferId,
+      lead_id: 'production-lead-noneligible',
+      action: 'send',
+      reason: 'duplicate_send'
+    },
+    writePlan: {
+      messageInsertPlan: {
+        lead_id: 'production-lead-noneligible',
+        to_number: '+15551234003',
+        from_number: '+15550000001',
+        message_body: 'Production dispatcher scaffold follow-up noneligible.'
+      }
+    },
+    approved_follow_up_id: 'production-followup-noneligible',
+    run_id: 'production-runner-bridge-fake-verify'
+  });
+  assert(nonEligibleSendIntent.shouldSend === false, 'production runner bridge non-eligible send application fails closed');
+  assert(nonEligibleSendIntent.noSmsSent === true, 'production runner bridge non-eligible sends no SMS');
+  assert(nonEligibleSendIntent.noTwilioCallsMade === true, 'production runner bridge non-eligible makes no Twilio calls');
 
   const wrongFollowUpFake = createFakeSupabase({
     followUps: [
