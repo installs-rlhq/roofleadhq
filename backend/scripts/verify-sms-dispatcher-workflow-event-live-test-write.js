@@ -170,7 +170,7 @@ function createFakeSupabase(existingRows = []) {
 async function findExistingAuditRows(supabase, runId) {
   return supabase
     .from(WORKFLOW_EVENTS_TABLE)
-    .select('id,event_type,event_source,event_status,metadata')
+    .select('id,roofer_id,lead_id,event_type,event_source,event_status,metadata')
     .eq('event_source', EVENT_SOURCE)
     .eq('event_type', EVENT_TYPE)
     .filter('metadata->>run_id', 'eq', runId)
