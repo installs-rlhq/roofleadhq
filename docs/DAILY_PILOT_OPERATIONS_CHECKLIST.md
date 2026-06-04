@@ -135,6 +135,8 @@ Gated live-write verifier status:
 - `backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js` is read-only prep only; its printed live runner command is not approved by default.
 - The known test roofer SMS flag was enabled on 2026-06-04 for manual runner send-path DB testing: `sms_confirmation_enabled=false` -> `true`.
 - Do not rerun `backend/scripts/verify-sms-test-roofer-enable-sms-live-test.js` with live-write gates unless explicitly re-approving this test-only flag state.
+- Gated live manual test-only runner DB write was verified on 2026-06-04 with run id `manual-runner-live-prep-2026-06-04T20-19-31-541z`: action `send`, reason `eligible`, message insert `d4dce011-12fc-47d4-ba22-e0163384e2ac`, follow-up update `8747ca7c-acc8-4675-bbdc-c932dfdc96cb`, workflow event insert `84f71217-bf9b-4ebe-ae3f-1a847af476c6`, `applied=true`, `failedClosed=false`.
+- The gated manual runner DB test sent no SMS, made no Twilio calls, and did not enable any route, cron, scheduler, or production dispatcher.
 
 ## 7. Booked Inspections
 

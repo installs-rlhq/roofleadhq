@@ -523,3 +523,47 @@ Safety confirmation:
 - No route, cron, scheduler, or production dispatcher was enabled.
 - This update only changed the known test roofer SMS confirmation flag.
 - Production SMS activation still requires separate approval.
+
+## Gated manual test-only dispatcher runner DB live test verified
+
+Date: 2026-06-04
+
+Latest verified commit before this live test:
+
+- `3a25632 docs(sms): record test roofer sms flag update`
+
+Script:
+
+- `backend/scripts/run-sms-dispatcher-manual-test-only.js`
+
+Verified gated run:
+
+- Mode: `live`
+- Run ID: `manual-runner-live-prep-2026-06-04T20-19-31-541z`
+- Roofer ID: `be7efc94-bd68-43af-81b2-dc7b869b42df`
+- Lead ID: `45532f48-0ac9-4dde-bb8e-b8cb2b2761f5`
+- Follow-up ID: `8747ca7c-acc8-4675-bbdc-c932dfdc96cb`
+- Action: `send`
+- Reason: `eligible`
+- Message insert ID: `d4dce011-12fc-47d4-ba22-e0163384e2ac`
+- Follow-up update ID: `8747ca7c-acc8-4675-bbdc-c932dfdc96cb`
+- Workflow event insert ID: `84f71217-bf9b-4ebe-ae3f-1a847af476c6`
+- `applied`: `true`
+- `failedClosed`: `false`
+
+Verified result:
+
+- The manual test-only runner selected the approved test roofer candidate.
+- One gated DB write plan was applied through the DB executor.
+- One `messages` row was inserted.
+- One `follow_ups` row was updated.
+- One `workflow_events` row was inserted.
+- The planned dispatcher action was `send` because the candidate was `eligible`.
+
+Safety confirmation:
+
+- No SMS was sent.
+- No Twilio calls were made.
+- No route, cron, scheduler, or production dispatcher was enabled.
+- This verified only the explicit gated manual test-only runner DB write path.
+- Production SMS dispatcher activation still requires separate approval.
