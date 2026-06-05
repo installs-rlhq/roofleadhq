@@ -22,6 +22,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Paid Contractor kickoff email',
+    script: 'backend/scripts/verify-first-paid-contractor-kickoff-email-readonly.js',
+    args: []
+  },
+  {
     name: 'Pilot dashboard smoke',
     script: 'backend/scripts/verify-pilot-dashboard-smoke-readonly.js',
     args: []
