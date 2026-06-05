@@ -149,6 +149,9 @@ Gated live-write verifier status:
 - First gated test-only `messages`/`follow_ups` DB write was verified on 2026-06-04 with run id `db-live-prep-2026-06-04T19-36-05-696z`.
 - Duplicate rerun failed closed with `duplicate_test_message_found`.
 - Exact approval was received for gated test-only Supabase `messages`/`follow_ups` DB write on 2026-06-05 with run id `db-write-candidate-2026-06-05T20-50-10-103z`: roofer `be7efc94-bd68-43af-81b2-dc7b869b42df`, lead `6b0b07a6-cab4-4207-9160-197180006812`, message insert `1882cdb3-5aa6-4906-807d-58d43216a103`, follow-up update `997ce1f8-3145-439f-a0c3-d042f803059f`. Message row was verified as `direction=outbound`, `channel=sms`, `provider=test_only_dispatcher_verifier`, `status=planned`, `sent_at=null`. Follow-up row was verified as `status=skipped`, `skipped_reason=test_only_sms_dispatcher_db-write-candidate-2026-06-05T20-50-10-103z`, `sent_at=null`. Duplicate/safety check verified the same candidate now fails safely with `status_not_scheduled` and `already_test_only_skipped`. No SMS was sent, no Twilio calls/imports happened, and no route, cron, scheduler, or dispatcher activation was added.
+- Completed gated DB write read-only verifier command:
+  `node backend/scripts/verify-sms-dispatcher-db-write-completed-readonly.js --static-only`
+  `node backend/scripts/verify-sms-dispatcher-db-write-completed-readonly.js`
 - Do not rerun the gated live-write verifier without explicit approval and fresh reviewed candidate IDs.
 - Do not run `backend/scripts/run-sms-dispatcher-manual-test-only.js` against live Supabase without explicit approval, reviewed candidate scope, approved roofer id, and all manual runner plus DB executor gates.
 - `backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js` is read-only prep only; its printed live runner command is not approved by default.
