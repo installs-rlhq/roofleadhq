@@ -941,3 +941,16 @@ Coverage:
 - All bridge verification cases report `noSmsSent=true` and `noTwilioCallsMade=true`.
 - Twilio adapter remains isolated and is not imported or called by the production runner verifier.
 
+## Fake send-intent to Twilio adapter contract verification added
+
+Goal:
+Verify that an approved fake send intent can be mapped into the disabled Twilio adapter contract without sending SMS, constructing a live Twilio client, adding routes, adding cron, adding schedulers, enabling auto-start, or wiring the adapter into the production runner.
+
+Coverage:
+- Approved fake send intent is created by the send-intent planner.
+- The intent targets provider `twilio`.
+- The disabled Twilio adapter accepts the intent fields in fake mode only.
+- The fake adapter result preserves roofer id, lead id, to number, from number, and body.
+- The fake adapter result returns a fake provider message id.
+- The fake adapter result reports no live SMS sent and no live Twilio client constructed.
+

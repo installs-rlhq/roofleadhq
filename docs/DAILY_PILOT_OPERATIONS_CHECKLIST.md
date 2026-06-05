@@ -128,6 +128,7 @@ Pass condition:
 - Manual test-only runner verifier uses fake Supabase only and confirms manual and DB executor gates are required.
 - Production runner verifier uses fake Supabase only and confirms production runner gates, DB executor gates, batch cap, and allowed roofer allowlist are required.
 - Twilio send adapter verifier uses fake verification only and confirms the adapter is disabled by default, sends no live SMS, constructs no live Twilio client, and is not imported by app, routes, cron, scheduler, or production runner paths.
+- Twilio send adapter verifier now confirms an approved fake send intent maps into the disabled adapter contract in fake mode while preserving roofer, lead, phone, and body fields with no live SMS and no live Twilio client.
 - Send-intent planner verifier uses fake verification only and confirms the planner fail-closes, requires exact approved follow-up matching, and makes no SMS or Twilio calls.
 - Production send-intent bridge verifier uses fake verification only and confirms the bridge only calls the send-intent planner, fails closed on non-send or non-eligible application results, and makes no SMS or Twilio calls.
 - Manual runner live prep static check confirms the prep script contains no writes, Twilio, SMS send, route, cron, or production dispatcher activation.

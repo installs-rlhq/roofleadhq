@@ -6,7 +6,9 @@ const ts = require('typescript');
 
 const repoRoot = path.join(__dirname, '..', '..');
 const servicePath = 'backend/src/services/sms-twilio-send-adapter.service.ts';
+const plannerPath = 'backend/src/services/sms-send-intent-planner.service.ts';
 const compiledServicePath = '/tmp/sms-twilio-send-adapter.verify.js';
+const compiledPlannerPath = '/tmp/sms-send-intent-planner.twilio-adapter-verify.js';
 
 console.log('=== RoofLeadHQ SMS Twilio Send Adapter Verification ===');
 console.log('Fake verification only.');
@@ -103,12 +105,16 @@ function runStaticSafetyChecks() {
 }
 
 compile(servicePath, compiledServicePath);
+compile(plannerPath, compiledPlannerPath);
 
 const {
   SMS_TWILIO_SEND_ADAPTER_TARGET,
   buildSmsTwilioSendAdapterGateFromEnv,
   sendSmsWithTwilioAdapter
 } = require(compiledServicePath);
+const {
+  planSmsSendIntent
+} = require(compiledPlannerPath);
 
 const validInput = {
   roofer_id: 'roofer-1',
@@ -172,6 +178,40 @@ const validGate = {
   assert(fakeResult.to === validInput.to, 'fake mode returns to contract field');
   assert(fakeResult.from === validInput.from, 'fake mode returns from contract field');
   assert(fakeResult.body === validInput.body, 'fake mode returns body contract field');
+
+  const sendIntentPlan = planSmsSendIntent({
+    roofer_id: 'roofer-send-intent-1',
+    lead_id: 'lead-send-intent-1',
+    follow_up_id: 'followup-send-intent-1',
+    approved_follow_up_id: 'followup-send-intent-1',
+    run_id: 'twilio-adapter-send-intent-contract-verify',
+    to: '+15551234567',
+    from: '+15557654321',
+    body: 'RoofLeadHQ fake send-intent adapter contract verification.'
+  });
+  assert(sendIntentPlan.shouldSend === true, 'send-intent planner creates approved fake Twilio send intent');
+  assert(sendIntentPlan.sendIntent.provider === 'twilio', 'send-intent planner targets Twilio provider');
+
+  const sendIntentAdapterResult = await sendSmsWithTwilioAdapter({
+    roofer_id: sendIntentPlan.sendIntent.roofer_id,
+    lead_id: sendIntentPlan.sendIntent.lead_id,
+    to: sendIntentPlan.sendIntent.to,
+    from: sendIntentPlan.sendIntent.from,
+    body: sendIntentPlan.sendIntent.body,
+    gate: validGate,
+    fakeMode: true,
+    fakeProviderMessageId: 'SM_fake_send_intent_contract'
+  });
+  assert(sendIntentAdapterResult.failedClosed === false, 'approved fake send intent maps to adapter fake success');
+  assert(sendIntentAdapterResult.provider_message_id === 'SM_fake_send_intent_contract', 'approved fake send intent returns fake provider message id');
+  assert(sendIntentAdapterResult.status === 'sent', 'approved fake send intent returns future sent status');
+  assert(sendIntentAdapterResult.noSmsSent === true, 'approved fake send intent sends no live SMS');
+  assert(sendIntentAdapterResult.noLiveTwilioClientConstructed === true, 'approved fake send intent constructs no live Twilio client');
+  assert(sendIntentAdapterResult.roofer_id === sendIntentPlan.sendIntent.roofer_id, 'approved fake send intent preserves roofer_id');
+  assert(sendIntentAdapterResult.lead_id === sendIntentPlan.sendIntent.lead_id, 'approved fake send intent preserves lead_id');
+  assert(sendIntentAdapterResult.to === sendIntentPlan.sendIntent.to, 'approved fake send intent preserves to number');
+  assert(sendIntentAdapterResult.from === sendIntentPlan.sendIntent.from, 'approved fake send intent preserves from number');
+  assert(sendIntentAdapterResult.body === sendIntentPlan.sendIntent.body, 'approved fake send intent preserves body');
 
   const noCredentialsResult = await sendSmsWithTwilioAdapter({
     ...validInput,
