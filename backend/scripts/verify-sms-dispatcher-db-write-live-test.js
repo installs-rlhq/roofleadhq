@@ -9,6 +9,8 @@ const FOLLOW_UPS_TABLE = 'follow_ups';
 const LIVE_WRITE_TARGET = 'messages_follow_ups';
 const VERIFIER = 'verify-sms-dispatcher-db-write-live-test';
 const TEST_PROVIDER = 'test_only_dispatcher_verifier';
+const TEST_FOLLOW_UP_START_STATUS = 'scheduled';
+const TEST_FOLLOW_UP_END_STATUS = 'skipped';
 
 console.log('=== RoofLeadHQ SMS Dispatcher DB Write Live Test Verification ===');
 console.log('Default run is fail-closed and performs no live write.');
@@ -55,7 +57,7 @@ function buildMessagePayload({ runId, rooferId, leadId, now }) {
 
 function buildFollowUpUpdatePayload(runId, now) {
   return {
-    status: 'skipped',
+    status: TEST_FOLLOW_UP_END_STATUS,
     skipped_reason: `test_only_sms_dispatcher_${runId}`,
     sent_at: null,
     updated_at: now
@@ -207,7 +209,7 @@ function createFakeSupabase(seed = {}) {
 async function findDuplicateMessage(supabase, runId, rooferId, leadId) {
   return supabase
     .from(MESSAGES_TABLE)
-    .select('id,roofer_id,lead_id,provider,provider_message_id,status,sent_at')
+    .select('id,roofer_id,lead_id,direction,channel,provider,provider_message_id,status,sent_at')
     .eq('roofer_id', rooferId)
     .eq('lead_id', leadId)
     .eq('provider', TEST_PROVIDER)
@@ -218,7 +220,7 @@ async function findDuplicateMessage(supabase, runId, rooferId, leadId) {
 async function findTargetFollowUp(supabase, followUpId, rooferId, leadId) {
   return supabase
     .from(FOLLOW_UPS_TABLE)
-    .select('id,roofer_id,lead_id,status,skipped_reason,sent_at')
+    .select('id,roofer_id,lead_id,status,skipped_reason,sent_at,scheduled_for')
     .eq('id', followUpId)
     .eq('roofer_id', rooferId)
     .eq('lead_id', leadId)
@@ -258,12 +260,28 @@ async function performDispatcherDbLiveTestWrite(supabase, input) {
     };
   }
 
+  const targetFollowUp = existingFollowUp.data[0];
+  if (
+    targetFollowUp.status !== TEST_FOLLOW_UP_START_STATUS ||
+    targetFollowUp.sent_at !== null ||
+    targetFollowUp.skipped_reason === `test_only_sms_dispatcher_${runId}`
+  ) {
+    return {
+      applied: false,
+      failedClosed: true,
+      reason: 'follow_up_not_test_safe',
+      status: targetFollowUp.status,
+      sentAt: targetFollowUp.sent_at,
+      skippedReason: targetFollowUp.skipped_reason
+    };
+  }
+
   const now = input.now || new Date().toISOString();
   const messagePayload = buildMessagePayload({ runId, rooferId, leadId, now });
   const inserted = await supabase
     .from(MESSAGES_TABLE)
     .insert(messagePayload)
-    .select('id,roofer_id,lead_id,provider,provider_message_id,status,sent_at')
+    .select('id,roofer_id,lead_id,direction,channel,provider,provider_message_id,status,sent_at')
     .single();
 
   if (inserted.error) {
@@ -277,7 +295,7 @@ async function performDispatcherDbLiveTestWrite(supabase, input) {
     .eq('id', followUpId)
     .eq('roofer_id', rooferId)
     .eq('lead_id', leadId)
-    .select('id,roofer_id,lead_id,status,skipped_reason,sent_at')
+    .select('id,roofer_id,lead_id,status,skipped_reason,sent_at,scheduled_for')
     .single();
 
   if (updated.error) {
@@ -307,6 +325,10 @@ async function performDispatcherDbLiveTestWrite(supabase, input) {
   }
 
   if (
+    verifiedMessages[0].roofer_id !== rooferId ||
+    verifiedMessages[0].lead_id !== leadId ||
+    verifiedMessages[0].direction !== 'outbound' ||
+    verifiedMessages[0].channel !== 'sms' ||
     verifiedMessages[0].provider !== TEST_PROVIDER ||
     verifiedMessages[0].provider_message_id !== buildProviderMessageId(runId) ||
     verifiedMessages[0].status !== 'planned' ||
@@ -316,7 +338,10 @@ async function performDispatcherDbLiveTestWrite(supabase, input) {
   }
 
   if (
-    verifiedFollowUps[0].status !== 'skipped' ||
+    verifiedFollowUps[0].id !== followUpId ||
+    verifiedFollowUps[0].roofer_id !== rooferId ||
+    verifiedFollowUps[0].lead_id !== leadId ||
+    verifiedFollowUps[0].status !== TEST_FOLLOW_UP_END_STATUS ||
     verifiedFollowUps[0].skipped_reason !== `test_only_sms_dispatcher_${runId}` ||
     verifiedFollowUps[0].sent_at !== null
   ) {
@@ -352,13 +377,17 @@ function runStaticSafetyChecks() {
   const hasScheduledIntegration =
     source.includes('set' + 'Interval(') ||
     source.includes('set' + 'Timeout(') ||
+    /scheduleJob\s*\(/i.test(source) ||
+    /cron\s*\./i.test(source) ||
     source.includes("require('node-" + "cron')") ||
     source.includes('require("node-' + 'cron")');
   assert(!hasScheduledIntegration, 'script has no cron or scheduler integration');
   const hasProductionDispatcherActivation =
     source.includes('execute' + 'SmsDispatcher') ||
     source.includes('run' + 'SmsDispatcher') ||
-    source.includes('start' + 'SmsDispatcher');
+    source.includes('start' + 'SmsDispatcher') ||
+    /dispatchSms\s*\(/i.test(source) ||
+    /sendSms\s*\(/i.test(source);
   assert(!hasProductionDispatcherActivation, 'script has no production dispatcher activation');
   assert(!/\.(upsert|delete)\s*\(/.test(source), 'script has no upsert/delete calls');
 
@@ -461,6 +490,50 @@ async function runSafeVerification() {
   assert(missingFollowUpResult.failedClosed === true, 'missing follow_up row fails closed');
   assert(missingFollowUpResult.reason === 'follow_up_target_count_not_one', 'missing follow_up row returns target count failure');
 
+  const alreadySentFollowUpFake = createFakeSupabase({
+    [FOLLOW_UPS_TABLE]: [
+      {
+        id: envFollowUpId,
+        roofer_id: envRooferId,
+        lead_id: envLeadId,
+        status: 'sent',
+        skipped_reason: null,
+        sent_at: '2026-06-04T00:00:00.000Z'
+      }
+    ]
+  });
+  const alreadySentFollowUpResult = await performDispatcherDbLiveTestWrite(alreadySentFollowUpFake.client, {
+    runId: envRunId,
+    rooferId: envRooferId,
+    leadId: envLeadId,
+    followUpId: envFollowUpId
+  });
+  assert(alreadySentFollowUpResult.failedClosed === true, 'already sent follow_up row fails closed');
+  assert(alreadySentFollowUpResult.reason === 'follow_up_not_test_safe', 'unsafe follow_up state reports follow_up_not_test_safe');
+  assert(alreadySentFollowUpFake.calls.every((call) => call.method !== 'insert' && call.method !== 'update'), 'unsafe follow_up state performs no writes');
+
+  const alreadyTestSkippedFollowUpFake = createFakeSupabase({
+    [FOLLOW_UPS_TABLE]: [
+      {
+        id: envFollowUpId,
+        roofer_id: envRooferId,
+        lead_id: envLeadId,
+        status: TEST_FOLLOW_UP_END_STATUS,
+        skipped_reason: `test_only_sms_dispatcher_${envRunId}`,
+        sent_at: null
+      }
+    ]
+  });
+  const alreadyTestSkippedFollowUpResult = await performDispatcherDbLiveTestWrite(alreadyTestSkippedFollowUpFake.client, {
+    runId: envRunId,
+    rooferId: envRooferId,
+    leadId: envLeadId,
+    followUpId: envFollowUpId
+  });
+  assert(alreadyTestSkippedFollowUpResult.failedClosed === true, 'already test-skipped follow_up row fails closed');
+  assert(alreadyTestSkippedFollowUpResult.reason === 'follow_up_not_test_safe', 'duplicate follow_up update state reports follow_up_not_test_safe');
+  assert(alreadyTestSkippedFollowUpFake.calls.every((call) => call.method !== 'insert' && call.method !== 'update'), 'duplicate follow_up update state performs no writes');
+
   const fake = createFakeSupabase({
     [FOLLOW_UPS_TABLE]: [
       {
@@ -486,6 +559,8 @@ async function runSafeVerification() {
   assert(fake.calls.filter((call) => call.method === 'update').length === 1, 'fake path performs one follow_ups update');
   assert(fake.calls.every((call) => call.table === MESSAGES_TABLE || call.table === FOLLOW_UPS_TABLE), 'fake path only targets messages and follow_ups');
   assert(fake.rows[MESSAGES_TABLE].length === 1, 'fake path records one test message row');
+  assert(fake.rows[MESSAGES_TABLE][0].channel === 'sms', 'fake message row is sms channel');
+  assert(fake.rows[MESSAGES_TABLE][0].direction === 'outbound', 'fake message row is outbound');
   assert(fake.rows[MESSAGES_TABLE][0].status === 'planned', 'fake message row is planned, not sent');
   assert(fake.rows[MESSAGES_TABLE][0].sent_at === null, 'fake message row has no sent_at');
   assert(fake.rows[FOLLOW_UPS_TABLE][0].status === 'skipped', 'fake follow_up row is marked skipped');
@@ -500,6 +575,16 @@ async function runSafeVerification() {
 }
 
 async function runLiveWriteIfGated() {
+  if (process.argv.includes('--static-only')) {
+    await runSafeVerification();
+    console.log('PASS: static-only DB live test verifier checks passed.');
+    console.log('No live Supabase writes performed');
+    console.log('No SMS sent');
+    console.log('No Twilio calls made');
+    console.log('No route, cron, or production dispatcher activation');
+    return;
+  }
+
   const gates = gateStatus();
 
   if (!gates.allPassed) {
