@@ -139,6 +139,9 @@ Pass condition:
 Gated live-write verifier status:
 
 - `backend/scripts/verify-sms-dispatcher-db-write-live-test.js` is not part of routine daily read-only checks.
+- Before any future gated test-only `messages`/`follow_ups` DB write, run the read-only candidate verifier:
+  `node backend/scripts/prepare-sms-dispatcher-db-write-candidate-readonly.js --static-only`
+  `node backend/scripts/prepare-sms-dispatcher-db-write-candidate-readonly.js --roofer-id <reviewed-roofer-id> --lead-id <reviewed-lead-id> --follow-up-id <reviewed-follow-up-id>`
 - Static-only verifier command is safe for Terminal 1 review and performs no live Supabase writes:
   `node backend/scripts/verify-sms-dispatcher-db-write-live-test.js --static-only`
 - The gated verifier now fails closed unless the target `follow_ups` row is exactly the reviewed roofer/lead/follow-up id, has `status='scheduled'`, has `sent_at IS NULL`, and has not already been marked with the same test-only skipped reason.
