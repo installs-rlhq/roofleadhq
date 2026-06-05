@@ -172,6 +172,10 @@ Workflow_events-only audit verifier status:
   `node backend/scripts/show-sms-internal-readiness-status.js`
   `node backend/scripts/show-sms-internal-readiness-status.js --json`
 - The internal SMS readiness status script performs no Supabase reads or writes, imports no Twilio client, sends no SMS, exposes no secrets, and adds no route, cron, scheduler, or dispatcher activation.
+- Demo-useful pilot readiness status is available as a local read-only script:
+  `node backend/scripts/show-pilot-readiness-status.js`
+  `node backend/scripts/show-pilot-readiness-status.js --json`
+- The pilot readiness status script locally inspects repo files only and summarizes SMS, dashboard/internal admin, Manual Outreach, Vapi webhook, reporting, and live automation trigger status without Supabase, SMS, Twilio, Vapi, Calendar, Resend, or Lindy calls.
 
 - Do not run `backend/scripts/run-sms-dispatcher-manual-test-only.js` against live Supabase without explicit approval, reviewed candidate scope, approved roofer id, and all manual runner plus DB executor gates.
 - `backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js` is read-only prep only; its printed live runner command is not approved by default.
