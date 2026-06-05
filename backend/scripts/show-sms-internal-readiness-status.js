@@ -5,7 +5,7 @@ const path = require('path');
 
 const repoRoot = path.join(__dirname, '..', '..');
 const staleFollowUpId = '997ce1f8-3145-439f-a0c3-d042f803059f';
-const sourceOfTruthCommit = '624b932 test(sms): add workflow event completed verifier';
+const sourceOfTruthCommit = '89af4da test(sms): add internal readiness status script';
 
 const files = {
   dbWriteCompletedVerifier: 'backend/scripts/verify-sms-dispatcher-db-write-completed-readonly.js',
