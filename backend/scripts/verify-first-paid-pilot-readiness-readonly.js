@@ -17,6 +17,11 @@ const commands = [
     checkReadinessStatus: true
   },
   {
+    name: 'First Paid Pilot launch packet',
+    script: 'backend/scripts/verify-first-paid-pilot-launch-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'Pilot dashboard smoke',
     script: 'backend/scripts/verify-pilot-dashboard-smoke-readonly.js',
     args: []

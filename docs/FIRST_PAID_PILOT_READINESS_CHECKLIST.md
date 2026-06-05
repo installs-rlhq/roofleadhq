@@ -8,6 +8,8 @@ Final readiness summary: `docs/FIRST_PAID_PILOT_FINAL_READINESS_SUMMARY.md`
 
 Launch packet: `docs/FIRST_PAID_PILOT_LAUNCH_PACKET.md`
 
+Launch packet verifier: `node backend/scripts/verify-first-paid-pilot-launch-packet-readonly.js`
+
 Contractor onboarding runbook: `docs/FIRST_PAID_CONTRACTOR_ONBOARDING_RUNBOOK.md`
 
 Contractor intake worksheet: `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md`
@@ -55,6 +57,7 @@ The goal is a safe, monitored, semi-managed pilot before scalable automation.
 - Confirm billing/setup payment process
 - Complete contractor intake worksheet
 - Review launch packet
+- Run launch packet verifier
 
 Status: Not fully verified for real client
 
@@ -170,6 +173,7 @@ Make sure the first paid pilot can be monitored safely while SMS, Calendar, Vapi
 Launch packet reference:
 
 - Review `docs/FIRST_PAID_PILOT_LAUNCH_PACKET.md` before onboarding the first paid contractor.
+- Run `node backend/scripts/verify-first-paid-pilot-launch-packet-readonly.js` before launch.
 
 Next intake artifact:
 
