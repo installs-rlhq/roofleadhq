@@ -8,6 +8,8 @@ Final readiness summary: `docs/FIRST_PAID_PILOT_FINAL_READINESS_SUMMARY.md`
 
 Contractor onboarding runbook: `docs/FIRST_PAID_CONTRACTOR_ONBOARDING_RUNBOOK.md`
 
+Contractor intake worksheet: `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md`
+
 Daily operations checklist: `docs/FIRST_PAID_PILOT_DAILY_OPERATIONS_CHECKLIST.md`
 
 Aggregate read-only verifier: `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
@@ -49,6 +51,7 @@ The goal is a safe, monitored, semi-managed pilot before scalable automation.
 - Confirm dashboard access token creation
 - Confirm dashboard URL delivery process
 - Confirm billing/setup payment process
+- Complete contractor intake worksheet
 
 Status: Not fully verified for real client
 
@@ -160,3 +163,7 @@ Finalize internal pilot monitoring and client-facing setup/payment flow.
 
 Purpose:
 Make sure the first paid pilot can be monitored safely while SMS, Calendar, Vapi, Resend, and Lindy production actions remain disabled unless explicitly approved.
+
+Next intake artifact:
+
+- Complete `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md` before onboarding the first paid contractor.
