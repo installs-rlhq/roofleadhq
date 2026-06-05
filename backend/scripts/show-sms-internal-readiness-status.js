@@ -2,10 +2,19 @@
 
 const fs = require('fs');
 const path = require('path');
+const childProcess = require('child_process');
 
 const repoRoot = path.join(__dirname, '..', '..');
 const staleFollowUpId = '997ce1f8-3145-439f-a0c3-d042f803059f';
-const sourceOfTruthCommit = '89af4da test(sms): add internal readiness status script';
+function currentSourceOfTruthCommit() {
+  try {
+    return childProcess
+      .execSync('git log -1 --oneline', { cwd: repoRoot, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
+      .trim();
+  } catch {
+    return 'unknown';
+  }
+}
 
 const files = {
   dbWriteCompletedVerifier: 'backend/scripts/verify-sms-dispatcher-db-write-completed-readonly.js',
@@ -152,7 +161,7 @@ function buildStatus() {
 
   return {
     generated_at: new Date().toISOString(),
-    source_of_truth_commit: sourceOfTruthCommit,
+    source_of_truth_commit: currentSourceOfTruthCommit(),
     homeowner_sms_live: homeownerSmsLive,
     stale_follow_up_id: staleFollowUpId,
     summary: homeownerSmsLive
