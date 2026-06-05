@@ -1,11 +1,17 @@
 # Live SMS Approval Package
 
-Status: approval required before live send
-Current source-of-truth commit before this doc: `906a25f test(sms): add post live send verifier`
+Status: stale - do not use for live send approval
+Current source-of-truth commit: `8fbc899 test(sms): add completed db write verifier`
+
+## Stale Package Warning
+
+This live SMS approval package is stale. Follow-up `997ce1f8-3145-439f-a0c3-d042f803059f` is now `skipped` after the completed gated DB write verification on 2026-06-05.
+
+Do not use this package to approve or run a live SMS send. A future live SMS test requires a fresh read-only candidate review, fresh exact approval language, and a new approval package.
 
 ## Hard rule
 
-Do not run the live SMS command unless explicit approval is given.
+Do not run the live SMS command in this stale package.
 
 This package does not enable live SMS, Twilio sends, routes, cron, scheduler, auto-start, or production runner automation.
 
@@ -52,7 +58,7 @@ npm --prefix backend run build
 
 ## Future live-send command
 
-Do not run without explicit approval.
+Do not run. This command references stale skipped follow-up `997ce1f8-3145-439f-a0c3-d042f803059f`.
 
 export SMS_DISPATCHER_PRODUCTION_USE_LIVE_SUPABASE=true
 export SMS_DISPATCHER_PRODUCTION_RUNNER=true

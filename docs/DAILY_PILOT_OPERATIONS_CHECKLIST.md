@@ -136,6 +136,10 @@ Pass condition:
 - Test roofer SMS enable verifier fails closed by default and confirms the only allowed gated update is `roofers.sms_confirmation_enabled=true` for the known test roofer.
 - No route, cron, or production dispatcher activation is present.
 
+Current SMS source-of-truth commit:
+
+- `8fbc899 test(sms): add completed db write verifier`
+
 Gated live-write verifier status:
 
 - `backend/scripts/verify-sms-dispatcher-db-write-live-test.js` is not part of routine daily read-only checks.
@@ -153,6 +157,18 @@ Gated live-write verifier status:
   `node backend/scripts/verify-sms-dispatcher-db-write-completed-readonly.js --static-only`
   `node backend/scripts/verify-sms-dispatcher-db-write-completed-readonly.js`
 - Do not rerun the gated live-write verifier without explicit approval and fresh reviewed candidate IDs.
+
+Workflow_events-only audit verifier status:
+
+- The next safe SMS milestone is workflow_events-only audit verification. It does not send SMS, import or call Twilio, write `messages`, update `follow_ups`, add routes, add cron/scheduler, or activate any dispatcher.
+- `backend/scripts/verify-sms-dispatcher-workflow-event-live-test-write.js --static-only` is safe for Terminal 1 static review and performs no Supabase reads or writes.
+- A default run of `backend/scripts/verify-sms-dispatcher-workflow-event-live-test-write.js` fails closed unless all workflow_events-only live-write gates are present.
+- `backend/scripts/verify-sms-dispatcher-workflow-event-completed-readonly.js --static-only` is safe for Terminal 1 static review and performs no Supabase reads or writes.
+- After a separately approved workflow_events-only audit write, verify the completed row read-only with:
+  `node backend/scripts/verify-sms-dispatcher-workflow-event-completed-readonly.js --run-id <approved-run-id> --roofer-id <approved-roofer-id>`
+- The workflow_events-only audit path must target only `workflow_events`, must include `metadata.test_only=true`, `metadata.messages_written=false`, `metadata.follow_ups_updated=false`, `metadata.sms_sent=false`, and `metadata.twilio_called=false`.
+- The prior live SMS approval package is stale because follow_up `997ce1f8-3145-439f-a0c3-d042f803059f` is now `skipped` after the completed gated DB write verification. Do not use that package to approve or run a live SMS send.
+
 - Do not run `backend/scripts/run-sms-dispatcher-manual-test-only.js` against live Supabase without explicit approval, reviewed candidate scope, approved roofer id, and all manual runner plus DB executor gates.
 - `backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js` is read-only prep only; its printed live runner command is not approved by default.
 - The known test roofer SMS flag was enabled on 2026-06-04 for manual runner send-path DB testing: `sms_confirmation_enabled=false` -> `true`.

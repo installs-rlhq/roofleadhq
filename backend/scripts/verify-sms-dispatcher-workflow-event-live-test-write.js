@@ -240,14 +240,20 @@ function runStaticSafetyChecks() {
     source.includes('twilio' + '(');
   assert(!hasSmsProviderClientUsage, 'script has no reachable Twilio client usage');
   assert(!/from\(['"]messages['"]\)|from\(['"]follow_ups['"]\)/.test(source), 'script has no messages or follow_ups table access');
+  assert(!/\.rpc\s*\(/.test(source), 'script has no Supabase RPC calls');
   assert(!/\.(update|upsert|delete)\s*\(/.test(source), 'script has no update/upsert/delete calls');
   assert(!/app\.(get|post|put|patch|delete)\s*\(/.test(source), 'script has no route integration');
   const hasScheduledIntegration =
     source.includes('set' + 'Interval(') ||
     source.includes('set' + 'Timeout(') ||
+    source.includes('schedule' + 'Job(') ||
     source.includes("require('node-" + "cron')") ||
-    source.includes('require("node-' + 'cron")');
+    source.includes('require("node-' + 'cron")') ||
+    source.includes('cron' + '.');
   assert(!hasScheduledIntegration, 'script has no scheduled integration');
+  const hasDispatcherActivation =
+    /runSmsDispatcher\s*\(|executeSmsDispatcher\s*\(|dispatchSms\s*\(|sendSms\s*\(|startSmsDispatcher\s*\(/i.test(source);
+  assert(!hasDispatcherActivation, 'script has no dispatcher activation');
 
   const insertCalls = Array.from(source.matchAll(/\.insert\(/g));
   assert(insertCalls.length === 1, 'script has exactly one insert call');
@@ -376,6 +382,17 @@ async function runSafeVerification() {
 }
 
 async function runLiveWriteIfGated() {
+  if (process.argv.includes('--static-only')) {
+    runStaticSafetyChecks();
+    console.log('PASS: static-only workflow_events live test write verification passed.');
+    console.log('No live Supabase writes performed');
+    console.log('No messages written');
+    console.log('No follow_ups updated');
+    console.log('No SMS sent');
+    console.log('No Twilio calls made');
+    return;
+  }
+
   const gates = gateStatus();
 
   if (!gates.allPassed) {
