@@ -27,6 +27,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Paid Contractor setup checklist',
+    script: 'backend/scripts/verify-first-paid-contractor-setup-checklist-readonly.js',
+    args: []
+  },
+  {
     name: 'Pilot dashboard smoke',
     script: 'backend/scripts/verify-pilot-dashboard-smoke-readonly.js',
     args: []
