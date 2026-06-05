@@ -177,7 +177,8 @@ function liveTriggerMatches() {
       exclude: ['backend/scripts/show-pilot-readiness-status.js']
     }),
     lindy: findMatches(lindyPatterns, {
-      exclude: ['backend/scripts/show-pilot-readiness-status.js']
+      exclude: ['backend/scripts/show-pilot-readiness-status.js'],
+      excludeSafeReadOnlyOrTestArtifacts: true
     }),
     automation: findMatches(routeOrSchedulerPatterns, {
       exclude: ['backend/scripts/show-pilot-readiness-status.js']
@@ -333,10 +334,16 @@ function printText(status) {
   console.log('Safety: local repo inspection only; no Supabase, SMS, Twilio, Vapi, Calendar, Resend, or Lindy calls.');
 }
 
-const status = buildStatus();
+if (require.main === module) {
+  const status = buildStatus();
 
-if (process.argv.includes('--json')) {
-  console.log(JSON.stringify(status, null, 2));
-} else {
-  printText(status);
+  if (process.argv.includes('--json')) {
+    console.log(JSON.stringify(status, null, 2));
+  } else {
+    printText(status);
+  }
 }
+
+module.exports = {
+  buildStatus
+};

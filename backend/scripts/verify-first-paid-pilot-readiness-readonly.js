@@ -1,0 +1,129 @@
+#!/usr/bin/env node
+
+const childProcess = require('child_process');
+const path = require('path');
+const { buildStatus } = require('./show-pilot-readiness-status');
+
+const repoRoot = path.join(__dirname, '..', '..');
+
+const expectedSummary = 'demo_ready_with_live_automation_disabled';
+const liveAutomationKeys = ['sms', 'calendar', 'vapi_outbound', 'resend', 'lindy'];
+
+const commands = [
+  {
+    name: 'Pilot readiness status',
+    script: 'backend/scripts/show-pilot-readiness-status.js',
+    args: ['--json'],
+    checkReadinessStatus: true
+  },
+  {
+    name: 'Pilot dashboard smoke',
+    script: 'backend/scripts/verify-pilot-dashboard-smoke-readonly.js',
+    args: []
+  },
+  {
+    name: 'Manual Outreach smoke',
+    script: 'backend/scripts/verify-manual-outreach-smoke-readonly.js',
+    args: []
+  },
+  {
+    name: 'Vapi phone lead smoke',
+    script: 'backend/scripts/verify-vapi-phone-lead-smoke-readonly.js',
+    args: []
+  },
+  {
+    name: 'Reporting smoke',
+    script: 'backend/scripts/verify-reporting-smoke-readonly.js',
+    args: []
+  }
+];
+
+function pass(message) {
+  console.log(`PASS: ${message}`);
+}
+
+function fail(message, details = null) {
+  console.error(`FAIL: ${message}`);
+  if (details) console.error(JSON.stringify(details, null, 2));
+  process.exitCode = 1;
+}
+
+function runNodeScript(command) {
+  const result = childProcess.spawnSync(
+    process.execPath,
+    [command.script, ...command.args],
+    {
+      cwd: repoRoot,
+      encoding: 'utf8',
+      stdio: 'ignore',
+      timeout: 120000
+    }
+  );
+
+  if (result.error) {
+    fail(`${command.name} failed to run`, {
+      script: command.script,
+      error: result.error.message
+    });
+    return null;
+  }
+
+  if (result.status !== 0) {
+    fail(`${command.name} exited nonzero`, {
+      script: command.script,
+      status: result.status,
+    });
+    return null;
+  }
+
+  pass(`${command.name} completed successfully`);
+  return true;
+}
+
+function checkReadinessStatus(status) {
+  if (!status) return;
+
+  if (status.summary === expectedSummary) {
+    pass(`Pilot readiness summary is ${expectedSummary}`);
+  } else {
+    fail('Pilot readiness summary is not demo-ready with live automation disabled', {
+      expected: expectedSummary,
+      actual: status.summary
+    });
+  }
+
+  for (const key of liveAutomationKeys) {
+    const value = status.live_automation ? status.live_automation[key] : undefined;
+
+    if (value === false) {
+      pass(`Live automation ${key} is not active`);
+    } else {
+      fail(`Live automation ${key} is active or unknown`, {
+        key,
+        value
+      });
+    }
+  }
+}
+
+console.log('=== RoofLeadHQ First Paid Pilot Readiness Aggregate Verification ===');
+console.log('Local read-only verifier execution only.');
+console.log('No Supabase reads or writes.');
+console.log('No external service calls.');
+console.log('No SMS, Twilio, Vapi, Calendar, Resend, or Lindy calls.');
+console.log('No route, cron, scheduler, or dispatcher activation.');
+
+for (const command of commands) {
+  const completed = runNodeScript(command);
+
+  if (completed && command.checkReadinessStatus) {
+    checkReadinessStatus(buildStatus());
+  }
+}
+
+if (process.exitCode) {
+  console.error('FAIL: First paid pilot readiness aggregate verification failed.');
+  process.exit(process.exitCode);
+}
+
+console.log('PASS: First paid pilot readiness aggregate verification passed.');
