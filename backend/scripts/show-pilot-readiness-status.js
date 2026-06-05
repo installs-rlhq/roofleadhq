@@ -57,6 +57,15 @@ function relative(filePath) {
   return path.relative(repoRoot, filePath);
 }
 
+function isSafeReadOnlyOrTestArtifact(relativePath) {
+  return (
+    relativePath.startsWith('docs/') ||
+    /^backend\/scripts\/verify-.*\.(js|sh)$/.test(relativePath) ||
+    /^backend\/scripts\/prepare-.*-readonly\.js$/.test(relativePath) ||
+    /^backend\/scripts\/test-.*\.(js|sh)$/.test(relativePath)
+  );
+}
+
 function currentCommit() {
   try {
     return childProcess
@@ -86,11 +95,13 @@ function allExist(paths) {
 
 function findMatches(patterns, options = {}) {
   const exclude = new Set(options.exclude || []);
+  const excludeSafeReadOnlyOrTestArtifacts = Boolean(options.excludeSafeReadOnlyOrTestArtifacts);
   const matches = [];
 
   for (const file of sourceFiles()) {
     const rel = relative(file);
     if (exclude.has(rel)) continue;
+    if (excludeSafeReadOnlyOrTestArtifacts && isSafeReadOnlyOrTestArtifact(rel)) continue;
     const source = fs.readFileSync(file, 'utf8');
 
     for (const pattern of patterns) {
@@ -159,7 +170,8 @@ function liveTriggerMatches() {
       exclude: [
         'backend/scripts/show-pilot-readiness-status.js',
         'backend/src/config/config.ts'
-      ]
+      ],
+      excludeSafeReadOnlyOrTestArtifacts: true
     }),
     resend: findMatches(resendSendPatterns, {
       exclude: ['backend/scripts/show-pilot-readiness-status.js']
