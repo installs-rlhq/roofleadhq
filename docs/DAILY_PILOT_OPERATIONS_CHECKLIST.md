@@ -138,7 +138,7 @@ Pass condition:
 
 Current SMS source-of-truth commit:
 
-- `8fbc899 test(sms): add completed db write verifier`
+- `624b932 test(sms): add workflow event completed verifier`
 
 Gated live-write verifier status:
 
@@ -168,6 +168,10 @@ Workflow_events-only audit verifier status:
   `node backend/scripts/verify-sms-dispatcher-workflow-event-completed-readonly.js --run-id <approved-run-id> --roofer-id <approved-roofer-id>`
 - The workflow_events-only audit path must target only `workflow_events`, must include `metadata.test_only=true`, `metadata.messages_written=false`, `metadata.follow_ups_updated=false`, `metadata.sms_sent=false`, and `metadata.twilio_called=false`.
 - The prior live SMS approval package is stale because follow_up `997ce1f8-3145-439f-a0c3-d042f803059f` is now `skipped` after the completed gated DB write verification. Do not use that package to approve or run a live SMS send.
+- Demo-useful internal SMS readiness status is available as a local read-only script:
+  `node backend/scripts/show-sms-internal-readiness-status.js`
+  `node backend/scripts/show-sms-internal-readiness-status.js --json`
+- The internal SMS readiness status script performs no Supabase reads or writes, imports no Twilio client, sends no SMS, exposes no secrets, and adds no route, cron, scheduler, or dispatcher activation.
 
 - Do not run `backend/scripts/run-sms-dispatcher-manual-test-only.js` against live Supabase without explicit approval, reviewed candidate scope, approved roofer id, and all manual runner plus DB executor gates.
 - `backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js` is read-only prep only; its printed live runner command is not approved by default.

@@ -1,7 +1,7 @@
 # Live SMS Approval Package
 
 Status: stale - do not use for live send approval
-Current source-of-truth commit: `8fbc899 test(sms): add completed db write verifier`
+Current source-of-truth commit: `624b932 test(sms): add workflow event completed verifier`
 
 ## Stale Package Warning
 
