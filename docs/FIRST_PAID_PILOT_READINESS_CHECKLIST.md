@@ -6,6 +6,8 @@ Date: 2026-06-02
 
 Aggregate read-only verifier: `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
 
+Operator status page: `website/dashboard/pilot-status.html`
+
 Manual Outreach is verified for backend hardening, operational QA, and dashboard visibility.
 
 Dashboard token auth is working.

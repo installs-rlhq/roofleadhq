@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First Paid Pilot Status | RoofLeadHQ</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #020617;
+      --panel: #0f172a;
+      --panel-soft: #111827;
+      --border: #1f2937;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --ok: #34d399;
+      --warn: #f59e0b;
+      --bad: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 32px 0;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--warn);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.05;
+    }
+
+    .subhead {
+      max-width: 760px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .status-line {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      min-height: 124px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 18px;
+    }
+
+    .card.wide {
+      grid-column: span 2;
+    }
+
+    .label {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .value {
+      margin: 10px 0 0;
+      overflow-wrap: anywhere;
+      font-size: 24px;
+      font-weight: 750;
+    }
+
+    .detail {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pill.ok {
+      border-color: rgba(52, 211, 153, 0.35);
+      color: var(--ok);
+    }
+
+    .pill.attention {
+      border-color: rgba(245, 158, 11, 0.42);
+      color: var(--warn);
+    }
+
+    .pill.bad {
+      border-color: rgba(248, 113, 113, 0.42);
+      color: var(--bad);
+    }
+
+    .section-title {
+      margin: 28px 0 12px;
+      font-size: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--panel);
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--border);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--panel-soft);
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card.wide {
+        grid-column: auto;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Internal Tool Only</p>
+      <h1>First Paid Pilot Status</h1>
+      <p class="subhead">
+        Protected read-only operator view for the first paid pilot. This page summarizes verifier status and live automation safety only.
+      </p>
+      <p id="status-message" class="status-line">Loading pilot status...</p>
+    </header>
+
+    <section class="grid" aria-label="Pilot readiness overview">
+      <article class="card wide">
+        <p class="label">Pilot Readiness Summary</p>
+        <p id="readiness-summary" class="value">...</p>
+        <p id="source-commit" class="detail">Source commit loading...</p>
+      </article>
+      <article class="card">
+        <p class="label">Live Automation</p>
+        <p id="live-automation-overall" class="value">...</p>
+        <p class="detail">All live automation must remain disabled unless separately approved.</p>
+      </article>
+    </section>
+
+    <h2 class="section-title">Smoke Verifiers</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Verifier</th>
+          <th>Status</th>
+          <th>Exit Code</th>
+        </tr>
+      </thead>
+      <tbody id="smoke-table-body"></tbody>
+    </table>
+
+    <h2 class="section-title">Live Automation Disabled</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Automation</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="automation-table-body"></tbody>
+    </table>
+  </main>
+
+  <script>
+    const API_BASE = '/api/internal/pilot-readiness-status';
+
+    const smokeLabels = [
+      ['dashboard', 'Dashboard Smoke'],
+      ['manualOutreach', 'Manual Outreach Smoke'],
+      ['phoneLead', 'Vapi Phone Lead Smoke'],
+      ['reporting', 'Reporting Smoke']
+    ];
+
+    const automationLabels = [
+      ['sms', 'SMS'],
+      ['calendar', 'Calendar'],
+      ['vapi_outbound', 'Vapi Outbound'],
+      ['resend', 'Resend'],
+      ['lindy', 'Lindy']
+    ];
+
+    function appendText(parent, tag, text, className) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      element.textContent = text;
+      parent.appendChild(element);
+      return element;
+    }
+
+    function statusPill(status, text) {
+      const className = status === 'ok' ? 'pill ok' : status === 'disabled' ? 'pill ok' : 'pill bad';
+      const span = document.createElement('span');
+      span.className = className;
+      span.textContent = text;
+      return span;
+    }
+
+    function renderSmokeTable(smoke) {
+      const body = document.getElementById('smoke-table-body');
+      const rows = smokeLabels.map(([key, label]) => {
+        const row = document.createElement('tr');
+        const status = smoke?.[key]?.status || 'attention';
+        appendText(row, 'td', label);
+        const statusCell = document.createElement('td');
+        statusCell.appendChild(statusPill(status, status === 'ok' ? 'PASS' : 'FAIL'));
+        row.appendChild(statusCell);
+        appendText(row, 'td', smoke?.[key]?.exitCode === null || smoke?.[key]?.exitCode === undefined ? 'unknown' : String(smoke[key].exitCode));
+        return row;
+      });
+      body.replaceChildren(...rows);
+    }
+
+    function renderAutomationTable(liveAutomation) {
+      const body = document.getElementById('automation-table-body');
+      const rows = automationLabels.map(([key, label]) => {
+        const active = liveAutomation?.[key] === true;
+        const row = document.createElement('tr');
+        appendText(row, 'td', label);
+        const statusCell = document.createElement('td');
+        statusCell.appendChild(statusPill(active ? 'bad' : 'disabled', active ? 'FOUND' : 'Disabled'));
+        row.appendChild(statusCell);
+        return row;
+      });
+      body.replaceChildren(...rows);
+    }
+
+    function renderStatus(data) {
+      const summary = data?.readiness?.summary || 'unknown';
+      const liveAutomation = data?.live_automation || {};
+      const liveFound = Object.values(liveAutomation).some((value) => value === true);
+
+      document.getElementById('readiness-summary').textContent = summary;
+      document.getElementById('source-commit').textContent = data?.readiness?.source_of_truth_commit || 'Source commit unavailable';
+      document.getElementById('live-automation-overall').textContent = liveFound ? 'Attention Required' : 'Disabled';
+
+      renderSmokeTable(data?.smoke || {});
+      renderAutomationTable(liveAutomation);
+    }
+
+    async function loadPilotStatus() {
+      const status = document.getElementById('status-message');
+      status.textContent = 'Loading pilot status...';
+
+      try {
+        const token = window.localStorage.getItem('roofleadhq_internal_admin_token') || window.prompt('Enter internal admin token');
+
+        if (!token) {
+          status.textContent = 'Internal admin token is required.';
+          return;
+        }
+
+        window.localStorage.setItem('roofleadhq_internal_admin_token', token);
+
+        const response = await fetch(API_BASE, {
+          headers: {
+            'x-internal-admin-token': token,
+          },
+        });
+
+        if (response.status === 401) {
+          window.localStorage.removeItem('roofleadhq_internal_admin_token');
+          status.textContent = 'Unauthorized. Refresh and enter the correct internal admin token.';
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+
+        const data = await response.json();
+        renderStatus(data);
+        status.textContent = 'Loaded. Read-only operator status.';
+      } catch (error) {
+        renderStatus({});
+        status.textContent = 'Could not load pilot status. Check backend logs.';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPilotStatus);
+  </script>
+</body>
+</html>
