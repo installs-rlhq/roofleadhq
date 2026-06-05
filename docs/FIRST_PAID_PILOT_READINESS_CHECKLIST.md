@@ -10,6 +10,8 @@ Launch packet: `docs/FIRST_PAID_PILOT_LAUNCH_PACKET.md`
 
 Launch packet verifier: `node backend/scripts/verify-first-paid-pilot-launch-packet-readonly.js`
 
+Kickoff email draft: `docs/FIRST_PAID_CONTRACTOR_KICKOFF_EMAIL_DRAFT.md`
+
 Contractor onboarding runbook: `docs/FIRST_PAID_CONTRACTOR_ONBOARDING_RUNBOOK.md`
 
 Contractor intake worksheet: `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md`
@@ -58,6 +60,7 @@ The goal is a safe, monitored, semi-managed pilot before scalable automation.
 - Complete contractor intake worksheet
 - Review launch packet
 - Run launch packet verifier
+- Review kickoff email draft
 
 Status: Not fully verified for real client
 
@@ -174,6 +177,10 @@ Launch packet reference:
 
 - Review `docs/FIRST_PAID_PILOT_LAUNCH_PACKET.md` before onboarding the first paid contractor.
 - Run `node backend/scripts/verify-first-paid-pilot-launch-packet-readonly.js` before launch.
+
+Kickoff email draft reference:
+
+- Review `docs/FIRST_PAID_CONTRACTOR_KICKOFF_EMAIL_DRAFT.md` before sending the first contractor kickoff email.
 
 Next intake artifact:
 
