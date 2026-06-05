@@ -45,6 +45,11 @@ const commands = [
     name: 'Pilot operator status endpoint smoke',
     script: 'backend/scripts/verify-pilot-operator-status-endpoint-readonly.js',
     args: []
+  },
+  {
+    name: 'Dashboard navigation smoke',
+    script: 'backend/scripts/verify-dashboard-navigation-readonly.js',
+    args: []
   }
 ];
 
