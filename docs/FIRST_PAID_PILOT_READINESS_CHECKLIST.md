@@ -8,6 +8,8 @@ Aggregate read-only verifier: `node backend/scripts/verify-first-paid-pilot-read
 
 Operator status page: `website/dashboard/pilot-status.html`
 
+Operator status page verifier: `node backend/scripts/verify-pilot-operator-status-page-readonly.js`
+
 Manual Outreach is verified for backend hardening, operational QA, and dashboard visibility.
 
 Dashboard token auth is working.

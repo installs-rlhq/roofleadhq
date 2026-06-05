@@ -35,6 +35,11 @@ const commands = [
     name: 'Reporting smoke',
     script: 'backend/scripts/verify-reporting-smoke-readonly.js',
     args: []
+  },
+  {
+    name: 'Pilot operator status page smoke',
+    script: 'backend/scripts/verify-pilot-operator-status-page-readonly.js',
+    args: []
   }
 ];
 
