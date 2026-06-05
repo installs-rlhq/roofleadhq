@@ -94,6 +94,7 @@ Status: Not ready / disabled
 - Report data source defined
 - Manual report process available if automation is not ready
 - Resend production report sending not enabled without approval
+- Read-only reporting smoke verifier: `node backend/scripts/verify-reporting-smoke-readonly.js`
 
 Status: Manual report acceptable for first pilot
 
@@ -141,4 +142,3 @@ Finalize internal pilot monitoring and client-facing setup/payment flow.
 
 Purpose:
 Make sure the first paid pilot can be monitored safely while SMS, Calendar, Vapi, Resend, and Lindy production actions remain disabled unless explicitly approved.
-
