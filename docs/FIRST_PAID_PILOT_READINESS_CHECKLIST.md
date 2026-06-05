@@ -18,6 +18,8 @@ Setup checklist: `docs/FIRST_PAID_CONTRACTOR_SETUP_CHECKLIST.md`
 
 Setup checklist verifier: `node backend/scripts/verify-first-paid-contractor-setup-checklist-readonly.js`
 
+Client launch readiness gate: `docs/FIRST_PAID_CLIENT_LAUNCH_READINESS_GATE.md`
+
 Contractor onboarding runbook: `docs/FIRST_PAID_CONTRACTOR_ONBOARDING_RUNBOOK.md`
 
 Contractor intake worksheet: `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md`
@@ -70,6 +72,7 @@ The goal is a safe, monitored, semi-managed pilot before scalable automation.
 - Run kickoff email verifier
 - Review setup checklist
 - Run setup checklist verifier
+- Review client launch readiness gate
 
 Status: Not fully verified for real client
 
@@ -196,6 +199,10 @@ Setup checklist reference:
 
 - Review `docs/FIRST_PAID_CONTRACTOR_SETUP_CHECKLIST.md` before the first paid contractor launch.
 - Run `node backend/scripts/verify-first-paid-contractor-setup-checklist-readonly.js` before the first paid contractor launch.
+
+Client launch readiness gate reference:
+
+- Review `docs/FIRST_PAID_CLIENT_LAUNCH_READINESS_GATE.md` before making the final go/no-go decision.
 
 Next intake artifact:
 
