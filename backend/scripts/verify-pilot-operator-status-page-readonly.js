@@ -7,6 +7,7 @@ const repoRoot = path.join(__dirname, '..', '..');
 
 const files = {
   page: 'website/dashboard/pilot-status.html',
+  dashboardPage: 'website/dashboard/index.html',
   internalAdminRoute: 'backend/src/routes/internal-admin.ts'
 };
 
@@ -157,6 +158,22 @@ function checkNoProviderTriggerStrings(pageSource) {
   }
 }
 
+function checkDashboardLink(dashboardSource) {
+  assertSourceIncludes(
+    dashboardSource,
+    /<a\b[^>]*href=["']\/dashboard\/pilot-status\.html["'][^>]*>\s*First Paid Pilot Status\s*<\/a>/i,
+    'Dashboard page links to First Paid Pilot Status with a normal anchor',
+    'Dashboard page is missing normal First Paid Pilot Status anchor link'
+  );
+
+  assertSourceExcludes(
+    dashboardSource,
+    /<button\b[^>]*>\s*First Paid Pilot Status\s*<\/button>/i,
+    'Dashboard page does not use a button for First Paid Pilot Status',
+    'Dashboard page uses a button for First Paid Pilot Status'
+  );
+}
+
 function checkScriptSafety() {
   const source = read('backend/scripts/verify-pilot-operator-status-page-readonly.js');
   const forbidden = [
@@ -189,11 +206,13 @@ const filesPresent = Object.values(files).map(requireFile).every(Boolean);
 
 if (filesPresent) {
   const pageSource = read(files.page);
+  const dashboardSource = read(files.dashboardPage);
   const routeSource = read(files.internalAdminRoute);
 
   checkProtectedEndpoint(routeSource);
   checkSafeDomRendering(pageSource);
   checkNoProviderTriggerStrings(pageSource);
+  checkDashboardLink(dashboardSource);
 }
 
 checkScriptSafety();
