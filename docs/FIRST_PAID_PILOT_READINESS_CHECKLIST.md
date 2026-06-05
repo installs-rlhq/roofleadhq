@@ -6,6 +6,8 @@ Date: 2026-06-02
 
 Final readiness summary: `docs/FIRST_PAID_PILOT_FINAL_READINESS_SUMMARY.md`
 
+Launch packet: `docs/FIRST_PAID_PILOT_LAUNCH_PACKET.md`
+
 Contractor onboarding runbook: `docs/FIRST_PAID_CONTRACTOR_ONBOARDING_RUNBOOK.md`
 
 Contractor intake worksheet: `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md`
@@ -52,6 +54,7 @@ The goal is a safe, monitored, semi-managed pilot before scalable automation.
 - Confirm dashboard URL delivery process
 - Confirm billing/setup payment process
 - Complete contractor intake worksheet
+- Review launch packet
 
 Status: Not fully verified for real client
 
@@ -163,6 +166,10 @@ Finalize internal pilot monitoring and client-facing setup/payment flow.
 
 Purpose:
 Make sure the first paid pilot can be monitored safely while SMS, Calendar, Vapi, Resend, and Lindy production actions remain disabled unless explicitly approved.
+
+Launch packet reference:
+
+- Review `docs/FIRST_PAID_PILOT_LAUNCH_PACKET.md` before onboarding the first paid contractor.
 
 Next intake artifact:
 
