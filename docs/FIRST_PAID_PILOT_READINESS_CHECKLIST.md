@@ -4,6 +4,8 @@ Date: 2026-06-02
 
 ## Current Status
 
+Final readiness summary: `docs/FIRST_PAID_PILOT_FINAL_READINESS_SUMMARY.md`
+
 Aggregate read-only verifier: `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
 
 Operator status page: `website/dashboard/pilot-status.html`
