@@ -12,6 +12,8 @@ Dashboard link: `website/dashboard/index.html` -> `First Paid Pilot Status`
 
 Operator status page verifier: `node backend/scripts/verify-pilot-operator-status-page-readonly.js`
 
+Operator status endpoint verifier: `node backend/scripts/verify-pilot-operator-status-endpoint-readonly.js`
+
 Manual Outreach is verified for backend hardening, operational QA, and dashboard visibility.
 
 Dashboard token auth is working.
