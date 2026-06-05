@@ -179,6 +179,9 @@ Workflow_events-only audit verifier status:
 - Demo-useful pilot dashboard smoke verification is available as a local read-only script:
   `node backend/scripts/verify-pilot-dashboard-smoke-readonly.js`
 - The pilot dashboard smoke verifier checks local dashboard/admin files, blocks unsafe inline live-action controls and unsupported pilot outcome wording, and performs no Supabase, SMS, Twilio, Calendar, Vapi, Resend, or Lindy calls.
+- Demo-useful Manual Outreach smoke verification is available as a local read-only script:
+  `node backend/scripts/verify-manual-outreach-smoke-readonly.js`
+- The Manual Outreach smoke verifier checks local route/service/webhook files, confirms dry-run/test-only boundaries, confirms empty Twilio webhook TwiML without outbound `<Message>`, and checks that Manual Outreach does not wire live SMS or Vapi/Calendar/Resend/Lindy triggers.
 
 - Do not run `backend/scripts/run-sms-dispatcher-manual-test-only.js` against live Supabase without explicit approval, reviewed candidate scope, approved roofer id, and all manual runner plus DB executor gates.
 - `backend/scripts/prepare-sms-dispatcher-manual-runner-live-test-readonly.js` is read-only prep only; its printed live runner command is not approved by default.
