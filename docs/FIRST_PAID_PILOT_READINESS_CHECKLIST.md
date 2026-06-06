@@ -38,6 +38,8 @@ Launch ready recap: `docs/FIRST_PAID_LAUNCH_READY_RECAP.md`
 
 Launch ready recap verifier: `node backend/scripts/verify-first-paid-launch-ready-recap-readonly.js`
 
+Next chat context package: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
 Contractor onboarding runbook: `docs/FIRST_PAID_CONTRACTOR_ONBOARDING_RUNBOOK.md`
 
 Contractor intake worksheet: `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md`
