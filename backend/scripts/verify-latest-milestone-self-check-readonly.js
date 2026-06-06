@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  'd74f311 test(pilot): guard recorded source of truth baseline',
   '162bb6b test(pilot): add operating workflow guard suite',
   '9059c67 test(pilot): guard operating workflow cross references',
   '6375675 docs(pilot): document operating workflow guard',

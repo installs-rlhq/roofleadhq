@@ -1273,3 +1273,31 @@ Purpose:
 - Preserve safe verified doc/test/read-only verifier commit/push policy.
 
 Safety remains demo-ready with live automation disabled.
+
+## Latest Source-of-Truth Milestone — Recorded Source-of-Truth Baseline Guard
+
+Latest verified source-of-truth commit:
+
+- `d74f311 test(pilot): guard recorded source of truth baseline`
+
+Files changed:
+
+- `backend/scripts/verify-next-chat-context-recorded-source-of-truth-readonly.js`
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add a read-only recorded source-of-truth baseline drift guard.
+- Compare the latest required milestone from the latest milestone self-check against the next-chat context package.
+- Prevent future chats from starting with stale guarded source-of-truth context.
+- Wire the recorded baseline guard into launch safety meta verification.
+- Guard the recorded baseline guard in the latest milestone self-check.
+- Preserve Terminal 1 `/root/roofleadhq` source-of-truth workflow.
+- Preserve safe verified doc/test/read-only verifier commit/push policy.
+- Preserve explicit approval gates for live/production/destructive actions.
+
+Safety remains demo-ready with live automation disabled.

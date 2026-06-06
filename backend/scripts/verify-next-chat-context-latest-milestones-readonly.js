@@ -8,6 +8,10 @@ const contextPath = path.join(repoRoot, 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PA
 const context = fs.readFileSync(contextPath, 'utf8');
 
 const requiredText = [
+  'd74f311 test(pilot): guard recorded source of truth baseline',
+  'Latest Source-of-Truth Milestone — Recorded Source-of-Truth Baseline Guard',
+  'backend/scripts/verify-next-chat-context-recorded-source-of-truth-readonly.js',
+  'recorded source-of-truth baseline drift guard',
   '162bb6b test(pilot): add operating workflow guard suite',
   'Latest Source-of-Truth Milestone — Operating Workflow Guard Suite',
   'backend/scripts/verify-operating-workflow-guard-suite-readonly.js',
