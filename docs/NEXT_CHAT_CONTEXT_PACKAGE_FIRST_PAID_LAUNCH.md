@@ -711,3 +711,30 @@ The handoff integrity aggregate runs:
 It is wired into aggregate first-paid pilot readiness and remains read-only/test-only.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: handoff integrity aggregate committed
+
+Latest verified source-of-truth commit:
+- `61e13bb test(pilot): add handoff integrity aggregate`
+
+This milestone added:
+- `backend/scripts/verify-handoff-integrity-readonly.js`
+
+It runs:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+
+It is wired into:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+
+It is protected by:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+
+Purpose:
+- Keep handoff/context package verification bundled.
+- Prevent stale handoff context.
+- Prevent critical verifier/doc formatting drift.
+- Preserve safety posture before safe commit/push workflows.
+
+Safety remains demo-ready with live automation disabled.
