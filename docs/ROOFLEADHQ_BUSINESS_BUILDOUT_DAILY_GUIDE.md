@@ -4623,3 +4623,22 @@ Use it to confirm:
 - Explicit approval gates before live activation.
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Customer Intake Packet
+
+The customer intake packet gives the operator a single onboarding package for the first paid roofing contractor.
+
+It confirms:
+
+- Business identity.
+- Offer and language rules.
+- Lead sources.
+- Lead qualification fields.
+- Emergency and urgent lead policy.
+- Booking preferences.
+- Follow-up preferences.
+- Reporting preferences.
+- Manual operator handoff.
+- Explicit approval gates before live activation.
+
+Safety remains demo-ready with live automation disabled.

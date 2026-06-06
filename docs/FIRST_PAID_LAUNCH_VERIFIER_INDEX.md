@@ -436,3 +436,15 @@ Purpose:
 - Protects day-one operator execution for the first paid launch.
 - Keeps live automation disabled.
 - Verifies source-of-truth workflow, launch-readiness intake, manual handoff, and explicit production approval gates.
+
+## First Paid Launch Customer Intake Packet
+
+Verifier:
+
+`node backend/scripts/verify-first-paid-launch-customer-intake-packet-readonly.js`
+
+Purpose:
+
+- Protects the customer-specific intake packet for first-paid launch onboarding.
+- Connects the intake worksheet, setup checklist, onboarding runbook, readiness gate, and day-one checklist.
+- Verifies lead source intake, booking preferences, follow-up preferences, reporting expectations, language rules, and explicit approval gates.

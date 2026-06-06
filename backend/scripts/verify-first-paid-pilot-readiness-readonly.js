@@ -136,6 +136,11 @@ const commands = [
       script: 'backend/scripts/verify-first-paid-launch-operator-day-one-checklist-readonly.js',
       args: []
     },
+    {
+      name: 'First Paid Launch customer intake packet',
+      script: 'backend/scripts/verify-first-paid-launch-customer-intake-packet-readonly.js',
+      args: []
+    },
   {
     name: 'SMS dispatcher messages write test-only',
     script: 'backend/scripts/verify-sms-dispatcher-messages-write-testonly.js',

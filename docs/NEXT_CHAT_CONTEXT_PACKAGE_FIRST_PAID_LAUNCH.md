@@ -1441,3 +1441,33 @@ Required safety references preserved for latest milestone self-check alignment:
 These references keep the first-paid launch context aligned with the safe build snapshot and recorded source-of-truth baseline guard while continuing launch-readiness work.
 
 Safety remains demo-ready with live automation disabled.
+
+============================================================
+FIRST PAID LAUNCH CUSTOMER INTAKE PACKET
+============================================================
+
+Added safe launch-readiness package:
+
+- docs/FIRST_PAID_LAUNCH_CUSTOMER_INTAKE_PACKET.md
+- backend/scripts/verify-first-paid-launch-customer-intake-packet-readonly.js
+
+Purpose:
+
+- create a single customer-specific intake packet for first-paid launch onboarding
+- connect the intake worksheet, setup checklist, onboarding runbook, readiness gate, and day-one checklist
+- verify business identity, offer/language rules, lead sources, lead qualification fields, booking preferences, follow-up preferences, reporting expectations, manual operator handoff, and explicit approval gates
+- keep live automation disabled
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.
