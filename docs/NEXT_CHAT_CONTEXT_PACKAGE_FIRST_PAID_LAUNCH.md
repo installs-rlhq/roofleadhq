@@ -1054,3 +1054,20 @@ Purpose:
 - Keep latest milestones, next-chat context, verifier index, and business buildout guide aligned.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: handoff context requires latest milestone self-check
+
+Latest verified source-of-truth commit:
+- `b31b00c test(pilot): record latest milestone self check`
+
+The handoff integrity context guard should now require:
+- `3c03c72 test(pilot): add latest milestone self check`
+- `b31b00c test(pilot): record latest milestone self check`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+
+Purpose:
+- Ensure the handoff context package records the latest milestone self-check verifier.
+- Prevent future handoff drift where a documented milestone is missing from verifier code.
+- Preserve demo-ready with live automation disabled safety posture.
+
+Safety remains demo-ready with live automation disabled.

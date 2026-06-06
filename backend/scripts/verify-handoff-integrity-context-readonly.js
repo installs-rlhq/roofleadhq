@@ -23,6 +23,9 @@ const requiredText = [
   '3789630 test(pilot): record stabilized source verifier milestone',
   'backend/scripts/verify-launch-safety-meta-readonly.js',
   '693aa0d test(pilot): add launch safety meta verifier',
+  'backend/scripts/verify-latest-milestone-self-check-readonly.js',
+  '3c03c72 test(pilot): add latest milestone self check',
+  'b31b00c test(pilot): record latest milestone self check',
   'demo-ready with live automation disabled',
 ];
 

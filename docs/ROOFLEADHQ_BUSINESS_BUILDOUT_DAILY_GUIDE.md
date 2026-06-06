@@ -4521,3 +4521,9 @@ This prevents accidental doc-only drift when a verifier script update was expect
 After commit `3c03c72`, the latest milestones verifier and self-check guard should require the latest milestone self-check milestone.
 
 This protects the guard that prevents doc-only drift.
+
+## Handoff context latest milestone self-check coverage
+
+After commit `b31b00c`, the handoff integrity context guard should require the latest milestone self-check verifier and milestone commits.
+
+This keeps handoff context aligned with the guard that prevents doc-only drift.
