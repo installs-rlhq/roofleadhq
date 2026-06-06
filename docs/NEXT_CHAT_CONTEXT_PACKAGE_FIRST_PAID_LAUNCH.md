@@ -1,12 +1,35 @@
 # Next Chat Context Package — First Paid Launch
 
-Baseline verified source-of-truth commit before next-chat handoff: `ecb6290 test(pilot): require stale sms guard in verifier index`
+Baseline verified source-of-truth commit before next-chat handoff: `b190095 docs(pilot): add launch go no go snapshot`
 
 Repo path: `/root/roofleadhq`
 
 ## Terminal 1 Source-of-Truth Rule
 
 Use the baseline commit above to identify this handoff package. Before doing new work, verify the latest real source-of-truth with Terminal 1 using git fetch, git status, and git log.
+
+## Launch Go/No-Go Snapshot
+
+Latest verified commit:
+
+`b190095 docs(pilot): add launch go no go snapshot`
+
+Added:
+
+- `docs/FIRST_PAID_LAUNCH_GO_NO_GO_SNAPSHOT.md`
+- `backend/scripts/verify-first-paid-launch-go-no-go-snapshot-readonly.js`
+
+The aggregate readiness verifier now includes the go/no-go snapshot check.
+
+The snapshot confirms:
+
+- Current status is demo ready with live automation disabled
+- Homeowner SMS is not live
+- Roofer reply SMS is not live
+- Twilio sending is not live
+- Live SMS approval package is stale
+- Step 66 production send intent bridge is fake-only
+- No SMS/Twilio/Vapi/Calendar/Resend/Lindy production triggers without explicit approval
 
 ## Latest Safety Guard Update
 
