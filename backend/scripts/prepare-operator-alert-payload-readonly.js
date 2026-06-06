@@ -32,7 +32,7 @@ const followUpId = '3d57fccc-2585-4b28-bb4c-2b4d1c2d95fb';
 const messageId = '613a0d1d-467c-4220-aa8d-2cce4b2f1425';
 
 const payload = {
-  event_type: 'sms_dispatcher_gated_test_write_completed',
+  event_type: 'sms_db_write_test_completed',
   timestamp: new Date().toISOString(),
   run_id: runId,
   roofer_id: rooferId,
@@ -40,8 +40,8 @@ const payload = {
   lead_id: leadId,
   follow_up_id: followUpId,
   message_id: messageId,
-  messages_insert: { row_id: messageId, test_only: true },
-  follow_ups_update: { row_id: followUpId, test_only: true },
+  messages_insert: 'passed',
+  follow_ups_update: 'passed',
   error_message: null,
   safety: {
     sms_sent: false,
