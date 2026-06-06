@@ -4591,3 +4591,15 @@ Use this read-only verifier after safe commits are pushed and the milestone is r
 It confirms the latest required milestone recorded by the latest milestone self-check is also recorded in the next-chat context package so future chats do not start from stale guarded source-of-truth context.
 
 This is a drift guard only. It does not enable live automation.
+
+## Next-Chat Safe Build Snapshot
+
+Use this copy/paste-ready handoff for the next safe build session:
+
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_SAFE_BUILD_SNAPSHOT.md`
+
+Protect it with:
+
+- `backend/scripts/verify-next-chat-context-safe-build-snapshot-readonly.js`
+
+This keeps the latest source-of-truth commit chain, guard stack, workflow rules, approval gates, business context, and safety posture available for the next chat.

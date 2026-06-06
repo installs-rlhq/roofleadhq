@@ -417,3 +417,10 @@ Safety checks remain read-only/test-only with no production activation.
   - Confirms the latest required milestone recorded by the latest milestone self-check is also recorded in the next-chat context package.
   - Prevents the context package from silently drifting behind the guarded source-of-truth baseline.
   - Read-only. No live automation activation.
+
+## Next-Chat Safe Build Snapshot Verifier
+
+- `backend/scripts/verify-next-chat-context-safe-build-snapshot-readonly.js`
+  - Confirms the copy/paste-ready safe build snapshot includes the latest source-of-truth commit chain, guard stack, workflow rules, approval gates, business context, and safety posture.
+  - Protects the next-chat handoff from losing current operating rules.
+  - Read-only. No live automation activation.
