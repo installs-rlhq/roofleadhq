@@ -1329,3 +1329,24 @@ Purpose:
 - Preserve explicit approval gates for live/production/destructive actions.
 
 Safety remains demo-ready with live automation disabled.
+
+## Latest Source-of-Truth Milestone — Safe Build Snapshot Source-of-Truth Refresh
+
+Latest verified source-of-truth commit:
+
+- `129a18d docs(pilot): refresh safe build snapshot source of truth`
+
+Files changed:
+
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_SAFE_BUILD_SNAPSHOT.md`
+
+Purpose:
+
+- Refresh the safe build snapshot source-of-truth confirmation from `d953701` to `129a18d`.
+- Keep the copy/paste-ready next-chat safe build snapshot aligned with the latest verified repository source of truth.
+- Preserve the latest source-of-truth commit chain and guard stack.
+- Preserve Terminal 1 `/root/roofleadhq` source-of-truth workflow.
+- Preserve safe verified doc/test/read-only verifier commit/push policy.
+- Preserve explicit approval gates for live/production/destructive actions.
+
+Safety remains demo-ready with live automation disabled.

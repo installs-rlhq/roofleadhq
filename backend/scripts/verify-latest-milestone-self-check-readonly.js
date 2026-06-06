@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  '129a18d docs(pilot): refresh safe build snapshot source of truth',
   '7fc4f1a docs(pilot): add safe build context snapshot',
   'd74f311 test(pilot): guard recorded source of truth baseline',
   '162bb6b test(pilot): add operating workflow guard suite',

@@ -15,6 +15,7 @@ if (!fs.existsSync(snapshotPath)) {
 const snapshot = fs.readFileSync(snapshotPath, 'utf8');
 
 const requiredText = [
+  '129a18d docs(pilot): refresh safe build snapshot source of truth',
   'b978eab test(pilot): record source of truth baseline guard milestone',
   'd74f311 test(pilot): guard recorded source of truth baseline',
   '919eee6 test(pilot): record operating workflow guard suite milestone',
