@@ -270,3 +270,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `61c09b5 test(pilot): guard latest context milestones`
 - Update: `backend/scripts/verify-critical-file-format-integrity-readonly.js` now protects `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`.
 - Safety: Read-only. No live automation activation.
+
+## Handoff integrity aggregate verifier
+
+- Script: `backend/scripts/verify-handoff-integrity-readonly.js`
+- Purpose: Run the critical file format integrity verifier, next-chat context package verifier, and latest milestones verifier together before handoff or safe commit/push workflows.
+- Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.

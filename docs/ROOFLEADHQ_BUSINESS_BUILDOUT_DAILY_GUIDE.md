@@ -4413,3 +4413,9 @@ The verifier checks that the context package records `6048d21`, `9147664`, the c
 After commit `61c09b5`, the critical file format integrity guard should also protect `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`.
 
 This keeps the newest context handoff verifier covered against malformed patch artifacts, collapsed files, missing Node shebangs, and suspiciously low line counts.
+
+## Handoff integrity aggregate
+
+Use `backend/scripts/verify-handoff-integrity-readonly.js` before handoff or context-package work.
+
+It runs the critical file format integrity verifier, next-chat context package verifier, and latest milestones verifier together so the handoff package stays protected against format corruption, stale milestone context, and safety posture drift.

@@ -697,3 +697,17 @@ Purpose:
 - Preserve live-automation-disabled safety posture.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: handoff integrity aggregate
+
+Latest safe build direction added:
+- `backend/scripts/verify-handoff-integrity-readonly.js`
+
+The handoff integrity aggregate runs:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+
+It is wired into aggregate first-paid pilot readiness and remains read-only/test-only.
+
+Safety remains demo-ready with live automation disabled.

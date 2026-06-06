@@ -222,6 +222,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Handoff integrity aggregate',
+    script: 'backend/scripts/verify-handoff-integrity-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
