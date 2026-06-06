@@ -35,7 +35,7 @@ The snapshot confirms:
 
 Latest verified commit:
 
-`e1a0f45 test(vapi): add gated payload ingestion dry-run`
+`f8e178b Add files via upload`
 
 Completed Vapi milestones:
 1. Vapi post-call payload discovery package
@@ -67,6 +67,17 @@ All Vapi work remains in discovery/planning/test-only dry-run phase. No webhook 
 ## Vapi Test Payload Ingestion Plan Status
 
 - Planning doc exists: `docs/VAPI_TEST_PAYLOAD_INGESTION_PLAN.md`
+
+## RoofLeadHQ Business Buildout Daily Guide Milestone
+
+- Full guide added: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md` (4,148 lines)
+- Merges original June 4 guide with June 6 current-state override
+- Includes: tooling reality (Telegram OpenClaw + VPS Terminal), safety posture, completed SMS/Lindy/Vapi work, dry-run ingestion status, verification incidents, next build direction, and preserved day-by-day roadmap
+- VPS Terminal verified after `f8e178b`:
+  - node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
+  - node backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js
+  - npm --prefix backend run build
+- HEAD and origin/main matched at `f8e178b` after fast-forward pull
 - Read-only verifier exists and passes
 - No ingestion script exists yet
 - No live route, no Vapi calls, no Supabase writes
