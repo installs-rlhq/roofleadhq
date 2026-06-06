@@ -23,6 +23,7 @@ const args = process.argv.slice(2);
 const allowWebhook = args.includes('--allow-operator-alert-webhook');
 const testMode = process.env.OPERATOR_ALERT_TEST_MODE === '1';
 const webhookUrl = process.env.OPERATOR_ALERT_WEBHOOK_URL;
+const bearerToken = process.env.OPERATOR_ALERT_WEBHOOK_BEARER_TOKEN;
 
 const runId = 'db-write-candidate-2026-06-06T03-27-16-214z';
 const rooferId = 'be7efc94-bd68-43af-81b2-dc7b869b42df';
@@ -66,9 +67,13 @@ if (allowWebhook && testMode && webhookUrl) {
     console.log('[INFO] fetch not available in this Node version. Webhook skipped.');
     pass('Gated webhook skipped (fetch unavailable).');
   } else {
+    const headers = { 'Content-Type': 'application/json' };
+    if (bearerToken) {
+      headers['Authorization'] = `Bearer ${bearerToken}`;
+    }
     doFetch(webhookUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify(payload)
     })
     .then(res => {

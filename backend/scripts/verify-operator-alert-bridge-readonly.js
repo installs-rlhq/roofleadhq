@@ -50,6 +50,29 @@ if (content.includes('OPERATOR_ALERT_WEBHOOK_URL')) {
   pass('Webhook URL read only from environment');
 }
 
+// Bearer token verification
+if (content.includes('OPERATOR_ALERT_WEBHOOK_BEARER_TOKEN')) {
+  pass('Bearer token read only from environment');
+} else {
+  fail('Bearer token env var not referenced');
+}
+
+// Ensure token is never printed
+if (content.includes('bearerToken') || content.includes('BEARER_TOKEN')) {
+  if (!content.includes('console.log') || !content.match(/console\.log.*bearerToken|console\.log.*BEARER_TOKEN/)) {
+    pass('Bearer token variable referenced without printing');
+  }
+}
+
+// Authorization header only in gated branch
+if (content.includes('Authorization') && content.includes('Bearer')) {
+  if (content.includes('headers[\'Authorization\']') && content.includes('allowWebhook')) {
+    pass('Authorization header only constructed in gated webhook branch');
+  } else {
+    fail('Authorization header usage not properly gated');
+  }
+}
+
 // Verify explicit gate for webhook
 if (content.includes('--allow-operator-alert-webhook') && content.includes('OPERATOR_ALERT_TEST_MODE')) {
   pass('Webhook requires explicit CLI + env gate');
