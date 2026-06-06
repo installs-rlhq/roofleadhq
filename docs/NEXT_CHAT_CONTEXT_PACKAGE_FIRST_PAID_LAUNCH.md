@@ -1151,3 +1151,28 @@ Purpose:
 - Preserve the required verification, diff, staged review, build, commit, push, and final source-of-truth confirmation workflow.
 
 Safety remains demo-ready with live automation disabled.
+
+## Latest Source-of-Truth Milestone — Operating Workflow Guard Discoverability
+
+Latest verified source-of-truth commit:
+
+- `6375675 docs(pilot): document operating workflow guard`
+
+Files changed:
+
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+
+Purpose:
+
+- Document the operating workflow guard in the first paid launch verifier index.
+- Document the operating workflow guard in the business buildout daily guide.
+- Document the `Operating Workflow Guard Reference` section in the business buildout daily guide.
+- Make `backend/scripts/verify-next-safe-build-operating-workflow-readonly.js` discoverable outside the next-chat context.
+- Guard the discoverability references in the latest milestone self-check.
+- Preserve Terminal 1 `/root/roofleadhq` source-of-truth workflow.
+- Preserve safe verified doc/test/read-only verifier commit/push policy.
+- Preserve explicit approval gates for live/production/destructive actions.
+
+Safety remains demo-ready with live automation disabled.
