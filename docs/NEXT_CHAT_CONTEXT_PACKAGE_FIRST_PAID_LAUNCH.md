@@ -561,6 +561,7 @@ The aggregate first paid pilot readiness gate includes and protects the current 
 - `verify-vapi-dry-run-cli-contract-readonly.js`
 - `verify-vapi-scenario-registry-readonly.js`
 - `verify-vapi-aggregate-coverage-readonly.js`
+- `verify-vapi-guard-layer-readonly.js`
 
 Safety preserved:
 - no live Vapi calls
@@ -582,6 +583,27 @@ The verifier checks:
 - next-chat context includes every expected Vapi verifier
 - aggregate readiness includes expected Vapi command names
 - safety markers remain documented
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation
+
+## Current Safe Batch — Vapi Guard Layer Coverage
+
+Added `backend/scripts/verify-vapi-guard-layer-readonly.js` as a read-only guard that verifies the Vapi guard-layer verifiers remain wired, documented, and safety-scoped.
+
+The verifier checks:
+- aggregate coverage verifier remains included
+- scenario registry verifier remains included
+- dry-run output snapshot verifier remains included
+- dry-run CLI contract verifier remains included
+- next-chat context and next-chat verifier preserve guard-layer markers
+- guard-layer scripts preserve read-only safety markers
+- downstream Vapi verifiers remain protected by aggregate coverage
 
 Safety preserved:
 - no live Vapi calls

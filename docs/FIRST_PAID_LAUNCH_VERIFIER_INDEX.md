@@ -237,3 +237,18 @@ Safety checks remain read-only/test-only with no production activation.
   - aggregate readiness includes expected Vapi command names
   - safety markers remain documented
   - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation
+
+
+## Vapi guard layer coverage verifier
+
+- Script: `backend/scripts/verify-vapi-guard-layer-readonly.js`
+- Purpose: read-only guard that verifies the Vapi guard-layer verifiers remain wired into aggregate readiness, protected by aggregate coverage, documented in the verifier index, documented in next-chat context, and locked by the next-chat context verifier.
+- Coverage:
+  - aggregate coverage verifier remains included
+  - scenario registry verifier remains included
+  - dry-run output snapshot verifier remains included
+  - dry-run CLI contract verifier remains included
+  - next-chat context and next-chat verifier preserve guard-layer markers
+  - guard-layer scripts preserve read-only safety markers
+  - downstream Vapi verifiers remain protected by aggregate coverage
+  - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation

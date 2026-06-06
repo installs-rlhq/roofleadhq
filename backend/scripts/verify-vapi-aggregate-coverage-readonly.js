@@ -27,6 +27,7 @@ const expectedVapiVerifiers = [
   'verify-vapi-dry-run-cli-contract-readonly.js',
   'verify-vapi-scenario-registry-readonly.js',
   'verify-vapi-aggregate-coverage-readonly.js',
+  'verify-vapi-guard-layer-readonly.js',
 ];
 
 function fail(message) {

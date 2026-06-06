@@ -4372,3 +4372,26 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+
+## Vapi guard layer coverage milestone
+
+Added a read-only guard-layer verifier that protects the Vapi guard verifiers themselves from wiring or documentation drift.
+
+This verifier guards:
+- aggregate coverage verifier wiring
+- scenario registry verifier wiring
+- dry-run output snapshot verifier wiring
+- dry-run CLI contract verifier wiring
+- next-chat context guard-layer markers
+- next-chat verifier guard-layer requirements
+- read-only safety markers across guard-layer scripts
+- downstream Vapi verifier protection inside aggregate coverage
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation
