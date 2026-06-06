@@ -191,6 +191,11 @@ const commands = [
       script: 'backend/scripts/verify-vapi-dry-run-cli-contract-readonly.js',
       args: []
     },
+    {
+      name: 'Vapi scenario registry consistency',
+      script: 'backend/scripts/verify-vapi-scenario-registry-readonly.js',
+      args: []
+    },
   {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',

@@ -210,3 +210,16 @@ Safety checks remain read-only/test-only with no production activation.
   - missing gates fail closed
   - outputs remain `source = vapi` and `test_only = true`
   - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation
+
+## Vapi scenario registry consistency verifier
+
+- Script: `backend/scripts/verify-vapi-scenario-registry-readonly.js`
+- Purpose: read-only guard that verifies the six Vapi fake/sanitized scenario names and sample files stay consistent across dry-run ingestion, scenario sample verification, output snapshot verification, CLI contract verification, docs, and next-chat context.
+- Coverage:
+  - exact six-file `docs/samples/vapi-scenario-*.fake.json` registry
+  - every sample parses as JSON and remains visibly fake/sanitized
+  - dry-run `scenarioMap` contains exact scenario-to-file mappings
+  - dry-run verifier, scenario samples verifier, snapshot verifier, and CLI contract verifier include the complete scenario set
+  - contract docs, verifier index, business guide, and next-chat context include the complete scenario set
+  - safety markers remain documented
+  - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation

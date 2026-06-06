@@ -516,3 +516,28 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+## Current Safe Batch — Vapi Scenario Registry Consistency Verifier
+
+Added `backend/scripts/verify-vapi-scenario-registry-readonly.js` as a read-only guard that keeps the six Vapi fake/sanitized scenario names and sample files aligned across scripts, verifiers, docs, and next-chat context.
+
+The verifier checks:
+- exact six-file `docs/samples/vapi-scenario-*.fake.json` registry
+- every scenario sample parses as JSON
+- every scenario sample remains visibly fake/sanitized
+- dry-run `scenarioMap` contains exact scenario-to-file mappings
+- dry-run verifier includes all six scenarios
+- scenario samples verifier includes all six scenarios
+- output snapshot verifier includes all six scenarios
+- CLI contract verifier includes all six scenarios
+- normalized contract doc includes all six scenarios
+- verifier index, business guide, and next-chat context include all six scenarios
+- safety markers remain documented
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation
