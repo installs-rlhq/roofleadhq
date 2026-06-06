@@ -1,6 +1,6 @@
 # Next Chat Context Package — First Paid Launch
 
-Current source-of-truth commit: `0443c0c test(pilot): add next chat launch context verifier`
+Baseline verified source-of-truth commit before next-chat handoff: `f8e7738 docs(pilot): update next chat launch context commit`
 
 Repo path: `/root/roofleadhq`
 

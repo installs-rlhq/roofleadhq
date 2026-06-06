@@ -7,7 +7,7 @@ const repoRoot = path.join(__dirname, '..', '..');
 const packagePath = path.join(repoRoot, 'docs', 'NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md');
 
 const requiredStrings = [
-  'Current source-of-truth commit:',
+  'Baseline verified source-of-truth commit before next-chat handoff:',
   '/root/roofleadhq',
   'Terminal 1 Source-of-Truth Rule',
   'Current Safety Posture',
