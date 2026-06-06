@@ -4533,3 +4533,20 @@ This keeps handoff context aligned with the guard that prevents doc-only drift.
 After commit `17a300f`, the latest milestones verifier and self-check guard should require the latest milestone self-check context milestone.
 
 This protects the handoff context guard for doc-only drift prevention.
+
+## Operating Workflow Guard Reference
+
+The safe build workflow is protected by:
+
+- `backend/scripts/verify-next-safe-build-operating-workflow-readonly.js`
+
+This verifier ensures the daily build process keeps the current rules visible:
+
+- Work only in Terminal 1 at `/root/roofleadhq`.
+- Do not use `/root/.openclaw/workspace`.
+- Do not trust OpenClaw summaries alone.
+- Safe verified doc/test/read-only verifier changes may be committed and pushed without repeated approval.
+- Explicit approval remains required for live SMS/Twilio, production Supabase writes, Vapi production webhook ingestion, Calendar booking activation, Resend/Lindy production activation, public routes, cron/schedulers/dispatchers, secrets exposure, destructive operations, or anything outside the named safe scope.
+- The required workflow remains: fetch/status/log, targeted greps/assertions, syntax checks, relevant read-only verifiers, aggregate readiness, backend build, actual diff review, staged diff review, commit, push, final fetch/status/log confirmation.
+
+Safety remains demo-ready with live automation disabled.

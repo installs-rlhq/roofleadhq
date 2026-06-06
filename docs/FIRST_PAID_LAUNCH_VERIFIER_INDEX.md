@@ -385,3 +385,14 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `17a300f test(pilot): require latest milestone self check context`
 - Update: The latest milestones verifier and latest milestone self-check now require the self-check context milestone.
 - Safety: Read-only. No live automation activation.
+
+## Operating Workflow Guard
+
+- `backend/scripts/verify-next-safe-build-operating-workflow-readonly.js`
+  - Guards the next safe build operating workflow.
+  - Protects Terminal 1 `/root/roofleadhq` source-of-truth workflow.
+  - Protects the rule that `/root/.openclaw/workspace` must not be used.
+  - Protects the rule that OpenClaw summaries alone are not trusted.
+  - Protects safe verified doc/test/read-only verifier commit/push policy.
+  - Protects explicit approval gates for live/production/destructive actions.
+  - Protects required verification, diff, staged review, backend build, commit, push, and final source-of-truth confirmation workflow.

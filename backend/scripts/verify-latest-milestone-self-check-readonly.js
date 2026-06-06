@@ -41,6 +41,8 @@ const requiredMilestones = [
 ];
 
 const requiredSafetyText = [
+  'Operating Workflow Guard',
+  'verify-next-safe-build-operating-workflow-readonly.js',
   'demo-ready with live automation disabled',
   'No live Vapi webhook route',
   'No Vapi-to-Supabase writes',
