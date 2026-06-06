@@ -982,3 +982,19 @@ It runs:
 - `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: process verifier requires launch safety meta context
+
+Latest verified source-of-truth commit:
+- `3ceb537 test(pilot): record launch safety meta milestone`
+
+The source-of-truth process verifier should now require:
+- `693aa0d test(pilot): add launch safety meta verifier`
+- `3ceb537 test(pilot): record launch safety meta milestone`
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+
+Purpose:
+- Ensure the stabilized source-of-truth verifier recognizes the top-level launch safety meta verifier.
+- Keep process, handoff, context, and launch safety checks aligned.
+
+Safety remains demo-ready with live automation disabled.

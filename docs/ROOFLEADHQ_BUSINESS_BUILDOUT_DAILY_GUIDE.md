@@ -4497,3 +4497,9 @@ It runs the critical file format, source-of-truth, handoff integrity, handoff co
 After commit `693aa0d`, the latest milestones and handoff context guards should require the launch safety meta verifier.
 
 This keeps source-of-truth, handoff, context, and critical-file safety checks bundled before safe commit/push workflows.
+
+## Source-of-truth process launch safety coverage
+
+After commit `3ceb537`, the source-of-truth process verifier should require the launch safety meta verifier context.
+
+This keeps Terminal 1 source-of-truth alignment tied to the newest top-level launch safety guard.

@@ -349,3 +349,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `693aa0d test(pilot): add launch safety meta verifier`
 - Update: Latest milestones and handoff context guards now require the launch safety meta verifier milestone.
 - Safety: Read-only. No live automation activation.
+
+## Source-of-truth process launch safety coverage
+
+- Commit: `3ceb537 test(pilot): record launch safety meta milestone`
+- Update: `backend/scripts/verify-source-of-truth-commit-chain-readonly.js` now requires launch safety meta verifier context.
+- Safety: Read-only. No live automation activation.

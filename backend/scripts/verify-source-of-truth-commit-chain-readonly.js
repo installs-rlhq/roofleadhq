@@ -19,6 +19,9 @@ const requiredContextText = [
   'demo-ready with live automation disabled',
   'backend/scripts/verify-handoff-integrity-readonly.js',
   'backend/scripts/verify-source-of-truth-commit-chain-readonly.js',
+  'backend/scripts/verify-launch-safety-meta-readonly.js',
+  '3ceb537 test(pilot): record launch safety meta milestone',
+  '693aa0d test(pilot): add launch safety meta verifier',
 ];
 
 const forbiddenText = [
