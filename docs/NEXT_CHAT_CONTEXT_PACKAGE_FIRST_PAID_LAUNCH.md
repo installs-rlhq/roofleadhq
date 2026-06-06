@@ -998,3 +998,22 @@ Purpose:
 - Keep process, handoff, context, and launch safety checks aligned.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: launch safety required in source verifier
+
+Latest verified source-of-truth commit:
+- `574a822 test(pilot): require launch safety in source verifier`
+
+This milestone updated:
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+
+It requires source-of-truth context to include:
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+- `693aa0d test(pilot): add launch safety meta verifier`
+- `3ceb537 test(pilot): record launch safety meta milestone`
+
+Purpose:
+- Tie Terminal 1 source-of-truth process checks to the top-level launch safety meta verifier.
+- Keep source-of-truth, handoff, context, and launch safety verification aligned.
+
+Safety remains demo-ready with live automation disabled.

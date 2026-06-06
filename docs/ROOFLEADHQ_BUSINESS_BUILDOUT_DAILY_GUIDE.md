@@ -4503,3 +4503,9 @@ This keeps source-of-truth, handoff, context, and critical-file safety checks bu
 After commit `3ceb537`, the source-of-truth process verifier should require the launch safety meta verifier context.
 
 This keeps Terminal 1 source-of-truth alignment tied to the newest top-level launch safety guard.
+
+## Latest milestones launch safety source coverage
+
+After commit `574a822`, the latest milestones verifier should require the source verifier’s launch safety meta context requirement.
+
+This keeps the handoff chain aligned with the top-level launch safety meta verifier.
