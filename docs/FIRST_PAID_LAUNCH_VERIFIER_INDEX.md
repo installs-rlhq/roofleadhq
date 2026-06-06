@@ -343,3 +343,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Script: `backend/scripts/verify-launch-safety-meta-readonly.js`
 - Purpose: Run the critical file format, source-of-truth, handoff integrity, handoff context, latest milestones, and next-chat context package verifiers together.
 - Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.
+
+## Launch safety meta verifier milestone
+
+- Commit: `693aa0d test(pilot): add launch safety meta verifier`
+- Update: Latest milestones and handoff context guards now require the launch safety meta verifier milestone.
+- Safety: Read-only. No live automation activation.

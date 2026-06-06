@@ -4491,3 +4491,9 @@ This keeps the context package aligned with the newest safe source-of-truth veri
 Use `backend/scripts/verify-launch-safety-meta-readonly.js` before safe handoff or context-package work.
 
 It runs the critical file format, source-of-truth, handoff integrity, handoff context, latest milestones, and next-chat context package verifiers together while preserving demo-ready with live automation disabled.
+
+## Launch safety meta verifier milestone
+
+After commit `693aa0d`, the latest milestones and handoff context guards should require the launch safety meta verifier.
+
+This keeps source-of-truth, handoff, context, and critical-file safety checks bundled before safe commit/push workflows.

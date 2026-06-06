@@ -21,6 +21,8 @@ const requiredText = [
   'Terminal 1 process alignment',
   'befef91 test(pilot): stabilize source of truth verifier',
   '3789630 test(pilot): record stabilized source verifier milestone',
+  'backend/scripts/verify-launch-safety-meta-readonly.js',
+  '693aa0d test(pilot): add launch safety meta verifier',
   'demo-ready with live automation disabled',
 ];
 

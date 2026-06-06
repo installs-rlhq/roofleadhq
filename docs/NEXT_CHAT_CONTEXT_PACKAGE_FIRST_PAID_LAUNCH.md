@@ -958,3 +958,27 @@ Purpose:
 - Preserve demo-ready with live automation disabled safety posture.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: launch safety meta verifier committed
+
+Latest verified source-of-truth commit:
+- `693aa0d test(pilot): add launch safety meta verifier`
+
+This milestone added:
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+
+It is wired into:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+
+It is protected by:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+
+It runs:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+- `backend/scripts/verify-handoff-integrity-readonly.js`
+- `backend/scripts/verify-handoff-integrity-context-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+
+Safety remains demo-ready with live automation disabled.
