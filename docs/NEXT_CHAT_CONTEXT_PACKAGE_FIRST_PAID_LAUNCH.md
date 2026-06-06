@@ -437,3 +437,29 @@ The verifier checks:
   - no cron/scheduler/dispatcher activation
 
 This remains documentation/read-only verification work only.
+
+## Current Safe Batch — Vapi Scenario Sample Files Verifier
+
+Added `backend/scripts/verify-vapi-scenario-samples-readonly.js` as a read-only guard for the six fake/sanitized Vapi scenario sample JSON files in `docs/samples`.
+
+The verifier checks:
+- all six `vapi-scenario-*.fake.json` files exist
+- each scenario sample parses as JSON
+- fake/test/sanitized/sample markers are present
+- scenario semantics are preserved for:
+  - `booked-inspection`
+  - `unbooked-followup`
+  - `missing-address`
+  - `missing-phone`
+  - `emergency-leak`
+  - `insurance-storm`
+- no production-looking secrets or live identifiers are present
+- the dry-run ingestion script still references the scenario set
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation

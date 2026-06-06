@@ -170,3 +170,15 @@ Safety checks remain read-only/test-only with no production activation.
   - `missing-phone`, `missing-address`, and `appointment_suggested` nullable rules
   - `emergency-leak` and `insurance-storm` scenario semantics
   - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation
+
+## Vapi scenario sample files verifier
+
+- Script: `backend/scripts/verify-vapi-scenario-samples-readonly.js`
+- Purpose: read-only guard that directly validates the six fake/sanitized Vapi scenario sample JSON files in `docs/samples`.
+- Coverage:
+  - every `vapi-scenario-*.fake.json` file exists
+  - every scenario file parses as JSON
+  - every scenario file includes fake/test/sanitized/sample markers
+  - scenario semantics are preserved for booked inspection, unbooked follow-up, missing address, missing phone, emergency leak, and insurance storm
+  - no production-looking secrets or live identifiers are present
+  - the dry-run ingestion script still references the scenario set

@@ -176,6 +176,11 @@ const commands = [
       script: 'backend/scripts/verify-vapi-normalized-contract-doc-readonly.js',
       args: []
     },
+    {
+      name: 'Vapi scenario sample files',
+      script: 'backend/scripts/verify-vapi-scenario-samples-readonly.js',
+      args: []
+    },
   {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',

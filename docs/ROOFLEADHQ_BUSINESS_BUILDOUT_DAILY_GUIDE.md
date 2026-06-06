@@ -4257,3 +4257,27 @@ This verifier guards:
 - nullable rules for `missing-phone`, `missing-address`, and `appointment_suggested`
 - emergency leak and insurance storm semantics
 - safety posture preserving no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation
+
+## Vapi scenario sample files verification milestone
+
+Added a read-only verifier for the six fake/sanitized Vapi scenario sample JSON files in `docs/samples`.
+
+This verifier guards:
+- booked inspection sample coverage
+- unbooked follow-up sample coverage
+- missing address sample coverage
+- missing phone sample coverage
+- emergency leak sample coverage
+- insurance storm sample coverage
+- fake/test/sanitized markers
+- JSON parseability
+- absence of production-looking secrets or live identifiers
+- dry-run ingestion script scenario references
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation
