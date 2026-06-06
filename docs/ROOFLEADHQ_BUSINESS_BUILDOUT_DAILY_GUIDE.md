@@ -4401,3 +4401,9 @@ Safety preserved:
 Use `backend/scripts/verify-critical-file-format-integrity-readonly.js` before safe commit/push workflows when verifier or launch documentation files are edited.
 
 The guard checks critical scripts and docs for literal backslash-n patch artifacts, collapsed low-line-count files, missing Node shebangs on JS verifier scripts, and missing protected files. It is read-only and keeps the launch posture at demo-ready with live automation disabled.
+
+## Next-chat latest milestones context guard
+
+Use `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js` to confirm the next-chat context package records the latest safe source-of-truth milestones before a handoff.
+
+The verifier checks that the context package records `6048d21`, `9147664`, the critical file format integrity guard, and the live-automation-disabled safety posture.

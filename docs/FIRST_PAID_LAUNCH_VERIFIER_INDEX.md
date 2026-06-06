@@ -258,3 +258,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Script: `backend/scripts/verify-critical-file-format-integrity-readonly.js`
 - Purpose: Prevent malformed patch regressions by guarding critical verifier and documentation files against literal backslash-n artifacts, collapsed one-line verifier files, missing Node shebangs, and suspiciously low line counts.
 - Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.
+
+## Next-chat latest milestones verifier
+
+- Script: `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- Purpose: Guard the handoff/context package so it records the latest critical file integrity milestones, including commits `6048d21` and `9147664`, while preserving legacy-language and live-automation safety constraints.
+- Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.

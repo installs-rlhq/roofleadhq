@@ -651,3 +651,28 @@ Verification/build passed before commit:
 - `npm --prefix backend run build`
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: latest context package guard
+
+Latest verified source-of-truth commit:
+- `9147664 test(pilot): guard critical file context package`
+
+This docs-only milestone updated the next-chat context package after commit `6048d21`.
+
+Critical file format integrity guard:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- Critical file format integrity
+- Protects against literal backslash-n artifacts
+- Protects against collapsed one-line JS verifier files
+- Protects against missing Node shebang
+- Protects against suspiciously low line counts
+
+Safety remains:
+- demo-ready with live automation disabled
+- Retell remains deprecated/disabled
+- No live Vapi webhook route
+- No Vapi-to-Supabase writes
+- No Vapi-to-SMS/Twilio sends
+- No Vapi-to-Calendar booking activation
+- No Resend/Lindy production activation from Vapi flows
+- No route/cron/scheduler/dispatcher activation

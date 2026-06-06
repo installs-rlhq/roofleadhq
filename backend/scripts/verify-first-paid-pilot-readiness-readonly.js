@@ -217,6 +217,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Next-chat latest milestones context',
+    script: 'backend/scripts/verify-next-chat-context-latest-milestones-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
