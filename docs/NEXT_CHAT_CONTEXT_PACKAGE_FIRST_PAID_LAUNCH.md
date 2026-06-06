@@ -1387,3 +1387,57 @@ No cron/scheduler/dispatcher activation.
 No public production route activation.
 No secrets exposure.
 No destructive operations.
+
+============================================================
+LATEST SOURCE-OF-TRUTH MILESTONE — FIRST PAID LAUNCH DAY-ONE CHECKLIST
+============================================================
+
+Latest verified source-of-truth commit:
+
+- `ac12597 test(pilot): add first paid launch day one checklist`
+
+Files changed:
+
+- `docs/FIRST_PAID_LAUNCH_OPERATOR_DAY_ONE_CHECKLIST.md`
+- `backend/scripts/verify-first-paid-launch-operator-day-one-checklist-readonly.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add a first-paid launch operator day-one checklist.
+- Add a read-only/static verifier for day-one checklist coverage.
+- Wire the day-one checklist verifier into aggregate first-paid pilot readiness.
+- Record the checklist in the verifier index, business buildout guide, and next-chat context.
+- Move from meta-guarding back toward first-paid launch readiness.
+- Keep live automation disabled.
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.
+
+
+============================================================
+LATEST MILESTONE SELF-CHECK SAFETY REFERENCES
+============================================================
+
+Required safety references preserved for latest milestone self-check alignment:
+
+- Next-Chat Safe Build Snapshot
+- Next-Chat Recorded Source-of-Truth Baseline
+
+These references keep the first-paid launch context aligned with the safe build snapshot and recorded source-of-truth baseline guard while continuing launch-readiness work.
+
+Safety remains demo-ready with live automation disabled.

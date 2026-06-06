@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  'ac12597 test(pilot): add first paid launch day one checklist',
   '129a18d docs(pilot): refresh safe build snapshot source of truth',
   '7fc4f1a docs(pilot): add safe build context snapshot',
   'd74f311 test(pilot): guard recorded source of truth baseline',

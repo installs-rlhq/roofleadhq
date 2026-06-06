@@ -8,6 +8,7 @@ const contextPath = path.join(repoRoot, 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PA
 const context = fs.readFileSync(contextPath, 'utf8');
 
 const requiredText = [
+  'ac12597 test(pilot): add first paid launch day one checklist',
   '129a18d docs(pilot): refresh safe build snapshot source of truth',
   'Latest Source-of-Truth Milestone — Safe Build Snapshot Source-of-Truth Refresh',
   'Refresh the safe build snapshot source-of-truth confirmation from `d953701` to `129a18d`',
