@@ -130,6 +130,16 @@ const commands = [
     name: 'First Paid Launch operator dashboard QA',
     script: 'backend/scripts/verify-first-paid-launch-operator-dashboard-qa-readonly.js',
     args: []
+  },
+  {
+    name: 'SMS dispatcher messages write test-only',
+    script: 'backend/scripts/verify-sms-dispatcher-messages-write-testonly.js',
+    args: []
+  },
+  {
+    name: 'SMS dispatcher follow-ups update test-only',
+    script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
+    args: []
   }
 ];
 

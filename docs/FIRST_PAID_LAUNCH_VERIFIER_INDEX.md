@@ -37,6 +37,10 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Launch status contract verifier: `node backend/scripts/verify-first-paid-launch-status-contract-readonly.js`
 - Execution pack: `docs/FIRST_PAID_LAUNCH_EXECUTION_PACK.md`
 - Execution pack verifier: `node backend/scripts/verify-first-paid-launch-execution-pack-readonly.js`
+- Operator dashboard QA pack: `docs/FIRST_PAID_LAUNCH_OPERATOR_DASHBOARD_QA.md`
+- Operator dashboard QA verifier: `node backend/scripts/verify-first-paid-launch-operator-dashboard-qa-readonly.js`
+- SMS dispatcher messages write test-only: `node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js`
+- SMS dispatcher follow-ups update test-only: `node backend/scripts/verify-sms-dispatcher-followups-update-testonly.js`
 
 ## Launch Framing
 

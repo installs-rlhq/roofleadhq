@@ -50,9 +50,12 @@ const forbiddenStrings = [
   'send text',
   'call twilio',
   'trigger automation',
-  'dispatch',
   'enable live',
-  'sync calendar'
+  'sync calendar',
+  'run dispatcher',
+  'start dispatcher',
+  'activate dispatcher',
+  'production dispatcher activation'
 ];
 
 function pass(message) {

@@ -107,3 +107,7 @@ node backend/scripts/verify-first-paid-launch-status-endpoint-readonly.js
 Continue adding first-paid launch operator tooling and documentation using the established pattern. Keep all work local, read-only, and docs-first.
 
 Founder-Led Launch Program — help the contractor book inspections / book appointments.
+
+- SMS dispatcher database write layer: `docs/SMS_DISPATCHER_DATABASE_WRITE_LAYER.md`
+- Messages write test-only verifier: `node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js`
+- Follow-ups update test-only verifier: `node backend/scripts/verify-sms-dispatcher-followups-update-testonly.js`

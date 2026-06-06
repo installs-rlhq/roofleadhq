@@ -8,7 +8,7 @@ Current status: demo ready with live automation disabled
 
 ## Source of Truth
 
-`1ccaa20 feat(pilot): add first paid launch status endpoint smoke path`
+`1ac4459 docs(pilot): add first paid launch operator dashboard qa`
 
 ## Launch Readiness Snapshot
 
