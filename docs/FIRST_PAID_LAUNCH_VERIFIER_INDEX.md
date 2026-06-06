@@ -379,3 +379,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `b31b00c test(pilot): record latest milestone self check`
 - Update: `backend/scripts/verify-handoff-integrity-context-readonly.js` now requires the latest milestone self-check verifier and milestone commits.
 - Safety: Read-only. No live automation activation.
+
+## Latest milestones self-check context coverage
+
+- Commit: `17a300f test(pilot): require latest milestone self check context`
+- Update: The latest milestones verifier and latest milestone self-check now require the self-check context milestone.
+- Safety: Read-only. No live automation activation.

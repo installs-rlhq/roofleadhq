@@ -1071,3 +1071,22 @@ Purpose:
 - Preserve demo-ready with live automation disabled safety posture.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: latest milestone self-check context required
+
+Latest verified source-of-truth commit:
+- `17a300f test(pilot): require latest milestone self check context`
+
+This milestone updated:
+- `backend/scripts/verify-handoff-integrity-context-readonly.js`
+
+It requires handoff context to include:
+- `3c03c72 test(pilot): add latest milestone self check`
+- `b31b00c test(pilot): record latest milestone self check`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+
+Purpose:
+- Protect the latest milestone self-check context requirement.
+- Keep the handoff context aligned with the guard that prevents doc-only drift.
+
+Safety remains demo-ready with live automation disabled.
