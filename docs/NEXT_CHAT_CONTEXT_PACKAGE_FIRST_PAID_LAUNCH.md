@@ -676,3 +676,24 @@ Safety remains:
 - No Vapi-to-Calendar booking activation
 - No Resend/Lindy production activation from Vapi flows
 - No route/cron/scheduler/dispatcher activation
+
+## Source-of-truth update: latest milestones verifier protected
+
+Latest verified source-of-truth commit:
+- `61c09b5 test(pilot): guard latest context milestones`
+
+This milestone added:
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+
+It is wired into:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+
+It is now protected by:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+
+Purpose:
+- Guard the next-chat context package so it records latest safe source-of-truth milestones.
+- Preserve legacy-language safety.
+- Preserve live-automation-disabled safety posture.
+
+Safety remains demo-ready with live automation disabled.

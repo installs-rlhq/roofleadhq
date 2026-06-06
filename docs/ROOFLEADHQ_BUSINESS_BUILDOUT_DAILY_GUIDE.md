@@ -4407,3 +4407,9 @@ The guard checks critical scripts and docs for literal backslash-n patch artifac
 Use `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js` to confirm the next-chat context package records the latest safe source-of-truth milestones before a handoff.
 
 The verifier checks that the context package records `6048d21`, `9147664`, the critical file format integrity guard, and the live-automation-disabled safety posture.
+
+## Latest milestones verifier integrity coverage
+
+After commit `61c09b5`, the critical file format integrity guard should also protect `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`.
+
+This keeps the newest context handoff verifier covered against malformed patch artifacts, collapsed files, missing Node shebangs, and suspiciously low line counts.
