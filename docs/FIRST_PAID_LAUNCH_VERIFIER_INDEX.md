@@ -66,3 +66,18 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - The other verifiers are supporting read-only checks for launch docs, dashboard visibility, and operational safety.
 - Keep all launch review local, read-only, and free of production service calls unless separately approved.
 - Live SMS approval package must remain stale unless a fresh approval package is created and explicitly approved.
+
+## Vapi Dry-Run Scenario Hardening Milestone
+
+- Commit `7e30d9b test(vapi): harden dry-run scenario coverage` added six fake/sanitized Vapi scenario payloads and `--scenario` support.
+- Commit `d2ca159 docs(pilot): record vapi dry-run scenario hardening` recorded the milestone in the next-chat context package.
+- Commit `823c666 docs(pilot): record vapi scenario hardening in business guide` recorded the milestone in the business buildout guide.
+- `backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js` now executes all six valid scenarios, confirms invalid scenario fails, and confirms missing gates fail.
+- Six scenario files:
+  - `docs/samples/vapi-scenario-booked-inspection.fake.json`
+  - `docs/samples/vapi-scenario-unbooked-followup.fake.json`
+  - `docs/samples/vapi-scenario-missing-address.fake.json`
+  - `docs/samples/vapi-scenario-missing-phone.fake.json`
+  - `docs/samples/vapi-scenario-emergency-leak.fake.json`
+  - `docs/samples/vapi-scenario-insurance-storm.fake.json`
+- Safety preserved: no live Vapi/Supabase/SMS/Twilio/Calendar/Resend/Lindy, no routes/cron/scheduler/dispatcher.
