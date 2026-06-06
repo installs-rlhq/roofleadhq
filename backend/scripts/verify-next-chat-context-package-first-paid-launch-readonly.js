@@ -26,7 +26,10 @@ const requiredStrings = [
   'scenario-specific verifier checks',
   'emergency-leak',
   'insurance-storm',
-  'Retell remains deprecated/disabled'
+  'Retell remains deprecated/disabled',
+  'Workflow Rule Update — Combined Verify and Commit/Push',
+  'combine verification, commit/push, final fetch/status/log',
+  'The combined command should commit and push only after all required checks pass'
 ];
 
 const forbiddenStrings = [

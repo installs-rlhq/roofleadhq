@@ -392,3 +392,29 @@ This section preserves exact strings required by `backend/scripts/verify-next-ch
 
 - 5053554 docs(pilot): refresh context after vapi scenario contract enforcement
 - scenario-specific verifier checks
+
+## Workflow Rule Update — Combined Verify and Commit/Push
+
+For safe RoofLeadHQ batches where verification is expected to pass, combine verification, commit/push, final fetch/status/log, and source-of-truth confirmation in one VPS Terminal command to save time.
+
+Required before commit inside the combined command:
+- `git diff --stat`
+- `GIT_PAGER=cat git diff`
+- targeted grep/assertion checks when applicable
+- relevant verifier scripts
+- `npm --prefix backend run build` when backend or aggregate readiness could be affected
+- `git status --short`
+
+The combined command should commit and push only after all required checks pass.
+
+Still require explicit approval before:
+- Live SMS/Twilio sends.
+- Production DB writes beyond approved gated tests.
+- Vapi/Calendar/Resend/Lindy production triggers.
+- Public route/cron/scheduler/dispatcher activation.
+- Secrets exposure.
+- Destructive operations.
+- Real Vapi payload collection.
+- Ingesting real payloads, even sanitized ones.
+- Anything outside the named scope.
+
