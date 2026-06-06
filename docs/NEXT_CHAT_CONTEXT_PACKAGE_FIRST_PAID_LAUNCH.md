@@ -612,3 +612,11 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+## Latest added guard: critical file format integrity
+
+The launch readiness stack now includes `backend/scripts/verify-critical-file-format-integrity-readonly.js`.
+
+It protects critical verifier and launch documentation files from malformed patch regressions, including literal backslash-n artifacts, collapsed one-line JS verifier files, missing Node shebangs, and suspiciously low line counts.
+
+This is read-only/test-only and does not activate live automation.

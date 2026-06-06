@@ -4395,3 +4395,9 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+## Critical file format integrity guard
+
+Use `backend/scripts/verify-critical-file-format-integrity-readonly.js` before safe commit/push workflows when verifier or launch documentation files are edited.
+
+The guard checks critical scripts and docs for literal backslash-n patch artifacts, collapsed low-line-count files, missing Node shebangs on JS verifier scripts, and missing protected files. It is read-only and keeps the launch posture at demo-ready with live automation disabled.

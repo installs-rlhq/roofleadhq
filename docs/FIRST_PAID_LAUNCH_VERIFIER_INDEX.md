@@ -252,3 +252,9 @@ Safety checks remain read-only/test-only with no production activation.
   - guard-layer scripts preserve read-only safety markers
   - downstream Vapi verifiers remain protected by aggregate coverage
   - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation
+
+## Critical file format integrity verifier
+
+- Script: `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- Purpose: Prevent malformed patch regressions by guarding critical verifier and documentation files against literal backslash-n artifacts, collapsed one-line verifier files, missing Node shebangs, and suspiciously low line counts.
+- Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.

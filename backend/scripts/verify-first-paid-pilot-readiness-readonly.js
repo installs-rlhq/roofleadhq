@@ -212,6 +212,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Critical file format integrity',
+    script: 'backend/scripts/verify-critical-file-format-integrity-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
