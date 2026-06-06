@@ -494,3 +494,24 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+## Current Safe Batch — Vapi Dry-Run CLI Contract Verifier
+
+Added `backend/scripts/verify-vapi-dry-run-cli-contract-readonly.js` and updated `backend/scripts/vapi-test-payload-ingestion-dry-run.js` so scenario execution supports both `--scenario=value` and `--scenario value`.
+
+The verifier checks:
+- both CLI forms work for all six fake/sanitized scenarios
+- both CLI forms load the same scenario-specific fake call id
+- invalid scenarios fail closed
+- missing gates fail closed
+- outputs remain `source = vapi`
+- outputs remain `test_only = true`
+- scenario execution does not accidentally fall back to the default sample
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation

@@ -4307,3 +4307,24 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+## Vapi dry-run CLI contract verification milestone
+
+Added a read-only verifier for the Vapi dry-run scenario CLI contract and updated the dry-run script to support both `--scenario=value` and `--scenario value`.
+
+This verifier guards:
+- all six fake/sanitized scenarios with both CLI forms
+- scenario-specific sample loading without default fallback
+- equal call ids between both CLI forms
+- invalid scenario failure
+- missing gate failure
+- `source = vapi`
+- `test_only = true`
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation

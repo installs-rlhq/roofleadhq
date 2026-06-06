@@ -197,3 +197,15 @@ Safety checks remain read-only/test-only with no production activation.
   - booked inspection, unbooked follow-up, emergency leak, and insurance storm semantics remain intact
   - dry-run script fails closed without required gates
   - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation
+
+## Vapi dry-run CLI contract verifier
+
+- Script: `backend/scripts/verify-vapi-dry-run-cli-contract-readonly.js`
+- Purpose: read-only guard that verifies the Vapi dry-run script accepts both `--scenario=value` and `--scenario value` forms without accidentally falling back to the default sample.
+- Coverage:
+  - both scenario argument forms work for all six fake/sanitized scenarios
+  - equals-form and space-form outputs load the same scenario-specific fake call id
+  - invalid scenarios fail closed
+  - missing gates fail closed
+  - outputs remain `source = vapi` and `test_only = true`
+  - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation

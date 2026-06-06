@@ -39,8 +39,14 @@ if (!testMode || !allowIngestion) {
 pass('Both required gates present (env + CLI flag)');
 
 // Scenario support
-const scenarioArg = args.find(a => a.startsWith('--scenario='));
-const scenario = scenarioArg ? scenarioArg.split('=')[1] : null;
+const scenarioEqualsArg = args.find(a => a.startsWith('--scenario='));
+const scenarioFlagIndex = args.indexOf('--scenario');
+const scenario =
+  scenarioEqualsArg
+    ? scenarioEqualsArg.split('=')[1]
+    : scenarioFlagIndex !== -1
+      ? args[scenarioFlagIndex + 1]
+      : null;
 
 const scenarioMap = {
   'booked-inspection': 'vapi-scenario-booked-inspection.fake.json',
