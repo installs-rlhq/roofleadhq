@@ -32,6 +32,8 @@ Operator handoff note verifier: `node backend/scripts/verify-first-paid-launch-o
 
 Launch day checklist: `docs/FIRST_PAID_LAUNCH_DAY_CHECKLIST.md`
 
+Launch day checklist verifier: `node backend/scripts/verify-first-paid-launch-day-checklist-readonly.js`
+
 Contractor onboarding runbook: `docs/FIRST_PAID_CONTRACTOR_ONBOARDING_RUNBOOK.md`
 
 Contractor intake worksheet: `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md`

@@ -80,6 +80,11 @@ const commands = [
     name: 'First Paid Launch operator handoff note',
     script: 'backend/scripts/verify-first-paid-launch-operator-handoff-readonly.js',
     args: []
+  },
+  {
+    name: 'First Paid Launch day checklist',
+    script: 'backend/scripts/verify-first-paid-launch-day-checklist-readonly.js',
+    args: []
   }
 ];
 
