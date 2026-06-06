@@ -31,6 +31,8 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Live SMS approval package stale guard: `node backend/scripts/verify-live-sms-approval-package-stale-readonly.js`
 - Go/No-Go snapshot verifier: `node backend/scripts/verify-first-paid-launch-go-no-go-snapshot-readonly.js`
 - FIRST_PAID_LAUNCH_GO_NO_GO_SNAPSHOT.md
+- Launch control center: `docs/FIRST_PAID_LAUNCH_CONTROL_CENTER.md`
+- Launch control center verifier: `node backend/scripts/verify-first-paid-launch-control-center-readonly.js`
 
 ## Launch Framing
 

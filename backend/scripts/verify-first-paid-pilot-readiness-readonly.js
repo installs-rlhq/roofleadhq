@@ -105,6 +105,11 @@ const commands = [
     name: 'First Paid Launch go/no-go snapshot',
     script: 'backend/scripts/verify-first-paid-launch-go-no-go-snapshot-readonly.js',
     args: []
+  },
+  {
+    name: 'First Paid Launch control center',
+    script: 'backend/scripts/verify-first-paid-launch-control-center-readonly.js',
+    args: []
   }
 ];
 

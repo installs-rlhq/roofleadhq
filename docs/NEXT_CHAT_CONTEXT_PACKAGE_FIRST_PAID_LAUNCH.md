@@ -109,6 +109,7 @@ npm --prefix backend run build
 - `docs/FIRST_PAID_CONTRACTOR_KICKOFF_EMAIL_DRAFT.md`
 - `docs/FIRST_PAID_PILOT_DAILY_OPERATIONS_CHECKLIST.md`
 - `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Launch control center: `docs/FIRST_PAID_LAUNCH_CONTROL_CENTER.md` (primary operator-facing command center)
 
 ## First Paid Launch Verifier Scripts List
 
