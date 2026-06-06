@@ -1,6 +1,6 @@
 # Next Chat Context Package — First Paid Launch
 
-Baseline verified source-of-truth commit before next-chat handoff: `f8e7738 docs(pilot): update next chat launch context commit`
+Baseline verified source-of-truth commit before next-chat handoff: `1a2c1c4 docs(pilot): clarify next chat launch baseline rule`
 
 Repo path: `/root/roofleadhq`
 
@@ -8,10 +8,42 @@ Repo path: `/root/roofleadhq`
 
 Use the baseline commit above to identify this handoff package. Before doing new work, verify the latest real source-of-truth with Terminal 1 using git fetch, git status, and git log.
 
+## Step 66 Verified Production Send Intent Bridge
+
+Step 66 is present in the real repo history and verified in Terminal 1.
+
+Step 66 commit: `9ddfebd feat(sms): add production send intent bridge`
+
+Files confirmed present:
+
+- `backend/scripts/verify-sms-production-send-intent-bridge.js`
+- `backend/src/services/sms-production-send-intent-bridge.service.ts`
+- `docs/DAILY_PILOT_OPERATIONS_CHECKLIST.md`
+- `docs/SMS_DISPATCHER_EXECUTION_PLAN.md`
+- `docs/SMS_DISPATCHER_EXECUTION_PLAN_VERIFICATION.md`
+
+Terminal 1 verification passed:
+
+- `npm --prefix backend run build`
+- `node backend/scripts/verify-sms-production-send-intent-bridge.js`
+
+Verified safety:
+
+- No SMS sent
+- No Twilio calls made
+- No Twilio import
+- No mutating DB calls
+- No route registration
+- No cron or scheduler activation
+- Fake-only verification passed
+
+Important: Step 66 creates/validates a production send intent bridge only. It is not approval to send live SMS.
+
 ## Current Safety Posture
 
 - All production automations disabled
-- No Supabase/SMS/Twilio/Vapi/Calendar/Resend/Lindy production calls
+- No SMS/Twilio/Vapi/Calendar/Resend/Lindy production calls
+- Step 66 production send intent bridge is verified fake-only and does not send SMS
 - All verifiers are local read-only filesystem inspection only
 - No live service activation allowed without explicit approval
 
@@ -46,6 +78,7 @@ npm --prefix backend run build
 - `backend/scripts/verify-first-paid-launch-ready-recap-readonly.js`
 - `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
 - `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `backend/scripts/verify-sms-production-send-intent-bridge.js`
 
 ## Business Language Rules
 
@@ -61,8 +94,9 @@ Avoid old pilot language, quota-based appointment promises, job-booking language
 
 - Do not enable any production automation without explicit approval
 - Before any live automation is turned on, confirm the approval, the launch scope, and the operator follow-up plan in writing
-- No Supabase/SMS/Twilio/Vapi/Calendar/Resend/Lindy production calls
+- No SMS/Twilio/Vapi/Calendar/Resend/Lindy production calls
+- Step 66 production send intent bridge is verified fake-only and does not send SMS
 
 ## Recommended Next Build Direction
 
-Continue building the first paid launch operator tooling and documentation package using the established pattern of adding a new doc + its read-only verifier + updating the aggregate verifier and readiness checklist. Keep all work local, read-only, and docs-first.
+Continue from the verified Step 66 production send intent bridge. Next best move is to harden docs/verifier coverage around the bridge, confirm no SMS/Twilio/route/cron activation exists, then continue the next safe first-paid launch batch. Keep all production sending disabled unless explicitly approved.
