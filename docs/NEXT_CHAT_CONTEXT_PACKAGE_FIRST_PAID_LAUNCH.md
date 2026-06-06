@@ -541,3 +541,52 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+## Current Vapi Verifier Coverage Registry
+
+The aggregate first paid pilot readiness gate includes and protects the current Vapi verifier registry:
+
+- `verify-vapi-phone-lead-smoke-readonly.js`
+- `verify-vapi-post-call-payload-discovery-readonly.js`
+- `verify-vapi-raw-payload-capture-plan-readonly.js`
+- `verify-vapi-sample-payload-mapping-readonly.js`
+- `verify-vapi-missing-fields-readiness-gate-readonly.js`
+- `verify-vapi-real-payload-collection-runbook-readonly.js`
+- `verify-vapi-operator-payload-review-checklist-readonly.js`
+- `verify-vapi-test-payload-ingestion-plan-readonly.js`
+- `verify-vapi-test-payload-ingestion-dry-run-readonly.js`
+- `verify-vapi-normalized-contract-doc-readonly.js`
+- `verify-vapi-scenario-samples-readonly.js`
+- `verify-vapi-dry-run-output-snapshots-readonly.js`
+- `verify-vapi-dry-run-cli-contract-readonly.js`
+- `verify-vapi-scenario-registry-readonly.js`
+- `verify-vapi-aggregate-coverage-readonly.js`
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation
+
+## Current Safe Batch — Vapi Aggregate Verifier Coverage
+
+Added `backend/scripts/verify-vapi-aggregate-coverage-readonly.js` as a read-only guard that verifies every `backend/scripts/verify-vapi-*-readonly.js` script is explicitly wired into aggregate first paid pilot readiness and documented in the verifier index and next-chat context.
+
+The verifier checks:
+- every expected Vapi verifier script exists
+- every expected Vapi verifier is wired into aggregate readiness
+- the expected Vapi verifier registry exactly matches actual `verify-vapi-*-readonly.js` files
+- verifier index includes every expected Vapi verifier
+- next-chat context includes every expected Vapi verifier
+- aggregate readiness includes expected Vapi command names
+- safety markers remain documented
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation

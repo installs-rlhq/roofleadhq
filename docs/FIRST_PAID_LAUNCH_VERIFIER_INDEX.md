@@ -223,3 +223,17 @@ Safety checks remain read-only/test-only with no production activation.
   - contract docs, verifier index, business guide, and next-chat context include the complete scenario set
   - safety markers remain documented
   - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation
+
+## Vapi aggregate verifier coverage
+
+- Script: `backend/scripts/verify-vapi-aggregate-coverage-readonly.js`
+- Purpose: read-only guard that verifies every `backend/scripts/verify-vapi-*-readonly.js` script is explicitly wired into aggregate first paid pilot readiness and documented in the verifier index and next-chat context.
+- Coverage:
+  - every expected Vapi verifier script exists
+  - every expected Vapi verifier is included in `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+  - the registry exactly matches `backend/scripts/verify-vapi-*-readonly.js`
+  - verifier index includes every expected Vapi verifier
+  - next-chat context includes every expected Vapi verifier
+  - aggregate readiness includes expected Vapi command names
+  - safety markers remain documented
+  - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation

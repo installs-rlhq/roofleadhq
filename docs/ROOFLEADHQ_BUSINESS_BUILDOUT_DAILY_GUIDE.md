@@ -4351,3 +4351,24 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+## Vapi aggregate verifier coverage milestone
+
+Added a read-only verifier that makes aggregate first paid pilot readiness the enforced source for all Vapi verifier coverage.
+
+This verifier guards:
+- every expected `backend/scripts/verify-vapi-*-readonly.js` script exists
+- every expected Vapi verifier is wired into aggregate readiness
+- the expected Vapi verifier registry exactly matches actual `verify-vapi-*-readonly.js` files
+- the verifier index documents every expected Vapi verifier
+- next-chat context documents every expected Vapi verifier
+- aggregate readiness includes expected Vapi command names
+- safety markers remain documented
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation

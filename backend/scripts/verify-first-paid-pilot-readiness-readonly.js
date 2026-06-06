@@ -167,6 +167,11 @@ const commands = [
     args: []
   },
     {
+      name: 'Vapi test payload ingestion plan',
+      script: 'backend/scripts/verify-vapi-test-payload-ingestion-plan-readonly.js',
+      args: []
+    },
+    {
       name: 'Vapi test payload ingestion dry-run',
       script: 'backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js',
       args: []
@@ -194,6 +199,11 @@ const commands = [
     {
       name: 'Vapi scenario registry consistency',
       script: 'backend/scripts/verify-vapi-scenario-registry-readonly.js',
+      args: []
+    },
+    {
+      name: 'Vapi aggregate verifier coverage',
+      script: 'backend/scripts/verify-vapi-aggregate-coverage-readonly.js',
       args: []
     },
   {
