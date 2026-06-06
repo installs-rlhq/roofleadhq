@@ -35,20 +35,42 @@ The snapshot confirms:
 
 Latest verified commit:
 
-`b7e6498 test(pilot): require vapi readiness verifiers in aggregate`
+`9a26ff5 docs(vapi): fix test payload ingestion verifier language`
 
 Completed Vapi milestones:
-1. Vapi post-call payload discovery package (`docs/VAPI_POST_CALL_PAYLOAD_DISCOVERY.md`)
-2. Vapi raw payload capture plan (`docs/VAPI_RAW_PAYLOAD_CAPTURE_PLAN.md`)
-3. Fake Vapi sample payload (`docs/samples/vapi-post-call-sample.fake.json`)
-4. Vapi sample payload mapping package (`docs/VAPI_SAMPLE_PAYLOAD_MAPPING.md`)
-5. Vapi missing-fields readiness gate (`docs/VAPI_MISSING_FIELDS_READINESS_GATE.md`)
-6. Vapi real payload collection runbook (`docs/VAPI_REAL_PAYLOAD_COLLECTION_RUNBOOK.md`)
-7. Vapi operator payload review checklist (`docs/VAPI_OPERATOR_PAYLOAD_REVIEW_CHECKLIST.md` + verifier)
+1. Vapi post-call payload discovery package
+2. Vapi raw payload capture plan + fake sample
+3. Vapi sample payload mapping
+4. Vapi missing-fields readiness gate
+5. Vapi real payload collection runbook
+6. Vapi operator payload review checklist
+7. Vapi test payload ingestion plan (planning doc + verifier)
 
-Aggregate readiness verifier now requires the full Vapi readiness sequence (7 verifiers).
+Aggregate readiness verifier now requires the full Vapi readiness sequence (8 verifiers).
 
 All Vapi work remains in discovery/planning phase. No webhook route, no Vapi calls, no Supabase writes.
+
+## Recent Commit History (Terminal 1 Verified)
+
+- `9a26ff5` — Fixed test payload ingestion verifier language after accidental push of failing verifier
+- `3a4d7a3` — Added test payload ingestion plan (verifier initially failed — accidentally pushed)
+- `198b412` — Recorded aggregate Vapi readiness wiring
+- `b7e6498` — Wired Vapi readiness verifiers into aggregate readiness
+- `575ac61` — Updated next-chat context with Vapi checklist
+- `44bcc5d` — Added operator payload review checklist
+- `bd65092` — Updated next-chat context with Vapi readiness
+- `526a8e4` — Added real payload collection runbook
+
+**Important Incident:** Commit `3a4d7a3` was pushed while the verifier was failing. Commit `9a26ff5` corrected the verifier language. Going forward: **never commit or push if any verifier fails**.
+
+## Vapi Test Payload Ingestion Plan Status
+
+- Planning doc exists: `docs/VAPI_TEST_PAYLOAD_INGESTION_PLAN.md`
+- Read-only verifier exists and passes
+- No ingestion script exists yet
+- No live route, no Vapi calls, no Supabase writes
+- No SMS/Twilio/Calendar/Resend/Lindy activation
+- Real payload collection still requires explicit founder approval
 
 This added the stale live SMS approval package guard into the aggregate first-paid readiness verifier.
 
@@ -162,4 +184,12 @@ Avoid old pilot language, quota-based appointment promises, job-booking language
 
 ## Recommended Next Build Direction
 
-Continue from the verified Step 66 production send intent bridge. Next best move is to harden docs/verifier coverage around the bridge, confirm no SMS/Twilio/route/cron activation exists, then continue the next safe first-paid launch batch. Keep all production sending disabled unless explicitly approved.
+**Biggest coherent safe batch:** Create the first test-only Vapi payload ingestion dry-run script.
+
+- Fake or explicitly approved sanitized payload only
+- Gated behind `VAPI_INGESTION_TEST_MODE=1` + `--allow-vapi-test-ingestion` CLI flag
+- Default = dry-run only (no writes)
+- Include verifier, docs, and aggregate wiring
+- No SMS, Twilio, Calendar, Resend, Lindy, or production automation
+
+Keep all production sending disabled unless explicitly approved. Use: Founder-Led Launch Program + book inspections / book appointments.
