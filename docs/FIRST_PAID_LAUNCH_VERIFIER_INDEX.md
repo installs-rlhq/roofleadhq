@@ -28,6 +28,7 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Operator status page verifier: `node backend/scripts/verify-pilot-operator-status-page-readonly.js`
 - Operator status endpoint verifier: `node backend/scripts/verify-pilot-operator-status-endpoint-readonly.js`
 - Dashboard navigation verifier: `node backend/scripts/verify-dashboard-navigation-readonly.js`
+- Live SMS approval package stale guard: `node backend/scripts/verify-live-sms-approval-package-stale-readonly.js`
 
 ## Launch Framing
 
@@ -44,3 +45,4 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - The aggregate readiness verifier is the primary entry point.
 - The other verifiers are supporting read-only checks for launch docs, dashboard visibility, and operational safety.
 - Keep all launch review local, read-only, and free of production service calls unless separately approved.
+- Live SMS approval package must remain stale unless a fresh approval package is created and explicitly approved.
