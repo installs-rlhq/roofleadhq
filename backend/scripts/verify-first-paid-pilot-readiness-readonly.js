@@ -110,6 +110,11 @@ const commands = [
     name: 'First Paid Launch control center',
     script: 'backend/scripts/verify-first-paid-launch-control-center-readonly.js',
     args: []
+  },
+  {
+    name: 'First Paid Launch status contract',
+    script: 'backend/scripts/verify-first-paid-launch-status-contract-readonly.js',
+    args: []
   }
 ];
 

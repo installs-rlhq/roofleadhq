@@ -4,11 +4,17 @@ const fs = require('fs');
 const path = require('path');
 
 const repoRoot = path.join(__dirname, '..', '..');
-const centerPath = path.join(repoRoot, 'docs', 'FIRST_PAID_LAUNCH_CONTROL_CENTER.md');
+const servicePath = path.join(repoRoot, 'backend', 'src', 'services', 'first-paid-launch-status-contract.service.ts');
 
 const requiredStrings = [
-  'a79f04a docs(pilot): update next chat context with go no go snapshot',
-  'Current status: demo ready with live automation disabled',
+  'demo_ready_with_live_automation_disabled',
+  '19d0272 docs(pilot): add launch control center',
+  'sms: false',
+  'twilio: false',
+  'calendar: false',
+  'vapiOutbound: false',
+  'resend: false',
+  'lindy: false',
   'Homeowner SMS is not live',
   'Roofer reply SMS is not live',
   'Twilio sending is not live',
@@ -17,21 +23,7 @@ const requiredStrings = [
   'Manual Outreach Path C is dry-run/test-safe unless separately approved',
   'No SMS/Twilio/Vapi/Calendar/Resend/Lindy production triggers without explicit approval',
   'Founder-Led Launch Program',
-  'book inspections / book appointments',
-  'backend/src/services/first-paid-launch-status-contract.service.ts',
-  'backend/scripts/verify-first-paid-launch-status-contract-readonly.js',
-  'Status',
-  'Source of Truth',
-  'Launch Readiness Snapshot',
-  'Operator Pre-Launch Checklist',
-  'Contractor Setup Checklist',
-  'Manual Outreach Path C Checklist',
-  'Demo Flow Checklist',
-  'Safety Gates',
-  'Explicit Approval Gates',
-  'Verification Commands',
-  'Go/No-Go Decision',
-  'Next Build Batch'
+  'book inspections / book appointments'
 ];
 
 const forbiddenStrings = [
@@ -55,41 +47,41 @@ function fail(message, details = null) {
   process.exitCode = 1;
 }
 
-console.log('=== RoofLeadHQ First Paid Launch Control Center Verification ===');
+console.log('=== RoofLeadHQ First Paid Launch Status Contract Verification ===');
 console.log('Local read-only verifier execution only.');
 console.log('No Supabase reads or writes.');
 console.log('No external service calls.');
 console.log('No SMS, Twilio, Vapi, Calendar, Resend, or Lindy calls.');
 console.log('No route, cron, scheduler, or dispatcher activation.');
 
-if (!fs.existsSync(centerPath)) {
-  fail('FIRST_PAID_LAUNCH_CONTROL_CENTER.md does not exist', { path: centerPath });
+if (!fs.existsSync(servicePath)) {
+  fail('first-paid-launch-status-contract.service.ts does not exist', { path: servicePath });
   process.exit(process.exitCode || 1);
 }
 
-pass('FIRST_PAID_LAUNCH_CONTROL_CENTER.md exists');
+pass('first-paid-launch-status-contract.service.ts exists');
 
-const content = fs.readFileSync(centerPath, 'utf8');
+const content = fs.readFileSync(servicePath, 'utf8');
 
 for (const required of requiredStrings) {
   if (content.includes(required)) {
-    pass(`Control Center includes required string: ${required}`);
+    pass(`Status contract includes required string: ${required}`);
   } else {
-    fail(`Control Center is missing required string: ${required}`);
+    fail(`Status contract is missing required string: ${required}`);
   }
 }
 
 for (const forbidden of forbiddenStrings) {
   if (content.includes(forbidden)) {
-    fail(`Control Center contains forbidden string: ${forbidden}`);
+    fail(`Status contract contains forbidden string: ${forbidden}`);
   } else {
-    pass(`Control Center does not contain forbidden string: ${forbidden}`);
+    pass(`Status contract does not contain forbidden string: ${forbidden}`);
   }
 }
 
 if (process.exitCode) {
-  console.error('FAIL: First paid launch control center verification failed.');
+  console.error('FAIL: First paid launch status contract verification failed.');
   process.exit(process.exitCode);
 }
 
-console.log('PASS: First paid launch control center verification passed.');
+console.log('PASS: First paid launch status contract verification passed.');

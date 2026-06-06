@@ -110,6 +110,7 @@ npm --prefix backend run build
 - `docs/FIRST_PAID_PILOT_DAILY_OPERATIONS_CHECKLIST.md`
 - `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
 - Launch control center: `docs/FIRST_PAID_LAUNCH_CONTROL_CENTER.md` (primary operator-facing command center)
+- Launch status contract: `backend/src/services/first-paid-launch-status-contract.service.ts` (test-safe status contract for future dashboard use)
 
 ## First Paid Launch Verifier Scripts List
 

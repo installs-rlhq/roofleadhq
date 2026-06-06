@@ -90,3 +90,6 @@ The dashboard stays read-only for the contractor.
 Continue adding first-paid launch operator tooling and documentation using the established pattern of new doc + read-only verifier + aggregate integration. Keep all work local, read-only, and docs-first.
 
 Founder-Led Launch Program — help the contractor book inspections / book appointments.
+
+Launch status contract: `backend/src/services/first-paid-launch-status-contract.service.ts`
+Status contract verifier: `node backend/scripts/verify-first-paid-launch-status-contract-readonly.js`

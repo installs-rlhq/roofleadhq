@@ -177,7 +177,10 @@ function liveTriggerMatches() {
       exclude: ['backend/scripts/show-pilot-readiness-status.js']
     }),
     lindy: findMatches(lindyPatterns, {
-      exclude: ['backend/scripts/show-pilot-readiness-status.js'],
+      exclude: [
+        'backend/scripts/show-pilot-readiness-status.js',
+        'backend/src/services/first-paid-launch-status-contract.service.ts'
+      ],
       excludeSafeReadOnlyOrTestArtifacts: true
     }),
     automation: findMatches(routeOrSchedulerPatterns, {

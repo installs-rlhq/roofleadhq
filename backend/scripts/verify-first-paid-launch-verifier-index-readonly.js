@@ -36,7 +36,9 @@ const requiredPhrases = [
   'Live SMS approval package must remain stale unless a fresh approval package is created and explicitly approved.',
   'FIRST_PAID_LAUNCH_GO_NO_GO_SNAPSHOT.md',
   'docs/FIRST_PAID_LAUNCH_CONTROL_CENTER.md',
-  'backend/scripts/verify-first-paid-launch-control-center-readonly.js'
+  'backend/scripts/verify-first-paid-launch-control-center-readonly.js',
+  'backend/src/services/first-paid-launch-status-contract.service.ts',
+  'backend/scripts/verify-first-paid-launch-status-contract-readonly.js'
 ];
 
 const forbiddenPhrases = [
