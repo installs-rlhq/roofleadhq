@@ -37,6 +37,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Paid Launch verifier index',
+    script: 'backend/scripts/verify-first-paid-launch-verifier-index-readonly.js',
+    args: []
+  },
+  {
     name: 'Pilot dashboard smoke',
     script: 'backend/scripts/verify-pilot-dashboard-smoke-readonly.js',
     args: []
