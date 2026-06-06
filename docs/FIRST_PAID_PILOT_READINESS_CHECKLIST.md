@@ -1,10 +1,12 @@
 # First Paid Pilot Readiness Checklist
 
-Date: 2026-06-02
+Date: 2026-06-06
 
 ## Current Status
 
 Final readiness summary: `docs/FIRST_PAID_PILOT_FINAL_READINESS_SUMMARY.md`
+
+Operator handoff note: `docs/FIRST_PAID_LAUNCH_OPERATOR_HANDOFF_NOTE.md`
 
 Launch packet: `docs/FIRST_PAID_PILOT_LAUNCH_PACKET.md`
 
@@ -189,34 +191,27 @@ Use a founder-led, controlled pilot:
 
 ## Next Recommended Task
 
-Finalize internal pilot monitoring and client-facing setup/payment flow.
+Use the operator handoff note as the top-level launch reference, then finalize the client handoff sequence.
 
 Purpose:
-Make sure the first paid pilot can be monitored safely while SMS, Calendar, Vapi, Resend, and Lindy production actions remain disabled unless explicitly approved.
+Keep the first paid launch in the Founder-Led Launch Program posture while SMS, Calendar, Vapi, Resend, and Lindy production actions remain disabled unless explicitly approved.
 
-Launch packet reference:
+Handoff references:
 
+- Review `docs/FIRST_PAID_LAUNCH_OPERATOR_HANDOFF_NOTE.md` before the first paid contractor launch.
 - Review `docs/FIRST_PAID_PILOT_LAUNCH_PACKET.md` before onboarding the first paid contractor.
-- Run `node backend/scripts/verify-first-paid-pilot-launch-packet-readonly.js` before launch.
-
-Kickoff email draft reference:
-
 - Review `docs/FIRST_PAID_CONTRACTOR_KICKOFF_EMAIL_DRAFT.md` before sending the first contractor kickoff email.
-- Run `node backend/scripts/verify-first-paid-contractor-kickoff-email-readonly.js` before sending the first contractor kickoff email.
-
-Setup checklist reference:
-
 - Review `docs/FIRST_PAID_CONTRACTOR_SETUP_CHECKLIST.md` before the first paid contractor launch.
-- Run `node backend/scripts/verify-first-paid-contractor-setup-checklist-readonly.js` before the first paid contractor launch.
-
-Client launch readiness gate reference:
-
 - Review `docs/FIRST_PAID_CLIENT_LAUNCH_READINESS_GATE.md` before making the final go/no-go decision.
-- Run `node backend/scripts/verify-first-paid-client-launch-readiness-gate-readonly.js` before making the final go/no-go decision.
-
-Launch verifier index reference:
-
 - Review `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md` before the first paid contractor launch.
+
+Handoff verifier references:
+
+- Run `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js` before launch.
+- Run `node backend/scripts/verify-first-paid-pilot-launch-packet-readonly.js` before launch.
+- Run `node backend/scripts/verify-first-paid-contractor-kickoff-email-readonly.js` before sending the first contractor kickoff email.
+- Run `node backend/scripts/verify-first-paid-contractor-setup-checklist-readonly.js` before the first paid contractor launch.
+- Run `node backend/scripts/verify-first-paid-client-launch-readiness-gate-readonly.js` before making the final go/no-go decision.
 - Run `node backend/scripts/verify-first-paid-launch-verifier-index-readonly.js` before the first paid contractor launch.
 
 Next intake artifact:
