@@ -1,6 +1,6 @@
 # Next Chat Context Package — First Paid Launch
 
-Baseline verified source-of-truth commit before next-chat handoff: `b190095 docs(pilot): add launch go no go snapshot`
+Baseline verified source-of-truth commit before next-chat handoff: `1ccaa20 feat(pilot): add first paid launch status endpoint smoke path`
 
 Repo path: `/root/roofleadhq`
 
@@ -12,7 +12,7 @@ Use the baseline commit above to identify this handoff package. Before doing new
 
 Latest verified commit:
 
-`b190095 docs(pilot): add launch go no go snapshot`
+`1ccaa20 feat(pilot): add first paid launch status endpoint smoke path`
 
 Added:
 

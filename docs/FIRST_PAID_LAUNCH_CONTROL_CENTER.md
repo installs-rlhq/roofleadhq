@@ -8,7 +8,7 @@ Current status: demo ready with live automation disabled
 
 ## Source of Truth
 
-`a79f04a docs(pilot): update next chat context with go no go snapshot`
+`1ccaa20 feat(pilot): add first paid launch status endpoint smoke path`
 
 ## Launch Readiness Snapshot
 
@@ -86,6 +86,11 @@ The contractor can book inspections / book appointments with founder oversight.
 The dashboard stays read-only for the contractor.
 
 ## Next Build Batch
+
+First paid launch status endpoint smoke path: `backend/src/routes/first-paid-launch-status.ts` (test-safe / unregistered)
+Status endpoint page: `website/dashboard/first-paid-launch-status.html`
+Status endpoint verifier: `node backend/scripts/verify-first-paid-launch-status-endpoint-readonly.js`
+No route was registered for the first paid launch status smoke path.
 
 Continue adding first-paid launch operator tooling and documentation using the established pattern of new doc + read-only verifier + aggregate integration. Keep all work local, read-only, and docs-first.
 

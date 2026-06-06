@@ -7,7 +7,7 @@ const repoRoot = path.join(__dirname, '..', '..');
 const centerPath = path.join(repoRoot, 'docs', 'FIRST_PAID_LAUNCH_CONTROL_CENTER.md');
 
 const requiredStrings = [
-  'a79f04a docs(pilot): update next chat context with go no go snapshot',
+  '1ccaa20 feat(pilot): add first paid launch status endpoint smoke path',
   'Current status: demo ready with live automation disabled',
   'Homeowner SMS is not live',
   'Roofer reply SMS is not live',
