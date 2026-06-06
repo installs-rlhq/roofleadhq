@@ -84,6 +84,15 @@ All Vapi work remains in discovery/planning/test-only dry-run phase. No webhook 
 - No SMS/Twilio/Calendar/Resend/Lindy activation
 - Real payload collection still requires explicit founder approval
 
+## Vapi Dry-Run Scenario Hardening Milestone
+
+- Commit: `7e30d9b test(vapi): harden dry-run scenario coverage`
+- Added six fake/sanitized Vapi scenario payloads (booked inspection, unbooked follow-up, missing address, missing phone, emergency leak, insurance/storm damage)
+- Enhanced gated dry-run script with `--scenario` support
+- Strengthened verifier to execute all six valid scenarios, invalid scenario, and missing-gates cases
+- Verification passed: dry-run verifier, aggregate readiness, next-chat context, backend build
+- Safety preserved: no live Vapi/Supabase/SMS/Twilio/Calendar/Resend/Lindy, no routes/cron/scheduler/dispatcher
+
 This added the stale live SMS approval package guard into the aggregate first-paid readiness verifier.
 
 The aggregate verifier now confirms:
