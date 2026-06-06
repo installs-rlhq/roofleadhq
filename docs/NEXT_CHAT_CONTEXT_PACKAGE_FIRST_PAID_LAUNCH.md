@@ -35,7 +35,7 @@ The snapshot confirms:
 
 Latest verified commit:
 
-`9a26ff5 docs(vapi): fix test payload ingestion verifier language`
+`e1a0f45 test(vapi): add gated payload ingestion dry-run`
 
 Completed Vapi milestones:
 1. Vapi post-call payload discovery package
@@ -45,21 +45,22 @@ Completed Vapi milestones:
 5. Vapi real payload collection runbook
 6. Vapi operator payload review checklist
 7. Vapi test payload ingestion plan (planning doc + verifier)
+8. Gated test-only Vapi payload ingestion dry-run script + verifier
 
-Aggregate readiness verifier now requires the full Vapi readiness sequence (8 verifiers).
+Aggregate readiness verifier now requires the full Vapi readiness sequence (9 verifiers).
 
-All Vapi work remains in discovery/planning phase. No webhook route, no Vapi calls, no Supabase writes.
+All Vapi work remains in discovery/planning/test-only dry-run phase. No webhook route, no live Vapi calls, no Supabase writes.
 
 ## Recent Commit History (Terminal 1 Verified)
 
+- `e1a0f45` — Added gated test-only Vapi payload ingestion dry-run script + verifier
+- `a9fdbe5` — Fully updated next-chat context package with Vapi ingestion plan + incident note
 - `9a26ff5` — Fixed test payload ingestion verifier language after accidental push of failing verifier
 - `3a4d7a3` — Added test payload ingestion plan (verifier initially failed — accidentally pushed)
 - `198b412` — Recorded aggregate Vapi readiness wiring
 - `b7e6498` — Wired Vapi readiness verifiers into aggregate readiness
 - `575ac61` — Updated next-chat context with Vapi checklist
 - `44bcc5d` — Added operator payload review checklist
-- `bd65092` — Updated next-chat context with Vapi readiness
-- `526a8e4` — Added real payload collection runbook
 
 **Important Incident:** Commit `3a4d7a3` was pushed while the verifier was failing. Commit `9a26ff5` corrected the verifier language. Going forward: **never commit or push if any verifier fails**.
 
