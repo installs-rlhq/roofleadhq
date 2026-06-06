@@ -31,11 +31,21 @@ The snapshot confirms:
 - Step 66 production send intent bridge is fake-only
 - No SMS/Twilio/Vapi/Calendar/Resend/Lindy production triggers without explicit approval
 
-## Latest Safety Guard Update
+## Vapi Discovery & Readiness Sequence (Completed)
 
 Latest verified commit:
 
-`ecb6290 test(pilot): require stale sms guard in verifier index`
+`526a8e4 docs(vapi): add real payload collection runbook`
+
+Completed Vapi milestones:
+1. Vapi post-call payload discovery package (`docs/VAPI_POST_CALL_PAYLOAD_DISCOVERY.md`)
+2. Vapi raw payload capture plan (`docs/VAPI_RAW_PAYLOAD_CAPTURE_PLAN.md`)
+3. Fake Vapi sample payload (`docs/samples/vapi-post-call-sample.fake.json`)
+4. Vapi sample payload mapping package (`docs/VAPI_SAMPLE_PAYLOAD_MAPPING.md`)
+5. Vapi missing-fields readiness gate (`docs/VAPI_MISSING_FIELDS_READINESS_GATE.md`)
+6. Vapi real payload collection runbook (`docs/VAPI_REAL_PAYLOAD_COLLECTION_RUNBOOK.md`)
+
+All Vapi work remains in discovery/planning phase. No webhook route, no Vapi calls, no Supabase writes.
 
 This added the stale live SMS approval package guard into the aggregate first-paid readiness verifier.
 
@@ -81,7 +91,14 @@ Important: Step 66 creates/validates a production send intent bridge only. It is
 ## Current Safety Posture
 
 - All production automations disabled
-- No SMS/Twilio/Vapi/Calendar/Resend/Lindy production calls
+- No live Vapi webhook route exists
+- No Vapi calls from code
+- No Supabase writes
+- No SMS/Twilio sends
+- No Calendar/Resend/Lindy production activation
+- No cron/scheduler/dispatcher activation
+- Any real Vapi payload collection requires explicit founder approval in a separate task
+- Retell remains deprecated/disabled
 - Step 66 production send intent bridge is verified fake-only and does not send SMS
 - All verifiers are local read-only filesystem inspection only
 - No live service activation allowed without explicit approval
