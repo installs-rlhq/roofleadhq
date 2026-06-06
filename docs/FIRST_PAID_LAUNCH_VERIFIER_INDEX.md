@@ -1,0 +1,46 @@
+# First Paid Launch Verifier Index
+
+Date: 2026-06-05
+
+## Purpose
+
+This is the master index for the first paid launch verifiers in the RoofLeadHQ Founder-Led Launch Program.
+
+Use it to review the local/read-only verification steps before the first contractor launch. These verifiers inspect local files and local status only. They make no Supabase reads or writes, no external service calls, and no live service activations.
+
+## Exact Command
+
+```bash
+node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
+```
+
+## Verifier Index
+
+- Aggregate readiness verifier: `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Launch packet verifier: `node backend/scripts/verify-first-paid-pilot-launch-packet-readonly.js`
+- Contractor kickoff email verifier: `node backend/scripts/verify-first-paid-contractor-kickoff-email-readonly.js`
+- Contractor setup checklist verifier: `node backend/scripts/verify-first-paid-contractor-setup-checklist-readonly.js`
+- Client launch readiness gate verifier: `node backend/scripts/verify-first-paid-client-launch-readiness-gate-readonly.js`
+- Dashboard smoke verifier: `node backend/scripts/verify-pilot-dashboard-smoke-readonly.js`
+- Manual Outreach smoke verifier: `node backend/scripts/verify-manual-outreach-smoke-readonly.js`
+- Vapi phone lead smoke verifier: `node backend/scripts/verify-vapi-phone-lead-smoke-readonly.js`
+- Reporting smoke verifier: `node backend/scripts/verify-reporting-smoke-readonly.js`
+- Operator status page verifier: `node backend/scripts/verify-pilot-operator-status-page-readonly.js`
+- Operator status endpoint verifier: `node backend/scripts/verify-pilot-operator-status-endpoint-readonly.js`
+- Dashboard navigation verifier: `node backend/scripts/verify-dashboard-navigation-readonly.js`
+
+## Launch Framing
+
+- Founder-Led Launch Program
+- Help the contractor book inspections / book appointments
+- No prohibited launch-promising wording
+- No quota-based appointment promise
+- No hard outcome promises
+- No inspection or appointment outcome guarantee
+- No job/revenue guarantees
+
+## Notes
+
+- The aggregate readiness verifier is the primary entry point.
+- The other verifiers are supporting read-only checks for launch docs, dashboard visibility, and operational safety.
+- Keep all launch review local, read-only, and free of production service calls unless separately approved.

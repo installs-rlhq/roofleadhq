@@ -22,6 +22,8 @@ Client launch readiness gate: `docs/FIRST_PAID_CLIENT_LAUNCH_READINESS_GATE.md`
 
 Client launch readiness gate verifier: `node backend/scripts/verify-first-paid-client-launch-readiness-gate-readonly.js`
 
+Launch verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+
 Contractor onboarding runbook: `docs/FIRST_PAID_CONTRACTOR_ONBOARDING_RUNBOOK.md`
 
 Contractor intake worksheet: `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md`
@@ -76,6 +78,7 @@ The goal is a safe, monitored, semi-managed pilot before scalable automation.
 - Run setup checklist verifier
 - Review client launch readiness gate
 - Run client launch readiness gate verifier
+- Review launch verifier index
 
 Status: Not fully verified for real client
 
@@ -207,6 +210,10 @@ Client launch readiness gate reference:
 
 - Review `docs/FIRST_PAID_CLIENT_LAUNCH_READINESS_GATE.md` before making the final go/no-go decision.
 - Run `node backend/scripts/verify-first-paid-client-launch-readiness-gate-readonly.js` before making the final go/no-go decision.
+
+Launch verifier index reference:
+
+- Review `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md` before the first paid contractor launch.
 
 Next intake artifact:
 
