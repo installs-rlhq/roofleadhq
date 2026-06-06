@@ -1126,3 +1126,28 @@ This verifier protects the next-chat handoff from losing the current operating r
 - Safety posture remains demo-ready with live automation disabled.
 
 This guard is intended to improve launch safety, source-of-truth integrity, handoff reliability, and context-package completeness.
+
+## Latest Source-of-Truth Milestone — Next Safe Build Operating Workflow Guard
+
+Latest verified source-of-truth commit:
+
+- `700b5ab test(pilot): guard next safe build operating workflow`
+
+Files changed:
+
+- `backend/scripts/verify-next-safe-build-operating-workflow-readonly.js`
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
+Purpose:
+
+- Add a read-only verifier that guards the next safe build operating workflow.
+- Wire the operating workflow verifier into launch safety meta verification.
+- Preserve Terminal 1 `/root/roofleadhq` as the only trusted source of truth.
+- Preserve the rule that `/root/.openclaw/workspace` must not be used.
+- Preserve the rule that OpenClaw summaries alone are not trusted.
+- Preserve safe verified doc/test/read-only verifier commit/push policy.
+- Preserve explicit approval gates for live/production/destructive actions.
+- Preserve the required verification, diff, staged review, build, commit, push, and final source-of-truth confirmation workflow.
+
+Safety remains demo-ready with live automation disabled.

@@ -8,6 +8,11 @@ const contextPath = path.join(repoRoot, 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PA
 const context = fs.readFileSync(contextPath, 'utf8');
 
 const requiredText = [
+  '700b5ab test(pilot): guard next safe build operating workflow',
+  'backend/scripts/verify-next-safe-build-operating-workflow-readonly.js',
+  'Latest Source-of-Truth Milestone — Next Safe Build Operating Workflow Guard',
+  'OpenClaw summaries alone are not trusted',
+  'staged diff review',
   'bc71ad1 test(pilot): record latest self check context milestone',
   '17a300f test(pilot): require latest milestone self check context',
   '3c03c72 test(pilot): add latest milestone self check',

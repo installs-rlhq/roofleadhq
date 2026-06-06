@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  '700b5ab test(pilot): guard next safe build operating workflow',
   'bc71ad1 test(pilot): record latest self check context milestone',
   '17a300f test(pilot): require latest milestone self check context',
   '3c03c72 test(pilot): add latest milestone self check',
