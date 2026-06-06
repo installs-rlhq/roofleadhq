@@ -880,3 +880,23 @@ Verifier:
 - `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: stabilized source-of-truth verifier
+
+Latest verified source-of-truth commit:
+- `befef91 test(pilot): stabilize source of truth verifier`
+
+This milestone updated:
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+- Replace brittle hardcoded top-8 commit expectations with source-of-truth process checks.
+- Confirm `HEAD` and `origin/main` alignment.
+- Confirm required Terminal 1 context rules.
+- Confirm demo-ready with live automation disabled safety posture.
+- Block forbidden legacy/guarantee language.
+
+Safety remains demo-ready with live automation disabled.

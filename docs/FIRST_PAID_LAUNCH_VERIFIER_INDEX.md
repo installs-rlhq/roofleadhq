@@ -319,3 +319,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Update: The verifier now checks Terminal 1 source-of-truth process alignment instead of hardcoding the full top-8 commit window.
 - Reason: Older commits naturally age out of `git log --oneline -8` after new safe commits.
 - Safety: Read-only. No live automation activation.
+
+## Stabilized source-of-truth verifier milestone
+
+- Commit: `befef91 test(pilot): stabilize source of truth verifier`
+- Update: `backend/scripts/verify-source-of-truth-commit-chain-readonly.js` now verifies Terminal 1 source-of-truth process alignment instead of hardcoding the full top-8 commit window.
+- Safety: Read-only. No live automation activation.

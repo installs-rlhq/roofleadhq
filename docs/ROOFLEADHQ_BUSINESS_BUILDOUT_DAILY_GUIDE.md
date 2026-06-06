@@ -4467,3 +4467,9 @@ This avoids false failures when older commits naturally age out after new safe c
 The source-of-truth commit chain verifier now checks Terminal 1 process alignment instead of hardcoding every commit in the top-8 window.
 
 This avoids false failures when older commits naturally age out after new safe commits.
+
+## Stabilized source-of-truth verifier milestone
+
+After commit `befef91`, the source-of-truth verifier checks Terminal 1 process alignment, `HEAD`/`origin/main` alignment, context rules, and safety posture instead of hardcoding every top-8 commit.
+
+This prevents false failures as new safe commits push older commits out of `git log --oneline -8`.
