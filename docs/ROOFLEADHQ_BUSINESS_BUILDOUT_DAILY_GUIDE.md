@@ -4550,3 +4550,18 @@ This verifier ensures the daily build process keeps the current rules visible:
 - The required workflow remains: fetch/status/log, targeted greps/assertions, syntax checks, relevant read-only verifiers, aggregate readiness, backend build, actual diff review, staged diff review, commit, push, final fetch/status/log confirmation.
 
 Safety remains demo-ready with live automation disabled.
+
+## Operating Workflow Guard Cross-Reference Check
+
+The operating workflow guard is also protected by:
+
+- `backend/scripts/verify-operating-workflow-guard-cross-references-readonly.js`
+
+This read-only verifier confirms the operating workflow guard remains referenced in:
+
+- next-chat context
+- first paid launch verifier index
+- business buildout daily guide
+- launch safety meta verifier
+
+This prevents the guard from silently drifting out of the daily operating surfaces while keeping live automation disabled.

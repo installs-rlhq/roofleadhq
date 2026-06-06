@@ -396,3 +396,10 @@ Safety checks remain read-only/test-only with no production activation.
   - Protects safe verified doc/test/read-only verifier commit/push policy.
   - Protects explicit approval gates for live/production/destructive actions.
   - Protects required verification, diff, staged review, backend build, commit, push, and final source-of-truth confirmation workflow.
+
+## Operating Workflow Guard Cross-Reference Verifier
+
+- `backend/scripts/verify-operating-workflow-guard-cross-references-readonly.js`
+  - Ensures the operating workflow guard remains discoverable across the next-chat context, verifier index, business guide, and launch safety meta verifier.
+  - Protects against documentation drift where the guard exists but stops being visible in daily build handoff surfaces.
+  - Read-only. No live automation activation.

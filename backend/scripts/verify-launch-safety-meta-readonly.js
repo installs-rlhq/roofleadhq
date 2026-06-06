@@ -15,6 +15,10 @@ const commands = [
     script: 'backend/scripts/verify-next-safe-build-operating-workflow-readonly.js',
   },
   {
+    name: 'Operating workflow guard cross references',
+    script: 'backend/scripts/verify-operating-workflow-guard-cross-references-readonly.js',
+  },
+  {
     name: 'Source-of-truth process integrity',
     script: 'backend/scripts/verify-source-of-truth-commit-chain-readonly.js',
   },
