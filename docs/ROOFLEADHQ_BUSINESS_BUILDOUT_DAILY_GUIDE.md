@@ -4203,3 +4203,46 @@ Safety remained unchanged:
 - No routes.
 - No cron/scheduler/dispatcher activation.
 - Retell remains deprecated/disabled.
+
+## Vapi Scenario-Specific Dry-Run Contract Enforcement Milestone
+
+Commit:
+- `9ddb8ec test(vapi): enforce scenario-specific dry-run contract`
+
+Files changed:
+- `backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js`
+- `docs/VAPI_NORMALIZED_DRY_RUN_CONTRACT.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+
+What changed:
+- Strengthened the Vapi dry-run verifier beyond field presence.
+- The verifier now enforces scenario-specific normalized contract rules across all six fake/sanitized Vapi scenarios.
+
+Scenario-specific checks now include:
+- `source` must be `vapi`.
+- `test_only` must be `true`.
+- `has_transcript` must be boolean.
+- `ingested_at` must parse as a valid date.
+- `call_id` must be fake/test-safe.
+- `from` may be null only for `missing-phone`.
+- `property_address` may be null only for `missing-address`.
+- `appointment_suggested` may be null only for `unbooked-followup`, `missing-address`, or `missing-phone`.
+- `booked-inspection` must include a suggested appointment.
+- `emergency-leak` must preserve emergency/high-urgency and leak semantics.
+- `insurance-storm` must preserve insurance and storm/hail semantics.
+
+Verification passed before commit `9ddb8ec`:
+- `node backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js`
+- `node backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `npm --prefix backend run build`
+
+Safety preserved:
+- No live Vapi calls.
+- No Supabase writes.
+- No SMS/Twilio sends.
+- No Calendar/Resend/Lindy activation.
+- No routes.
+- No cron/scheduler/dispatcher activation.
+- Retell remains deprecated/disabled.
