@@ -46,6 +46,7 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Vapi sample payload mapping: `node backend/scripts/verify-vapi-sample-payload-mapping-readonly.js`
 - Vapi missing-fields readiness gate: `node backend/scripts/verify-vapi-missing-fields-readiness-gate-readonly.js`
 - Vapi real payload collection runbook: `node backend/scripts/verify-vapi-real-payload-collection-runbook-readonly.js`
+- Vapi operator payload review checklist: `node backend/scripts/verify-vapi-operator-payload-review-checklist-readonly.js`
 
 ## Launch Framing
 
