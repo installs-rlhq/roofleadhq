@@ -300,3 +300,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Script: `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
 - Purpose: Guard the latest verified commit chain and next-chat context package against source-of-truth drift.
 - Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.
+
+## Handoff aggregate source-of-truth coverage update
+
+- Commit: `8480581 test(pilot): guard source of truth commit chain`
+- Update: `backend/scripts/verify-handoff-integrity-readonly.js` now includes `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`.
+- Safety: Read-only. No live automation activation.

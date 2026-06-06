@@ -4443,3 +4443,9 @@ This keeps handoff context current before safe commit/push workflows.
 Use `backend/scripts/verify-source-of-truth-commit-chain-readonly.js` to confirm Terminal 1 source-of-truth history and next-chat context stay aligned.
 
 The verifier checks the latest protected commit chain and confirms the context package preserves demo-ready with live automation disabled.
+
+## Handoff aggregate source-of-truth coverage
+
+After commit `8480581`, the handoff integrity aggregate should include `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`.
+
+This keeps handoff verification bundled across file-format integrity, context package completeness, latest milestones, handoff context safety, and Terminal 1 source-of-truth commit-chain alignment.

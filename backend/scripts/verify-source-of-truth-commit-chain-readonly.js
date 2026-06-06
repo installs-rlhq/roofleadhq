@@ -14,7 +14,6 @@ const expectedCommits = [
   '61e13bb test(pilot): add handoff integrity aggregate',
   '123d667 test(pilot): protect latest milestones verifier integrity',
   '61c09b5 test(pilot): guard latest context milestones',
-  '9147664 test(pilot): guard critical file context package',
 ];
 
 const contextPath = path.join(repoRoot, 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md');

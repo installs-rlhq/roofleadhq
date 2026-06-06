@@ -22,6 +22,10 @@ const commands = [
     name: 'Handoff integrity context',
     script: 'backend/scripts/verify-handoff-integrity-context-readonly.js',
   },
+  {
+    name: 'Source-of-truth commit chain',
+    script: 'backend/scripts/verify-source-of-truth-commit-chain-readonly.js',
+  },
 ];
 
 const failures = [];

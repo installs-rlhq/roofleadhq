@@ -811,3 +811,20 @@ Protected recent chain:
 - `133e5c0 test(pilot): guard handoff integrity context`
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: handoff aggregate includes commit chain guard
+
+Latest verified source-of-truth commit:
+- `8480581 test(pilot): guard source of truth commit chain`
+
+This milestone added:
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+
+The handoff integrity aggregate should now run:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-handoff-integrity-context-readonly.js`
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+
+Safety remains demo-ready with live automation disabled.
