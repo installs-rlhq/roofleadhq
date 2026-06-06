@@ -77,3 +77,30 @@ A dry-run operator alert payload generator exists at:
 - Metadata marked `test_only: true`, `no_sms_sent: true`, `no_twilio_call: true`
 
 **Status:** Approved gated test-only execution completed successfully. Live automation remains disabled. Live SMS approval package remains stale.
+
+## Lindy Internal Operator Alert Test (Successful)
+
+**Date:** 2026-06-06
+
+**Webhook Binding:**
+- SMS_DB_Write_Test_Webhook binding fixed
+- Webhook UUID ending: `03bf95de-8115-4ef0-841b-42b03d1456b4`
+
+**Execution Results:**
+- Terminal webhook POST returned HTTP 200
+- Lindy run history confirmed:
+  - Webhook received
+  - Valid Payload Guard condition met
+  - Gmail node executed
+- Gmail received success alert:
+  > ✅ SMS DB Write PASSED — Run db-write-candidate-2026-06-06T03-27-16-214z
+
+**Safety Confirmation:**
+- Retell trigger disabled
+- Retell post-call flow marked deprecated pending Vapi payload mapping
+- No SMS sent
+- No Twilio calls
+- No Vapi/Calendar/Supabase updates
+- No production automation activated
+
+**Outcome:** Lindy internal operator alert path verified end-to-end. Payload shape aligned with Lindy Builder requirements. All production paths remain disabled.
