@@ -125,6 +125,11 @@ const commands = [
     name: 'First Paid Launch execution pack',
     script: 'backend/scripts/verify-first-paid-launch-execution-pack-readonly.js',
     args: []
+  },
+  {
+    name: 'First Paid Launch operator dashboard QA',
+    script: 'backend/scripts/verify-first-paid-launch-operator-dashboard-qa-readonly.js',
+    args: []
   }
 ];
 
