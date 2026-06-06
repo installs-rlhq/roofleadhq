@@ -4449,3 +4449,21 @@ The verifier checks the latest protected commit chain and confirms the context p
 After commit `8480581`, the handoff integrity aggregate should include `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`.
 
 This keeps handoff verification bundled across file-format integrity, context package completeness, latest milestones, handoff context safety, and Terminal 1 source-of-truth commit-chain alignment.
+
+## Source-of-truth chain window alignment
+
+After commit `2fc84a2`, the source-of-truth commit chain verifier matches the current top-8 Terminal 1 history window.
+
+This prevents stale commit expectations after older commits age out of `git log --oneline -8`.
+
+## Source-of-truth verifier process alignment
+
+The source-of-truth commit chain verifier now checks Terminal 1 process alignment instead of hardcoding every commit in the top-8 window.
+
+This avoids false failures when older commits naturally age out after new safe commits.
+
+## Source-of-truth verifier process alignment
+
+The source-of-truth commit chain verifier now checks Terminal 1 process alignment instead of hardcoding every commit in the top-8 window.
+
+This avoids false failures when older commits naturally age out after new safe commits.

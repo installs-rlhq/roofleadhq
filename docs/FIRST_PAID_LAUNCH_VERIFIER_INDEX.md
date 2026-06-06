@@ -306,3 +306,16 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `8480581 test(pilot): guard source of truth commit chain`
 - Update: `backend/scripts/verify-handoff-integrity-readonly.js` now includes `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`.
 - Safety: Read-only. No live automation activation.
+
+## Source-of-truth chain window alignment
+
+- Commit: `2fc84a2 test(pilot): align source of truth chain window`
+- Update: `backend/scripts/verify-source-of-truth-commit-chain-readonly.js` now matches the current top-8 `git log --oneline` window.
+- Safety: Read-only. No live automation activation.
+
+## Source-of-truth verifier process alignment
+
+- Script: `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+- Update: The verifier now checks Terminal 1 source-of-truth process alignment instead of hardcoding the full top-8 commit window.
+- Reason: Older commits naturally age out of `git log --oneline -8` after new safe commits.
+- Safety: Read-only. No live automation activation.

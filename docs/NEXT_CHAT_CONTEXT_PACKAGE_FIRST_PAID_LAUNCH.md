@@ -828,3 +828,55 @@ The handoff integrity aggregate should now run:
 - `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: commit chain window aligned
+
+Latest verified source-of-truth commit:
+- `2fc84a2 test(pilot): align source of truth chain window`
+
+This milestone updated:
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+- `backend/scripts/verify-handoff-integrity-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+- Align the source-of-truth commit chain verifier to the current `git log --oneline -8` window.
+- Remove stale commit expectations after older commits age out of the top-8 history.
+- Keep the handoff integrity aggregate running the source-of-truth commit chain verifier.
+
+Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth verifier design update
+
+The source-of-truth commit chain verifier now checks the process instead of hardcoding the full top-8 commit window.
+
+Reason:
+- New safe commits constantly push older commits out of `git log --oneline -8`.
+- Hardcoding the full top-8 chain creates false failures when older commits naturally age out.
+- The verifier should confirm Terminal 1 source-of-truth alignment, required context rules, `HEAD` / `origin/main` alignment, and safety posture.
+
+Verifier:
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+
+Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth verifier process alignment
+
+The source-of-truth commit chain verifier now checks Terminal 1 process alignment instead of hardcoding the full top-8 commit window.
+
+Reason:
+- New safe commits constantly push older commits out of `git log --oneline -8`.
+- Hardcoding the full top-8 chain creates false failures when older commits naturally age out.
+- The verifier confirms Terminal 1 source-of-truth alignment, required context rules, `HEAD` and `origin/main` alignment, and safety posture.
+
+Required Terminal 1 source-of-truth commands:
+- `git fetch origin main`
+- `git status --short`
+- `git log --oneline -8`
+
+Verifier:
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+
+Safety remains demo-ready with live automation disabled.
