@@ -18,7 +18,8 @@ const requiredReferences = [
   'backend/scripts/verify-reporting-smoke-readonly.js',
   'backend/scripts/verify-pilot-operator-status-page-readonly.js',
   'backend/scripts/verify-pilot-operator-status-endpoint-readonly.js',
-  'backend/scripts/verify-dashboard-navigation-readonly.js'
+  'backend/scripts/verify-dashboard-navigation-readonly.js',
+  'backend/scripts/verify-live-sms-approval-package-stale-readonly.js'
 ];
 
 const requiredPhrases = [
@@ -29,7 +30,9 @@ const requiredPhrases = [
   'local/read-only verification steps',
   'no Supabase reads or writes',
   'no external service calls',
-  'no live service activations'
+  'no live service activations',
+  'Live SMS approval package stale guard',
+  'Live SMS approval package must remain stale unless a fresh approval package is created and explicitly approved.'
 ];
 
 const forbiddenPhrases = [
