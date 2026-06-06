@@ -18,6 +18,10 @@ const commands = [
     name: 'Next-chat latest milestones',
     script: 'backend/scripts/verify-next-chat-context-latest-milestones-readonly.js',
   },
+  {
+    name: 'Handoff integrity context',
+    script: 'backend/scripts/verify-handoff-integrity-context-readonly.js',
+  },
 ];
 
 const failures = [];

@@ -4425,3 +4425,9 @@ It runs the critical file format integrity verifier, next-chat context package v
 Use `backend/scripts/verify-handoff-integrity-context-readonly.js` to confirm the next-chat context package records the handoff integrity aggregate and preserves the live-automation-disabled safety posture.
 
 The guard also blocks forbidden legacy/guarantee language.
+
+## Handoff aggregate context coverage
+
+After commit `133e5c0`, the handoff integrity aggregate should include `backend/scripts/verify-handoff-integrity-context-readonly.js`.
+
+This keeps handoff verification bundled across file-format integrity, context package completeness, latest milestone context, and handoff context safety.

@@ -282,3 +282,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Script: `backend/scripts/verify-handoff-integrity-context-readonly.js`
 - Purpose: Guard the next-chat context package so it records the handoff integrity aggregate milestone and blocks forbidden legacy/guarantee language.
 - Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.
+
+## Handoff aggregate coverage update
+
+- Commit: `133e5c0 test(pilot): guard handoff integrity context`
+- Update: `backend/scripts/verify-handoff-integrity-readonly.js` now includes `backend/scripts/verify-handoff-integrity-context-readonly.js`.
+- Safety: Read-only. No live automation activation.

@@ -759,3 +759,19 @@ It verifies the context package includes:
 - demo-ready with live automation disabled
 
 It also blocks forbidden legacy/guarantee language.
+
+## Source-of-truth update: handoff aggregate includes context guard
+
+Latest verified source-of-truth commit:
+- `133e5c0 test(pilot): guard handoff integrity context`
+
+This milestone added:
+- `backend/scripts/verify-handoff-integrity-context-readonly.js`
+
+The handoff aggregate should now run:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-handoff-integrity-context-readonly.js`
+
+Safety remains demo-ready with live automation disabled.
