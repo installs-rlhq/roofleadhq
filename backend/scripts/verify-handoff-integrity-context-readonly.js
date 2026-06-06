@@ -16,6 +16,11 @@ const requiredText = [
   'backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js',
   'backend/scripts/verify-next-chat-context-latest-milestones-readonly.js',
   'backend/scripts/verify-first-paid-pilot-readiness-readonly.js',
+  'source-of-truth process checks',
+  'HEAD and origin/main alignment',
+  'Terminal 1 process alignment',
+  'befef91 test(pilot): stabilize source of truth verifier',
+  '3789630 test(pilot): record stabilized source verifier milestone',
   'demo-ready with live automation disabled',
 ];
 

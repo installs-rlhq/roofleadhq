@@ -900,3 +900,22 @@ Purpose:
 - Block forbidden legacy/guarantee language.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: handoff context requires stabilized verifier
+
+Latest verified source-of-truth commit:
+- `3789630 test(pilot): record stabilized source verifier milestone`
+
+The handoff integrity context guard should now require:
+- `befef91 test(pilot): stabilize source of truth verifier`
+- `3789630 test(pilot): record stabilized source verifier milestone`
+- Terminal 1 process alignment
+- HEAD and origin/main alignment
+- source-of-truth process checks
+
+Purpose:
+- Ensure the handoff context package records the stabilized source verifier design.
+- Prevent regressions back to brittle hardcoded top-8 commit expectations.
+- Preserve demo-ready with live automation disabled safety posture.
+
+Safety remains demo-ready with live automation disabled.

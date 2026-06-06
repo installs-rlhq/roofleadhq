@@ -4473,3 +4473,9 @@ This avoids false failures when older commits naturally age out after new safe c
 After commit `befef91`, the source-of-truth verifier checks Terminal 1 process alignment, `HEAD`/`origin/main` alignment, context rules, and safety posture instead of hardcoding every top-8 commit.
 
 This prevents false failures as new safe commits push older commits out of `git log --oneline -8`.
+
+## Handoff context stabilized verifier coverage
+
+After commit `3789630`, the handoff integrity context guard should require the stabilized source verifier milestone and process-alignment language.
+
+This prevents handoff context drift back toward brittle hardcoded commit-window checks.

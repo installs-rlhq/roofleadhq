@@ -325,3 +325,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `befef91 test(pilot): stabilize source of truth verifier`
 - Update: `backend/scripts/verify-source-of-truth-commit-chain-readonly.js` now verifies Terminal 1 source-of-truth process alignment instead of hardcoding the full top-8 commit window.
 - Safety: Read-only. No live automation activation.
+
+## Handoff context stabilized verifier coverage
+
+- Commit: `3789630 test(pilot): record stabilized source verifier milestone`
+- Update: `backend/scripts/verify-handoff-integrity-context-readonly.js` now requires the stabilized source verifier milestone and process-alignment language.
+- Safety: Read-only. No live automation activation.
