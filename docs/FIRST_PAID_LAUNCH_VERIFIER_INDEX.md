@@ -331,3 +331,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `3789630 test(pilot): record stabilized source verifier milestone`
 - Update: `backend/scripts/verify-handoff-integrity-context-readonly.js` now requires the stabilized source verifier milestone and process-alignment language.
 - Safety: Read-only. No live automation activation.
+
+## Latest milestones stabilized context coverage
+
+- Commit: `c1acc89 test(pilot): require stabilized source verifier context`
+- Update: `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js` now requires the stabilized source verifier context milestone.
+- Safety: Read-only. No live automation activation.

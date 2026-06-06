@@ -4479,3 +4479,9 @@ This prevents false failures as new safe commits push older commits out of `git 
 After commit `3789630`, the handoff integrity context guard should require the stabilized source verifier milestone and process-alignment language.
 
 This prevents handoff context drift back toward brittle hardcoded commit-window checks.
+
+## Latest milestones stabilized context coverage
+
+After commit `c1acc89`, the latest milestones verifier should require the handoff context milestone for the stabilized source verifier.
+
+This keeps the context package aligned with the newest safe source-of-truth verifier design.

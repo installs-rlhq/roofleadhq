@@ -919,3 +919,20 @@ Purpose:
 - Preserve demo-ready with live automation disabled safety posture.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: stabilized source verifier context required
+
+Latest verified source-of-truth commit:
+- `c1acc89 test(pilot): require stabilized source verifier context`
+
+This milestone updated:
+- `backend/scripts/verify-handoff-integrity-context-readonly.js`
+
+It requires the handoff context package to record:
+- `3789630 test(pilot): record stabilized source verifier milestone`
+- `befef91 test(pilot): stabilize source of truth verifier`
+- Terminal 1 process alignment
+- HEAD and origin/main alignment
+- source-of-truth process checks
+
+Safety remains demo-ready with live automation disabled.

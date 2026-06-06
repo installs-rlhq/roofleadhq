@@ -10,6 +10,7 @@ const context = fs.readFileSync(contextPath, 'utf8');
 const requiredText = [
   '6048d21 test(pilot): guard critical file format integrity',
   '9147664 test(pilot): guard critical file context package',
+  'c1acc89 test(pilot): require stabilized source verifier context',
   'befef91 test(pilot): stabilize source of truth verifier',
   '93bed54 test(pilot): include handoff context in aggregate',
   'backend/scripts/verify-critical-file-format-integrity-readonly.js',
