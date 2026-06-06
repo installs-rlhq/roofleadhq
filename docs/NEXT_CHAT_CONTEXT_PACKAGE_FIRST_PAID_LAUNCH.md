@@ -35,7 +35,7 @@ The snapshot confirms:
 
 Latest verified commit:
 
-`f8e178b Add files via upload`
+`b3fc329 docs(pilot): record vapi scenario hardening in verifier index`
 
 Completed Vapi milestones:
 1. Vapi post-call payload discovery package
@@ -86,12 +86,54 @@ All Vapi work remains in discovery/planning/test-only dry-run phase. No webhook 
 
 ## Vapi Dry-Run Scenario Hardening Milestone
 
-- Commit: `7e30d9b test(vapi): harden dry-run scenario coverage`
-- Added six fake/sanitized Vapi scenario payloads (booked inspection, unbooked follow-up, missing address, missing phone, emergency leak, insurance/storm damage)
-- Enhanced gated dry-run script with `--scenario` support
-- Strengthened verifier to execute all six valid scenarios, invalid scenario, and missing-gates cases
-- Verification passed: dry-run verifier, aggregate readiness, next-chat context, backend build
-- Safety preserved: no live Vapi/Supabase/SMS/Twilio/Calendar/Resend/Lindy, no routes/cron/scheduler/dispatcher
+Latest related commits:
+
+- 7e30d9b test(vapi): harden dry-run scenario coverage
+- d2ca159 docs(pilot): record vapi dry-run scenario hardening
+- 823c666 docs(pilot): record vapi scenario hardening in business guide
+- b3fc329 docs(pilot): record vapi scenario hardening in verifier index
+
+What changed:
+
+- Added six fake/sanitized Vapi scenario payloads:
+  - booked inspection
+  - unbooked follow-up
+  - missing address
+  - missing phone
+  - emergency leak
+  - insurance/storm damage
+- Enhanced gated Vapi dry-run script with --scenario support.
+- Strengthened backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js so it executes:
+  - all six valid scenarios and expects success
+  - invalid scenario and expects failure
+  - valid scenario without required gates and expects failure
+- Updated docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md to record this milestone.
+- Updated docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md to record this milestone.
+
+Scenario files:
+
+- docs/samples/vapi-scenario-booked-inspection.fake.json
+- docs/samples/vapi-scenario-unbooked-followup.fake.json
+- docs/samples/vapi-scenario-missing-address.fake.json
+- docs/samples/vapi-scenario-missing-phone.fake.json
+- docs/samples/vapi-scenario-emergency-leak.fake.json
+- docs/samples/vapi-scenario-insurance-storm.fake.json
+
+Verification passed before the related commits:
+
+- node backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js
+- node backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js
+- node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
+- npm --prefix backend run build
+
+Safety preserved:
+
+- No live Vapi calls.
+- No Supabase writes.
+- No SMS/Twilio sends.
+- No Calendar/Resend/Lindy activation.
+- No routes.
+- No cron/scheduler/dispatcher activation.
 
 This added the stale live SMS approval package guard into the aggregate first-paid readiness verifier.
 
