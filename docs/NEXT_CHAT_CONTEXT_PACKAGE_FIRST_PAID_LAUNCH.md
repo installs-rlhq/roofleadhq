@@ -1032,3 +1032,25 @@ Purpose:
 - Preserve launch safety and live-automation-disabled safety posture.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: latest milestone self-check committed
+
+Latest verified source-of-truth commit:
+- `3c03c72 test(pilot): add latest milestone self check`
+
+This milestone added:
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+
+It is wired into:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+
+It is protected by:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+
+Purpose:
+- Catch documented milestones that are missing from verifier code.
+- Prevent doc-only drift when script updates were intended.
+- Keep latest milestones, next-chat context, verifier index, and business buildout guide aligned.
+
+Safety remains demo-ready with live automation disabled.

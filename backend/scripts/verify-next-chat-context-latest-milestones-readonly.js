@@ -8,6 +8,7 @@ const contextPath = path.join(repoRoot, 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PA
 const context = fs.readFileSync(contextPath, 'utf8');
 
 const requiredText = [
+  '3c03c72 test(pilot): add latest milestone self check',
   'badb124 test(pilot): record launch safety source milestone',
   '574a822 test(pilot): require launch safety in source verifier',
   '3ceb537 test(pilot): record launch safety meta milestone',

@@ -4515,3 +4515,9 @@ This keeps the handoff chain aligned with the top-level launch safety meta verif
 Use `backend/scripts/verify-latest-milestone-self-check-readonly.js` to confirm recent source-of-truth milestones are present in both verifier code and handoff documentation.
 
 This prevents accidental doc-only drift when a verifier script update was expected.
+
+## Latest milestone self-check committed
+
+After commit `3c03c72`, the latest milestones verifier and self-check guard should require the latest milestone self-check milestone.
+
+This protects the guard that prevents doc-only drift.

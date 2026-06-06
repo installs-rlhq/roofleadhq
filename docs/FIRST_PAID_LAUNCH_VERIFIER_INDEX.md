@@ -367,3 +367,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Script: `backend/scripts/verify-latest-milestone-self-check-readonly.js`
 - Purpose: Catch documented milestones that are missing from the latest milestones verifier or context package, preventing doc-only drift when script updates were intended.
 - Safety: Read-only. No live automation activation.
+
+## Latest milestone self-check committed
+
+- Commit: `3c03c72 test(pilot): add latest milestone self check`
+- Update: The latest milestones verifier and latest milestone self-check now require the self-check milestone.
+- Safety: Read-only. No live automation activation.
