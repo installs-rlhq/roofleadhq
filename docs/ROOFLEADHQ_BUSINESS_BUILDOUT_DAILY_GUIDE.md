@@ -4485,3 +4485,9 @@ This prevents handoff context drift back toward brittle hardcoded commit-window 
 After commit `c1acc89`, the latest milestones verifier should require the handoff context milestone for the stabilized source verifier.
 
 This keeps the context package aligned with the newest safe source-of-truth verifier design.
+
+## Launch safety meta verifier
+
+Use `backend/scripts/verify-launch-safety-meta-readonly.js` before safe handoff or context-package work.
+
+It runs the critical file format, source-of-truth, handoff integrity, handoff context, latest milestones, and next-chat context package verifiers together while preserving demo-ready with live automation disabled.

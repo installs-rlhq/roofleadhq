@@ -337,3 +337,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `c1acc89 test(pilot): require stabilized source verifier context`
 - Update: `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js` now requires the stabilized source verifier context milestone.
 - Safety: Read-only. No live automation activation.
+
+## Launch safety meta verifier
+
+- Script: `backend/scripts/verify-launch-safety-meta-readonly.js`
+- Purpose: Run the critical file format, source-of-truth, handoff integrity, handoff context, latest milestones, and next-chat context package verifiers together.
+- Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.

@@ -237,6 +237,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Launch safety meta verifier',
+    script: 'backend/scripts/verify-launch-safety-meta-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

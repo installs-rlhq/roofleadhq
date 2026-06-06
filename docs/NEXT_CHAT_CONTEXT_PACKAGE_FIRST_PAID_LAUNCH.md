@@ -936,3 +936,25 @@ It requires the handoff context package to record:
 - source-of-truth process checks
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: launch safety meta verifier
+
+Latest verified source-of-truth commit:
+- `5977e78 test(pilot): record stabilized context verifier milestone`
+
+New safe verifier:
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+
+It runs:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+- `backend/scripts/verify-handoff-integrity-readonly.js`
+- `backend/scripts/verify-handoff-integrity-context-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+
+Purpose:
+- Bundle source-of-truth, handoff, context, and critical-file safety checks into one read-only verifier.
+- Preserve demo-ready with live automation disabled safety posture.
+
+Safety remains demo-ready with live automation disabled.
