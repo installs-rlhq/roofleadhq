@@ -43,6 +43,8 @@ const requiredMilestones = [
 ];
 
 const requiredSafetyText = [
+  'Operating Workflow Guard Suite',
+  'verify-operating-workflow-guard-suite-readonly.js',
   'Operating Workflow Guard Cross-Reference',
   'verify-operating-workflow-guard-cross-references-readonly.js',
   'Operating Workflow Guard',

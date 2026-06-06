@@ -4565,3 +4565,19 @@ This read-only verifier confirms the operating workflow guard remains referenced
 - launch safety meta verifier
 
 This prevents the guard from silently drifting out of the daily operating surfaces while keeping live automation disabled.
+
+## Operating Workflow Guard Suite
+
+Use this read-only suite when checking that the operating workflow guard layer is intact:
+
+- `backend/scripts/verify-operating-workflow-guard-suite-readonly.js`
+
+The suite runs:
+
+- `backend/scripts/verify-next-safe-build-operating-workflow-readonly.js`
+- `backend/scripts/verify-operating-workflow-guard-cross-references-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+
+This keeps the Terminal 1 source-of-truth workflow, cross-reference protection, milestone protection, and launch safety meta guard easy to verify without enabling live automation.

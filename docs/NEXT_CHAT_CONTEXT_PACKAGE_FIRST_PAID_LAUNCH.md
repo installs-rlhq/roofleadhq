@@ -1202,3 +1202,23 @@ Purpose:
 - Preserve explicit approval gates for live/production/destructive actions.
 
 Safety remains demo-ready with live automation disabled.
+
+## Operating Workflow Guard Suite Context
+
+The operating workflow guard layer now includes a standalone suite verifier:
+
+- `backend/scripts/verify-operating-workflow-guard-suite-readonly.js`
+
+The suite verifies the operating workflow guard layer without being called by launch safety meta, avoiding recursive verifier execution.
+
+The suite covers:
+
+- `backend/scripts/verify-next-safe-build-operating-workflow-readonly.js`
+- `backend/scripts/verify-operating-workflow-guard-cross-references-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+
+This preserves the `Operating Workflow Guard Suite` and `Operating Workflow Guard Cross-Reference` protections while keeping launch safety meta non-recursive.
+
+Safety remains demo-ready with live automation disabled.

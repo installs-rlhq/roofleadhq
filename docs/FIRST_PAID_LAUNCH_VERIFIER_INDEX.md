@@ -403,3 +403,10 @@ Safety checks remain read-only/test-only with no production activation.
   - Ensures the operating workflow guard remains discoverable across the next-chat context, verifier index, business guide, and launch safety meta verifier.
   - Protects against documentation drift where the guard exists but stops being visible in daily build handoff surfaces.
   - Read-only. No live automation activation.
+
+## Operating Workflow Guard Suite Verifier
+
+- `backend/scripts/verify-operating-workflow-guard-suite-readonly.js`
+  - Runs the operating workflow guard, cross-reference guard, latest milestones guard, latest milestone self-check, and launch safety meta verifier as one read-only suite.
+  - Gives Terminal 1 one focused command for proving the operating workflow guard layer is intact.
+  - Read-only. No live automation activation.
