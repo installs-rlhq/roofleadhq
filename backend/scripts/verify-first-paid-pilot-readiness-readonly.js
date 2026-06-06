@@ -137,6 +137,36 @@ const commands = [
     args: []
   },
   {
+    name: 'Vapi post-call payload discovery',
+    script: 'backend/scripts/verify-vapi-post-call-payload-discovery-readonly.js',
+    args: []
+  },
+  {
+    name: 'Vapi raw payload capture plan',
+    script: 'backend/scripts/verify-vapi-raw-payload-capture-plan-readonly.js',
+    args: []
+  },
+  {
+    name: 'Vapi sample payload mapping',
+    script: 'backend/scripts/verify-vapi-sample-payload-mapping-readonly.js',
+    args: []
+  },
+  {
+    name: 'Vapi missing-fields readiness gate',
+    script: 'backend/scripts/verify-vapi-missing-fields-readiness-gate-readonly.js',
+    args: []
+  },
+  {
+    name: 'Vapi real payload collection runbook',
+    script: 'backend/scripts/verify-vapi-real-payload-collection-runbook-readonly.js',
+    args: []
+  },
+  {
+    name: 'Vapi operator payload review checklist',
+    script: 'backend/scripts/verify-vapi-operator-payload-review-checklist-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
