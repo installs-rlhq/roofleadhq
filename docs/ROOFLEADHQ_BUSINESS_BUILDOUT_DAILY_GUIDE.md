@@ -4431,3 +4431,9 @@ The guard also blocks forbidden legacy/guarantee language.
 After commit `133e5c0`, the handoff integrity aggregate should include `backend/scripts/verify-handoff-integrity-context-readonly.js`.
 
 This keeps handoff verification bundled across file-format integrity, context package completeness, latest milestone context, and handoff context safety.
+
+## Latest handoff aggregate milestone coverage
+
+After commit `93bed54`, the latest milestones verifier should require the next-chat context package to record that the handoff aggregate includes the handoff context guard.
+
+This keeps handoff context current before safe commit/push workflows.

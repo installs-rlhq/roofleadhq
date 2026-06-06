@@ -775,3 +775,19 @@ The handoff aggregate should now run:
 - `backend/scripts/verify-handoff-integrity-context-readonly.js`
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: handoff aggregate context included
+
+Latest verified source-of-truth commit:
+- `93bed54 test(pilot): include handoff context in aggregate`
+
+This milestone updated:
+- `backend/scripts/verify-handoff-integrity-readonly.js`
+
+The handoff integrity aggregate now runs:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-handoff-integrity-context-readonly.js`
+
+Safety remains demo-ready with live automation disabled.

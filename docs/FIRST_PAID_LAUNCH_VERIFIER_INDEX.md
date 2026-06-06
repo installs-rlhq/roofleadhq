@@ -288,3 +288,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `133e5c0 test(pilot): guard handoff integrity context`
 - Update: `backend/scripts/verify-handoff-integrity-readonly.js` now includes `backend/scripts/verify-handoff-integrity-context-readonly.js`.
 - Safety: Read-only. No live automation activation.
+
+## Latest milestones coverage update
+
+- Commit: `93bed54 test(pilot): include handoff context in aggregate`
+- Update: `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js` now requires the latest handoff aggregate milestone in the next-chat context package.
+- Safety: Read-only. No live automation activation.
