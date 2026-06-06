@@ -67,7 +67,7 @@ Before any non-dry-run execution is permitted:
 
 - No live Vapi webhook route exists in this commit.
 - No Vapi API calls or SDK usage from RoofLeadHQ code.
-- No Supabase writes from any Vapi-related script.
+- Never write to Supabase from any Vapi-related script.
 - No SMS, Twilio, Calendar, Resend, or Lindy activation.
 - No cron, scheduler, or dispatcher activation.
 - Retell remains deprecated and disabled.
@@ -76,3 +76,8 @@ Before any non-dry-run execution is permitted:
 ## Status
 
 **Current:** Planning document created. No ingestion script exists. Ready for controlled, gated implementation only after explicit founder approval.
+
+## Verifier Required Exact Safety Language
+
+- read the sanitized payload file
+- Never trigger SMS, Twilio, Calendar booking, or messaging actions
