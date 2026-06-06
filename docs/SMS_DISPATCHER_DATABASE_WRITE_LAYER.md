@@ -47,3 +47,24 @@ node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js
 node backend/scripts/verify-sms-dispatcher-followups-update-testonly.js
 node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 ```
+
+## Approved Gated Test-Only Write Executed
+
+**Run ID:** `db-write-candidate-2026-06-06T03-27-16-214z`
+
+**Test IDs used:**
+- Roofer: `be7efc94-bd68-43af-81b2-dc7b869b42df`
+- Lead: `cf9bf57f-bdd5-4757-a3fc-8327827eb2e0`
+- Follow-up: `3d57fccc-2585-4b28-bb4c-2b4d1c2d95fb`
+- Message: `613a0d1d-467c-4220-aa8d-2cce4b2f1425`
+
+**Results:**
+- 1 test-only `messages` row inserted
+- 1 `follow_ups` row updated and post-write verified
+- No SMS sent
+- No Twilio calls made
+- No route, cron, scheduler, or production dispatcher activation
+- Post-write build and all verifiers passed
+- Metadata marked `test_only: true`, `no_sms_sent: true`, `no_twilio_call: true`
+
+**Status:** Approved gated test-only execution completed successfully. Live automation remains disabled. Live SMS approval package remains stale.
