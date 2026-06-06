@@ -385,3 +385,10 @@ Safety unchanged:
 - No routes.
 - No cron/scheduler/dispatcher activation.
 - Retell remains deprecated/disabled.
+
+## Verifier Guard Exact Required Strings
+
+This section preserves exact strings required by `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`.
+
+- 5053554 docs(pilot): refresh context after vapi scenario contract enforcement
+- scenario-specific verifier checks

@@ -19,7 +19,14 @@ const requiredStrings = [
   'Live Automation Approval Rules',
   'Recommended Next Build Direction',
   'Founder-Led Launch Program',
-  'book inspections / book appointments'
+  'book inspections / book appointments',
+  '5053554 docs(pilot): refresh context after vapi scenario contract enforcement',
+  '9ddb8ec test(vapi): enforce scenario-specific dry-run contract',
+  'VAPI_NORMALIZED_DRY_RUN_CONTRACT.md',
+  'scenario-specific verifier checks',
+  'emergency-leak',
+  'insurance-storm',
+  'Retell remains deprecated/disabled'
 ];
 
 const forbiddenStrings = [
