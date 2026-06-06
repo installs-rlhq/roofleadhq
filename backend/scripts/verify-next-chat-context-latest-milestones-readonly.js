@@ -8,6 +8,10 @@ const contextPath = path.join(repoRoot, 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PA
 const context = fs.readFileSync(contextPath, 'utf8');
 
 const requiredText = [
+  '7fc4f1a docs(pilot): add safe build context snapshot',
+  'Latest Source-of-Truth Milestone — Safe Build Context Snapshot',
+  'docs/NEXT_CHAT_CONTEXT_PACKAGE_SAFE_BUILD_SNAPSHOT.md',
+  'backend/scripts/verify-next-chat-context-safe-build-snapshot-readonly.js',
   'd74f311 test(pilot): guard recorded source of truth baseline',
   'Latest Source-of-Truth Milestone — Recorded Source-of-Truth Baseline Guard',
   'backend/scripts/verify-next-chat-context-recorded-source-of-truth-readonly.js',

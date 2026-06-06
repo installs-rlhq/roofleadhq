@@ -6,12 +6,13 @@ Use this package to start the next ChatGPT/Codex session safely and quickly.
 
 Latest verified source-of-truth commit:
 
+- `7fc4f1a docs(pilot): add safe build context snapshot`
 - `b978eab test(pilot): record source of truth baseline guard milestone`
 
 Final source-of-truth confirmation from Terminal 1:
 
-- `b978eab (HEAD -> main, origin/main)`
-- `PASS: HEAD and origin/main match at b978eab`
+- `7fc4f1a (HEAD -> main, origin/main)`
+- `PASS: HEAD and origin/main match at 7fc4f1a`
 
 ## Repository Rule
 

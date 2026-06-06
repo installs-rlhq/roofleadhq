@@ -1301,3 +1301,31 @@ Purpose:
 - Preserve explicit approval gates for live/production/destructive actions.
 
 Safety remains demo-ready with live automation disabled.
+
+## Latest Source-of-Truth Milestone — Safe Build Context Snapshot
+
+Latest verified source-of-truth commit:
+
+- `7fc4f1a docs(pilot): add safe build context snapshot`
+
+Files changed:
+
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_SAFE_BUILD_SNAPSHOT.md`
+- `backend/scripts/verify-next-chat-context-safe-build-snapshot-readonly.js`
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add a copy/paste-ready safe build context snapshot for the next chat.
+- Add a read-only verifier that protects the safe build snapshot.
+- Wire the safe build snapshot verifier into launch safety meta.
+- Guard the safe build snapshot in the latest milestone self-check.
+- Preserve the latest source-of-truth commit chain and guard stack.
+- Preserve Terminal 1 `/root/roofleadhq` source-of-truth workflow.
+- Preserve safe verified doc/test/read-only verifier commit/push policy.
+- Preserve explicit approval gates for live/production/destructive actions.
+
+Safety remains demo-ready with live automation disabled.
