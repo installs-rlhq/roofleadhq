@@ -48,6 +48,15 @@ node backend/scripts/verify-sms-dispatcher-followups-update-testonly.js
 node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 ```
 
+## Operator Alert Bridge
+
+A dry-run operator alert payload generator exists at:
+`backend/scripts/prepare-operator-alert-payload-readonly.js`
+
+- Default mode: dry-run only (prints JSON, no webhook)
+- Webhook requires explicit gates: `OPERATOR_ALERT_TEST_MODE=1` + `--allow-operator-alert-webhook` + `OPERATOR_ALERT_WEBHOOK_URL`
+- Verifier: `backend/scripts/verify-operator-alert-bridge-readonly.js`
+
 ## Approved Gated Test-Only Write Executed
 
 **Run ID:** `db-write-candidate-2026-06-06T03-27-16-214z`
