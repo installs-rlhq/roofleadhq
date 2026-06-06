@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  '9059c67 test(pilot): guard operating workflow cross references',
   '6375675 docs(pilot): document operating workflow guard',
   '700b5ab test(pilot): guard next safe build operating workflow',
   'bc71ad1 test(pilot): record latest self check context milestone',

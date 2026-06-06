@@ -1176,3 +1176,29 @@ Purpose:
 - Preserve explicit approval gates for live/production/destructive actions.
 
 Safety remains demo-ready with live automation disabled.
+
+## Latest Source-of-Truth Milestone — Operating Workflow Guard Cross References
+
+Latest verified source-of-truth commit:
+
+- `9059c67 test(pilot): guard operating workflow cross references`
+
+Files changed:
+
+- `backend/scripts/verify-operating-workflow-guard-cross-references-readonly.js`
+- `backend/scripts/verify-launch-safety-meta-readonly.js`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add a read-only anti-drift verifier for operating workflow guard cross references.
+- Ensure the operating workflow guard remains visible across next-chat context, verifier index, business guide, and launch safety meta.
+- Wire the cross-reference verifier into launch safety meta verification.
+- Guard the cross-reference verifier in the latest milestone self-check.
+- Preserve Terminal 1 `/root/roofleadhq` source-of-truth workflow.
+- Preserve safe verified doc/test/read-only verifier commit/push policy.
+- Preserve explicit approval gates for live/production/destructive actions.
+
+Safety remains demo-ready with live automation disabled.

@@ -8,6 +8,10 @@ const contextPath = path.join(repoRoot, 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PA
 const context = fs.readFileSync(contextPath, 'utf8');
 
 const requiredText = [
+  '9059c67 test(pilot): guard operating workflow cross references',
+  'Latest Source-of-Truth Milestone — Operating Workflow Guard Cross References',
+  'backend/scripts/verify-operating-workflow-guard-cross-references-readonly.js',
+  'Operating workflow guard cross references',
   '6375675 docs(pilot): document operating workflow guard',
   'Latest Source-of-Truth Milestone — Operating Workflow Guard Discoverability',
   'docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md',
