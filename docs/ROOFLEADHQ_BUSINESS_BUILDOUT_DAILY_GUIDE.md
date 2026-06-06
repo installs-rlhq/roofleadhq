@@ -4281,3 +4281,29 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+## Vapi dry-run output snapshot verification milestone
+
+Added a read-only verifier that executes all six fake/sanitized Vapi dry-run scenarios and validates normalized output snapshots.
+
+This verifier guards:
+- normalized output field coverage
+- fake/test-safe `call_id`
+- `source = vapi`
+- `test_only = true`
+- valid `ingested_at`
+- boolean `has_transcript`
+- nullable rules for `missing-phone`, `missing-address`, and `appointment_suggested`
+- booked inspection semantics
+- unbooked follow-up semantics
+- emergency leak semantics
+- insurance storm semantics
+- dry-run failure when required gates are missing
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation

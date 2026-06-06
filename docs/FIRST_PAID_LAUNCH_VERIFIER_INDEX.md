@@ -182,3 +182,18 @@ Safety checks remain read-only/test-only with no production activation.
   - scenario semantics are preserved for booked inspection, unbooked follow-up, missing address, missing phone, emergency leak, and insurance storm
   - no production-looking secrets or live identifiers are present
   - the dry-run ingestion script still references the scenario set
+
+## Vapi dry-run output snapshot verifier
+
+- Script: `backend/scripts/verify-vapi-dry-run-output-snapshots-readonly.js`
+- Purpose: read-only guard that executes every fake/sanitized Vapi dry-run scenario and validates the normalized output shape and scenario semantics.
+- Coverage:
+  - all six scenarios execute successfully with test gates
+  - all required normalized fields are emitted
+  - `source` remains `vapi`
+  - `test_only` remains `true`
+  - `call_id` remains fake/test-safe
+  - nullable rules are preserved for `missing-phone`, `missing-address`, and `appointment_suggested`
+  - booked inspection, unbooked follow-up, emergency leak, and insurance storm semantics remain intact
+  - dry-run script fails closed without required gates
+  - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation

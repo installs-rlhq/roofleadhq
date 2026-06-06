@@ -181,6 +181,11 @@ const commands = [
       script: 'backend/scripts/verify-vapi-scenario-samples-readonly.js',
       args: []
     },
+    {
+      name: 'Vapi dry-run output snapshots',
+      script: 'backend/scripts/verify-vapi-dry-run-output-snapshots-readonly.js',
+      args: []
+    },
   {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',

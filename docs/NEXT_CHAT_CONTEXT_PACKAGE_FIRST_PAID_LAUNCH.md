@@ -463,3 +463,34 @@ Safety preserved:
 - no Calendar/Resend/Lindy activation
 - no routes
 - no cron/scheduler/dispatcher activation
+
+## Current Safe Batch — Vapi Dry-Run Output Snapshot Verifier
+
+Added `backend/scripts/verify-vapi-dry-run-output-snapshots-readonly.js` as a read-only guard that executes all six fake/sanitized Vapi dry-run scenarios and validates normalized output snapshots.
+
+The verifier checks:
+- all six dry-run scenarios execute successfully with required test gates
+- all required normalized fields are emitted
+- `source` remains `vapi`
+- `test_only` remains `true`
+- `call_id` remains fake/test-safe
+- `ingested_at` parses as a valid date
+- `has_transcript` remains boolean
+- nullable rules are preserved for:
+  - `missing-phone`
+  - `missing-address`
+  - `appointment_suggested`
+- scenario semantics remain intact for:
+  - `booked-inspection`
+  - `unbooked-followup`
+  - `emergency-leak`
+  - `insurance-storm`
+- dry-run script fails closed without required gates
+
+Safety preserved:
+- no live Vapi calls
+- no Supabase writes
+- no SMS/Twilio sends
+- no Calendar/Resend/Lindy activation
+- no routes
+- no cron/scheduler/dispatcher activation
