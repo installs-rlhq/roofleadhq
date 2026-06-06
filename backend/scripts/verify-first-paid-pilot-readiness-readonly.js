@@ -90,6 +90,11 @@ const commands = [
     name: 'First Paid Launch ready recap',
     script: 'backend/scripts/verify-first-paid-launch-ready-recap-readonly.js',
     args: []
+  },
+  {
+    name: 'Next Chat context package first paid launch',
+    script: 'backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js',
+    args: []
   }
 ];
 
