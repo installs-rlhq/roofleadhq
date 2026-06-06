@@ -4419,3 +4419,9 @@ This keeps the newest context handoff verifier covered against malformed patch a
 Use `backend/scripts/verify-handoff-integrity-readonly.js` before handoff or context-package work.
 
 It runs the critical file format integrity verifier, next-chat context package verifier, and latest milestones verifier together so the handoff package stays protected against format corruption, stale milestone context, and safety posture drift.
+
+## Handoff integrity context guard
+
+Use `backend/scripts/verify-handoff-integrity-context-readonly.js` to confirm the next-chat context package records the handoff integrity aggregate and preserves the live-automation-disabled safety posture.
+
+The guard also blocks forbidden legacy/guarantee language.

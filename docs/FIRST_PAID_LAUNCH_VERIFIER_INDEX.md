@@ -276,3 +276,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Script: `backend/scripts/verify-handoff-integrity-readonly.js`
 - Purpose: Run the critical file format integrity verifier, next-chat context package verifier, and latest milestones verifier together before handoff or safe commit/push workflows.
 - Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.
+
+## Handoff integrity context verifier
+
+- Script: `backend/scripts/verify-handoff-integrity-context-readonly.js`
+- Purpose: Guard the next-chat context package so it records the handoff integrity aggregate milestone and blocks forbidden legacy/guarantee language.
+- Safety: Read-only. Does not enable SMS, Twilio, Vapi ingestion, Supabase writes, Calendar booking, Resend, Lindy, routes, cron, schedulers, or dispatchers.

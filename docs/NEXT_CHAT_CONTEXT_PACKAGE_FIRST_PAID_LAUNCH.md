@@ -738,3 +738,24 @@ Purpose:
 - Preserve safety posture before safe commit/push workflows.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: handoff integrity context guard
+
+Latest verified source-of-truth commit:
+- `5286ef3 test(pilot): require handoff integrity context`
+
+This docs-only milestone recorded the handoff integrity aggregate context.
+
+The dedicated handoff integrity context guard is:
+- `backend/scripts/verify-handoff-integrity-context-readonly.js`
+
+It verifies the context package includes:
+- `backend/scripts/verify-handoff-integrity-readonly.js`
+- handoff integrity aggregate
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- demo-ready with live automation disabled
+
+It also blocks forbidden legacy/guarantee language.
