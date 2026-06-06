@@ -35,7 +35,7 @@ The snapshot confirms:
 
 Latest verified commit:
 
-`526a8e4 docs(vapi): add real payload collection runbook`
+`44bcc5d docs(vapi): add operator payload review checklist`
 
 Completed Vapi milestones:
 1. Vapi post-call payload discovery package (`docs/VAPI_POST_CALL_PAYLOAD_DISCOVERY.md`)
@@ -44,6 +44,7 @@ Completed Vapi milestones:
 4. Vapi sample payload mapping package (`docs/VAPI_SAMPLE_PAYLOAD_MAPPING.md`)
 5. Vapi missing-fields readiness gate (`docs/VAPI_MISSING_FIELDS_READINESS_GATE.md`)
 6. Vapi real payload collection runbook (`docs/VAPI_REAL_PAYLOAD_COLLECTION_RUNBOOK.md`)
+7. Vapi operator payload review checklist (`docs/VAPI_OPERATOR_PAYLOAD_REVIEW_CHECKLIST.md` + verifier)
 
 All Vapi work remains in discovery/planning phase. No webhook route, no Vapi calls, no Supabase writes.
 
