@@ -44,6 +44,8 @@ const requiredMilestones = [
 ];
 
 const requiredSafetyText = [
+  'Next-Chat Recorded Source-of-Truth Baseline',
+  'verify-next-chat-context-recorded-source-of-truth-readonly.js',
   'Operating Workflow Guard Suite',
   'verify-operating-workflow-guard-suite-readonly.js',
   'Operating Workflow Guard Cross-Reference',

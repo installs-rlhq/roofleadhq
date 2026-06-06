@@ -410,3 +410,10 @@ Safety checks remain read-only/test-only with no production activation.
   - Runs the operating workflow guard, cross-reference guard, latest milestones guard, latest milestone self-check, and launch safety meta verifier as one read-only suite.
   - Gives Terminal 1 one focused command for proving the operating workflow guard layer is intact.
   - Read-only. No live automation activation.
+
+## Next-Chat Recorded Source-of-Truth Baseline Verifier
+
+- `backend/scripts/verify-next-chat-context-recorded-source-of-truth-readonly.js`
+  - Confirms the latest required milestone recorded by the latest milestone self-check is also recorded in the next-chat context package.
+  - Prevents the context package from silently drifting behind the guarded source-of-truth baseline.
+  - Read-only. No live automation activation.

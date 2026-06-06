@@ -35,6 +35,10 @@ const commands = [
     script: 'backend/scripts/verify-next-chat-context-latest-milestones-readonly.js',
   },
   {
+    name: 'Next-chat recorded source-of-truth baseline',
+    script: 'backend/scripts/verify-next-chat-context-recorded-source-of-truth-readonly.js',
+  },
+  {
     name: 'Next-chat context package',
     script: 'backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js',
   },

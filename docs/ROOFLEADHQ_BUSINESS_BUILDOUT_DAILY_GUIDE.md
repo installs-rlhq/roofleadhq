@@ -4581,3 +4581,13 @@ The suite runs:
 - `backend/scripts/verify-launch-safety-meta-readonly.js`
 
 This keeps the Terminal 1 source-of-truth workflow, cross-reference protection, milestone protection, and launch safety meta guard easy to verify without enabling live automation.
+
+## Next-Chat Recorded Source-of-Truth Baseline Check
+
+Use this read-only verifier after safe commits are pushed and the milestone is recorded:
+
+- `backend/scripts/verify-next-chat-context-recorded-source-of-truth-readonly.js`
+
+It confirms the latest required milestone recorded by the latest milestone self-check is also recorded in the next-chat context package so future chats do not start from stale guarded source-of-truth context.
+
+This is a drift guard only. It does not enable live automation.

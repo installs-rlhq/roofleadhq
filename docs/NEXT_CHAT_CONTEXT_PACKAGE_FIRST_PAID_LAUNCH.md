@@ -1252,3 +1252,24 @@ Purpose:
 - Preserve explicit approval gates for live/production/destructive actions.
 
 Safety remains demo-ready with live automation disabled.
+
+## Recorded Source-of-Truth Baseline Drift Guard Context
+
+The next-chat context package is now protected by a recorded source-of-truth baseline drift guard:
+
+- `backend/scripts/verify-next-chat-context-recorded-source-of-truth-readonly.js`
+
+This read-only verifier compares the latest required milestone from the latest milestone self-check against the next-chat context package.
+
+Current verified source-of-truth baseline for this guard:
+
+- `919eee6 test(pilot): record operating workflow guard suite milestone`
+
+Purpose:
+
+- Prevent future chats from starting with stale guarded source-of-truth context.
+- Require the latest guarded milestone to be visible in the next-chat context.
+- Preserve Terminal 1 `/root/roofleadhq` source-of-truth workflow.
+- Preserve safe verified doc/test/read-only verifier commit/push policy.
+
+Safety remains demo-ready with live automation disabled.
