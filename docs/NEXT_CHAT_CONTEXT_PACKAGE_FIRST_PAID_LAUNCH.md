@@ -620,3 +620,34 @@ The launch readiness stack now includes `backend/scripts/verify-critical-file-fo
 It protects critical verifier and launch documentation files from malformed patch regressions, including literal backslash-n artifacts, collapsed one-line JS verifier files, missing Node shebangs, and suspiciously low line counts.
 
 This is read-only/test-only and does not activate live automation.
+
+## Source-of-truth update: critical file format integrity guard
+
+Latest verified source-of-truth commit:
+- `6048d21 test(pilot): guard critical file format integrity`
+
+This milestone added:
+- `backend/scripts/verify-critical-file-format-integrity-readonly.js`
+
+It is wired into:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+
+It is documented in:
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+The guard protects critical verifier and launch documentation files from:
+- literal backslash-n artifacts
+- collapsed one-line JS verifier files
+- missing Node shebang
+- suspiciously low line counts
+- missing protected critical files
+
+Verification/build passed before commit:
+- `node backend/scripts/verify-critical-file-format-integrity-readonly.js`
+- `node backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `npm --prefix backend run build`
+
+Safety remains demo-ready with live automation disabled.
