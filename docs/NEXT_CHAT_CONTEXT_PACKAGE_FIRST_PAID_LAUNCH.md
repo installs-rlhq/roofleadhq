@@ -1512,3 +1512,33 @@ No public production route activation.
 No secrets exposure.
 No destructive operations.
 
+
+============================================================
+FIRST PAID LAUNCH APPOINTMENT BOOKING PREFERENCES PACKET
+============================================================
+
+Added safe launch-readiness package:
+
+- docs/FIRST_PAID_LAUNCH_BOOKING_PREFERENCES_PACKET.md
+- backend/scripts/verify-first-paid-launch-booking-preferences-packet-readonly.js
+
+Purpose:
+
+- turn first-paid customer intake into appointment booking preference rules
+- verify appointment language, appointment types, availability, service area, assignment, buffer/capacity, emergency booking, confirmation/reminder, Calendar readiness, and manual booking handoff
+- keep Calendar booking activation disabled
+- preserve explicit approval gates
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.

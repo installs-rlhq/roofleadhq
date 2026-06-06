@@ -4642,3 +4642,23 @@ It confirms:
 - Explicit approval gates before live activation.
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Appointment Booking Preferences Packet
+
+The booking preferences packet turns customer intake into appointment handling rules without enabling Calendar automation.
+
+It confirms:
+
+- Appointment language rules.
+- Appointment types.
+- Availability rules.
+- Service area rules.
+- Assignment rules.
+- Buffer and capacity rules.
+- Emergency booking rules.
+- Confirmation and reminder rules.
+- Calendar readiness without activation.
+- Manual booking handoff.
+- Explicit approval gates.
+
+Safety remains demo-ready with live automation disabled.

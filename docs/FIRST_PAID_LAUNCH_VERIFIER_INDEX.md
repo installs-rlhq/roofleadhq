@@ -448,3 +448,15 @@ Purpose:
 - Protects the customer-specific intake packet for first-paid launch onboarding.
 - Connects the intake worksheet, setup checklist, onboarding runbook, readiness gate, and day-one checklist.
 - Verifies lead source intake, booking preferences, follow-up preferences, reporting expectations, language rules, and explicit approval gates.
+
+## First Paid Launch Appointment Booking Preferences Packet
+
+Verifier:
+
+`node backend/scripts/verify-first-paid-launch-booking-preferences-packet-readonly.js`
+
+Purpose:
+
+- Protects appointment booking preference rules for first-paid launch onboarding.
+- Verifies appointment language, appointment types, availability rules, service area rules, assignment rules, emergency booking rules, confirmation/reminder expectations, and manual booking handoff.
+- Keeps Calendar booking activation disabled unless explicitly approved.
