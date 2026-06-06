@@ -242,6 +242,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Latest milestone self-check',
+    script: 'backend/scripts/verify-latest-milestone-self-check-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

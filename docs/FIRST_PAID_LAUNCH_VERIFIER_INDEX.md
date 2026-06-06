@@ -361,3 +361,9 @@ Safety checks remain read-only/test-only with no production activation.
 - Commit: `574a822 test(pilot): require launch safety in source verifier`
 - Update: `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js` now requires the launch-safety-in-source-verifier milestone.
 - Safety: Read-only. No live automation activation.
+
+## Latest milestone self-check verifier
+
+- Script: `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+- Purpose: Catch documented milestones that are missing from the latest milestones verifier or context package, preventing doc-only drift when script updates were intended.
+- Safety: Read-only. No live automation activation.

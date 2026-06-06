@@ -30,6 +30,10 @@ const commands = [
     name: 'Next-chat context package',
     script: 'backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js',
   },
+  {
+    name: 'Latest milestone self-check',
+    script: 'backend/scripts/verify-latest-milestone-self-check-readonly.js',
+  },
 ];
 
 const failures = [];

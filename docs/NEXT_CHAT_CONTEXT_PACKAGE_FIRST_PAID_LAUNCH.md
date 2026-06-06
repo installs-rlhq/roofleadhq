@@ -1017,3 +1017,18 @@ Purpose:
 - Keep source-of-truth, handoff, context, and launch safety verification aligned.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: latest milestone self-check guard
+
+Latest verified source-of-truth commit:
+- `badb124 test(pilot): record launch safety source milestone`
+
+New safe verifier:
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+
+Purpose:
+- Catch cases where a milestone is documented but the intended verifier script update does not land.
+- Confirm the latest milestones verifier, next-chat context package, verifier index, and business buildout guide remain aligned.
+- Preserve launch safety and live-automation-disabled safety posture.
+
+Safety remains demo-ready with live automation disabled.

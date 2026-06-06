@@ -4509,3 +4509,9 @@ This keeps Terminal 1 source-of-truth alignment tied to the newest top-level lau
 After commit `574a822`, the latest milestones verifier should require the source verifier’s launch safety meta context requirement.
 
 This keeps the handoff chain aligned with the top-level launch safety meta verifier.
+
+## Latest milestone self-check verifier
+
+Use `backend/scripts/verify-latest-milestone-self-check-readonly.js` to confirm recent source-of-truth milestones are present in both verifier code and handoff documentation.
+
+This prevents accidental doc-only drift when a verifier script update was expected.
