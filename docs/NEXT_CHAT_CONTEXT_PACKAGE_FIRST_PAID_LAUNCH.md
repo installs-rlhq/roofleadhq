@@ -1090,3 +1090,21 @@ Purpose:
 - Keep the handoff context aligned with the guard that prevents doc-only drift.
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: latest self-check context milestone guarded
+
+Latest verified source-of-truth commit:
+- `bc71ad1 test(pilot): record latest self check context milestone`
+
+This milestone documented:
+- `17a300f test(pilot): require latest milestone self check context`
+
+Follow-up guard:
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+
+Purpose:
+- Ensure `bc71ad1` is present in the context package now that the latest milestone self-check requires it.
+- Prevent the self-check from requiring a milestone that the handoff context does not record.
+
+Safety remains demo-ready with live automation disabled.
