@@ -1,6 +1,6 @@
 # Next Chat Context Package — First Paid Launch
 
-Current source-of-truth commit: `1674458 test(pilot): add launch ready recap verifier`
+Current source-of-truth commit: `0443c0c test(pilot): add next chat launch context verifier`
 
 Repo path: `/root/roofleadhq`
 
@@ -45,6 +45,7 @@ npm --prefix backend run build
 - `backend/scripts/verify-first-paid-launch-operator-handoff-readonly.js`
 - `backend/scripts/verify-first-paid-launch-ready-recap-readonly.js`
 - `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
 
 ## Business Language Rules
 
