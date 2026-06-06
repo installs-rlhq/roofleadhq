@@ -11,6 +11,7 @@ const criticalJsFiles = [
   'backend/scripts/verify-next-chat-context-latest-milestones-readonly.js',
   'backend/scripts/verify-handoff-integrity-readonly.js',
   'backend/scripts/verify-handoff-integrity-context-readonly.js',
+  'backend/scripts/verify-source-of-truth-commit-chain-readonly.js',
   'backend/scripts/verify-vapi-aggregate-coverage-readonly.js',
   'backend/scripts/verify-vapi-guard-layer-readonly.js',
   'backend/scripts/verify-vapi-scenario-registry-readonly.js',

@@ -791,3 +791,23 @@ The handoff integrity aggregate now runs:
 - `backend/scripts/verify-handoff-integrity-context-readonly.js`
 
 Safety remains demo-ready with live automation disabled.
+
+## Source-of-truth update: commit chain guard
+
+Latest verified source-of-truth commit:
+- `8ce410c test(pilot): record handoff aggregate milestone`
+
+New safe verifier:
+- `backend/scripts/verify-source-of-truth-commit-chain-readonly.js`
+
+Purpose:
+- Verify the latest source-of-truth commit chain shown by `git log --oneline -8`.
+- Confirm the next-chat context package records the most recent handoff milestones.
+- Preserve demo-ready with live automation disabled safety posture.
+
+Protected recent chain:
+- `8ce410c test(pilot): record handoff aggregate milestone`
+- `93bed54 test(pilot): include handoff context in aggregate`
+- `133e5c0 test(pilot): guard handoff integrity context`
+
+Safety remains demo-ready with live automation disabled.

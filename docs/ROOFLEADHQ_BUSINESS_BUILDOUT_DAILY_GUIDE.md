@@ -4437,3 +4437,9 @@ This keeps handoff verification bundled across file-format integrity, context pa
 After commit `93bed54`, the latest milestones verifier should require the next-chat context package to record that the handoff aggregate includes the handoff context guard.
 
 This keeps handoff context current before safe commit/push workflows.
+
+## Source-of-truth commit chain guard
+
+Use `backend/scripts/verify-source-of-truth-commit-chain-readonly.js` to confirm Terminal 1 source-of-truth history and next-chat context stay aligned.
+
+The verifier checks the latest protected commit chain and confirms the context package preserves demo-ready with live automation disabled.

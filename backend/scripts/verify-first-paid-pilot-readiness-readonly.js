@@ -232,6 +232,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Source-of-truth commit chain',
+    script: 'backend/scripts/verify-source-of-truth-commit-chain-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
