@@ -1,7 +1,7 @@
 # Live SMS Approval Package
 
 Status: stale - do not use for live send approval
-Current source-of-truth commit: `624b932 test(sms): add workflow event completed verifier`
+Current source-of-truth commit: `7728804 docs(pilot): update next chat context with step 66`
 
 ## Stale Package Warning
 
@@ -14,6 +14,8 @@ Do not use this package to approve or run a live SMS send. A future live SMS tes
 Do not run the live SMS command in this stale package.
 
 This package does not enable live SMS, Twilio sends, routes, cron, scheduler, auto-start, or production runner automation.
+
+Step 66 production send intent bridge is verified fake-only. It does not approve live SMS sending.
 
 ## Exact approved test candidate
 
