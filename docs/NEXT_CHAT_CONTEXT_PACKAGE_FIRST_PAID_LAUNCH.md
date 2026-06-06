@@ -6,7 +6,7 @@ Repo path: `/root/roofleadhq`
 
 ## Terminal 1 Source-of-Truth Rule
 
-Always continue from the verified source-of-truth commit listed at the top of this package. Never use an older commit.
+Use the baseline commit above to identify this handoff package. Before doing new work, verify the latest real source-of-truth with Terminal 1 using git fetch, git status, and git log.
 
 ## Current Safety Posture
 
