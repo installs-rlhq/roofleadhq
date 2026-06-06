@@ -27,6 +27,9 @@ const requiredStrings = [
   'emergency-leak',
   'insurance-storm',
   'Retell remains deprecated/disabled',
+  'verify-vapi-normalized-contract-doc-readonly.js',
+  'Current Safe Batch — Vapi Normalized Contract Doc Verifier',
+  'nullable rules for `missing-phone`, `missing-address`, and `appointment_suggested`',
   'Workflow Rule Update — Combined Verify and Commit/Push',
   'combine verification, commit/push, final fetch/status/log',
   'The combined command should commit and push only after all required checks pass'

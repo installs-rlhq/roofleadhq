@@ -4246,3 +4246,14 @@ Safety preserved:
 - No routes.
 - No cron/scheduler/dispatcher activation.
 - Retell remains deprecated/disabled.
+
+## Vapi normalized contract doc verification milestone
+
+Added a read-only verifier for `docs/VAPI_NORMALIZED_DRY_RUN_CONTRACT.md` so the documented Vapi normalized dry-run contract stays aligned with the implementation verifier.
+
+This verifier guards:
+- required normalized fields
+- scenario-specific fake/sanitized payload coverage
+- nullable rules for `missing-phone`, `missing-address`, and `appointment_suggested`
+- emergency leak and insurance storm semantics
+- safety posture preserving no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation

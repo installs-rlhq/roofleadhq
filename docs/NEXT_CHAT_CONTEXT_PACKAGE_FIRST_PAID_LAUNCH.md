@@ -418,3 +418,22 @@ Still require explicit approval before:
 - Ingesting real payloads, even sanitized ones.
 - Anything outside the named scope.
 
+## Current Safe Batch — Vapi Normalized Contract Doc Verifier
+
+Added `backend/scripts/verify-vapi-normalized-contract-doc-readonly.js` as a read-only guard for `docs/VAPI_NORMALIZED_DRY_RUN_CONTRACT.md`.
+
+The verifier checks:
+- required normalized Vapi dry-run fields
+- all six fake/sanitized scenarios
+- scenario-specific verifier contract language
+- nullable rules for `missing-phone`, `missing-address`, and `appointment_suggested`
+- `emergency-leak` and `insurance-storm` semantics
+- preserved safety posture:
+  - no live Vapi calls
+  - no Supabase writes
+  - no SMS/Twilio sends
+  - no Calendar/Resend/Lindy activation
+  - no routes
+  - no cron/scheduler/dispatcher activation
+
+This remains documentation/read-only verification work only.

@@ -159,3 +159,14 @@ Enforced contract checks:
 - `insurance-storm` must preserve insurance and storm/hail semantics.
 
 Safety checks remain read-only/test-only with no production activation.
+
+## Vapi normalized contract documentation verifier
+
+- Script: `backend/scripts/verify-vapi-normalized-contract-doc-readonly.js`
+- Purpose: read-only guard that verifies `docs/VAPI_NORMALIZED_DRY_RUN_CONTRACT.md` documents the required normalized Vapi dry-run fields, nullable rules, scenario-specific semantics, and safety posture.
+- Coverage:
+  - required normalized fields
+  - all six fake/sanitized scenarios
+  - `missing-phone`, `missing-address`, and `appointment_suggested` nullable rules
+  - `emergency-leak` and `insurance-storm` scenario semantics
+  - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation
