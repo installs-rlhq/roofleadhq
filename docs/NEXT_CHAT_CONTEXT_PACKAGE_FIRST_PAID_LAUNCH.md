@@ -1,12 +1,27 @@
 # Next Chat Context Package — First Paid Launch
 
-Baseline verified source-of-truth commit before next-chat handoff: `1a2c1c4 docs(pilot): clarify next chat launch baseline rule`
+Baseline verified source-of-truth commit before next-chat handoff: `056672a test(pilot): include stale sms approval guard in readiness`
 
 Repo path: `/root/roofleadhq`
 
 ## Terminal 1 Source-of-Truth Rule
 
 Use the baseline commit above to identify this handoff package. Before doing new work, verify the latest real source-of-truth with Terminal 1 using git fetch, git status, and git log.
+
+## Latest Safety Guard Update
+
+Latest verified commit:
+
+`056672a test(pilot): include stale sms approval guard in readiness`
+
+This added the stale live SMS approval package guard into the aggregate first-paid readiness verifier.
+
+The aggregate verifier now confirms:
+
+- `docs/LIVE_SMS_APPROVAL_PACKAGE.md` is stale
+- stale live SMS approval cannot be treated as active
+- Step 66 send intent bridge remains fake-only
+- no SMS/Twilio/route/cron/scheduler activation exists
 
 ## Step 66 Verified Production Send Intent Bridge
 
@@ -17,6 +32,7 @@ Step 66 commit: `9ddfebd feat(sms): add production send intent bridge`
 Files confirmed present:
 
 - `backend/scripts/verify-sms-production-send-intent-bridge.js`
+- `backend/scripts/verify-live-sms-approval-package-stale-readonly.js`
 - `backend/src/services/sms-production-send-intent-bridge.service.ts`
 - `docs/DAILY_PILOT_OPERATIONS_CHECKLIST.md`
 - `docs/SMS_DISPATCHER_EXECUTION_PLAN.md`
@@ -79,6 +95,7 @@ npm --prefix backend run build
 - `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
 - `backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
 - `backend/scripts/verify-sms-production-send-intent-bridge.js`
+- `backend/scripts/verify-live-sms-approval-package-stale-readonly.js`
 
 ## Business Language Rules
 
