@@ -329,3 +329,59 @@ The verifier should enforce:
 - `insurance-storm` preserves insurance and storm/hail semantics
 
 Safety remains unchanged: no live Vapi calls, no Supabase writes, no SMS/Twilio, no Calendar/Resend/Lindy activation, no routes, and no cron/scheduler/dispatcher activation.
+
+## Latest Verified Source-of-Truth Update — Vapi Scenario Contract Enforcement
+
+Latest verified source-of-truth commit:
+- `3f280f3 docs(pilot): record vapi scenario contract enforcement`
+
+Latest verified history:
+- `3f280f3 docs(pilot): record vapi scenario contract enforcement`
+- `9ddb8ec test(vapi): enforce scenario-specific dry-run contract`
+- `2d8816a docs(pilot): record vapi normalized dry-run contract`
+- `63a1a25 test(vapi): document and verify normalized dry-run contract`
+- `2c516ec docs(pilot): fully refresh next chat context after vapi scenario hardening`
+- `b3fc329 docs(pilot): record vapi scenario hardening in verifier index`
+- `823c666 docs(pilot): record vapi scenario hardening in business guide`
+- `d2ca159 docs(pilot): record vapi dry-run scenario hardening`
+
+Recent Vapi contract milestones:
+- `63a1a25` added `docs/VAPI_NORMALIZED_DRY_RUN_CONTRACT.md`.
+- `63a1a25` strengthened `backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js` to check required normalized fields across all six fake/sanitized Vapi scenarios.
+- `2d8816a` recorded the normalized dry-run contract milestone in the context package, verifier index, and business guide.
+- `9ddb8ec` strengthened the dry-run verifier again to enforce scenario-specific contract rules.
+- `3f280f3` recorded the scenario-specific contract enforcement milestone in the business guide.
+
+Scenario-specific verifier checks now include:
+- `source` must be `vapi`.
+- `test_only` must be `true`.
+- `has_transcript` must be boolean.
+- `ingested_at` must parse as a valid date.
+- `call_id` must be fake/test-safe.
+- `from` may be null only for `missing-phone`.
+- `property_address` may be null only for `missing-address`.
+- `appointment_suggested` may be null only for `unbooked-followup`, `missing-address`, or `missing-phone`.
+- `booked-inspection` must include a suggested appointment.
+- `emergency-leak` must preserve emergency/high-urgency and leak semantics.
+- `insurance-storm` must preserve insurance and storm/hail semantics.
+
+Verification passed before recent commits:
+- `node backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js`
+- `node backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `npm --prefix backend run build`
+
+Current safe workflow reminder:
+- Use VPS Terminal direct patches when exact edits are known.
+- Use Telegram OpenClaw only when useful for larger code edits.
+- Require meaningful diff, targeted grep/assertions, verifier output, build output, and final git state before commit/push.
+- Preserve all live-production approval gates.
+
+Safety unchanged:
+- No live Vapi calls.
+- No Supabase writes from Vapi flows.
+- No SMS/Twilio sends.
+- No Calendar/Resend/Lindy activation.
+- No routes.
+- No cron/scheduler/dispatcher activation.
+- Retell remains deprecated/disabled.
