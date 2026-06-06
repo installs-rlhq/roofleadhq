@@ -1,6 +1,6 @@
 # Next Chat Context Package — First Paid Launch
 
-Baseline verified source-of-truth commit before next-chat handoff: `056672a test(pilot): include stale sms approval guard in readiness`
+Baseline verified source-of-truth commit before next-chat handoff: `ecb6290 test(pilot): require stale sms guard in verifier index`
 
 Repo path: `/root/roofleadhq`
 
@@ -12,7 +12,7 @@ Use the baseline commit above to identify this handoff package. Before doing new
 
 Latest verified commit:
 
-`056672a test(pilot): include stale sms approval guard in readiness`
+`ecb6290 test(pilot): require stale sms guard in verifier index`
 
 This added the stale live SMS approval package guard into the aggregate first-paid readiness verifier.
 
