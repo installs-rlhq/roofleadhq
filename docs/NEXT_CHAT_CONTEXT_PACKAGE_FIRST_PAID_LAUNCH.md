@@ -35,7 +35,7 @@ The snapshot confirms:
 
 Latest verified commit:
 
-`44bcc5d docs(vapi): add operator payload review checklist`
+`b7e6498 test(pilot): require vapi readiness verifiers in aggregate`
 
 Completed Vapi milestones:
 1. Vapi post-call payload discovery package (`docs/VAPI_POST_CALL_PAYLOAD_DISCOVERY.md`)
@@ -45,6 +45,8 @@ Completed Vapi milestones:
 5. Vapi missing-fields readiness gate (`docs/VAPI_MISSING_FIELDS_READINESS_GATE.md`)
 6. Vapi real payload collection runbook (`docs/VAPI_REAL_PAYLOAD_COLLECTION_RUNBOOK.md`)
 7. Vapi operator payload review checklist (`docs/VAPI_OPERATOR_PAYLOAD_REVIEW_CHECKLIST.md` + verifier)
+
+Aggregate readiness verifier now requires the full Vapi readiness sequence (7 verifiers).
 
 All Vapi work remains in discovery/planning phase. No webhook route, no Vapi calls, no Supabase writes.
 
