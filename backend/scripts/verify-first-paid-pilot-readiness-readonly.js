@@ -85,6 +85,11 @@ const commands = [
     name: 'First Paid Launch day checklist',
     script: 'backend/scripts/verify-first-paid-launch-day-checklist-readonly.js',
     args: []
+  },
+  {
+    name: 'First Paid Launch ready recap',
+    script: 'backend/scripts/verify-first-paid-launch-ready-recap-readonly.js',
+    args: []
   }
 ];
 

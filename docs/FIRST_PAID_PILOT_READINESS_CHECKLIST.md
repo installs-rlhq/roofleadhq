@@ -36,6 +36,8 @@ Launch day checklist verifier: `node backend/scripts/verify-first-paid-launch-da
 
 Launch ready recap: `docs/FIRST_PAID_LAUNCH_READY_RECAP.md`
 
+Launch ready recap verifier: `node backend/scripts/verify-first-paid-launch-ready-recap-readonly.js`
+
 Contractor onboarding runbook: `docs/FIRST_PAID_CONTRACTOR_ONBOARDING_RUNBOOK.md`
 
 Contractor intake worksheet: `docs/FIRST_PAID_CONTRACTOR_INTAKE_WORKSHEET.md`
