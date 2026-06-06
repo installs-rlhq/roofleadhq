@@ -4603,3 +4603,23 @@ Protect it with:
 - `backend/scripts/verify-next-chat-context-safe-build-snapshot-readonly.js`
 
 This keeps the latest source-of-truth commit chain, guard stack, workflow rules, approval gates, business context, and safety posture available for the next chat.
+
+## First Paid Launch Operator Day-One Checklist
+
+The day-one checklist protects the first paid launch workflow before any live automation is enabled.
+
+Use it to confirm:
+
+- Terminal 1 source-of-truth verification.
+- Demo-mode safety.
+- First paid customer readiness.
+- Roofer business information.
+- Lead source intake.
+- Calendar and booking preferences.
+- Emergency/urgent lead policy.
+- Follow-up cadence.
+- Reporting expectations.
+- Operator manual handoff.
+- Explicit approval gates before live activation.
+
+Safety remains demo-ready with live automation disabled.

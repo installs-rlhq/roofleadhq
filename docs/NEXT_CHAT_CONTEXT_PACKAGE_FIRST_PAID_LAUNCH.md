@@ -1350,3 +1350,40 @@ Purpose:
 - Preserve explicit approval gates for live/production/destructive actions.
 
 Safety remains demo-ready with live automation disabled.
+
+============================================================
+FIRST PAID LAUNCH OPERATOR DAY-ONE CHECKLIST
+============================================================
+
+Added safe launch-readiness package:
+
+- docs/FIRST_PAID_LAUNCH_OPERATOR_DAY_ONE_CHECKLIST.md
+- backend/scripts/verify-first-paid-launch-operator-day-one-checklist-readonly.js
+
+Purpose:
+
+- move from meta-guarding back toward first-paid launch readiness
+- protect real day-one operator execution
+- keep live automation disabled
+- verify source-of-truth workflow
+- verify first paid customer intake
+- verify booking preferences
+- verify emergency handling
+- verify follow-up cadence
+- verify reporting expectations
+- verify operator handoff
+- verify explicit approval gates
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.

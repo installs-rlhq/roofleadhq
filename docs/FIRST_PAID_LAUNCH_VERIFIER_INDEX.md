@@ -424,3 +424,15 @@ Safety checks remain read-only/test-only with no production activation.
   - Confirms the copy/paste-ready safe build snapshot includes the latest source-of-truth commit chain, guard stack, workflow rules, approval gates, business context, and safety posture.
   - Protects the next-chat handoff from losing current operating rules.
   - Read-only. No live automation activation.
+
+## First Paid Launch Operator Day-One Checklist
+
+Verifier:
+
+`node backend/scripts/verify-first-paid-launch-operator-day-one-checklist-readonly.js`
+
+Purpose:
+
+- Protects day-one operator execution for the first paid launch.
+- Keeps live automation disabled.
+- Verifies source-of-truth workflow, launch-readiness intake, manual handoff, and explicit production approval gates.
