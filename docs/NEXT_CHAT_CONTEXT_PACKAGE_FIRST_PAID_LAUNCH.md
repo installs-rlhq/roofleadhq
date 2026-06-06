@@ -1108,3 +1108,21 @@ Purpose:
 - Prevent the self-check from requiring a milestone that the handoff context does not record.
 
 Safety remains demo-ready with live automation disabled.
+
+## Latest Safe Build Operating Workflow Guard
+
+The repository now includes a read-only operating workflow verifier:
+
+- `backend/scripts/verify-next-safe-build-operating-workflow-readonly.js`
+
+This verifier protects the next-chat handoff from losing the current operating rules:
+
+- Terminal 1 in `/root/roofleadhq` remains the only trusted source of truth.
+- `/root/.openclaw/workspace` must not be used.
+- OpenClaw summaries alone are not trusted.
+- Safe verified doc/test/read-only verifier changes may be committed and pushed without repeated approval.
+- Explicit approval is still required before live SMS/Twilio, production Supabase writes, Vapi production webhook ingestion, Calendar booking activation, Resend/Lindy production activation, public routes, cron/schedulers/dispatchers, secrets exposure, destructive operations, or anything outside the named safe scope.
+- The required verification workflow must remain present: fetch/status/log, targeted greps/assertions, `node --check`, relevant read-only verifiers, aggregate readiness, backend build, actual `git diff --stat`, actual `git diff`, staged diff review, commit, push, final fetch/status/log confirmation.
+- Safety posture remains demo-ready with live automation disabled.
+
+This guard is intended to improve launch safety, source-of-truth integrity, handoff reliability, and context-package completeness.

@@ -11,6 +11,10 @@ const commands = [
     script: 'backend/scripts/verify-critical-file-format-integrity-readonly.js',
   },
   {
+    name: 'Next safe build operating workflow',
+    script: 'backend/scripts/verify-next-safe-build-operating-workflow-readonly.js',
+  },
+  {
     name: 'Source-of-truth process integrity',
     script: 'backend/scripts/verify-source-of-truth-commit-chain-readonly.js',
   },
