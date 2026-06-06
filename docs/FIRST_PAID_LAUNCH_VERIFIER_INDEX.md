@@ -35,6 +35,8 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Launch control center verifier: `node backend/scripts/verify-first-paid-launch-control-center-readonly.js`
 - Launch status contract: `backend/src/services/first-paid-launch-status-contract.service.ts`
 - Launch status contract verifier: `node backend/scripts/verify-first-paid-launch-status-contract-readonly.js`
+- Execution pack: `docs/FIRST_PAID_LAUNCH_EXECUTION_PACK.md`
+- Execution pack verifier: `node backend/scripts/verify-first-paid-launch-execution-pack-readonly.js`
 
 ## Launch Framing
 
