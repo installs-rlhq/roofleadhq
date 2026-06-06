@@ -72,6 +72,13 @@ const validScenarios = [
   'insurance-storm'
 ];
 
+const requiredFields = [
+  'source', 'call_id', 'from', 'to', 'started_at', 'ended_at',
+  'homeowner_name', 'email', 'property_address', 'roof_issue',
+  'urgency', 'insurance_claim', 'outcome', 'appointment_suggested',
+  'summary', 'has_transcript', 'test_only', 'ingested_at'
+];
+
 for (const sc of validScenarios) {
   const result = spawnSync(process.execPath, [
     scriptPath,
@@ -81,10 +88,44 @@ for (const sc of validScenarios) {
     env: { ...process.env, VAPI_INGESTION_TEST_MODE: '1' },
     stdio: 'pipe'
   });
-  if (result.status === 0) {
-    pass(`Valid scenario passes: ${sc}`);
-  } else {
+
+  if (result.status !== 0) {
     fail(`Valid scenario failed unexpectedly: ${sc}`, { stderr: result.stderr.toString() });
+    continue;
+  }
+
+  try {
+    const stdout = result.stdout.toString();
+    const marker = '--- Normalized Dry-Run Output';
+    const markerIdx = stdout.indexOf(marker);
+    const jsonStart = stdout.indexOf('{', markerIdx);
+    if (jsonStart === -1) throw new Error('No JSON object found');
+    
+    // Extract balanced JSON (simple approach for this use case)
+    let braceCount = 0;
+    let jsonEnd = jsonStart;
+    for (let i = jsonStart; i < stdout.length; i++) {
+      if (stdout[i] === '{') braceCount++;
+      if (stdout[i] === '}') braceCount--;
+      if (braceCount === 0) {
+        jsonEnd = i;
+        break;
+      }
+    }
+    const jsonStr = stdout.substring(jsonStart, jsonEnd + 1);
+    const output = JSON.parse(jsonStr);
+
+    const missing = requiredFields.filter(f => !(f in output));
+    if (missing.length === 0) {
+      pass(`Valid scenario has all normalized fields: ${sc}`);
+    } else {
+      fail(`Scenario ${sc} missing normalized fields: ${missing.join(', ')}`);
+    }
+  } catch (e) {
+    fail(`Failed to parse normalized output for scenario: ${sc}`, { 
+      error: e.message, 
+      stdout_preview: result.stdout.toString().slice(0, 300) 
+    });
   }
 }
 
