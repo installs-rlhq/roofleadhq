@@ -95,6 +95,11 @@ const commands = [
     name: 'Next Chat context package first paid launch',
     script: 'backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js',
     args: []
+  },
+  {
+    name: 'Live SMS approval package stale guard',
+    script: 'backend/scripts/verify-live-sms-approval-package-stale-readonly.js',
+    args: []
   }
 ];
 
