@@ -179,7 +179,9 @@ function liveTriggerMatches() {
     lindy: findMatches(lindyPatterns, {
       exclude: [
         'backend/scripts/show-pilot-readiness-status.js',
-        'backend/src/services/first-paid-launch-status-contract.service.ts'
+        'backend/src/services/first-paid-launch-status-contract.service.ts',
+        'backend/scripts/prepare-operator-alert-payload-readonly.js',
+        'backend/scripts/vapi-test-payload-ingestion-dry-run.js'
       ],
       excludeSafeReadOnlyOrTestArtifacts: true
     }),
