@@ -137,3 +137,25 @@ Safety posture:
 - No routes.
 - No cron/scheduler/dispatcher activation.
 - Retell remains deprecated/disabled.
+
+## Vapi Scenario-Specific Contract Enforcement
+
+The Vapi dry-run verifier now needs to enforce scenario-specific normalized object rules, not only field presence.
+
+Verifier:
+- `backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js`
+
+Enforced contract checks:
+- `source` must be `vapi`.
+- `test_only` must be `true`.
+- `has_transcript` must be boolean.
+- `ingested_at` must parse as a valid date.
+- `call_id` must be fake/test-safe.
+- `from` may be null only for `missing-phone`.
+- `property_address` may be null only for `missing-address`.
+- `appointment_suggested` may be null only for `unbooked-followup`, `missing-address`, or `missing-phone`.
+- `booked-inspection` must include a suggested appointment.
+- `emergency-leak` must preserve emergency/high-urgency and leak semantics.
+- `insurance-storm` must preserve insurance and storm/hail semantics.
+
+Safety checks remain read-only/test-only with no production activation.

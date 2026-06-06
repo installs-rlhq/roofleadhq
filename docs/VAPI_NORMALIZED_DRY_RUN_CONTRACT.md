@@ -69,3 +69,25 @@ Any other null value in a required field is considered invalid.
 - `insurance-storm`
 
 All scenarios must produce output that conforms to this contract when gates are satisfied.
+## Scenario-Specific Contract Enforcement
+
+The read-only verifier now enforces scenario-specific normalized output rules in addition to checking field presence.
+
+Global checks for every scenario:
+- `source` must be `vapi`.
+- `test_only` must be `true`.
+- `has_transcript` must be a boolean.
+- `ingested_at` must parse as a valid date.
+- `call_id` must be fake/test-safe and start with `call_fake`.
+
+Nullable enforcement:
+- `from` may be null only for `missing-phone`.
+- `property_address` may be null only for `missing-address`.
+- `appointment_suggested` may be null only for `unbooked-followup`, `missing-address`, or `missing-phone`.
+- `booked-inspection` must include a non-null `appointment_suggested`.
+
+Scenario semantic enforcement:
+- `emergency-leak` must preserve emergency/high-urgency semantics and leak semantics.
+- `insurance-storm` must preserve insurance semantics and storm/hail semantics.
+
+This remains read-only and test-only. It does not add routes, cron, scheduler, dispatcher activation, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, or live Vapi calls.

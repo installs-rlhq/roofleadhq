@@ -120,7 +120,63 @@ for (const sc of validScenarios) {
       pass(`Valid scenario has all normalized fields: ${sc}`);
     } else {
       fail(`Scenario ${sc} missing normalized fields: ${missing.join(', ')}`);
+      continue;
     }
+
+    // Scenario-specific contract enforcement
+    const nullableAppointmentScenarios = ['unbooked-followup', 'missing-address', 'missing-phone'];
+
+    if (output.source !== 'vapi') fail(`${sc}: source must be vapi`);
+    if (output.test_only !== true) fail(`${sc}: test_only must be true`);
+    if (typeof output.has_transcript !== 'boolean') fail(`${sc}: has_transcript must be boolean`);
+    if (!output.ingested_at || isNaN(Date.parse(output.ingested_at))) fail(`${sc}: ingested_at must be valid date`);
+    if (!output.call_id || !output.call_id.startsWith('call_fake')) fail(`${sc}: call_id must be fake/test-safe`);
+
+    if (sc === 'missing-phone') {
+      if (output.from !== null) fail(`${sc}: from must be null`);
+    } else if (output.from === null) {
+      fail(`${sc}: from may be null only for missing-phone`);
+    }
+
+    if (sc === 'missing-address') {
+      if (output.property_address !== null) fail(`${sc}: property_address must be null`);
+    } else if (output.property_address === null) {
+      fail(`${sc}: property_address may be null only for missing-address`);
+    }
+
+    if (output.appointment_suggested === null && !nullableAppointmentScenarios.includes(sc)) {
+      fail(`${sc}: appointment_suggested may be null only for unbooked-followup, missing-address, or missing-phone`);
+    }
+
+    if (sc === 'booked-inspection' && output.appointment_suggested === null) {
+      fail(`${sc}: booked-inspection must include a suggested appointment`);
+    }
+
+    if (sc === 'emergency-leak') {
+      const urgencyText = String(output.urgency || '').toLowerCase();
+      const issueText = String(output.roof_issue || '').toLowerCase();
+      const summaryText = String(output.summary || '').toLowerCase();
+      if (!urgencyText.includes('emergency') && !urgencyText.includes('high') && !summaryText.includes('emergency')) {
+        fail(`${sc}: emergency urgency semantics must be preserved`);
+      }
+      if (!issueText.includes('leak') && !summaryText.includes('leak')) {
+        fail(`${sc}: leak semantics must be preserved`);
+      }
+    }
+
+    if (sc === 'insurance-storm') {
+      const issueText = String(output.roof_issue || '').toLowerCase();
+      const summaryText = String(output.summary || '').toLowerCase();
+      const insuranceText = String(output.insurance_claim || '').toLowerCase();
+      if (output.insurance_claim !== true && !insuranceText.includes('yes') && !summaryText.includes('insurance')) {
+        fail(`${sc}: insurance semantics must be preserved`);
+      }
+      if (!issueText.includes('storm') && !summaryText.includes('storm') && !summaryText.includes('hail')) {
+        fail(`${sc}: storm semantics must be preserved`);
+      }
+    }
+
+    pass(`Scenario-specific contract checks passed: ${sc}`);
   } catch (e) {
     fail(`Failed to parse normalized output for scenario: ${sc}`, { 
       error: e.message, 

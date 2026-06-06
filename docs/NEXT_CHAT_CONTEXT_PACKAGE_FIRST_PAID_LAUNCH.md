@@ -310,3 +310,22 @@ Safety preserved:
 - No routes.
 - No cron/scheduler/dispatcher activation.
 - Retell remains deprecated/disabled.
+
+## Pending/Latest Build Direction — Vapi Scenario-Specific Contract Enforcement
+
+The next Vapi hardening layer strengthens `backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js` beyond field presence checks.
+
+The verifier should enforce:
+- `source = vapi`
+- `test_only = true`
+- `has_transcript` is boolean
+- `ingested_at` is parseable
+- `call_id` is fake/test-safe
+- `from` is null only for `missing-phone`
+- `property_address` is null only for `missing-address`
+- `appointment_suggested` is null only for `unbooked-followup`, `missing-address`, or `missing-phone`
+- `booked-inspection` includes a suggested appointment
+- `emergency-leak` preserves emergency/high-urgency and leak semantics
+- `insurance-storm` preserves insurance and storm/hail semantics
+
+Safety remains unchanged: no live Vapi calls, no Supabase writes, no SMS/Twilio, no Calendar/Resend/Lindy activation, no routes, and no cron/scheduler/dispatcher activation.
