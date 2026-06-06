@@ -38,8 +38,29 @@ if (!testMode || !allowIngestion) {
 
 pass('Both required gates present (env + CLI flag)');
 
-// Locate the fake sample payload
-const samplePath = path.join(repoRoot, 'docs/samples/vapi-post-call-sample.fake.json');
+// Scenario support
+const scenarioArg = args.find(a => a.startsWith('--scenario='));
+const scenario = scenarioArg ? scenarioArg.split('=')[1] : null;
+
+const scenarioMap = {
+  'booked-inspection': 'vapi-scenario-booked-inspection.fake.json',
+  'unbooked-followup': 'vapi-scenario-unbooked-followup.fake.json',
+  'missing-address': 'vapi-scenario-missing-address.fake.json',
+  'missing-phone': 'vapi-scenario-missing-phone.fake.json',
+  'emergency-leak': 'vapi-scenario-emergency-leak.fake.json',
+  'insurance-storm': 'vapi-scenario-insurance-storm.fake.json'
+};
+
+let samplePath;
+if (scenario) {
+  if (!scenarioMap[scenario]) {
+    console.error(`FAIL: Unknown scenario. Allowed scenarios: ${Object.keys(scenarioMap).join(', ')}`);
+    process.exit(1);
+  }
+  samplePath = path.join(repoRoot, 'docs/samples', scenarioMap[scenario]);
+} else {
+  samplePath = path.join(repoRoot, 'docs/samples/vapi-post-call-sample.fake.json');
+}
 
 if (!fs.existsSync(samplePath)) {
   fail('Fake sample payload not found');
@@ -56,9 +77,15 @@ try {
 
 pass('Fake sample payload loaded successfully');
 
-// Basic safety check on payload
-if (!payload.call || !payload.call.from || !payload.call.from.startsWith('+1555555')) {
-  fail('Payload does not appear to be the expected fake sample');
+// Basic safety check on payload (allow missing-phone scenario where from is intentionally null)
+const isFakePayload =
+  payload.call &&
+  (payload.call.id && payload.call.id.startsWith('call_fake')) &&
+  (payload.call.to && payload.call.to.startsWith('+1555555')) &&
+  (scenario === 'missing-phone' || (payload.call.from && payload.call.from.startsWith('+1555555')));
+
+if (!isFakePayload) {
+  fail('Payload does not appear to be a valid fake/sanitized test payload');
   process.exit(process.exitCode || 1);
 }
 

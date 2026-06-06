@@ -29,6 +29,94 @@ if (!fs.existsSync(scriptPath)) {
 }
 pass('vapi-test-payload-ingestion-dry-run.js exists');
 
+// Scenario file checks
+const scenarioFiles = [
+  'vapi-scenario-booked-inspection.fake.json',
+  'vapi-scenario-unbooked-followup.fake.json',
+  'vapi-scenario-missing-address.fake.json',
+  'vapi-scenario-missing-phone.fake.json',
+  'vapi-scenario-emergency-leak.fake.json',
+  'vapi-scenario-insurance-storm.fake.json'
+];
+
+for (const file of scenarioFiles) {
+  const fullPath = path.join(repoRoot, 'docs/samples', file);
+  if (!fs.existsSync(fullPath)) {
+    fail(`Scenario file missing: ${file}`);
+  } else {
+    try {
+      JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+      pass(`Scenario file valid JSON: ${file}`);
+    } catch (e) {
+      fail(`Scenario file not valid JSON: ${file}`);
+    }
+  }
+}
+
+// --scenario support check
+const scriptContent = fs.readFileSync(scriptPath, 'utf8');
+if (scriptContent.includes('--scenario=') && scriptContent.includes('scenarioMap')) {
+  pass('Script supports --scenario flag');
+} else {
+  fail('Script does not support --scenario flag');
+}
+
+// Execute all 6 valid scenarios with gates
+const { spawnSync } = require('child_process');
+const validScenarios = [
+  'booked-inspection',
+  'unbooked-followup',
+  'missing-address',
+  'missing-phone',
+  'emergency-leak',
+  'insurance-storm'
+];
+
+for (const sc of validScenarios) {
+  const result = spawnSync(process.execPath, [
+    scriptPath,
+    '--allow-vapi-test-ingestion',
+    `--scenario=${sc}`
+  ], {
+    env: { ...process.env, VAPI_INGESTION_TEST_MODE: '1' },
+    stdio: 'pipe'
+  });
+  if (result.status === 0) {
+    pass(`Valid scenario passes: ${sc}`);
+  } else {
+    fail(`Valid scenario failed unexpectedly: ${sc}`, { stderr: result.stderr.toString() });
+  }
+}
+
+// Invalid scenario must fail
+const invalidResult = spawnSync(process.execPath, [
+  scriptPath,
+  '--allow-vapi-test-ingestion',
+  '--scenario=not-real'
+], {
+  env: { ...process.env, VAPI_INGESTION_TEST_MODE: '1' },
+  stdio: 'pipe'
+});
+if (invalidResult.status !== 0) {
+  pass('Invalid scenario correctly fails');
+} else {
+  fail('Invalid scenario did not fail as expected');
+}
+
+// Valid scenario without gates must fail
+const noGateResult = spawnSync(process.execPath, [
+  scriptPath,
+  '--scenario=booked-inspection'
+], {
+  env: { ...process.env, VAPI_INGESTION_TEST_MODE: '0' },
+  stdio: 'pipe'
+});
+if (noGateResult.status !== 0) {
+  pass('Valid scenario without gates correctly fails');
+} else {
+  fail('Valid scenario without gates did not fail as expected');
+}
+
 const content = fs.readFileSync(scriptPath, 'utf8');
 
 // Gate verification

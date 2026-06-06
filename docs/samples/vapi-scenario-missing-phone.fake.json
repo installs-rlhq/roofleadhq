@@ -1,0 +1,23 @@
+{
+  "event": "call.completed",
+  "call": {
+    "id": "call_fake_missing_phone_004",
+    "from": null,
+    "to": "+15555550987",
+    "status": "completed",
+    "started_at": "2026-06-06T17:25:00Z",
+    "ended_at": "2026-06-06T17:27:30Z"
+  },
+  "transcript": "AI: Hello. Homeowner: My roof is leaking badly.",
+  "summary": "Caller phone not captured.",
+  "analysis": {
+    "homeowner_name": "Test Homeowner 4",
+    "email": "redacted4@example.com",
+    "property_address": "789 Fake Blvd, Test City, TS 00000",
+    "roof_issue": "Major leak",
+    "urgency": "high",
+    "insurance_claim": false,
+    "appointment_suggested": null,
+    "outcome": "callback_requested"
+  }
+}
