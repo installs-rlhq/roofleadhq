@@ -115,6 +115,11 @@ const commands = [
     name: 'First Paid Launch status contract',
     script: 'backend/scripts/verify-first-paid-launch-status-contract-readonly.js',
     args: []
+  },
+  {
+    name: 'First Paid Launch status endpoint',
+    script: 'backend/scripts/verify-first-paid-launch-status-endpoint-readonly.js',
+    args: []
   }
 ];
 

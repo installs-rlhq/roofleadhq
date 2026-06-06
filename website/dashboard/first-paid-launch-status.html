@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Paid Launch Status</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 40px; line-height: 1.6; }
+    .status { background: #f0f0f0; padding: 20px; border-radius: 8px; }
+    .safety { color: #b45309; }
+    .ok { color: #166534; }
+    ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <h1>First Paid Launch Status</h1>
+  <div class="status">
+    <h2>Status</h2>
+    <p id="status">demo_ready_with_live_automation_disabled</p>
+    
+    <h2>Source of Truth</h2>
+    <p id="source">32d675a feat(pilot): add first paid launch status contract</p>
+    
+    <h2>Live Automation</h2>
+    <ul>
+      <li>SMS: <span class="ok">false</span></li>
+      <li>Twilio: <span class="ok">false</span></li>
+      <li>Calendar: <span class="ok">false</span></li>
+      <li>Vapi Outbound: <span class="ok">false</span></li>
+      <li>Resend: <span class="ok">false</span></li>
+      <li>Lindy: <span class="ok">false</span></li>
+    </ul>
+    
+    <h2 class="safety">Safety Statements</h2>
+    <ul>
+      <li>Homeowner SMS is not live</li>
+      <li>Roofer reply SMS is not live</li>
+      <li>Twilio sending is not live</li>
+      <li>Live SMS approval package is stale</li>
+      <li>Step 66 production send intent bridge is fake-only</li>
+      <li>Manual Outreach Path C is dry-run/test-safe unless separately approved</li>
+      <li>No SMS/Twilio/Vapi/Calendar/Resend/Lindy production triggers without explicit approval</li>
+    </ul>
+    
+    <h2>Business Language</h2>
+    <p><strong>Offer:</strong> Founder-Led Launch Program</p>
+    <p><strong>Action:</strong> book inspections / book appointments</p>
+  </div>
+  
+  <p><em>This page is read-only. No live actions, no production triggers.</em></p>
+</body>
+</html>
