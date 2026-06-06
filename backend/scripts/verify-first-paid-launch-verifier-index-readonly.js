@@ -19,7 +19,8 @@ const requiredReferences = [
   'backend/scripts/verify-pilot-operator-status-page-readonly.js',
   'backend/scripts/verify-pilot-operator-status-endpoint-readonly.js',
   'backend/scripts/verify-dashboard-navigation-readonly.js',
-  'backend/scripts/verify-live-sms-approval-package-stale-readonly.js'
+  'backend/scripts/verify-live-sms-approval-package-stale-readonly.js',
+  'backend/scripts/verify-first-paid-launch-go-no-go-snapshot-readonly.js'
 ];
 
 const requiredPhrases = [
@@ -32,7 +33,8 @@ const requiredPhrases = [
   'no external service calls',
   'no live service activations',
   'Live SMS approval package stale guard',
-  'Live SMS approval package must remain stale unless a fresh approval package is created and explicitly approved.'
+  'Live SMS approval package must remain stale unless a fresh approval package is created and explicitly approved.',
+  'FIRST_PAID_LAUNCH_GO_NO_GO_SNAPSHOT.md'
 ];
 
 const forbiddenPhrases = [

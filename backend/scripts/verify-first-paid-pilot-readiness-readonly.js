@@ -100,6 +100,11 @@ const commands = [
     name: 'Live SMS approval package stale guard',
     script: 'backend/scripts/verify-live-sms-approval-package-stale-readonly.js',
     args: []
+  },
+  {
+    name: 'First Paid Launch go/no-go snapshot',
+    script: 'backend/scripts/verify-first-paid-launch-go-no-go-snapshot-readonly.js',
+    args: []
   }
 ];
 

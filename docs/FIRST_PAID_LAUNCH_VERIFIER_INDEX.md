@@ -29,6 +29,8 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Operator status endpoint verifier: `node backend/scripts/verify-pilot-operator-status-endpoint-readonly.js`
 - Dashboard navigation verifier: `node backend/scripts/verify-dashboard-navigation-readonly.js`
 - Live SMS approval package stale guard: `node backend/scripts/verify-live-sms-approval-package-stale-readonly.js`
+- Go/No-Go snapshot verifier: `node backend/scripts/verify-first-paid-launch-go-no-go-snapshot-readonly.js`
+- FIRST_PAID_LAUNCH_GO_NO_GO_SNAPSHOT.md
 
 ## Launch Framing
 
