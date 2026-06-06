@@ -1222,3 +1222,33 @@ The suite covers:
 This preserves the `Operating Workflow Guard Suite` and `Operating Workflow Guard Cross-Reference` protections while keeping launch safety meta non-recursive.
 
 Safety remains demo-ready with live automation disabled.
+
+## Latest Source-of-Truth Milestone — Operating Workflow Guard Suite
+
+Latest verified source-of-truth commit:
+
+- `162bb6b test(pilot): add operating workflow guard suite`
+
+Files changed:
+
+- `backend/scripts/verify-operating-workflow-guard-suite-readonly.js`
+- `backend/scripts/verify-next-chat-context-latest-milestones-readonly.js`
+- `backend/scripts/verify-latest-milestone-self-check-readonly.js`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add a standalone, non-recursive operating workflow guard suite.
+- Verify the operating workflow guard layer through one focused read-only command.
+- Cover the next safe build operating workflow verifier.
+- Cover the operating workflow guard cross-reference verifier.
+- Cover the next-chat latest milestones verifier.
+- Cover the latest milestone self-check verifier.
+- Cover the launch safety meta verifier.
+- Preserve Terminal 1 `/root/roofleadhq` source-of-truth workflow.
+- Preserve safe verified doc/test/read-only verifier commit/push policy.
+- Preserve explicit approval gates for live/production/destructive actions.
+
+Safety remains demo-ready with live automation disabled.

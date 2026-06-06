@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  '162bb6b test(pilot): add operating workflow guard suite',
   '9059c67 test(pilot): guard operating workflow cross references',
   '6375675 docs(pilot): document operating workflow guard',
   '700b5ab test(pilot): guard next safe build operating workflow',
