@@ -167,6 +167,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Vapi test payload ingestion dry-run',
+    script: 'backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
