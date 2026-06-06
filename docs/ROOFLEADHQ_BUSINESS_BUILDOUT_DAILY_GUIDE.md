@@ -4156,3 +4156,50 @@ Return:
 4. What I should personally handle
 5. One priority for tomorrow
 ```
+
+## Vapi Normalized Dry-Run Contract Milestone
+
+Commit:
+- `63a1a25 test(vapi): document and verify normalized dry-run contract`
+
+This milestone added `docs/VAPI_NORMALIZED_DRY_RUN_CONTRACT.md` and strengthened `backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js`.
+
+The dry-run verifier now confirms all six fake/sanitized Vapi scenarios emit the required normalized internal object fields:
+- `source`
+- `call_id`
+- `from`
+- `to`
+- `started_at`
+- `ended_at`
+- `homeowner_name`
+- `email`
+- `property_address`
+- `roof_issue`
+- `urgency`
+- `insurance_claim`
+- `outcome`
+- `appointment_suggested`
+- `summary`
+- `has_transcript`
+- `test_only`
+- `ingested_at`
+
+Nullable rules now documented:
+- `from` may be null only for `missing-phone`.
+- `property_address` may be null only for `missing-address`.
+- `appointment_suggested` may be null for unbooked or missing-field scenarios.
+
+Verification passed before commit `63a1a25`:
+- `node backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js`
+- `node backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `npm --prefix backend run build`
+
+Safety remained unchanged:
+- No live Vapi calls.
+- No Supabase writes.
+- No SMS/Twilio sends.
+- No Calendar/Resend/Lindy activation.
+- No routes.
+- No cron/scheduler/dispatcher activation.
+- Retell remains deprecated/disabled.

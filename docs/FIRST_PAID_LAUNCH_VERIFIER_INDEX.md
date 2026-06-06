@@ -81,3 +81,59 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
   - `docs/samples/vapi-scenario-emergency-leak.fake.json`
   - `docs/samples/vapi-scenario-insurance-storm.fake.json`
 - Safety preserved: no live Vapi/Supabase/SMS/Twilio/Calendar/Resend/Lindy, no routes/cron/scheduler/dispatcher.
+
+- Commit `63a1a25 test(vapi): document and verify normalized dry-run contract` added `docs/VAPI_NORMALIZED_DRY_RUN_CONTRACT.md` and strengthened the verifier to check all 18 normalized fields across the six scenarios (including nullable rules for `from`, `property_address`, and `appointment_suggested`).
+
+## Vapi Normalized Dry-Run Contract Verification
+
+Commit:
+- `63a1a25 test(vapi): document and verify normalized dry-run contract`
+
+Contract doc:
+- `docs/VAPI_NORMALIZED_DRY_RUN_CONTRACT.md`
+
+Verifier strengthened:
+- `backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js`
+
+Verification coverage:
+- Confirms all six fake/sanitized Vapi dry-run scenarios execute successfully.
+- Confirms each scenario emits the required normalized internal object fields.
+- Confirms invalid scenario names fail closed.
+- Confirms valid scenarios without required gates fail closed.
+- Preserves the required gates:
+  - `VAPI_INGESTION_TEST_MODE=1`
+  - `--allow-vapi-test-ingestion`
+
+Required normalized fields:
+- `source`
+- `call_id`
+- `from`
+- `to`
+- `started_at`
+- `ended_at`
+- `homeowner_name`
+- `email`
+- `property_address`
+- `roof_issue`
+- `urgency`
+- `insurance_claim`
+- `outcome`
+- `appointment_suggested`
+- `summary`
+- `has_transcript`
+- `test_only`
+- `ingested_at`
+
+Nullable rules:
+- `from` may be null only for `missing-phone`.
+- `property_address` may be null only for `missing-address`.
+- `appointment_suggested` may be null for unbooked or missing-field scenarios.
+
+Safety posture:
+- No live Vapi calls.
+- No Supabase writes.
+- No SMS/Twilio sends.
+- No Calendar/Resend/Lindy activation.
+- No routes.
+- No cron/scheduler/dispatcher activation.
+- Retell remains deprecated/disabled.

@@ -92,6 +92,7 @@ Latest related commits:
 - d2ca159 docs(pilot): record vapi dry-run scenario hardening
 - 823c666 docs(pilot): record vapi scenario hardening in business guide
 - b3fc329 docs(pilot): record vapi scenario hardening in verifier index
+- 63a1a25 test(vapi): document and verify normalized dry-run contract
 
 What changed:
 
@@ -256,3 +257,56 @@ Avoid old pilot language, quota-based appointment promises, job-booking language
 - No SMS, Twilio, Calendar, Resend, Lindy, or production automation
 
 Keep all production sending disabled unless explicitly approved. Use: Founder-Led Launch Program + book inspections / book appointments.
+## Latest Verified Milestone — Vapi Normalized Dry-Run Contract
+
+Commit:
+- `63a1a25 test(vapi): document and verify normalized dry-run contract`
+
+Files changed:
+- Added `docs/VAPI_NORMALIZED_DRY_RUN_CONTRACT.md`
+- Strengthened `backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js`
+
+What changed:
+- Documented the normalized internal object emitted by `backend/scripts/vapi-test-payload-ingestion-dry-run.js`.
+- Strengthened the Vapi dry-run verifier so all six fake/sanitized scenarios must emit the required normalized fields.
+- The verifier now parses the normalized dry-run JSON output and checks field presence scenario-by-scenario.
+
+Required normalized fields:
+- `source`
+- `call_id`
+- `from`
+- `to`
+- `started_at`
+- `ended_at`
+- `homeowner_name`
+- `email`
+- `property_address`
+- `roof_issue`
+- `urgency`
+- `insurance_claim`
+- `outcome`
+- `appointment_suggested`
+- `summary`
+- `has_transcript`
+- `test_only`
+- `ingested_at`
+
+Nullable field rules:
+- `from` may be null only for `missing-phone`.
+- `property_address` may be null only for `missing-address`.
+- `appointment_suggested` may be null for unbooked or missing-field scenarios.
+
+Verification passed before commit `63a1a25`:
+- `node backend/scripts/verify-vapi-test-payload-ingestion-dry-run-readonly.js`
+- `node backend/scripts/verify-next-chat-context-package-first-paid-launch-readonly.js`
+- `node backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `npm --prefix backend run build`
+
+Safety preserved:
+- No live Vapi calls.
+- No Supabase writes.
+- No SMS/Twilio sends.
+- No Calendar/Resend/Lindy activation.
+- No routes.
+- No cron/scheduler/dispatcher activation.
+- Retell remains deprecated/disabled.
