@@ -4299,6 +4299,7 @@ This verifier guards:
 - emergency leak semantics
 - insurance storm semantics
 - dry-run failure when required gates are missing
+- equivalent normalized outputs for `--scenario=value` and `--scenario value`
 
 Safety preserved:
 - no live Vapi calls

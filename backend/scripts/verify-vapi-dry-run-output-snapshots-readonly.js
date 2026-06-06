@@ -96,7 +96,7 @@ for (const scenario of scenarios) {
     fail(`Missing scenario sample file: ${samplePath}`);
   }
 
-  const result = spawnSync(
+  const equalsResult = spawnSync(
     process.execPath,
     [dryRunScript, `--scenario=${scenario}`, '--allow-vapi-test-ingestion'],
     {
@@ -110,11 +110,42 @@ for (const scenario of scenarios) {
     }
   );
 
-  if (result.status !== 0) {
-    fail(`Dry-run scenario failed: ${scenario}`, `${result.stdout}\n${result.stderr}`);
+  if (equalsResult.status !== 0) {
+    fail(`Dry-run scenario failed using --scenario=${scenario}`, `${equalsResult.stdout}\n${equalsResult.stderr}`);
   }
 
-  const normalized = parseJsonFromOutput(result.stdout, scenario);
+  const spaceResult = spawnSync(
+    process.execPath,
+    [dryRunScript, '--scenario', scenario, '--allow-vapi-test-ingestion'],
+    {
+      cwd: repoRoot,
+      env: {
+        ...process.env,
+        VAPI_INGESTION_TEST_MODE: '1',
+      },
+      encoding: 'utf8',
+      maxBuffer: 1024 * 1024,
+    }
+  );
+
+  if (spaceResult.status !== 0) {
+    fail(`Dry-run scenario failed using --scenario ${scenario}`, `${spaceResult.stdout}\n${spaceResult.stderr}`);
+  }
+
+  const normalized = parseJsonFromOutput(equalsResult.stdout, `--scenario=${scenario}`);
+  const normalizedFromSpaceArg = parseJsonFromOutput(spaceResult.stdout, `--scenario ${scenario}`);
+
+  if (normalized.call_id !== normalizedFromSpaceArg.call_id) {
+    fail(`${scenario} --scenario=value and --scenario value forms must load the same fake call_id`);
+  }
+
+  for (const field of requiredFields) {
+    if (field === 'ingested_at') continue;
+
+    if (JSON.stringify(normalized[field]) !== JSON.stringify(normalizedFromSpaceArg[field])) {
+      fail(`${scenario} --scenario=value and --scenario value forms differ for normalized field: ${field}`);
+    }
+  }
 
   for (const field of requiredFields) {
     if (!Object.prototype.hasOwnProperty.call(normalized, field)) {

@@ -35,6 +35,7 @@ const requiredStrings = [
   'both `--scenario=value` and `--scenario value`',
   'Current Safe Batch — Vapi Dry-Run Output Snapshot Verifier',
   'dry-run script fails closed without required gates',
+  '`--scenario=value` and `--scenario value` produce equivalent normalized outputs',
   'Current Safe Batch — Vapi Scenario Sample Files Verifier',
   'no production-looking secrets or live identifiers are present',
   'Current Safe Batch — Vapi Normalized Contract Doc Verifier',

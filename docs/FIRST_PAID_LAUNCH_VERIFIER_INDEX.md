@@ -196,6 +196,7 @@ Safety checks remain read-only/test-only with no production activation.
   - nullable rules are preserved for `missing-phone`, `missing-address`, and `appointment_suggested`
   - booked inspection, unbooked follow-up, emergency leak, and insurance storm semantics remain intact
   - dry-run script fails closed without required gates
+  - snapshot verification confirms `--scenario=value` and `--scenario value` load equivalent normalized outputs
   - no live Vapi calls, Supabase writes, SMS/Twilio sends, Calendar/Resend/Lindy activation, routes, cron, scheduler, or dispatcher activation
 
 ## Vapi dry-run CLI contract verifier

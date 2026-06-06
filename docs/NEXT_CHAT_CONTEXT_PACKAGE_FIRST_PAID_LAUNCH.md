@@ -486,6 +486,7 @@ The verifier checks:
   - `emergency-leak`
   - `insurance-storm`
 - dry-run script fails closed without required gates
+- `--scenario=value` and `--scenario value` produce equivalent normalized outputs
 
 Safety preserved:
 - no live Vapi calls
