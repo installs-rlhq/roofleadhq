@@ -2883,3 +2883,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-follow-up-packet-readonly.js`
 
 The packet includes a manual opening script, company profile questions, service area questions, services and qualification questions, booking preference questions, emergency and insurance questions, lead source questions, manual review and reporting questions, follow-up notes, dry-run safety confirmation, and final follow-up decision language. It remains planning-only and does not activate production.
+
+## Latest Source-of-Truth Milestone
+
+Commit: cdc8779 test(pilot): add first roofer manual follow up packet
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
