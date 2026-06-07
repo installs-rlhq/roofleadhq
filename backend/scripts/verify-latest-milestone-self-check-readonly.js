@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  '9def760 test(pilot): add roofer dry-run operator acceptance checklist',
   '71b25ec test(pilot): add roofer dry-run onboarding qa wrapper',
   '2050309 docs(pilot): refresh roofer dry-run onboarding context package',
   '6a01421 test(pilot): wire roofer onboarding runbook into readiness',

@@ -2819,3 +2819,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-operator-acceptance-checklist-readonly.js`
 
 The checklist gives a PASS/HOLD/BLOCKED review for workspace completeness, dry-run flags, missing information, manual review readiness, exposed secrets, and production-activation risk. It remains planning-only and does not activate production.
+
+## Latest Source-of-Truth Milestone
+
+Commit: 9def760 test(pilot): add roofer dry-run operator acceptance checklist
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
