@@ -2786,3 +2786,15 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+
+## Roofer Dry-Run Onboarding QA Wrapper
+
+Latest safe build adds a one-command QA wrapper for local roofer dry-run onboarding.
+
+Files:
+- `scripts/qa-roofer-dry-run-onboarding.sh`
+- `backend/scripts/verify-roofer-dry-run-onboarding-qa-wrapper-readonly.js`
+- `docs/ROOFER_DRY_RUN_ONBOARDING_QA_WRAPPER.md`
+
+The wrapper verifies source of truth when available, creates a temporary dry-run workspace, confirms expected generated files, confirms `WORKSPACE_MODE=dry-run`, confirms production activation flags remain false, checks safety language, compares generated files against the known-good sample fixture, cleans up the temporary workspace, and exits without production activation.

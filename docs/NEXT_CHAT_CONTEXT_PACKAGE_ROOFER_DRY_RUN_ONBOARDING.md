@@ -78,3 +78,14 @@ Required validation:
 
 Recommended next safe build:
 Create a one-command dry-run onboarding QA wrapper that runs source-of-truth verification, creates a temporary roofer workspace, verifies files and disabled flags, compares against the sample fixture, cleans up, and exits without production activation.
+
+
+## Roofer Dry-Run Onboarding QA Wrapper
+
+Next safe onboarding layer added:
+
+- `scripts/qa-roofer-dry-run-onboarding.sh`
+- `backend/scripts/verify-roofer-dry-run-onboarding-qa-wrapper-readonly.js`
+- `docs/ROOFER_DRY_RUN_ONBOARDING_QA_WRAPPER.md`
+
+This provides a one-command Terminal 1 QA path for creating, validating, fixture-comparing, and cleaning up a temporary roofer dry-run workspace while production activation remains disabled.
