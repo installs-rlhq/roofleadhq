@@ -55,6 +55,8 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Voice path cleanup packet verifier: `node backend/scripts/verify-first-paid-launch-voice-path-cleanup-packet-readonly.js`
 - Automation foundation packet: `docs/FIRST_PAID_LAUNCH_AUTOMATION_FOUNDATION_PACKET.md`
 - Automation foundation packet verifier: `node backend/scripts/verify-first-paid-launch-automation-foundation-packet-readonly.js`
+- Roofer onboarding script packet: `docs/FIRST_PAID_LAUNCH_ROOFER_ONBOARDING_SCRIPT_PACKET.md`
+- Roofer onboarding script packet verifier: `node backend/scripts/verify-first-paid-launch-roofer-onboarding-script-packet-readonly.js`
 - Schema blockers packet: `docs/FIRST_PAID_LAUNCH_SCHEMA_BLOCKERS_PACKET.md`
 - Schema blockers packet verifier: `node backend/scripts/verify-first-paid-launch-schema-blockers-packet-readonly.js`
 - SMS dispatcher messages write test-only: `node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js`

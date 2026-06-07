@@ -4866,3 +4866,14 @@ Safety remains demo-ready with live automation disabled.
 - No production Calendar/SMS activation without explicit flag changes and Terminal 1 verification.
 - Safety remains demo-ready with live automation disabled.
 
+## First Paid Launch Roofer Onboarding Script Packet
+
+- Packet: `docs/FIRST_PAID_LAUNCH_ROOFER_ONBOARDING_SCRIPT_PACKET.md`
+- Verifier: `backend/scripts/verify-first-paid-launch-roofer-onboarding-script-packet-readonly.js`
+- Scripts: `scripts/onboard-roofer.sh`, `scripts/verify-roofer-dry-run-onboarding-workspace.sh`
+- Purpose: create a repeatable, repo-controlled roofer onboarding skeleton.
+- Production flags remain disabled by default.
+- No production SMS, Calendar booking, Vapi, Supabase write, contractor notification, homeowner notification, cron, scheduler, dispatcher, or public route activation.
+- Future onboarding can support book inspections and book appointments after explicit activation gates are satisfied.
+- Safety remains demo-ready with live automation disabled.
+

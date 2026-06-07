@@ -92,6 +92,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Paid Launch roofer onboarding script packet',
+    script: 'backend/scripts/verify-first-paid-launch-roofer-onboarding-script-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'Pilot dashboard smoke',
     script: 'backend/scripts/verify-pilot-dashboard-smoke-readonly.js',
     args: []

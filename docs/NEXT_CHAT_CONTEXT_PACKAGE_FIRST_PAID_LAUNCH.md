@@ -2451,3 +2451,23 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Roofer Onboarding Script Packet Milestone
+
+- Added: `docs/FIRST_PAID_LAUNCH_ROOFER_ONBOARDING_SCRIPT_PACKET.md`
+- Added: `backend/scripts/verify-first-paid-launch-roofer-onboarding-script-packet-readonly.js`
+- Added: `scripts/onboard-roofer.sh`
+- Added: `scripts/verify-roofer-dry-run-onboarding-workspace.sh`
+- Updated: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js` (aggregate wiring)
+- Updated: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Updated: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Updated: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
+This packet starts the repeatable roofer onboarding path with repo-controlled Terminal scripts instead of agent improvisation.
+
+The scripts create and verify dry-run onboarding workspaces with all production activation flags disabled.
+
+No production SMS, Calendar booking, Vapi, Supabase write, contractor notification, homeowner notification, cron, scheduler, dispatcher, or public route activation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
+
