@@ -4918,3 +4918,9 @@ The template copy flow remains planning-only and does not activate production sy
 The roofer dry-run workspace smoke verifier proves the onboarding script can create a planning-only workspace from templates, validate disabled production flags, and clean up the temporary workspace.
 
 This gives the founder-led launch a repeatable local proof that onboarding generation remains safe.
+
+## Roofer Dry-Run Workspace Sample Packet
+
+The sample workspace fixture gives founder-led launch operations a known-good local reference for dry-run onboarding QA.
+
+Use `fixtures/roofer-dry-run-workspace/sample-roofer/` to compare generated workspace structure and safety flags.

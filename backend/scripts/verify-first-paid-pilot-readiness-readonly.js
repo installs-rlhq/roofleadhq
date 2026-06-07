@@ -117,6 +117,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Paid Launch roofer dry-run workspace sample packet',
+    script: 'backend/scripts/verify-first-paid-launch-roofer-dry-run-workspace-sample-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'First Paid Launch production gate check script packet',
     script: 'backend/scripts/verify-first-paid-launch-production-gate-check-script-packet-readonly.js',
     args: []

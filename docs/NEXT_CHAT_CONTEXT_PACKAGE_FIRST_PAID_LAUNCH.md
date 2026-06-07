@@ -2676,3 +2676,28 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## Current Safe Build — Roofer Dry-Run Workspace Sample Packet
+
+The repo now includes a known-good sample roofer dry-run workspace fixture:
+
+- `docs/FIRST_PAID_LAUNCH_ROOFER_DRY_RUN_WORKSPACE_SAMPLE_PACKET.md`
+- `fixtures/roofer-dry-run-workspace/sample-roofer/`
+- `backend/scripts/verify-first-paid-launch-roofer-dry-run-workspace-sample-packet-readonly.js`
+
+Purpose:
+
+- preserve a stable local sample workspace
+- support founder-led onboarding QA
+- verify disabled production flags in fixture files
+- keep onboarding comparison planning-only
+
+Safety remains:
+
+- no live SMS
+- no Supabase writes or migrations
+- no Calendar booking activation
+- no Vapi production webhook ingestion
+- no Retell route activation
+- no contractor or homeowner notifications
+- no cron, scheduler, dispatcher, or public route activation
