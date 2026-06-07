@@ -2956,3 +2956,17 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Roofer Manual Setup Planning QA Wrapper
+
+The next safe first-roofer dry-run layer adds a one-command QA wrapper for the founder PASS to manual setup planning chain.
+
+Added files:
+
+- `scripts/qa-first-roofer-manual-setup-planning.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_PLANNING_QA.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-qa-readonly.js`
+
+The QA wrapper verifies the setup packet, readiness packet QA, manual follow-up packet, internal handoff summary packet, founder review decision packet, and manual setup planning packet before running production gate checks and aggregate safe readiness.
+
+Safety remains unchanged: dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.

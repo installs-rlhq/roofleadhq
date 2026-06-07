@@ -632,3 +632,11 @@ Purpose:
 - Read-only verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-packet-readonly.js`
 - Purpose: convert a founder/operator PASS decision into a planning-only manual setup checklist with explicit do-not-activate gates.
 - Safety: planning-only; no SMS, calls, emails, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, destructive actions, secrets exposure, or production activation.
+
+## First Roofer Manual Setup Planning QA Wrapper
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_PLANNING_QA.md`
+- Wrapper: `scripts/qa-first-roofer-manual-setup-planning.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-qa-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Safety: dry-run only; no SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi/Retell production routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.

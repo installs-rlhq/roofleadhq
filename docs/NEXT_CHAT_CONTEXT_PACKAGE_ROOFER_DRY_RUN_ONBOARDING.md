@@ -182,3 +182,17 @@ Next safe onboarding layer added:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-packet-readonly.js`
 
 This converts a founder/operator PASS decision into a planning-only manual setup checklist before any real first-roofer setup work. It records required inputs, safe setup planning tasks, explicit do-not-activate gates, planning-only allowed work, next safe action, dry-run flags, safety status, and final setup planning decision while production activation remains disabled.
+
+## First Roofer Manual Setup Planning QA Wrapper
+
+The next safe first-roofer dry-run layer adds a one-command QA wrapper for the founder PASS to manual setup planning chain.
+
+Added files:
+
+- `scripts/qa-first-roofer-manual-setup-planning.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_PLANNING_QA.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-qa-readonly.js`
+
+The QA wrapper verifies the setup packet, readiness packet QA, manual follow-up packet, internal handoff summary packet, founder review decision packet, and manual setup planning packet before running production gate checks and aggregate safe readiness.
+
+Safety remains unchanged: dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
