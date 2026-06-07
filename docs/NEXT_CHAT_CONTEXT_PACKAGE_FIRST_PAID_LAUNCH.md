@@ -2862,3 +2862,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-readiness-packet-qa-readonly.js`
 
 The wrapper verifies source of truth, runs the roofer dry-run onboarding QA wrapper, checks the operator acceptance checklist, checks the first roofer setup packet, runs the related read-only verifiers, confirms dry-run flags and safety language, confirms cleanup, and exits with production activation disabled.
+
+## Latest Source-of-Truth Milestone
+
+Commit: e7b3d8b test(pilot): add first roofer readiness packet qa
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
