@@ -1686,3 +1686,45 @@ No cron/scheduler/dispatcher activation.
 No public production route activation.
 No secrets exposure.
 No destructive operations.
+
+============================================================
+LATEST SOURCE-OF-TRUTH MILESTONE — FIRST PAID REPORTING PREFERENCES PACKET
+============================================================
+
+Latest verified source-of-truth commit:
+
+- `992a1ff test(pilot): add first paid reporting preferences packet`
+
+Files changed:
+
+- `docs/FIRST_PAID_LAUNCH_REPORTING_PREFERENCES_PACKET.md`
+- `backend/scripts/verify-first-paid-launch-reporting-preferences-packet-readonly.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add a first-paid launch reporting preferences packet.
+- Add a read-only/static verifier for reporting preferences packet coverage.
+- Wire the reporting preferences packet verifier into aggregate first-paid pilot readiness.
+- Record the packet in the verifier index, business buildout guide, and next-chat context.
+- Turn customer intake, booking preferences, and follow-up cadence into weekly/monthly reporting rules.
+- Keep Resend, Lindy, cron, scheduler, dispatcher, and live report automation disabled.
+- Keep live automation disabled.
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.
+
