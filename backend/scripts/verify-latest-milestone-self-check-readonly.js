@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  'b9480fd test(pilot): add production gate check script packet',
   '3093835 test(pilot): record roofer onboarding script packet milestone',
   'c870c62 test(pilot): add roofer onboarding script packet',
   '130f337 test(pilot): add automation foundation packet',

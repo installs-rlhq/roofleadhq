@@ -2513,3 +2513,13 @@ Required safety language:
 - Do not mutate Supabase.
 - Do not notify contractors or homeowners.
 - Do not enable cron, scheduler, dispatcher, public routes, Retell routes, or Vapi production webhook ingestion.
+
+## Latest Source-of-Truth Milestone
+
+Commit: b9480fd test(pilot): add production gate check script packet
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
