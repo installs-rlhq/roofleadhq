@@ -2904,3 +2904,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-internal-handoff-summary-packet-readonly.js`
 
 The packet summarizes current dry-run readiness, accepted setup state, remaining roofer follow-up items, founder/operator handoff notes, next manual planning action, dry-run safety confirmation, and final handoff decision language. It remains planning-only and does not activate production.
+
+## Latest Source-of-Truth Milestone
+
+Commit: 39c1eb9 test(pilot): add first roofer internal handoff summary packet
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
