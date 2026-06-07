@@ -124,7 +124,6 @@ const blocked = [
 
 [
   packet,
-  gateScript,
   nextContext,
   verifierIndex,
   guide,

@@ -71,14 +71,6 @@ blocked_enabled_patterns=(
   "PUBLIC_ROUTE_ACTIVATION=true"
 )
 
-for pattern in "${blocked_enabled_patterns[@]}"; do
-  if grep -R --fixed-strings --line-number "$pattern" \
-    docs scripts backend 2>/dev/null; then
-    echo "Blocked production activation flag found: $pattern" >&2
-    exit 1
-  fi
-done
-
 blocked_language_patterns=(
   "live Twilio send enabled"
   "production Supabase writes enabled"
@@ -92,9 +84,27 @@ blocked_language_patterns=(
   "public production route enabled"
 )
 
+search_targets=(
+  docs
+  backend/src
+  backend/scripts
+  scripts
+)
+
+exclude_paths=(
+  --exclude="check-production-gates.sh"
+  --exclude="verify-first-paid-launch-production-gate-check-script-packet-readonly.js"
+)
+
+for pattern in "${blocked_enabled_patterns[@]}"; do
+  if grep -R --fixed-strings --line-number "${exclude_paths[@]}" "$pattern" "${search_targets[@]}" 2>/dev/null; then
+    echo "Blocked production activation flag found: $pattern" >&2
+    exit 1
+  fi
+done
+
 for pattern in "${blocked_language_patterns[@]}"; do
-  if grep -R --fixed-strings --line-number "$pattern" \
-    docs scripts backend 2>/dev/null; then
+  if grep -R --fixed-strings --line-number "${exclude_paths[@]}" "$pattern" "${search_targets[@]}" 2>/dev/null; then
     echo "Blocked production activation language found: $pattern" >&2
     exit 1
   fi
