@@ -2925,3 +2925,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-founder-review-decision-packet-readonly.js`
 
 The packet records review inputs, founder/operator decision summary, PASS criteria, HOLD criteria, BLOCKED criteria, approved next manual action, dry-run safety confirmation, and final founder decision language. It remains planning-only and does not activate production.
+
+## Latest Source-of-Truth Milestone
+
+Commit: 7eb1b3b test(pilot): add first roofer founder review decision packet
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
