@@ -4842,3 +4842,15 @@ It confirms:
 - Explicit: no live automation, no Supabase mutation, no production writes
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Voice Path Cleanup Packet
+
+- Packet: `docs/FIRST_PAID_LAUNCH_VOICE_PATH_CLEANUP_PACKET.md`
+- Verifier: `backend/scripts/verify-first-paid-launch-voice-path-cleanup-packet-readonly.js`
+- Purpose: document the first-paid launch voice path cleanup posture.
+- Retell is deprecated/disabled.
+- Vapi is the current phone/voice path.
+- Vapi dry-run/read-only only.
+- Guardrails include no Vapi production webhook ingestion, no live Vapi webhook route, no Vapi calls from code, no Retell route activation, no webhook activation, and no production ingestion.
+- Safety remains demo-ready with live automation disabled.
+

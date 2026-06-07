@@ -2383,3 +2383,19 @@ It documents stopped lead handling, opted_out, stopped_reason, do-not-contact, s
 No Supabase migration, no schema mutation, no production writes, and no live automation activated.
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Voice Path Cleanup Packet Milestone
+
+- Added: `docs/FIRST_PAID_LAUNCH_VOICE_PATH_CLEANUP_PACKET.md`
+- Added: `backend/scripts/verify-first-paid-launch-voice-path-cleanup-packet-readonly.js`
+- Updated: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js` (aggregate wiring)
+- Updated: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Updated: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Updated: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
+The voice path cleanup packet documents that Retell is deprecated/disabled, Vapi is the current phone/voice path, and Vapi dry-run/read-only only remains the safe first-paid launch posture.
+
+It confirms no Vapi production webhook ingestion, no live Vapi webhook route, no Vapi calls from code, no Retell route activation, no webhook activation, and no production ingestion.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
+

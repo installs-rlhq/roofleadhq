@@ -82,6 +82,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Paid Launch voice path cleanup packet',
+    script: 'backend/scripts/verify-first-paid-launch-voice-path-cleanup-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'Pilot dashboard smoke',
     script: 'backend/scripts/verify-pilot-dashboard-smoke-readonly.js',
     args: []
