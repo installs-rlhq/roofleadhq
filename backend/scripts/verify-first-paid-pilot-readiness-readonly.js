@@ -107,6 +107,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Paid Launch roofer onboarding template copy',
+    script: 'backend/scripts/verify-first-paid-launch-roofer-onboarding-template-copy-readonly.js',
+    args: []
+  },
+  {
     name: 'First Paid Launch production gate check script packet',
     script: 'backend/scripts/verify-first-paid-launch-production-gate-check-script-packet-readonly.js',
     args: []

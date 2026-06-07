@@ -531,3 +531,17 @@ Purpose:
 - Read-only verifier: `backend/scripts/verify-first-paid-launch-roofer-dry-run-workspace-template-packet-readonly.js`
 - Purpose: standardize planning-only dry-run onboarding workspace files.
 - Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.
+
+## Roofer Onboarding Template Copy
+
+- Script: `scripts/onboard-roofer.sh`
+- Read-only verifier: `backend/scripts/verify-first-paid-launch-roofer-onboarding-template-copy-readonly.js`
+- Purpose: confirm dry-run onboarding workspaces are created from reusable templates.
+- Workspace outputs:
+  - `README.md`
+  - `intake.md`
+  - `safety-flags.env`
+  - `activation-flags.env`
+  - `workspace-metadata.env`
+  - `onboarding-checklist.md`
+- Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.

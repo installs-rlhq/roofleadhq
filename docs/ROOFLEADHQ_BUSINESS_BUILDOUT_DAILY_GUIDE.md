@@ -4904,3 +4904,11 @@ Use the roofer dry-run workspace templates to standardize planning-only onboardi
 Templates live in `templates/roofer-dry-run-workspace/` and include intake fields, disabled safety flags, and workspace safety notes.
 
 No production systems are activated by this packet.
+
+## Roofer Onboarding Template Copy
+
+`scripts/onboard-roofer.sh` now creates dry-run onboarding workspaces from reusable templates.
+
+Each workspace receives `README.md`, `intake.md`, `safety-flags.env`, `activation-flags.env`, `workspace-metadata.env`, and `onboarding-checklist.md`.
+
+The template copy flow remains planning-only and does not activate production systems.

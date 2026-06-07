@@ -2603,3 +2603,31 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## Current Safe Build — Roofer Onboarding Template Copy
+
+The dry-run onboarding script now copies reusable workspace templates into each roofer workspace.
+
+Files:
+
+- `scripts/onboard-roofer.sh`
+- `backend/scripts/verify-first-paid-launch-roofer-onboarding-template-copy-readonly.js`
+
+Workspace outputs:
+
+- `README.md`
+- `intake.md`
+- `safety-flags.env`
+- `activation-flags.env`
+- `workspace-metadata.env`
+- `onboarding-checklist.md`
+
+Safety remains:
+
+- no live SMS
+- no Supabase writes or migrations
+- no Calendar booking activation
+- no Vapi production webhook ingestion
+- no Retell route activation
+- no contractor or homeowner notifications
+- no cron, scheduler, dispatcher, or public route activation
