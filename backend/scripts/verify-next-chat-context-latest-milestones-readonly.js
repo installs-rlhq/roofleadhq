@@ -8,6 +8,7 @@ const contextPath = path.join(repoRoot, 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PA
 const context = fs.readFileSync(contextPath, 'utf8');
 
 const requiredText = [
+  '454080a test(pilot): add roofer dry-run workspace smoke packet',
   '076029e test(pilot): fix roofer onboarding template copy cleanup',
   'caa4e2f test(pilot): add roofer dry-run workspace template packet',
   'c87ccf6 test(pilot): fix roofer dry-run intake verifier language guard',
