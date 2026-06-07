@@ -2914,3 +2914,14 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+
+## Roofer Dry-Run First Roofer Founder Review Decision Packet
+
+Latest safe build adds a planning-only founder/operator PASS / HOLD / BLOCKED decision packet before real first-roofer setup planning.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_FOUNDER_REVIEW_DECISION_PACKET.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-founder-review-decision-packet-readonly.js`
+
+The packet records review inputs, founder/operator decision summary, PASS criteria, HOLD criteria, BLOCKED criteria, approved next manual action, dry-run safety confirmation, and final founder decision language. It remains planning-only and does not activate production.

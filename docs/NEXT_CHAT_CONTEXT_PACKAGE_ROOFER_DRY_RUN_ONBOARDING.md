@@ -1,11 +1,11 @@
 # Next Chat Context Package - Roofer Dry-Run Onboarding
 
 Latest verified source of truth:
-ec00b9f test(pilot): record first roofer manual follow up packet milestone
+913b9ee test(pilot): record first roofer internal handoff summary packet milestone
 
 Terminal 1 source-of-truth:
 - Repo path: /root/roofleadhq
-- HEAD and origin/main match at ec00b9f
+- HEAD and origin/main match at 913b9ee
 - Verify with scripts/verify-source-of-truth.sh
 
 Recent verified chain:
@@ -40,8 +40,11 @@ Completed safe onboarding layer:
 - First roofer dry-run setup packet
 - First roofer readiness packet QA
 - First roofer manual follow-up packet
+- First roofer internal handoff summary packet
 
 Key files:
+- docs/ROOFER_DRY_RUN_FIRST_ROOFER_FOUNDER_REVIEW_DECISION_PACKET.md
+- backend/scripts/verify-roofer-dry-run-first-roofer-founder-review-decision-packet-readonly.js
 - docs/ROOFER_DRY_RUN_FIRST_ROOFER_INTERNAL_HANDOFF_SUMMARY_PACKET.md
 - backend/scripts/verify-roofer-dry-run-first-roofer-internal-handoff-summary-packet-readonly.js
 - docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_FOLLOW_UP_PACKET.md
@@ -156,3 +159,13 @@ Next safe onboarding layer added:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-internal-handoff-summary-packet-readonly.js`
 
 This gives the founder/operator a planning-only internal handoff note before real first-roofer setup planning. It summarizes readiness chain review, accepted setup state, remaining follow-up items, handoff notes, next manual planning action, dry-run flags, safety status, and final handoff decision while production activation remains disabled.
+
+
+## Roofer Dry-Run First Roofer Founder Review Decision Packet
+
+Next safe onboarding layer added:
+
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_FOUNDER_REVIEW_DECISION_PACKET.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-founder-review-decision-packet-readonly.js`
+
+This gives the founder/operator a planning-only PASS / HOLD / BLOCKED decision packet after the internal handoff summary and before real first-roofer setup planning. It records review inputs, decision summary, PASS/HOLD/BLOCKED criteria, approved next manual action, dry-run flags, safety status, and final founder decision while production activation remains disabled.

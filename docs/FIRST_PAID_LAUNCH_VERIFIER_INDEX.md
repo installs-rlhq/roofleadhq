@@ -616,3 +616,11 @@ Purpose:
 - Read-only verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-internal-handoff-summary-packet-readonly.js`
 - Purpose: give the founder/operator a planning-only internal handoff summary before real first-roofer setup planning.
 - Safety: planning-only; no SMS, calls, emails, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, or production activation.
+
+
+## Roofer Dry-Run First Roofer Founder Review Decision Packet
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_FOUNDER_REVIEW_DECISION_PACKET.md`
+- Read-only verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-founder-review-decision-packet-readonly.js`
+- Purpose: give the founder/operator a planning-only PASS / HOLD / BLOCKED decision packet before real first-roofer setup planning.
+- Safety: planning-only; no SMS, calls, emails, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, or production activation.
