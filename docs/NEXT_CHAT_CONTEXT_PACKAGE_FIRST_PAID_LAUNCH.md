@@ -2946,3 +2946,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-packet-readonly.js`
 
 The packet records required inputs, setup planning checklist items, explicit do-not-activate gates, planning-only allowed work, next safe action, dry-run safety confirmation, and final setup planning decision language. It remains planning-only and does not activate production.
+
+## Latest Source-of-Truth Milestone
+
+Commit: 66e2b5a test(pilot): add first roofer manual setup planning packet
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
