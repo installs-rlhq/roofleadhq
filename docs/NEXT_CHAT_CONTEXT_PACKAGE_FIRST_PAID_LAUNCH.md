@@ -1656,3 +1656,33 @@ No public production route activation.
 No secrets exposure.
 No destructive operations.
 
+
+============================================================
+FIRST PAID LAUNCH REPORTING PREFERENCES PACKET
+============================================================
+
+Added safe launch-readiness package:
+
+- docs/FIRST_PAID_LAUNCH_REPORTING_PREFERENCES_PACKET.md
+- backend/scripts/verify-first-paid-launch-reporting-preferences-packet-readonly.js
+
+Purpose:
+
+- turn first-paid customer intake, booking preferences, and follow-up cadence into weekly and monthly reporting rules
+- verify report recipients, weekly reports, monthly reports, KPIs, lead source reporting, appointment reporting, follow-up reporting, weather/trends/recommended actions, manual report assembly, and report delivery readiness
+- keep Resend, Lindy, cron, scheduler, dispatcher, and live report automation disabled
+- preserve explicit approval gates
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.

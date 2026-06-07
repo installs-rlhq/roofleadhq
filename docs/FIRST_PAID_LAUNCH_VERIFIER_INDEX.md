@@ -472,3 +472,15 @@ Purpose:
 - Protects first-paid launch follow-up cadence rules.
 - Verifies lead status definitions, initial response rules, missed-call recovery, appointment reminders, emergency follow-up, opt-out handling, channel rules, reporting tie-in, and manual operator handoff.
 - Keeps SMS/Twilio, dispatcher, cron, scheduler, and live follow-up automation disabled unless explicitly approved.
+
+## First Paid Launch Reporting Preferences Packet
+
+Verifier:
+
+`node backend/scripts/verify-first-paid-launch-reporting-preferences-packet-readonly.js`
+
+Purpose:
+
+- Protects first-paid launch reporting preference rules.
+- Verifies weekly reports, monthly reports, KPI definitions, lead source reporting, appointment reporting, follow-up reporting, weather/trends/recommended actions, manual report assembly, and report delivery readiness.
+- Keeps Resend, Lindy, cron, scheduler, dispatcher, and live report automation disabled unless explicitly approved.

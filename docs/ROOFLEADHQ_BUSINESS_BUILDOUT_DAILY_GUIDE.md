@@ -4683,3 +4683,24 @@ It confirms:
 - Explicit approval gates.
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Reporting Preferences Packet
+
+The reporting preferences packet turns customer intake, booking preferences, and follow-up cadence into weekly and monthly reporting rules without enabling Resend or Lindy automation.
+
+It confirms:
+
+- Reporting language rules.
+- Report recipients.
+- Weekly report preferences.
+- Monthly report preferences.
+- KPI definitions.
+- Lead source reporting.
+- Appointment reporting.
+- Follow-up reporting.
+- Weather, trends, and recommended actions.
+- Manual report assembly.
+- Report delivery readiness.
+- Explicit approval gates.
+
+Safety remains demo-ready with live automation disabled.
