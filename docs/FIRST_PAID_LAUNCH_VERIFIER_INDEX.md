@@ -624,3 +624,11 @@ Purpose:
 - Read-only verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-founder-review-decision-packet-readonly.js`
 - Purpose: give the founder/operator a planning-only PASS / HOLD / BLOCKED decision packet before real first-roofer setup planning.
 - Safety: planning-only; no SMS, calls, emails, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, or production activation.
+
+
+## Roofer Dry-Run First Roofer Manual Setup Planning Packet
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_PLANNING_PACKET.md`
+- Read-only verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-packet-readonly.js`
+- Purpose: convert a founder/operator PASS decision into a planning-only manual setup checklist with explicit do-not-activate gates.
+- Safety: planning-only; no SMS, calls, emails, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, destructive actions, secrets exposure, or production activation.

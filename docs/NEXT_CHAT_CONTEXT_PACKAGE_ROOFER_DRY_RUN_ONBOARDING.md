@@ -1,11 +1,11 @@
 # Next Chat Context Package - Roofer Dry-Run Onboarding
 
 Latest verified source of truth:
-913b9ee test(pilot): record first roofer internal handoff summary packet milestone
+6940b28 test(pilot): record first roofer founder review decision packet milestone
 
 Terminal 1 source-of-truth:
 - Repo path: /root/roofleadhq
-- HEAD and origin/main match at 913b9ee
+- HEAD and origin/main match at 6940b28
 - Verify with scripts/verify-source-of-truth.sh
 
 Recent verified chain:
@@ -41,8 +41,11 @@ Completed safe onboarding layer:
 - First roofer readiness packet QA
 - First roofer manual follow-up packet
 - First roofer internal handoff summary packet
+- First roofer founder review decision packet
 
 Key files:
+- docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_PLANNING_PACKET.md
+- backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-packet-readonly.js
 - docs/ROOFER_DRY_RUN_FIRST_ROOFER_FOUNDER_REVIEW_DECISION_PACKET.md
 - backend/scripts/verify-roofer-dry-run-first-roofer-founder-review-decision-packet-readonly.js
 - docs/ROOFER_DRY_RUN_FIRST_ROOFER_INTERNAL_HANDOFF_SUMMARY_PACKET.md
@@ -169,3 +172,13 @@ Next safe onboarding layer added:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-founder-review-decision-packet-readonly.js`
 
 This gives the founder/operator a planning-only PASS / HOLD / BLOCKED decision packet after the internal handoff summary and before real first-roofer setup planning. It records review inputs, decision summary, PASS/HOLD/BLOCKED criteria, approved next manual action, dry-run flags, safety status, and final founder decision while production activation remains disabled.
+
+
+## Roofer Dry-Run First Roofer Manual Setup Planning Packet
+
+Next safe onboarding layer added:
+
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_PLANNING_PACKET.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-packet-readonly.js`
+
+This converts a founder/operator PASS decision into a planning-only manual setup checklist before any real first-roofer setup work. It records required inputs, safe setup planning tasks, explicit do-not-activate gates, planning-only allowed work, next safe action, dry-run flags, safety status, and final setup planning decision while production activation remains disabled.

@@ -2935,3 +2935,14 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+
+## Roofer Dry-Run First Roofer Manual Setup Planning Packet
+
+Latest safe build adds a planning-only manual setup planning packet after a founder/operator PASS decision and before real first-roofer setup work.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_PLANNING_PACKET.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-planning-packet-readonly.js`
+
+The packet records required inputs, setup planning checklist items, explicit do-not-activate gates, planning-only allowed work, next safe action, dry-run safety confirmation, and final setup planning decision language. It remains planning-only and does not activate production.
