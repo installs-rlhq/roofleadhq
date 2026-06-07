@@ -45,6 +45,8 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Contractor notification packet verifier: `node backend/scripts/verify-first-paid-launch-contractor-notification-packet-readonly.js`
 - Appointment outcome packet: `docs/FIRST_PAID_LAUNCH_APPOINTMENT_OUTCOME_PACKET.md`
 - Appointment outcome packet verifier: `node backend/scripts/verify-first-paid-launch-appointment-outcome-packet-readonly.js`
+- Lead source quality packet: `docs/FIRST_PAID_LAUNCH_LEAD_SOURCE_QUALITY_PACKET.md`
+- Lead source quality packet verifier: `node backend/scripts/verify-first-paid-launch-lead-source-quality-packet-readonly.js`
 - SMS dispatcher messages write test-only: `node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js`
 - SMS dispatcher follow-ups update test-only: `node backend/scripts/verify-sms-dispatcher-followups-update-testonly.js`
 - Vapi post-call payload discovery: `node backend/scripts/verify-vapi-post-call-payload-discovery-readonly.js`

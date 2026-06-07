@@ -4758,3 +4758,22 @@ It confirms:
 - Business language: founder-led launch, first-paid launch, appointment outcome, inspection outcome
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Lead Source Quality Packet
+
+The lead source quality packet classifies every lead by source, records source detail and source confidence, and maps quality categories to recommended actions during founder-led first-paid launch.
+
+It confirms:
+
+- Lead source categories (website leads, Google Business Profile / GBP leads, Angi leads, Thumbtack leads, Facebook leads, referral leads, manual entry leads, Vapi / phone leads, missed-call recovery leads, repeat caller leads, unknown source leads)
+- Source detail rules
+- Source confidence rules
+- Lead quality categories (high-intent leads, medium-intent leads, low-intent leads, spam / bad-fit leads, duplicate leads, emergency source patterns)
+- Manual review rules
+- Contractor notification tie-in
+- Appointment outcome tie-in
+- Weekly/monthly reporting tie-in (weekly leads report, monthly leads report)
+- Recommended actions: book inspections, book appointments, manual review
+- Business language: founder-led launch, first-paid launch, lead source quality, source detail, source confidence
+
+Safety remains demo-ready with live automation disabled.
