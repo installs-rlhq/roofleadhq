@@ -1822,3 +1822,45 @@ It confirms:
 All safety rules remain explicit. No live automation activated.
 
 Safety remains demo-ready with live automation disabled.
+
+============================================================
+LATEST SOURCE-OF-TRUTH MILESTONE — FIRST PAID CONTRACTOR NOTIFICATION PACKET
+============================================================
+
+Latest verified source-of-truth commit:
+
+- `29b3662 test(pilot): add first paid contractor notification packet`
+
+Files changed:
+
+- `docs/FIRST_PAID_LAUNCH_CONTRACTOR_NOTIFICATION_PACKET.md`
+- `backend/scripts/verify-first-paid-launch-contractor-notification-packet-readonly.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add first-paid launch contractor notification guidance.
+- Add read-only/static verifier coverage for contractor notification readiness.
+- Wire the contractor notification verifier into aggregate first-paid pilot readiness.
+- Record contractor notification coverage in the verifier index, business buildout guide, and next-chat context.
+- Connect intake, booking preferences, follow-up cadence, reporting preferences, and emergency escalation into manual contractor-facing recommended actions.
+- Preserve founder-led manual review and explicit approval gates.
+- Keep live automation disabled.
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.
+
