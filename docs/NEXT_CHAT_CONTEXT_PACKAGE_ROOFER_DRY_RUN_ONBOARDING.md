@@ -196,3 +196,17 @@ Added files:
 The QA wrapper verifies the setup packet, readiness packet QA, manual follow-up packet, internal handoff summary packet, founder review decision packet, and manual setup planning packet before running production gate checks and aggregate safe readiness.
 
 Safety remains unchanged: dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
+
+## First Roofer Manual Setup Dry-Run Rehearsal
+
+The next safe first-roofer dry-run layer adds a one-command internal rehearsal wrapper for the manual setup path after the manual setup planning QA wrapper.
+
+Added files:
+
+- `scripts/rehearse-first-roofer-manual-setup-dry-run.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_REHEARSAL.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-rehearsal-readonly.js`
+
+The rehearsal wrapper verifies source of truth, runs the rehearsal verifier, runs the first-roofer manual setup planning QA wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Safety remains unchanged: rehearsal-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.

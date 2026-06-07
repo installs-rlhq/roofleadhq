@@ -2980,3 +2980,17 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Roofer Manual Setup Dry-Run Rehearsal
+
+The next safe first-roofer dry-run layer adds a one-command internal rehearsal wrapper for the manual setup path after the manual setup planning QA wrapper.
+
+Added files:
+
+- `scripts/rehearse-first-roofer-manual-setup-dry-run.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_REHEARSAL.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-rehearsal-readonly.js`
+
+The rehearsal wrapper verifies source of truth, runs the rehearsal verifier, runs the first-roofer manual setup planning QA wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Safety remains unchanged: rehearsal-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
