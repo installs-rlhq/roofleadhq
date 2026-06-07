@@ -575,3 +575,11 @@ Purpose:
 - Wrapper: `scripts/qa-roofer-dry-run-onboarding.sh`
 - Doc: `docs/ROOFER_DRY_RUN_ONBOARDING_QA_WRAPPER.md`
 - Scope: one-command local dry-run onboarding QA with production activation disabled.
+
+
+## Roofer Dry-Run Operator Acceptance Checklist
+
+- Doc: `docs/ROOFER_DRY_RUN_OPERATOR_ACCEPTANCE_CHECKLIST.md`
+- Read-only verifier: `backend/scripts/verify-roofer-dry-run-operator-acceptance-checklist-readonly.js`
+- Purpose: give the founder/operator a local PASS/HOLD/BLOCKED review before any roofer dry-run workspace moves toward real setup planning.
+- Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, or production activation.

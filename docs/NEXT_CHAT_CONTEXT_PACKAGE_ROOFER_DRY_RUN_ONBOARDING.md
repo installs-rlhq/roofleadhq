@@ -1,11 +1,11 @@
 # Next Chat Context Package - Roofer Dry-Run Onboarding
 
 Latest verified source of truth:
-dc6d319 test(pilot): record roofer onboarding runbook readiness milestone
+08f32ac test(pilot): record roofer dry-run onboarding qa wrapper milestone
 
 Terminal 1 source-of-truth:
 - Repo path: /root/roofleadhq
-- HEAD and origin/main match at dc6d319
+- HEAD and origin/main match at 08f32ac
 - Verify with scripts/verify-source-of-truth.sh
 
 Recent verified chain:
@@ -35,8 +35,11 @@ Completed safe onboarding layer:
 - Operator runbook verifier
 - Operator runbook verifier wired into aggregate readiness
 - Milestone guards
+- One-command dry-run onboarding QA wrapper
 
 Key files:
+- docs/ROOFER_DRY_RUN_OPERATOR_ACCEPTANCE_CHECKLIST.md
+- backend/scripts/verify-roofer-dry-run-operator-acceptance-checklist-readonly.js
 - scripts/onboard-roofer.sh
 - docs/ROOFER_DRY_RUN_ONBOARDING_OPERATOR_RUNBOOK.md
 - docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md
@@ -89,3 +92,13 @@ Next safe onboarding layer added:
 - `docs/ROOFER_DRY_RUN_ONBOARDING_QA_WRAPPER.md`
 
 This provides a one-command Terminal 1 QA path for creating, validating, fixture-comparing, and cleaning up a temporary roofer dry-run workspace while production activation remains disabled.
+
+
+## Roofer Dry-Run Operator Acceptance Checklist
+
+Next safe onboarding layer added:
+
+- `docs/ROOFER_DRY_RUN_OPERATOR_ACCEPTANCE_CHECKLIST.md`
+- `backend/scripts/verify-roofer-dry-run-operator-acceptance-checklist-readonly.js`
+
+This gives the founder/operator a local PASS/HOLD/BLOCKED acceptance review after the QA wrapper passes and before any real contractor setup planning. It checks workspace completeness, dry-run flags, missing information, manual review readiness, exposed secrets, and production-activation risk while production activation remains disabled.
