@@ -1,11 +1,11 @@
 # Next Chat Context Package - Roofer Dry-Run Onboarding
 
 Latest verified source of truth:
-d533e5a test(pilot): record first roofer readiness packet qa milestone
+ec00b9f test(pilot): record first roofer manual follow up packet milestone
 
 Terminal 1 source-of-truth:
 - Repo path: /root/roofleadhq
-- HEAD and origin/main match at d533e5a
+- HEAD and origin/main match at ec00b9f
 - Verify with scripts/verify-source-of-truth.sh
 
 Recent verified chain:
@@ -39,8 +39,11 @@ Completed safe onboarding layer:
 - Operator acceptance checklist
 - First roofer dry-run setup packet
 - First roofer readiness packet QA
+- First roofer manual follow-up packet
 
 Key files:
+- docs/ROOFER_DRY_RUN_FIRST_ROOFER_INTERNAL_HANDOFF_SUMMARY_PACKET.md
+- backend/scripts/verify-roofer-dry-run-first-roofer-internal-handoff-summary-packet-readonly.js
 - docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_FOLLOW_UP_PACKET.md
 - backend/scripts/verify-roofer-dry-run-first-roofer-manual-follow-up-packet-readonly.js
 - scripts/qa-first-roofer-readiness-packet.sh
@@ -143,3 +146,13 @@ Next safe onboarding layer added:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-follow-up-packet-readonly.js`
 
 This gives the founder/operator a planning-only follow-up script and question checklist for HOLD or missing-information cases before real first-roofer setup planning. It covers company profile, service area, services, booking preferences, emergency/insurance handling, lead sources, manual review/reporting preferences, follow-up notes, dry-run flags, and final follow-up decision while production activation remains disabled.
+
+
+## Roofer Dry-Run First Roofer Internal Handoff Summary Packet
+
+Next safe onboarding layer added:
+
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_INTERNAL_HANDOFF_SUMMARY_PACKET.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-internal-handoff-summary-packet-readonly.js`
+
+This gives the founder/operator a planning-only internal handoff note before real first-roofer setup planning. It summarizes readiness chain review, accepted setup state, remaining follow-up items, handoff notes, next manual planning action, dry-run flags, safety status, and final handoff decision while production activation remains disabled.

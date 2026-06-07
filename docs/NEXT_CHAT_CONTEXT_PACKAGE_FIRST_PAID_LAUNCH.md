@@ -2893,3 +2893,14 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+
+## Roofer Dry-Run First Roofer Internal Handoff Summary Packet
+
+Latest safe build adds a planning-only founder/operator internal handoff summary packet before real first-roofer setup planning.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_INTERNAL_HANDOFF_SUMMARY_PACKET.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-internal-handoff-summary-packet-readonly.js`
+
+The packet summarizes current dry-run readiness, accepted setup state, remaining roofer follow-up items, founder/operator handoff notes, next manual planning action, dry-run safety confirmation, and final handoff decision language. It remains planning-only and does not activate production.
