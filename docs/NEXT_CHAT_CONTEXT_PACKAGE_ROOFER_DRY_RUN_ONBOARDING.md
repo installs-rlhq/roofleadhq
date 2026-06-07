@@ -1,11 +1,11 @@
 # Next Chat Context Package - Roofer Dry-Run Onboarding
 
 Latest verified source of truth:
-35c6f27 test(pilot): record first roofer dry-run setup packet milestone
+d533e5a test(pilot): record first roofer readiness packet qa milestone
 
 Terminal 1 source-of-truth:
 - Repo path: /root/roofleadhq
-- HEAD and origin/main match at 35c6f27
+- HEAD and origin/main match at d533e5a
 - Verify with scripts/verify-source-of-truth.sh
 
 Recent verified chain:
@@ -38,8 +38,11 @@ Completed safe onboarding layer:
 - One-command dry-run onboarding QA wrapper
 - Operator acceptance checklist
 - First roofer dry-run setup packet
+- First roofer readiness packet QA
 
 Key files:
+- docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_FOLLOW_UP_PACKET.md
+- backend/scripts/verify-roofer-dry-run-first-roofer-manual-follow-up-packet-readonly.js
 - scripts/qa-first-roofer-readiness-packet.sh
 - docs/ROOFER_DRY_RUN_FIRST_ROOFER_READINESS_PACKET_QA.md
 - backend/scripts/verify-roofer-dry-run-first-roofer-readiness-packet-qa-readonly.js
@@ -130,3 +133,13 @@ Next safe onboarding layer added:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-readiness-packet-qa-readonly.js`
 
 This provides a one-command Terminal 1 QA path for the combined first roofer dry-run readiness packet: onboarding QA wrapper, operator acceptance checklist, and first roofer setup packet. It verifies source of truth, read-only verifiers, decision language, dry-run flags, safety language, cleanup, and production activation remains disabled.
+
+
+## Roofer Dry-Run First Roofer Manual Follow-Up Packet
+
+Next safe onboarding layer added:
+
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_FOLLOW_UP_PACKET.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-follow-up-packet-readonly.js`
+
+This gives the founder/operator a planning-only follow-up script and question checklist for HOLD or missing-information cases before real first-roofer setup planning. It covers company profile, service area, services, booking preferences, emergency/insurance handling, lead sources, manual review/reporting preferences, follow-up notes, dry-run flags, and final follow-up decision while production activation remains disabled.
