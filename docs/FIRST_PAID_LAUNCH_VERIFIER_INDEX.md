@@ -648,3 +648,11 @@ Purpose:
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-rehearsal-readonly.js`
 - Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
 - Safety: rehearsal-only and dry-run only; no SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi/Retell production routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
+
+## First Roofer Manual Setup Operator Runbook
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_OPERATOR_RUNBOOK.md`
+- Wrapper: `scripts/run-first-roofer-manual-setup-operator-runbook-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-operator-runbook-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Safety: operator-runbook-only and dry-run only; no SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi/Retell production routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.

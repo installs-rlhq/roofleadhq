@@ -3004,3 +3004,17 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Roofer Manual Setup Operator Runbook
+
+The next safe first-roofer dry-run layer adds a one-command internal operator runbook wrapper after the manual setup rehearsal layer.
+
+Added files:
+
+- `scripts/run-first-roofer-manual-setup-operator-runbook-dry-run.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_OPERATOR_RUNBOOK.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-operator-runbook-readonly.js`
+
+The operator runbook wrapper verifies source of truth, runs the operator runbook verifier, runs the first-roofer manual setup rehearsal wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Safety remains unchanged: operator-runbook-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.

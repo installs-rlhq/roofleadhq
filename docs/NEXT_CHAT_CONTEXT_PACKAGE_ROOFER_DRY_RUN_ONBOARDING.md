@@ -210,3 +210,17 @@ Added files:
 The rehearsal wrapper verifies source of truth, runs the rehearsal verifier, runs the first-roofer manual setup planning QA wrapper, runs production gate checks, and runs aggregate safe readiness.
 
 Safety remains unchanged: rehearsal-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
+
+## First Roofer Manual Setup Operator Runbook
+
+The next safe first-roofer dry-run layer adds a one-command internal operator runbook wrapper after the manual setup rehearsal layer.
+
+Added files:
+
+- `scripts/run-first-roofer-manual-setup-operator-runbook-dry-run.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_OPERATOR_RUNBOOK.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-operator-runbook-readonly.js`
+
+The operator runbook wrapper verifies source of truth, runs the operator runbook verifier, runs the first-roofer manual setup rehearsal wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Safety remains unchanged: operator-runbook-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
