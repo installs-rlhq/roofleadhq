@@ -4854,3 +4854,15 @@ Safety remains demo-ready with live automation disabled.
 - Guardrails include no Vapi production webhook ingestion, no live Vapi webhook route, no Vapi calls from code, no Retell route activation, no webhook activation, and no production ingestion.
 - Safety remains demo-ready with live automation disabled.
 
+## First Paid Launch Automation Foundation Packet
+
+- Packet: `docs/FIRST_PAID_LAUNCH_AUTOMATION_FOUNDATION_PACKET.md`
+- Verifier: `backend/scripts/verify-first-paid-launch-automation-foundation-packet-readonly.js`
+- Scripts: `scripts/verify-source-of-truth.sh`, `scripts/verify-safe-readiness.sh`, `scripts/show-diff-proof.sh`, `scripts/record-milestone.sh`
+- Purpose: shift RoofLeadHQ from agent improvisation to repeatable repo-controlled Terminal scripts.
+- Terminal 1 in `/root/roofleadhq` remains the source of truth.
+- Agent-reported commits, pushes, and completion claims are not trusted until Terminal 1 verifies them.
+- Future direction includes roofer onboarding scripts, per-roofer readiness checks, production gate checks, and safe larger build flows.
+- No production Calendar/SMS activation without explicit flag changes and Terminal 1 verification.
+- Safety remains demo-ready with live automation disabled.
+

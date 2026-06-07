@@ -2418,3 +2418,27 @@ This packet documents the first-paid launch voice path cleanup posture: Retell i
 It confirms no Vapi production webhook ingestion, no live Vapi webhook route, no Vapi calls from code, no Retell route activation, no webhook activation, no production ingestion, and no production workflow activation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Automation Foundation Packet Milestone
+
+- Added: `docs/FIRST_PAID_LAUNCH_AUTOMATION_FOUNDATION_PACKET.md`
+- Added: `backend/scripts/verify-first-paid-launch-automation-foundation-packet-readonly.js`
+- Added: `scripts/verify-source-of-truth.sh`
+- Added: `scripts/verify-safe-readiness.sh`
+- Added: `scripts/show-diff-proof.sh`
+- Added: `scripts/record-milestone.sh`
+- Updated: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js` (aggregate wiring)
+- Updated: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Updated: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Updated: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
+This packet starts shifting RoofLeadHQ from agent improvisation to repeatable repo-controlled Terminal scripts.
+
+Terminal 1 in `/root/roofleadhq` remains the source of truth. Agent-reported commits, pushes, and completion claims are not trusted unless Terminal 1 verifies them.
+
+The packet establishes reusable helpers for source-of-truth verification, safe readiness verification, diff proof, and milestone recording.
+
+No production Calendar/SMS activation without explicit flag changes and Terminal 1 verification.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
+
