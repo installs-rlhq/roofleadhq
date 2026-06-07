@@ -4877,3 +4877,12 @@ Safety remains demo-ready with live automation disabled.
 - Future onboarding can support book inspections and book appointments after explicit activation gates are satisfied.
 - Safety remains demo-ready with live automation disabled.
 
+## Production Gate Check Script Packet
+
+The founder-led launch now includes a repo-controlled production gate check script packet.
+
+Use `scripts/check-production-gates.sh` before larger safe onboarding or launch-readiness builds to confirm disabled production gates remain disabled.
+
+This protects the founder-led launch from hidden activation of live SMS, Calendar booking, Vapi production webhook ingestion, Supabase writes, contractor notifications, homeowner notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.
+
+The Step 66 production send intent bridge remains present and guarded, but it does not authorize live SMS sends.

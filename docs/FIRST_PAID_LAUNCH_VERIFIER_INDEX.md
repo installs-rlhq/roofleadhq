@@ -504,3 +504,12 @@ Purpose:
 - Protects first-paid launch reporting preference rules.
 - Verifies weekly reports, monthly reports, KPI definitions, lead source reporting, appointment reporting, follow-up reporting, weather/trends/recommended actions, manual report assembly, and report delivery readiness.
 - Keeps Resend, Lindy, cron, scheduler, dispatcher, and live report automation disabled unless explicitly approved.
+
+## Production Gate Check Script Packet
+
+- Packet: `docs/FIRST_PAID_LAUNCH_PRODUCTION_GATE_CHECK_SCRIPT_PACKET.md`
+- Gate script: `scripts/check-production-gates.sh`
+- Read-only verifier: `backend/scripts/verify-first-paid-launch-production-gate-check-script-packet-readonly.js`
+- Aggregate readiness must include this verifier.
+- Purpose: preserve disabled production gates for SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, and Retell route activation.
+- Step 66 production send intent bridge remains present and guarded, but does not authorize live SMS sends.

@@ -94,6 +94,7 @@ const commands = [
   {
     name: 'First Paid Launch roofer onboarding script packet',
     script: 'backend/scripts/verify-first-paid-launch-roofer-onboarding-script-packet-readonly.js',
+    'verify-first-paid-launch-production-gate-check-script-packet-readonly.js',
     args: []
   },
   {

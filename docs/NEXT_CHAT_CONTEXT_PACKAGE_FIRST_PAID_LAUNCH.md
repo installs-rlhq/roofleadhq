@@ -2490,3 +2490,26 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## Latest Safe Build Target: Production Gate Check Script Packet
+
+Current build target:
+
+- `docs/FIRST_PAID_LAUNCH_PRODUCTION_GATE_CHECK_SCRIPT_PACKET.md`
+- `scripts/check-production-gates.sh`
+- `backend/scripts/verify-first-paid-launch-production-gate-check-script-packet-readonly.js`
+
+Purpose:
+
+- Keep larger safe builds moving without hidden production risk.
+- Confirm SMS, Calendar, Vapi, Supabase writes, contractor notifications, homeowner notifications, cron, scheduler, dispatcher, public routes, and Retell route activation remain disabled.
+- Preserve Step 66 production send intent bridge as present and guarded.
+- Confirm Step 66 does not authorize live SMS sends.
+
+Required safety language:
+
+- Do not activate production.
+- Do not send live SMS.
+- Do not mutate Supabase.
+- Do not notify contractors or homeowners.
+- Do not enable cron, scheduler, dispatcher, public routes, Retell routes, or Vapi production webhook ingestion.
