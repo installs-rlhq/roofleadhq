@@ -4704,3 +4704,22 @@ It confirms:
 - Explicit approval gates.
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Emergency Escalation Packet
+
+The emergency escalation packet connects customer intake, booking preferences, follow-up cadence, and reporting preferences with operator stop conditions and founder-led manual review for active leaks, interior water intrusion, storm damage, tarp requests, unsafe roof access, elderly/vulnerable homeowners, after-hours emergencies, insurance claim deadlines, repeat urgent callers, and angry/escalated homeowners.
+
+It confirms:
+
+- Emergency escalation triggers
+- Operator stop conditions
+- Minimum emergency intake fields
+- Manual escalation owner (founder)
+- Contractor notification rules (manual only)
+- Emergency follow-up tie-in (bypasses normal cadence)
+- Reporting tie-in (flagged in weekly/monthly reporting)
+- Founder-led launch rules
+- Explicit approval gates
+- Business language: book inspections, book appointments, founder-led launch, first-paid launch, emergency escalation, manual review, roofing contractors, weekly/monthly reporting, recommended actions
+
+Safety remains demo-ready with live automation disabled.

@@ -39,6 +39,8 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Execution pack verifier: `node backend/scripts/verify-first-paid-launch-execution-pack-readonly.js`
 - Operator dashboard QA pack: `docs/FIRST_PAID_LAUNCH_OPERATOR_DASHBOARD_QA.md`
 - Operator dashboard QA verifier: `node backend/scripts/verify-first-paid-launch-operator-dashboard-qa-readonly.js`
+- Emergency escalation packet: `docs/FIRST_PAID_LAUNCH_EMERGENCY_ESCALATION_PACKET.md`
+- Emergency escalation packet verifier: `node backend/scripts/verify-first-paid-launch-emergency-escalation-packet-readonly.js`
 - SMS dispatcher messages write test-only: `node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js`
 - SMS dispatcher follow-ups update test-only: `node backend/scripts/verify-sms-dispatcher-followups-update-testonly.js`
 - Vapi post-call payload discovery: `node backend/scripts/verify-vapi-post-call-payload-discovery-readonly.js`

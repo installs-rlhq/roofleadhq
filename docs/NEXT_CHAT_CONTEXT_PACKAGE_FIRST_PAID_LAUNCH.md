@@ -1728,3 +1728,31 @@ No public production route activation.
 No secrets exposure.
 No destructive operations.
 
+
+## First Paid Launch Emergency Escalation Packet Milestone
+
+- Commit placeholder: emergency escalation packet added
+- Added: `docs/FIRST_PAID_LAUNCH_EMERGENCY_ESCALATION_PACKET.md`
+- Added: `backend/scripts/verify-first-paid-launch-emergency-escalation-packet-readonly.js`
+- Updated: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js` (wired into aggregate)
+- Updated: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Updated: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Updated: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
+The emergency escalation packet connects customer intake, booking preferences, follow-up cadence, and reporting preferences with operator stop conditions and founder-led manual review for:
+
+- Active leak
+- Interior water intrusion
+- Water entering ceiling/walls/attic/electrical areas
+- Storm damage / hail/wind damage
+- Tarp requests
+- Unsafe roof access
+- Elderly/vulnerable homeowner situations
+- After-hours emergencies
+- Insurance claim deadlines
+- Repeat urgent callers
+- Angry/escalated homeowners
+
+All safety rules remain explicit. No live automation activated.
+
+Safety remains demo-ready with live automation disabled.
