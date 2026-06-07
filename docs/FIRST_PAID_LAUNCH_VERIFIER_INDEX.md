@@ -520,3 +520,14 @@ Purpose:
 - Read-only verifier: `backend/scripts/verify-first-paid-launch-roofer-dry-run-intake-packet-readonly.js`
 - Purpose: define planning-only roofer intake requirements before dry-run onboarding workspace creation.
 - Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.
+
+## Roofer Dry-Run Workspace Template Packet
+
+- Packet: `docs/FIRST_PAID_LAUNCH_ROOFER_DRY_RUN_WORKSPACE_TEMPLATE_PACKET.md`
+- Templates:
+  - `templates/roofer-dry-run-workspace/intake.md`
+  - `templates/roofer-dry-run-workspace/safety-flags.env`
+  - `templates/roofer-dry-run-workspace/README.md`
+- Read-only verifier: `backend/scripts/verify-first-paid-launch-roofer-dry-run-workspace-template-packet-readonly.js`
+- Purpose: standardize planning-only dry-run onboarding workspace files.
+- Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.

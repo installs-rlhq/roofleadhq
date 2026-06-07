@@ -4896,3 +4896,11 @@ This keeps the founder-led launch repeatable while preserving production safety.
 The intake packet supports service area, owner/operator contact, emergency leak handling, storm damage and insurance preferences, appointment booking preferences, lead source channels, manual review preferences, and reporting preferences.
 
 No production systems are activated by this packet.
+
+## Roofer Dry-Run Workspace Template Packet
+
+Use the roofer dry-run workspace templates to standardize planning-only onboarding workspaces before any production activation.
+
+Templates live in `templates/roofer-dry-run-workspace/` and include intake fields, disabled safety flags, and workspace safety notes.
+
+No production systems are activated by this packet.
