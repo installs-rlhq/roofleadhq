@@ -1917,16 +1917,20 @@ LATEST SOURCE-OF-TRUTH MILESTONE — FIRST PAID APPOINTMENT OUTCOME PACKET
 
 Latest verified source-of-truth commit:
 
-- 
+- `4e390f1 test(pilot): add first paid appointment outcome packet`
+
+Guard commit:
+
+- `12a76f3 test(pilot): record appointment outcome packet milestone`
 
 Files changed:
 
-- 
-- PASS: First Paid Launch appointment outcome packet completed successfully
-- 
-- 
-- 
-- 
+- `docs/FIRST_PAID_LAUNCH_APPOINTMENT_OUTCOME_PACKET.md`
+- `backend/scripts/verify-first-paid-launch-appointment-outcome-packet-readonly.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 
 Purpose:
 
@@ -1934,7 +1938,7 @@ Purpose:
 - Add read-only/static verifier coverage for appointment outcome readiness.
 - Wire the appointment outcome verifier into aggregate first-paid pilot readiness.
 - Record appointment outcome coverage in the verifier index, business buildout guide, and next-chat context.
-- Track completed appointments, no-shows, reschedules, cancellations, estimates, won/lost/unknown outcomes, follow-up needs, and manual review.
+- Track completed appointments, homeowner no-shows, contractor no-shows, reschedules, cancellations, inspections, estimates, won/lost/unknown outcomes, follow-up needs, and manual review.
 - Tie outcomes into contractor notification, emergency escalation, and weekly/monthly reporting.
 - Preserve founder-led manual review and explicit approval gates.
 - Keep live automation disabled.
