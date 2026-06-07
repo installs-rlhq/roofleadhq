@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execFileSync, rmSync } = require('child_process');
+const { execFileSync } = require('child_process');
 
 const repoRoot = path.resolve(__dirname, '../..');
 
@@ -61,7 +61,7 @@ const workspace = path.join(repoRoot, '.roofleadhq/onboarding', testSlug);
 
 try {
   if (fs.existsSync(workspace)) {
-    rmSync(workspace, { recursive: true, force: true });
+    fs.rmSync(workspace, { recursive: true, force: true });
   }
 
   execFileSync(path.join(repoRoot, script), [testSlug], {
@@ -99,7 +99,7 @@ try {
   assertIncludes('.roofleadhq/onboarding/template-copy-verifier/onboarding-checklist.md', 'Production activation remains disabled');
 } finally {
   if (fs.existsSync(workspace)) {
-    rmSync(workspace, { recursive: true, force: true });
+    fs.rmSync(workspace, { recursive: true, force: true });
   }
 }
 
