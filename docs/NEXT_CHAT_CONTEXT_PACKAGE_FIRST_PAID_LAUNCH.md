@@ -2317,3 +2317,23 @@ It confirms:
 All safety rules remain explicit. No production systems activated.
 
 Safety remains demo-ready with live automation disabled.
+
+## Latest Source-of-Truth Milestone — Schema Blockers Packet
+
+Commit: 642f0da test(pilot): add schema blockers packet
+
+Added:
+- docs/FIRST_PAID_LAUNCH_SCHEMA_BLOCKERS_PACKET.md
+- backend/scripts/verify-first-paid-launch-schema-blockers-packet-readonly.js
+
+Updated:
+- backend/scripts/verify-first-paid-pilot-readiness-readonly.js (aggregate wiring)
+- docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md
+- docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md
+- docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md
+
+This packet documents the opted_out and stopped_reason schema blockers that prevent safe opt-out handling, stopped-lead handling, reporting, and manual review queue operations.
+
+No Supabase migration, no schema mutation, no production writes, and no live automation activated.
+
+Safety remains demo-ready with live automation disabled.
