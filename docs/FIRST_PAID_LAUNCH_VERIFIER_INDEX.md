@@ -545,3 +545,10 @@ Purpose:
   - `workspace-metadata.env`
   - `onboarding-checklist.md`
 - Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.
+
+## Roofer Dry-Run Workspace Smoke Packet
+
+- Packet: `docs/FIRST_PAID_LAUNCH_ROOFER_DRY_RUN_WORKSPACE_SMOKE_PACKET.md`
+- Read-only verifier: `backend/scripts/verify-first-paid-launch-roofer-dry-run-workspace-smoke-readonly.js`
+- Purpose: end-to-end smoke proof that `scripts/onboard-roofer.sh` creates and cleans up a planning-only dry-run workspace.
+- Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.

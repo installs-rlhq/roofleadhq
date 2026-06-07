@@ -4912,3 +4912,9 @@ No production systems are activated by this packet.
 Each workspace receives `README.md`, `intake.md`, `safety-flags.env`, `activation-flags.env`, `workspace-metadata.env`, and `onboarding-checklist.md`.
 
 The template copy flow remains planning-only and does not activate production systems.
+
+## Roofer Dry-Run Workspace Smoke Packet
+
+The roofer dry-run workspace smoke verifier proves the onboarding script can create a planning-only workspace from templates, validate disabled production flags, and clean up the temporary workspace.
+
+This gives the founder-led launch a repeatable local proof that onboarding generation remains safe.
