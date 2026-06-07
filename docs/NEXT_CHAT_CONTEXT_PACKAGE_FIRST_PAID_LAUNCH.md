@@ -2294,3 +2294,26 @@ Updated:
 This packet connects emergency escalation, contractor notification, appointment outcomes, lead source quality, missing information recovery, Lindy internal lead review summary, follow-up cadence, and reporting into a single founder/operator manual review queue.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Schema Blockers Packet Milestone
+
+- Added: `docs/FIRST_PAID_LAUNCH_SCHEMA_BLOCKERS_PACKET.md`
+- Added: `backend/scripts/verify-first-paid-launch-schema-blockers-packet-readonly.js`
+- Updated: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js` (wired into aggregate)
+- Updated: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Updated: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Updated: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
+The schema blockers packet documents the opted_out and stopped_reason gaps in the leads table that block safe opt-out handling, stopped-lead handling, reporting, and manual review queue operations during founder-led first-paid launch.
+
+It confirms:
+- Current blocker and why the fields are needed
+- Expected field names (opted_out, stopped_reason), types, and suggested defaults
+- Safe migration notes and explicit approval gates
+- What not to touch and future operations support
+- Open questions (staging environment, controlled vocabulary later)
+- Full safety language: no Supabase schema mutation, no production writes, no live automation
+
+All safety rules remain explicit. No production systems activated.
+
+Safety remains demo-ready with live automation disabled.

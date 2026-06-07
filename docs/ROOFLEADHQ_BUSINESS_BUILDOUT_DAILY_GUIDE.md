@@ -4800,3 +4800,24 @@ It confirms:
 - Explicit: no live automation, no scheduler, no dispatcher, no cron, no public route
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Schema Blockers Packet
+
+The schema blockers packet documents the opted_out and stopped_reason gaps in the leads table that block safe opt-out handling, stopped-lead handling, reporting, and manual review queue operations during founder-led first-paid launch.
+
+It confirms:
+
+- Current blocker (missing opted_out and stopped_reason)
+- Why opted_out and stopped_reason are needed
+- Expected field names (opted_out, stopped_reason) and types (boolean-like default false, nullable text)
+- Suggested default values
+- Safe migration notes (no mutation of existing rows, no lookup table yet)
+- Read-only verification expectations
+- Explicit approval gates
+- What not to touch (leads.status enum, follow_ups table, existing data)
+- Future operations support (opt-out handling, stopped-lead classification, improved reporting)
+- Open questions (staging environment, controlled vocabulary later)
+- Business language: first-paid launch, founder-led launch, book inspections, book appointments
+- Full safety language preserved
+
+Safety remains demo-ready with live automation disabled.
