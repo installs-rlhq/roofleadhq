@@ -2557,3 +2557,13 @@ Safety remains:
 - no Retell route activation
 - no contractor or homeowner notifications
 - no cron, scheduler, dispatcher, or public route activation
+
+## Latest Source-of-Truth Milestone
+
+Commit: c87ccf6 test(pilot): fix roofer dry-run intake verifier language guard
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
