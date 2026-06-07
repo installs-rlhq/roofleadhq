@@ -513,3 +513,10 @@ Purpose:
 - Aggregate readiness must include this verifier.
 - Purpose: preserve disabled production gates for SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, and Retell route activation.
 - Step 66 production send intent bridge remains present and guarded, but does not authorize live SMS sends.
+
+## Roofer Dry-Run Intake Packet
+
+- Packet: `docs/FIRST_PAID_LAUNCH_ROOFER_DRY_RUN_INTAKE_PACKET.md`
+- Read-only verifier: `backend/scripts/verify-first-paid-launch-roofer-dry-run-intake-packet-readonly.js`
+- Purpose: define planning-only roofer intake requirements before dry-run onboarding workspace creation.
+- Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.

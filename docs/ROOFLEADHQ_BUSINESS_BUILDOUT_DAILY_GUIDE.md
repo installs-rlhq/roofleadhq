@@ -4886,3 +4886,13 @@ Use `scripts/check-production-gates.sh` before larger safe onboarding or launch-
 This protects the founder-led launch from hidden activation of live SMS, Calendar booking, Vapi production webhook ingestion, Supabase writes, contractor notifications, homeowner notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.
 
 The Step 66 production send intent bridge remains present and guarded, but it does not authorize live SMS sends.
+
+## Roofer Dry-Run Intake Packet
+
+Before creating a roofer dry-run onboarding workspace, collect the planning-only intake fields from `docs/FIRST_PAID_LAUNCH_ROOFER_DRY_RUN_INTAKE_PACKET.md`.
+
+This keeps the founder-led launch repeatable while preserving production safety.
+
+The intake packet supports service area, owner/operator contact, emergency leak handling, storm damage and insurance preferences, appointment booking preferences, lead source channels, manual review preferences, and reporting preferences.
+
+No production systems are activated by this packet.

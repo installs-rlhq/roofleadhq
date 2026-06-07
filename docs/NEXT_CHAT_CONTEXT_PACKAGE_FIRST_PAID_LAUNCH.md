@@ -2533,3 +2533,27 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## Current Safe Build — Roofer Dry-Run Intake Packet
+
+The next safe onboarding layer is the Roofer Dry-Run Intake Packet:
+
+- `docs/FIRST_PAID_LAUNCH_ROOFER_DRY_RUN_INTAKE_PACKET.md`
+- `backend/scripts/verify-first-paid-launch-roofer-dry-run-intake-packet-readonly.js`
+
+Purpose:
+
+- collect roofer setup details before dry-run workspace creation
+- preserve planning-only onboarding
+- keep all production activation flags disabled
+- support founder-led launch readiness without live automation
+
+Safety remains:
+
+- no live SMS
+- no Supabase writes or migrations
+- no Calendar booking activation
+- no Vapi production webhook ingestion
+- no Retell route activation
+- no contractor or homeowner notifications
+- no cron, scheduler, dispatcher, or public route activation
