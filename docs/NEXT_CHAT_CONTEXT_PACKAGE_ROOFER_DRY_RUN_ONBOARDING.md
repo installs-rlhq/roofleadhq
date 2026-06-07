@@ -1,11 +1,11 @@
 # Next Chat Context Package - Roofer Dry-Run Onboarding
 
 Latest verified source of truth:
-08f32ac test(pilot): record roofer dry-run onboarding qa wrapper milestone
+0af227e test(pilot): record roofer dry-run operator acceptance checklist milestone
 
 Terminal 1 source-of-truth:
 - Repo path: /root/roofleadhq
-- HEAD and origin/main match at 08f32ac
+- HEAD and origin/main match at 0af227e
 - Verify with scripts/verify-source-of-truth.sh
 
 Recent verified chain:
@@ -36,8 +36,11 @@ Completed safe onboarding layer:
 - Operator runbook verifier wired into aggregate readiness
 - Milestone guards
 - One-command dry-run onboarding QA wrapper
+- Operator acceptance checklist
 
 Key files:
+- docs/ROOFER_DRY_RUN_FIRST_ROOFER_SETUP_PACKET.md
+- backend/scripts/verify-roofer-dry-run-first-roofer-setup-packet-readonly.js
 - docs/ROOFER_DRY_RUN_OPERATOR_ACCEPTANCE_CHECKLIST.md
 - backend/scripts/verify-roofer-dry-run-operator-acceptance-checklist-readonly.js
 - scripts/onboard-roofer.sh
@@ -102,3 +105,13 @@ Next safe onboarding layer added:
 - `backend/scripts/verify-roofer-dry-run-operator-acceptance-checklist-readonly.js`
 
 This gives the founder/operator a local PASS/HOLD/BLOCKED acceptance review after the QA wrapper passes and before any real contractor setup planning. It checks workspace completeness, dry-run flags, missing information, manual review readiness, exposed secrets, and production-activation risk while production activation remains disabled.
+
+
+## Roofer Dry-Run First Roofer Setup Packet
+
+Next safe onboarding layer added:
+
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_SETUP_PACKET.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-setup-packet-readonly.js`
+
+This gives the founder/operator a planning-only setup packet template after the QA wrapper passes and the acceptance checklist is reviewed. It summarizes roofer profile, service area, services, booking preferences, lead sources, manual review/reporting preferences, setup notes, dry-run flags, and final manual decision while production activation remains disabled.

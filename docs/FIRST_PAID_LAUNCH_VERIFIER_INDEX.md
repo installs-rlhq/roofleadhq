@@ -583,3 +583,11 @@ Purpose:
 - Read-only verifier: `backend/scripts/verify-roofer-dry-run-operator-acceptance-checklist-readonly.js`
 - Purpose: give the founder/operator a local PASS/HOLD/BLOCKED review before any roofer dry-run workspace moves toward real setup planning.
 - Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, or production activation.
+
+
+## Roofer Dry-Run First Roofer Setup Packet
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_SETUP_PACKET.md`
+- Read-only verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-setup-packet-readonly.js`
+- Purpose: give the founder/operator a setup packet template after dry-run QA and acceptance review, before any real contractor setup planning.
+- Safety: planning-only; no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, or production activation.
