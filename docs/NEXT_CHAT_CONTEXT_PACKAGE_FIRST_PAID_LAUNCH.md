@@ -2090,3 +2090,47 @@ It confirms:
 All safety rules remain explicit. No live automation activated.
 
 Safety remains demo-ready with live automation disabled.
+
+============================================================
+LATEST SOURCE-OF-TRUTH MILESTONE — FIRST PAID MISSING INFORMATION RECOVERY PACKET
+============================================================
+
+Latest verified source-of-truth commit:
+
+- `295fe51 test(pilot): add first paid missing information recovery packet`
+
+Files changed:
+
+- `docs/FIRST_PAID_LAUNCH_MISSING_INFORMATION_RECOVERY_PACKET.md`
+- `backend/scripts/verify-first-paid-launch-missing-information-recovery-packet-readonly.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add first-paid launch missing information recovery guidance.
+- Add read-only/static verifier coverage for incomplete lead handling.
+- Wire the missing information recovery verifier into aggregate first-paid pilot readiness.
+- Record missing information recovery coverage in the verifier index, business buildout guide, and next-chat context.
+- Track missing homeowner name, phone, email, property address, city/state/ZIP, roof issue, roof type, urgency, insurance status, appointment preference, lead source, source detail, contractor routing preference, emergency escalation status, appointment outcome, and follow-up status.
+- Tie incomplete leads into manual founder/operator review, contractor notification readiness, follow-up cadence, emergency escalation, lead source quality, appointment outcome, and weekly/monthly reporting.
+- Explicitly exclude photo-related intake requirements.
+- Preserve founder-led manual review and explicit approval gates.
+- Keep live automation disabled.
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.
+
