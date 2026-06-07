@@ -2361,3 +2361,25 @@ It confirms:
 All safety rules remain explicit. No production systems activated.
 
 Safety remains demo-ready with live automation disabled.
+
+## Latest Source-of-Truth Milestone — Stopped Lead Handling Packet
+
+Commit: e417093 test(pilot): add stopped lead handling packet
+
+Added:
+- docs/FIRST_PAID_LAUNCH_STOPPED_LEAD_HANDLING_PACKET.md
+- backend/scripts/verify-first-paid-launch-stopped-lead-handling-packet-readonly.js
+
+Updated:
+- backend/scripts/verify-first-paid-pilot-readiness-readonly.js (aggregate wiring)
+- docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md
+- docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md
+- docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md
+
+This packet defines how RoofLeadHQ safely handles stopped leads during founder-led first-paid launch.
+
+It documents stopped lead handling, opted_out, stopped_reason, do-not-contact, stopped follow-up, manual review queue, missing information recovery, reporting, and safe manual review.
+
+No Supabase migration, no schema mutation, no production writes, and no live automation activated.
+
+Safety remains demo-ready with live automation disabled.
