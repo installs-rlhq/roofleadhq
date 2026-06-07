@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  '65250dd test(pilot): add first paid follow up cadence packet',
   '8939e98 test(pilot): add first paid booking preferences packet',
   '2383450 test(pilot): add first paid customer intake packet',
   'ac12597 test(pilot): add first paid launch day one checklist',
