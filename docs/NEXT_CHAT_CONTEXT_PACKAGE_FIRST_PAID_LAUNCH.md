@@ -1542,3 +1542,45 @@ No cron/scheduler/dispatcher activation.
 No public production route activation.
 No secrets exposure.
 No destructive operations.
+
+============================================================
+LATEST SOURCE-OF-TRUTH MILESTONE — FIRST PAID BOOKING PREFERENCES PACKET
+============================================================
+
+Latest verified source-of-truth commit:
+
+- `8939e98 test(pilot): add first paid booking preferences packet`
+
+Files changed:
+
+- `docs/FIRST_PAID_LAUNCH_BOOKING_PREFERENCES_PACKET.md`
+- `backend/scripts/verify-first-paid-launch-booking-preferences-packet-readonly.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add a first-paid launch appointment booking preferences packet.
+- Add a read-only/static verifier for booking preferences packet coverage.
+- Wire the booking preferences packet verifier into aggregate first-paid pilot readiness.
+- Record the packet in the verifier index, business buildout guide, and next-chat context.
+- Turn customer intake into concrete appointment booking rules.
+- Keep Calendar booking activation disabled.
+- Keep live automation disabled.
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.
+
