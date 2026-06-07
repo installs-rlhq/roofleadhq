@@ -4924,3 +4924,9 @@ This gives the founder-led launch a repeatable local proof that onboarding gener
 The sample workspace fixture gives founder-led launch operations a known-good local reference for dry-run onboarding QA.
 
 Use `fixtures/roofer-dry-run-workspace/sample-roofer/` to compare generated workspace structure and safety flags.
+
+## Roofer Dry-Run Workspace Comparison
+
+The roofer dry-run workspace comparison verifier generates a fresh local workspace, compares required structure and disabled production flags against the known-good sample fixture, and cleans up the temporary workspace.
+
+This keeps founder-led onboarding QA aligned with the repo-controlled sample.

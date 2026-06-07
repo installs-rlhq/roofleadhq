@@ -560,3 +560,10 @@ Purpose:
 - Read-only verifier: `backend/scripts/verify-first-paid-launch-roofer-dry-run-workspace-sample-packet-readonly.js`
 - Purpose: maintain a known-good planning-only sample workspace for onboarding QA.
 - Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.
+
+## Roofer Dry-Run Workspace Comparison
+
+- Packet: `docs/FIRST_PAID_LAUNCH_ROOFER_DRY_RUN_WORKSPACE_COMPARISON_PACKET.md`
+- Read-only verifier: `backend/scripts/verify-first-paid-launch-roofer-dry-run-workspace-comparison-readonly.js`
+- Purpose: generate a fresh dry-run workspace and compare required structure and safety content against the known-good sample fixture.
+- Safety: no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, or Retell route activation.
