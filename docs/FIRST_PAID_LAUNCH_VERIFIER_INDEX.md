@@ -49,6 +49,8 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Lead source quality packet verifier: `node backend/scripts/verify-first-paid-launch-lead-source-quality-packet-readonly.js`
 - Manual review queue packet: `docs/FIRST_PAID_LAUNCH_MANUAL_REVIEW_QUEUE_PACKET.md`
 - Manual review queue packet verifier: `node backend/scripts/verify-first-paid-launch-manual-review-queue-packet-readonly.js`
+- Stopped lead handling packet: `docs/FIRST_PAID_LAUNCH_STOPPED_LEAD_HANDLING_PACKET.md`
+- Stopped lead handling packet verifier: `node backend/scripts/verify-first-paid-launch-stopped-lead-handling-packet-readonly.js`
 - Schema blockers packet: `docs/FIRST_PAID_LAUNCH_SCHEMA_BLOCKERS_PACKET.md`
 - Schema blockers packet verifier: `node backend/scripts/verify-first-paid-launch-schema-blockers-packet-readonly.js`
 - SMS dispatcher messages write test-only: `node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js`

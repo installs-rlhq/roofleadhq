@@ -2337,3 +2337,27 @@ This packet documents the opted_out and stopped_reason schema blockers that prev
 No Supabase migration, no schema mutation, no production writes, and no live automation activated.
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Stopped Lead Handling Packet Milestone
+
+- Added: `docs/FIRST_PAID_LAUNCH_STOPPED_LEAD_HANDLING_PACKET.md`
+- Added: `backend/scripts/verify-first-paid-launch-stopped-lead-handling-packet-readonly.js`
+- Updated: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js` (aggregate wiring)
+- Updated: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Updated: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Updated: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
+The stopped lead handling packet defines how RoofLeadHQ safely handles stopped leads during founder-led first-paid launch.
+
+It confirms:
+- Stopped lead definition and opted_out / stopped_reason tie-ins (do-not-contact, stopped follow-up)
+- Manual review queue, follow-up cadence, missing information recovery, and contractor notification readiness tie-ins
+- Reporting tie-in (weekly leads report, monthly leads report)
+- Founder/operator review and explicit approval gates
+- Recommended actions: book inspections, book appointments, manual review
+- Business language: stopped lead handling, opted_out, stopped_reason, do-not-contact, stopped follow-up, manual review queue, missing information recovery, reporting, safe manual review
+- Explicit: no live automation, no Supabase mutation, no production writes
+
+All safety rules remain explicit. No production systems activated.
+
+Safety remains demo-ready with live automation disabled.

@@ -4821,3 +4821,24 @@ It confirms:
 - Full safety language preserved
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Stopped Lead Handling Packet
+
+The stopped lead handling packet defines how RoofLeadHQ safely handles stopped leads during founder-led first-paid launch.
+
+It confirms:
+
+- Stopped lead definition (opted_out = true or non-null stopped_reason)
+- opted_out tie-in (do-not-contact handling)
+- stopped_reason tie-in (stopped follow-up handling)
+- Manual review queue tie-in
+- Follow-up cadence tie-in
+- Missing information recovery tie-in
+- Contractor notification readiness tie-in
+- Reporting tie-in (weekly leads report, monthly leads report)
+- Founder/operator review requirements
+- Recommended actions: book inspections, book appointments, manual review
+- Business language: stopped lead handling, opted_out, stopped_reason, do-not-contact, stopped follow-up, manual review queue, missing information recovery, reporting, safe manual review
+- Explicit: no live automation, no Supabase mutation, no production writes
+
+Safety remains demo-ready with live automation disabled.
