@@ -47,6 +47,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Paid Launch contractor notification packet',
+    script: 'backend/scripts/verify-first-paid-launch-contractor-notification-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'Pilot dashboard smoke',
     script: 'backend/scripts/verify-pilot-dashboard-smoke-readonly.js',
     args: []

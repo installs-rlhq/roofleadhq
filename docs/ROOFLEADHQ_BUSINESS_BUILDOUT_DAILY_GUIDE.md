@@ -4723,3 +4723,20 @@ It confirms:
 - Business language: book inspections, book appointments, founder-led launch, first-paid launch, emergency escalation, manual review, roofing contractors, weekly/monthly reporting, recommended actions
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Contractor Notification Packet
+
+The contractor notification packet turns homeowner intake, booking preferences, follow-up cadence, reporting preferences, and emergency escalation details into a clean manual notification summary for roofing contractors.
+
+It confirms:
+
+- Contractor notification summary format
+- Minimum contractor notification fields
+- Manual notification rules (founder review only)
+- Emergency tie-in
+- Reporting tie-in (weekly/monthly reporting)
+- Founder-led launch rules
+- Explicit approval gates
+- Business language: book inspection, book appointment, founder-led launch, first-paid launch, manual review, roofing contractors, weekly/monthly reporting, recommended actions
+
+Safety remains demo-ready with live automation disabled.

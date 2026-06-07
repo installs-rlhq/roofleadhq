@@ -1798,3 +1798,27 @@ No public production route activation.
 No secrets exposure.
 No destructive operations.
 
+
+## First Paid Launch Contractor Notification Packet Milestone
+
+- Added: `docs/FIRST_PAID_LAUNCH_CONTRACTOR_NOTIFICATION_PACKET.md`
+- Added: `backend/scripts/verify-first-paid-launch-contractor-notification-packet-readonly.js`
+- Updated: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js` (wired into aggregate)
+- Updated: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Updated: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Updated: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
+The contractor notification packet turns homeowner intake, booking preferences, follow-up cadence, reporting preferences, and emergency escalation details into a clean manual notification summary for roofing contractors.
+
+It confirms:
+- Contractor notification summary format with recommended action language (book inspection / book appointment / manual review)
+- Minimum contractor notification fields
+- Manual notification rules (founder review only)
+- Emergency tie-in
+- Reporting tie-in (weekly/monthly reporting)
+- Founder-led launch rules
+- Explicit approval gates
+
+All safety rules remain explicit. No live automation activated.
+
+Safety remains demo-ready with live automation disabled.
