@@ -4662,3 +4662,24 @@ It confirms:
 - Explicit approval gates.
 
 Safety remains demo-ready with live automation disabled.
+
+## First Paid Launch Follow-Up Cadence Packet
+
+The follow-up cadence packet turns customer intake and booking preferences into day-one homeowner follow-up rules without enabling SMS/Twilio automation.
+
+It confirms:
+
+- Follow-up language rules.
+- Lead status definitions.
+- Initial response rules.
+- Missed-call recovery rules.
+- Standard follow-up cadence.
+- Appointment reminder rules.
+- Emergency follow-up rules.
+- Opt-out and do-not-contact rules.
+- Channel rules.
+- Reporting tie-in.
+- Manual operator handoff.
+- Explicit approval gates.
+
+Safety remains demo-ready with live automation disabled.

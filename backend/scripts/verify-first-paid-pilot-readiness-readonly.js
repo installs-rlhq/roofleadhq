@@ -146,6 +146,11 @@ const commands = [
       script: 'backend/scripts/verify-first-paid-launch-booking-preferences-packet-readonly.js',
       args: []
     },
+    {
+      name: 'First Paid Launch follow-up cadence packet',
+      script: 'backend/scripts/verify-first-paid-launch-follow-up-cadence-packet-readonly.js',
+      args: []
+    },
   {
     name: 'SMS dispatcher messages write test-only',
     script: 'backend/scripts/verify-sms-dispatcher-messages-write-testonly.js',

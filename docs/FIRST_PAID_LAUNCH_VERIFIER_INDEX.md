@@ -460,3 +460,15 @@ Purpose:
 - Protects appointment booking preference rules for first-paid launch onboarding.
 - Verifies appointment language, appointment types, availability rules, service area rules, assignment rules, emergency booking rules, confirmation/reminder expectations, and manual booking handoff.
 - Keeps Calendar booking activation disabled unless explicitly approved.
+
+## First Paid Launch Follow-Up Cadence Packet
+
+Verifier:
+
+`node backend/scripts/verify-first-paid-launch-follow-up-cadence-packet-readonly.js`
+
+Purpose:
+
+- Protects first-paid launch follow-up cadence rules.
+- Verifies lead status definitions, initial response rules, missed-call recovery, appointment reminders, emergency follow-up, opt-out handling, channel rules, reporting tie-in, and manual operator handoff.
+- Keeps SMS/Twilio, dispatcher, cron, scheduler, and live follow-up automation disabled unless explicitly approved.

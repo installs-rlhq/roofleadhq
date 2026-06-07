@@ -1584,3 +1584,33 @@ No public production route activation.
 No secrets exposure.
 No destructive operations.
 
+
+============================================================
+FIRST PAID LAUNCH FOLLOW-UP CADENCE PACKET
+============================================================
+
+Added safe launch-readiness package:
+
+- docs/FIRST_PAID_LAUNCH_FOLLOW_UP_CADENCE_PACKET.md
+- backend/scripts/verify-first-paid-launch-follow-up-cadence-packet-readonly.js
+
+Purpose:
+
+- turn first-paid customer intake and booking preferences into homeowner follow-up rules
+- verify lead statuses, initial response, missed-call recovery, standard cadence, appointment reminders, emergency follow-up, opt-out handling, channel rules, reporting tie-in, and manual operator handoff
+- keep SMS/Twilio, dispatcher, cron, scheduler, and live follow-up automation disabled
+- preserve explicit approval gates
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.
