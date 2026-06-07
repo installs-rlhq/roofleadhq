@@ -1756,3 +1756,45 @@ The emergency escalation packet connects customer intake, booking preferences, f
 All safety rules remain explicit. No live automation activated.
 
 Safety remains demo-ready with live automation disabled.
+
+============================================================
+LATEST SOURCE-OF-TRUTH MILESTONE — FIRST PAID EMERGENCY ESCALATION PACKET
+============================================================
+
+Latest verified source-of-truth commit:
+
+- `4e8520f test(pilot): add first paid emergency escalation packet`
+
+Files changed:
+
+- `docs/FIRST_PAID_LAUNCH_EMERGENCY_ESCALATION_PACKET.md`
+- `backend/scripts/verify-first-paid-launch-emergency-escalation-packet-readonly.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Purpose:
+
+- Add first-paid launch emergency escalation guidance.
+- Add read-only/static verifier coverage for emergency escalation readiness.
+- Wire the emergency escalation verifier into aggregate first-paid pilot readiness.
+- Record emergency escalation coverage in the verifier index, business buildout guide, and next-chat context.
+- Cover active leaks, interior water intrusion, storm damage, tarp requests, unsafe roof access, vulnerable homeowners, after-hours emergencies, insurance deadlines, repeat urgent callers, and angry/escalated homeowners.
+- Preserve founder-led manual review and explicit approval gates.
+- Keep live automation disabled.
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.
+
