@@ -2399,3 +2399,22 @@ It confirms no Vapi production webhook ingestion, no live Vapi webhook route, no
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
 
+## Latest Source-of-Truth Milestone — Voice Path Cleanup Packet
+
+Commit: b135b14 test(pilot): add voice path cleanup packet
+
+Added:
+- docs/FIRST_PAID_LAUNCH_VOICE_PATH_CLEANUP_PACKET.md
+- backend/scripts/verify-first-paid-launch-voice-path-cleanup-packet-readonly.js
+
+Updated:
+- backend/scripts/verify-first-paid-pilot-readiness-readonly.js (aggregate wiring)
+- docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md
+- docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md
+- docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md
+
+This packet documents the first-paid launch voice path cleanup posture: Retell is deprecated/disabled, Vapi is the current phone/voice path, and Vapi dry-run/read-only only remains the safe posture.
+
+It confirms no Vapi production webhook ingestion, no live Vapi webhook route, no Vapi calls from code, no Retell route activation, no webhook activation, no production ingestion, and no production workflow activation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
