@@ -2066,3 +2066,27 @@ No public production route activation.
 No secrets exposure.
 No destructive operations.
 
+
+## First Paid Launch Missing Information Recovery Packet Milestone
+
+- Added: `docs/FIRST_PAID_LAUNCH_MISSING_INFORMATION_RECOVERY_PACKET.md`
+- Added: `backend/scripts/verify-first-paid-launch-missing-information-recovery-packet-readonly.js`
+- Updated: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js` (wired into aggregate)
+- Updated: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Updated: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Updated: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+
+The missing information recovery packet identifies incomplete lead records and provides a structured manual process for recovering the minimum data needed to support contractor notification, follow-up, and reporting during founder-led first-paid launch.
+
+It confirms:
+- Missing information categories (missing homeowner name, missing phone number, missing email, missing property address, missing city/state/ZIP, missing roof issue description, missing roof type, missing urgency/timeline, missing insurance claim status, missing appointment preference, missing lead source, missing source detail, missing contractor routing preference, missing emergency escalation status, missing appointment outcome, missing follow-up status, incomplete lead classification)
+- Incomplete lead classification and manual review rules
+- Founder/operator recovery actions
+- Contractor notification tie-in, follow-up cadence tie-in, emergency escalation tie-in, lead source quality tie-in, appointment outcome tie-in
+- Weekly/monthly reporting tie-in (weekly leads report, monthly leads report)
+- Recommended actions: book inspections, book appointments, manual review
+- Explicit photo exclusion: no photo-related fields or requirements
+
+All safety rules remain explicit. No live automation activated.
+
+Safety remains demo-ready with live automation disabled.
