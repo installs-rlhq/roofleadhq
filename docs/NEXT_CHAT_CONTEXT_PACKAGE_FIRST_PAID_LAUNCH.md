@@ -2134,3 +2134,121 @@ No public production route activation.
 No secrets exposure.
 No destructive operations.
 
+============================================================
+LINDY INTERNAL LEAD REVIEW SUMMARY — DRY RUN WORKFLOW UPDATE
+============================================================
+
+Lindy standing instruction status:
+
+- The RoofLeadHQ Internal Lead Review Summary dry-run workflow is saved and ready.
+- This workflow is manual-trigger only.
+- It runs only when the user pastes lead details into Lindy.
+- It is internal/back-office only.
+- It is not a production workflow.
+- It must not send, schedule, notify, write, trigger, route, mutate, or activate anything automatically.
+
+Current Lindy dry-run workflow purpose:
+
+- Parse pasted lead details.
+- Produce an internal founder/operator lead review summary.
+- Classify urgency.
+- Flag emergency escalation.
+- Identify missing information.
+- Produce an internal contractor notification draft only.
+- Recommend founder/operator next action.
+- Generate weekly/monthly reporting tags.
+- Confirm no production action was activated.
+
+Saved Lindy refinements:
+
+1. Source Detail stays as the actual source, such as Angi, when Lead Source is Angi. Use manual-outreach only when the lead was explicitly manually sourced or manually entered from outreach.
+2. A proofread gate is required to avoid duplicate wording and typos.
+3. Recommended Action must use manual-review language and must not use dispatch language.
+4. Contractor Notification Recommended Action must say the founder/operator should manually review. It must not imply automatic contractor routing.
+5. Photos are excluded from this workflow. Do not ask for photos. Do not include photo fields. Do not include photo tags. Do not make photos part of intake or reporting.
+6. The exact safety confirmation is locked and must appear every time.
+
+Required Lindy safety confirmation:
+
+“This is an internal dry-run summary only. No live SMS, email, calendar booking, Supabase write, Vapi route, Resend action, Lindy production action, contractor notification, homeowner notification, cron, scheduler, dispatcher, database mutation, or production workflow was activated.”
+
+Allowed Lindy dry-run outputs:
+
+- Lead Snapshot
+- Homeowner Contact Info
+- Property / Roofing Issue
+- Urgency Level
+- Emergency Escalation Flag
+- Missing Information
+- Contractor Notification Draft
+- Recommended Action
+- Reporting Tags
+- Safety Confirmation
+
+Lindy dry-run rules:
+
+- Use fake test contact info unless explicitly testing a live or gated communication path.
+- Do not validate phone/email deliverability.
+- Do not send messages.
+- Do not write records.
+- Do not trigger notifications.
+- Do not activate production actions.
+- Do not create contractor notifications outside internal drafts.
+- Do not create homeowner notifications.
+- Do not mutate lead status in production.
+- Keep all output founder/operator-facing.
+
+Business language rules:
+
+Use:
+
+- book inspections
+- book appointments
+- founder-led launch
+- first-paid launch
+- lead response
+- follow-up
+- booking
+- reporting
+- emergency escalation
+- contractor notification
+- manual review
+- recommended actions
+- weekly leads report
+- monthly leads report
+- storm season readiness
+- missed-call recovery
+- speed-to-lead
+
+Avoid:
+
+- legacy short-pilot wording
+- specific appointment-count/time-window claims
+- guaranteed work claims
+- revenue-result guarantee claims/result claims
+- job-booking phrasing
+
+Current Lindy dry-run test status:
+
+- Sarah Miller fake Angi emergency lead test passed after refinements.
+- Source Detail correction applied.
+- Proofread gate applied.
+- Manual-review language applied.
+- No dispatch language allowed.
+- Photos excluded.
+- Safety confirmation locked.
+
+Safety remains demo-ready with live automation disabled.
+
+No live SMS/Twilio sends.
+No production Supabase writes.
+No Vapi production webhook ingestion.
+No live Vapi webhook route.
+No Calendar booking activation.
+No Resend production activation.
+No Lindy production activation.
+No cron/scheduler/dispatcher activation.
+No public production route activation.
+No secrets exposure.
+No destructive operations.
+
