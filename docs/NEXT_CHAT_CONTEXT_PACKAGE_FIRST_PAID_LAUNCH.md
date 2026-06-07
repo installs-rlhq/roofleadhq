@@ -2840,3 +2840,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-setup-packet-readonly.js`
 
 The packet summarizes roofer profile, service area, services, booking preferences, lead sources, manual review/reporting preferences, setup notes, dry-run flags, and final manual decision. It remains planning-only and does not activate production.
+
+## Latest Source-of-Truth Milestone
+
+Commit: 935b2db test(pilot): add first roofer dry-run setup packet
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
