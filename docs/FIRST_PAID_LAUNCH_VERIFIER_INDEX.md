@@ -591,3 +591,12 @@ Purpose:
 - Read-only verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-setup-packet-readonly.js`
 - Purpose: give the founder/operator a setup packet template after dry-run QA and acceptance review, before any real contractor setup planning.
 - Safety: planning-only; no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, or production activation.
+
+
+## Roofer Dry-Run First Roofer Readiness Packet QA
+
+- Wrapper: `scripts/qa-first-roofer-readiness-packet.sh`
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_READINESS_PACKET_QA.md`
+- Read-only verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-readiness-packet-qa-readonly.js`
+- Purpose: verify the combined dry-run planning chain from onboarding QA to operator acceptance checklist to first roofer setup packet.
+- Safety: planning-only; no SMS, Calendar, Vapi, Supabase writes, notifications, cron, scheduler, dispatcher, public routes, Retell route activation, or production activation.

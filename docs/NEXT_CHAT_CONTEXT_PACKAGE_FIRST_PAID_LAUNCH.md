@@ -2850,3 +2850,15 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+
+## Roofer Dry-Run First Roofer Readiness Packet QA
+
+Latest safe build adds a one-command QA wrapper for the combined first roofer dry-run readiness packet.
+
+Files:
+- `scripts/qa-first-roofer-readiness-packet.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_READINESS_PACKET_QA.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-readiness-packet-qa-readonly.js`
+
+The wrapper verifies source of truth, runs the roofer dry-run onboarding QA wrapper, checks the operator acceptance checklist, checks the first roofer setup packet, runs the related read-only verifiers, confirms dry-run flags and safety language, confirms cleanup, and exits with production activation disabled.

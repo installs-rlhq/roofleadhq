@@ -1,11 +1,11 @@
 # Next Chat Context Package - Roofer Dry-Run Onboarding
 
 Latest verified source of truth:
-0af227e test(pilot): record roofer dry-run operator acceptance checklist milestone
+35c6f27 test(pilot): record first roofer dry-run setup packet milestone
 
 Terminal 1 source-of-truth:
 - Repo path: /root/roofleadhq
-- HEAD and origin/main match at 0af227e
+- HEAD and origin/main match at 35c6f27
 - Verify with scripts/verify-source-of-truth.sh
 
 Recent verified chain:
@@ -37,8 +37,12 @@ Completed safe onboarding layer:
 - Milestone guards
 - One-command dry-run onboarding QA wrapper
 - Operator acceptance checklist
+- First roofer dry-run setup packet
 
 Key files:
+- scripts/qa-first-roofer-readiness-packet.sh
+- docs/ROOFER_DRY_RUN_FIRST_ROOFER_READINESS_PACKET_QA.md
+- backend/scripts/verify-roofer-dry-run-first-roofer-readiness-packet-qa-readonly.js
 - docs/ROOFER_DRY_RUN_FIRST_ROOFER_SETUP_PACKET.md
 - backend/scripts/verify-roofer-dry-run-first-roofer-setup-packet-readonly.js
 - docs/ROOFER_DRY_RUN_OPERATOR_ACCEPTANCE_CHECKLIST.md
@@ -115,3 +119,14 @@ Next safe onboarding layer added:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-setup-packet-readonly.js`
 
 This gives the founder/operator a planning-only setup packet template after the QA wrapper passes and the acceptance checklist is reviewed. It summarizes roofer profile, service area, services, booking preferences, lead sources, manual review/reporting preferences, setup notes, dry-run flags, and final manual decision while production activation remains disabled.
+
+
+## Roofer Dry-Run First Roofer Readiness Packet QA
+
+Next safe onboarding layer added:
+
+- `scripts/qa-first-roofer-readiness-packet.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_READINESS_PACKET_QA.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-readiness-packet-qa-readonly.js`
+
+This provides a one-command Terminal 1 QA path for the combined first roofer dry-run readiness packet: onboarding QA wrapper, operator acceptance checklist, and first roofer setup packet. It verifies source of truth, read-only verifiers, decision language, dry-run flags, safety language, cleanup, and production activation remains disabled.
