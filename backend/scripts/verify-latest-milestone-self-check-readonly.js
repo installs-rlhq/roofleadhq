@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  'caa4e2f test(pilot): add roofer dry-run workspace template packet',
   'c87ccf6 test(pilot): fix roofer dry-run intake verifier language guard',
   '05248c8 test(pilot): fix production gate readiness wiring',
   'b9480fd test(pilot): add production gate check script packet',
