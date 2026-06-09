@@ -836,3 +836,11 @@ Purpose:
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-archive-final-check-readonly.js`
 - Scope: dry-run-only internal founder/operator final check after archive acceptance.
 - Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.
+
+## First Roofer Manual Setup Session Archive Final Check Acceptance
+
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-archive-final-check-acceptance-readonly.js`
+- Wrapper: `scripts/accept-first-roofer-manual-setup-session-archive-final-check-dry-run.sh`
+- Packet: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_ARCHIVE_FINAL_CHECK_ACCEPTANCE.md`
+- Purpose: verifies dry-run/internal-only founder/operator acceptance of the archive final-check packet.
+- Safety: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.

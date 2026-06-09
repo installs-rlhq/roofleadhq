@@ -660,3 +660,23 @@ Decision language:
 - MANUAL SETUP SESSION ARCHIVE FINAL CHECK BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
 
 Safety remains unchanged: session-archive-final-check-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
+
+## First Roofer Manual Setup Session Archive Final Check Acceptance
+
+Added the First Roofer Manual Setup Session Archive Final Check Acceptance packet.
+
+Files:
+
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_ARCHIVE_FINAL_CHECK_ACCEPTANCE.md`
+- `scripts/accept-first-roofer-manual-setup-session-archive-final-check-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-archive-final-check-acceptance-readonly.js`
+
+Purpose: records dry-run/internal-only founder/operator acceptance of the archive final-check packet.
+
+Decision language:
+
+- `MANUAL SETUP SESSION ARCHIVE FINAL CHECK ACCEPTANCE PASS`
+- `MANUAL SETUP SESSION ARCHIVE FINAL CHECK ACCEPTANCE HOLD`
+- `MANUAL SETUP SESSION ARCHIVE FINAL CHECK ACCEPTANCE BLOCKED`
+
+Safety remains demo-ready with live automation disabled: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.

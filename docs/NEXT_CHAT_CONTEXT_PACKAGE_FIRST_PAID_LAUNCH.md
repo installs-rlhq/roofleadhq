@@ -3683,3 +3683,23 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Roofer Manual Setup Session Archive Final Check Acceptance
+
+Added the First Roofer Manual Setup Session Archive Final Check Acceptance packet.
+
+Files:
+
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_ARCHIVE_FINAL_CHECK_ACCEPTANCE.md`
+- `scripts/accept-first-roofer-manual-setup-session-archive-final-check-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-archive-final-check-acceptance-readonly.js`
+
+Purpose: records dry-run/internal-only founder/operator acceptance of the archive final-check packet.
+
+Decision language:
+
+- `MANUAL SETUP SESSION ARCHIVE FINAL CHECK ACCEPTANCE PASS`
+- `MANUAL SETUP SESSION ARCHIVE FINAL CHECK ACCEPTANCE HOLD`
+- `MANUAL SETUP SESSION ARCHIVE FINAL CHECK ACCEPTANCE BLOCKED`
+
+Safety remains demo-ready with live automation disabled: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.
