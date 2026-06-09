@@ -755,3 +755,12 @@ Purpose:
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-handoff-acceptance-readonly.js`
 - Scope: dry-run-only internal founder/operator acceptance after the first roofer manual setup session handoff.
 - Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.
+
+
+## First Roofer Manual Setup Session Next Action Packet
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_NEXT_ACTION.md`
+- Wrapper: `scripts/plan-first-roofer-manual-setup-session-next-action-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-next-action-readonly.js`
+- Scope: dry-run-only internal founder/operator next action after handoff acceptance.
+- Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.
