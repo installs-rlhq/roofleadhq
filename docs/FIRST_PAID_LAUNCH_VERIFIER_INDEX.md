@@ -701,3 +701,12 @@ Purpose:
   - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-runbook-readonly.js`
   - Purpose: Guides the first-roofer manual setup session as a controlled internal founder/operator dry-run procedure after execution readiness has passed.
 
+
+
+## First Roofer Manual Setup Session Notes Packet
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_NOTES.md`
+- Wrapper: `scripts/record-first-roofer-manual-setup-session-notes-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-notes-readonly.js`
+- Scope: dry-run-only internal founder/operator session notes for the first roofer manual setup session.
+- Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.

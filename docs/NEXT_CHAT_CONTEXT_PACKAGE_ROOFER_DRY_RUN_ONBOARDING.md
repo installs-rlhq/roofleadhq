@@ -359,3 +359,24 @@ Decision language:
 
 Safety remains unchanged: session-runbook-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
 
+
+
+## First Roofer Manual Setup Session Notes Packet
+
+The first roofer manual setup chain now includes the First Roofer Manual Setup Session Notes Packet.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_NOTES.md`
+- `scripts/record-first-roofer-manual-setup-session-notes-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-notes-readonly.js`
+
+Purpose:
+- Records internal dry-run notes for what happened during the first manual setup session.
+- Confirms source-of-truth commit reviewed, execution readiness status, final go/no-go status, session runbook status, setup/service/booking/manual-review/lead-source preferences, missing information, HOLD/BLOCKED items, safety flags, production gates, aggregate readiness, backend build proof, final session status, and next internal action.
+
+Decision language:
+- MANUAL SETUP SESSION NOTES PASS: first-roofer manual setup session notes are complete, internally reviewable, and dry-run only, with production activation still disabled.
+- MANUAL SETUP SESSION NOTES HOLD: missing session runbook proof, missing execution readiness proof, missing session notes, missing safety confirmation, or unclear session notes status must be fixed.
+- MANUAL SETUP SESSION NOTES BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: session-notes-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.

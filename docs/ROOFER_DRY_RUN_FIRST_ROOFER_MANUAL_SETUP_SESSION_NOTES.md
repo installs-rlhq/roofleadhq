@@ -10,6 +10,8 @@ It does not activate production, create production records, mutate Supabase, sen
 
 This packet is internal only, founder/operator only, and session-notes-only.
 
+Verifier phrase: internal/founder/operator session-notes.
+
 ## Required Session Notes Fields
 
 - Session date
