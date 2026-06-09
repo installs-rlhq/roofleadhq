@@ -3082,3 +3082,24 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Roofer Manual Setup Founder Approval Evidence
+
+The next safe first-roofer dry-run layer adds a one-command internal founder approval evidence wrapper after the manual setup founder approval layer.
+
+Added files:
+
+- `scripts/collect-first-roofer-manual-setup-founder-approval-evidence-dry-run.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_FOUNDER_APPROVAL_EVIDENCE.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-founder-approval-evidence-readonly.js`
+
+The evidence wrapper verifies source of truth, confirms the founder approval and operator acceptance chain exists, runs the founder approval wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Decision language:
+
+- MANUAL SETUP FOUNDER APPROVAL EVIDENCE PASS: founder approval evidence is complete, internally reviewable, and dry-run only.
+- MANUAL SETUP FOUNDER APPROVAL EVIDENCE HOLD: missing approval decision, missing operator acceptance evidence, missing verifier proof, missing safety confirmation, or unclear evidence status must be fixed.
+- MANUAL SETUP FOUNDER APPROVAL EVIDENCE BLOCKED: production activation, data mutation, notification, route, credential, secret, or destructive-action risk must be resolved before continuing.
+
+Safety remains unchanged: founder-approval-evidence-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
+

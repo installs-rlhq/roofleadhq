@@ -671,3 +671,9 @@ Purpose:
   - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-founder-approval-readonly.js`
   - Purpose: Converts operator acceptance into a final internal founder/operator PASS, HOLD, or BLOCKED approval decision while remaining dry-run only and production-disabled.
 
+- First Roofer Manual Setup Founder Approval Evidence
+  - Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_FOUNDER_APPROVAL_EVIDENCE.md`
+  - Wrapper: `scripts/collect-first-roofer-manual-setup-founder-approval-evidence-dry-run.sh`
+  - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-founder-approval-evidence-readonly.js`
+  - Purpose: Collects internal dry-run evidence proving the founder approval decision is reviewable, grounded, and safe before any actual first-roofer manual setup work occurs.
+
