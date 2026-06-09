@@ -520,3 +520,23 @@ Decision language:
 - MANUAL SETUP SESSION NEXT ACTION ACCEPTANCE BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
 
 Safety remains unchanged: session-next-action-acceptance-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
+
+
+## First Roofer Manual Setup Session Outcome Packet
+
+The first roofer manual setup chain now includes the First Roofer Manual Setup Session Outcome Packet.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_OUTCOME.md`
+- `scripts/record-first-roofer-manual-setup-session-outcome-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-outcome-readonly.js`
+
+Purpose:
+- Records the internal founder/operator outcome after session next-action acceptance, next action, handoff acceptance, handoff, closeout, QA acceptance, QA, session notes, and session runbook have passed.
+
+Decision language:
+- MANUAL SETUP SESSION OUTCOME PASS: first-roofer manual setup session outcome is complete, internally reviewable, and dry-run only, with production activation still disabled.
+- MANUAL SETUP SESSION OUTCOME HOLD: missing next action acceptance proof, missing handoff acceptance proof, missing safety confirmation, unclear outcome owner, unclear dependencies, or unclear outcome status must be fixed.
+- MANUAL SETUP SESSION OUTCOME BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: session-outcome-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
