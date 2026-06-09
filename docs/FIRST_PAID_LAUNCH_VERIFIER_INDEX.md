@@ -860,3 +860,11 @@ Purpose:
 - Packet: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_COMPLETION_LOCK_ACCEPTANCE.md`
 - Purpose: verifies dry-run/internal-only founder/operator acceptance of the completion lock packet.
 - Safety: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.
+
+## First Roofer Manual Setup Session Final Lock
+
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-final-lock-readonly.js`
+- Wrapper: `scripts/lock-first-roofer-manual-setup-session-final-dry-run.sh`
+- Packet: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_FINAL_LOCK.md`
+- Purpose: verifies dry-run/internal-only founder/operator final lock after completion lock acceptance.
+- Safety: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.
