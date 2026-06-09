@@ -689,3 +689,9 @@ Purpose:
   - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-final-go-no-go-readonly.js`
   - Purpose: Provides a final internal dry-run PASS, HOLD, or BLOCKED decision gate before any actual first-roofer manual setup work occurs.
 
+- First Roofer Manual Setup Execution Readiness
+  - Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_EXECUTION_READINESS.md`
+  - Wrapper: `scripts/check-first-roofer-manual-setup-execution-readiness-dry-run.sh`
+  - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-execution-readiness-readonly.js`
+  - Purpose: Converts final go/no-go PASS into a controlled internal dry-run founder/operator manual setup session readiness checklist.
+

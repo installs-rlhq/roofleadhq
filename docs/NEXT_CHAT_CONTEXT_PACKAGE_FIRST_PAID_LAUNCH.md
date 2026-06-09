@@ -3172,3 +3172,24 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Roofer Manual Setup Execution Readiness
+
+The next safe first-roofer dry-run layer adds an internal execution readiness packet after the final go/no-go decision gate.
+
+Added files:
+
+- `scripts/check-first-roofer-manual-setup-execution-readiness-dry-run.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_EXECUTION_READINESS.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-execution-readiness-readonly.js`
+
+The execution readiness wrapper verifies source of truth, confirms the final go/no-go, founder approval evidence QA, founder approval evidence, founder approval, and operator acceptance chain exists, runs the final go/no-go wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Decision language:
+
+- MANUAL SETUP EXECUTION READINESS PASS: first-roofer manual setup session is ready for internal founder/operator dry-run execution only, with production activation still disabled.
+- MANUAL SETUP EXECUTION READINESS HOLD: missing final go/no-go proof, missing QA proof, missing founder approval evidence, missing wrapper proof, missing safety confirmation, or unclear execution readiness status must be fixed.
+- MANUAL SETUP EXECUTION READINESS BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: execution-readiness-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
+
