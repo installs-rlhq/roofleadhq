@@ -764,3 +764,12 @@ Purpose:
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-next-action-readonly.js`
 - Scope: dry-run-only internal founder/operator next action after handoff acceptance.
 - Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.
+
+
+## First Roofer Manual Setup Session Next Action Acceptance Packet
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_NEXT_ACTION_ACCEPTANCE.md`
+- Wrapper: `scripts/accept-first-roofer-manual-setup-session-next-action-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-next-action-acceptance-readonly.js`
+- Scope: dry-run-only internal founder/operator acceptance for the next action after handoff acceptance.
+- Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.
