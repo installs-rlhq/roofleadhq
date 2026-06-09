@@ -299,3 +299,23 @@ Decision language:
 
 Safety remains unchanged: founder-approval-evidence-QA-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
 
+## First Roofer Manual Setup Final Go/No-Go
+
+The next safe first-roofer dry-run layer adds a final internal go/no-go decision gate after the founder approval evidence QA layer.
+
+Added files:
+
+- `scripts/review-first-roofer-manual-setup-final-go-no-go-dry-run.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_FINAL_GO_NO_GO.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-final-go-no-go-readonly.js`
+
+The final go/no-go wrapper verifies source of truth, confirms the founder approval evidence QA, founder approval evidence, founder approval, and operator acceptance chain exists, runs the founder approval evidence QA wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Decision language:
+
+- MANUAL SETUP FINAL GO/NO-GO PASS: first-roofer manual setup may proceed as internal founder/operator manual work only, in dry-run mode, with production activation still disabled.
+- MANUAL SETUP FINAL GO/NO-GO HOLD: missing QA proof, missing founder approval evidence, missing operator acceptance proof, missing verifier proof, missing safety confirmation, or unclear final decision status must be fixed.
+- MANUAL SETUP FINAL GO/NO-GO BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: final-go/no-go-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
+

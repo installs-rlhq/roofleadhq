@@ -683,3 +683,9 @@ Purpose:
   - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-founder-approval-evidence-qa-readonly.js`
   - Purpose: Provides a one-command internal dry-run QA pass proving the founder approval evidence packet and upstream approval chain are reviewable before any actual first-roofer manual setup work occurs.
 
+- First Roofer Manual Setup Final Go/No-Go
+  - Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_FINAL_GO_NO_GO.md`
+  - Wrapper: `scripts/review-first-roofer-manual-setup-final-go-no-go-dry-run.sh`
+  - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-final-go-no-go-readonly.js`
+  - Purpose: Provides a final internal dry-run PASS, HOLD, or BLOCKED decision gate before any actual first-roofer manual setup work occurs.
+
