@@ -327,6 +327,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First roofer manual setup session operator handoff freeze',
+    script: 'backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-operator-handoff-freeze-readonly.js',
+    args: []
+  },
+  {
     name: 'First Paid Launch production gate check script packet',
     script: 'backend/scripts/verify-first-paid-launch-production-gate-check-script-packet-readonly.js',
     args: []

@@ -883,3 +883,10 @@ Purpose:
 - Packet: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_FINAL_LOCK_ACCEPTANCE.md`
 - Purpose: verifies dry-run/internal-only founder/operator acceptance of the final lock packet.
 - Safety: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.
+
+### First Roofer Manual Setup Session Operator Handoff Freeze
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_OPERATOR_HANDOFF_FREEZE.md`
+- Wrapper: `scripts/freeze-first-roofer-manual-setup-session-operator-handoff-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-operator-handoff-freeze-readonly.js`
+- Scope: dry-run/internal-only operator handoff freeze for the fully preserved first roofer manual setup session chain.

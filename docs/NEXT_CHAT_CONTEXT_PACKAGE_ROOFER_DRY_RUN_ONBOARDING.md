@@ -774,3 +774,17 @@ Decision language:
 - `MANUAL SETUP SESSION FINAL LOCK ACCEPTANCE BLOCKED`
 
 Safety remains demo-ready with live automation disabled: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.
+
+## First Roofer Manual Setup Session Operator Handoff Freeze
+
+This layer freezes the preserved First Roofer Manual Setup Session dry-run chain as the future internal operator handoff reference.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_OPERATOR_HANDOFF_FREEZE.md`
+- `scripts/freeze-first-roofer-manual-setup-session-operator-handoff-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-operator-handoff-freeze-readonly.js`
+
+Decision language:
+- `MANUAL SETUP SESSION OPERATOR HANDOFF FREEZE PASS`
+- `MANUAL SETUP SESSION OPERATOR HANDOFF FREEZE HOLD`
+- `MANUAL SETUP SESSION OPERATOR HANDOFF FREEZE BLOCKED`
