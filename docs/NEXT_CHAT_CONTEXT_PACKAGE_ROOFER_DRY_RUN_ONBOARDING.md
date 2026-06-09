@@ -339,3 +339,23 @@ Decision language:
 
 Safety remains unchanged: execution-readiness-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
 
+## First Roofer Manual Setup Session Runbook
+
+The next safe first-roofer dry-run layer adds an internal session runbook after the execution readiness packet.
+
+Added files:
+
+- `scripts/run-first-roofer-manual-setup-session-runbook-dry-run.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_RUNBOOK.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-runbook-readonly.js`
+
+The session runbook wrapper verifies source of truth, confirms the execution readiness, final go/no-go, founder approval evidence QA, founder approval evidence, founder approval, and operator acceptance chain exists, runs the execution readiness wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Decision language:
+
+- MANUAL SETUP SESSION RUNBOOK PASS: first-roofer manual setup session can be conducted internally by the founder/operator in dry-run mode only, with production activation still disabled.
+- MANUAL SETUP SESSION RUNBOOK HOLD: missing execution readiness proof, missing final go/no-go proof, missing session notes, missing wrapper proof, missing safety confirmation, or unclear session status must be fixed.
+- MANUAL SETUP SESSION RUNBOOK BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: session-runbook-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
+

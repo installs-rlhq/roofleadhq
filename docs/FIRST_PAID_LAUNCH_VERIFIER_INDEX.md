@@ -695,3 +695,9 @@ Purpose:
   - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-execution-readiness-readonly.js`
   - Purpose: Converts final go/no-go PASS into a controlled internal dry-run founder/operator manual setup session readiness checklist.
 
+- First Roofer Manual Setup Session Runbook
+  - Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_RUNBOOK.md`
+  - Wrapper: `scripts/run-first-roofer-manual-setup-session-runbook-dry-run.sh`
+  - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-runbook-readonly.js`
+  - Purpose: Guides the first-roofer manual setup session as a controlled internal founder/operator dry-run procedure after execution readiness has passed.
+
