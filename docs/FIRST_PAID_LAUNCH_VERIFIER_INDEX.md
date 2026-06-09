@@ -818,3 +818,12 @@ Purpose:
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-archive-readonly.js`
 - Scope: dry-run-only internal founder/operator archive checkpoint after final summary acceptance.
 - Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.
+
+
+## First Roofer Manual Setup Session Archive Acceptance Packet
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_ARCHIVE_ACCEPTANCE.md`
+- Wrapper: `scripts/accept-first-roofer-manual-setup-session-archive-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-archive-acceptance-readonly.js`
+- Scope: dry-run-only internal founder/operator acceptance of the session archive checkpoint.
+- Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.

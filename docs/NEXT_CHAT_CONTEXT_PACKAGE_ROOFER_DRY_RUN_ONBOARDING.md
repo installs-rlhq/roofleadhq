@@ -620,3 +620,23 @@ Decision language:
 - MANUAL SETUP SESSION ARCHIVE BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
 
 Safety remains unchanged: session-archive-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
+
+
+## First Roofer Manual Setup Session Archive Acceptance Packet
+
+The first roofer manual setup chain now includes the First Roofer Manual Setup Session Archive Acceptance Packet.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_ARCHIVE_ACCEPTANCE.md`
+- `scripts/accept-first-roofer-manual-setup-session-archive-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-archive-acceptance-readonly.js`
+
+Purpose:
+- Records internal founder/operator acceptance of the first roofer manual setup session archive checkpoint after archive, final-summary acceptance, final summary, outcome acceptance, outcome, next-action acceptance, next action, handoff acceptance, handoff, closeout, QA acceptance, QA, session notes, and session runbook have passed.
+
+Decision language:
+- MANUAL SETUP SESSION ARCHIVE ACCEPTANCE PASS: first-roofer manual setup session archive acceptance is complete, internally reviewable, and dry-run only, with production activation still disabled.
+- MANUAL SETUP SESSION ARCHIVE ACCEPTANCE HOLD: missing archive proof, missing final summary acceptance proof, missing safety confirmation, unclear archive acceptance status, or unclear archive dependencies must be fixed.
+- MANUAL SETUP SESSION ARCHIVE ACCEPTANCE BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: session-archive-acceptance-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
