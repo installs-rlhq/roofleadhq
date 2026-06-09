@@ -307,6 +307,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First roofer manual setup session completion lock acceptance',
+    script: 'backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-completion-lock-acceptance-readonly.js',
+    args: []
+  },
+  {
     name: 'First Paid Launch production gate check script packet',
     script: 'backend/scripts/verify-first-paid-launch-production-gate-check-script-packet-readonly.js',
     args: []

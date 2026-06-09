@@ -700,3 +700,23 @@ Decision language:
 - `MANUAL SETUP SESSION COMPLETION LOCK BLOCKED`
 
 Safety remains demo-ready with live automation disabled: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.
+
+## First Roofer Manual Setup Session Completion Lock Acceptance
+
+Added the First Roofer Manual Setup Session Completion Lock Acceptance packet.
+
+Files:
+
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_COMPLETION_LOCK_ACCEPTANCE.md`
+- `scripts/accept-first-roofer-manual-setup-session-completion-lock-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-completion-lock-acceptance-readonly.js`
+
+Purpose: records dry-run/internal-only founder/operator acceptance of the completion lock packet.
+
+Decision language:
+
+- `MANUAL SETUP SESSION COMPLETION LOCK ACCEPTANCE PASS`
+- `MANUAL SETUP SESSION COMPLETION LOCK ACCEPTANCE HOLD`
+- `MANUAL SETUP SESSION COMPLETION LOCK ACCEPTANCE BLOCKED`
+
+Safety remains demo-ready with live automation disabled: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.
