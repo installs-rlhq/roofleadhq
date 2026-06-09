@@ -3052,3 +3052,24 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Roofer Manual Setup Founder Approval
+
+The next safe first-roofer dry-run layer adds a one-command internal founder approval wrapper after the manual setup operator acceptance layer.
+
+Added files:
+
+- `scripts/approve-first-roofer-manual-setup-founder-dry-run.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_FOUNDER_APPROVAL.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-founder-approval-readonly.js`
+
+The founder approval wrapper verifies source of truth, confirms the manual setup operator acceptance chain exists, runs the operator acceptance wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Decision language:
+
+- MANUAL SETUP FOUNDER APPROVAL PASS: operator acceptance can be approved internally by the founder/operator in dry-run mode only.
+- MANUAL SETUP FOUNDER APPROVAL HOLD: missing acceptance packet, missing runbook, missing rehearsal verifier, missing safety language, or unclear founder approval status must be fixed.
+- MANUAL SETUP FOUNDER APPROVAL BLOCKED: production activation, data mutation, notification, route, credential, secret, or destructive-action risk must be resolved before continuing.
+
+Safety remains unchanged: founder-approval-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
+
