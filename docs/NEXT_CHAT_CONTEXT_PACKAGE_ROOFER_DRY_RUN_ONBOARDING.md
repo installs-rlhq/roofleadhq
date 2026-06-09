@@ -560,3 +560,23 @@ Decision language:
 - MANUAL SETUP SESSION OUTCOME ACCEPTANCE BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
 
 Safety remains unchanged: session-outcome-acceptance-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
+
+
+## First Roofer Manual Setup Session Final Summary Packet
+
+The first roofer manual setup chain now includes the First Roofer Manual Setup Session Final Summary Packet.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_FINAL_SUMMARY.md`
+- `scripts/summarize-first-roofer-manual-setup-session-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-final-summary-readonly.js`
+
+Purpose:
+- Records the internal founder/operator final summary after session outcome acceptance, outcome, next-action acceptance, next action, handoff acceptance, handoff, closeout, QA acceptance, QA, session notes, and session runbook have passed.
+
+Decision language:
+- MANUAL SETUP SESSION FINAL SUMMARY PASS: first-roofer manual setup session final summary is complete, internally reviewable, and dry-run only, with production activation still disabled.
+- MANUAL SETUP SESSION FINAL SUMMARY HOLD: missing outcome acceptance proof, missing outcome proof, missing safety confirmation, unclear final summary owner, unclear remaining dependencies, or unclear final summary status must be fixed.
+- MANUAL SETUP SESSION FINAL SUMMARY BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: session-final-summary-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
