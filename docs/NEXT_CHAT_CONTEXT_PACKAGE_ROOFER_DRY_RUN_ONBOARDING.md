@@ -279,3 +279,23 @@ Decision language:
 
 Safety remains unchanged: founder-approval-evidence-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
 
+## First Roofer Manual Setup Founder Approval Evidence QA
+
+The next safe first-roofer dry-run layer adds a one-command internal founder approval evidence QA wrapper after the founder approval evidence packet.
+
+Added files:
+
+- `scripts/qa-first-roofer-manual-setup-founder-approval-evidence.sh`
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_FOUNDER_APPROVAL_EVIDENCE_QA.md`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-founder-approval-evidence-qa-readonly.js`
+
+The QA wrapper verifies source of truth, confirms the founder approval evidence, founder approval, and operator acceptance chain exists, runs the evidence verifier, runs the evidence wrapper, runs the founder approval wrapper, runs production gate checks, and runs aggregate safe readiness.
+
+Decision language:
+
+- MANUAL SETUP FOUNDER APPROVAL EVIDENCE QA PASS: founder approval evidence QA is complete, internally reviewable, and dry-run only.
+- MANUAL SETUP FOUNDER APPROVAL EVIDENCE QA HOLD: missing evidence packet, missing founder approval proof, missing operator acceptance proof, missing wrapper proof, missing verifier proof, missing safety confirmation, or unclear QA status must be fixed.
+- MANUAL SETUP FOUNDER APPROVAL EVIDENCE QA BLOCKED: production activation, data mutation, notification, route, credential, secret, or destructive-action risk must be resolved before continuing.
+
+Safety remains unchanged: founder-approval-evidence-QA-only and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, or destructive actions.
+
