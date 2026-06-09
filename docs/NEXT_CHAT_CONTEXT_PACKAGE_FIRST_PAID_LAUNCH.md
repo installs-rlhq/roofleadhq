@@ -3823,3 +3823,13 @@ Decision language:
 - `MANUAL SETUP SESSION FINAL LOCK ACCEPTANCE BLOCKED`
 
 Safety remains demo-ready with live automation disabled: no live SMS/Twilio, no calls, no emails, no Supabase writes, no contractor/homeowner notifications, no Calendar booking, no Vapi production webhook ingestion, no Retell routes, no cron, no scheduler, no dispatcher, and no public route activation.
+
+## Latest Source-of-Truth Milestone
+
+Commit: test(pilot): record first roofer manual setup session final lock acceptance milestone ab65f35 test(pilot): add first roofer manual setup session final lock acceptance
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
