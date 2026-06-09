@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  'test(pilot): record first roofer manual setup session preservation snapshot milestone a81223d test(pilot): add first roofer manual setup session preservation snapshot',
   'test(pilot): record first roofer manual setup session final lock acceptance milestone ab65f35 test(pilot): add first roofer manual setup session final lock acceptance',
   'test(pilot): record first roofer manual setup session final lock milestone 7808891 test(pilot): add first roofer manual setup session final lock',
   'c143f69 test(pilot): add first roofer manual setup session completion lock acceptance',
