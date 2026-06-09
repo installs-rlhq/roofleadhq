@@ -1,0 +1,67 @@
+# Roofer Dry Run — First Roofer Manual Setup Session QA Acceptance
+
+This packet records internal founder/operator acceptance of the first roofer manual setup session QA layer.
+
+This packet is dry-run only.
+
+This packet is internal only, founder/operator only, and session-QA-acceptance-only.
+
+It does not activate production, create production records, mutate Supabase, send messages, send emails, place calls, notify contractors, notify homeowners, enable booking, enable routes, expose credentials, expose secrets, run destructive actions, or perform external sends.
+
+## Acceptance Scope
+
+- Session QA packet reviewed.
+- Session QA wrapper reviewed.
+- Session QA verifier reviewed.
+- Session notes proof reviewed.
+- Session runbook proof reviewed.
+- Execution readiness proof reviewed.
+- Final go/no-go proof reviewed.
+- Founder/operator acceptance recorded.
+- HOLD items reviewed.
+- BLOCKED items reviewed.
+- Safety flags confirmed.
+- Production gates confirmed.
+- Aggregate readiness confirmed.
+- Backend build proof reviewed.
+- Final acceptance status recorded.
+- Next internal action recorded.
+
+## Required Dry-Run Flags
+
+WORKSPACE_MODE=dry-run
+SMS_ACTIVATION=false
+CALENDAR_ACTIVATION=false
+VAPI_ACTIVATION=false
+SUPABASE_WRITES=false
+CONTRACTOR_NOTIFICATION=false
+HOMEOWNER_NOTIFICATION=false
+CRON_ACTIVATION=false
+SCHEDULER_ACTIVATION=false
+DISPATCHER_ACTIVATION=false
+PUBLIC_ROUTE_ACTIVATION=false
+
+## Decision Language
+
+MANUAL SETUP SESSION QA ACCEPTANCE PASS: first-roofer manual setup session QA acceptance is complete, internally reviewable, and dry-run only, with production activation still disabled.
+
+MANUAL SETUP SESSION QA ACCEPTANCE HOLD: missing QA proof, missing notes proof, missing readiness proof, missing safety confirmation, unclear acceptance status, or unclear next internal action must be fixed.
+
+MANUAL SETUP SESSION QA ACCEPTANCE BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+## Safety Confirmation
+
+No production activation occurred.
+No production records were created.
+No Supabase mutation occurred.
+No live SMS/Twilio send occurred.
+No email send occurred.
+No call occurred.
+No contractor or homeowner notification occurred.
+No Calendar booking occurred.
+No Vapi production ingestion occurred.
+No Retell route activation occurred.
+No cron, scheduler, dispatcher, or public route activation occurred.
+No credential or secret exposure occurred.
+No destructive action occurred.
+No external send occurred.

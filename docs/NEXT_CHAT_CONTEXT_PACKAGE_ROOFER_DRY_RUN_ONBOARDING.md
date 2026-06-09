@@ -400,3 +400,23 @@ Decision language:
 - MANUAL SETUP SESSION QA BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
 
 Safety remains unchanged: session-QA-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
+
+
+## First Roofer Manual Setup Session QA Acceptance Packet
+
+The first roofer manual setup chain now includes the First Roofer Manual Setup Session QA Acceptance Packet.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_QA_ACCEPTANCE.md`
+- `scripts/accept-first-roofer-manual-setup-session-qa-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-qa-acceptance-readonly.js`
+
+Purpose:
+- Records internal founder/operator acceptance of the session QA proof after the session notes, session runbook, execution readiness, final go/no-go, and QA layers have passed.
+
+Decision language:
+- MANUAL SETUP SESSION QA ACCEPTANCE PASS: first-roofer manual setup session QA acceptance is complete, internally reviewable, and dry-run only, with production activation still disabled.
+- MANUAL SETUP SESSION QA ACCEPTANCE HOLD: missing QA proof, missing notes proof, missing readiness proof, missing safety confirmation, unclear acceptance status, or unclear next internal action must be fixed.
+- MANUAL SETUP SESSION QA ACCEPTANCE BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: session-QA-acceptance-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
