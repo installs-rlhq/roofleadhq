@@ -3323,3 +3323,23 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+
+## First Roofer Manual Setup Session Closeout Packet
+
+The first roofer manual setup chain now includes the First Roofer Manual Setup Session Closeout Packet.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_CLOSEOUT.md`
+- `scripts/closeout-first-roofer-manual-setup-session-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-closeout-readonly.js`
+
+Purpose:
+- Closes out the internal dry-run session chain after session runbook, notes, QA, QA acceptance, execution readiness, final go/no-go, and founder approval evidence QA have passed.
+
+Decision language:
+- MANUAL SETUP SESSION CLOSEOUT PASS: first-roofer manual setup session closeout is complete, internally reviewable, and dry-run only, with production activation still disabled.
+- MANUAL SETUP SESSION CLOSEOUT HOLD: missing session QA acceptance proof, missing notes proof, missing readiness proof, missing safety confirmation, unclear closeout status, or unclear next internal action must be fixed.
+- MANUAL SETUP SESSION CLOSEOUT BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: session-closeout-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
