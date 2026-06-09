@@ -3806,6 +3806,17 @@ No live automation activated. Safety remains demo-ready with live automation dis
 
 ## First Roofer Manual Setup Session Final Lock Acceptance
 
+## First Roofer Manual Setup Session Preservation Snapshot
+
+The next safe layer records the fully accepted First Roofer Manual Setup Session chain as a preserved internal dry-run source-of-truth snapshot.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_PRESERVATION_SNAPSHOT.md`
+- `scripts/snapshot-first-roofer-manual-setup-session-preservation-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-preservation-snapshot-readonly.js`
+
+Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+
 Added the First Roofer Manual Setup Session Final Lock Acceptance packet.
 
 Files:

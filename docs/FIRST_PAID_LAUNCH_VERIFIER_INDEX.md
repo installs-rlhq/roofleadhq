@@ -871,6 +871,13 @@ Purpose:
 
 ## First Roofer Manual Setup Session Final Lock Acceptance
 
+### First Roofer Manual Setup Session Preservation Snapshot
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_PRESERVATION_SNAPSHOT.md`
+- Wrapper: `scripts/snapshot-first-roofer-manual-setup-session-preservation-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-preservation-snapshot-readonly.js`
+- Scope: dry-run/internal-only preservation snapshot for the fully accepted first roofer manual setup session chain.
+
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-final-lock-acceptance-readonly.js`
 - Wrapper: `scripts/accept-first-roofer-manual-setup-session-final-lock-dry-run.sh`
 - Packet: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_FINAL_LOCK_ACCEPTANCE.md`

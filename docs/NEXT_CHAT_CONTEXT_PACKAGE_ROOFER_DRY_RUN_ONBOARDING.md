@@ -743,6 +743,20 @@ Safety remains demo-ready with live automation disabled: no live SMS/Twilio, no 
 
 ## First Roofer Manual Setup Session Final Lock Acceptance
 
+## First Roofer Manual Setup Session Preservation Snapshot
+
+This layer preserves the final accepted First Roofer Manual Setup Session dry-run chain as the current internal record after final lock acceptance.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_PRESERVATION_SNAPSHOT.md`
+- `scripts/snapshot-first-roofer-manual-setup-session-preservation-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-preservation-snapshot-readonly.js`
+
+Decision language:
+- `MANUAL SETUP SESSION PRESERVATION SNAPSHOT PASS`
+- `MANUAL SETUP SESSION PRESERVATION SNAPSHOT HOLD`
+- `MANUAL SETUP SESSION PRESERVATION SNAPSHOT BLOCKED`
+
 Added the First Roofer Manual Setup Session Final Lock Acceptance packet.
 
 Files:
