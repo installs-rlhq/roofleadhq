@@ -710,3 +710,12 @@ Purpose:
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-notes-readonly.js`
 - Scope: dry-run-only internal founder/operator session notes for the first roofer manual setup session.
 - Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.
+
+
+## First Roofer Manual Setup Session QA Packet
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_QA.md`
+- Wrapper: `scripts/qa-first-roofer-manual-setup-session-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-qa-readonly.js`
+- Scope: dry-run-only internal founder/operator QA for the first roofer manual setup session notes.
+- Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.

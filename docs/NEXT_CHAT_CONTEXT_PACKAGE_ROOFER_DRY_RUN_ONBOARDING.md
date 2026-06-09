@@ -380,3 +380,23 @@ Decision language:
 - MANUAL SETUP SESSION NOTES BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
 
 Safety remains unchanged: session-notes-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
+
+
+## First Roofer Manual Setup Session QA Packet
+
+The first roofer manual setup chain now includes the First Roofer Manual Setup Session QA Packet.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_QA.md`
+- `scripts/qa-first-roofer-manual-setup-session-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-qa-readonly.js`
+
+Purpose:
+- Quality-checks the internal dry-run session notes for completeness, consistency, safety, source-of-truth proof, readiness proof, final go/no-go proof, session runbook proof, HOLD/BLOCKED items, final session status, and next internal action.
+
+Decision language:
+- MANUAL SETUP SESSION QA PASS: first-roofer manual setup session notes QA is complete, internally consistent, and dry-run only, with production activation still disabled.
+- MANUAL SETUP SESSION QA HOLD: missing session notes proof, missing verifier proof, missing readiness proof, missing safety confirmation, unclear next action, or incomplete session QA must be fixed.
+- MANUAL SETUP SESSION QA BLOCKED: production activation, data mutation, notification, route, credential, secret, destructive-action, or external-send risk must be resolved before continuing.
+
+Safety remains unchanged: session-QA-only, internal-only, founder/operator-only, and dry-run only; no production activation, SMS, calls, emails, Supabase writes, contractor/homeowner notifications, Calendar booking, Vapi production webhook ingestion, Retell routes, cron, scheduler, dispatcher, public routes, secrets, destructive actions, or external sends.
