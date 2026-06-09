@@ -800,3 +800,12 @@ Purpose:
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-final-summary-readonly.js`
 - Scope: dry-run-only internal founder/operator final summary after outcome acceptance.
 - Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.
+
+
+## First Roofer Manual Setup Session Final Summary Acceptance Packet
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_FINAL_SUMMARY_ACCEPTANCE.md`
+- Wrapper: `scripts/accept-first-roofer-manual-setup-session-final-summary-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-final-summary-acceptance-readonly.js`
+- Scope: dry-run-only internal founder/operator acceptance of the session final summary.
+- Safety: no production activation, mutation, notification, route enablement, credential exposure, secret exposure, destructive action, or external send.
