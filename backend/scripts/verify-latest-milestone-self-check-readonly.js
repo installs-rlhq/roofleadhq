@@ -26,6 +26,7 @@ const guide = fs.readFileSync(
 );
 
 const requiredMilestones = [
+  'fc95204 test(pilot): add first roofer manual setup session runbook',
   '5d4dd4b test(pilot): add first roofer manual setup execution readiness',
   '020f4ea test(pilot): add first roofer manual setup final go no go',
   '87fd097 test(pilot): add first roofer manual setup founder approval evidence qa',
