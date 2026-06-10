@@ -4,13 +4,11 @@
 
 Latest verified source-of-truth commit:
 
-- `5b5e769 test(agent): harden agent branch finalize script`
+- `8e174db test(pilot): add first roofer day-one command center`
 
-Terminal 1 verification confirmed:
+Terminal 1 verification confirmed (before this worktree):
 
-- `HEAD -> main`
-- `origin/main`
-- `HEAD and origin/main match at 5b5e769`
+- `HEAD and origin/main match at 8e174db`
 
 Canonical repo:
 
@@ -147,11 +145,15 @@ Some verifiers fail until push because they require `HEAD == origin/main`.
 
 If product verifiers pass and the only error is source-of-truth mismatch, push main, fetch, and rerun final verification.
 
+Important lesson to preserve: two distinct failure classes must be distinguished. Product/build failures must be fixed before push (verifier assertion failures, forbidden language, unsafe strings, broken build, product-quality-gate failures, missing wrapper/verifier/context wiring, or shallow docs). Expected pre-push source-of-truth failures can occur after local main is ahead of origin but before push. Only proceed when individual diagnostics prove the only substantive error is HEAD does not match origin/main and all product-specific gates/build passed. Future workflow should run product-specific verifier/wrapper, product-quality gate, production/safe readiness, backend build, and clean status before push; then push/fetch and run source-of-truth-sensitive aggregate/meta checks after HEAD == origin/main. Never broadly ignore aggregate failures.
+
 ### Finalize script proof
 
 Do not assume finalize committed unless `HEAD after` changes and status is clean.
 
 If finalizing fails, look for repo path, branch name, HEAD before, staged diff summary, HEAD after, and clean status after commit.
+
+Important finalize-script lesson to preserve: scripts/agent-finalize-branch.sh remains unresolved friction. In the 8e174db build it again ran gates/diff proof but did not create the commit. Future builds must distrust finalize unless output explicitly shows HEAD before, staged diff summary, Creating commit, HEAD after, clean git status --short, and the new commit in git log. If proof is missing, immediately run git log --oneline -3, git status --short, and git rev-parse HEAD. Manually commit only after gates and diff proof already passed.
 
 ## Recommended Next Build Direction
 
@@ -161,11 +163,11 @@ Good candidates:
 
 - first-roofer live-lead manual intake rehearsal packet
 - first-roofer inspection coordination worksheet
-- first-roofer founder/operator day-one command center
-- first-roofer homeowner/contractor manual communication packet
+- first-roofer founder/operator day-one command center (delivered 8e174db)
+- first-roofer homeowner/contractor manual communication packet (delivered in this build)
 - first-roofer outcome and reporting packet
 
-This session delivered the first-roofer founder/operator day-one command center packet (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + wrapper + verifier, wired into aggregate/index/both next-chat contexts + quality gate enforced). It follows the product quality gate and the dry-run/internal-only/founder-operator-only posture. See NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md and ROOFER_DRY_RUN_ONBOARDING.md for the full milestone record.
+This session delivered the first-roofer manual communication command packet (docs/FIRST_ROOFER_MANUAL_COMMUNICATION_COMMAND_PACKET.md + wrapper + verifier, wired into aggregate/index/both next-chat contexts + workflow context for the two lessons + quality gate enforced). It builds on the day-one command center and continues the first-roofer execution path with the biggest safe product-moving packet. It follows the product quality gate and the dry-run/internal-only/founder-operator-only posture. See NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md and ROOFER_DRY_RUN_ONBOARDING.md for the full milestone record. The agent workflow context was updated minimally to preserve the pre-push failure-class lesson and the finalize-script lesson from the 8e174db build.
 
 Default approach:
 

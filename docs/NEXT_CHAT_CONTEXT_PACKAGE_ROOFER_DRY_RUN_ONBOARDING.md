@@ -1147,3 +1147,54 @@ The dry-run wrapper is strict-mode bash: node --check on verifier, run verifier,
 This packet materially helps the founder/operator run the first roofer execution day manually from lead intake through inspection/appointment readiness and reporting. It advances the first-roofer execution path and the 90-build plan without restarting planning.
 
 Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications. Stop after implementing, running gates, and showing diff proof. Do not commit or push.
+
+## First Roofer Manual Communication Command Packet
+
+Added the First Roofer Manual Communication Command Packet (manual communication command packet) as the next product-moving layer on the first-roofer execution path after the day-one command center. This packet gives the founder/operator a dedicated, operationally useful packet focused on manually preparing, reviewing, approving, and tracking homeowner and contractor communication (draft-only, no live send, supports inspection readiness and appointment readiness via manual coordination only).
+
+This continues the first-roofer execution path with the biggest safe product-moving packet. It materially helps the founder/operator handle communication work for the first roofer without activating any production system.
+
+Added files:
+- `docs/FIRST_ROOFER_MANUAL_COMMUNICATION_COMMAND_PACKET.md`
+- `scripts/run-first-roofer-manual-communication-command-packet-dry-run.sh`
+- `backend/scripts/verify-first-roofer-manual-communication-command-packet-readonly.js`
+
+Wiring:
+- Wired into aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Added to verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References added to next-chat context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md` and `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Quality gate enforced via `scripts/check-agent-product-quality-gate.sh` (called from the new wrapper)
+- Agent workflow context (`docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`) updated minimally to preserve the two lessons from the 8e174db build: (1) two distinct pre-push failure classes (product/build failures fixed before push vs expected source-of-truth HEAD != origin/main failures after local ahead; future workflow runs product verifiers/quality/safe/backend/clean before push then source-sensitive checks after), (2) finalize-script unresolved friction (distrust unless explicit HEAD before / staged diff / Creating commit / HEAD after / clean status / new commit in log proof; if missing, run git log/status/rev-parse immediately; manually commit only after gates + diff proof passed).
+
+Packet content (full operational depth, not heading-only):
+- Purpose and safety posture (Founder-Led Launch Program, dry-run/internal-only/founder-operator-only, explicit no-live-send / no-live-automation confirmation with full disabled flags list, "The packet itself must never send", references to day-one + ops pack + runbook + quality gate)
+- Manual communication command overview (prepare/review/approve/track for homeowner + contractor, supports book inspections / book appointments via manual coordination only)
+- Communication approval states (DRAFT / REVIEWED / APPROVED FOR MANUAL USE / HOLD / BLOCKED, manual sender, external send performed: no, production system touched: no)
+- Homeowner communication intake checklist (concrete fields + contact permission + draft status)
+- Homeowner missing-information request template (full fillable fields + safety note: draft-only until manually approved and sent outside; packet never sends)
+- Homeowner inspection readiness confirmation template (full fillable fields + book inspections language + safety note)
+- Homeowner appointment readiness confirmation template (full fillable fields + book appointments language + safety note)
+- Homeowner no-contact / consent HOLD rules (explicit rules + HOLD entry template with reason and timestamp)
+- Contractor briefing checklist (concrete fields + service-area + availability)
+- Contractor inspection coordination template (full fillable fields + safety note)
+- Contractor appointment coordination template (full fillable fields + safety note)
+- Contractor capacity / service-area HOLD rules (explicit rules + HOLD entry template)
+- Founder/operator approval log (required fields including decisions, no-send markers, readiness decisions)
+- Manual communication tracker (full columns: draft statuses, fits, decisions, external send performed: no, production system touched: no, next manual action)
+- Escalation and HOLD/BLOCKED rules (7 explicit manual rules)
+- Outcome capture (per-lead with no-send markers + readiness decisions + next action)
+- End-of-day communication report (aggregates + no-send / no-touch counts + themes + next-action categories)
+- Handoff notes for the next operator session (tracker status, HOLD summaries, dry-run + no-send confirmation)
+- Explicit no-live-send / no-live-automation confirmation (full list + draft-only + never-send + no production touched language)
+- Concrete fields present under sections (Lead ID, homeowner name, property address, lead source, source detail, service type, urgency, damage description, photos present: yes/no/unknown, insurance involvement: yes/no/unknown, contact permission status, homeowner/contractor message types and draft statuses, contractor match / service-area fit / availability, manual approval state, manual sender, external send performed: no, production system touched: no, inspection/appointment readiness decisions PASS/HOLD/BLOCKED, communication outcome, founder/operator notes, next manual action, etc.)
+- 9+ reusable internal-only draft templates, each with the required safety note that it is draft-only until founder/operator manually approves and sends outside the system (packet never sends)
+- Required business language used: Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only, inspection readiness, appointment readiness, draft-only, approved for manual use, external send performed: no, production system touched: no
+- Forbidden phrases absent (verified by dedicated verifier + cross-checks)
+
+The dedicated verifier asserts every required item: new command packet doc exists, dry-run wrapper exists and points to verifier, doc includes all required operational sections with substantive content, concrete fillable fields (not just headings), homeowner templates, contractor templates, approval states, consent/contact HOLD rules, service-area/capacity HOLD rules, manual communication tracker + founder/operator approval log, inspection/appointment readiness language, end-of-day communication reporting, dry-run/internal-only/founder-operator-only posture, explicit no-live-send / no-live-automation / no production activation language, forbidden business phrases absent, required business phrases present, wrapper calls verifier + product quality gate, wrapper has no unsafe implementation strings, aggregate first-paid readiness verifier is wired, verifier index mentions the new packet/wrapper/verifier, both next-chat context packages mention the new packet, and the Grok workflow context package includes the two lessons (pre-push failure-class distinction and finalize-script unresolved friction).
+
+Wrapper: strict bash with set -euo pipefail, runs node --check on verifier, runs the read-only verifier, runs check-agent-product-quality-gate.sh, runs production gates and safe readiness, prints clear PASS. Does not write production data. Does not call external services.
+
+All work remains manual founder/operator review and manual coordination only. The packet helps the founder/operator manually prepare, review, approve, and track homeowner and contractor communication to support the first roofer execution path (book inspections / book appointments). Dry-run only. Stop after implementing, running gates, and showing diff proof. No commit. No push.
+
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications. Stop after implementing, running gates, and showing diff proof. Do not commit or push.

@@ -687,6 +687,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Manual Communication Command Packet (docs/FIRST_ROOFER_MANUAL_COMMUNICATION_COMMAND_PACKET.md + scripts/run-first-roofer-manual-communication-command-packet-dry-run.sh) -- first-roofer manual communication command packet for founder/operator manual prepare/review/approve/track of homeowner and contractor communication (draft-only, no live send, inspection/appointment readiness via manual coordination only)',
+    script: 'backend/scripts/verify-first-roofer-manual-communication-command-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
