@@ -996,3 +996,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-acceptance-readonly.js`
 
 Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+
+
+## First Roofer Manual Setup Session Extended Archive Final Check Packet
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_EXTENDED_ARCHIVE_FINAL_CHECK.md`
+- `scripts/check-first-roofer-manual-setup-session-extended-archive-final-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-final-check-readonly.js`
+
+Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
