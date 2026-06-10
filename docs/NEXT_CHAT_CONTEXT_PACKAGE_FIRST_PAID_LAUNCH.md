@@ -4443,3 +4443,51 @@ Wrapper behavior (read-only):
 Purpose: Create a repo-controlled product-depth/quality standard so that product-moving tasks verify operational usefulness (product outcome + workflows + fields + logs + templates + decisions + wiring + diff + Terminal 1 SOT) rather than surface string presence. This gate is intended to reduce future babysitting of shallow artifacts.
 
 Safety remains: dry-run/internal-only/founder-operator-only in the agent worktree. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron/scheduler/dispatcher activation, public routes, Supabase writes, or external notifications. All work is read-only verification and internal planning. Stop after gates and diff proof. Do not commit or push.
+
+## First Roofer Day-One Command Center
+
+Added the First Roofer Founder/Operator Day-One Command Center packet (product-moving operational cockpit) that builds on the lead-to-inspection ops pack and turns it into a practical day-one manual execution workflow for the first roofer.
+
+This advances the 90-build plan and the recommended next direction noted in the agent grok build workflow context (first-roofer founder/operator day-one command center).
+
+Added files:
+- `docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md`
+- `scripts/run-first-roofer-day-one-command-center-dry-run.sh`
+- `backend/scripts/verify-first-roofer-day-one-command-center-readonly.js`
+
+Wiring:
+- Wired into aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Added to verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References added to next-chat context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md` and `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Quality gate enforced via `scripts/check-agent-product-quality-gate.sh` and its verifier (included in the new wrapper)
+
+Packet content summary (per product quality requirements):
+- Purpose and safety posture (dry-run/internal-only/founder-operator-only, explicit no-live-automation confirmation, all required disabled flags, references to lead-to-inspection + execution day runbook + quality gate)
+- Day-one command center overview
+- Start-of-day readiness checklist (with source-of-truth 83a184a note and dry-run flag confirmation)
+- Lead intake triage board (concrete fields: Lead ID, homeowner name, property address, lead source, source detail, service type, urgency, roof age, damage description, photos present: yes/no/unknown, insurance involvement: yes/no/unknown, contact permission status)
+- Lead completeness and missing-information queue (checklist + queue template)
+- Homeowner manual communication prep (fields + "manual homeowner message prepared: yes/no")
+- Contractor manual communication prep (fields + "manual contractor message prepared: yes/no" + "manual coordination only")
+- Inspection readiness worksheet (full fields + "Inspection readiness decision: PASS / HOLD / BLOCKED")
+- Appointment readiness worksheet (full fields + "Appointment readiness decision: PASS / HOLD / BLOCKED")
+- Founder/operator decision log (PASS TO ... options, inspection/appointment readiness decisions)
+- Manual coordination timeline
+- BLOCKED / HOLD / PASS criteria (FIRST ROOFER DAY ONE COMMAND CENTER PASS/HOLD/BLOCKED with product outcome tied to inspection readiness and appointment readiness)
+- Same-day escalation rules
+- End-of-day outcome capture (per-lead fields including "Ready to book inspections", "Ready to book appointments")
+- End-of-day reporting template (counts for leads ready to book inspections / book appointments, safety confirmation)
+- Handoff notes for the next operator session
+- Explicit no-live-automation confirmation section
+
+Required business language present throughout: Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only, inspection readiness, appointment readiness.
+
+Forbidden phrases absent (legacy quota-style and guarantee language as defined in the quality gate and packet verifiers).
+
+The verifier asserts: all required files, wrapper points to verifier, all operational sections with substantive content (not heading-only), concrete fields present, PASS/HOLD/BLOCKED present, prep sections, readiness worksheets, end-of-day reporting, dry-run posture, no-live language, required phrases present, forbidden absent, aggregate/index/contexts wired, no unsafe strings.
+
+Wrapper: strict bash, runs node --check + verifier + agent product quality gate + production gates + safe readiness, prints clear PASS. No writes, no external calls.
+
+All work remains manual founder/operator review and manual coordination only. Helps the founder/operator prepare to book inspections and book appointments. Dry-run only. Stop after implementing, running gates, and showing diff proof. No commit. No push.
+
+Safety remains: dry-run/internal-only/founder-operator-only. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public routes, Supabase writes, or external notifications. All work is read-only verification and internal planning. Stop after gates and diff proof. Do not commit or push.

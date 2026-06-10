@@ -1116,3 +1116,34 @@ Ops pack content summary (builds directly on execution day runbook):
 The dry-run wrapper runs node --check + verifier + quality gate wrapper + production gates + safe readiness and prints a clear PASS.
 
 Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications. Stop after gates and diff proof. Do not commit or push.
+
+## First Roofer Day-One Command Center
+
+Added the First Roofer Founder/Operator Day-One Command Center packet (day-one command center) as the next product-moving layer after the lead-to-inspection ops pack in the first-roofer dry-run onboarding and execution path.
+
+This packet converts the lead-to-inspection workflow into a day-one cockpit usable by the founder/operator to manually run the first roofer day (intake through inspection/appointment readiness using book inspections / book appointments language, and end-of-day reporting).
+
+Added files:
+- `docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md`
+- `scripts/run-first-roofer-day-one-command-center-dry-run.sh`
+- `backend/scripts/verify-first-roofer-day-one-command-center-readonly.js`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to both next-chat context packages (`docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md` and `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`)
+- The dedicated verifier enforces file existence, wrapper points to verifier + quality gate, aggregate/index/both contexts contain references, doc references prior lead-to-inspection + execution day + quality gate, all required operational sections with substance (Purpose and safety posture, Day-one command center overview, Start-of-day readiness checklist, Lead intake triage board, Lead completeness and missing-information queue, Homeowner manual communication prep, Contractor manual communication prep, Inspection readiness worksheet, Appointment readiness worksheet, Founder/operator decision log, Manual coordination timeline, BLOCKED / HOLD / PASS criteria, Same-day escalation rules, End-of-day outcome capture, End-of-day reporting template, Handoff notes for the next operator session, Explicit no-live-automation confirmation), concrete fields (Lead ID, Homeowner name, Property address, Lead source, Source detail, Service type, Urgency, Roof age if known, Damage description, Photos present: yes/no/unknown, Insurance involvement: yes/no/unknown, Contact permission status, Missing fields, Contractor match, manual messages prepared yes/no, inspection/appointment readiness decisions PASS/HOLD/BLOCKED, founder/operator notes, end-of-day outcome), PASS/HOLD/BLOCKED criteria, prep and readiness sections, end-of-day reporting, dry-run/internal-only/founder-operator-only posture, explicit no-live-automation language, required business phrases present (Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only, inspection readiness, appointment readiness), and forbidden phrases absent.
+
+Ops pack / cockpit content summary (builds directly on lead-to-inspection ops pack and execution day runbook):
+- Full required sections with operational substance as listed above.
+- Concrete fields under every major section (triage board, worksheets, logs, templates, outcome capture, reporting, handoff).
+- Decision language: FIRST ROOFER DAY ONE COMMAND CENTER PASS / HOLD / BLOCKED.
+- Product language: Founder-Led Launch Program, book inspections, book appointments, inspection readiness, appointment readiness, manual founder/operator review, manual coordination only.
+- Safety posture: explicit no-live-automation confirmation section, full list of disabled flags, dry-run/internal-only/founder-operator-only, references to prior first-roofer artifacts and quality gate. Forbidden language absent (legacy quota-style, job/revenue guarantee, live dispatch, and production automation language as defined in the quality gate and packet verifiers).
+- End-of-day elements: outcome capture per lead, reporting template with inspection/appointment counts, handoff notes template.
+
+The dry-run wrapper is strict-mode bash: node --check on verifier, run verifier, run agent product quality gate (which includes its verifier + production gates + safe readiness), plus explicit production gates and safe readiness calls. Prints clear PASS. No source-of-truth inside wrapper (worktree context).
+
+This packet materially helps the founder/operator run the first roofer execution day manually from lead intake through inspection/appointment readiness and reporting. It advances the first-roofer execution path and the 90-build plan without restarting planning.
+
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications. Stop after implementing, running gates, and showing diff proof. Do not commit or push.

@@ -64,6 +64,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - First Roofer Execution Day Runbook doc: `docs/FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md`
 - First Roofer Execution Day Runbook wrapper: `scripts/run-first-roofer-execution-day-dry-run.sh`
 - First Roofer Execution Day Runbook verifier: `node backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js`
+- First Roofer Day-One Command Center doc: `docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md`
+- First Roofer Day-One Command Center wrapper: `scripts/run-first-roofer-day-one-command-center-dry-run.sh`
+- First Roofer Day-One Command Center verifier: `node backend/scripts/verify-first-roofer-day-one-command-center-readonly.js`
 - Vapi post-call payload discovery: `node backend/scripts/verify-vapi-post-call-payload-discovery-readonly.js`
 - Vapi raw payload capture plan: `node backend/scripts/verify-vapi-raw-payload-capture-plan-readonly.js`
 - Vapi sample payload mapping: `node backend/scripts/verify-vapi-sample-payload-mapping-readonly.js`
@@ -1126,6 +1129,23 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Purpose: read-only guard that confirms the ops pack doc, wrapper, wiring into aggregate/index/both next-chat contexts, references to execution day runbook and quality gate, and that the doc contains all required sections, operational fields, templates, decision language, product language, and safety posture with substantive content.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
 - The verifier asserts all 19 required operational fields, 8 required templates, exact PASS/HOLD/BLOCKED strings, safety flags, and absence of forbidden/unsafe strings.
+- Safety: read-only. No production activation of any kind.
+
+## First Roofer Day-One Command Center
+
+- Doc: `docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md`
+- Wrapper: `scripts/run-first-roofer-day-one-command-center-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-first-roofer-day-one-command-center-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: product-moving operational packet that turns the first-roofer lead-to-inspection ops pack and execution-day runbook into a practical founder/operator day-one cockpit for the Founder-Led Launch Program. Enables manual run of the first roofer day from lead intake through inspection/appointment readiness (book inspections / book appointments via manual coordination only) and end-of-day reporting. Includes start-of-day readiness checklist, lead intake triage board, lead completeness and missing-information queue, homeowner manual communication prep, contractor manual communication prep, inspection readiness worksheet, appointment readiness worksheet, founder/operator decision log, manual coordination timeline, same-day escalation rules, end-of-day outcome capture, end-of-day reporting template, handoff notes for next operator session, and explicit no-live-automation confirmation. All steps use concrete fields (Lead ID, homeowner name, property address, lead source, source detail, service type, urgency, roof age if known, damage description, photos present: yes/no/unknown, insurance involvement: yes/no/unknown, contact permission status, missing fields, contractor match, manual messages prepared yes/no, inspection/appointment readiness decisions: PASS/HOLD/BLOCKED, founder/operator notes, end-of-day outcome). Enforces manual founder/operator review and manual coordination only. References lead-to-inspection ops pack, execution day runbook, and agent product quality gate.
+- Safety: dry-run/internal-only/founder-operator-only. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public routes, production Supabase writes, external notifications, automated booking, or production credentials. No legacy pilot quota language, no job-booking or revenue guarantee language, and no live dispatch or production activation language.
+
+## First Roofer Day-One Command Center Verifier
+
+- Script: `backend/scripts/verify-first-roofer-day-one-command-center-readonly.js`
+- Purpose: read-only guard that confirms the command center doc, wrapper, wiring into aggregate/index/both next-chat contexts, references to lead-to-inspection ops pack + execution day runbook + quality gate, and that the doc contains all required operational sections (Purpose and safety posture, Day-one command center overview, Start-of-day readiness checklist, Lead intake triage board, Lead completeness and missing-information queue, Homeowner manual communication prep, Contractor manual communication prep, Inspection readiness worksheet, Appointment readiness worksheet, Founder/operator decision log, Manual coordination timeline, BLOCKED / HOLD / PASS criteria, Same-day escalation rules, End-of-day outcome capture, End-of-day reporting template, Handoff notes for the next operator session, Explicit no-live-automation confirmation), concrete fields (not just headings), PASS/HOLD/BLOCKED criteria, homeowner and contractor prep, inspection and appointment readiness, end-of-day reporting, dry-run/internal-only/founder-operator-only posture, explicit no-live-automation / no production activation language, required business phrases (Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only, inspection readiness, appointment readiness), and absence of forbidden business phrases.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- The verifier asserts file existence, wrapper points to verifier + quality gate, aggregate/index/contexts wired, all listed sections with substantive content, concrete fields present, PASS/HOLD/BLOCKED present, safety and no-automation language, required phrases present, forbidden absent, and no unsafe strings in wrapper.
 - Safety: read-only. No production activation of any kind.
 
 ## Agent Product Quality Gate
