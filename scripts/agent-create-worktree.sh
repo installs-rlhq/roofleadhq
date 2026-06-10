@@ -38,7 +38,10 @@ git worktree add -b "$BRANCH" "$TARGET" origin/main
 
 if [ -d "$EXPECTED_ROOT/backend/node_modules" ] && [ ! -e "$TARGET/backend/node_modules" ]; then
   ln -s "$EXPECTED_ROOT/backend/node_modules" "$TARGET/backend/node_modules"
-  echo "PASS: linked backend/node_modules from canonical repo"
+  EXCLUDE_PATH="$(git -C "$TARGET" rev-parse --git-path info/exclude)"
+  mkdir -p "$(dirname "$EXCLUDE_PATH")"
+  grep -qxF "/backend/node_modules" "$EXCLUDE_PATH" 2>/dev/null || echo "/backend/node_modules" >> "$EXCLUDE_PATH"
+  echo "PASS: linked backend/node_modules from canonical repo and excluded it from worktree status"
 fi
 
 echo "PASS: created worktree $TARGET on branch $BRANCH"
