@@ -788,3 +788,17 @@ Decision language:
 - `MANUAL SETUP SESSION OPERATOR HANDOFF FREEZE PASS`
 - `MANUAL SETUP SESSION OPERATOR HANDOFF FREEZE HOLD`
 - `MANUAL SETUP SESSION OPERATOR HANDOFF FREEZE BLOCKED`
+
+## First Roofer Manual Setup Session Reopen Guard
+
+This layer prevents accidental mutation of the fully accepted, preserved, and operator-handoff-frozen First Roofer Manual Setup Session dry-run chain unless founder/operator review explicitly records a reopen decision.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD.md`
+- `scripts/check-first-roofer-manual-setup-session-reopen-guard-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-readonly.js`
+
+Decision language:
+- `MANUAL SETUP SESSION REOPEN GUARD PASS`
+- `MANUAL SETUP SESSION REOPEN GUARD HOLD`
+- `MANUAL SETUP SESSION REOPEN GUARD BLOCKED`

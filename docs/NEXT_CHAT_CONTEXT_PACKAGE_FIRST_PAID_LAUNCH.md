@@ -3875,3 +3875,14 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Roofer Manual Setup Session Reopen Guard
+
+This layer defines how the fully accepted, preserved, and operator-handoff-frozen First Roofer Manual Setup Session dry-run chain can be safely reopened later.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD.md`
+- `scripts/check-first-roofer-manual-setup-session-reopen-guard-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-readonly.js`
+
+Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.

@@ -890,3 +890,10 @@ Purpose:
 - Wrapper: `scripts/freeze-first-roofer-manual-setup-session-operator-handoff-dry-run.sh`
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-operator-handoff-freeze-readonly.js`
 - Scope: dry-run/internal-only operator handoff freeze for the fully preserved first roofer manual setup session chain.
+
+### First Roofer Manual Setup Session Reopen Guard
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD.md`
+- Wrapper: `scripts/check-first-roofer-manual-setup-session-reopen-guard-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-readonly.js`
+- Scope: dry-run/internal-only reopen guard for the fully accepted, preserved, and operator-handoff-frozen first roofer manual setup session chain.
