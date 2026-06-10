@@ -802,3 +802,17 @@ Decision language:
 - `MANUAL SETUP SESSION REOPEN GUARD PASS`
 - `MANUAL SETUP SESSION REOPEN GUARD HOLD`
 - `MANUAL SETUP SESSION REOPEN GUARD BLOCKED`
+
+## First Roofer Manual Setup Session Reopen Guard Acceptance
+
+This layer accepts the reopen guard as the controlling rule for any future reopening of the fully accepted, preserved, and frozen First Roofer Manual Setup Session dry-run chain.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD_ACCEPTANCE.md`
+- `scripts/accept-first-roofer-manual-setup-session-reopen-guard-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-acceptance-readonly.js`
+
+Decision language:
+- `MANUAL SETUP SESSION REOPEN GUARD ACCEPTANCE PASS`
+- `MANUAL SETUP SESSION REOPEN GUARD ACCEPTANCE HOLD`
+- `MANUAL SETUP SESSION REOPEN GUARD ACCEPTANCE BLOCKED`
