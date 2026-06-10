@@ -929,3 +929,13 @@ Reopen guard final lock acceptance preservation snapshot integration text:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-readonly.js`
 - wired into aggregate readiness and next-chat context references
 - safety remains dry-run/internal-only with no production automation activated
+
+
+## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD_FINAL_LOCK_ACCEPTANCE_PRESERVATION_SNAPSHOT_OPERATOR_HANDOFF_FREEZE.md`
+- `scripts/freeze-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-readonly.js`
+
+Scope: dry-run/internal-only founder/operator handoff freeze for the reopen guard final lock acceptance preservation snapshot chain.
