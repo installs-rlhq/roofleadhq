@@ -3969,3 +3969,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-readonly.js`
 
 Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+
+## Latest Source-of-Truth Milestone
+
+Commit: test(pilot): record first roofer manual setup session reopen guard final lock acceptance preservation snapshot milestone b7d6e70 test(pilot): add first roofer manual setup session reopen guard final lock acceptance preservation snapshot
+
+This milestone was recorded through the repo-controlled milestone helper script.
+
+Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
+
+No live automation activated. Safety remains demo-ready with live automation disabled.
