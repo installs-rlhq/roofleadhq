@@ -8,6 +8,7 @@ const contextPath = path.join(repoRoot, 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PA
 const context = fs.readFileSync(contextPath, 'utf8');
 
 const requiredText = [
+  'test(pilot): record first roofer manual setup session reopen guard final lock acceptance preservation snapshot operator handoff freeze archive acceptance final check milestone f531748 test(pilot): add first roofer manual setup session reopen guard final lock acceptance preservation snapshot operator handoff freeze archive acceptance final check',
   'test(pilot): record first roofer manual setup session reopen guard final lock acceptance preservation snapshot operator handoff freeze archive acceptance milestone 09755b4 test(pilot): add first roofer manual setup session reopen guard final lock acceptance preservation snapshot operator handoff freeze archive acceptance',
   'test(pilot): record first roofer manual setup session reopen guard final lock acceptance preservation snapshot operator handoff freeze archive milestone 8178a5b test(pilot): add first roofer manual setup session reopen guard final lock acceptance preservation snapshot operator handoff freeze archive',
   'test(pilot): record first roofer manual setup session reopen guard final lock acceptance preservation snapshot operator handoff freeze milestone eadcec5 test(pilot): add first roofer manual setup session reopen guard final lock acceptance preservation snapshot operator handoff freeze',
