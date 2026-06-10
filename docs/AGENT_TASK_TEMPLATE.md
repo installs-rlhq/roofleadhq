@@ -43,6 +43,11 @@ List exact files or directories the task may modify.
 
 Run `scripts/agent-diff-proof.sh` and `scripts/agent-run-gates.sh`.
 
+For product-moving tasks, also execute the Agent Product Quality Gate packet:
+- `scripts/check-agent-product-quality-gate.sh`
+- `node backend/scripts/verify-agent-product-quality-gate-readonly.js`
+- Reference `docs/AGENT_PRODUCT_QUALITY_GATE.md` (product-depth rule, reusable checklist covering product outcome / operator workflows / data fields / decision logs / templates / PASS/HOLD/BLOCKED / safety boundaries / forbidden language checks / wiring checks / diff proof / Terminal 1 source-of-truth verification, shallow-check examples to avoid, stronger checks, archive/lock-only rule, and dry-run safety with no live SMS/Twilio/Vapi/Calendar/Resend/Lindy/cron/scheduler/dispatcher/public-routes/Supabase-writes/external-notifications/production-credentials).
+
 ## Stop Condition
 
 Stop after showing diff proof and passing gates. Do not merge or push to `main`.

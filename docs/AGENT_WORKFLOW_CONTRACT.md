@@ -24,4 +24,10 @@ Every agent task must end with:
 - safe readiness
 - backend build
 
+For product-moving tasks, also run the Agent Product Quality Gate before final review:
+- `scripts/check-agent-product-quality-gate.sh`
+- `node backend/scripts/verify-agent-product-quality-gate-readonly.js`
+- The gate (docs/AGENT_PRODUCT_QUALITY_GATE.md) enforces product-depth (operational usefulness, not just string presence), the reusable checklist (product outcome, operator workflows, data fields, decision logs, templates, PASS/HOLD/BLOCKED, safety, forbidden language, wiring, diff proof, Terminal 1 SOT), shallow-check avoidance, stronger field-under-section checks, the archive/lock-only rule, and full dry-run safety posture.
+- Agents must not pass product-moving tasks via only archive/lock/preservation layers.
+
 Safety remains dry-run/demo-ready with live automation disabled unless explicitly approved by the founder/operator.

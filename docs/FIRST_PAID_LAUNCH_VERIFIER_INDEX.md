@@ -1109,3 +1109,24 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
 - The verifier requires "first-roofer execution-day runbook" (and the three file paths + "First Roofer Execution Day Runbook") to be present in all four files.
 - Safety: read-only. No production activation of any kind.
+
+## Agent Product Quality Gate
+
+- Packet: `docs/AGENT_PRODUCT_QUALITY_GATE.md`
+- Wrapper: `scripts/check-agent-product-quality-gate.sh`
+- Read-only verifier: `backend/scripts/verify-agent-product-quality-gate-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: reusable repo-controlled product-depth/quality standard and read-only verifier that future agent/Grok Build tasks must use before final review. Prevents shallow verifier-satisfying artifacts by enforcing operational usefulness (not just string presence), full operator/user workflows, data fields under sections, decision logs with PASS/HOLD/BLOCKED, templates, wiring, diff proof, Terminal 1 SOT, and safety posture.
+- Records the lesson from the first Grok Build run (produced shallow artifact until verifier strengthened).
+- Includes reusable checklist: product outcome, required operator/user workflow sections, required data fields, required decision logs, required templates, required PASS/HOLD/BLOCKED language, required safety boundaries, required forbidden language checks, required wiring checks, required diff proof, required final Terminal 1 source-of-truth verification.
+- Includes examples of shallow checks to avoid (e.g., only checking that a heading exists) and stronger checks (e.g., requiring fields under sections).
+- Includes explicit rule: agents must not pass product-moving tasks by creating only archive/lock/preservation layers.
+- Enforces dry-run/internal-only safety: no live SMS/Twilio, no Vapi live calls, no Calendar activation, no Resend production sends, no Lindy external sends, no cron/scheduler/dispatcher activation, no public route activation, no production Supabase writes, no external notifications, no production credentials.
+- Verifier asserts: all expected files, wrapper calls verifier, aggregate includes verifier, index references all three, agent contracts/templates reference gate, next-chat references gate, doc contains checklist/lesson/examples/archive warning/safety, forbidden business language absent, no unsafe strings (twilio.messages.create, supabase.from(, resend..., etc.) in wrapper.
+- Safety: read-only verification and internal planning only. Stops after gates + diff proof. No live automation, no commits/pushes from agent worktrees.
+
+## Agent Product Quality Gate Verifier
+
+- Script: `backend/scripts/verify-agent-product-quality-gate-readonly.js`
+- Purpose: read-only guard that asserts the complete Agent Product Quality Gate packet (doc + wrapper + verifier) is present, correctly wired into aggregate/index/next-chat/agent docs, and that the doc itself contains the product-depth rule, checklist categories, first-Grok-Build lesson, shallow vs stronger check examples, archive/lock-only warning, and required safety language. Also asserts absence of forbidden guarantee language and absence of unsafe implementation strings inside the wrapper.
+- Safety: read-only. No production activation of any kind.

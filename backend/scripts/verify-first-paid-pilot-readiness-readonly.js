@@ -437,6 +437,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Agent Product Quality Gate (docs/AGENT_PRODUCT_QUALITY_GATE.md + scripts/check-agent-product-quality-gate.sh + backend/scripts/verify-agent-product-quality-gate-readonly.js) -- reusable product-depth standard for future agent builds',
+    script: 'backend/scripts/verify-agent-product-quality-gate-readonly.js',
+    args: []
+  },
+  {
     name: 'Pilot dashboard smoke',
     script: 'backend/scripts/verify-pilot-dashboard-smoke-readonly.js',
     args: []

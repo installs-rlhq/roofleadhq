@@ -4371,3 +4371,45 @@ Runbook content summary:
 The wrapper `scripts/run-first-roofer-execution-day-dry-run.sh` invokes source-of-truth, the new runbook verifier, production gates, and safe readiness. It contains no unsafe production calls.
 
 Safety remains: dry-run/internal-only/founder-operator-only. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron/scheduler/dispatcher activation, public routes, Supabase writes, or external notifications. All work is read-only verification and internal planning.
+
+## Agent Product Quality Gate
+
+Added reusable Agent Product Quality Gate packet that improves future Grok/agent builds by preventing shallow verifier-satisfying artifacts.
+
+Files added:
+- `docs/AGENT_PRODUCT_QUALITY_GATE.md`
+- `scripts/check-agent-product-quality-gate.sh`
+- `backend/scripts/verify-agent-product-quality-gate-readonly.js`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References added to next-chat context: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- References added to agent contract and task template: `docs/AGENT_WORKFLOW_CONTRACT.md`, `docs/AGENT_TASK_TEMPLATE.md`
+
+The product quality gate verifier now enforces:
+- all expected files exist
+- wrapper calls the new verifier
+- aggregate readiness includes the new verifier
+- verifier index references doc/wrapper/verifier
+- AGENT_WORKFLOW_CONTRACT.md and AGENT_TASK_TEMPLATE.md reference the product quality gate
+- NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md references the product quality gate
+- the doc contains the product-depth checklist categories
+- the doc contains the lesson from the first Grok Build run (shallow verifier-satisfying artifact until verifier strengthened)
+- the doc includes shallow-check examples (e.g. only checking that a heading exists) and stronger-check examples (e.g. requiring fields under sections)
+- the doc includes the archive/lock-only warning (agents must not pass product-moving tasks by creating only archive/lock/preservation layers)
+- the doc includes the required safety language (dry-run/internal-only, no live SMS/Twilio, no Vapi live calls, no Calendar, no Resend production, no Lindy external, no cron/scheduler/dispatcher, no public routes, no production Supabase writes, no external notifications, no production credentials)
+- forbidden business language is absent (legacy pilot promises such as 7-day style quotas, job-booking guarantees, revenue guarantees, and similar hard outcome claims)
+- no unsafe implementation strings present in the wrapper (twilio.messages.create, supabase.from(, resend.emails.send, calendar.events.insert, vapi.calls.create, retell.call, curl -X POST https://, fetch("https://, fetch('https:// )
+
+Wrapper behavior (read-only):
+- runs node --check on the verifier
+- runs the verifier
+- runs production gates
+- runs safe readiness
+- prints a clear PASS message
+- intentionally performs no source-of-truth check (agent worktrees can be ahead/behind main during branch review)
+
+Purpose: Create a repo-controlled product-depth/quality standard so that product-moving tasks verify operational usefulness (product outcome + workflows + fields + logs + templates + decisions + wiring + diff + Terminal 1 SOT) rather than surface string presence. This gate is intended to reduce future babysitting of shallow artifacts.
+
+Safety remains: dry-run/internal-only/founder-operator-only in the agent worktree. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron/scheduler/dispatcher activation, public routes, Supabase writes, or external notifications. All work is read-only verification and internal planning. Stop after gates and diff proof. Do not commit or push.
