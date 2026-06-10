@@ -1049,3 +1049,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-completion-lock-readonly.js`
 
 Scope: dry-run/internal-only completion lock for the extended archive final check chain.
+
+
+## First Roofer Manual Setup Session Extended Archive Preservation Snapshot
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_EXTENDED_ARCHIVE_PRESERVATION_SNAPSHOT.md`
+- `scripts/snapshot-first-roofer-manual-setup-session-extended-archive-preservation-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-preservation-snapshot-readonly.js`
+
+Scope: dry-run/internal-only preservation snapshot for the extended archive completion lock chain.
