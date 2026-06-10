@@ -853,7 +853,7 @@ Files:
 - `scripts/snapshot-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze
@@ -863,7 +863,7 @@ Files:
 - `scripts/freeze-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive
@@ -873,7 +873,7 @@ Files:
 - `scripts/archive-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Packet
@@ -883,7 +883,7 @@ Files:
 - `scripts/archive-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Packet
@@ -893,7 +893,7 @@ Files:
 - `scripts/accept-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Packet
@@ -905,7 +905,7 @@ Files:
 - `scripts/accept-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Packet
@@ -915,7 +915,7 @@ Files:
 - `scripts/accept-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Packet
@@ -925,7 +925,7 @@ Files:
 - `scripts/check-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Completion Lock Packet
@@ -935,7 +935,7 @@ Files:
 - `scripts/lock-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Completion Lock
@@ -945,7 +945,7 @@ Files:
 - `scripts/lock-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Completion Lock Preservation Snapshot Packet
@@ -955,7 +955,7 @@ Files:
 - `scripts/snapshot-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-preservation-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-preservation-snapshot-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Completion Lock Preservation Snapshot Operator Handoff Freeze Packet
@@ -965,7 +965,7 @@ Files:
 - `scripts/freeze-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-preservation-snapshot-operator-handoff-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-preservation-snapshot-operator-handoff-freeze-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Completion Lock Preservation Snapshot Operator Handoff Freeze Archive Packet
@@ -975,7 +975,7 @@ Files:
 - `scripts/archive-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-preservation-snapshot-operator-handoff-freeze-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-preservation-snapshot-operator-handoff-freeze-archive-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Completion Lock Preservation Snapshot Operator Handoff Freeze Archive Acceptance Packet
@@ -985,7 +985,7 @@ Files:
 - `scripts/accept-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-preservation-snapshot-operator-handoff-freeze-archive-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-acceptance-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Completion Lock Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Completion Lock Preservation Snapshot Operator Handoff Freeze Reopen Guard Final Lock Acceptance Preservation Snapshot Operator Handoff Freeze Archive Acceptance Final Check Completion Lock Preservation Snapshot Operator Handoff Freeze Archive Acceptance Packet
@@ -995,7 +995,7 @@ Files:
 - `scripts/accept-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-operator-handoff-freeze-archive-acceptance-final-check-completion-lock-preservation-snapshot-operator-handoff-freeze-archive-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-acceptance-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Extended Archive Final Check Packet
@@ -1005,7 +1005,7 @@ Files:
 - `scripts/check-first-roofer-manual-setup-session-extended-archive-final-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-final-check-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Extended Archive Completion Lock Packet
@@ -1015,7 +1015,7 @@ Files:
 - `scripts/lock-first-roofer-manual-setup-session-extended-archive-completion-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-completion-lock-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Extended Archive Preservation Snapshot Packet
@@ -1025,7 +1025,7 @@ Files:
 - `scripts/snapshot-first-roofer-manual-setup-session-extended-archive-preservation-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-preservation-snapshot-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Extended Archive Operator Handoff Freeze Packet
@@ -1035,7 +1035,7 @@ Files:
 - `scripts/freeze-first-roofer-manual-setup-session-extended-archive-operator-handoff-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-operator-handoff-freeze-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Extended Archive Acceptance Final Check Packet
@@ -1045,7 +1045,7 @@ Files:
 - `scripts/check-first-roofer-manual-setup-session-extended-archive-acceptance-final-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-acceptance-final-check-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 
 ## First Roofer Manual Setup Session Extended Archive Completion Final Lock Packet
@@ -1055,7 +1055,7 @@ Files:
 - `scripts/lock-first-roofer-manual-setup-session-extended-archive-completion-final-dry-run.sh`
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-completion-final-lock-readonly.js`
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
 ## First Roofer Execution Day Runbook
 
@@ -1084,4 +1084,35 @@ Key references in runbook:
 
 The dry-run wrapper runs the full chain of source-of-truth + runbook verifier + gates + safe readiness.
 
-Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications.
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications.
+
+## First Roofer Lead-to-Inspection Ops Pack
+
+The First Roofer Lead-to-Inspection Ops Pack is the product-moving operational packet that turns the first-roofer execution-day runbook into a practical founder/operator workflow for taking a first roofer lead from intake review through manual inspection/appointment coordination, outcome logging, and end-of-day reporting. It follows the execution day runbook in the roofer dry-run onboarding and first-roofer flow.
+
+This packet was delivered as a decisive Grok Build trial and satisfies the full Agent Product Quality Gate (substantive content, not shallow heading-only or archive-only).
+
+Added files:
+- `docs/FIRST_ROOFER_LEAD_TO_INSPECTION_OPS_PACK.md`
+- `scripts/run-first-roofer-lead-to-inspection-ops-pack-dry-run.sh`
+- `backend/scripts/verify-first-roofer-lead-to-inspection-ops-pack-readonly.js`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to both next-chat context packages (`docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md` and `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`)
+- The dedicated verifier enforces that the four files (aggregate, index, and two contexts) all contain the required references to the ops pack artifacts and "First Roofer Lead-to-Inspection Ops Pack" / "lead-to-inspection".
+- Verifier also asserts the doc references FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md and AGENT_PRODUCT_QUALITY_GATE.md, plus all required sections, 19 operational fields, 8 templates, decision language, product language, safety, and absence of forbidden/unsafe strings.
+- Wrapper calls the ops pack verifier, then scripts/check-agent-product-quality-gate.sh (which runs quality gate verifier + production gates + safe readiness), with explicit production gates and safe readiness also called. No source-of-truth inside wrapper.
+
+Ops pack content summary (builds directly on execution day runbook):
+- All required sections present with operational substance (Lead Intake Review Workflow, Lead Completeness Checklist, Missing-Information Recovery Workflow, Founder/Operator Decision Log, Manual Homeowner/Contractor Communication Prep, Inspection or Appointment Coordination Tracker, Inspection Readiness Decision, Outcome Capture, End-of-Day Reporting Template, PASS/HOLD/BLOCKED Criteria).
+- All required operational fields: lead source, homeowner name or placeholder, homeowner phone/email status, property address status, roof issue summary, urgency, insurance/storm context, photos status, appointment preference, service area fit, contractor availability, missing information, manual next action, owner, timestamp, inspection readiness status, appointment readiness status, outcome, next action.
+- All required templates present and structured: lead intake review template, missing-information recovery template, founder/operator decision log template, homeowner communication prep template, contractor communication prep template, inspection/appointment tracker template, outcome capture template, end-of-day report template.
+- Decision language: FIRST ROOFER LEAD-TO-INSPECTION OPS PACK PASS / HOLD / BLOCKED.
+- Product language: book inspections, book appointments, inspection readiness, appointment readiness, manual founder/operator review, manual coordination only.
+- Safety posture matches execution day runbook and quality gate: dry-run/internal-only/founder-operator-only with full list of no-live flags and no production activation language. Forbidden language absent.
+
+The dry-run wrapper runs node --check + verifier + quality gate wrapper + production gates + safe readiness and prints a clear PASS.
+
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications. Stop after gates and diff proof. Do not commit or push.

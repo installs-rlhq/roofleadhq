@@ -677,6 +677,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Lead-to-Inspection Ops Pack (docs/FIRST_ROOFER_LEAD_TO_INSPECTION_OPS_PACK.md + scripts/run-first-roofer-lead-to-inspection-ops-pack-dry-run.sh) -- first-roofer lead-to-inspection workflow for manual founder/operator review and coordination',
+    script: 'backend/scripts/verify-first-roofer-lead-to-inspection-ops-pack-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

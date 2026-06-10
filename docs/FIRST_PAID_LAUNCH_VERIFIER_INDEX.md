@@ -1110,6 +1110,24 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - The verifier requires "first-roofer execution-day runbook" (and the three file paths + "First Roofer Execution Day Runbook") to be present in all four files.
 - Safety: read-only. No production activation of any kind.
 
+## First Roofer Lead-to-Inspection Ops Pack
+
+- Doc: `docs/FIRST_ROOFER_LEAD_TO_INSPECTION_OPS_PACK.md`
+- Wrapper: `scripts/run-first-roofer-lead-to-inspection-ops-pack-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-first-roofer-lead-to-inspection-ops-pack-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: product-moving operational packet that turns the first-roofer execution-day runbook into a practical founder/operator workflow for taking a first roofer lead from intake review through manual inspection/appointment coordination (book inspections / book appointments), outcome logging, and end-of-day reporting. Contains required sections (Product Outcome, Safety Posture, Lead Intake Review Workflow, Lead Completeness Checklist, Missing-Information Recovery Workflow, Founder/Operator Decision Log, Manual Homeowner/Contractor Communication Prep, Inspection or Appointment Coordination Tracker, Inspection Readiness Decision, Outcome Capture, End-of-Day Reporting Template, PASS/HOLD/BLOCKED Criteria, Next Build Recommendations), all required operational fields (lead source, homeowner name or placeholder, homeowner phone/email status, property address status, roof issue summary, urgency, insurance/storm context, photos status, appointment preference, service area fit, contractor availability, missing information, manual next action, owner, timestamp, inspection readiness status, appointment readiness status, outcome, next action), and all required templates (lead intake review, missing-information recovery, decision log, homeowner/contractor prep, inspection/appointment tracker, outcome capture, end-of-day report). Enforces manual founder/operator review and manual coordination only. References FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md and AGENT_PRODUCT_QUALITY_GATE.md.
+- Safety: dry-run/internal-only/founder-operator-only. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public routes, production Supabase writes, external notifications, automated booking, or production credentials. No legacy pilot quota language, no job-booking or revenue guarantee language, and no live dispatch or production activation language.
+- Verifier enforces: expected files, wrapper calls verifier + check-agent-product-quality-gate.sh, aggregate includes verifier, index references doc/wrapper/verifier, both next-chat contexts reference the pack, doc references runbook and quality gate, all required sections/fields/templates/PASS-HOLD-BLOCKED/safety language present with substance (not heading-only), forbidden language absent, no unsafe strings in wrapper.
+
+## First Roofer Lead-to-Inspection Ops Pack Verifier
+
+- Script: `backend/scripts/verify-first-roofer-lead-to-inspection-ops-pack-readonly.js`
+- Purpose: read-only guard that confirms the ops pack doc, wrapper, wiring into aggregate/index/both next-chat contexts, references to execution day runbook and quality gate, and that the doc contains all required sections, operational fields, templates, decision language, product language, and safety posture with substantive content.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- The verifier asserts all 19 required operational fields, 8 required templates, exact PASS/HOLD/BLOCKED strings, safety flags, and absence of forbidden/unsafe strings.
+- Safety: read-only. No production activation of any kind.
+
 ## Agent Product Quality Gate
 
 - Packet: `docs/AGENT_PRODUCT_QUALITY_GATE.md`
