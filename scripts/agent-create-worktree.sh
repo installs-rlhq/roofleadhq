@@ -36,4 +36,9 @@ fi
 
 git worktree add -b "$BRANCH" "$TARGET" origin/main
 
+if [ -d "$EXPECTED_ROOT/backend/node_modules" ] && [ ! -e "$TARGET/backend/node_modules" ]; then
+  ln -s "$EXPECTED_ROOT/backend/node_modules" "$TARGET/backend/node_modules"
+  echo "PASS: linked backend/node_modules from canonical repo"
+fi
+
 echo "PASS: created worktree $TARGET on branch $BRANCH"
