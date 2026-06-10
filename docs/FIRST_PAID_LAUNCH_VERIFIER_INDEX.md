@@ -918,3 +918,14 @@ Purpose:
 - Wrapper: `scripts/accept-first-roofer-manual-setup-session-reopen-guard-final-lock-dry-run.sh`
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-readonly.js`
 - Scope: dry-run/internal-only founder/operator acceptance of the reopen guard final lock for the preserved first roofer manual setup session chain.
+
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-readonly.js` — verifies first roofer manual setup session reopen guard final lock acceptance preservation snapshot remains dry-run/internal-only and wired into readiness/context.
+
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-readonly.js` — verifies `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD_FINAL_LOCK_ACCEPTANCE_PRESERVATION_SNAPSHOT.md`, wrapper coverage, aggregate readiness wiring, and next-chat context references remain dry-run/internal-only.
+
+Reopen guard final lock acceptance preservation snapshot integration text:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD_FINAL_LOCK_ACCEPTANCE_PRESERVATION_SNAPSHOT.md`
+- `scripts/snapshot-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-readonly.js`
+- wired into aggregate readiness and next-chat context references
+- safety remains dry-run/internal-only with no production automation activated

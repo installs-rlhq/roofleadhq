@@ -844,3 +844,13 @@ Decision language:
 - `MANUAL SETUP SESSION REOPEN GUARD FINAL LOCK ACCEPTANCE PASS`
 - `MANUAL SETUP SESSION REOPEN GUARD FINAL LOCK ACCEPTANCE HOLD`
 - `MANUAL SETUP SESSION REOPEN GUARD FINAL LOCK ACCEPTANCE BLOCKED`
+
+
+## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance Preservation Snapshot
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD_FINAL_LOCK_ACCEPTANCE_PRESERVATION_SNAPSHOT.md`
+- `scripts/snapshot-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-preservation-snapshot-readonly.js`
+
+Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
