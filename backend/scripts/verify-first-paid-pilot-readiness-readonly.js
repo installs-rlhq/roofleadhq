@@ -667,6 +667,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Execution Day Runbook (docs/FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md + scripts/run-first-roofer-execution-day-dry-run.sh) -- first-roofer execution-day runbook',
+    script: 'backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

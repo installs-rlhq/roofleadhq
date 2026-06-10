@@ -4343,3 +4343,31 @@ This milestone was recorded through the repo-controlled milestone helper script.
 Terminal 1 remains the source of truth. Agent-reported commits or pushes are not trusted unless Terminal 1 verifies them with git fetch, git status, git log, and HEAD/origin confirmation.
 
 No live automation activated. Safety remains demo-ready with live automation disabled.
+
+## First Roofer Execution Day Runbook
+
+The first-roofer execution-day runbook is the controlled internal dry-run only procedure for the first roofer execution day. It follows completion of the full first roofer manual setup session chain (final locks, preservation snapshots, operator handoff freeze, reopen guards, extended archives, and acceptances).
+
+Added files:
+- `docs/FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md`
+- `scripts/run-first-roofer-execution-day-dry-run.sh`
+- `backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to both next-chat context packages (`docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md` and `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`)
+- The runbook verifier now enforces that the four files (aggregate, index, and two contexts) all contain the required references to the execution day runbook artifacts and "First Roofer Execution Day Runbook" / "first-roofer execution-day runbook".
+
+Runbook content summary:
+- execution-day-runbook only and dry-run only
+- Does not activate production, create production records, mutate Supabase
+- Explicit pre-execution: Run production gate checks, Run aggregate safe readiness
+- Execution day note template
+- Decision language: FIRST ROOFER EXECUTION DAY RUNBOOK PASS / HOLD / BLOCKED
+- All dry-run safety flags present: WORKSPACE_MODE=dry-run, SMS_ACTIVATION=false, CALENDAR_ACTIVATION=false, VAPI_ACTIVATION=false, SUPABASE_WRITES=false, CONTRACTOR_NOTIFICATION=false, HOMEOWNER_NOTIFICATION=false, CRON_ACTIVATION=false, SCHEDULER_ACTIVATION=false, DISPATCHER_ACTIVATION=false, PUBLIC_ROUTE_ACTIVATION=false
+- Referenced artifacts include the doc, wrapper, verifier, source-of-truth, check-production-gates, verify-safe-readiness, and "No production activation, no external sends, no data mutation."
+
+The wrapper `scripts/run-first-roofer-execution-day-dry-run.sh` invokes source-of-truth, the new runbook verifier, production gates, and safe readiness. It contains no unsafe production calls.
+
+Safety remains: dry-run/internal-only/founder-operator-only. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron/scheduler/dispatcher activation, public routes, Supabase writes, or external notifications. All work is read-only verification and internal planning.

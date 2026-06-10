@@ -1056,3 +1056,32 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-completion-final-lock-readonly.js`
 
 Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+
+## First Roofer Execution Day Runbook
+
+The first-roofer execution-day runbook is the controlled internal dry-run only procedure for the first roofer execution day. It follows completion of the full first roofer manual setup session chain (final locks, preservation snapshots, operator handoff freeze, reopen guards, extended archives, and acceptances) in the roofer dry-run onboarding flow.
+
+Added files:
+- `docs/FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md`
+- `scripts/run-first-roofer-execution-day-dry-run.sh`
+- `backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to both next-chat context packages (`docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md` and `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`)
+- The runbook verifier now enforces that the four files (aggregate, index, and two contexts) all contain the required references to the execution day runbook artifacts and "First Roofer Execution Day Runbook" / "first-roofer execution-day runbook".
+
+Key references in runbook:
+- execution-day-runbook only and dry-run only
+- does not activate production, create production records, mutate Supabase
+- Run production gate checks
+- Run aggregate safe readiness
+- Execution day note template
+- FIRST ROOFER EXECUTION DAY RUNBOOK (PASS / HOLD / BLOCKED)
+- All required dry-run flags
+- Wrapper references: scripts/verify-source-of-truth.sh , backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js , scripts/check-production-gates.sh , scripts/verify-safe-readiness.sh , "No production activation, no external sends, no data mutation."
+
+The dry-run wrapper runs the full chain of source-of-truth + runbook verifier + gates + safe readiness.
+
+Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications.

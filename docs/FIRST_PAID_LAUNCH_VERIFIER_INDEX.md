@@ -61,6 +61,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Schema blockers packet verifier: `node backend/scripts/verify-first-paid-launch-schema-blockers-packet-readonly.js`
 - SMS dispatcher messages write test-only: `node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js`
 - SMS dispatcher follow-ups update test-only: `node backend/scripts/verify-sms-dispatcher-followups-update-testonly.js`
+- First Roofer Execution Day Runbook doc: `docs/FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md`
+- First Roofer Execution Day Runbook wrapper: `scripts/run-first-roofer-execution-day-dry-run.sh`
+- First Roofer Execution Day Runbook verifier: `node backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js`
 - Vapi post-call payload discovery: `node backend/scripts/verify-vapi-post-call-payload-discovery-readonly.js`
 - Vapi raw payload capture plan: `node backend/scripts/verify-vapi-raw-payload-capture-plan-readonly.js`
 - Vapi sample payload mapping: `node backend/scripts/verify-vapi-sample-payload-mapping-readonly.js`
@@ -1089,3 +1092,20 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-completion-final-lock-readonly.js`
 
 Scope: dry-run/internal-only completion final lock for the extended archive acceptance final check chain.
+
+## First Roofer Execution Day Runbook
+
+- Doc: `docs/FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md`
+- Wrapper: `scripts/run-first-roofer-execution-day-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: internal dry-run-only founder/operator execution day runbook for the first roofer after manual setup session chain completion. Records execution day procedure, note template, PASS/HOLD/BLOCKED decisions, and all dry-run safety flags.
+- Safety: execution-day-runbook only and dry-run only. Does not activate production, create production records, mutate Supabase, send messages, send emails, place calls, notify contractors, notify homeowners, enable booking, enable routes, expose secrets, or run destructive actions. All flags: WORKSPACE_MODE=dry-run, SMS_ACTIVATION=false, CALENDAR_ACTIVATION=false, VAPI_ACTIVATION=false, SUPABASE_WRITES=false, CONTRACTOR_NOTIFICATION=false, HOMEOWNER_NOTIFICATION=false, CRON_ACTIVATION=false, SCHEDULER_ACTIVATION=false, DISPATCHER_ACTIVATION=false, PUBLIC_ROUTE_ACTIVATION=false. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public routes, or external notifications.
+
+## First Roofer Execution Day Runbook Verifier
+
+- Script: `backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js`
+- Purpose: read-only guard that confirms the execution day runbook doc, wrapper, and cross-references in aggregate readiness, verifier index, and both next-chat context packages are present and preserve dry-run/internal-only/founder-operator-only posture.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- The verifier requires "first-roofer execution-day runbook" (and the three file paths + "First Roofer Execution Day Runbook") to be present in all four files.
+- Safety: read-only. No production activation of any kind.
