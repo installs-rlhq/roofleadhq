@@ -1069,3 +1069,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-operator-handoff-freeze-readonly.js`
 
 Scope: dry-run/internal-only operator handoff freeze for the extended archive preservation snapshot chain.
+
+
+## First Roofer Manual Setup Session Extended Archive Acceptance Final Check
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_EXTENDED_ARCHIVE_ACCEPTANCE_FINAL_CHECK.md`
+- `scripts/check-first-roofer-manual-setup-session-extended-archive-acceptance-final-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-acceptance-final-check-readonly.js`
+
+Scope: dry-run/internal-only acceptance final check for the extended archive operator handoff freeze chain.
