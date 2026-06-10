@@ -1026,3 +1026,13 @@ Files:
 - `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-preservation-snapshot-readonly.js`
 
 Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
+
+
+## First Roofer Manual Setup Session Extended Archive Operator Handoff Freeze Packet
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_EXTENDED_ARCHIVE_OPERATOR_HANDOFF_FREEZE.md`
+- `scripts/freeze-first-roofer-manual-setup-session-extended-archive-operator-handoff-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-extended-archive-operator-handoff-freeze-readonly.js`
+
+Safety remains dry-run/internal-only/founder-operator-only. No production automation is activated.
