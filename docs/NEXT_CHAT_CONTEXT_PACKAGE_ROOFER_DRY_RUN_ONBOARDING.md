@@ -830,3 +830,17 @@ Decision language:
 - `MANUAL SETUP SESSION REOPEN GUARD FINAL LOCK PASS`
 - `MANUAL SETUP SESSION REOPEN GUARD FINAL LOCK HOLD`
 - `MANUAL SETUP SESSION REOPEN GUARD FINAL LOCK BLOCKED`
+
+## First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance
+
+This layer accepts the reopen guard final lock as the controlling rule for any future reopening of the fully accepted, preserved, and frozen First Roofer Manual Setup Session dry-run chain.
+
+Files:
+- `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD_FINAL_LOCK_ACCEPTANCE.md`
+- `scripts/accept-first-roofer-manual-setup-session-reopen-guard-final-lock-dry-run.sh`
+- `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-readonly.js`
+
+Decision language:
+- `MANUAL SETUP SESSION REOPEN GUARD FINAL LOCK ACCEPTANCE PASS`
+- `MANUAL SETUP SESSION REOPEN GUARD FINAL LOCK ACCEPTANCE HOLD`
+- `MANUAL SETUP SESSION REOPEN GUARD FINAL LOCK ACCEPTANCE BLOCKED`

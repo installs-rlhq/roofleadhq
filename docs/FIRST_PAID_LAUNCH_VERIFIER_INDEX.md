@@ -911,3 +911,10 @@ Purpose:
 - Wrapper: `scripts/lock-first-roofer-manual-setup-session-reopen-guard-final-dry-run.sh`
 - Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-readonly.js`
 - Scope: dry-run/internal-only final lock for the accepted reopen guard and preserved first roofer manual setup session chain.
+
+### First Roofer Manual Setup Session Reopen Guard Final Lock Acceptance
+
+- Doc: `docs/ROOFER_DRY_RUN_FIRST_ROOFER_MANUAL_SETUP_SESSION_REOPEN_GUARD_FINAL_LOCK_ACCEPTANCE.md`
+- Wrapper: `scripts/accept-first-roofer-manual-setup-session-reopen-guard-final-lock-dry-run.sh`
+- Verifier: `backend/scripts/verify-roofer-dry-run-first-roofer-manual-setup-session-reopen-guard-final-lock-acceptance-readonly.js`
+- Scope: dry-run/internal-only founder/operator acceptance of the reopen guard final lock for the preserved first roofer manual setup session chain.
