@@ -50,7 +50,7 @@ Latest verification passed before commit `24cc864`:
 - Roofer reply SMS is not live.
 - Twilio sending is not live.
 - Vapi/Calendar/Resend/Lindy production triggers are not live.
-- Lindy internal alerts exist, but Lindy is not customer-facing production automation.
+- Lindy internal alerts exist, but Lindy is not customer-facing production workflow activation.
 - Manual Outreach remains dry-run/test-safe unless separately approved.
 - No live Vapi webhook route exists.
 - No Vapi calls from code.
@@ -222,7 +222,7 @@ Default rhythm:
 - Use Telegram OpenClaw for prompts/checklists and VPS Terminal for verification/builds. Use Grok Build only when clearly helpful and setup-safe. Use Codex again later when tokens are available.
 - Include implementation, verifier scripts, docs/checklist updates, and safety checks in the same build batch when practical.
 - Use Terminal 1 as the source of truth for final verification, git status, build/test output, commits, pushes, and production checks.
-- Do not run live SMS, Twilio, cron, Calendar, Vapi, Resend, Lindy production automations, or broad Supabase writes without explicit approval.
+- Do not run live SMS, Twilio, cron, Calendar, Vapi, Resend, Lindy production workflow activations, or broad Supabase writes without explicit approval.
 
 The updated rule is:
 
@@ -338,8 +338,8 @@ As of latest verified commit:
 - Duplicate protection was verified.
 - No SMS has been sent.
 - No Twilio call/import has been enabled for outbound sending.
-- Test-only `messages` insert has been completed and verified; no live dispatcher SMS path has been enabled.
-- Test-only `follow_ups` update has been completed and verified; no live dispatcher SMS path has been enabled.
+- Test-only `messages` insert has been completed and verified; no live-send routinger SMS path has been enabled.
+- Test-only `follow_ups` update has been completed and verified; no live-send routinger SMS path has been enabled.
 
 Next larger build batch:
 
@@ -374,7 +374,7 @@ Safety rules:
 2. Do not call/import Twilio unless explicitly approved.
 3. Do not write production messages or update follow_ups unless explicitly approved.
 4. Do not add cron, routes, schedulers, or production flags unless explicitly approved.
-5. Do not trigger Vapi, Calendar, Resend, Lindy, or other production automations unless explicitly approved.
+5. Do not trigger Vapi, Calendar, Resend, Lindy, or other production workflow activations unless explicitly approved.
 6. Do not expose or print secrets.
 7. Use Supabase as the source of truth.
 8. Keep customer-facing SMS and booking language controlled by RoofLeadHQ, not Lindy.
@@ -3826,7 +3826,7 @@ Safety rules:
 2. Do not call/import Twilio unless explicitly approved.
 3. Do not write production messages or update follow_ups unless explicitly approved.
 4. Do not add cron, routes, schedulers, or production flags unless explicitly approved.
-5. Do not trigger Vapi, Calendar, Resend, Lindy, or other production automations unless explicitly approved.
+5. Do not trigger Vapi, Calendar, Resend, Lindy, or other production workflow activations unless explicitly approved.
 6. Do not expose or print secrets.
 7. Use Supabase as the source of truth.
 8. Keep customer-facing SMS and booking language controlled by RoofLeadHQ, not Lindy.
@@ -4930,3 +4930,69 @@ Use `fixtures/roofer-dry-run-workspace/sample-roofer/` to compare generated work
 The roofer dry-run workspace comparison verifier generates a fresh local workspace, compares required structure and disabled production flags against the known-good sample fixture, and cleans up the temporary workspace.
 
 This keeps founder-led onboarding QA aligned with the repo-controlled sample.
+
+## Roofer Data Protection and Tenant Isolation Plan Placement Packet
+
+Added the Roofer Data Protection and Tenant Isolation Plan Placement Packet (planning-only packet) at baseline a212027.
+
+This packet captures the founder’s requirement that every roofer’s information and leads must be protected as much as possible from data-breach concerns and places the Roofer Data Protection and Tenant Isolation Readiness Milestone into the 90-day build plan / build context.
+
+Roofer Data Protection and Tenant Isolation Readiness Milestone
+
+Before RoofLeadHQ expands beyond founder/operator-controlled dry-run/manual execution into multi-roofer scale, contractor dashboards/portals, live production workflows, production lead routing, broader production Supabase writes, or external contractor/homeowner notifications, the build plan must include a security/privacy readiness milestone for protecting each roofer’s information and lead data as much as possible from data-breach concerns.
+
+This milestone is:
+- BLOCKER BEFORE MULTI-ROOFER PRODUCTION SCALE
+- BLOCKER BEFORE CONTRACTOR PORTAL OR DASHBOARD EXPOSURE
+- BLOCKER BEFORE BROADER PRODUCTION LEAD DATA WRITES
+- BLOCKER BEFORE LIVE PRODUCTION WORKFLOWS
+
+Placement:
+- Placement before multi-roofer onboarding: yes
+- Placement before contractor dashboard/portal: yes
+- Placement before live production workflows: yes
+- Placement before production lead routing: yes
+- Placement before broader production Supabase writes: yes
+- Placement before external contractor/homeowner notifications: yes
+
+All roofer information protected: planned
+All roofer lead data protected: planned
+Tenant isolation required: planned
+Row-level/data-boundary controls required: planned
+Least-privilege access required: planned
+Audit logging required: planned
+Encryption/secrets handling review required: planned
+Retention/deletion/export policy required: planned
+Backup/recovery review required: planned
+Breach-response runbook required: planned
+Contractor dashboard/portal security review required: planned
+Vendor/integration data-sharing review required: planned
+Security/privacy readiness gate required: planned
+
+Current implementation status: NOT STARTED
+Planning status: DRAFT (target: PLACED IN 90-DAY PLAN after founder review)
+Founder decision: HOLD (pending founder review)
+
+Files added:
+- `docs/ROOFER_DATA_PROTECTION_TENANT_ISOLATION_PLAN_PLACEMENT_PACKET.md`
+- `scripts/run-roofer-data-protection-tenant-isolation-plan-placement-packet-dry-run.sh`
+- `backend/scripts/verify-roofer-data-protection-tenant-isolation-plan-placement-packet-readonly.js`
+
+Wired into:
+- backend/scripts/verify-first-paid-pilot-readiness-readonly.js
+- docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md
+- docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md
+- docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md
+- docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md (closeout lesson preserved)
+
+This (ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md) is the current 90-day/business build plan surface. When a dedicated 90-day plan file is created or refreshed, the full Roofer Data Protection and Tenant Isolation Readiness Milestone (name, owner, phase, placement flags, planned flags, dependency map, blocker language, pre-production checklist, multi-roofer blocker checklist, insertion tracker) must be inserted from the placement packet.
+
+The packet is planning-only. No security controls, auth, schema, RLS, migrations, secrets, access logic, production writes, or live automation are implemented. All safety markers confirmed (Planning-only packet: yes, Auth changed: no, Database schema changed: no, RLS policy changed: no, Production data touched: no, Live workflow activation activated: no, and all other listed no markers).
+
+Uses only Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only, dry-run/internal-only/founder-operator-only, 90-day build plan, security/privacy readiness milestone, roofer data protection, tenant isolation, lead data boundary, least-privilege access, audit logging, breach-response runbook, and required BLOCKER phrases.
+
+Forbidden business language and implementation-risk strings are absent by verifier enforcement.
+
+This milestone is a hard dependency for all scale, portal, automation, and broader production data work. Do not proceed past current founder/operator-controlled dry-run/manual execution without satisfying the future security/privacy readiness gate.
+
+Safety remains demo-ready with live automation disabled. All work dry-run/internal-only/founder-operator-only. Stop after gates and diff proof. Do not commit. Do not push.

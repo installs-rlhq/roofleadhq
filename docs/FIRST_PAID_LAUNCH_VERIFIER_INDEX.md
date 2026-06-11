@@ -100,6 +100,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - First Roofer Manual Downstream Routing Command Packet doc: `docs/FIRST_ROOFER_MANUAL_DOWNSTREAM_ROUTING_COMMAND_PACKET.md`
 - First Roofer Manual Downstream Routing Command Packet wrapper: `scripts/run-first-roofer-manual-downstream-routing-command-packet-dry-run.sh`
 - First Roofer Manual Downstream Routing Command Packet verifier: `node backend/scripts/verify-first-roofer-manual-downstream-routing-command-packet-readonly.js`
+- Roofer Data Protection and Tenant Isolation Plan Placement Packet doc: `docs/ROOFER_DATA_PROTECTION_TENANT_ISOLATION_PLAN_PLACEMENT_PACKET.md`
+- Roofer Data Protection and Tenant Isolation Plan Placement Packet wrapper: `scripts/run-roofer-data-protection-tenant-isolation-plan-placement-packet-dry-run.sh`
+- Roofer Data Protection and Tenant Isolation Plan Placement Packet verifier: `node backend/scripts/verify-roofer-data-protection-tenant-isolation-plan-placement-packet-readonly.js`
 - Vapi post-call payload discovery: `node backend/scripts/verify-vapi-post-call-payload-discovery-readonly.js`
 - Vapi raw payload capture plan: `node backend/scripts/verify-vapi-raw-payload-capture-plan-readonly.js`
 - Vapi sample payload mapping: `node backend/scripts/verify-vapi-sample-payload-mapping-readonly.js`

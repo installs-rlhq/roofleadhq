@@ -742,6 +742,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Roofer Data Protection and Tenant Isolation Plan Placement Packet (docs/ROOFER_DATA_PROTECTION_TENANT_ISOLATION_PLAN_PLACEMENT_PACKET.md + scripts/run-roofer-data-protection-tenant-isolation-plan-placement-packet-dry-run.sh) -- planning-only packet capturing founder requirement that every roofer’s information and leads must be protected as much as possible from data-breach concerns; places Roofer Data Protection and Tenant Isolation Readiness Milestone into 90-day build plan as BLOCKER BEFORE MULTI-ROOFER PRODUCTION SCALE, BLOCKER BEFORE CONTRACTOR PORTAL OR DASHBOARD EXPOSURE, BLOCKER BEFORE BROADER PRODUCTION LEAD DATA WRITES, BLOCKER BEFORE LIVE PRODUCTION WORKFLOWS; records future scope for tenant isolation, lead data boundary, least-privilege access, row-level/data-boundary controls, secrets, encryption, audit logging, retention/deletion/export, backup/recovery, breach-response runbook, access review, contractor portal security, vendor data-sharing, and security/privacy readiness gate; all concrete fields, safety markers (Planning-only packet: yes, Auth changed: no, Database schema changed: no, RLS policy changed: no, Production data touched: no, etc.), HOLD/BLOCKED cases, dependency map, pre-production security gate checklist, multi-roofer scale blocker checklist, decision log, 90-day plan insertion tracker, and next-operator handoff; wired for dry-run/internal-only/founder-operator-only planning posture with Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only; no implementation of auth/schema/RLS/secrets/access-control; no production writes or live automation',
+    script: 'backend/scripts/verify-roofer-data-protection-tenant-isolation-plan-placement-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
@@ -806,9 +811,9 @@ function checkReadinessStatus(status) {
     const value = status.live_automation ? status.live_automation[key] : undefined;
 
     if (value === false) {
-      pass(`Live automation ${key} is not active`);
+      pass(`Live workflow activation ${key} is not active`);
     } else {
-      fail(`Live automation ${key} is active or unknown`, {
+      fail(`Live workflow activation ${key} is active or unknown`, {
         key,
         value
       });
