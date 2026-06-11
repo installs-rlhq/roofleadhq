@@ -707,6 +707,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Manual Follow-Up Command Packet (docs/FIRST_ROOFER_MANUAL_FOLLOW_UP_COMMAND_PACKET.md + scripts/run-first-roofer-manual-follow-up-command-packet-dry-run.sh) -- first-roofer manual follow-up command packet for founder/operator manual prepare/approve/track/report follow-up after appointment/inspection outcomes (follow-up ownership, homeowner/contractor follow-up preparation, reschedule/estimate/next-step/no-show/completed/cancelled/hold/blocked worksheets, HOLD/BLOCKED rules for missing follow-up owner/incomplete outcome details/conflicting next steps/consent/safety/prod risk, draft-only, approved for manual follow-up, Calendar booking performed: no, external notification sent: no, production system touched: no, Follow-up sent: no)',
+    script: 'backend/scripts/verify-first-roofer-manual-follow-up-command-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

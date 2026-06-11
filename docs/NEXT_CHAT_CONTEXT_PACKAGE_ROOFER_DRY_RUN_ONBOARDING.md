@@ -153,6 +153,23 @@ Next safe onboarding layer added:
 
 This gives the founder/operator a planning-only follow-up script and question checklist for HOLD or missing-information cases before real first-roofer setup planning. It covers company profile, service area, services, booking preferences, emergency/insurance handling, lead sources, manual review/reporting preferences, follow-up notes, dry-run flags, and final follow-up decision while production activation remains disabled.
 
+## First Roofer Manual Follow-Up Command Packet (execution path)
+
+Added (first-roofer execution path, after appointment outcome):
+
+- `docs/FIRST_ROOFER_MANUAL_FOLLOW_UP_COMMAND_PACKET.md`
+- `scripts/run-first-roofer-manual-follow-up-command-packet-dry-run.sh`
+- `backend/scripts/verify-first-roofer-manual-follow-up-command-packet-readonly.js`
+
+This gives the founder/operator an operational packet to manually prepare, approve, track, and report follow-up after appointment/inspection outcomes (ownership worksheet, homeowner/contractor prep worksheets, reschedule/estimate/next-step/no-show/completed/cancelled worksheets, HOLD/BLOCKED rules for missing owner/incomplete details/conflicting steps/consent/safety/prod risk, APPROVED FOR MANUAL FOLLOW-UP state, tracker/decision log/report/handoff). Strictly dry-run/internal-only; Follow-up sent: no; Calendar booking performed: no; external notification sent: no; production system touched: no. Wired into aggregate first-paid pilot readiness, verifier index, and both next-chat contexts. Quality gate enforced. References Day-One, Manual Communication, Inspection Coordination, Appointment Readiness, Appointment Outcome, Lead-to-Inspection Ops Pack, Execution Day Runbook, Follow-Up Cadence, Appointment Outcome (paid), Booking/Reporting Prefs, and Agent Product Quality Gate.
+
+Safety remains dry-run/internal-only/founder-operator-only. No production activation.
+
+- manual follow-up command packet
+- FIRST_ROOFER_MANUAL_FOLLOW_UP_COMMAND_PACKET.md
+- run-first-roofer-manual-follow-up-command-packet-dry-run.sh
+- verify-first-roofer-manual-follow-up-command-packet-readonly.js
+
 
 ## Roofer Dry-Run First Roofer Internal Handoff Summary Packet
 
