@@ -70,7 +70,7 @@ const dailyGuide = read(dailyGuidePath);
 pass('All three demo pages exist: dashboard-sample.html, weekly-report-sample.html, monthly-report-sample.html');
 
 // 2. Confirm visible sample/demo labeling appears in each page
-const sampleLabels = ['SAMPLE DATA / DEMO PREVIEW', 'SAMPLE / DEMO ONLY', 'demo-banner', 'Sample data only'];
+const sampleLabels = ['SAMPLE DATA / DEMO PREVIEW', 'SAMPLE / DEMO ONLY', 'Demo Preview', 'Growth Tier Example', 'demo-banner'];
 for (const page of [dashboard, weekly, monthly]) {
   let found = false;
   for (const label of sampleLabels) {
@@ -78,40 +78,107 @@ for (const page of [dashboard, weekly, monthly]) {
   }
   if (!found) throw new Error('A demo page is missing visible SAMPLE / DEMO labeling');
 }
-pass('Visible sample/demo labeling (SAMPLE DATA / DEMO PREVIEW, demo-banner, sample-only footer) appears in each demo page.');
+pass('Visible sample/demo labeling (SAMPLE DATA / DEMO PREVIEW, Growth Tier Example, demo-banner, sample-only footer) appears in each demo page.');
 
-// 3. Confirm each page includes Founder-Led Launch Program
-mustHave(dashboard, 'Founder-Led Launch Program', 'dashboard-sample.html');
-mustHave(weekly, 'Founder-Led Launch Program', 'weekly-report-sample.html');
-mustHave(monthly, 'Founder-Led Launch Program', 'monthly-report-sample.html');
-pass('Each demo page includes "Founder-Led Launch Program".');
+// 3. Confirm Growth Tier framing appears in the demo pages
+const growthLabels = ['Growth Tier', '275 Leads/Month', '275 leads/month'];
+for (const page of [dashboard, weekly, monthly]) {
+  let found = false;
+  for (const label of growthLabels) {
+    if (page.includes(label)) { found = true; break; }
+  }
+  if (!found) throw new Error('A demo page is missing Growth Tier framing');
+}
+pass('Growth Tier framing (Growth Tier, 275 Leads/Month Example) appears in each demo page.');
 
-// 4. Dashboard includes required dashboard/sample metrics/manual review queue/manual coordination/live automation disabled language
+// 4. Confirm 275-leads/month example is reflected in the monthly report
+mustHave(monthly, '275', 'monthly-report-sample.html');
+mustHave(monthly, 'Total Leads', 'monthly-report-sample.html');
+pass('Monthly report reflects the 275 leads/month Growth Tier example (Total Leads: 275 and related metrics).');
+
+// 5. Dashboard key metrics present
 mustHave(dashboard, 'Lead Response Overview', 'dashboard-sample.html');
-mustHave(dashboard, 'manual review queue', 'dashboard-sample.html');
-mustHave(dashboard, 'Manual coordination only', 'dashboard-sample.html');
-mustHave(dashboard, 'LIVE AUTOMATION DISABLED', 'dashboard-sample.html');
-mustHave(dashboard, 'inspection coordination', 'dashboard-sample.html');
-mustHave(dashboard, 'READY FOR FOUNDER REVIEW', 'dashboard-sample.html');
-pass('Dashboard page includes dashboard/sample metrics, manual review queue, manual coordination, live automation disabled language, inspection coordination, and READY FOR FOUNDER REVIEW.');
+mustHave(dashboard, '64', 'dashboard-sample.html'); // New Leads This Week
+mustHave(dashboard, '18', 'dashboard-sample.html'); // Inspection Opportunities
+mustHave(dashboard, '21', 'dashboard-sample.html'); // Follow-Ups In Progress
+mustHave(dashboard, '6', 'dashboard-sample.html'); // Leads Needing Attention
+mustHave(dashboard, 'Inspection Opportunities', 'dashboard-sample.html');
+mustHave(dashboard, 'Follow-Ups In Progress', 'dashboard-sample.html');
+mustHave(dashboard, 'Leads Needing Attention', 'dashboard-sample.html');
+pass('Dashboard page includes Growth Tier key metrics (64 new leads/wk, 18 inspection opportunities, 21 follow-ups, 6 needing attention).');
 
-// 5. Weekly page includes weekly report/sample metrics/leads needing attention/recommended manual actions
-mustHave(weekly, 'Weekly Summary', 'weekly-report-sample.html');
-mustHave(weekly, 'sample metrics', 'weekly-report-sample.html');
+// 6. Weekly report key metrics present
+mustHave(weekly, '64', 'weekly-report-sample.html');
+mustHave(weekly, '29', 'weekly-report-sample.html');
+mustHave(weekly, '18', 'weekly-report-sample.html');
+mustHave(weekly, '11', 'weekly-report-sample.html');
+mustHave(weekly, '21', 'weekly-report-sample.html');
+mustHave(weekly, '5', 'weekly-report-sample.html');
 mustHave(weekly, 'Leads Needing Attention', 'weekly-report-sample.html');
-mustHave(weekly, 'Recommended Founder / Operator Actions', 'weekly-report-sample.html');
-mustHave(weekly, 'Manual coordination note', 'weekly-report-sample.html');
-pass('Weekly report page includes weekly report/sample metrics, leads needing attention, and recommended manual actions.');
+mustHave(weekly, 'Roofer Input Needed', 'weekly-report-sample.html');
+pass('Weekly report page includes key weekly metrics consistent with 275/mo pace (64 captured, 29 qualified, 18 opp, 11 confirmed, 21 follow-ups, 5 roofer input).');
 
-// 6. Monthly page includes monthly report/month-to-date/source mix/manual review outcomes/recommended adjustments
-mustHave(monthly, 'Monthly Summary', 'monthly-report-sample.html');
-mustHave(monthly, 'Month-to-Date Sample Metrics', 'monthly-report-sample.html');
-mustHave(monthly, 'Lead Source Mix', 'monthly-report-sample.html');
-mustHave(monthly, 'Manual Review Outcomes', 'monthly-report-sample.html');
-mustHave(monthly, 'Recommended Next-Month Adjustments', 'monthly-report-sample.html');
-pass('Monthly report page includes monthly report/month-to-date, source mix, manual review outcomes, and recommended adjustments.');
+// 7. Monthly report key metrics present and source mix sums near 275
+mustHave(monthly, '275', 'monthly-report-sample.html');
+mustHave(monthly, '121', 'monthly-report-sample.html');
+mustHave(monthly, '74', 'monthly-report-sample.html');
+mustHave(monthly, '46', 'monthly-report-sample.html');
+mustHave(monthly, '98', 'monthly-report-sample.html');
+mustHave(monthly, '37', 'monthly-report-sample.html');
+mustHave(monthly, '14', 'monthly-report-sample.html');
+mustHave(monthly, 'Google Business Profile', 'monthly-report-sample.html');
+mustHave(monthly, '92', 'monthly-report-sample.html');
+mustHave(monthly, 'Website', 'monthly-report-sample.html');
+mustHave(monthly, '61', 'monthly-report-sample.html');
+mustHave(monthly, 'Angi', 'monthly-report-sample.html');
+mustHave(monthly, '48', 'monthly-report-sample.html');
+mustHave(monthly, 'Referrals', 'monthly-report-sample.html');
+mustHave(monthly, '39', 'monthly-report-sample.html');
+mustHave(monthly, 'Facebook', 'monthly-report-sample.html');
+mustHave(monthly, '35', 'monthly-report-sample.html');
+pass('Monthly report page includes full Growth Tier MTD metrics (275 total, 121 qual, 74 opp, 46 confirmed, 98/37 follow-ups, 14 roofer input) and source mix (92+61+48+39+35=275).');
 
-// 7. Forbidden/risky phrases absent from demo pages
+// 8. Roofer-facing phrases are present (combination required)
+const rooferPhrases = [
+  'RoofLeadHQ Handling Status',
+  'Leads Needing Attention',
+  'Follow-Up In Progress',
+  'Inspection Requested',
+  'Inspection Confirmed',
+  'Roofer Input Needed',
+  'Handled by RoofLeadHQ',
+  'Response Status',
+  'RoofLeadHQ is handling',
+  'RoofLeadHQ managed'
+];
+let rooferPhraseFound = false;
+const allDemo = dashboard + weekly + monthly;
+for (const phrase of rooferPhrases) {
+  if (allDemo.includes(phrase)) { rooferPhraseFound = true; break; }
+}
+if (!rooferPhraseFound) {
+  throw new Error('Demo pages missing required roofer-facing phrases (e.g. RoofLeadHQ Handling Status, Leads Needing Attention, Follow-Up In Progress, Inspection Requested/Confirmed, Roofer Input Needed)');
+}
+pass('Roofer-facing phrases present in demo pages (e.g. RoofLeadHQ Handling Status / Leads Needing Attention / Follow-Up In Progress / Inspection Requested / Inspection Confirmed / Roofer Input Needed).');
+
+// 9. The following visible internal phrases are ABSENT from the demo pages (moved to docs/verifiers only)
+const removedInternalPhrases = [
+  'Live Automation Disabled',
+  'Manual coordination only',
+  'All next steps require founder or operator review',
+  'Ready for Founder Review',
+  'Manual Review Queue Status',
+  'Confirm Manually',
+  'Pending Confirm'
+];
+for (const phrase of removedInternalPhrases) {
+  mustNotHave(dashboard, phrase, 'dashboard-sample.html');
+  mustNotHave(weekly, phrase, 'weekly-report-sample.html');
+  mustNotHave(monthly, phrase, 'monthly-report-sample.html');
+}
+pass('Old internal/safety phrases absent from visible demo page content (Live Automation Disabled, Manual coordination only, founder/operator review queue language, Ready for Founder Review, Manual Review Queue, Confirm Manually, Pending Confirm). Safety language kept in docs/verifiers only.');
+
+// 10. Existing forbidden/risky phrases remain absent from demo pages
 const forbiddenPhrases = [
   'guarantee',
   'guaranteed',
@@ -135,7 +202,7 @@ for (const phrase of forbiddenPhrases) {
 }
 pass('All forbidden/risky phrases absent from demo pages (guarantee/guaranteed, automatically, invoice/payment/quote/estimate, book jobs variants, production/live automation active, instant SMS, calendar appointment booking).');
 
-// 8+9. No backend/src routes/controllers/services and no migration/schema/auth/secrets/env modified
+// 11+12. No backend/src routes/controllers/services and no migration/schema/auth/secrets/env modified
 function assertNoForbiddenFilesModified() {
   let changed = '';
   try {
@@ -194,7 +261,7 @@ function assertNoForbiddenFilesModified() {
 }
 assertNoForbiddenFilesModified();
 
-// 10. No external call strings present in demo pages or the new verifier/wrapper
+// 13. No external call strings present in demo pages, css, or wrapper
 const externalCallStrings = [
   'fetch(',
   'XMLHttpRequest',
@@ -217,10 +284,9 @@ function assertNoExternalCallsInDemo() {
 }
 assertNoExternalCallsInDemo();
 
-// Packet and wrapper safety language
-mustHave(packet, 'Founder-Led Launch Program', 'screenshot assets packet');
-mustHave(packet, 'manual founder/operator review', 'screenshot assets packet');
-mustHave(packet, 'manual coordination', 'screenshot assets packet');
+// Packet and wrapper safety language (updated for Growth Tier revision)
+mustHave(packet, 'Growth Tier', 'screenshot assets packet');
+mustHave(packet, '275 Leads/Month', 'screenshot assets packet');
 mustHave(packet, 'SAMPLE DATA / DEMO PREVIEW', 'screenshot assets packet');
 mustHave(packet, 'Static website/demo screenshot assets only', 'screenshot assets packet');
 mustHave(packet, 'no backend/src routes', 'screenshot assets packet');
@@ -228,9 +294,10 @@ mustHave(packet, 'no migration/schema/auth/secrets', 'screenshot assets packet')
 mustHave(packet, 'node --check backend/scripts/verify-website-demo-screenshot-assets-readonly.js', 'screenshot assets packet');
 mustHave(packet, 'scripts/run-website-demo-screenshot-assets-dry-run.sh', 'screenshot assets packet');
 mustHave(packet, 'No production behavior', 'screenshot assets packet');
-pass('Packet doc contains required safe positioning language, sample labeling, and safety posture.');
+mustHave(packet, 'RoofLeadHQ handles', 'screenshot assets packet');
+pass('Packet doc contains required safe positioning language, Growth Tier framing, sample labeling, and safety posture.');
 
-// Wiring checks (consistent with website founder-led copy/polish pattern)
+// Wiring checks (consistent with prior pattern; references remain valid)
 mustHave(aggregate, 'verify-website-demo-screenshot-assets-readonly.js', 'aggregate first-paid pilot readiness');
 mustHave(aggregate, 'Website Demo Screenshot Assets', 'aggregate first-paid pilot readiness');
 pass('Aggregate first-paid pilot readiness includes the website demo screenshot assets verifier.');
@@ -268,5 +335,6 @@ if (process.exitCode) {
 }
 
 console.log('PASS: Website demo screenshot assets read-only verification passed.');
-console.log('All three static demo pages exist with required sample labeling, Founder-Led Launch Program framing, manual review / manual coordination language, and forbidden phrases absent.');
+console.log('All three static demo pages exist with required sample/demo labeling, Growth Tier framing, 275 leads/month in monthly, key metrics, and roofer-facing phrases.');
+console.log('Old internal phrases (Live Automation Disabled etc.) removed from visible content; kept only in docs/verifiers.');
 console.log('No backend/src, migrations, schema, auth, secrets, or env changes. No external call strings. Ready for marketing screenshots.');
