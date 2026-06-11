@@ -722,6 +722,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Contractor Estimate Review Command Packet (docs/FIRST_ROOFER_CONTRACTOR_ESTIMATE_REVIEW_COMMAND_PACKET.md + scripts/run-first-roofer-contractor-estimate-review-command-packet-dry-run.sh) -- first-roofer contractor estimate review command packet for founder/operator manual packaging and review of estimate-prep inputs for contractor estimate review after estimate prep (contractor review package worksheet, scope summary worksheet, photos/documentation review worksheet, insurance context review worksheet, contractor/founder/homeowner clarification worksheets, HOLD/BLOCKED rules for missing contractor review owner/missing estimate prep state/unresolved estimate / next-step readiness state/missing inspection notes/missing contractor notes/incomplete roof/damage/service-scope details/incomplete homeowner constraints/incomplete photos/documentation review/incomplete insurance context review/unresolved estimate assumptions/unresolved estimate unknowns/unresolved contractor questions/unresolved homeowner questions/contractor match not confirmed/contractor service-area fit not confirmed/consent/safety/prod risk, draft-only, READY FOR FOUNDER REVIEW, READY FOR CONTRACTOR REVIEW, READY FOR MANUAL CONTRACTOR REVIEW, Estimate created: no, Quote generated: no, Quote sent: no, Contractor notification sent: no, Follow-up sent: no, Calendar booking performed: no, external notification sent: no, production system touched: no)',
+    script: 'backend/scripts/verify-first-roofer-contractor-estimate-review-command-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

@@ -88,6 +88,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - First Roofer Estimate Prep Command Packet doc: `docs/FIRST_ROOFER_ESTIMATE_PREP_COMMAND_PACKET.md`
 - First Roofer Estimate Prep Command Packet wrapper: `scripts/run-first-roofer-estimate-prep-command-packet-dry-run.sh`
 - First Roofer Estimate Prep Command Packet verifier: `node backend/scripts/verify-first-roofer-estimate-prep-command-packet-readonly.js`
+- First Roofer Contractor Estimate Review Command Packet doc: `docs/FIRST_ROOFER_CONTRACTOR_ESTIMATE_REVIEW_COMMAND_PACKET.md`
+- First Roofer Contractor Estimate Review Command Packet wrapper: `scripts/run-first-roofer-contractor-estimate-review-command-packet-dry-run.sh`
+- First Roofer Contractor Estimate Review Command Packet verifier: `node backend/scripts/verify-first-roofer-contractor-estimate-review-command-packet-readonly.js`
 - Vapi post-call payload discovery: `node backend/scripts/verify-vapi-post-call-payload-discovery-readonly.js`
 - Vapi raw payload capture plan: `node backend/scripts/verify-vapi-raw-payload-capture-plan-readonly.js`
 - Vapi sample payload mapping: `node backend/scripts/verify-vapi-sample-payload-mapping-readonly.js`
