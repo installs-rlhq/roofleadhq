@@ -533,10 +533,10 @@ console.log("PASS: both next-chat context packages reference the homeowner clari
 mustHave(workflow, "FIRST_ROOFER_HOMEOWNER_CLARIFICATION_RESPONSE_REVIEW_COMMAND_PACKET.md", "grok workflow context");
 mustHave(workflow, "First Roofer Homeowner Clarification Response Review Command Packet", "grok workflow context");
 // Assert the specified workflow lesson is preserved (post fast-forward merge pre-push targeted gates + idempotent cleanup)
-mustHave(workflow, "After fast-forward merging an agent branch into canonical main, do not treat full aggregate readiness as a required pre-push blocker while local HEAD is ahead of origin/main", "grok workflow context");
-mustHave(workflow, "Use targeted packet verifier + product quality gate + backend build + clean git status pre-push", "grok workflow context");
-mustHave(workflow, "then push/fetch/source-of-truth verification; then run full aggregate/backend build/source-of-truth verification", "grok workflow context");
-mustHave(workflow, "Cleanup should be idempotent by checking whether the worktree or local branch exists before removing/deleting", "grok workflow context");
+mustHave(workflow, "After fast-forward merging an agent branch into canonical main while local HEAD is ahead of origin/main, do not run wrappers or scripts/check-agent-product-quality-gate.sh as canonical pre-push blockers", "grok workflow context");
+mustHave(workflow, "Canonical pre-push should use only direct read-only checks that do not invoke aggregate", "grok workflow context");
+mustHave(workflow, "then push/fetch/source-of-truth; then run wrappers/full aggregate/backend build/source-of-truth", "grok workflow context");
+mustHave(workflow, "Cleanup should be idempotent", "grok workflow context");
 console.log("PASS: grok workflow context references the homeowner clarification response review command packet (consistent with recent packet pattern) and preserves the specified post-ff-merge targeted pre-push gates + idempotent cleanup lesson.");
 
 // Cross-check quality gate and prior first-roofer artifacts for forbidden language (defensive)
