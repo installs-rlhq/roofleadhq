@@ -772,6 +772,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Website Positioning Recovery (docs/WEBSITE_POSITIONING_RECOVERY_PACKET.md + scripts/run-website-positioning-recovery-dry-run.sh + backend/scripts/verify-website-positioning-recovery-readonly.js) -- recover clear public RoofLeadHQ AI positioning on the website: H1 Turn More Roofing Leads Into Booked Inspections, core insight You do not always need more leads, Guided Setup (onboarding/config only), 14-day trial with automated check-in email, monthly billing on day 15 unless canceled; RoofLeadHQ AI handles fast response/automated follow-up/missed lead recovery/qualification to calendar; remove all public founder-led babysitting/manual coordination/founder review/review queue/Live Automation Disabled/guarantee language; preserve the three Growth Tier screenshots exactly; read-only verifier asserts required phrases present and all forbidden public phrases absent in website/index.html, asserts no backend/src and no migration/schema/auth/secrets/env modified, no external call strings added, wires into aggregate + index + next-chat + daily guide; website/copy/docs/read-only verifier changes only; no live activation, no production behavior, no writes, no integrations, no auth/schema/security implementation',
+    script: 'backend/scripts/verify-website-positioning-recovery-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

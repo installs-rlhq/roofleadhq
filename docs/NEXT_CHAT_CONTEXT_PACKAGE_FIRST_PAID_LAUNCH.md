@@ -4852,3 +4852,26 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - Wired into: verify-first-paid-pilot-readiness-readonly.js, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, NEXT_CHAT_* (all three), ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md, NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md, quality gate path.
 - Safety: website/copy/static-asset/reference/docs/read-only verifier only. No live behavior, no production writes/integrations/auth/schema/notifications/booking/estimate/quote/invoice/payment/external calls, no overclaims. Final screenshots placed for homepage dashboard/reporting visuals only under Founder-Led Launch Program. Live activation after explicit approval only.
 - References: WEBSITE_HOMEPAGE_SCREENSHOT_PLACEMENT_PACKET.md , verify-website-homepage-screenshot-placement-readonly.js , run-website-homepage-screenshot-placement-dry-run.sh
+
+## Website Positioning Recovery (test(website): recover rooflead ai positioning)
+
+- Worktree: agent/website-positioning-recovery (branch up to date with origin/main at start; HEAD at 029ed81 before edits).
+- Purpose: recover the original clear RoofLeadHQ public positioning and signup model.
+  - H1: “Turn More Roofing Leads Into Booked Inspections.”
+  - RoofLeadHQ AI responds fast, follows up automatically, recovers missed opportunities, helps get qualified homeowners onto your calendar — without adding more admin work.
+  - Core insight (prominent): “You do not always need more leads. You need to stop losing the ones you already paid for.”
+  - CTAs: “Start Your RoofLeadHQ Setup” (primary), “Start Guided Setup”, “See If RoofLeadHQ Fits”.
+  - “Guided Setup”: onboarding/configuration only (onboarding specialist configures AI for lead sources, service area, qualification questions, follow-up preferences, calendar workflow, reporting). Not ongoing founder/operator monitoring.
+  - Post go-live: RoofLeadHQ AI handles the repetitive response and follow-up workflow. Your team focuses on inspections, estimates, and closing.
+  - 14-day trial: “Your 14-day trial begins after your RoofLeadHQ AI setup goes live. Monthly billing starts on day 15 unless you cancel before then.”
+  - Automated pre-billing check-in: “Before billing begins, RoofLeadHQ sends an automated check-in email so you can review how the system is working.”
+  - No 30-day money-back, no first-month-guaranteed-free, no refundable setup fee claims.
+- Forbidden public phrases removed: old Founder-Led Launch Program language, Request Founder-Led Launch Review, manual coordination/review language, Live Automation Disabled, guaranteed outcome claims, old quota/duration pilot language, job outcome variants, old 14-day launch trial phrasing.
+- Allowed public phrases used: RoofLeadHQ AI, automated follow-up, missed lead recovery, inspection calendar, qualified homeowners, Guided Setup, onboarding specialist, 14-day trial, automated check-in email, monthly billing starts on day 15 unless canceled, booked inspections.
+- Growth Tier screenshots (dashboard-sample.png, weekly-report-sample.png, monthly-report-sample.png) preserved exactly; captions made roofer-facing and free of forbidden language.
+- New files: docs/WEBSITE_POSITIONING_RECOVERY_PACKET.md, backend/scripts/verify-website-positioning-recovery-readonly.js (6 checks + wiring + PASS), scripts/run-website-positioning-recovery-dry-run.sh.
+- Updated per task: the two founder-led copy verifiers (now require/accept new positioning phrases; forbidden lists strengthened with old public phrases + guarantees), screenshot placement verifier (minor alignment), aggregate readiness, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, the three NEXT_CHAT_CONTEXT_PACKAGE_*.md, ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md, NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md.
+- Verification executed inside worktree (all listed in packet + task): node --check new verifier; node new verifier; run-*-dry-run.sh; homepage screenshot, demo assets, two founder-led, agent quality gate; npm backend build; show-diff-proof.sh.
+- Hard constraints: website/static copy/docs/read-only verifier only. No PNG content changes. No backend/src, migrations, schema, auth, secrets, env, external calls, production activation, live services. Safety posture (demo-ready/live automation disabled) preserved.
+- Commit (inside worktree only): git add of exact list in task + commit -m "test(website): recover rooflead ai positioning". Do not push.
+- All changes keep copy concise, direct, benefit-focused, roofer-facing. No fluffy AI hype. No guarantees or production claims.

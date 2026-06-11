@@ -223,4 +223,4 @@ if (process.exitCode) {
 console.log('PASS: Website homepage screenshot placement read-only verification passed.');
 console.log('website/index.html now references the three final Growth Tier PNGs with correct alt text and aligned Dashboard/Weekly Reports/Monthly Reports headings in the product screenshots section.');
 console.log('PNG files confirmed present. No backend/src, migrations, schema, auth, secrets, or env changes. No external call strings added. Prior website verifiers and quality gate referenced for combined baseline.');
-console.log('All changes are website/static-asset/docs/read-only verifier only. Ready for public homepage use under Founder-Led Launch Program constraints.');
+console.log('All changes are website/static-asset/docs/read-only verifier only. Growth Tier screenshots preserved through public positioning recovery. Ready for public homepage use.');

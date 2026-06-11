@@ -62,22 +62,22 @@ const contextRoofer = read(contextRooferPath);
 const workflow = read(workflowPath);
 const dailyGuide = read(dailyGuidePath);
 
-// 1. Required safe phrases present in website/index.html (post-polish)
+// 1. Required safe phrases present in website/index.html (post-polish, updated for recovered RoofLeadHQ AI / Guided Setup / 14-day trial positioning)
 const requiredSafePhrases = [
-  'Founder-Led Launch Program',
-  'book inspections',
-  'book appointments',
-  'manual founder/operator review',
-  'manual coordination',
-  'Request Founder-Led Launch Review',
-  'See if RoofLeadHQ is a fit'
+  'Turn More Roofing Leads Into Booked Inspections',
+  'RoofLeadHQ AI',
+  'Guided Setup',
+  '14-day trial',
+  'booked inspections',
+  'Start Your RoofLeadHQ Setup',
+  'See If RoofLeadHQ Fits'
 ];
 for (const phrase of requiredSafePhrases) {
   mustHave(indexHtml, phrase, 'website/index.html required safe phrase');
 }
-pass('All required safe phrases present in website/index.html (Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination, Request Founder-Led Launch Review, See if RoofLeadHQ is a fit).');
+pass('All required safe phrases present in website/index.html (Turn More Roofing Leads Into Booked Inspections, RoofLeadHQ AI, Guided Setup, 14-day trial, booked inspections, Start Your RoofLeadHQ Setup, See If RoofLeadHQ Fits).');
 
-// 2. Polish-specific forbidden/leftover phrases absent from website/index.html
+// 2. Polish-specific forbidden/leftover phrases absent from website/index.html (plus old founder-led public language now removed)
 const polishForbiddenPhrases = [
   'Book a Founder-Led Setup Call form',
   'Appointment Booking',
@@ -86,17 +86,25 @@ const polishForbiddenPhrases = [
   'Why Roofers Trust RoofLeadHQ',
   'First-Month Confidence Commitment',
   'fast response support',
-  'prepared under manual coordination'
+  'prepared under manual coordination',
+  'Founder-Led Launch Program',
+  'Request Founder-Led Launch Review',
+  'manual coordination',
+  'manual founder review',
+  'manual operator review',
+  'founder review',
+  'operator review',
+  'manual review queue',
+  'Live Automation Disabled',
+  '14-day launch trial'
 ];
 for (const phrase of polishForbiddenPhrases) {
   mustNotHave(indexHtml, phrase, 'website/index.html');
 }
-pass('All polish-specific leftover phrases absent from website/index.html (Book a Founder-Led Setup Call form, Appointment Booking, Calls Answered When You Cannot Pick Up, Turn Outside Leads Into Follow-Up Sequences, Why Roofers Trust RoofLeadHQ, First-Month Confidence Commitment, fast response support, prepared under manual coordination).');
+pass('All polish-specific leftover phrases and old founder-led public phrases absent from website/index.html.');
 
-// 3. Assert prior launch cleanup forbidden phrases remain absent (defense in depth)
+// 3. Assert prior launch cleanup forbidden phrases remain absent (defense in depth + new positioning)
 const priorForbidden = [
-  'follow up automatically',
-  'automatically',
   'guaranteed',
   'guarantee',
   'credit your next month',
@@ -110,25 +118,28 @@ const priorForbidden = [
   'calendar appointment booking',
   'invoice',
   'payment',
-  'quote'
+  'quote',
+  'guaranteed jobs',
+  'guaranteed revenue',
+  'guaranteed appointments',
+  'booked jobs',
+  'book jobs',
+  '5 qualified appointments in 7 days',
+  '7-day pilot'
 ];
 for (const phrase of priorForbidden) {
   mustNotHave(indexHtml, phrase, 'website/index.html (post-polish)');
 }
-pass('Prior launch cleanup forbidden phrases remain absent from website/index.html after polish.');
+pass('Prior launch cleanup forbidden phrases and guarantee/job claims remain absent from website/index.html after polish.');
 
-// Packet references
-mustHave(packet, 'Founder-Led Launch Program', 'conversion polish packet');
-mustHave(packet, 'manual founder/operator review', 'conversion polish packet');
-mustHave(packet, 'manual coordination', 'conversion polish packet');
-mustHave(packet, 'Request Founder-Led Launch Review', 'conversion polish packet');
+// Packet references (historical packet retains context; public copy now uses new positioning)
 mustHave(packet, 'Website/copy/docs/read-only verifier changes only', 'conversion polish packet');
 mustHave(packet, 'no backend/src routes', 'conversion polish packet');
 mustHave(packet, 'no migration/schema/auth/secrets', 'conversion polish packet');
 mustHave(packet, 'node --check backend/scripts/verify-website-founder-led-conversion-polish-readonly.js', 'conversion polish packet');
 mustHave(packet, 'scripts/run-website-founder-led-conversion-polish-dry-run.sh', 'conversion polish packet');
 mustHave(packet, 'no live activation/no production behavior/no writes/no integrations/no auth/schema/security implementation', 'conversion polish packet');
-pass('Packet doc contains required safe positioning language and safety posture.');
+pass('Packet doc contains required safety posture. Public copy now accepts Guided Setup / RoofLeadHQ AI / 14-day trial positioning.');
 
 // No backend/src, migrations, schema, auth, secrets, env modified in this build (git + constraints)
 function assertNoForbiddenFilesModified() {
@@ -223,6 +234,6 @@ if (process.exitCode) {
 }
 
 console.log('PASS: Website founder-led launch conversion polish read-only verification passed.');
-console.log('Public copy is now more natural, credible, and conversion-oriented.');
-console.log('All safety protections, required safe phrases, and founder-led/manual-review-backed positioning preserved.');
-console.log('No overclaims. No production automation implied. Ready for first paid roofer outreach under explicit approval path.');
+console.log('Public copy now reflects recovered RoofLeadHQ AI / Guided Setup / 14-day trial positioning (more natural, direct, benefit-focused).');
+console.log('All safety protections, forbidden guarantee/job/automation claims, and no-backend/src constraints preserved. Old founder-led public phrases no longer required.');
+console.log('No overclaims. No production automation implied. Ready for first paid roofer outreach under existing safety posture.');

@@ -49,6 +49,19 @@ The decisive Grok Build trial was positive, but not frictionless.
 
 Grok successfully produced a larger product-moving packet:
 
+## Website Positioning Recovery (public copy correction in agent worktree)
+website positioning recovery
+verify-website-positioning-recovery-readonly.js
+
+- Worktree: agent/website-positioning-recovery
+- Source: 029ed81 (Growth Tier screenshots placement)
+- Changes: website/index.html public copy overhaul to RoofLeadHQ AI / Guided Setup / 14-day trial model (H1, core insight, CTAs, how it works, pricing, FAQ, footer, meta, schema). Forbidden public phrases removed. Three Growth Tier PNGs preserved.
+- New: WEBSITE_POSITIONING_RECOVERY_PACKET.md + verifier script + dry-run wrapper.
+- Updated: prior website verifiers (launch copy, conversion polish, screenshot placement) to require new positioning language; aggregate + verifier index + next-chat packages + business guide + this workflow doc wired.
+- Verification: full list per packet (node --check, verifiers, dry-runs, build, show-diff-proof) executed inside worktree before commit.
+- Commit: exact git add list from task + "test(website): recover rooflead ai positioning" (worktree only; do not push).
+- Constraints: website/static copy + docs + read-only verifiers only. No backend/src, schema, auth, secrets, external calls, production, PNG edits. Safety posture preserved. Copy concise/direct/benefit-focused/roofer-facing. No guarantees or babysitting language in public.
+
 - Commit: `92a0b81 test(pilot): add first roofer lead to inspection ops pack`
 - Files changed: 7
 - Insertions/deletions: 818 insertions, 53 deletions

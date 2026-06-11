@@ -455,7 +455,7 @@ Find every place on roofleadhq.com that still uses the old guarantee or old posi
 
 ### Tasks
 - Search website files for:
-  - 5 qualified appointments
+  - 5 qualified opportunities
   - old pilot wording
   - first month free
   - book inspections
@@ -481,7 +481,7 @@ We need to update roofleadhq.com messaging.
 Do not modify files yet.
 
 Search the website codebase for old offer language:
-- "5 qualified appointments"
+- "5 qualified opportunities"
 - "old pilot wording"
 - "first month free"
 - "free pilot"
@@ -5011,3 +5011,23 @@ Forbidden business language and implementation-risk strings are absent by verifi
 This milestone is a hard dependency for all scale, portal, automation, and broader production data work. Do not proceed past current founder/operator-controlled dry-run/manual execution without satisfying the future security/privacy readiness gate.
 
 Safety remains demo-ready with live automation disabled. All work dry-run/internal-only/founder-operator-only. Stop after gates and diff proof. Do not commit. Do not push.
+
+### Website Positioning Recovery (test(website): recover rooflead ai positioning) — agent/website-positioning-recovery worktree
+
+- Why: public website positioning had drifted to heavy "Founder-Led Launch Program" + manual founder/operator review + manual coordination + review queue language that implied ongoing babysitting rather than the clear RoofLeadHQ AI lead-to-calendar conversion offer.
+- Public positioning installed:
+  - H1: “Turn More Roofing Leads Into Booked Inspections.”
+  - RoofLeadHQ AI responds fast, follows up automatically, recovers missed opportunities, helps get qualified homeowners onto your calendar — without adding more admin work to your day.
+  - Core insight: “You do not always need more leads. You need to stop losing the ones you already paid for.”
+  - CTAs: “Start Your RoofLeadHQ Setup” (primary), “Start Guided Setup”, “See If RoofLeadHQ Fits”.
+  - Guided Setup = onboarding/configuration only (onboarding specialist configures AI for lead sources, service area, qualification questions, follow-up prefs, calendar, reporting). After go-live: RoofLeadHQ AI handles repetitive response and follow-up. Team focuses on inspections, estimates, closing.
+  - 14-day trial: begins after setup goes live. Automated check-in email before billing. Monthly billing starts on day 15 unless canceled.
+- Forbidden public phrases removed from website/index.html (old Founder-Led Launch Program language, Request Founder-Led Launch Review, manual coordination/review language, Live Automation Disabled, guaranteed jobs/revenue/appointments, old quota/duration pilot language, job outcome variants, old trial duration phrasing).
+- Growth Tier screenshots (dashboard-sample.png, weekly-report-sample.png, monthly-report-sample.png) from 029ed81 preserved exactly (no PNG edits, src/alt kept, captions updated to roofer-facing).
+- New: docs/WEBSITE_POSITIONING_RECOVERY_PACKET.md (why corrected, sales spine, 14-day model, Guided Setup meaning, no babysitting, no prod changes, verification commands), backend/scripts/verify-website-positioning-recovery-readonly.js (required phrases + 17 forbidden absent + no backend/src + no schema/auth/secrets/env + no external strings + PASS), scripts/run-website-positioning-recovery-dry-run.sh.
+- Existing verifiers updated (launch-copy + conversion-polish now require new positioning phrases; forbidden lists include removed public phrases + guarantees/jobs; screenshot placement aligned). Safety not weakened.
+- Wiring (per pattern): aggregate readiness, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, 3x NEXT_CHAT_CONTEXT_PACKAGE_*.md, this daily guide, AGENT_GROK_BUILD_WORKFLOW.md.
+- Verification inside worktree (exact list): node --check new verifier; node new verifier; its dry-run sh; homepage screenshot + demo assets + 2 founder-led verifiers + agent quality gate; npm --prefix backend run build; scripts/show-diff-proof.sh.
+- Commit inside worktree only (exact git add list from task including index.html + new files + updated verifiers + aggregate + docs + guide + workflow) with message "test(website): recover rooflead ai positioning". Do not push.
+- Constraints: website/static copy/docs/read-only verifier only. No backend/src, no migrations/schema/auth/secrets, no external calls, no prod activation, no PNG mods. Internal safety (demo-ready/live automation disabled) preserved. Public copy uses allowed phrases only; no guarantees or production claims.
+- Tone: concise, clear, direct, benefit-focused, roofer-facing. Enough detail retained for offer/process/trial/outcome understanding. No fluffy hype.

@@ -1444,3 +1444,13 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - Wired into aggregate, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, this next-chat + others, agent workflow, daily guide.
 - Pre-commit: node --check backend/scripts/verify-website-homepage-screenshot-placement-readonly.js ; node backend/scripts/verify-website-homepage-screenshot-placement-readonly.js ; scripts/run-website-homepage-screenshot-placement-dry-run.sh ; node backend/scripts/verify-website-demo-screenshot-assets-readonly.js ; node backend/scripts/verify-website-founder-led-launch-copy-readonly.js ; node backend/scripts/verify-website-founder-led-conversion-polish-readonly.js ; node backend/scripts/verify-agent-product-quality-gate-readonly.js ; npm --prefix backend run build ; scripts/show-diff-proof.sh. Exact git add list (incl. index.html + new packet/verifier/wrapper + aggregate + index doc + 3 next-chats + workflow + daily) + "test(website): place homepage growth tier screenshots" commit inside worktree. Do not push.
 - Safety: website/copy/static-asset/reference + docs/read-only verifier only. No live services, no prod writes, no notifications, no booking/estimate/quote/invoice/payment, no external calls, no backend/src or schema/auth/secrets changes. Homepage now shows final Growth Tier screenshots for dashboard + reports under the same founder-led/manual constraints.
+
+## Website Positioning Recovery (agent/website-positioning-recovery)
+
+- Recovered public RoofLeadHQ AI positioning on website/index.html: H1 “Turn More Roofing Leads Into Booked Inspections.”, core insight “You do not always need more leads. You need to stop losing the ones you already paid for.”, Guided Setup (onboarding only), 14-day trial, automated check-in email, monthly billing day 15 unless canceled.
+- CTAs updated to “Start Your RoofLeadHQ Setup” etc. All forbidden public founder-led babysitting/manual review queue/Live Automation Disabled/guarantee language removed.
+- Growth Tier screenshots preserved exactly (the three PNGs from 029ed81).
+- New verifier + wrapper + packet created and wired (including into this context per pattern).
+- Existing website verifiers updated to accept new public positioning without weakening safety/forbidden checks.
+- All task verifications + build + diff-proof run inside worktree. Commit only inside worktree with exact message. No push. No backend/src or schema/auth/secrets/external/production changes.
+- verify-website-positioning-recovery-readonly.js

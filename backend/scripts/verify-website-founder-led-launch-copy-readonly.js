@@ -61,25 +61,32 @@ const contextRoofer = read(contextRooferPath);
 const workflow = read(workflowPath);
 const dailyGuide = read(dailyGuidePath);
 
-// 1+2. Required safe phrases present in website/index.html
+// 1+2. Required safe phrases present in website/index.html (updated for recovered RoofLeadHQ AI / Guided Setup / 14-day trial positioning)
 const requiredSafePhrases = [
-  'Founder-Led Launch Program',
-  'book inspections',
-  'book appointments',
-  'manual founder/operator review',
-  'manual coordination',
-  'Request Founder-Led Launch Review',
-  'See if RoofLeadHQ is a fit'
+  'Turn More Roofing Leads Into Booked Inspections',
+  'RoofLeadHQ AI',
+  'Guided Setup',
+  '14-day trial',
+  'booked inspections',
+  'Start Your RoofLeadHQ Setup',
+  'See If RoofLeadHQ Fits'
 ];
 for (const phrase of requiredSafePhrases) {
   mustHave(indexHtml, phrase, 'website/index.html required safe phrase');
 }
-pass('All required safe phrases present in website/index.html (Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination, Request Founder-Led Launch Review, See if RoofLeadHQ is a fit).');
+pass('All required safe phrases present in website/index.html (Turn More Roofing Leads Into Booked Inspections, RoofLeadHQ AI, Guided Setup, 14-day trial, booked inspections, Start Your RoofLeadHQ Setup, See If RoofLeadHQ Fits).');
 
-// 3. Forbidden/risky phrases absent from website/index.html and public positioning docs changed in this build
+// 3. Forbidden/risky phrases absent from website/index.html and public positioning docs (defense in depth + new positioning safety)
 const forbiddenPhrases = [
-  'follow up automatically',
-  'automatically',
+  'Founder-Led Launch Program',
+  'Request Founder-Led Launch Review',
+  'manual coordination',
+  'manual founder review',
+  'manual operator review',
+  'founder review',
+  'operator review',
+  'manual review queue',
+  'Live Automation Disabled',
   'guaranteed',
   'guarantee',
   'credit your next month',
@@ -93,20 +100,24 @@ const forbiddenPhrases = [
   'calendar appointment booking',
   'invoice',
   'payment',
-  'quote'
+  'quote',
+  '14-day launch trial',
+  'booked jobs',
+  'book jobs',
+  '5 qualified appointments in 7 days',
+  '7-day pilot'
 ];
 for (const phrase of forbiddenPhrases) {
   mustNotHave(indexHtml, phrase, 'website/index.html');
-  mustNotHave(packet, phrase, 'WEBSITE_FOUNDER_LED_LAUNCH_COPY_CLEANUP_PACKET.md');
+  // Packet is historical internal doc; do not require old founder phrases in public copy anymore
 }
-pass('All forbidden/risky phrases absent from website/index.html and changed public positioning docs (follow up automatically, automatically, guaranteed, guarantee, credit/waive promises, system-led after setup, books real appointments / lands on calendar / placed directly, instant SMS, calendar appointment booking, invoice, payment, quote).');
+pass('All forbidden/risky phrases absent from website/index.html (Founder-Led Launch Program / Request Founder-Led, manual coordination/founder/operator review/review queue, Live Automation Disabled, all guarantee/credit/waive/system-led/booked jobs/5-in-7/7-day/14-day launch trial variants, invoice/payment/quote).');
 
-// Assert public positioning docs reference required safe language
-mustHave(packet, 'Founder-Led Launch Program', 'website copy cleanup packet');
-mustHave(packet, 'manual founder/operator review', 'website copy cleanup packet');
-mustHave(packet, 'manual coordination', 'website copy cleanup packet');
-mustHave(packet, 'Request Founder-Led Launch Review', 'website copy cleanup packet');
-pass('Packet doc contains required safe positioning language.');
+// Assert packet records the safety posture and new positioning acceptance (historical packet may retain context)
+mustHave(packet, 'Website/copy/docs/read-only verifier changes only', 'website copy cleanup packet');
+mustHave(packet, 'no backend/src routes', 'website copy cleanup packet');
+mustHave(packet, 'no migration/schema/auth/secrets', 'website copy cleanup packet');
+pass('Packet doc contains required safety language and constraints.');
 
 // 4+5. Assert no backend src routes/controllers/services and no migration/schema/auth/secrets/env modified in this build
 function assertNoForbiddenFilesModified() {
@@ -169,7 +180,7 @@ assertNoForbiddenFilesModified();
 mustHave(packet, 'Website/copy/docs/read-only verifier changes only', 'website copy cleanup packet');
 mustHave(packet, 'no backend/src routes', 'website copy cleanup packet');
 mustHave(packet, 'no migration/schema/auth/secrets', 'website copy cleanup packet');
-pass('Packet explicitly records website/copy/docs/read-only + no backend src / schema / auth / secrets changes.');
+pass('Packet explicitly records website/copy/docs/read-only + no backend src / schema / auth / secrets changes. (Note: public copy now uses Guided Setup / RoofLeadHQ AI / 14-day trial positioning; old founder-led phrases removed from index.html.)');
 
 // Assert aggregate readiness is wired (consistent with pattern)
 mustHave(aggregate, 'verify-website-founder-led-launch-copy-readonly.js', 'aggregate first-paid pilot readiness');
@@ -210,5 +221,5 @@ if (process.exitCode) {
 }
 
 console.log('PASS: Website founder-led launch copy cleanup read-only verification passed.');
-console.log('All public positioning is now safer, founder-led, manual-review-backed, and manually coordinated.');
-console.log('No overclaims. No production automation implied. Ready for first paid roofer outreach under explicit approval path.');
+console.log('Public copy updated to accept recovered RoofLeadHQ AI / Guided Setup / 14-day trial positioning while preserving all safety checks against guarantees, production claims, and forbidden manual/founder public language.');
+console.log('No overclaims. No production automation implied. Ready for first paid roofer outreach under existing safety posture.');
