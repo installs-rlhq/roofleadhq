@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard • Front Range Roofing Co. • Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .navy { background: #0f172a; color: white; }
+    .section { margin-bottom: 28px; }
+  </style>
+</head>
+<body class="bg-slate-100">
+  <!-- Demo Banner -->
+  <div class="demo-banner">
+    <div class="flex items-center gap-3">
+      <span class="demo-badge">SAMPLE DATA / DEMO PREVIEW</span>
+      <span>Front Range Roofing Co. — Founder-Led Launch Program</span>
+    </div>
+    <span class="demo-label">All data is fictional. Manual coordination only. Live automation disabled.</span>
+  </div>
+
+  <!-- Header -->
+  <div class="demo-header">
+    <div>
+      <div class="company">Front Range Roofing Co.</div>
+      <div class="program">Founder-Led Launch Program • Manual founder/operator review &amp; coordination</div>
+    </div>
+    <div class="text-right text-sm">
+      <div class="font-semibold">Demo Dashboard</div>
+      <div class="text-xs opacity-75">Last simulated update: Today 09:42 AM</div>
+    </div>
+  </div>
+
+  <div class="demo-container">
+    <!-- Overview Greeting -->
+    <div class="mb-6">
+      <h1 class="text-2xl font-bold">Good morning, Mike</h1>
+      <p class="text-slate-600">Lead response overview — manual review queue active. Sample data only.</p>
+    </div>
+
+    <!-- Lead Response Overview Metrics -->
+    <div class="section">
+      <div class="demo-section-title">Lead Response Overview</div>
+      <div class="grid-metrics">
+        <div class="demo-metric">
+          <div class="value">14</div>
+          <div class="label">New leads this week</div>
+        </div>
+        <div class="demo-metric">
+          <div class="value">4</div>
+          <div class="label">Awaiting founder review</div>
+        </div>
+        <div class="demo-metric">
+          <div class="value">7</div>
+          <div class="label">Inspections coordinated</div>
+        </div>
+        <div class="demo-metric">
+          <div class="value">3</div>
+          <div class="label">Manual follow-ups sent</div>
+        </div>
+        <div class="demo-metric">
+          <div class="value">9</div>
+          <div class="label">Homeowner contacts logged</div>
+        </div>
+      </div>
+      <div class="manual-banner text-xs mt-1">
+        <span>⚠️ LIVE AUTOMATION DISABLED — Manual coordination only. All next steps require founder or operator review.</span>
+      </div>
+    </div>
+
+    <!-- Leads Needing Founder/Operator Review -->
+    <div class="section">
+      <div class="demo-section-title">
+        Leads Needing Founder / Operator Review
+        <span class="demo-badge">READY FOR FOUNDER REVIEW</span>
+      </div>
+      <div class="demo-card overflow-x-auto">
+        <table class="demo-table">
+          <thead>
+            <tr>
+              <th>Homeowner</th>
+              <th>Issue / Source</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>Last Touch</th>
+              <th>Manual Next Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Alex M.</strong><br><span class="text-xs text-slate-500">(555) 234-8811</span></td>
+              <td>Storm damage / Google Local</td>
+              <td>Boulder, CO area</td>
+              <td><span class="demo-pill review">READY FOR FOUNDER REVIEW</span></td>
+              <td>Today 08:15</td>
+              <td>Review details • Decide inspection coordination</td>
+            </tr>
+            <tr>
+              <td><strong>Jordan K.</strong><br><span class="text-xs text-slate-500">(555) 901-3344</span></td>
+              <td>Leak after hail / Angi</td>
+              <td>Longmont, CO area</td>
+              <td><span class="demo-pill review">READY FOR FOUNDER REVIEW</span></td>
+              <td>Yesterday</td>
+              <td>Confirm details • Manual outreach if needed</td>
+            </tr>
+            <tr>
+              <td><strong>Taylor R.</strong><br><span class="text-xs text-slate-500">(555) 772-0099</span></td>
+              <td>Roof age assessment / Referral</td>
+              <td>Fort Collins, CO area</td>
+              <td><span class="demo-pill review">IN REVIEW</span></td>
+              <td>Yesterday</td>
+              <td>Founder reviewing fit • Schedule manual call</td>
+            </tr>
+            <tr>
+              <td><strong>Casey P.</strong><br><span class="text-xs text-slate-500">(555) 445-1122</span></td>
+              <td>Insurance claim support / Facebook</td>
+              <td>Denver metro</td>
+              <td><span class="demo-pill review">READY FOR FOUNDER REVIEW</span></td>
+              <td>2 days ago</td>
+              <td>Clarify scope • Manual next step decision</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-[11px] text-slate-500 mt-2">All items require explicit manual founder or operator decision before any coordination step.</p>
+    </div>
+
+    <!-- Upcoming Inspection Coordination -->
+    <div class="section">
+      <div class="demo-section-title">Upcoming Inspection Coordination</div>
+      <div class="demo-card overflow-x-auto">
+        <table class="demo-table">
+          <thead>
+            <tr>
+              <th>Homeowner</th>
+              <th>Proposed Time</th>
+              <th>Source</th>
+              <th>Status</th>
+              <th>Manual Coordination Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sam L. (555-667-3344)</td>
+              <td>Thu 10:30 AM</td>
+              <td>Google</td>
+              <td><span class="demo-pill ready">CONFIRMED MANUALLY</span></td>
+              <td>Founder confirmed availability directly</td>
+            </tr>
+            <tr>
+              <td>Morgan B. (555-118-7722)</td>
+              <td>Fri 02:00 PM</td>
+              <td>Angi</td>
+              <td><span class="demo-pill">PENDING CONFIRM</span></td>
+              <td>Operator to call homeowner this afternoon</td>
+            </tr>
+            <tr>
+              <td>Jamie T. (555-990-1133)</td>
+              <td>Mon 09:00 AM</td>
+              <td>Website form</td>
+              <td><span class="demo-pill ready">CONFIRMED MANUALLY</span></td>
+              <td>Time agreed via manual outreach</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Lead Source Summary -->
+    <div class="section two-col">
+      <div>
+        <div class="demo-section-title">Lead Source Summary (This Week)</div>
+        <div class="demo-card">
+          <table class="demo-table text-sm">
+            <thead>
+              <tr><th>Source</th><th>Leads</th><th>Needing Review</th><th>Coordinated</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Google Business / Local</td><td>5</td><td>2</td><td>3</td></tr>
+              <tr><td>Angi</td><td>3</td><td>1</td><td>1</td></tr>
+              <tr><td>Referral</td><td>2</td><td>0</td><td>2</td></tr>
+              <tr><td>Facebook / Instagram</td><td>2</td><td>1</td><td>1</td></tr>
+              <tr><td>Website / Other</td><td>2</td><td>0</td><td>0</td></tr>
+            </tbody>
+          </table>
+          <div class="text-xs text-slate-500 mt-3">Sources tracked manually during Founder-Led Launch Program. No automated attribution.</div>
+        </div>
+      </div>
+      <div>
+        <div class="demo-section-title">Manual Review Queue Status</div>
+        <div class="demo-card">
+          <div class="flex items-center justify-between text-sm mb-3">
+            <div>Items in queue</div>
+            <div class="font-semibold text-2xl">4</div>
+          </div>
+          <div class="text-xs space-y-1 text-slate-600">
+            <div>• 3 marked READY FOR FOUNDER REVIEW</div>
+            <div>• 1 currently IN REVIEW by founder</div>
+            <div>• Average time in queue (sample): 6 hours</div>
+          </div>
+          <div class="mt-3 pt-3 border-t text-[11px] text-amber-700">
+            Queue is manually triaged. No auto-prioritization or auto-routing.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommended Manual Next Actions -->
+    <div class="section">
+      <div class="demo-section-title">Recommended Manual Next Actions (Founder / Operator)</div>
+      <div class="demo-card">
+        <ul class="action-list">
+          <li>1. Review Alex M. lead details (storm damage) and decide on inspection coordination or clarification needed.</li>
+          <li>2. Call Jordan K. to confirm hail claim details and preferred inspection window before marking coordinated.</li>
+          <li>3. Log outcome of today's Sam L. inspection manually in tracking sheet.</li>
+          <li>4. Prepare manual follow-up note for Casey P. if insurance documentation still missing by end of day.</li>
+          <li>5. End-of-day: Update manual review queue tracker with decisions and handoff notes for operator.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Safety / Disabled Note -->
+    <div class="demo-note">
+      <strong>Live automation disabled / Manual coordination only.</strong><br>
+      This is a static demo preview using sample data for the Founder-Led Launch Program. All lead review, inspection coordination, and next actions are performed manually by the founder or designated operator. No SMS, calls, calendar bookings, or external services are triggered from this view. No production data, tokens, or live APIs are used.
+    </div>
+
+    <div class="demo-footer">
+      <span class="sample">SAMPLE / DEMO ONLY — Front Range Roofing Co. — Founder-Led Launch Program</span><br>
+      No live systems, no customer data, no automated behavior. For marketing screenshot use.
+    </div>
+  </div>
+</body>
+</html>

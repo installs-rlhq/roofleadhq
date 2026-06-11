@@ -1416,3 +1416,17 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - References added to FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, this context, first-paid next-chat, agent workflow context, daily guide, and aggregate.
 - Safety identical: dry-run/internal-only, no live anything, no prod writes/integrations/auth/schema, explicit manual review + coordination + explicit approval only.
 - Part of pre-commit: node --check on both, run both verifiers, launch wrapper + new polish wrapper, quality gate, build, diff-proof; then listed git add + "test(website): polish founder-led launch conversion copy" commit (worktree only).
+
+## Website Demo Screenshot Assets (cross-cutting static demo assets for marketing)
+- Added new static demo screenshot assets packet, verifier, and wrapper:
+  - `website/demo/dashboard-sample.html`
+  - `website/demo/weekly-report-sample.html`
+  - `website/demo/monthly-report-sample.html`
+  - `website/demo/demo.css`
+  - `docs/WEBSITE_DEMO_SCREENSHOT_ASSETS_PACKET.md`
+  - `backend/scripts/verify-website-demo-screenshot-assets-readonly.js`
+  - `scripts/run-website-demo-screenshot-assets-dry-run.sh`
+- New demo pages are purely static sample-only marketing assets (Front Range Roofing Co. fake roofer, visible SAMPLE DATA / DEMO PREVIEW on all pages, fake first+initial names / 555 phones / city locations only). All framing uses Founder-Led Launch Program + manual founder/operator review + manual coordination + inspection coordination language + live automation disabled notes. Verifier covers the full 11-point checklist (existence, labeling, safe phrases, forbidden phrase absence, no external calls, no backend/src or schema changes via git).
+- Wired into aggregate, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, both next-chats, agent workflow, daily guide.
+- Pre-commit: node --check verifier, run verifier, run-website-demo...-dry-run.sh (which chains prior website verifiers + quality gate), agent quality gate, backend build, show-diff-proof. Exact git add list + "test(website): add demo screenshot assets" commit inside worktree. Do not push.
+- Safety: website/demo/docs/read-only only. No live services, no prod writes, no notifications, no booking/estimate/quote/invoice, no external calls, all content explicitly sample/demo. Manual review + manual coordination only.

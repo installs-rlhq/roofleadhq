@@ -762,6 +762,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Website Demo Screenshot Assets (docs/WEBSITE_DEMO_SCREENSHOT_ASSETS_PACKET.md + scripts/run-website-demo-screenshot-assets-dry-run.sh + backend/scripts/verify-website-demo-screenshot-assets-readonly.js) -- static screenshot-ready demo pages (Dashboard, Weekly Report, Monthly Report) using sample data only for marketing under Founder-Led Launch Program (visible SAMPLE/Demo labels, Front Range Roofing Co., manual review/inspection coordination/manual coordination framing, live automation disabled notes, no production language); read-only verifier asserts pages exist with required labels and safe phrases, forbidden phrases absent, no backend/src and no migration/schema/auth/secrets/env modified, no external call strings, wires into aggregate + index + next-chat + daily guide; no live activation, no production behavior, no writes, no integrations, no auth/schema/security implementation',
+    script: 'backend/scripts/verify-website-demo-screenshot-assets-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
