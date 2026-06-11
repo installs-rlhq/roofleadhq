@@ -1430,3 +1430,17 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - Wired into aggregate, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, both next-chats, agent workflow, daily guide.
 - Pre-commit: node --check verifier, run verifier, run-website-demo...-dry-run.sh (which chains prior website verifiers + quality gate), agent quality gate, backend build, show-diff-proof. Exact git add list + "test(website): add demo screenshot assets" commit inside worktree. Do not push.
 - Safety: website/demo/docs/read-only only. No live services, no prod writes, no notifications, no booking/estimate/quote/invoice, no external calls, all content explicitly sample/demo. Manual review + manual coordination only.
+
+## Website Homepage Screenshot Placement (cross-cutting homepage final Growth Tier screenshot assets)
+- Added website homepage screenshot placement packet, verifier, and wrapper to place the actual final uploaded screenshots into the public homepage product section:
+  - `website/dashboard-sample.png`
+  - `website/weekly-report-sample.png`
+  - `website/monthly-report-sample.png`
+  - `docs/WEBSITE_HOMEPAGE_SCREENSHOT_PLACEMENT_PACKET.md`
+  - `backend/scripts/verify-website-homepage-screenshot-placement-readonly.js`
+  - `scripts/run-website-homepage-screenshot-placement-dry-run.sh`
+- Changes: updated website/index.html (Inside RoofLeadHQ screenshots grid + mobile scroll) to reference the three final PNGs in place of prior placeholders/mismatched images for the dashboard/reporting cards. Headings aligned to Dashboard / Weekly Reports / Monthly Reports. Alt texts set to the exact required "Sample Growth Tier ... preview". All other public copy (Founder-Led Launch Program framing, CTAs, safety language, conversion polish) preserved. No bulky text, no layout changes. PNGs used exactly as in website/ (no mods/renames).
+- Verifier enforces 7 confirms + git no-forbidden + wiring + combined prior website verifiers + quality gate + PASS.
+- Wired into aggregate, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, this next-chat + others, agent workflow, daily guide.
+- Pre-commit: node --check backend/scripts/verify-website-homepage-screenshot-placement-readonly.js ; node backend/scripts/verify-website-homepage-screenshot-placement-readonly.js ; scripts/run-website-homepage-screenshot-placement-dry-run.sh ; node backend/scripts/verify-website-demo-screenshot-assets-readonly.js ; node backend/scripts/verify-website-founder-led-launch-copy-readonly.js ; node backend/scripts/verify-website-founder-led-conversion-polish-readonly.js ; node backend/scripts/verify-agent-product-quality-gate-readonly.js ; npm --prefix backend run build ; scripts/show-diff-proof.sh. Exact git add list (incl. index.html + new packet/verifier/wrapper + aggregate + index doc + 3 next-chats + workflow + daily) + "test(website): place homepage growth tier screenshots" commit inside worktree. Do not push.
+- Safety: website/copy/static-asset/reference + docs/read-only verifier only. No live services, no prod writes, no notifications, no booking/estimate/quote/invoice/payment, no external calls, no backend/src or schema/auth/secrets changes. Homepage now shows final Growth Tier screenshots for dashboard + reports under the same founder-led/manual constraints.

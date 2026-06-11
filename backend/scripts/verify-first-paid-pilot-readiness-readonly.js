@@ -767,6 +767,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Website Homepage Screenshot Placement (docs/WEBSITE_HOMEPAGE_SCREENSHOT_PLACEMENT_PACKET.md + scripts/run-website-homepage-screenshot-placement-dry-run.sh + backend/scripts/verify-website-homepage-screenshot-placement-readonly.js) -- place final Growth Tier screenshots (dashboard-sample.png, weekly-report-sample.png, monthly-report-sample.png) into public homepage Inside RoofLeadHQ / dashboard/reporting section (replaces placeholders with actual final assets; headings aligned to Dashboard/Weekly Reports/Monthly Reports; exact alt text used); read-only verifier asserts references + PNG existence + alt text in website/index.html, asserts no backend/src and no migration/schema/auth/secrets/env modified, no external call strings added, wires into aggregate + index + next-chat + daily guide; website/copy/static-asset/reference changes only; no live activation, no production behavior, no writes, no integrations, no auth/schema/security implementation',
+    script: 'backend/scripts/verify-website-homepage-screenshot-placement-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
