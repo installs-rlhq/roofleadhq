@@ -757,6 +757,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Website Founder-Led Launch Conversion Polish (docs/WEBSITE_FOUNDER_LED_CONVERSION_POLISH_PACKET.md + scripts/run-website-founder-led-conversion-polish-dry-run.sh + backend/scripts/verify-website-founder-led-conversion-polish-readonly.js) -- website-only public copy polish after cleanup for first paid roofer outreach (natural/credible/conversion-oriented language, hero/FAQ clarity, reduced awkward repetition; required safe phrases preserved, polish leftovers and prior risky phrases absent, founder-led/manual-review-backed/manual coordination positioning kept); read-only verifier asserts required safe phrases present and polish-forbidden absent in website/index.html, asserts no backend/src and no migration/schema/auth/secrets/env modified, wires into aggregate + index + next-chat + daily guide; no live activation, no production behavior, no writes, no integrations, no auth/schema/security implementation',
+    script: 'backend/scripts/verify-website-founder-led-conversion-polish-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

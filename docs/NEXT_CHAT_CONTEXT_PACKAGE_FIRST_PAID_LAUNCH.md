@@ -4820,3 +4820,14 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - Safety: website/copy/docs/read-only verifier only. No live behavior, no production writes/integrations/auth/schema/notifications/booking/estimate/quote/invoice, no overclaims. Founder-led, manual review + manual coordination framing only. Live activation after explicit approval only.
 - Pre-commit verification: node --check on verifier, direct run, wrapper (which runs quality gate), agent quality gate, backend build, show-diff-proof. Then exact git add list + commit "test(website): add founder-led launch copy cleanup" inside worktree. Do not push.
 - Wired into: verify-first-paid-pilot-readiness-readonly.js, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, NEXT_CHAT_* (all three), ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md, quality gate path.
+
+## Website Founder-Led Launch Conversion Polish (website/index.html + packet + verifier + wrapper)
+- Added:
+  - `docs/WEBSITE_FOUNDER_LED_CONVERSION_POLISH_PACKET.md`
+  - `backend/scripts/verify-website-founder-led-conversion-polish-readonly.js`
+  - `scripts/run-website-founder-led-conversion-polish-dry-run.sh`
+- Changes: website/index.html (polish only: smoother natural/credible/conversion-oriented copy for first paid roofer outreach, hero/FAQ clarity improvements, reduced awkward/repetitive phrasing); aggregate, verifier index, this next-chat + others, workflow, daily guide wired.
+- Verifier enforces: required safe phrases still present in index.html after polish; the 8 polish-specific phrases absent from index.html (Book a Founder-Led Setup Call form, Appointment Booking, Calls Answered When You Cannot Pick Up, Turn Outside Leads Into Follow-Up Sequences, Why Roofers Trust RoofLeadHQ, First-Month Confidence Commitment, fast response support, prepared under manual coordination); prior cleanup forbidden remain absent; no backend/src modified and no schema/migrations/auth/secrets/env modified; references and wiring present; PASS summary.
+- Safety: website/copy/docs/read-only verifier only. No live behavior, no production writes/integrations/auth/schema/notifications/booking/estimate/quote/invoice, no overclaims. Founder-led, manual review + manual coordination framing only. Live activation after explicit approval only.
+- Pre-commit verification: node --check on both verifiers, launch copy verifier run, new polish verifier run, wrapper (chains launch+polish+quality gate), agent quality gate, backend build, show-diff-proof. Then exact git add list + commit "test(website): polish founder-led launch conversion copy" inside worktree. Do not push.
+- Wired into: verify-first-paid-pilot-readiness-readonly.js, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, NEXT_CHAT_* (all three), ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md, quality gate path.

@@ -1405,3 +1405,14 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - References added to FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, this context, first-paid next-chat, agent workflow context, daily guide, and aggregate.
 - Safety identical to other packets: dry-run/internal-only, no live anything, no prod writes/integrations/auth/schema, explicit manual review + coordination + explicit approval only.
 - Part of the same pre-commit verification list as founder review queue (node --check verifier, run verifier, wrapper, quality gate, build, diff-proof) then the listed git add + "test(website): add founder-led launch copy cleanup" commit (worktree only).
+
+## Website Founder-Led Launch Conversion Polish (cross-cutting for first paid / roofer outreach safety)
+- Added polish packet, new verifier, and new dry-run wrapper to refine public homepage copy after cleanup (more natural/credible/conversion-oriented for first paid roofer outreach, hero/FAQ clarity, reduced repetition) while preserving every safety constraint and required safe phrase.
+- `docs/WEBSITE_FOUNDER_LED_CONVERSION_POLISH_PACKET.md`
+- `backend/scripts/verify-website-founder-led-conversion-polish-readonly.js`
+- `scripts/run-website-founder-led-conversion-polish-dry-run.sh`
+- Changes limited to website/index.html + docs + read-only verifiers + wrappers (plus wiring).
+- Both launch-copy verifier and new polish verifier run as part of aggregate + quality gate + pre-commit gates.
+- References added to FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, this context, first-paid next-chat, agent workflow context, daily guide, and aggregate.
+- Safety identical: dry-run/internal-only, no live anything, no prod writes/integrations/auth/schema, explicit manual review + coordination + explicit approval only.
+- Part of pre-commit: node --check on both, run both verifiers, launch wrapper + new polish wrapper, quality gate, build, diff-proof; then listed git add + "test(website): polish founder-led launch conversion copy" commit (worktree only).
