@@ -702,6 +702,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Appointment Outcome Command Packet (docs/FIRST_ROOFER_APPOINTMENT_OUTCOME_COMMAND_PACKET.md + scripts/run-first-roofer-appointment-outcome-command-packet-dry-run.sh) -- first-roofer appointment outcome command packet for founder/operator manual capture/classify/prepare follow-up for appointment/inspection outcomes after appointment readiness and manual coordination (completed/not completed/reschedule/no-show/unable-to-access, homeowner/contractor follow-up status, estimate/next-step prep, HOLD/BLOCKED rules for missing outcome info/unclear ownership/reschedule conflict/consent/safety/prod risk, draft-only, outcome ready for manual follow-up, Calendar booking performed: no, external notification sent: no, production system touched: no, Follow-up sent: no)',
+    script: 'backend/scripts/verify-first-roofer-appointment-outcome-command-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

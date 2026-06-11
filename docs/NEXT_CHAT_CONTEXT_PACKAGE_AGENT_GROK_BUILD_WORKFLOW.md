@@ -174,6 +174,8 @@ Subsequent build in the same first-roofer execution path delivered the First Roo
 
 Subsequent build in the same first-roofer execution path delivered the First Roofer Appointment Readiness Command Packet (docs/FIRST_ROOFER_APPOINTMENT_READINESS_COMMAND_PACKET.md + wrapper + verifier, wired into aggregate/index/both next-chat contexts + quality gate enforced). It continues after the inspection coordination packet with post-inspection manual appointment readiness review (homeowner/contractor confirmation review, window readiness comparison, HOLD/BLOCKED rules, outcome prep), using required business language and preserving dry-run/internal-only/founder-operator-only posture. Minimal workflow context update only for recent history mention.
 
+Subsequent build in the same first-roofer execution path delivered the First Roofer Appointment Outcome Command Packet (docs/FIRST_ROOFER_APPOINTMENT_OUTCOME_COMMAND_PACKET.md + wrapper + verifier, wired into aggregate/index/both next-chat contexts + quality gate enforced). It continues after the appointment readiness packet with manual post-appointment outcome capture/classification (completed/not completed/reschedule/no-show/unable-to-access paths, homeowner/contractor follow-up status, estimate/next-step prep, HOLD/BLOCKED rules, tracker/decision log/report/handoff), using required business language and preserving dry-run/internal-only/founder-operator-only posture. Minimal workflow context update only for recent history mention.
+
 Default approach:
 
 - biggest safe product-moving packet
