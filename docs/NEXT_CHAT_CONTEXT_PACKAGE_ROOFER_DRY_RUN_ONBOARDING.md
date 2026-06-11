@@ -1274,4 +1274,18 @@ Added files:
 
 Wired into aggregate readiness, verifier index, and both next-chat contexts. Quality gate and product verifier satisfied. All required business phrases present, forbidden phrases absent. References all prior first-roofer packets + paid launch packets + Agent Product Quality Gate.
 
+## First Roofer Estimate Prep Command Packet
+
+Completed safe first-roofer execution path addition:
+- First Roofer Estimate Prep Command Packet
+
+Added the First Roofer Estimate Prep Command Packet (estimate prep command packet) that provides the founder/operator with a fillable operational packet to manually prepare estimate inputs after estimate / next-step readiness (READY FOR MANUAL ESTIMATE PREP or READY FOR MANUAL NEXT STEP). This records estimate prep milestone. Includes inputs from Estimate / Next-Step Readiness, Appointment Outcome, and Manual Follow-Up Command Packets; lead estimate prep intake checklist; inspection notes capture worksheet; contractor estimate-input worksheet; homeowner constraints and preferences worksheet; roof / damage / service-scope worksheet; photos / insurance / documentation worksheet; estimate assumptions and unknowns worksheet; contractor questions worksheet; homeowner questions worksheet; manual estimate prep readiness worksheet; approval states (READY FOR FOUNDER REVIEW / READY FOR CONTRACTOR REVIEW); HOLD/BLOCKED rules for missing estimate prep owner, missing inspection notes, missing contractor notes, incomplete homeowner constraints, incomplete roof/damage/service-scope details, incomplete photos/insurance/documentation, unresolved estimate / next-step readiness state, unresolved contractor or homeowner questions, consent/safety, production activation risk; tracker, decision log, end-of-day report, handoff; explicit no-estimate-create / no-quote-send / no-calendar / no-booking safety. Strictly dry-run/internal-only/founder-operator-only. No estimate creation, no quote generation, no quote sends, no follow-ups, no booking, no production touch.
+
+Added files:
+- `docs/FIRST_ROOFER_ESTIMATE_PREP_COMMAND_PACKET.md`
+- `scripts/run-first-roofer-estimate-prep-command-packet-dry-run.sh`
+- `backend/scripts/verify-first-roofer-estimate-prep-command-packet-readonly.js`
+
+Wired into aggregate readiness, verifier index, and both next-chat contexts. Quality gate and product verifier satisfied. All required business phrases present, forbidden phrases absent. References all prior first-roofer packets (Day-One Command Center, Manual Communication Command Packet, Inspection Coordination Command Packet, Appointment Readiness Command Packet, Appointment Outcome Command Packet, Manual Follow-Up Command Packet, Estimate / Next-Step Readiness Command Packet), Lead-to-Inspection Ops Pack, Execution Day Runbook, Follow-Up Cadence Packet, Appointment Outcome Packet, Booking Preferences Packet, Reporting Preferences Packet, Contractor Notification Packet, Manual Review Queue Packet, and Agent Product Quality Gate.
+
 Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications. Stop after implementing, running gates, and showing diff proof. Do not commit or push.

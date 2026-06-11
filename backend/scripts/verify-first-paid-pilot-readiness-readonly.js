@@ -717,6 +717,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Estimate Prep Command Packet (docs/FIRST_ROOFER_ESTIMATE_PREP_COMMAND_PACKET.md + scripts/run-first-roofer-estimate-prep-command-packet-dry-run.sh) -- first-roofer estimate prep command packet for founder/operator manual preparation of estimate inputs after estimate / next-step readiness (inspection notes capture, contractor estimate-input, homeowner constraints and preferences, roof/damage/service-scope, photos/insurance/documentation, estimate assumptions and unknowns, contractor/homeowner questions worksheets, HOLD/BLOCKED rules for missing estimate prep owner/missing inspection notes/missing contractor notes/incomplete homeowner constraints/incomplete roof/damage/service-scope details/incomplete photos/insurance/documentation/unresolved estimate / next-step readiness state/unresolved contractor or homeowner questions/consent/safety/prod risk, draft-only, ready for manual estimate prep, ready for manual next step, READY FOR FOUNDER REVIEW, READY FOR CONTRACTOR REVIEW, Estimate created: no, Quote generated: no, Quote sent: no, Follow-up sent: no, Calendar booking performed: no, external notification sent: no, production system touched: no)',
+    script: 'backend/scripts/verify-first-roofer-estimate-prep-command-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
