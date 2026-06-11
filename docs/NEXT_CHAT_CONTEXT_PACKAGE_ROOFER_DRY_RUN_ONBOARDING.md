@@ -1259,3 +1259,19 @@ Wrapper: strict bash with set -euo pipefail, runs node --check on verifier, runs
 All work remains manual founder/operator review and manual coordination only. The packet helps the founder/operator manually prepare, review, approve, and track homeowner and contractor communication to support the first roofer execution path (book inspections / book appointments). Dry-run only. Stop after implementing, running gates, and showing diff proof. No commit. No push.
 
 Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications. Stop after implementing, running gates, and showing diff proof. Do not commit or push.
+
+## First Roofer Estimate / Next-Step Readiness Command Packet
+
+Completed safe first-roofer execution path addition:
+- First Roofer Estimate / Next-Step Readiness Command Packet
+
+Added the First Roofer Estimate / Next-Step Readiness Command Packet (estimate / next-step readiness command packet) that provides the founder/operator with a fillable operational packet to manually decide estimate / next-step readiness (estimate readiness, contractor next-step coordination, homeowner additional-information, reschedule, insurance/photos/damage-detail, completed/no-show/cancelled/hold/blocked handling) after appointment outcomes and manual follow-up preparation. This records estimate next-step readiness milestone. Includes all required worksheets, concrete fields, approval states (READY FOR MANUAL ESTIMATE PREP / READY FOR MANUAL NEXT STEP), HOLD/BLOCKED rules for all specified categories, no-estimate/quote/send/calendar/booking safety, tracker, decision log, end-of-day report, handoff. Strictly dry-run/internal-only/founder-operator-only. No estimate creation, no quote sends, no follow-ups, no booking, no production touch.
+
+Added files:
+- `docs/FIRST_ROOFER_ESTIMATE_NEXT_STEP_READINESS_COMMAND_PACKET.md`
+- `scripts/run-first-roofer-estimate-next-step-readiness-command-packet-dry-run.sh`
+- `backend/scripts/verify-first-roofer-estimate-next-step-readiness-command-packet-readonly.js`
+
+Wired into aggregate readiness, verifier index, and both next-chat contexts. Quality gate and product verifier satisfied. All required business phrases present, forbidden phrases absent. References all prior first-roofer packets + paid launch packets + Agent Product Quality Gate.
+
+Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public route activation, Supabase writes, or external notifications. Stop after implementing, running gates, and showing diff proof. Do not commit or push.

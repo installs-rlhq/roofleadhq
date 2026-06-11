@@ -712,6 +712,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Estimate / Next-Step Readiness Command Packet (docs/FIRST_ROOFER_ESTIMATE_NEXT_STEP_READINESS_COMMAND_PACKET.md + scripts/run-first-roofer-estimate-next-step-readiness-command-packet-dry-run.sh) -- first-roofer estimate / next-step readiness command packet for founder/operator manual decision of estimate / next-step readiness after appointment outcomes and manual follow-up preparation (estimate readiness, contractor next-step coordination, homeowner additional-information, reschedule, insurance/photos/damage-detail, completed/no-show/cancelled/hold/blocked next-step worksheets, HOLD/BLOCKED rules for missing estimate prep owner/missing contractor next-step owner/incomplete homeowner information/incomplete photos/insurance/damage details/unresolved appointment or manual follow-up state/conflicting next steps/consent/safety/prod risk, draft-only, ready for manual estimate prep, ready for manual next step, Estimate created: no, Quote sent: no, Follow-up sent: no, Calendar booking performed: no, external notification sent: no, production system touched: no)',
+    script: 'backend/scripts/verify-first-roofer-estimate-next-step-readiness-command-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
