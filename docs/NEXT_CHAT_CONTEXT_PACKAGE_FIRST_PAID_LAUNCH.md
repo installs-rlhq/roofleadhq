@@ -4809,3 +4809,14 @@ Added files:
 - `backend/scripts/verify-first-roofer-founder-review-queue-command-packet-readonly.js`
 
 Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, both next-chat contexts, Grok workflow context (preserving corrected closeout lesson), and ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md (short milestone note: final build before new chat, easy to recover). Quality gate and product verifier satisfied. This is the final build before a new chat. Stop after implementation, all listed gates, and diff proof. Do not commit. Do not push.
+
+## Website Founder-Led Launch Copy Cleanup (website/index.html + packet + verifier + wrapper)
+- Added:
+  - `docs/WEBSITE_FOUNDER_LED_LAUNCH_COPY_CLEANUP_PACKET.md`
+  - `backend/scripts/verify-website-founder-led-launch-copy-readonly.js`
+  - `scripts/run-website-founder-led-launch-copy-dry-run.sh`
+- Changes: website/index.html (public copy/positioning/CTA/FAQ cleanup only), aggregate readiness wired, verifier index, this next-chat, roofer dry-run next-chat, agent workflow next-chat, daily guide.
+- Verifier enforces: required safe phrases (Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination, Request Founder-Led Launch Review, See if RoofLeadHQ is a fit) present in index.html; forbidden (follow up automatically, automatically, guaranteed, guarantee, credit/waive, system-led after setup, books real appointments / lands on calendar / placed directly, instant SMS, calendar appointment booking, invoice, payment, quote) absent from index.html + packet; no backend/src modified and no schema/migrations/auth/secrets/env modified (git + constraints); references and wiring present; PASS summary.
+- Safety: website/copy/docs/read-only verifier only. No live behavior, no production writes/integrations/auth/schema/notifications/booking/estimate/quote/invoice, no overclaims. Founder-led, manual review + manual coordination framing only. Live activation after explicit approval only.
+- Pre-commit verification: node --check on verifier, direct run, wrapper (which runs quality gate), agent quality gate, backend build, show-diff-proof. Then exact git add list + commit "test(website): add founder-led launch copy cleanup" inside worktree. Do not push.
+- Wired into: verify-first-paid-pilot-readiness-readonly.js, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, NEXT_CHAT_* (all three), ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md, quality gate path.

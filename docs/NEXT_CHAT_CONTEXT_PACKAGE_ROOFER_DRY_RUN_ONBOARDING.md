@@ -1394,3 +1394,14 @@ Added files:
 - `backend/scripts/verify-first-roofer-founder-review-queue-command-packet-readonly.js`
 
 Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, both next-chat contexts, Grok workflow context (preserving corrected closeout lesson), and ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md (short milestone note). Quality gate enforced. Dry-run/internal-only/founder-operator-only. This is the final build before a new chat and should be easy to recover. Stop after implementation, gates, and diff proof. Do not commit. Do not push.
+
+## Website Founder-Led Launch Copy Cleanup (cross-cutting for first paid / roofer outreach safety)
+- Added website copy cleanup packet, verifier, and dry-run wrapper to ensure public homepage is safe (founder-led/manual review framing, no auto/guarantee/quote/invoice/booking overclaims) before first paid roofer outreach.
+- `docs/WEBSITE_FOUNDER_LED_LAUNCH_COPY_CLEANUP_PACKET.md`
+- `backend/scripts/verify-website-founder-led-launch-copy-readonly.js`
+- `scripts/run-website-founder-led-launch-copy-dry-run.sh`
+- Changes limited to website/index.html + docs + read-only verifier + wrapper (plus wiring).
+- Verifier run as part of aggregate + quality gate + pre-commit gates.
+- References added to FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, this context, first-paid next-chat, agent workflow context, daily guide, and aggregate.
+- Safety identical to other packets: dry-run/internal-only, no live anything, no prod writes/integrations/auth/schema, explicit manual review + coordination + explicit approval only.
+- Part of the same pre-commit verification list as founder review queue (node --check verifier, run verifier, wrapper, quality gate, build, diff-proof) then the listed git add + "test(website): add founder-led launch copy cleanup" commit (worktree only).

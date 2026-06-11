@@ -752,6 +752,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Website Founder-Led Launch Copy Cleanup (docs/WEBSITE_FOUNDER_LED_LAUNCH_COPY_CLEANUP_PACKET.md + scripts/run-website-founder-led-launch-copy-dry-run.sh + backend/scripts/verify-website-founder-led-launch-copy-readonly.js) -- website-only public copy/positioning/flow/conversion cleanup for Founder-Led Launch Program (safer CTAs, manual review/manual coordination framing, forbidden auto/guarantee/quote/invoice/booking language removal, FAQ now-vs-later + explicit approval safety copy); read-only verifier asserts required safe phrases present and forbidden absent in website/index.html + changed public docs, asserts no backend/src and no migration/schema/auth/secrets/env modified, wires into aggregate + index + next-chat + daily guide; no live activation, no production behavior, no writes, no integrations, no auth/schema/security implementation',
+    script: 'backend/scripts/verify-website-founder-led-launch-copy-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
