@@ -94,6 +94,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - First Roofer Homeowner Clarification Command Packet doc: `docs/FIRST_ROOFER_HOMEOWNER_CLARIFICATION_COMMAND_PACKET.md`
 - First Roofer Homeowner Clarification Command Packet wrapper: `scripts/run-first-roofer-homeowner-clarification-command-packet-dry-run.sh`
 - First Roofer Homeowner Clarification Command Packet verifier: `node backend/scripts/verify-first-roofer-homeowner-clarification-command-packet-readonly.js`
+- First Roofer Homeowner Clarification Response Review Command Packet doc: `docs/FIRST_ROOFER_HOMEOWNER_CLARIFICATION_RESPONSE_REVIEW_COMMAND_PACKET.md`
+- First Roofer Homeowner Clarification Response Review Command Packet wrapper: `scripts/run-first-roofer-homeowner-clarification-response-review-command-packet-dry-run.sh`
+- First Roofer Homeowner Clarification Response Review Command Packet verifier: `node backend/scripts/verify-first-roofer-homeowner-clarification-response-review-command-packet-readonly.js`
 - Vapi post-call payload discovery: `node backend/scripts/verify-vapi-post-call-payload-discovery-readonly.js`
 - Vapi raw payload capture plan: `node backend/scripts/verify-vapi-raw-payload-capture-plan-readonly.js`
 - Vapi sample payload mapping: `node backend/scripts/verify-vapi-sample-payload-mapping-readonly.js`
