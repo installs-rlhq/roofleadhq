@@ -70,6 +70,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - First Roofer Manual Communication Command Packet doc: `docs/FIRST_ROOFER_MANUAL_COMMUNICATION_COMMAND_PACKET.md`
 - First Roofer Manual Communication Command Packet wrapper: `scripts/run-first-roofer-manual-communication-command-packet-dry-run.sh`
 - First Roofer Manual Communication Command Packet verifier: `node backend/scripts/verify-first-roofer-manual-communication-command-packet-readonly.js`
+- First Roofer Inspection Coordination Command Packet doc: `docs/FIRST_ROOFER_INSPECTION_COORDINATION_COMMAND_PACKET.md`
+- First Roofer Inspection Coordination Command Packet wrapper: `scripts/run-first-roofer-inspection-coordination-command-packet-dry-run.sh`
+- First Roofer Inspection Coordination Command Packet verifier: `node backend/scripts/verify-first-roofer-inspection-coordination-command-packet-readonly.js`
 - Vapi post-call payload discovery: `node backend/scripts/verify-vapi-post-call-payload-discovery-readonly.js`
 - Vapi raw payload capture plan: `node backend/scripts/verify-vapi-raw-payload-capture-plan-readonly.js`
 - Vapi sample payload mapping: `node backend/scripts/verify-vapi-sample-payload-mapping-readonly.js`

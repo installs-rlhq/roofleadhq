@@ -1007,6 +1007,21 @@ Files:
 
 Safety remains dry-run/internal-only/founder-operator-only. No production activation occurs.
 
+## First Roofer Inspection Coordination Command Packet
+
+Added the First Roofer Inspection Coordination Command Packet after the first roofer manual communication command packet. This packet provides the founder/operator with fillable worksheets and checklists to manually coordinate inspection readiness, capture homeowner and contractor availability, assess service-area and route fit, compare inspection window options, prepare manual confirmations, apply HOLD/BLOCKED rules, track decisions, capture outcomes, produce end-of-day reports, and prepare handoff notes. All work is draft-only / internal-only / approved for manual coordination only. Calendar booking performed: no. External notification sent: no. Production system touched: no. No live booking or automation. inspection coordination command packet.
+
+Added files:
+- `docs/FIRST_ROOFER_INSPECTION_COORDINATION_COMMAND_PACKET.md`
+- `scripts/run-first-roofer-inspection-coordination-command-packet-dry-run.sh`
+- `backend/scripts/verify-first-roofer-inspection-coordination-command-packet-readonly.js`
+
+Wired into aggregate first-paid pilot readiness, verifier index, and both next-chat context packages. Quality gate enforced. References day-one command center, manual communication command packet, lead-to-inspection ops pack, execution day runbook, and agent product quality gate.
+
+Required phrases present: Founder-Led Launch Program, book inspections, manual founder/operator review, manual coordination only, inspection readiness, inspection coordination, draft-only, approved for manual coordination, Calendar booking performed: no, external notification sent: no, production system touched: no.
+
+Forbidden phrases absent. All verifiers and wrappers follow dry-run/internal-only/founder-operator-only posture.
+
 
 ## First Roofer Manual Setup Session Extended Archive Completion Lock Packet
 

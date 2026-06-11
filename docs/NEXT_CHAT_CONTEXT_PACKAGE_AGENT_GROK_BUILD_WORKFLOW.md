@@ -162,12 +162,15 @@ Next best larger product-moving build should continue toward first real roofer e
 Good candidates:
 
 - first-roofer live-lead manual intake rehearsal packet
-- first-roofer inspection coordination worksheet
+- first-roofer inspection coordination worksheet (delivered in subsequent build)
 - first-roofer founder/operator day-one command center (delivered 8e174db)
 - first-roofer homeowner/contractor manual communication packet (delivered in this build)
+- first-roofer inspection coordination command packet (delivered after manual communication packet)
 - first-roofer outcome and reporting packet
 
 This session delivered the first-roofer manual communication command packet (docs/FIRST_ROOFER_MANUAL_COMMUNICATION_COMMAND_PACKET.md + wrapper + verifier, wired into aggregate/index/both next-chat contexts + workflow context for the two lessons + quality gate enforced). It builds on the day-one command center and continues the first-roofer execution path with the biggest safe product-moving packet. It follows the product quality gate and the dry-run/internal-only/founder-operator-only posture. See NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md and ROOFER_DRY_RUN_ONBOARDING.md for the full milestone record. The agent workflow context was updated minimally to preserve the pre-push failure-class lesson and the finalize-script lesson from the 8e174db build.
+
+Subsequent build in the same first-roofer execution path delivered the First Roofer Inspection Coordination Command Packet (docs/FIRST_ROOFER_INSPECTION_COORDINATION_COMMAND_PACKET.md + wrapper + verifier, wired into aggregate/index/both next-chat contexts + quality gate enforced). It continues after the manual communication packet with inspection readiness coordination, availability/route worksheets, no-booking safety rules, and manual-only decision tracking. Minimal workflow context update only for recent history mention.
 
 Default approach:
 

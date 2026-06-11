@@ -4537,6 +4537,49 @@ Packet content (per product quality requirements and task spec):
 
 The verifier asserts: all required files, wrapper points to verifier + quality gate, all operational sections with substantive content and concrete fields (not heading-only), all homeowner + contractor templates with safety notes, approval states, consent/contact HOLD rules, service-area/capacity HOLD rules, approval log + tracker + escalation + outcome + end-of-day report + handoff present, inspection/appointment readiness language, dry-run posture + explicit no-live-send language, required phrases present, forbidden absent, aggregate/index/contexts/workflow wired, no unsafe strings in wrapper, and the two lessons preserved in the agent grok build workflow context package.
 
+## First Roofer Inspection Coordination Command Packet
+
+Added the First Roofer Inspection Coordination Command Packet (inspection coordination command packet, product-moving operational packet) that gives the founder/operator a dedicated, fillable packet to manually coordinate inspection readiness, homeowner availability, contractor availability, service-area/route fit, inspection windows, manual confirmations, HOLD/BLOCKED decisions, outcome capture, reporting, and handoff after communication drafts are prepared and approved. This continues the first-roofer execution path after the manual communication command packet and advances the 90-build plan.
+
+This packet is strictly internal-only and supports manual founder/operator review and manual coordination only. It does not book inspections, create calendar events, send notifications, or activate any production system. All worksheets and confirmations carry explicit "internal-only and does not book, send, notify, or touch production systems. Any real-world coordination must be performed manually by a founder/operator outside the system after explicit approval." language plus "Calendar booking performed: no", "external notification sent: no", and "production system touched: no".
+
+Added files:
+- `docs/FIRST_ROOFER_INSPECTION_COORDINATION_COMMAND_PACKET.md`
+- `scripts/run-first-roofer-inspection-coordination-command-packet-dry-run.sh`
+- `backend/scripts/verify-first-roofer-inspection-coordination-command-packet-readonly.js`
+
+Wiring:
+- Wired into aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Added to verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References added to next-chat context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md` and `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Quality gate enforced via `scripts/check-agent-product-quality-gate.sh` and its verifier (included in the new wrapper)
+
+Packet content (per product quality requirements and task spec):
+- Purpose and safety posture (dry-run/internal-only/founder-operator-only, explicit no-live-booking / no-live-automation confirmation, all required disabled flags, references to day-one command center + manual communication packet + lead-to-inspection ops pack + execution day runbook + quality gate)
+- Inspection coordination command overview
+- Inspection coordination readiness prerequisites
+- Lead inspection coordination intake checklist (with concrete fields and no-booking markers)
+- Homeowner availability capture worksheet (full fillable fields + safety note + Calendar booking performed: no)
+- Contractor availability capture worksheet (full fillable fields + safety note)
+- Service-area and route-fit worksheet (full fields + safety note)
+- Inspection window options worksheet (Proposed inspection window 1/2/3 + comparison + safety note)
+- Manual inspection confirmation checklist (manual homeowner and contractor confirmations + APPROVED FOR MANUAL COORDINATION + safety note)
+- Inspection coordination approval states (DRAFT / REVIEWED / APPROVED FOR MANUAL COORDINATION / HOLD / BLOCKED, Calendar booking performed: no, external notification sent: no, production system touched: no)
+- Inspection HOLD / BLOCKED rules (HOLD due to missing information, HOLD due to availability conflict, HOLD due to service-area/route fit, BLOCKED due to consent/safety/production activation risk)
+- No-calendar / no-booking safety rules (explicit Calendar booking performed: no etc.)
+- Manual inspection coordination tracker (with decisions and no-booking columns)
+- Founder/operator inspection decision log (PASS/HOLD/BLOCKED with justification and markers)
+- Inspection outcome capture (post-manual-coordination record with no-booking markers)
+- End-of-day inspection coordination report (with aggregate no-booking counts)
+- Handoff notes for the next operator session (with dry-run + no-booking confirmation)
+- Explicit no-live-booking / no-live-automation confirmation section
+- Concrete fields throughout (Lead ID, homeowner name, property address, lead source, source detail, service type, urgency, damage description, photos present: yes/no/unknown, insurance involvement: yes/no/unknown, contact permission status, homeowner/contractor availability windows, contractor match, contractor service-area fit, route/service-area notes, Proposed inspection window 1/2/3, Manual homeowner/contractor confirmation prepared: yes/no, inspection readiness decision: PASS/HOLD/BLOCKED, inspection coordination decision: PASS/HOLD/BLOCKED, Calendar booking performed: no, external notification sent: no, production system touched: no, Manual approval state: DRAFT / REVIEWED / APPROVED FOR MANUAL COORDINATION / HOLD / BLOCKED, founder/operator notes, next manual action, inspection outcome, etc.)
+- All 10 reusable internal-only worksheets/templates/checklists include the required safety note
+- Required business language present throughout: Founder-Led Launch Program, book inspections, manual founder/operator review, manual coordination only, inspection readiness, inspection coordination, draft-only, approved for manual coordination, Calendar booking performed: no, external notification sent: no, production system touched: no
+- Forbidden phrases absent
+
+The verifier asserts: the new inspection coordination doc exists; the dry-run wrapper exists and points to the verifier; the doc includes all required operational sections with substantive content; the doc includes concrete fillable fields not just headings; the doc includes homeowner availability capture, contractor availability capture, service-area and route-fit worksheet, inspection window options/comparison, manual homeowner and contractor inspection confirmation checklists, inspection coordination approval states, HOLD/BLOCKED rules for missing information/availability conflict/service-area/route fit/consent/safety/production activation risk, no-calendar/no-booking safety rules, manual inspection coordination tracker and founder/operator inspection decision log, inspection outcome capture and end-of-day inspection coordination report; the doc confirms dry-run/internal-only/founder-operator-only posture; the doc includes explicit no-live-booking / no-live-automation / no production activation language; forbidden business phrases are absent; required business phrases are present; the wrapper calls the verifier and the product quality gate wrapper; the wrapper does not contain unsafe implementation strings; the aggregate first-paid readiness verifier is wired to include this verifier; the verifier index mentions the new packet, wrapper, and verifier; both next-chat context packages mention the new packet; the packet references the Day-One Command Center, Manual Communication Command Packet, Lead-to-Inspection Ops Pack, Execution Day Runbook, and Agent Product Quality Gate.
+
 Wrapper: strict bash, runs node --check + verifier + agent product quality gate + production gates + safe readiness, prints clear PASS. No writes, no external calls.
 
 All work remains manual founder/operator review and manual coordination only. The packet helps the founder/operator manually prepare, review, approve, and track communication to support booking inspections and booking appointments. Dry-run only. Stop after implementing, running gates, and showing diff proof. No commit. No push.

@@ -692,6 +692,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Inspection Coordination Command Packet (docs/FIRST_ROOFER_INSPECTION_COORDINATION_COMMAND_PACKET.md + scripts/run-first-roofer-inspection-coordination-command-packet-dry-run.sh) -- first-roofer inspection coordination command packet for founder/operator manual coordination of inspection readiness, homeowner/contractor availability, service-area/route fit, inspection windows, manual confirmations, HOLD/BLOCKED decisions (draft-only, no live booking, Calendar booking performed: no, external notification sent: no, production system touched: no)',
+    script: 'backend/scripts/verify-first-roofer-inspection-coordination-command-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
