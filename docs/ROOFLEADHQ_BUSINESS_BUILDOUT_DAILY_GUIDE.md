@@ -160,6 +160,9 @@ Default build rule remains:
 - Ship faster.
 - No live production activation without explicit approval.
 
+### First Roofer Founder Review Queue Command Packet milestone (short note)
+Added `docs/FIRST_ROOFER_FOUNDER_REVIEW_QUEUE_COMMAND_PACKET.md` + dry-run wrapper + read-only verifier (final packet before new chat handoff). Turns READY FOR FOUNDER REVIEW (from manual downstream routing) into structured founder/operator review queue (founder review queue) with full evidence review, prior packet reconciliation, data protection/privacy checkpoint, PASS/HOLD/BLOCKED decisions, route decision matrix, decision log, queue tracker, EOD report, next-chat handoff, and all required safety markers (dry-run/internal-only/founder-operator-only; Estimate created: no, all no; no forbidden business language; no impl-risk strings). Wired into aggregate, verifier index, both next-chat contexts, Grok workflow (lesson preserved), and this guide. All gates/diff proof required before stop. Easy recovery from next-chat handoff summary. This is the final build before a new chat.
+
 ---
 
 ## Core Strategy

@@ -4764,3 +4764,48 @@ Added files:
 - `backend/scripts/verify-roofer-data-protection-tenant-isolation-plan-placement-packet-readonly.js`
 
 Wired into aggregate first-paid pilot readiness (verify-first-paid-pilot-readiness-readonly.js), verifier index (FIRST_PAID_LAUNCH_VERIFIER_INDEX.md), both next-chat context packages (NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md and NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md), Grok workflow context (NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md, preserving corrected closeout lesson), and the primary 90-day/business build plan surface (ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md). Quality gate and product verifier satisfied. All required business phrases present, forbidden phrases and unsafe strings absent. This packet records that the milestone must be inserted into any dedicated 90-day plan file on creation or refresh. Safety: planning-only, dry-run/internal-only/founder-operator-only. No security controls implemented. No auth/schema/RLS/secrets/access-control changes. No production data touched. No live workflow activation, notifications, booking, estimates, quotes, invoices, or payments. Stop after implementation, gates, and diff proof. Do not commit. Do not push.
+
+## First Roofer Founder Review Queue Command Packet (final first-roofer command packet before new chat)
+
+Added the First Roofer Founder Review Queue Command Packet (docs/FIRST_ROOFER_FOUNDER_REVIEW_QUEUE_COMMAND_PACKET.md + wrapper + verifier) that turns the manual downstream route READY FOR FOUNDER REVIEW into a structured founder/operator review queue. This is the final operational packet in the first-roofer execution path before new chat handoff. The founder review queue command packet gathers final evidence from the full upstream chain (Manual Downstream Routing primary + Homeowner Clarification Response Review + Homeowner Clarification + Contractor Estimate Review + Estimate Prep + Estimate/Next-Step Readiness + Manual Follow-Up + Appointment Outcome/Readiness + Inspection Coordination + Day-One + Data Protection checkpoint), reviews all prior packet states, confirms no unresolved blockers via explicit eligibility rules, records founder decision (PASS / HOLD / BLOCKED), and routes to the next manual action using a complete route decision matrix.
+
+The packet is fully operational and fillable (not heading-only). Includes:
+- Purpose and safety posture (dry-run/internal-only/founder-operator-only)
+- When to use this packet
+- Required upstream packet chain (Manual Downstream Routing primary)
+- Founder review queue intake
+- READY FOR FOUNDER REVIEW eligibility (manual downstream route READY FOR FOUNDER REVIEW + prior state ROUTED MANUALLY/REVIEWED + response-review PASS or not required + gaps with owner/due + contractor service-area fit confirmed or NEEDS INFO + contact permission known + consent/safety clear + data protection checkpoint reviewed + no production action required + founder/operator manual review only)
+- Evidence checklist
+- Homeowner / property / lead summary
+- Contractor / roofer fit summary
+- Appointment and access summary
+- Estimate and next-step readiness summary
+- Homeowner clarification and response-review summary
+- Manual downstream routing summary
+- Data protection and privacy checkpoint
+- Founder decision criteria (PASS / HOLD / BLOCKED with full enumerated rules)
+- Manual founder review worksheet
+- Route decision matrix (explicit condition -> final manual route mappings for all READY FOR MANUAL ... and RETURN TO ... targets, HOLD, BLOCKED)
+- PASS / HOLD / BLOCKED decision rules
+- Return-to-packet routing options
+- Manual next-action assignment
+- Manual communication draft-review checklist
+- No-send / no-booking / no-estimate safety confirmation
+- Founder/operator decision log
+- Review queue tracker (table)
+- End-of-day founder review report
+- Next-chat handoff summary
+- Explicit dry-run/internal-only/founder-operator-only confirmation with all required safety markers (Dry-run packet: yes, Internal-only packet: yes, Founder-operator-only packet: yes, Production data touched: no, External service called: no, Live workflow activated: no, Contractor notification sent: no, Homeowner notification sent: no, Calendar booking performed: no, Appointment booked: no, Estimate created: no, Quote generated: no, Invoice/payment behavior added: no, Auth changed: no, Database schema changed: no, RLS policy changed: no, Secrets changed: no, Access-control logic changed: no and all no-live flags)
+
+Required concrete fields: Queue item ID, Lead ID, homeowner name, property address, lead source, source detail, service type, roofer/contractor name, contractor service-area fit, contractor availability known, homeowner preferred channel, contact permission status, all prior * states (appointment readiness/outcome, inspection coordination, manual follow-up, estimate prep, estimate next-step readiness, contractor estimate review, homeowner clarification, homeowner clarification response-review, manual downstream routing), manual downstream route, founder review owner, founder reviewer, review queue timestamp, review priority (HIGH/NORMAL/LOW), evidence completeness (COMPLETE/NEEDS INFO/INCONSISTENT/BLOCKED), remaining information gaps, gap owner, gap due date, contractor/homeowner questions resolved, estimate assumptions resolved, access/inspection constraints resolved, consent and safety status, data protection checkpoint status, privacy/lead boundary notes, founder decision/reason/evidence, final manual route, next manual action/owner/due date, manual communication needed/draft reviewed, ready-for manual send/appointment/estimate/contractor/homeowner flags, HOLD reason, BLOCKED reason, notes.
+
+Required values: Founder decision PASS/HOLD/BLOCKED; review priority HIGH/NORMAL/LOW; evidence completeness COMPLETE/NEEDS INFO/INCONSISTENT/BLOCKED; founder review queue status DRAFT/QUEUED FOR FOUNDER REVIEW/IN FOUNDER REVIEW/REVIEWED/ROUTED MANUALLY/HOLD/BLOCKED; final manual route includes READY FOR MANUAL SEND REVIEW, READY FOR MANUAL APPOINTMENT COORDINATION, READY FOR MANUAL ESTIMATE NEXT-STEP, READY FOR MANUAL CONTRACTOR REVIEW, READY FOR MANUAL HOMEOWNER CLARIFICATION, all RETURN TO ... (MANUAL DOWNSTREAM ROUTING, HOMEOWNER CLARIFICATION RESPONSE REVIEW, HOMEOWNER CLARIFICATION, CONTRACTOR ESTIMATE REVIEW, MANUAL ESTIMATE PREP, ESTIMATE NEXT-STEP READINESS, MANUAL FOLLOW-UP, APPOINTMENT OR ACCESS COORDINATION), HOLD, BLOCKED.
+
+All required HOLD/BLOCKED cases and route decision matrix present. All safety markers set to no. Uses only approved business language (Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only, READY FOR FOUNDER REVIEW and all listed READY/RETURN routes, data protection checkpoint, privacy / lead boundary notes). Forbidden business language absent from doc and context summaries (referred to only generically if needed; exact enforcement in verifier). Implementation-risk strings (ALTER TABLE, CREATE POLICY, DROP POLICY, CREATE TABLE, supabase.from(, supabase.rpc(, service_role, process.env.SUPABASE_SERVICE_ROLE, twilio, resend, vapi, calendar.events, fetch("https://, curl https://) absent from new doc and wrapper.
+
+Added files:
+- `docs/FIRST_ROOFER_FOUNDER_REVIEW_QUEUE_COMMAND_PACKET.md`
+- `scripts/run-first-roofer-founder-review-queue-command-packet-dry-run.sh`
+- `backend/scripts/verify-first-roofer-founder-review-queue-command-packet-readonly.js`
+
+Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, both next-chat contexts, Grok workflow context (preserving corrected closeout lesson), and ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md (short milestone note: final build before new chat, easy to recover). Quality gate and product verifier satisfied. This is the final build before a new chat. Stop after implementation, all listed gates, and diff proof. Do not commit. Do not push.
