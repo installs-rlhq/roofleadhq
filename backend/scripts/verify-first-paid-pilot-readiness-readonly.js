@@ -737,6 +737,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Manual Downstream Routing Command Packet (docs/FIRST_ROOFER_MANUAL_DOWNSTREAM_ROUTING_COMMAND_PACKET.md + scripts/run-first-roofer-manual-downstream-routing-command-packet-dry-run.sh) -- first-roofer manual downstream routing command packet for founder/operator manual routing after the reviewed result of the First Roofer Homeowner Clarification Response Review Command Packet (and upstream) (lead routing intake checklist, upstream state reconciliation worksheet, homeowner clarification response review status worksheet, remaining gap classification worksheet, route eligibility matrix with RETURN TO CONTRACTOR ESTIMATE REVIEW / RETURN TO MANUAL ESTIMATE PREP / RETURN TO ESTIMATE NEXT-STEP READINESS / RETURN TO MANUAL FOLLOW-UP / RETURN TO APPOINTMENT OR ACCESS COORDINATION / READY FOR FOUNDER REVIEW / HOLD / BLOCKED rules, per-route worksheets, route conflict resolution worksheet, manual routing owner assignment worksheet, manual next-action checklist, HOLD/BLOCKED rules for missing owner/reviewer/timestamp/reason/evidence/contact/permission/channel/contractor issues/prior states/response review not PASS/gaps without owner/unresolved items/conflicts/consent/safety/prod/live risks/payment/invoice risk, tracker, founder/operator routing decision log, end-of-day manual downstream routing report, next-operator handoff, no-send/no-estimate-create/no-quote-generate/no-calendar/no-booking safety with Estimate created: no / Quote generated: no / all other markers no, dry-run/internal-only/founder-operator-only, Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only, manual downstream routing, READY TO ROUTE MANUALLY, ROUTED MANUALLY)',
+    script: 'backend/scripts/verify-first-roofer-manual-downstream-routing-command-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
