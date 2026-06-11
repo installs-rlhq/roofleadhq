@@ -697,6 +697,11 @@ const commands = [
     args: []
   },
   {
+    name: 'First Roofer Appointment Readiness Command Packet (docs/FIRST_ROOFER_APPOINTMENT_READINESS_COMMAND_PACKET.md + scripts/run-first-roofer-appointment-readiness-command-packet-dry-run.sh) -- first-roofer appointment readiness command packet for founder/operator manual determination of appointment readiness after inspection coordination review, homeowner/contractor confirmation review, inspection window readiness comparison, manual appointment-readiness decisions, HOLD/BLOCKED rules (missing confirmation, conflicting windows, contractor/service-area, consent/safety, prod risk), no live booking (draft-only, Calendar booking performed: no, external notification sent: no, production system touched: no)',
+    script: 'backend/scripts/verify-first-roofer-appointment-readiness-command-packet-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

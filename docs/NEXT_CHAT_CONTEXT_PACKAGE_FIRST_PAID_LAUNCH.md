@@ -4584,4 +4584,25 @@ Wrapper: strict bash, runs node --check + verifier + agent product quality gate 
 
 All work remains manual founder/operator review and manual coordination only. The packet helps the founder/operator manually prepare, review, approve, and track communication to support booking inspections and booking appointments. Dry-run only. Stop after implementing, running gates, and showing diff proof. No commit. No push.
 
+## First Roofer Appointment Readiness Command Packet
+
+Added the First Roofer Appointment Readiness Command Packet (appointment readiness command packet, product-moving operational packet) that gives the founder/operator a dedicated, fillable packet to manually determine whether a lead is appointment-ready after inspection coordination review. Includes homeowner confirmation review, contractor confirmation review, inspection window readiness comparison, manual appointment-readiness decision worksheet, HOLD/BLOCKED rules (missing confirmation, conflicting windows, contractor/service-area issue, consent/safety/production activation risk), manual tracker, decision log, appointment outcome preparation checklist, end-of-day report, and handoff. This continues the first-roofer execution path after the inspection coordination command packet and advances the 90-build plan.
+
+This packet is strictly internal-only and supports manual founder/operator review and manual coordination only. It does not book appointments, create calendar events, send notifications, or activate any production system. All worksheets carry explicit "internal-only and does not book, send, notify, calendar, or touch production systems. Any real-world coordination must be performed manually by a founder/operator outside the system after explicit approval." language plus "Calendar booking performed: no", "external notification sent: no", and "production system touched: no".
+
+Added files:
+- `docs/FIRST_ROOFER_APPOINTMENT_READINESS_COMMAND_PACKET.md`
+- `scripts/run-first-roofer-appointment-readiness-command-packet-dry-run.sh`
+- `backend/scripts/verify-first-roofer-appointment-readiness-command-packet-readonly.js`
+
+Wiring:
+- Wired into aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Added to verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References added to next-chat context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md` and `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Quality gate enforced via `scripts/check-agent-product-quality-gate.sh` and its verifier (included in the new wrapper)
+
+The verifier asserts: the new appointment readiness doc exists; the dry-run wrapper exists and points to the verifier + quality gate; the doc includes all required operational sections with substantive content and concrete fields; inputs from Inspection Coordination Command Packet; homeowner/contractor confirmation review worksheets; inspection window readiness comparison; manual appointment-readiness decision worksheet; appointment readiness approval states (including READY FOR MANUAL COORDINATION); HOLD/BLOCKED rules for missing confirmation, conflicting windows, contractor/service-area issue, consent/safety, production activation risk; no-calendar/no-booking safety rules; manual appointment readiness tracker and founder/operator appointment decision log; appointment outcome preparation and end-of-day appointment readiness report; dry-run/internal-only/founder-operator-only posture; explicit no-live-booking / no-live-automation / no production activation language; forbidden business phrases absent; required business phrases present (Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only, inspection readiness, appointment readiness, draft-only, ready for manual coordination, Calendar booking performed: no, external notification sent: no, production system touched: no); wrapper calls verifier and product quality gate; no unsafe strings in wrapper; aggregate wired; verifier index mentions packet/wrapper/verifier; both next-chat contexts mention the packet; packet references Day-One Command Center, Manual Communication Command Packet, Inspection Coordination Command Packet, Lead-to-Inspection Ops Pack, Execution Day Runbook, Booking Preferences Packet, Appointment Outcome Packet, and Agent Product Quality Gate.
+
+Wrapper: strict bash, runs node --check + verifier + agent product quality gate + production gates + safe readiness, prints clear PASS. No writes, no external calls.
+
 Safety remains: dry-run/internal-only/founder-operator-only. No live SMS/Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, public routes, Supabase writes, or external notifications. All work is read-only verification and internal planning. Stop after gates and diff proof. Do not commit or push.

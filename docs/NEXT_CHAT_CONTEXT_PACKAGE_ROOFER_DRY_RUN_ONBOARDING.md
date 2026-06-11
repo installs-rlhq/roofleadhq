@@ -1022,6 +1022,21 @@ Required phrases present: Founder-Led Launch Program, book inspections, manual f
 
 Forbidden phrases absent. All verifiers and wrappers follow dry-run/internal-only/founder-operator-only posture.
 
+## First Roofer Appointment Readiness Command Packet
+
+Added the First Roofer Appointment Readiness Command Packet after the first roofer inspection coordination command packet. This packet provides the founder/operator with fillable worksheets to manually determine appointment readiness after inspection coordination review: homeowner confirmation review, contractor confirmation review, inspection window readiness comparison, manual appointment-readiness decision worksheet, HOLD/BLOCKED rules (missing confirmation, conflicting windows, contractor/service-area issue, consent/safety/production activation risk), tracker, decision log, appointment outcome preparation checklist, end-of-day report, and handoff. All work is draft-only / internal-only / ready for manual coordination only. Calendar booking performed: no. External notification sent: no. Production system touched: no. No live booking or automation. appointment readiness command packet.
+
+Added files:
+- `docs/FIRST_ROOFER_APPOINTMENT_READINESS_COMMAND_PACKET.md`
+- `scripts/run-first-roofer-appointment-readiness-command-packet-dry-run.sh`
+- `backend/scripts/verify-first-roofer-appointment-readiness-command-packet-readonly.js`
+
+Wired into aggregate first-paid pilot readiness, verifier index, and both next-chat context packages. Quality gate enforced. References day-one command center, manual communication command packet, inspection coordination command packet, lead-to-inspection ops pack, execution day runbook, booking preferences packet, appointment outcome packet, and agent product quality gate.
+
+Required phrases present: Founder-Led Launch Program, book inspections, book appointments, manual founder/operator review, manual coordination only, inspection readiness, inspection coordination, appointment readiness, draft-only, ready for manual coordination, Calendar booking performed: no, external notification sent: no, production system touched: no.
+
+Forbidden phrases absent. All verifiers and wrappers follow dry-run/internal-only/founder-operator-only posture.
+
 
 ## First Roofer Manual Setup Session Extended Archive Completion Lock Packet
 

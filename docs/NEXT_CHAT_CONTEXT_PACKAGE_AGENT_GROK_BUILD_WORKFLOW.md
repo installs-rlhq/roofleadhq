@@ -172,6 +172,8 @@ This session delivered the first-roofer manual communication command packet (doc
 
 Subsequent build in the same first-roofer execution path delivered the First Roofer Inspection Coordination Command Packet (docs/FIRST_ROOFER_INSPECTION_COORDINATION_COMMAND_PACKET.md + wrapper + verifier, wired into aggregate/index/both next-chat contexts + quality gate enforced). It continues after the manual communication packet with inspection readiness coordination, availability/route worksheets, no-booking safety rules, and manual-only decision tracking. Minimal workflow context update only for recent history mention.
 
+Subsequent build in the same first-roofer execution path delivered the First Roofer Appointment Readiness Command Packet (docs/FIRST_ROOFER_APPOINTMENT_READINESS_COMMAND_PACKET.md + wrapper + verifier, wired into aggregate/index/both next-chat contexts + quality gate enforced). It continues after the inspection coordination packet with post-inspection manual appointment readiness review (homeowner/contractor confirmation review, window readiness comparison, HOLD/BLOCKED rules, outcome prep), using required business language and preserving dry-run/internal-only/founder-operator-only posture. Minimal workflow context update only for recent history mention.
+
 Default approach:
 
 - biggest safe product-moving packet
