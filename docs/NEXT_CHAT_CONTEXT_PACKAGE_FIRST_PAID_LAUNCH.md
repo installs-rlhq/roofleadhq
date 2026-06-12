@@ -4927,7 +4927,60 @@ npm --prefix backend run build
 
 Safety remains demo ready with live automation disabled. Stop after gates and diff proof. Do not commit changes that fail verifiers. Do not push.
 
-## Latest Verified Milestone — First Paid Roofer Sales Outreach System Packet (product-moving sales outreach packet feeding first paid roofer launch)
+## Latest Verified Milestone — First Paid Roofer Prospect Pipeline / Tracker Packet (product-moving prospect sourcing, scoring, and qualification tracker feeding sales outreach)
+
+Commit (worktree only, do not push):
+- Test commit recording addition of the First Paid Roofer Prospect Pipeline / Tracker Packet (upstream operating tracker for identifying, scoring, contacting, following up, early demo-qualifying, and clean handoff of the first paid roofer prospect into the Sales Outreach System Packet and Launch System Packet).
+
+Files added:
+- `docs/FIRST_PAID_ROOFER_PROSPECT_PIPELINE_TRACKER_PACKET.md`
+- `scripts/run-first-paid-roofer-prospect-pipeline-tracker-packet-dry-run.sh`
+- `backend/scripts/verify-first-paid-roofer-prospect-pipeline-tracker-packet-readonly.js`
+
+What changed / delivered:
+- Dedicated prospect pipeline tracker packet to move from raw sourcing through fit filtering, initial contact/follow-up, early qualification demo, to clean handoff into the First Paid Roofer Sales Outreach System Packet (for full outreach/demo execution) and Launch System Packet (Guided Setup onward).
+- 1. Prospect source list template (8+ prioritized channels with entry template and source health gate).
+- 2. Ideal first roofer fit filters (core criteria all must be true, bonus signals, CLEAR FIT / HOLD / BLOCKED gate with evidence).
+- 3. Bad-fit/disqualifier filters (hard BLOCKED list with exact examples, soft HOLD, status decision gate).
+- 4. Prospect tracker table (exact 21 copy-paste columns: Prospect name, Company, Location, Website, Source, Contact name, Contact channel, Lead volume estimate, Fit score, Pain signal, Outreach status, Follow-up count, Demo status, Objection, Decision status, Handoff status, Next action, Next action date, Owner, Notes, Evidence link/reference; includes sample rows and update rules).
+- 5. Outreach status stages (NOT CONTACTED, OUTREACH SENT warm/cold, REPLIED / INTERESTED / NEEDS INFO / NOT NOW, CLOSED / NO RESPONSE, INVALID).
+- 6. Follow-up status stages (manual only 3-touch cadence with 3-4 day spacing, Follow-up count column, no automation language).
+- 7. Demo status stages (NOT SCHEDULED, SCHEDULED, COMPLETED - STRONG FIT / HOLD / NOT FIT, NO-SHOW; full pre-demo checklist with allowed language only).
+- 8. Fit scorecard summary fields (8 rated categories 0-50 total, thresholds for pipeline action 35+, evidence requirements).
+- 9. Evidence log (append-only template per event with verbatim quotes, tracker update flag, safety re-confirm line).
+- 10. Next action queue (prioritized daily template with owner/due/status link).
+- 11. Handoff readiness checklist (9 preconditions + full FIRST PAID ROOFER PROSPECT PIPELINE HANDOFF artifact template targeting Sales Outreach Packet + post-handoff rules).
+- 12. No-go / not-now / nurture handling (pre-contact BLOCKED, post-touch BLOCKED, NOT-NOW to nurture list with 45-day recheck, required log + tracker close rules).
+- 13. Weekly pipeline review checklist (full 10-item including verifier run, tracker audit, nurture sweep, safety log, health gate).
+- 14. Founder/operator daily pipeline command center (daily snapshot, morning 5-10min routine, EOD routine, command center gates).
+- 15. Explicit safety guardrails (15 disabled items + CRM automation ban, 18+ markers, re-confirmation protocol, forbidden phrases list enforced by verifier).
+- All content uses only RoofLeadHQ AI, booked homeowner appointments, fast response, automated follow-up, missed-lead recovery, Guided Setup, 14-day trial, first monthly payment, cancel anytime, no long-term contract.
+- Concrete tracker, status stages, templates, PASS/HOLD/BLOCKED gates, decision log, handoff artifact — product-moving and operationally usable by Jason for the full prospect-to-handoff pipeline.
+- All work strictly dry-run/internal-only/founder-operator-only. Verifier enforces all 15 sections with substantive content, exact 21 columns, wiring, no forbidden phrases in prospect sections, no unsafe strings, no live activation language.
+- Wired into: backend/scripts/verify-first-paid-pilot-readiness-readonly.js (aggregate, inserted before sales), docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, the three NEXT_CHAT_CONTEXT_PACKAGE_*.md (this + others), ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md, AGENT_PRODUCT_QUALITY_GATE.md (via wrapper + aggregate).
+- Verification (inside worktree before finalize): node --check verifier; node verifier; wrapper sh; full pilot aggregate; agent quality gate; npm --prefix backend run build; git status --short; git diff --stat.
+
+Safety preserved:
+- No live SMS, Vapi, Calendar, Resend, Lindy, cron, production Supabase writes, production data mutation, public route activation, contractor portal exposure, auth/RLS/security implementation, or payment automation activated.
+- All 15 guardrails explicitly listed and re-checked at every gate (before contact, demo, handoff, weekly, daily).
+- Tracker and queue are manual (spreadsheet/Notion/local only); no CRM automation or production writes.
+- Uses only allowed trial / Guided Setup / pre-billing email language. No public positioning as Founder-Led Launch Program.
+- Clean handoff to Sales Outreach System Packet (primary) and Launch System Packet; does not duplicate their content.
+
+## Verification Commands for This Milestone
+
+```bash
+node --check backend/scripts/verify-first-paid-roofer-prospect-pipeline-tracker-packet-readonly.js
+node backend/scripts/verify-first-paid-roofer-prospect-pipeline-tracker-packet-readonly.js
+scripts/run-first-paid-roofer-prospect-pipeline-tracker-packet-dry-run.sh
+node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
+node backend/scripts/verify-agent-product-quality-gate-readonly.js
+npm --prefix backend run build
+```
+
+Safety remains demo ready with live automation disabled. Stop after gates and diff proof. Do not commit changes that fail verifiers. Do not push.
+
+## Previous Verified Milestone — First Paid Roofer Sales Outreach System Packet (product-moving sales outreach packet feeding first paid roofer launch)
 
 Commit (worktree only, do not push):
 - Test commit recording addition of the First Paid Roofer Sales Outreach System Packet (upstream sales operating system for the first paid roofer).

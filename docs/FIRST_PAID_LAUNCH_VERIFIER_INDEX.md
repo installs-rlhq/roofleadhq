@@ -103,6 +103,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Roofer Data Protection and Tenant Isolation Plan Placement Packet doc: `docs/ROOFER_DATA_PROTECTION_TENANT_ISOLATION_PLAN_PLACEMENT_PACKET.md`
 - Roofer Data Protection and Tenant Isolation Plan Placement Packet wrapper: `scripts/run-roofer-data-protection-tenant-isolation-plan-placement-packet-dry-run.sh`
 - Roofer Data Protection and Tenant Isolation Plan Placement Packet verifier: `node backend/scripts/verify-roofer-data-protection-tenant-isolation-plan-placement-packet-readonly.js`
+- First Paid Roofer Prospect Pipeline / Tracker Packet doc: `docs/FIRST_PAID_ROOFER_PROSPECT_PIPELINE_TRACKER_PACKET.md`
+- First Paid Roofer Prospect Pipeline / Tracker Packet wrapper: `scripts/run-first-paid-roofer-prospect-pipeline-tracker-packet-dry-run.sh`
+- First Paid Roofer Prospect Pipeline / Tracker Packet verifier: `node backend/scripts/verify-first-paid-roofer-prospect-pipeline-tracker-packet-readonly.js`
 - First Paid Roofer Sales Outreach System Packet doc: `docs/FIRST_PAID_ROOFER_SALES_OUTREACH_SYSTEM_PACKET.md`
 - First Paid Roofer Sales Outreach System Packet wrapper: `scripts/run-first-paid-roofer-sales-outreach-system-packet-dry-run.sh`
 - First Paid Roofer Sales Outreach System Packet verifier: `node backend/scripts/verify-first-paid-roofer-sales-outreach-system-packet-readonly.js`

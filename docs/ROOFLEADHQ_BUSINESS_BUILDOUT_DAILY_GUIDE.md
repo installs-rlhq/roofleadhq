@@ -5070,6 +5070,36 @@ WEBSITE_COPY_LAYOUT_POLISH_PACKET
 - This packet is explicitly product-moving and operationally useful so Jason can use it to run the first paid roofer launch. All guardrails explicit. Verifiers will fail the packet if required content, safety language, wiring, or forbidden phrases are missing/violated.
 - Safety: demo ready with live automation disabled. All 11 guardrails OFF. No live SMS/Vapi/Calendar/Resend/Lindy/cron/Supabase writes/data mutation/routes/portal/auth/RLS/payment automation.
 
+## First Paid Roofer Prospect Pipeline / Tracker Packet (test(pilot): add first paid roofer prospect pipeline tracker packet)
+
+- Why: Prior packets (Launch System + Sales Outreach) covered from handoff onward but left the front-end prospect identification, fit filtering, pipeline tracking, initial contact/follow-up, early demo qualification, and gated handoff as ad-hoc or scattered notes/Lindy prompts. A dedicated, product-moving First Paid Roofer Prospect Pipeline / Tracker Packet was required so Jason has concrete, copy-paste-ready internal assets (source list, filters, 21-column tracker, status stages, scorecard, log, queue, handoff artifact, checklists, command center) to move from raw names through qualification to clean handoff into the Sales Outreach System Packet for the first paid roofer.
+- Delivered: docs/FIRST_PAID_ROOFER_PROSPECT_PIPELINE_TRACKER_PACKET.md (the prospect pipeline tracker packet) + scripts/run-first-paid-roofer-prospect-pipeline-tracker-packet-dry-run.sh (wrapper) + backend/scripts/verify-first-paid-roofer-prospect-pipeline-tracker-packet-readonly.js (read-only verifier).
+- The packet is product-moving and operationally usable:
+  - 1. Prospect source list template (8 prioritized channels with entry template + source health gate).
+  - 2. Ideal first roofer fit filters (core criteria all must be true + bonus signals + CLEAR FIT gate).
+  - 3. Bad-fit/disqualifier filters (hard BLOCKED list with exact examples, soft HOLD, status gate).
+  - 4. Prospect tracker table (21 concrete columns ready to copy: Prospect name, Company, Location, Website, Source, Contact name, Contact channel, Lead volume estimate, Fit score, Pain signal, Outreach status, Follow-up count, Demo status, Objection, Decision status, Handoff status, Next action, Next action date, Owner, Notes, Evidence link/reference; sample rows + update rules).
+  - 5-7. Outreach, follow-up, and demo status stages (exact allowed values + cadence rules + pre-demo checklist using only allowed language).
+  - 8. Fit scorecard summary fields (8 categories rated 0-50, thresholds, evidence).
+  - 9-10. Evidence log + next action queue (templates with safety line and daily snapshot).
+  - 11. Handoff readiness checklist (9 preconditions + full handoff artifact to Sales Outreach System Packet + post-handoff tracker update).
+  - 12. No-go / not-now / nurture handling (BLOCKED paths, nurture list rules, required log + status updates).
+  - 13-14. Weekly pipeline review checklist + founder/operator daily pipeline command center (full routines + gates).
+  - 15. Explicit safety guardrails (15 disabled items + CRM automation ban, 18+ markers, re-confirmation protocol at every gate, forbidden public phrases list).
+- All prospect-facing language strictly limited to RoofLeadHQ AI turns roofing leads into booked homeowner appointments through fast response, automated follow-up, and missed-lead recovery + Guided Setup (config only) + 14-day trial + automated email 2 days before first monthly payment + cancel anytime + no long-term contract. No 7-day pilot, no guarantees, no booked-jobs, no auto-estimate/quote/invoice/payment, no day-15 billing, no public Founder-Led Launch Program.
+- Concrete, product-moving: full 21-col tracker, status enumerations, templates, gates (PASS/HOLD/BLOCKED), decision log, handoff artifact. Usable by Jason for entire prospect pipeline upstream of sales.
+- Explicit safety + verifier enforcement: full list, no unsafe impl, no forbidden in prospect sections, wiring complete.
+- Internal-only dry-run: no live sends, no production writes, no automation of sourcing/tracking/outreach/CRM, no schema/auth/RLS.
+- New: docs/FIRST_PAID_ROOFER_PROSPECT_PIPELINE_TRACKER_PACKET.md + scripts/run-first-paid-roofer-prospect-pipeline-tracker-packet-dry-run.sh + backend/scripts/verify-first-paid-roofer-prospect-pipeline-tracker-packet-readonly.js.
+- Wired into: aggregate pilot readiness (named entry before sales), FIRST_PAID_LAUNCH_VERIFIER_INDEX.md (three lines), the three NEXT_CHAT_CONTEXT_PACKAGE_*.md, this daily guide, AGENT_PRODUCT_QUALITY_GATE.md (via wrapper + aggregate).
+- Verifier enforces: 15 sections with depth + exact 21 columns, safety markers, forbidden absent, unsafe absent, wrapper structure, wiring assertions, product-depth (operational tracker/command center vs archive/shallow).
+- Verification inside worktree (exact required): node --check ...-prospect-pipeline...-readonly.js ; node ...verifier ; scripts/run-...-prospect-pipeline...-dry-run.sh ; node backend/scripts/verify-first-paid-pilot-readiness-readonly.js ; node backend/scripts/verify-agent-product-quality-gate-readonly.js ; npm --prefix backend run build.
+- Constraints: docs + scripts wrapper + read-only verifier only. No backend/src, no migrations/schema/auth/secrets, no external calls, no PNG/content changes, no production activation. All dry-run/internal-only/founder-operator-only.
+- Commit inside worktree only with exact git add list from task + message per convention. Do not push.
+- This packet is explicitly product-moving and operationally useful so Jason can use it to run the first paid roofer prospect pipeline. All guardrails explicit. Verifiers will fail the packet if required content (incl. 21 columns), safety language, wiring, or forbidden phrases are missing/violated.
+- Safety: demo ready with live automation disabled. All 15 guardrails OFF. No live SMS/Vapi/Calendar/Resend/Lindy/cron/Supabase writes/data mutation/routes/portal/auth/RLS/payment automation/CRM automation. Hands off to Sales Outreach + Launch packets.
+- Updates aggregate, verifier index, 3x next-chat pkgs, this guide, workflow.
+
 ## First Paid Roofer Sales Outreach System Packet (test(pilot): add first paid roofer sales outreach system packet)
 
 - Why: Prior packets (including the Launch System Packet) covered setup-to-payment but left the upstream sales/outreach phase (prospect profile, message templates, demo process, fit decision, handoff to Guided Setup) as ad-hoc or referenced only in daily guide Lindy prompts. A dedicated, product-moving First Paid Roofer Sales Outreach System Packet was required so Jason has concrete, gated, safe internal assets to move from prospect identification all the way to demo → fit decision → handoff to the Launch System Packet for the first paid roofer.
