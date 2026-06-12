@@ -5031,3 +5031,15 @@ Safety remains demo-ready with live automation disabled. All work dry-run/intern
 - Commit inside worktree only (exact git add list from task including index.html + new files + updated verifiers + aggregate + docs + guide + workflow) with message "test(website): recover rooflead ai positioning". Do not push.
 - Constraints: website/static copy/docs/read-only verifier only. No backend/src, no migrations/schema/auth/secrets, no external calls, no prod activation, no PNG mods. Internal safety (demo-ready/live automation disabled) preserved. Public copy uses allowed phrases only; no guarantees or production claims.
 - Tone: concise, clear, direct, benefit-focused, roofer-facing. Enough detail retained for offer/process/trial/outcome understanding. No fluffy hype.
+
+## Website Copy/Layout Polish (agent/website-copy-layout-polish)
+
+- Founder review website copy + layout polish applied (clearer, less repetitive, more visually polished, aligned to RoofLeadHQ AI booking homeowner appointments on roofer calendar after Guided Setup + simple 14-day trial).
+- All listed corrections: stronger booking phrasing everywhere, Inspection card update, complete removal of day-15 billing language (replaced by 14-day trial + automated email 2 days before first payment), balanced "you do not always need" text, centered reality titles, reduced calendar repetition, Inside RoofLeadHQ report cards centered + top-justified, all KPI titles centered, comparison stronger title + vertical dividers + RoofLeadHQ green check, pre-billing shortened + 48h + support note, outside leads restructure + attractive cards (icons/centers/contrast), phone polish + sentence move, full pricing polish (no Starter pill, no removed sentence, borders, sizes, caret, centers, green pill text, reduced price, bolder outline), My Story genuine rewrite + customization title + config-only para (babysitting sentence removed), FAQ + final CTA clean alignment.
+- New packet + verifier + dry-run wrapper created following pattern.
+- Updated: positioning-recovery verifier (drop old billing from required + logs), aggregate (added polish entry), FIRST_PAID_LAUNCH_VERIFIER_INDEX, 3x NEXT_CHAT, this daily guide, workflow doc, founder-led verifiers (alignment only, safety checks preserved).
+- Verification inside worktree: node --check new + node new + new dry-run sh + all prior website verifiers + quality gate + backend build + show-diff-proof.
+- Constraints: website/index.html + styles.css + docs/verifiers only. Preserve dashboard/weekly/monthly-sample.png references exactly (no image mods). No backend/src, migrations, schema, auth, secrets, external calls, production activation, live services. Safety posture unchanged.
+- Commit inside worktree only: exact git add list (website/index.html, styles.css, new packet/verifier/wrapper, updated verifiers + docs) + "test(website): polish public copy and layout". Do not push.
+- verify-website-copy-layout-polish-readonly.js
+WEBSITE_COPY_LAYOUT_POLISH_PACKET

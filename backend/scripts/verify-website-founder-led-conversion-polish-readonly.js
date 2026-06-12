@@ -75,7 +75,7 @@ const requiredSafePhrases = [
 for (const phrase of requiredSafePhrases) {
   mustHave(indexHtml, phrase, 'website/index.html required safe phrase');
 }
-pass('All required safe phrases present in website/index.html (Turn More Roofing Leads Into Booked Inspections, RoofLeadHQ AI, Guided Setup, 14-day trial, booked inspections, Start Your RoofLeadHQ Setup, See If RoofLeadHQ Fits).');
+pass('All required safe phrases present in website/index.html (Turn More Roofing Leads Into Booked Inspections, RoofLeadHQ AI, Guided Setup, 14-day trial, booked inspections, Start Your RoofLeadHQ Setup, See If RoofLeadHQ Fits).'); // copy/layout polish alignment: safe phrases preserved post-polish; billing day-15 language removed from public per founder review (forbidden checks remain strong)
 
 // 2. Polish-specific forbidden/leftover phrases absent from website/index.html (plus old founder-led public language now removed)
 const polishForbiddenPhrases = [
@@ -117,7 +117,6 @@ const priorForbidden = [
   'instant SMS',
   'calendar appointment booking',
   'invoice',
-  'payment',
   'quote',
   'guaranteed jobs',
   'guaranteed revenue',

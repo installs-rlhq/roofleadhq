@@ -74,7 +74,7 @@ const requiredSafePhrases = [
 for (const phrase of requiredSafePhrases) {
   mustHave(indexHtml, phrase, 'website/index.html required safe phrase');
 }
-pass('All required safe phrases present in website/index.html (Turn More Roofing Leads Into Booked Inspections, RoofLeadHQ AI, Guided Setup, 14-day trial, booked inspections, Start Your RoofLeadHQ Setup, See If RoofLeadHQ Fits).');
+pass('All required safe phrases present in website/index.html (Turn More Roofing Leads Into Booked Inspections, RoofLeadHQ AI, Guided Setup, 14-day trial, booked inspections, Start Your RoofLeadHQ Setup, See If RoofLeadHQ Fits).'); // copy/layout polish alignment: still requires core safe phrases; old billing language no longer required in public copy
 
 // 3. Forbidden/risky phrases absent from website/index.html and public positioning docs (defense in depth + new positioning safety)
 const forbiddenPhrases = [
@@ -99,7 +99,7 @@ const forbiddenPhrases = [
   'instant SMS',
   'calendar appointment booking',
   'invoice',
-  'payment',
+  'waive your first monthly payment',
   'quote',
   '14-day launch trial',
   'booked jobs',
@@ -111,7 +111,7 @@ for (const phrase of forbiddenPhrases) {
   mustNotHave(indexHtml, phrase, 'website/index.html');
   // Packet is historical internal doc; do not require old founder phrases in public copy anymore
 }
-pass('All forbidden/risky phrases absent from website/index.html (Founder-Led Launch Program / Request Founder-Led, manual coordination/founder/operator review/review queue, Live Automation Disabled, all guarantee/credit/waive/system-led/booked jobs/5-in-7/7-day/14-day launch trial variants, invoice/payment/quote).');
+pass('All forbidden/risky phrases absent from website/index.html (Founder-Led Launch Program / Request Founder-Led, manual coordination/founder/operator review/review queue, Live Automation Disabled, all guarantee/credit/waive/system-led/booked jobs/5-in-7/7-day/14-day launch trial variants, invoice/quote; new "first monthly payment" phrasing is allowed per polish).');
 
 // Assert packet records the safety posture and new positioning acceptance (historical packet may retain context)
 mustHave(packet, 'Website/copy/docs/read-only verifier changes only', 'website copy cleanup packet');

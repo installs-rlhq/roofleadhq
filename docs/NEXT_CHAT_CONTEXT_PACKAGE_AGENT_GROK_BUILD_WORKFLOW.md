@@ -232,3 +232,14 @@ In the next chat, start from this package plus the canonical source-of-truth pac
 Use Terminal 1 only for final verification, merge, commit, push, and source-of-truth confirmation.
 
 Continue with the biggest safe product-moving packet unless the harness or Grok workflow needs another repair.
+
+## Website Copy/Layout Polish (agent/website-copy-layout-polish)
+
+- Website-only public copy + layout polish pass applying founder review corrections (stronger booking language, removal of all day-15 billing phrasing, 14-day trial + automated 2-day email, outside leads restructure + visual polish, phone polish + move, comparison improvements + check, centered reports + titles, full pricing polish, genuine My Story + customization, FAQ/contact alignment).
+- New: WEBSITE_COPY_LAYOUT_POLISH_PACKET.md + verifier + dry-run wrapper.
+- Updated: positioning recovery verifier (drop old billing req), aggregate (add polish command), verifier index, the three next-chat pkgs, daily guide, workflow, founder verifiers (alignment).
+- Verification: new polish dry-run + all chained prior website verifiers + quality gate + build + diff-proof inside worktree.
+- Strict constraints: website/index.html + styles.css + docs/verifiers only; three screenshot PNG refs preserved exactly (no content change); no backend/src, migrations, schema, auth, secrets, external calls, prod activation.
+- Commit inside worktree only with exact message. Do not push.
+- verify-website-copy-layout-polish-readonly.js
+website copy/layout polish

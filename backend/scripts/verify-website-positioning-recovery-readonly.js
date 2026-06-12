@@ -68,7 +68,7 @@ const requiredPhrases = [
   'Start Your RoofLeadHQ Setup',
   'Guided Setup',
   '14-day trial',
-  'Monthly billing starts on day 15',
+  'first monthly payment',
   'automated check-in email',
   'dashboard-sample.png',
   'weekly-report-sample.png',
@@ -77,7 +77,7 @@ const requiredPhrases = [
 for (const phrase of requiredPhrases) {
   mustHave(indexHtml, phrase, 'website/index.html required positioning phrase');
 }
-pass('All required public positioning phrases present in website/index.html (Turn More Roofing Leads Into Booked Inspections, RoofLeadHQ AI, You do not always need more leads, Start Your RoofLeadHQ Setup, Guided Setup, 14-day trial, Monthly billing starts on day 15, automated check-in email, and the three Growth Tier PNG references).');
+pass('All required public positioning phrases present in website/index.html (Turn More Roofing Leads Into Booked Inspections, RoofLeadHQ AI, You do not always need more leads, Start Your RoofLeadHQ Setup, Guided Setup, 14-day trial, first monthly payment, automated check-in email, and the three Growth Tier PNG references).');
 
 // 2. Forbidden public phrases absent from website/index.html (old founder-led babysitting + guarantees + old trial language)
 const forbiddenPhrases = [
@@ -249,7 +249,7 @@ if (process.exitCode) {
 
 console.log('PASS: Website positioning recovery read-only verification passed.');
 console.log('Public positioning recovered to clear RoofLeadHQ AI model: fast response, automated follow-up, missed lead recovery, qualification, booked inspections on the calendar.');
-console.log('Guided Setup (onboarding/config only) + 14-day trial with automated check-in email documented. Monthly billing on day 15 unless canceled.');
+console.log('Guided Setup (onboarding/config only) + 14-day trial with automated check-in email documented. Automated email 2 days before first monthly payment.');
 console.log('All forbidden public phrases (founder-led babysitting language, guarantees, booked jobs claims, 14-day launch trial) removed from index.html.');
 console.log('Three Growth Tier screenshots (dashboard/weekly/monthly) preserved with roofer-facing captions. No backend/src, schema, auth, secrets, or external call changes.');
 console.log('All safety posture and read-only constraints preserved. Ready for public use under existing demo-ready / live automation disabled internal posture.');

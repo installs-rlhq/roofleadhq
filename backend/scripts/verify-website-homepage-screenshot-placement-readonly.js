@@ -68,7 +68,7 @@ const dailyGuide = read(dailyGuidePath);
 mustHave(indexHtml, 'dashboard-sample.png', 'website/index.html');
 mustHave(indexHtml, 'weekly-report-sample.png', 'website/index.html');
 mustHave(indexHtml, 'monthly-report-sample.png', 'website/index.html');
-pass('website/index.html references dashboard-sample.png, weekly-report-sample.png, monthly-report-sample.png');
+pass('website/index.html references dashboard-sample.png, weekly-report-sample.png, monthly-report-sample.png'); // copy/layout polish alignment: three PNG refs preserved exactly (no content change); report cards now centered + top-justified in polish pass; verifier still enforces PNG existence + alt + no backend changes
 
 // 2. Confirm the three PNG files exist in website/
 if (!fs.existsSync(path.join(root, dashboardPngPath))) throw new Error('Missing PNG: ' + dashboardPngPath);

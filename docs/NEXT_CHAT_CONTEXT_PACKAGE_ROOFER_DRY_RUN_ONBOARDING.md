@@ -1454,3 +1454,14 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - Existing website verifiers updated to accept new public positioning without weakening safety/forbidden checks.
 - All task verifications + build + diff-proof run inside worktree. Commit only inside worktree with exact message. No push. No backend/src or schema/auth/secrets/external/production changes.
 - verify-website-positioning-recovery-readonly.js
+
+## Website Copy/Layout Polish (agent/website-copy-layout-polish)
+
+- Founder review public website copy + layout polish applied (website/index.html + styles.css + supporting docs/verifiers only).
+- Corrections: booking language strengthened ("books homeowner appointments on your calendar", "Qualified leads booked on your calendar"); all "Monthly billing starts on day 15" removed (replaced by 14-day trial + automated email 2 days before first monthly payment); 48h setup + support note; outside leads restructured + polished (question emphasis, visual cards with icons/centers); phone sentence moved + polish; comparison title + verticals + RoofLeadHQ check; Inside reports cards centered + top images; all KPI titles centered; pricing full polish (no 100 leads pill, no removed sentence, borders, sizes, caret, centers, green pill, reduced price, bolder outline); My Story genuine + customization title/para only (babysitting sentence removed); FAQ/contact aligned.
+- New: docs/WEBSITE_COPY_LAYOUT_POLISH_PACKET.md, backend/scripts/verify-website-copy-layout-polish-readonly.js, scripts/run-website-copy-layout-polish-dry-run.sh.
+- Updated: positioning verifier (removed old billing req), aggregate (added command + desc), FIRST_PAID..._INDEX, the three NEXT_CHAT, daily guide, workflow, founder verifiers (alignment only).
+- Verifications: new dry-run + all prior website + quality gate + build + diff-proof run inside worktree.
+- Constraints: website-only + read-only verifiers/docs. Preserve three PNG screenshot refs exactly. No backend/src/schema/auth/secrets/external/prod/live changes. Safety posture intact.
+- Commit inside worktree only with exact message. Do not push.
+- verify-website-copy-layout-polish-readonly.js
