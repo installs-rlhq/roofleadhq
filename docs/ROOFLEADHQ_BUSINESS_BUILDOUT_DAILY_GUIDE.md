@@ -5043,3 +5043,33 @@ Safety remains demo-ready with live automation disabled. All work dry-run/intern
 - Commit inside worktree only: exact git add list (website/index.html, styles.css, new packet/verifier/wrapper, updated verifiers + docs) + "test(website): polish public copy and layout". Do not push.
 - verify-website-copy-layout-polish-readonly.js
 WEBSITE_COPY_LAYOUT_POLISH_PACKET
+
+## First Paid Roofer Launch System Packet (test(pilot): add first paid roofer launch system packet)
+
+- Why: The first paid launch artifacts were scattered across many specialized packets (pilot launch packet, contractor intake/setup, go/no-go snapshot, control center, day checklist, various first-roofer manual command packets, etc.). A single biggest safe master "First Paid Roofer Launch System Packet" was needed to give Jason a cohesive, operationally usable end-to-end system to actually run the first paid roofer launch soon (prospect → setup → go-live → 14-day trial → first monthly payment → cancel/no-go), beyond website polish.
+- Delivered: docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md (the master packet) + scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh (wrapper) + backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js (read-only verifier).
+- The packet is the biggest safe product-moving artifact:
+  - 1. First paid roofer launch readiness checklist (pre-outreach gate, concrete items, go/no-go + evidence log + handoff template).
+  - 2. Prospect-to-setup handoff (internal qualification criteria, checklist, required handoff artifact template).
+  - 3. Sales/demo call checklist (pre-call, allowed framing only using RoofLeadHQ AI + 14-day trial language, live call items, post-call actions + go/no-go).
+  - 4. Guided Setup intake packet (operator-led agenda, long list of concrete required capture fields including explicit 14-day trial + automated email + cancel anytime ack, go/no-go).
+  - 5. Go-live readiness checklist (full pre-reqs from prior sections + verifiers + safety + prospect ack, GO-LIVE APPROVED gate).
+  - 6. 14-day trial operating checklist (daily founder/operator rhythm using the first-roofer manual command packet suite, trial-specific checks, health gates at day 7/12).
+  - 7. Automated pre-billing email readiness checklist (content rules using only allowed 14-day + automated email 2 days before first monthly payment language, rehearsal-only, timing, go/no-go).
+  - 8. First monthly payment handoff checklist (pre-payment actions, manual steps only, evidence log with no-automation safety, payment received gate).
+  - 9. Cancellation/no-go handling (pre-go-live, during-trial, post-payment paths + always-required record with metrics/archival/safety).
+  - 10. Founder/operator internal launch command center (live snapshot template, pipeline summary from command packets, daily actions, EOD report, overall health gate).
+  - 11. Explicit safety guardrails (prominent section listing every disabled item from the task: live SMS, Vapi, Calendar, Resend, Lindy, cron, production Supabase writes, production data mutation, public routes, contractor portal exposure, auth/RLS/security impl, payment automation; full 17+ safety markers; re-confirmation protocol at every gate; forbidden public phrase list).
+- Public positioning: RoofLeadHQ AI turns roofing leads into booked homeowner appointments through fast response, automated follow-up, and missed-lead recovery. Guided Setup (onboarding/configuration only). 14-day trial after go-live. Automated email 2 days before first monthly payment. Cancel anytime. No long-term contract. No public founder babysitting or guarantee language.
+- Internal founder/operator language present only for safety/ops (command center, logs, gates). Not used for public positioning.
+- Verifier is read-only, non-executable. Enforces: all sections with substantive content (not just headings), concrete fields, checklists, gates, logs, templates, safety markers, no forbidden phrases (high-risk variants strictly absent), no unsafe impl strings, wrapper calls + node --check + quality gate, wiring into aggregate + index + 3x next-chat + daily guide + quality gate.
+- Updates: aggregate pilot readiness (added named entry with full description), FIRST_PAID_LAUNCH_VERIFIER_INDEX.md (added the three lines for doc/wrapper/verifier), the three NEXT_CHAT_CONTEXT_PACKAGE_*.md (milestone records + references), this daily guide, workflow (with closeout lesson preserved).
+- Verification inside worktree (exact required list): node --check backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js ; node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js ; scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh ; node backend/scripts/verify-first-paid-pilot-readiness-readonly.js ; node backend/scripts/verify-agent-product-quality-gate-readonly.js ; npm --prefix backend run build ; git status --short ; git diff --stat.
+- Constraints: docs + scripts wrapper + read-only verifier only. No backend/src, no migrations/schema/auth/secrets, no external calls, no PNG/content changes outside docs, no production activation of any kind. All work dry-run/internal-only/founder-operator-only.
+- Commit inside worktree only with exact git add list from task + message per convention. Do not push.
+- This packet is explicitly product-moving and operationally useful so Jason can use it to run the first paid roofer launch. All guardrails explicit. Verifiers will fail the packet if required content, safety language, wiring, or forbidden phrases are missing/violated.
+- Safety: demo ready with live automation disabled. All 11 guardrails OFF. No live SMS/Vapi/Calendar/Resend/Lindy/cron/Supabase writes/data mutation/routes/portal/auth/RLS/payment automation.
+
+## End of updates for this session
+
+Safety remains demo ready with live automation disabled. Stop after all listed checks, gates, and diff proof. Do not commit if any verifier fails. Do not push.

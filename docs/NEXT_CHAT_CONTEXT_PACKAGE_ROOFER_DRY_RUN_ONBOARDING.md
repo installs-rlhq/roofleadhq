@@ -1465,3 +1465,18 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - Constraints: website-only + read-only verifiers/docs. Preserve three PNG screenshot refs exactly. No backend/src/schema/auth/secrets/external/prod/live changes. Safety posture intact.
 - Commit inside worktree only with exact message. Do not push.
 - verify-website-copy-layout-polish-readonly.js
+
+## First Paid Roofer Launch System Packet (biggest safe end-to-end first paid roofer launch system)
+
+- Added the master first paid roofer launch system packet as the biggest safe operational artifact for moving the first paid roofer from prospect to first monthly payment (and handling cancel/no-go).
+- Covers all 11 required areas with concrete checklists, decision gates (PASS/HOLD/BLOCKED), handoff templates, evidence logs, go/no-go status fields, and internal command center.
+- Explicit safety guardrails (section 11) enumerate and enforce no live SMS/Vapi/Calendar/Resend/Lindy/cron/Supabase writes/data mutation/routes/portal/auth/RLS/payment automation.
+- Public positioning: RoofLeadHQ AI turns roofing leads into booked homeowner appointments through fast response, automated follow-up, and missed-lead recovery. Guided Setup (config only). 14-day trial + automated email 2 days before first monthly payment. Cancel anytime. No long-term contract.
+- Internal founder/operator language used only for ops/safety (not public marketing).
+- New: docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md + scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh + backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js.
+- Wired into: aggregate pilot readiness verifier, FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, all three NEXT_CHAT_CONTEXT_PACKAGE_*.md (including this one), ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md, AGENT_PRODUCT_QUALITY_GATE.md.
+- Verifier enforces: required sections with substantive content, concrete fields, safety markers (full list of 17+ "no" markers), forbidden business phrases absent, unsafe impl strings absent, wiring assertions, non-exec verifier, wrapper structure, product-depth (operational, not archive-only).
+- Verification inside worktree before any finalize: node --check, node verifier, dry-run wrapper, full aggregate, quality gate, backend build, git checks.
+- Safety: dry-run/internal-only/founder-operator-only. No production activation of any kind. All guardrails re-checked at gates.
+- This packet makes the first paid roofer launch system robust and usable by Jason without relying on scattered prior docs alone.
+- References the full suite of first-roofer manual command packets for execution detail during trial.
