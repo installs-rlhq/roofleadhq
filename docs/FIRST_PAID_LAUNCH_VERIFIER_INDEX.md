@@ -120,6 +120,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - First Paid Roofer Sales Outreach System Packet doc: `docs/FIRST_PAID_ROOFER_SALES_OUTREACH_SYSTEM_PACKET.md`
 - First Paid Roofer Sales Outreach System Packet wrapper: `scripts/run-first-paid-roofer-sales-outreach-system-packet-dry-run.sh`
 - First Paid Roofer Sales Outreach System Packet verifier: `node backend/scripts/verify-first-paid-roofer-sales-outreach-system-packet-readonly.js`
+- First Paid Roofer Demo + Close Execution Kit doc: `docs/FIRST_PAID_ROOFER_DEMO_CLOSE_EXECUTION_KIT.md`
+- First Paid Roofer Demo + Close Execution Kit wrapper: `scripts/run-first-paid-roofer-demo-close-execution-kit-dry-run.sh`
+- First Paid Roofer Demo + Close Execution Kit verifier: `node backend/scripts/verify-first-paid-roofer-demo-close-execution-kit-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
