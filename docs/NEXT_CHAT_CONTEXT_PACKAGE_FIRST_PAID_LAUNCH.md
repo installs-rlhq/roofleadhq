@@ -5043,3 +5043,39 @@ npm --prefix backend run build
 
 Safety remains demo ready with live automation disabled. Stop after gates and diff proof. Do not commit changes that fail verifiers. Do not push.
 
+## Previous Verified Milestone — First Paid Roofer Outreach Execution Kit (practical day-one manual execution kit for first paid roofer prospecting through handoff)
+
+Commit (worktree only, do not push):
+- Test commit recording addition of the First Paid Roofer Outreach Execution Kit (day-one manual execution system for sourcing, qualifying, messaging, following up, demo readiness, and clean handoffs to Sales + Launch packets).
+
+Files added:
+- `docs/FIRST_PAID_ROOFER_OUTREACH_EXECUTION_KIT.md`
+- `scripts/run-first-paid-roofer-outreach-execution-kit-dry-run.sh`
+- `backend/scripts/verify-first-paid-roofer-outreach-execution-kit-readonly.js`
+
+What changed / delivered:
+- Dedicated day-one outreach execution kit so Jason has a practical, copy-paste-ready manual system for the first paid roofer: from morning setup through sourcing (first 20 worksheet), qualification gate, message prep queue, manual follow-up queue, demo handoff artifact to Sales Outreach System Packet, sales-to-launch handoff artifact to Launch System Packet, 9 manual tracker tables, full safety, and language boundary enforcement.
+- 1. Day-one outreach operating plan (morning setup checklist, sourcing block, qualification/scoring block, message prep block, manual send block, follow-up review block, EOD pipeline review, next-day handoff).
+- 2. First 20 prospect sourcing worksheet (manual-only channels list, required fields, evidence/exclusion/fit/next-action fields, 20-row copy-paste table; no external calls).
+- 3. Prospect qualification gate (must-haves, strong-fit, soft HOLD, hard BLOCKED, service-area fit, lead-vol est, paid-lead pain, response-speed pain, owner accessibility; PASS/HOLD/BLOCKED output).
+- 4. First-contact message preparation queue (warm email/LinkedIn, cold, referral, call opener, voicemail, short LinkedIn — all templates use exact public language only: RoofLeadHQ AI turns roofing leads into booked homeowner appointments through fast response, automated follow-up, and missed-lead recovery; Guided Setup first; 14-day trial begins after setup goes live; automated email 2 days before first monthly payment; cancel anytime; no long-term contract).
+- 5. Follow-up execution queue (touch 1/2/3 with timing, templates, stop rules, nurture handling; explicit "no cron, Lindy, CRM automation, or automated follow-up of any kind").
+- 6. Demo-call readiness handoff (when-to-offer, prep checklist, pre-demo evidence, discovery questions, objection notes, full handoff artifact to SALES packet with status marker).
+- 7. Sales-to-launch handoff trigger (criteria, required evidence, trial language confirmation quote capture, setup readiness notes, go-live assumptions, go-live assumptions, payment expectations, no-go handling, full handoff artifact to LAUNCH packet).
+- 8. Manual tracker templates (9 copy-paste tables: Prospect Source List, Outreach Queue, Follow-up Queue, Demo Readiness Queue, Objection Log, Evidence Log, Daily Operator Review, Weekly Pipeline Review, Handoff Summary).
+- 9. Safety guardrails (explicit manual-only outreach, draft-only prep, no live send, no automated follow-up, no CRM, no calendar booking, no payment, no external calls, no prod Supabase, no public routes, no portal, no auth/RLS, no estimates/quotes/invoices, no guarantee or booked-jobs language; full 15+ disabled list + markers + re-confirmation protocol).
+- 10. Public-vs-internal language boundary (prospect-facing restricted to allowed public phrasing; all internal founder/operator/manual/dry-run language labeled "Internal-only / founder-operator-only" and confined to execution instructions, logs, tables; forbidden phrases list enforced by verifier outside doc list sections).
+- Explicit references and handoff artifacts to FIRST_PAID_ROOFER_PROSPECT_PIPELINE_TRACKER_PACKET.md, FIRST_PAID_ROOFER_SALES_OUTREACH_SYSTEM_PACKET.md, FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md.
+- All prospect-facing templates and artifacts use only the current public direction. No forbidden public phrases in templates or prospect sections.
+- Concrete day-one plan, worksheets, gates (PASS/HOLD/BLOCKED), queues, 9 tables, artifacts, decision log — product-moving and operationally usable by Jason for manual first paid roofer outreach execution.
+- All work strictly dry-run/internal-only/founder-operator-only. Verifier enforces required sections, 20-row table + 9 trackers, exact public strings in templates, absence of forbidden phrases in prospect-facing parts, references to 3 packets, wiring, no unsafe strings, no live activation.
+- Wired into: backend/scripts/verify-first-paid-pilot-readiness-readonly.js (aggregate), docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, the three NEXT_CHAT_CONTEXT_PACKAGE_*.md (this + roofer dry-run + grok workflow), ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md, AGENT_PRODUCT_QUALITY_GATE.md (via wrapper + aggregate).
+- Verification (inside worktree): node --check verifier; node verifier; run-*-dry-run.sh wrapper; full pilot aggregate; agent quality gate; npm --prefix backend run build; git status/diff checks.
+
+Safety preserved:
+- No live SMS, Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, CRM automation, production Supabase writes, production data mutation, public route activation, contractor portal exposure, auth/RLS/security implementation, payment automation, estimate/quote/invoice automation, or external service calls activated.
+- All guardrails explicitly listed and re-checked at gates (before sourcing, send, demo, handoff, EOD, weekly).
+- Outreach and tracking are manual (copy-paste / local tables only).
+- Uses only allowed RoofLeadHQ AI / booked homeowner appointments / Guided Setup first / 14-day trial / automated pre-payment email / cancel anytime / no long-term contract language in all prospect-facing content.
+- Clean handoff artifacts to Sales Outreach System Packet (primary for demo/fit) and Launch System Packet; does not duplicate their content. Complements Prospect Pipeline Tracker Packet.
+
