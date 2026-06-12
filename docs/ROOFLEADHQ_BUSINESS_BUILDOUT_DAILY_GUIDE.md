@@ -5070,6 +5070,35 @@ WEBSITE_COPY_LAYOUT_POLISH_PACKET
 - This packet is explicitly product-moving and operationally useful so Jason can use it to run the first paid roofer launch. All guardrails explicit. Verifiers will fail the packet if required content, safety language, wiring, or forbidden phrases are missing/violated.
 - Safety: demo ready with live automation disabled. All 11 guardrails OFF. No live SMS/Vapi/Calendar/Resend/Lindy/cron/Supabase writes/data mutation/routes/portal/auth/RLS/payment automation.
 
+## First Paid Roofer Sales Outreach System Packet (test(pilot): add first paid roofer sales outreach system packet)
+
+- Why: Prior packets (including the Launch System Packet) covered setup-to-payment but left the upstream sales/outreach phase (prospect profile, message templates, demo process, fit decision, handoff to Guided Setup) as ad-hoc or referenced only in daily guide Lindy prompts. A dedicated, product-moving First Paid Roofer Sales Outreach System Packet was required so Jason has concrete, gated, safe internal assets to move from prospect identification all the way to demo → fit decision → handoff to the Launch System Packet for the first paid roofer.
+- Delivered: docs/FIRST_PAID_ROOFER_SALES_OUTREACH_SYSTEM_PACKET.md (the sales packet) + scripts/run-first-paid-roofer-sales-outreach-system-packet-dry-run.sh (wrapper) + backend/scripts/verify-first-paid-roofer-sales-outreach-system-packet-readonly.js (read-only verifier).
+- The packet is product-moving and operationally usable:
+  - 1. Ideal first roofer profile (core criteria all must be true, bonus signals, evidence capture fields, profile go/no-go gate + log template).
+  - 2. Disqualifiers / bad-fit criteria (hard BLOCKED list with exact examples, soft HOLD, disqualifier handling rules, status gate).
+  - 3. Warm outreach message (full email/LinkedIn DM + call opener templates using only allowed language).
+  - 4. Cold outreach message (LinkedIn/email + short call/voicemail).
+  - 5. Referral ask message (post-positive or standalone).
+  - 6. Short follow-up sequence (touch 1-4 with timing, exact copy, explicit "no cron/Lindy/automation" rule).
+  - 7. Demo call checklist (pre-call internal prep including verifier run, during-call allowed framing only, live items, post-call actions + status gate).
+  - 8. Discovery questions (10 concrete questions for calls and notes).
+  - 9. Objection handling (full scripts for 6 common objections, all using 14-day trial + Guided Setup + cancel anytime language only).
+  - 10. Pricing/trial explanation (verbatim allowed framing script, confirmation question that must be logged affirmative, no day-15 or guarantee language).
+  - 11. Fit decision scorecard (8 categories 1-5, total /40, 32+ = PASS with no hard DQ, evidence requirements, decision gate).
+  - 12. Handoff to First Paid Roofer Launch System Packet (preconditions, full handoff artifact template referencing Launch Packet section 4, handoff checklist, status).
+  - 13. No-go / not-now handling (scripts for pre-demo BLOCKED, post-demo HOLD, post-demo BLOCKED, timing not-now, stop; required log + tracker update + close thread).
+  - 14. Evidence log and prospect tracker (minimum tracker columns, per-event log template with safety/verifier fields, audit requirements).
+  - 15. Explicit safety guardrails (15 disabled items, 18+ required safety markers, re-confirmation protocol at every gate, forbidden public phrases list with strict enforcement).
+- Public/business language only in all outreach, demo, and handoff sections: RoofLeadHQ AI turns roofing leads into booked homeowner appointments through fast response, automated follow-up, and missed-lead recovery + Guided Setup + 14-day trial + automated email 2 days before first monthly payment + cancel anytime + no long-term contract.
+- Verifier is read-only, non-executable. Enforces: all 15 sections with substantive content and concrete fields, PASS/HOLD/BLOCKED gates, templates, logs, safety markers, no forbidden phrases (high-risk variants strictly absent from prospect-facing content), no unsafe impl strings, wrapper calls + node --check + quality gate, wiring into aggregate + index + 3x next-chat + daily guide + quality gate.
+- Updates: aggregate pilot readiness (added named sales outreach entry with full description before the launch system entry), FIRST_PAID_LAUNCH_VERIFIER_INDEX.md (added the three lines for sales doc/wrapper/verifier), the three NEXT_CHAT_CONTEXT_PACKAGE_*.md (milestone records + references), this daily guide, workflow (with closeout lesson preserved).
+- Verification inside worktree (exact required list): node --check backend/scripts/verify-first-paid-roofer-sales-outreach-system-packet-readonly.js ; node backend/scripts/verify-first-paid-roofer-sales-outreach-system-packet-readonly.js ; scripts/run-first-paid-roofer-sales-outreach-system-packet-dry-run.sh ; node backend/scripts/verify-first-paid-pilot-readiness-readonly.js ; node backend/scripts/verify-agent-product-quality-gate-readonly.js ; npm --prefix backend run build ; git status --short ; git diff --stat.
+- Constraints: docs + scripts wrapper + read-only verifier only. No backend/src, no migrations/schema/auth/secrets, no external calls, no PNG/content changes outside docs, no production activation of any kind. All work dry-run/internal-only/founder-operator-only.
+- Commit inside worktree only with exact git add list from task + message per convention. Do not push.
+- This packet is explicitly product-moving and operationally useful so Jason can use it to execute sales outreach and land the first paid roofer, then hand off cleanly. All guardrails explicit and re-checked at gates. Verifiers will fail the packet if required content, safety language, wiring, or forbidden phrases are missing/violated. Hands off to Launch System Packet (no duplication of setup/trial/payment content).
+- Safety: demo ready with live automation disabled. All 15 guardrails OFF. No live SMS/Vapi/Calendar/Resend/Lindy/cron/Supabase writes/data mutation/routes/portal/auth/RLS/payment automation. No automation of outreach messages.
+
 ## End of updates for this session
 
 Safety remains demo ready with live automation disabled. Stop after all listed checks, gates, and diff proof. Do not commit if any verifier fails. Do not push.

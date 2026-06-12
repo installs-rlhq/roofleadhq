@@ -1480,3 +1480,18 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - Safety: dry-run/internal-only/founder-operator-only. No production activation of any kind. All guardrails re-checked at gates.
 - This packet makes the first paid roofer launch system robust and usable by Jason without relying on scattered prior docs alone.
 - References the full suite of first-roofer manual command packets for execution detail during trial.
+
+## First Paid Roofer Sales Outreach System Packet (product-moving sales outreach system packet)
+
+- Added the First Paid Roofer Sales Outreach System Packet as the upstream sales operating system to get the first paid roofer from prospect identification through outreach, demo, fit decision, and clean handoff to Guided Setup + the First Paid Roofer Launch System Packet.
+- Includes all 15 required sections: 1. ideal first roofer profile, 2. disqualifiers/bad-fit, 3. warm outreach message, 4. cold outreach message, 5. referral ask, 6. short follow-up sequence, 7. demo call checklist, 8. discovery questions, 9. objection handling, 10. pricing/trial explanation (Guided Setup + 14-day trial + automated email 2 days before first monthly payment + cancel anytime), 11. fit decision scorecard, 12. handoff to Launch System Packet, 13. no-go/not-now handling, 14. evidence log + prospect tracker, 15. safety guardrails.
+- All prospect-facing language strictly limited to RoofLeadHQ AI, booked homeowner appointments, fast response, automated follow-up, missed-lead recovery, Guided Setup (config), 14-day trial, first monthly payment, cancel anytime, no long-term contract. No 7-day pilot, no guarantees, no booked-jobs, no auto-estimate/quote/invoice/payment, no day-15 billing, no public Founder-Led Launch Program positioning.
+- Concrete, product-moving: full copy-paste message templates, 10 discovery questions, 6+ objection scripts, 8-category scorecard with 32+ PASS threshold, tracker columns + log template, handoff artifact, decision gates (PASS/HOLD/BLOCKED), decision log.
+- Explicit safety: 15 disabled production items, full marker list, re-confirmation protocol before every outreach/demo/handoff, forbidden phrases section + verifier enforcement.
+- Internal-only dry-run: no live sends, no production writes, no automation of outreach, no schema/auth/RLS changes.
+- New: docs/FIRST_PAID_ROOFER_SALES_OUTREACH_SYSTEM_PACKET.md + scripts/run-first-paid-roofer-sales-outreach-system-packet-dry-run.sh + backend/scripts/verify-first-paid-roofer-sales-outreach-system-packet-readonly.js.
+- Wired into: aggregate pilot readiness verifier (new entry before launch system), FIRST_PAID_LAUNCH_VERIFIER_INDEX.md (three lines), all three NEXT_CHAT_CONTEXT_PACKAGE_*.md (including this one), ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md, AGENT_PRODUCT_QUALITY_GATE.md (via wrapper + aggregate).
+- Verifier enforces: all 15 sections with substantive content and concrete fields, safety markers, forbidden phrases absent from prospect sections, unsafe impl absent, wiring to aggregate/index/contexts/daily-guide, non-exec verifier, wrapper calls node--check + quality gate, product-depth (templates + gates + logs, not archive-only).
+- Verification inside worktree: node --check verifier; node verifier; sales outreach dry-run wrapper; full pilot aggregate; agent quality gate; npm --prefix backend run build.
+- Safety: dry-run/internal-only/founder-operator-only. No production activation. All guardrails re-checked. Clean handoff to Launch System Packet.
+- This packet gives Jason a focused, usable sales system to land the first paid roofer without relying on ad-hoc messages or prior scattered notes.
