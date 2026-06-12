@@ -126,6 +126,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - First Paid Roofer Guided Setup Execution Kit doc: `docs/FIRST_PAID_ROOFER_GUIDED_SETUP_EXECUTION_KIT.md`
 - First Paid Roofer Guided Setup Execution Kit wrapper: `scripts/run-first-paid-roofer-guided-setup-execution-kit-dry-run.sh`
 - First Paid Roofer Guided Setup Execution Kit verifier: `node backend/scripts/verify-first-paid-roofer-guided-setup-execution-kit-readonly.js`
+- First Paid Roofer Go-Live Readiness Execution Kit doc: `docs/FIRST_PAID_ROOFER_GO_LIVE_READINESS_EXECUTION_KIT.md`
+- First Paid Roofer Go-Live Readiness Execution Kit wrapper: `scripts/run-first-paid-roofer-go-live-readiness-execution-kit-dry-run.sh`
+- First Paid Roofer Go-Live Readiness Execution Kit verifier: `node backend/scripts/verify-first-paid-roofer-go-live-readiness-execution-kit-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
