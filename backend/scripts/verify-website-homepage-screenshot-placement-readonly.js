@@ -112,7 +112,10 @@ function assertNoForbiddenFilesModified() {
     'website/dashboard-sample.png',
     'website/weekly-report-sample.png',
     'website/monthly-report-sample.png',
-    'docs/WEBSITE_HOMEPAGE_SCREENSHOT_PLACEMENT_PACKET.md'
+    'docs/WEBSITE_HOMEPAGE_SCREENSHOT_PLACEMENT_PACKET.md',
+    'backend/scripts/verify-website-trial-direction-regression-readonly.js',
+    'scripts/run-website-trial-direction-regression-dry-run.sh',
+    'docs/WEBSITE_TRIAL_DIRECTION_REGRESSION_PACKET.md'
   ];
 
   let violations = [];

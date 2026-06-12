@@ -797,6 +797,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Website Trial Direction Regression (docs/WEBSITE_TRIAL_DIRECTION_REGRESSION_PACKET.md + scripts/run-website-trial-direction-regression-dry-run.sh + backend/scripts/verify-website-trial-direction-regression-readonly.js) -- dedicated read-only regression guard to audit and protect the revised public direction (RoofLeadHQ AI turns roofing leads into booked inspections / booked homeowner appointments; Guided Setup first; 14-day trial begins after RoofLeadHQ AI setup goes live; automated email 2 days before first monthly payment; first monthly payment after trial; cancel anytime; no long-term contract; public website must not position as Founder-Led Launch Program or ongoing founder/manual babysitting); verifier passes only on presence of revised trial/AI/booked-appointment language in website/index.html and fails on any forbidden phrases in public-facing website files (index.html + demo/*.html); explicitly distinguishes public website/sales-facing copy from internal safety docs (internal founder/operator/manual language permitted only in dry-run safety artifacts with context docs stating it is internal-only/not public); fails if wrapper missing or non-executable or wiring missing; read-only; website/docs/verifier-only; no live activation, no production behavior, no writes, no integrations, no auth/schema/security implementation; wired into aggregate + verifier index + next-chat contexts + daily guide with boundary clarifications',
+    script: 'backend/scripts/verify-website-trial-direction-regression-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []

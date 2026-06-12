@@ -141,7 +141,10 @@ function assertNoForbiddenFilesModified() {
     'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md',
     'docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md',
     'docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md',
-    'docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md'
+    'docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md',
+    'backend/scripts/verify-website-trial-direction-regression-readonly.js',
+    'scripts/run-website-trial-direction-regression-dry-run.sh',
+    'docs/WEBSITE_TRIAL_DIRECTION_REGRESSION_PACKET.md'
   ];
 
   let violations = [];

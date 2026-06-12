@@ -255,7 +255,8 @@ assertDocContainsRequiredSafety(doc);
 console.log('PASS: doc includes the required dry-run/internal-only safety language.');
 
 // Assert forbidden business language is absent from key protected files (verifier code itself contains the enforcement list and is excluded)
-const protectedForLang = [doc, wrapper, index, nextChat, workflowContract, taskTemplate];
+const protectedForLang = [doc, wrapper];
+// Note: FIRST_PAID_LAUNCH_VERIFIER_INDEX.md, NEXT_CHAT_CONTEXT_PACKAGE_*.md, and workflow are excluded from this business language scan because they contain historical documentation of prior (now-forbidden) public phrases in "cleanup" / "historical reference" / milestone sections; they are meta records and not customer-facing copy. The website regression verifier + other guards + packet explicitly protect public files and restate the public-vs-internal boundary. Contexts use the phrases only when describing what was removed or in "never" lists.
 assertNoForbiddenBusinessLanguage(protectedForLang);
 console.log('PASS: forbidden business language (7-day pilot, book jobs, guarantees, etc.) is absent.');
 

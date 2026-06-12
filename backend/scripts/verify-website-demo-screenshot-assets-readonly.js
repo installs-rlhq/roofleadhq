@@ -232,7 +232,10 @@ function assertNoForbiddenFilesModified() {
     'website/demo/weekly-report-sample.html',
     'website/demo/monthly-report-sample.html',
     'website/demo/demo.css',
-    'docs/WEBSITE_DEMO_SCREENSHOT_ASSETS_PACKET.md'
+    'docs/WEBSITE_DEMO_SCREENSHOT_ASSETS_PACKET.md',
+    'backend/scripts/verify-website-trial-direction-regression-readonly.js',
+    'scripts/run-website-trial-direction-regression-dry-run.sh',
+    'docs/WEBSITE_TRIAL_DIRECTION_REGRESSION_PACKET.md'
   ];
 
   let violations = [];

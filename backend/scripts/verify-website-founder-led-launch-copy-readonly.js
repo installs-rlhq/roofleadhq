@@ -146,7 +146,10 @@ function assertNoForbiddenFilesModified() {
 
   const allowedScriptExceptions = [
     'backend/scripts/verify-website-founder-led-launch-copy-readonly.js',
-    'scripts/run-website-founder-led-launch-copy-dry-run.sh'
+    'scripts/run-website-founder-led-launch-copy-dry-run.sh',
+    'backend/scripts/verify-website-trial-direction-regression-readonly.js',
+    'scripts/run-website-trial-direction-regression-dry-run.sh',
+    'docs/WEBSITE_TRIAL_DIRECTION_REGRESSION_PACKET.md'
   ];
 
   let violations = [];
