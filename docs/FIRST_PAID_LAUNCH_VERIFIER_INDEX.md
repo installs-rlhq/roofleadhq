@@ -138,6 +138,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - First Paid Roofer Trial Conversion / Payment Handoff Kit doc: `docs/FIRST_PAID_ROOFER_TRIAL_CONVERSION_PAYMENT_HANDOFF_KIT.md`
 - First Paid Roofer Trial Conversion / Payment Handoff Kit wrapper: `scripts/run-first-paid-roofer-trial-conversion-payment-handoff-kit-dry-run.sh`
 - First Paid Roofer Trial Conversion / Payment Handoff Kit verifier: `node backend/scripts/verify-first-paid-roofer-trial-conversion-payment-handoff-kit-readonly.js`
+- First Paid Roofer First-Month Operating Kit doc: `docs/FIRST_PAID_ROOFER_FIRST_MONTH_OPERATING_KIT.md`
+- First Paid Roofer First-Month Operating Kit wrapper: `scripts/run-first-paid-roofer-first-month-operating-kit-dry-run.sh`
+- First Paid Roofer First-Month Operating Kit verifier: `node backend/scripts/verify-first-paid-roofer-first-month-operating-kit-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
