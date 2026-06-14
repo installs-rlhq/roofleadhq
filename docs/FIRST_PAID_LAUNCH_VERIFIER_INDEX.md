@@ -162,6 +162,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Final Production Go-Live Acceptance Gate doc: `docs/FINAL_PRODUCTION_GO_LIVE_ACCEPTANCE_GATE.md`
 - Final Production Go-Live Acceptance Gate wrapper: `scripts/run-final-production-go-live-acceptance-gate-dry-run.sh`
 - Final Production Go-Live Acceptance Gate verifier: `node backend/scripts/verify-final-production-go-live-acceptance-gate-readonly.js`
+- Production Implementation Sequencing and Approval Plan doc: `docs/PRODUCTION_IMPLEMENTATION_SEQUENCING_AND_APPROVAL_PLAN.md`
+- Production Implementation Sequencing and Approval Plan wrapper: `scripts/run-production-implementation-sequencing-and-approval-plan-dry-run.sh`
+- Production Implementation Sequencing and Approval Plan verifier: `node backend/scripts/verify-production-implementation-sequencing-and-approval-plan-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
