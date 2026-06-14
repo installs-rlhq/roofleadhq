@@ -171,6 +171,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Production Tenant / Account Model Readiness Packet doc: `docs/PRODUCTION_TENANT_ACCOUNT_MODEL_READINESS_PACKET.md`
 - Production Tenant / Account Model Readiness Packet wrapper: `scripts/run-production-tenant-account-model-readiness-packet-dry-run.sh`
 - Production Tenant / Account Model Readiness Packet verifier: `node backend/scripts/verify-production-tenant-account-model-readiness-packet-readonly.js`
+- Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
+- Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
+- Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
