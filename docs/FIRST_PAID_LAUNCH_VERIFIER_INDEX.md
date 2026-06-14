@@ -168,6 +168,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Production Config / Env Readiness Audit Packet doc: `docs/PRODUCTION_CONFIG_ENV_READINESS_AUDIT_PACKET.md`
 - Production Config / Env Readiness Audit Packet wrapper: `scripts/run-production-config-env-readiness-audit-packet-dry-run.sh`
 - Production Config / Env Readiness Audit Packet verifier: `node backend/scripts/verify-production-config-env-readiness-audit-packet-readonly.js`
+- Production Tenant / Account Model Readiness Packet doc: `docs/PRODUCTION_TENANT_ACCOUNT_MODEL_READINESS_PACKET.md`
+- Production Tenant / Account Model Readiness Packet wrapper: `scripts/run-production-tenant-account-model-readiness-packet-dry-run.sh`
+- Production Tenant / Account Model Readiness Packet verifier: `node backend/scripts/verify-production-tenant-account-model-readiness-packet-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
