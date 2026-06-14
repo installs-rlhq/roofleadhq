@@ -62,17 +62,18 @@ const dailyGuide = read(dailyGuidePath);
 
 // 1. Required public positioning phrases present in website/index.html
 const requiredPhrases = [
-  'Turn More Roofing Leads Into Booked Inspections',
+  'Instant Lead-to-Inspection for Roofing Contractors',
   'RoofLeadHQ AI',
+  'Closing the gap between roofing lead and booked inspection',
+  'Never miss another roofing lead because nobody responded fast enough',
   'You do not always need more leads',
   'Start Your RoofLeadHQ Setup',
-  'Guided Setup',
-  '14-day trial',
-  'first monthly payment',
-  'automated check-in email',
-  'dashboard-sample.png',
-  'weekly-report-sample.png',
-  'monthly-report-sample.png'
+  'Guided Setup happens first',
+  'The 14-day trial begins after RoofLeadHQ AI setup goes live',
+  'An automated email is sent 2 days before the first monthly payment',
+  'Cancel anytime',
+  'No long-term contract',
+  'books homeowner inspections on the roofer’s calendar',
 ];
 for (const phrase of requiredPhrases) {
   mustHave(indexHtml, phrase, 'website/index.html required positioning phrase');

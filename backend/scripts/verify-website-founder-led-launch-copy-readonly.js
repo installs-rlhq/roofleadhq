@@ -63,13 +63,18 @@ const dailyGuide = read(dailyGuidePath);
 
 // 1+2. Required safe phrases present in website/index.html (updated for recovered RoofLeadHQ AI / Guided Setup / 14-day trial positioning)
 const requiredSafePhrases = [
-  'Turn More Roofing Leads Into Booked Inspections',
+  'Instant Lead-to-Inspection for Roofing Contractors',
   'RoofLeadHQ AI',
-  'Guided Setup',
-  '14-day trial',
-  'booked inspections',
+  'Closing the gap between roofing lead and booked inspection',
+  'Never miss another roofing lead because nobody responded fast enough',
+  'Guided Setup happens first',
+  'The 14-day trial begins after RoofLeadHQ AI setup goes live',
+  'An automated email is sent 2 days before the first monthly payment',
+  'Cancel anytime',
+  'No long-term contract',
+  'booked homeowner inspections',
+  'books homeowner inspections on the roofer’s calendar',
   'Start Your RoofLeadHQ Setup',
-  'See If RoofLeadHQ Fits'
 ];
 for (const phrase of requiredSafePhrases) {
   mustHave(indexHtml, phrase, 'website/index.html required safe phrase');

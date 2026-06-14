@@ -78,19 +78,17 @@ const publicFacingFiles = [
 
 // 1. Required revised 14-day trial direction + AI + booked inspection/appointment positioning present in website/index.html
 const requiredTrialDirectionPhrases = [
-  'Your 14-day trial begins after your RoofLeadHQ AI setup goes live',
-  'RoofLeadHQ AI setup goes live',
-  'automated email 2 days before your first monthly payment',
-  'automated email 2 days prior',
-  '14-day trial after Guided Setup before your first monthly payment',
-  '14-day trial begins after setup goes live',
+  'Instant Lead-to-Inspection for Roofing Contractors',
+  'RoofLeadHQ AI closes the gap between roofing lead and booked homeowner inspection',
+  'Closing the gap between roofing lead and booked inspection',
+  'Never miss another roofing lead because nobody responded fast enough',
+  'Guided Setup happens first',
+  'The 14-day trial begins after RoofLeadHQ AI setup goes live',
+  'An automated email is sent 2 days before the first monthly payment',
   'Cancel anytime',
   'No long-term contract',
-  'RoofLeadHQ AI',
-  'booked inspections',
-  'books homeowner appointments on your calendar',
-  'Guided Setup configures everything for your business first',
-  'Guided Setup is the onboarding and configuration step'
+  'booked homeowner inspections',
+  'books homeowner inspections on the roofer’s calendar',
 ];
 for (const phrase of requiredTrialDirectionPhrases) {
   mustHave(indexHtml, phrase, 'website/index.html revised 14-day trial direction + RoofLeadHQ AI + booked appointments positioning');
