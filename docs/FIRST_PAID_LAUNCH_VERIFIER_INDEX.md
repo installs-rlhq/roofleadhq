@@ -147,6 +147,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - First Paid Roofer Proof / Referral / Expansion Kit doc: `docs/FIRST_PAID_ROOFER_PROOF_REFERRAL_EXPANSION_KIT.md`
 - First Paid Roofer Proof / Referral / Expansion Kit wrapper: `scripts/run-first-paid-roofer-proof-referral-expansion-kit-dry-run.sh`
 - First Paid Roofer Proof / Referral / Expansion Kit verifier: `node backend/scripts/verify-first-paid-roofer-proof-referral-expansion-kit-readonly.js`
+- Second Paid Roofer Repeatable Launch Kit doc: `docs/SECOND_PAID_ROOFER_REPEATABLE_LAUNCH_KIT.md`
+- Second Paid Roofer Repeatable Launch Kit wrapper: `scripts/run-second-paid-roofer-repeatable-launch-kit-dry-run.sh`
+- Second Paid Roofer Repeatable Launch Kit verifier: `node backend/scripts/verify-second-paid-roofer-repeatable-launch-kit-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
