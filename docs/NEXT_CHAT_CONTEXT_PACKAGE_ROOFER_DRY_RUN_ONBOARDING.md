@@ -1672,3 +1672,12 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - Scope: fixture/sample lead intake through AI response, AI follow-up, lead qualification, missed-lead recovery, appointment/inspection readiness, roofer calendar handoff simulation, homeowner/roofer communication review, reporting snapshot, trial/payment language handling, operator review, and PASS/HOLD/BLOCKED evidence.
 - Safety: dry-run/test-mode only; no live SMS, no external sends, no production writes, no production Supabase writes, no calendar booking automation, no payment automation, no credentials/env changes, no public route activation.
 - Next step: build or identify the safe local/test-mode E2E runner that executes fixture lead scenarios and writes evidence artifacts without external side effects.
+
+## Local E2E Fixture Runner Packet
+
+- New: `docs/LOCAL_E2E_FIXTURE_RUNNER_PACKET.md` + `scripts/run-local-e2e-fixture-runner-dry-run.sh` + `backend/scripts/run-local-e2e-fixture-runner.js` + `backend/scripts/verify-local-e2e-fixture-runner-readonly.js`.
+- Purpose: implements Stage 1 - Fixture dry-run from the Staged End-to-End Testing Readiness + Execution Plan.
+- Scope: fixture/sample lead intake, AI response generation, AI follow-up generation, lead qualification, missed-lead recovery path, appointment/inspection readiness, roofer calendar handoff simulation, homeowner/roofer communication review, reporting snapshot, trial/payment language handling, operator visibility and review, and PASS/HOLD/BLOCKED evidence.
+- Evidence: writes `local-e2e-fixture-results.json` and `local-e2e-fixture-evidence.md` under `/tmp/roofleadhq-local-e2e-fixture-runner`.
+- Safety: local fixture-only; no live sends; no external sends; no production writes; no production Supabase writes; no calendar event creation; no payment automation; no credentials/env reads; no public route activation; no external service calls.
+- Next step: connect the local fixture runner to existing read-only local transformation functions, if available, while preserving fixture-only inputs and `/tmp` evidence output.
