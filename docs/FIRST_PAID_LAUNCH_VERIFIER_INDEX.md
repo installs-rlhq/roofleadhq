@@ -159,6 +159,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Live Integration Activation Readiness Plan doc: `docs/LIVE_INTEGRATION_ACTIVATION_READINESS_PLAN.md`
 - Live Integration Activation Readiness Plan wrapper: `scripts/run-live-integration-activation-readiness-plan-dry-run.sh`
 - Live Integration Activation Readiness Plan verifier: `node backend/scripts/verify-live-integration-activation-readiness-plan-readonly.js`
+- Final Production Go-Live Acceptance Gate doc: `docs/FINAL_PRODUCTION_GO_LIVE_ACCEPTANCE_GATE.md`
+- Final Production Go-Live Acceptance Gate wrapper: `scripts/run-final-production-go-live-acceptance-gate-dry-run.sh`
+- Final Production Go-Live Acceptance Gate verifier: `node backend/scripts/verify-final-production-go-live-acceptance-gate-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
