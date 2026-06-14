@@ -153,6 +153,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Multi-Roofer Safety / Tenant-Isolation Acceptance Gate doc: `docs/MULTI_ROOFER_SAFETY_TENANT_ISOLATION_ACCEPTANCE_GATE.md`
 - Multi-Roofer Safety / Tenant-Isolation Acceptance Gate wrapper: `scripts/run-multi-roofer-safety-tenant-isolation-acceptance-gate-dry-run.sh`
 - Multi-Roofer Safety / Tenant-Isolation Acceptance Gate verifier: `node backend/scripts/verify-multi-roofer-safety-tenant-isolation-acceptance-gate-readonly.js`
+- Production Security / Auth / RLS / Schema Readiness Plan doc: `docs/PRODUCTION_SECURITY_AUTH_RLS_SCHEMA_READINESS_PLAN.md`
+- Production Security / Auth / RLS / Schema Readiness Plan wrapper: `scripts/run-production-security-auth-rls-schema-readiness-plan-dry-run.sh`
+- Production Security / Auth / RLS / Schema Readiness Plan verifier: `node backend/scripts/verify-production-security-auth-rls-schema-readiness-plan-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
