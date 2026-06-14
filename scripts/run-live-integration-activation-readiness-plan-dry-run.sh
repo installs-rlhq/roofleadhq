@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+echo "== RoofLeadHQ Live Integration Activation Readiness Plan Dry-Run =="
+echo "Mode: read-only verification and internal founder/operator planning only"
+echo "No production activation, no external sends, no data mutation."
+echo "No source-of-truth check inside this wrapper (agent worktrees can be ahead/behind main during branch review)."
+echo "This is the Live Integration Activation Readiness Plan. Practical planning and acceptance packet Jason (founder/operator) must use before any live integration activation begins. Converts the production security / auth / rls / schema readiness plan (at e494f4b) into a concrete live-activation readiness plan with clear hold gates, approval evidence, rollback requirements, dry-run proof, owner checklist, and PASS/HOLD/BLOCKED activation gate. 1. Internal-only dry-run scope, 2. Live integration readiness purpose, 3. Inputs from Production Security / Auth / RLS / Schema Readiness Plan, 4. Twilio/SMS activation hold gate, 5. Vapi/calling activation hold gate, 6. Calendar booking activation hold gate, 7. Resend/email activation hold gate, 8. Lindy/automation activation hold gate, 9. Cron/scheduler/dispatcher activation hold gate, 10. CRM automation activation hold gate, 11. Payment automation activation hold gate, 12. Production Supabase write activation hold gate, 13. Credentials and env-change hold gate, 14. Dry-run proof checklist, 15. Rollback and kill-switch readiness checklist, 16. Owner approval evidence checklist, 17. Risk and blocker register, 18. Implementation handoff artifact, 19. PASS/HOLD/BLOCKED live integration readiness gate, 20. Safety guardrails, 21. Public-vs-internal language boundary; 9 copy-paste-ready manual tracker tables (SMS Activation Hold Tracker, Calling Activation Hold Tracker, Calendar Activation Hold Tracker, Email Activation Hold Tracker, Automation Scheduler Hold Tracker, CRM Payment Hold Tracker, Production Write Hold Tracker, Rollback Kill-Switch Tracker, Live Integration Readiness Gate Tracker). Uses only RoofLeadHQ AI turns roofing leads into booked homeowner appointments through fast response, automated follow-up, and missed-lead recovery. Guided Setup happens first. The 14-day trial begins after RoofLeadHQ AI setup goes live. An automated email is sent 2 days before the first monthly payment. Cancel anytime. No long-term contract. References PRODUCTION_SECURITY_AUTH_RLS_SCHEMA_READINESS_PLAN.md (e494f4b) + MULTI_ROOFER_SAFETY_TENANT_ISOLATION_ACCEPTANCE_GATE.md (cc80caf) + ROOFER_DATA_PROTECTION_TENANT_ISOLATION_PLAN_PLACEMENT_PACKET.md + SECOND_PAID_ROOFER_REPEATABLE_LAUNCH_KIT.md + FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md + WEBSITE_TRIAL_DIRECTION_REGRESSION_PACKET.md. Verifier is read-only, asserts required files exist, wrapper executable, all wiring targets include the new packet/verifier/wrapper where appropriate, all required sections (1-21) exist, all 9 tracker tables exist, references to Production Security (e494f4b) + Multi-Roofer + Data Protection + Second Paid + Launch System + Trial Direction, asserts this packet is planning/readiness/acceptance only and does not activate live SMS, Twilio, Vapi, Calendar, Resend, Lindy, cron, scheduler, dispatcher, CRM automation, payment automation, production Supabase writes, public routes, credentials, env changes, migrations, auth/RLS/security, contractor portal, or backend/src changes, asserts rollback/kill-switch readiness is required before any future activation approval, asserts no forbidden implementation files were changed (backend/src, migrations, schema, auth/RLS/security impl, env/secrets, prod routes, external/live activations, scheduler/cron/dispatcher), prints clear PASS. Wrapper executable, strict bash, calls node --check + this verifier + agent product quality gate. After impl run the exact checks listed in task (no push). All customer-facing uses only approved language. Dry-run/internal-only/founder-operator-only. Planning/readiness/acceptance only. Rollback/kill-switch readiness required before activation."
+
+# Run node --check on the verifier (syntax only)
+node --check backend/scripts/verify-live-integration-activation-readiness-plan-readonly.js
+echo "PASS: verifier syntax check (node --check) succeeded."
+
+# Run the dedicated live integration activation readiness plan verifier
+node backend/scripts/verify-live-integration-activation-readiness-plan-readonly.js
+
+# Run the agent product quality gate (which itself runs its verifier, production gates, and safe readiness)
+scripts/check-agent-product-quality-gate.sh
+
+echo "PASS: Live Integration Activation Readiness Plan dry-run wrapper passed."
+echo "Next: run scripts/agent-diff-proof.sh and confirm all gates before any further review consideration."
