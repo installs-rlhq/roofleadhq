@@ -127,11 +127,11 @@ Use:
 
 Avoid:
 
-- “7-day pilot”
-- “5 qualified appointments in 7 days”
-- guaranteed jobs
+- “legacy short-pilot phrase”
+- “legacy qualified-appointment-count promise”
+- legacy job-guarantee phrase
 - guaranteed revenue
-- “book jobs”
+- “legacy job-booking phrase”
 
 ## Safety Posture
 

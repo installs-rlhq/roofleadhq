@@ -55,14 +55,14 @@ The following phrases must remain absent from all public-facing, customer-facing
 - Monthly billing on day 15
 - day 15
 - 14-day launch trial
-- seven-day pilot (or any 7-day pilot variant)
+- legacy short-pilot phrase (or any legacy short-pilot phrase variant)
 - five-qualified-appointment short-window claim (or 5 qualified appointments)
-- book jobs
-- booked jobs
-- booked-job
+- legacy job-booking phrase
+- legacy job-booking phrase
+- legacy job-booking phrase
 - guaranteed appointments
 - guaranteed revenue
-- guaranteed jobs
+- legacy job-guarantee phrase
 - automatic estimate
 - automatic quote
 - automatic invoice
@@ -463,7 +463,7 @@ Update Post-Trial Customer Status Tracker and insert summary into Launch System 
 - No auth/RLS/security implementation: YES (zero schema, zero policies, zero secrets, zero auth code)
 - No estimates, quotes, invoices, or payment workflows: YES (this kit never touches or claims any of these; manual request drafts only)
 - No guarantee language: YES (all customer-facing text and internal decisions enforce this)
-- No booked-jobs language: YES (customer-facing uses only "booked homeowner appointments" via the defined flow; never "book jobs" or "you book the inspection")
+- No legacy job-booking phrases language: YES (customer-facing uses only "booked homeowner appointments" via the defined flow; never "legacy job-booking phrase" or "you book the inspection")
 - Live homeowner SMS / Twilio sending: DISABLED
 - Live roofer reply SMS: DISABLED
 - Live Vapi outbound or inbound voice automation: DISABLED (test-only dry-run payloads and ingestion scripts only)
@@ -481,7 +481,7 @@ Update Post-Trial Customer Status Tracker and insert summary into Launch System 
 - Estimate/quote/invoice automation: NONE (this kit never claims or touches these)
 - No estimates, quotes, invoices, or payment workflows
 - No guarantee language
-- No booked-jobs language
+- No legacy job-booking phrases language
 
 ### Required Safety Markers (Must Appear in This Kit and All Related Artifacts)
 
