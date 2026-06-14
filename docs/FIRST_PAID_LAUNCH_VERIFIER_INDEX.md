@@ -165,6 +165,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Production Implementation Sequencing and Approval Plan doc: `docs/PRODUCTION_IMPLEMENTATION_SEQUENCING_AND_APPROVAL_PLAN.md`
 - Production Implementation Sequencing and Approval Plan wrapper: `scripts/run-production-implementation-sequencing-and-approval-plan-dry-run.sh`
 - Production Implementation Sequencing and Approval Plan verifier: `node backend/scripts/verify-production-implementation-sequencing-and-approval-plan-readonly.js`
+- Production Config / Env Readiness Audit Packet doc: `docs/PRODUCTION_CONFIG_ENV_READINESS_AUDIT_PACKET.md`
+- Production Config / Env Readiness Audit Packet wrapper: `scripts/run-production-config-env-readiness-audit-packet-dry-run.sh`
+- Production Config / Env Readiness Audit Packet verifier: `node backend/scripts/verify-production-config-env-readiness-audit-packet-readonly.js`
 - First Paid Roofer Launch System Packet doc: `docs/FIRST_PAID_ROOFER_LAUNCH_SYSTEM_PACKET.md`
 - First Paid Roofer Launch System Packet wrapper: `scripts/run-first-paid-roofer-launch-system-packet-dry-run.sh`
 - First Paid Roofer Launch System Packet verifier: `node backend/scripts/verify-first-paid-roofer-launch-system-packet-readonly.js`
