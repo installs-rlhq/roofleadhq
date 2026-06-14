@@ -323,7 +323,7 @@ assertSectionWithContent(doc, "## 15. Safety guardrails", [
   "Auth / RLS / security policy implementation or changes: NONE",
   "No estimates, quotes, invoices, or payment workflows",
   "No guarantee language",
-  "No booked-jobs language",
+  "No legacy job-booking phrases language",
   "Migration changes: none, schema changes: none, auth/RLS/security: none, env/secrets: none, production routes: none"
 ], "first paid roofer trial conversion payment handoff kit doc");
 
