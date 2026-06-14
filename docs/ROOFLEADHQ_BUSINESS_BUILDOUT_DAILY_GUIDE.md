@@ -5496,3 +5496,11 @@ WEBSITE_TRIAL_DIRECTION_REGRESSION_PACKET
 ## End of updates for this session
 
 Safety remains demo ready with live automation disabled. Stop after all listed checks, gates, and diff proof. Do not commit if any verifier fails. Do not push.
+
+## Staged End-to-End Testing Readiness + Execution Plan
+
+- New: `docs/STAGED_END_TO_END_TESTING_READINESS_EXECUTION_PLAN.md` + `scripts/run-staged-e2e-testing-readiness-dry-run.sh` + `backend/scripts/verify-staged-e2e-testing-readiness-execution-plan-readonly.js`.
+- Purpose: moves RoofLeadHQ toward safe staged end-to-end testing as soon as possible while preserving `demo_ready_with_live_automation_disabled`.
+- Scope: fixture/sample lead intake through AI response, AI follow-up, lead qualification, missed-lead recovery, appointment/inspection readiness, roofer calendar handoff simulation, homeowner/roofer communication review, reporting snapshot, trial/payment language handling, operator review, and PASS/HOLD/BLOCKED evidence.
+- Safety: dry-run/test-mode only; no live SMS, no external sends, no production writes, no production Supabase writes, no calendar booking automation, no payment automation, no credentials/env changes, no public route activation.
+- Next step: build or identify the safe local/test-mode E2E runner that executes fixture lead scenarios and writes evidence artifacts without external side effects.
