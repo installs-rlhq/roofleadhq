@@ -174,6 +174,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - CSV Export Readiness Packet doc: `docs/CSV_EXPORT_READINESS_PACKET.md`
 - CSV Export Readiness Packet wrapper: `scripts/run-csv-export-readiness-dry-run.sh`
 - CSV Export Readiness Packet verifier: `node backend/scripts/verify-csv-export-readiness-readonly.js`
+- Fillout Implementation Checklist Packet doc: `docs/FILLOUT_IMPLEMENTATION_CHECKLIST_PACKET.md`
+- Fillout Implementation Checklist Packet wrapper: `scripts/run-fillout-implementation-checklist-dry-run.sh`
+- Fillout Implementation Checklist Packet verifier: `node backend/scripts/verify-fillout-implementation-checklist-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1492,5 +1495,22 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-csv-export-readiness-readonly.js`
 - Purpose: read-only guard that confirms the CSV export readiness packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for CSV purpose/scope, field definitions, plan-tier availability, example header/sample row, Lindy bridge relationship, data handling notes, preferred/forbidden language guardrails, and full safety posture.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Fillout Implementation Checklist Packet
+
+- Doc: `docs/FILLOUT_IMPLEMENTATION_CHECKLIST_PACKET.md`
+- Wrapper: `scripts/run-fillout-implementation-checklist-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-fillout-implementation-checklist-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: manual Fillout implementation checklist for the revised 16-section roofer intake/setup form — Jason enters the form in Fillout UI by hand; responses inform Guided Setup, plan-fit routing (Starter/Growth/Elite/Custom Review), custom-review routing, and future native workflow configuration; all 16 sections with recommended question sets; monthly lead volume bands; lead source/CRM/reporting questions; CSV one-directional boundary; phone/calendar and RoofLeadHQ-provided phone guidance; roofer-first escalation; post-inspection follow-up/feedback; permission_to_use_publicly yes/no/not_asked; photo handling future/optional boundary; unsupported/later-only requests; messaging compliance; report recipients; final plan-fit/internal routing summary; native workflow and Lindy bridge relationships; forbidden/preferred language guardrails.
+- Verifier enforces: packet doc and wrapper exist; purpose/scope; no live Fillout publication/no Fillout API boundary; all 16 sections; recommended question sets; plan-fit routing including 2+ locations and 500+ Custom Review triggers; volume bands and lead source options; CRM/reporting and CSV boundary; phone/calendar guidance; human review/escalation model; post-inspection and feedback questions; permission_to_use_publicly; photo/unsupported/messaging compliance/report recipients/final routing sections; native workflow and Lindy bridge relationships; forbidden language absent; safety boundaries; wrapper wiring; aggregate/index/context/business-guide cross-references.
+- Safety: planning/readiness/placement only. No live Fillout form publication, no Fillout API calls, no production customer data collection, no production data reads, no customer data handling changes, no backend live activation, no integrations activated, no external sends, no production Supabase writes, no auth/RLS/schema/security changes, no env/credential changes, no public route activation, no live SMS/Twilio/Vapi/Resend/Calendar/Lindy activation. Read-only verifier and dry-run wrapper only. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Fillout Implementation Checklist Verifier
+
+- Script: `backend/scripts/verify-fillout-implementation-checklist-readonly.js`
+- Purpose: read-only guard that confirms the Fillout implementation checklist packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for all 16 form sections, plan-fit routing, native workflow/Lindy bridge relationships, preferred/forbidden language guardrails, and full safety posture.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.

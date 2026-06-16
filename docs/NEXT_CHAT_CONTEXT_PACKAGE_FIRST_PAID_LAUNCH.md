@@ -5474,3 +5474,34 @@ Packet scope:
 The wrapper `scripts/run-csv-export-readiness-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: planning/readiness/placement only. No live CSV generation from production data, no CRM connection, no production data reads, no live publication or activation. Stop after gates and diff proof. Do not commit or push.
+
+## Fillout Implementation Checklist Packet
+
+The Fillout Implementation Checklist Packet is a planning/readiness/placement artifact that provides a manual implementation checklist for Jason to enter the revised 16-section RoofLeadHQ roofer intake/setup form into Fillout. It does not publish a live form, call the Fillout API, collect production customer data, or activate live automation. Responses inform Guided Setup, plan-fit routing, custom-review routing, and future native workflow configuration.
+
+Added files:
+- `docs/FILLOUT_IMPLEMENTATION_CHECKLIST_PACKET.md`
+- `scripts/run-fillout-implementation-checklist-dry-run.sh`
+- `backend/scripts/verify-fillout-implementation-checklist-readonly.js`
+
+Canonical source of truth before this worktree: `4750ca2 test(reporting): add csv export readiness packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Fillout Implementation Checklist" / "fillout implementation checklist" / "plan-fit routing" / "16-section" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Manual Fillout implementation checklist for all 16 form sections with recommended question sets
+- Plan-fit routing: Starter/Growth/Elite/Custom Review (2+ locations and 500+ leads/month trigger Custom Review)
+- Monthly lead volume bands, lead source options, CRM/reporting questions, CSV one-directional boundary
+- Phone/calendar setup, RoofLeadHQ-provided phone number guidance, roofer-first escalation
+- Post-inspection follow-up/feedback capture, `permission_to_use_publicly` yes/no/not_asked
+- Photo handling future/optional boundary, unsupported/later-only requests, messaging compliance
+- Report recipients, final plan-fit/internal routing summary
+- Native workflow configuration relationship and Lindy bridge relationship
+
+The wrapper `scripts/run-fillout-implementation-checklist-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: planning/readiness/placement only. No live Fillout publication, no Fillout API calls, no production customer data collection, no live publication or activation. Stop after gates and diff proof. Do not commit or push.

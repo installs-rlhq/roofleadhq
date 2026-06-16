@@ -5629,3 +5629,31 @@ The packet documents:
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, native reporting readiness, Supabase source of truth). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
 
 Safety: planning/readiness/placement only. No live CSV generation from production data, no CRM connection, no production data reads, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Fillout Implementation Checklist Packet
+
+The founder-led launch now includes a planning/readiness packet for manual Fillout implementation of the revised 16-section roofer intake/setup form.
+
+Files:
+- `docs/FILLOUT_IMPLEMENTATION_CHECKLIST_PACKET.md`
+- `scripts/run-fillout-implementation-checklist-dry-run.sh`
+- `backend/scripts/verify-fillout-implementation-checklist-readonly.js`
+
+Canonical source of truth before this worktree: `4750ca2 test(reporting): add csv export readiness packet`
+
+Verifier enforces references to the packet artifacts and "Fillout Implementation Checklist" / "fillout implementation checklist" / "plan-fit routing" / "16-section" across aggregate, index, contexts, and business guide.
+
+The packet documents:
+- Manual Fillout implementation checklist for all 16 form sections with recommended question sets
+- Plan-fit routing: Starter/Growth/Elite/Custom Review (2+ locations and 500+ leads/month trigger Custom Review)
+- Monthly lead volume bands, lead source options, CRM/reporting questions, CSV one-directional boundary
+- Phone/calendar setup, RoofLeadHQ-provided phone number guidance, roofer-first escalation
+- Post-inspection follow-up/feedback capture, `permission_to_use_publicly` yes/no/not_asked
+- Photo handling future/optional boundary, unsupported/later-only requests, messaging compliance
+- Report recipients, final plan-fit/internal routing summary
+- Native workflow configuration relationship; Fillout is intake/setup data only — not the workflow brain
+- Lindy bridge relationship aligned to `docs/LINDY_BRIDGE_NATIVE_WORKFLOW_MIGRATION_PLAN.md`
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, guided setup, plan-fit routing, custom review, native workflow configuration). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
+
+Safety: planning/readiness/placement only. No live Fillout publication, no Fillout API calls, no production customer data collection, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

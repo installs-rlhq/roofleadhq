@@ -707,6 +707,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Fillout Implementation Checklist Packet (docs/FILLOUT_IMPLEMENTATION_CHECKLIST_PACKET.md + scripts/run-fillout-implementation-checklist-dry-run.sh) -- manual Fillout implementation checklist for revised 16-section roofer intake/setup form: purpose/scope, all 16 form sections with recommended question sets, plan-fit routing (Starter/Growth/Elite/Custom Review), monthly lead volume bands, lead source/CRM/reporting questions, CSV one-directional boundary, phone/calendar setup guidance, RoofLeadHQ-provided phone number guidance, roofer-first escalation and limited RoofLeadHQ/Jason system-quality review, post-inspection follow-up/feedback capture, permission_to_use_publicly yes/no/not_asked, photo handling future/optional boundary, unsupported/later-only requests, messaging compliance, report recipients, final plan-fit/internal routing summary, native workflow configuration relationship, Lindy bridge relationship, forbidden/preferred language guardrails, and full safety/no-live-activation/no-production-data/no-Fillout-API boundaries',
+    script: 'backend/scripts/verify-fillout-implementation-checklist-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

@@ -1784,3 +1784,29 @@ Key alignment for roofer dry-run onboarding:
 - `permission_to_use_publicly` uses yes / no / not_asked only
 
 Safety remains planning/readiness/placement only. No live CSV generation from production data, no CRM connection, no production data reads, no production activation. demo_ready_with_live_automation_disabled.
+
+## Fillout Implementation Checklist Packet
+
+The Fillout Implementation Checklist Packet documents the manual implementation checklist for the revised 16-section roofer intake/setup form for roofer dry-run onboarding and first-paid launch planning: plan-fit routing, Guided Setup alignment, and future native workflow configuration mapping.
+
+Added files:
+- `docs/FILLOUT_IMPLEMENTATION_CHECKLIST_PACKET.md`
+- `scripts/run-fillout-implementation-checklist-dry-run.sh`
+- `backend/scripts/verify-fillout-implementation-checklist-readonly.js`
+
+Canonical source of truth before this worktree: `4750ca2 test(reporting): add csv export readiness packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Fillout Implementation Checklist" / "fillout implementation checklist" / "plan-fit routing" / "16-section" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Manual Fillout entry only — no API calls, no live form publication
+- 16-section intake form supports Guided Setup and plan-fit routing (Starter/Growth/Elite/Custom Review)
+- 2+ locations and 500+ leads/month trigger Custom Review
+- Fillout is intake/setup data only — native RoofLeadHQ/Supabase owns workflow state
+- Roofer-first escalation; RoofLeadHQ/Jason limited to system/workflow/data quality issues
+
+Safety remains planning/readiness/placement only. No live Fillout publication, no Fillout API calls, no production customer data collection, no production activation. demo_ready_with_live_automation_disabled.

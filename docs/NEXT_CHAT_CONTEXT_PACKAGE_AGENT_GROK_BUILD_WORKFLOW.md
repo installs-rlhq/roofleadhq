@@ -754,3 +754,42 @@ node backend/scripts/verify-csv-export-readiness-readonly.js
 ```
 
 Safety remains: planning/readiness/placement only. No live CSV generation from production data, no CRM connection, no production data reads, no live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## Fillout Implementation Checklist Packet
+
+Latest Grok Build planning packet for manual Fillout implementation of the revised 16-section roofer intake/setup form.
+
+Added files:
+- `docs/FILLOUT_IMPLEMENTATION_CHECKLIST_PACKET.md`
+- `scripts/run-fillout-implementation-checklist-dry-run.sh`
+- `backend/scripts/verify-fillout-implementation-checklist-readonly.js`
+
+Canonical source of truth before this worktree: `4750ca2 test(reporting): add csv export readiness packet`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Fillout Implementation Checklist" / "fillout implementation checklist" / "plan-fit routing" / "16-section" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Manual Fillout implementation checklist for 16-section intake form
+- Plan-fit routing (Starter/Growth/Elite/Custom Review), lead volume bands, lead source/CRM/reporting questions
+- Phone/calendar setup, roofer-first escalation, post-inspection follow-up/feedback capture
+- Native workflow configuration relationship and Lindy bridge relationship
+- Forbidden/preferred public language guardrails
+
+Dry-run command:
+
+```bash
+bash scripts/run-fillout-implementation-checklist-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-fillout-implementation-checklist-readonly.js
+```
+
+Safety remains: planning/readiness/placement only. No live Fillout publication, no Fillout API calls, no production customer data collection, no live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
