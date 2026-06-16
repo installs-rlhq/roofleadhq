@@ -91,6 +91,37 @@ const GUARD_CATEGORIES = {
     'customer_responsible_for_downloaded_exported_data',
     'roi_depends_on_customer_provided_spend_source_data',
   ],
+  reporting_guard_assertions: [
+    'reporting_snapshot_uses_fake_data_only',
+    'reporting_snapshot_does_not_touch_production_data',
+    'weekly_report_snapshot_present',
+    'monthly_report_snapshot_present',
+    'lead_source_summary_present',
+    'appointment_inspection_summary_present',
+    'post_inspection_summary_present',
+    'feedback_permission_summary_present',
+    'csv_snapshot_present',
+    'csv_header_contains_required_fields',
+    'csv_sample_rows_are_fictional',
+    'csv_calendar_owner_not_jason_rlhq',
+    'permission_to_use_publicly_values_are_valid',
+    'permissiontousepublicly_absent',
+    'csv_export_is_one_directional',
+    'csv_not_native_crm_sync',
+    'csv_does_not_push_data_back',
+    'csv_does_not_auto_update_from_downloaded_file',
+    'csv_contains_homeowner_personal_information_warning',
+    'customer_responsible_for_downloaded_exported_data',
+    'source_roi_depends_on_customer_provided_spend_source_data',
+    'no_exact_roi_promise_without_customer_data',
+    'starter_reporting_limited_to_basic_summary',
+    'growth_reporting_includes_source_tracking_and_csv',
+    'elite_reporting_includes_advanced_segmentation_if_provided',
+    'custom_reporting_requires_review_for_complex_scope',
+    'live_csv_delivery_blocked_when_flag_false',
+    'live_reporting_delivery_blocked_when_flag_false',
+    'reporting_does_not_call_external_services',
+  ],
   activation_flag_guards: [
     'activation_flags_default_false',
     'live_sms_blocked_when_flag_false',
@@ -262,37 +293,465 @@ function baseFixture() {
 
 const BASE_GUARD_PASS = {};
 
-const FAKE_REPORTING_SNAPSHOT = {
-  total_leads: 42,
-  booked_inspections: 12,
-  inspection_completed: 9,
-  still_open: 3,
-  roofer_review_needed: 2,
-  roofleadhq_review_needed: 1,
-  feedback_captured: 5,
-  csv_export_state: 'fixture_snapshot_only',
-};
+const CSV_HEADER_FIELDS = [
+  'lead_id',
+  'report_period',
+  'lead_created_date',
+  'homeowner_name',
+  'homeowner_phone',
+  'homeowner_email',
+  'service_address',
+  'city',
+  'state',
+  'service_area',
+  'lead_source',
+  'lead_source_detail',
+  'lead_type',
+  'urgency',
+  'roofing_issue_summary',
+  'photos_available',
+  'photos_received',
+  'first_response_sent',
+  'first_response_time_minutes',
+  'follow_up_count',
+  'current_lead_status',
+  'missed_lead_recovery_used',
+  'homeowner_replied',
+  'roofer_review_needed',
+  'roofleadhq_review_needed',
+  'review_reason',
+  'appointment_booked',
+  'appointment_date',
+  'appointment_time',
+  'appointment_status',
+  'appointment_readiness_status',
+  'calendar_owner',
+  'assigned_roofer_or_rep',
+  'inspection_completed',
+  'missed_or_rescheduled',
+  'appointment_issue',
+  'estimate_needed',
+  'estimate_sent',
+  'homeowner_follow_up_needed',
+  'roofer_follow_up_needed',
+  'post_inspection_status',
+  'outcome',
+  'outcome_date',
+  'still_open_days',
+  'next_step_owner',
+  'next_step_due_date',
+  'feedback_requested',
+  'feedback_captured',
+  'feedback_summary',
+  'testimonial_candidate',
+  'permission_to_use_publicly',
+  'feedback_issue_flag',
+  'lead_source_total_count',
+  'booked_inspection_from_source',
+  'inspection_completed_from_source',
+  'won_from_source',
+  'lost_from_source',
+  'still_open_from_source',
+  'ad_spend_if_provided',
+  'cost_per_lead_if_provided',
+  'cost_per_booked_inspection_if_provided',
+  'roi_notes',
+];
 
-const FAKE_CSV_SNAPSHOT = {
-  lead_id: 'lead-fix-019',
+const LEAD_SOURCE_NAMES = [
+  'Website form',
+  'Google Ads',
+  'Google Business Profile',
+  'Google Local Services Ads',
+  'Facebook Lead Ads',
+  'Angi / HomeAdvisor',
+  'Thumbtack',
+  'Referrals',
+  'Manual outreach list',
+  'Other',
+];
+
+function buildReportingSnapshot(overrides) {
+  return {
+    report_period: '2026-W24',
+    generated_from: 'fixture_runner_fake_data',
+    fake_data_only: true,
+    total_leads: 42,
+    new_leads: 8,
+    missing_info_leads: 3,
+    duplicate_review_leads: 2,
+    bad_fit_or_excluded_leads: 1,
+    stopped_do_not_contact_leads: 1,
+    responses_ready_or_sent: 30,
+    follow_up_pending: 5,
+    missed_lead_recovery_active: 4,
+    homeowner_replied: 18,
+    roofer_review_needed: 2,
+    roofleadhq_review_needed: 1,
+    appointment_readiness_pending: 6,
+    appointment_ready: 10,
+    appointment_booked: 12,
+    inspection_completed: 9,
+    inspection_missed_or_reschedule_needed: 2,
+    post_inspection_follow_up_needed: 4,
+    estimate_needed: 3,
+    estimate_sent: 2,
+    homeowner_follow_up_needed: 2,
+    roofer_follow_up_needed: 3,
+    still_open: 3,
+    won: 4,
+    lost: 2,
+    feedback_requested: 7,
+    feedback_captured: 5,
+    feedback_issue_flagged: 0,
+    permission_to_use_publicly_yes: 2,
+    permission_to_use_publicly_no: 1,
+    permission_to_use_publicly_not_asked: 2,
+    csv_export_state: 'fixture_snapshot_only',
+    live_delivery_blocked_by_activation_flag: true,
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    ...overrides,
+  };
+}
+
+function buildCsvSampleRow(overrides) {
+  return {
+    lead_id: 'lead-fix-019-a',
+    report_period: '2026-06',
+    lead_created_date: '2026-06-01',
+    homeowner_name: 'Alex Fixture',
+    homeowner_phone: '+15555550101',
+    homeowner_email: 'alex.fixture@example.test',
+    service_address: '123 Fixture Lane',
+    city: 'Testville',
+    state: 'TX',
+    service_area: 'North Dallas',
+    lead_source: 'Google Ads',
+    lead_source_detail: 'fixture_campaign_summer',
+    lead_type: 'residential_repair',
+    urgency: 'within_week',
+    roofing_issue_summary: 'Fixture leak near chimney',
+    photos_available: 'yes',
+    photos_received: 'yes',
+    first_response_sent: 'yes',
+    first_response_time_minutes: 12,
+    follow_up_count: 2,
+    current_lead_status: 'APPOINTMENT_BOOKED',
+    missed_lead_recovery_used: 'no',
+    homeowner_replied: 'yes',
+    roofer_review_needed: 'no',
+    roofleadhq_review_needed: 'no',
+    review_reason: '',
+    appointment_booked: 'yes',
+    appointment_date: '2026-07-15',
+    appointment_time: '14:00',
+    appointment_status: 'booked',
+    appointment_readiness_status: 'ready',
+    calendar_owner: 'Acme Roofing Calendar',
+    assigned_roofer_or_rep: 'Fixture Rep A',
+    inspection_completed: 'no',
+    missed_or_rescheduled: 'no',
+    appointment_issue: '',
+    estimate_needed: 'no',
+    estimate_sent: 'no',
+    homeowner_follow_up_needed: 'no',
+    roofer_follow_up_needed: 'no',
+    post_inspection_status: 'pending',
+    outcome: 'still_open',
+    outcome_date: '',
+    still_open_days: 0,
+    next_step_owner: 'roofer',
+    next_step_due_date: '2026-07-15',
+    feedback_requested: 'no',
+    feedback_captured: 'no',
+    feedback_summary: '',
+    testimonial_candidate: 'no',
+    permission_to_use_publicly: 'not_asked',
+    feedback_issue_flag: 'no',
+    lead_source_total_count: 8,
+    booked_inspection_from_source: 3,
+    inspection_completed_from_source: 2,
+    won_from_source: 1,
+    lost_from_source: 0,
+    still_open_from_source: 2,
+    ad_spend_if_provided: null,
+    cost_per_lead_if_provided: 'not_provided',
+    cost_per_booked_inspection_if_provided: 'not_provided',
+    roi_notes: 'ROI depends on customer-provided spend/source data; no exact ROI promised',
+    ...overrides,
+  };
+}
+
+function buildCsvExportSnapshot(overrides) {
+  return {
+    header_row: CSV_HEADER_FIELDS,
+    sample_rows: [
+      buildCsvSampleRow({
+        lead_id: 'lead-fix-019-a',
+        homeowner_name: 'Alex Fixture',
+        permission_to_use_publicly: 'yes',
+        calendar_owner: 'Acme Roofing Calendar',
+      }),
+      buildCsvSampleRow({
+        lead_id: 'lead-fix-019-b',
+        homeowner_name: 'Blake Sample',
+        homeowner_phone: '+15555550202',
+        homeowner_email: 'blake.sample@example.test',
+        lead_source: 'Referrals',
+        permission_to_use_publicly: 'no',
+        calendar_owner: 'Main Sales Calendar',
+        current_lead_status: 'FEEDBACK_CAPTURED',
+        inspection_completed: 'yes',
+        feedback_captured: 'yes',
+      }),
+      buildCsvSampleRow({
+        lead_id: 'lead-fix-019-c',
+        homeowner_name: 'Casey Demo',
+        homeowner_phone: '+15555550303',
+        lead_source: 'Website form',
+        permission_to_use_publicly: 'not_asked',
+        calendar_owner: 'Main Sales Calendar',
+        ad_spend_if_provided: 500,
+        cost_per_lead_if_provided: 62.5,
+        cost_per_booked_inspection_if_provided: 125,
+        roi_notes: 'Fixture customer-provided spend; indicative only, not exact ROI',
+      }),
+    ],
+    row_count: 3,
+    report_period: '2026-06',
+    generated_from: 'fixture_runner_fake_data',
+    fake_data_only: true,
+    one_directional_export: true,
+    native_crm_sync: false,
+    pushes_data_back_to_roofleadhq: false,
+    auto_updates_from_downloaded_file: false,
+    contains_homeowner_personal_information: true,
+    customer_responsible_for_downloaded_exported_data: true,
+    live_delivery_blocked_by_activation_flag: true,
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    ...overrides,
+  };
+}
+
+function buildLeadSourceSummary() {
+  return LEAD_SOURCE_NAMES.map((lead_source, index) => ({
+    lead_source,
+    total_count: 5 + index,
+    appointment_booked_count: index % 4,
+    inspection_completed_count: index % 3,
+    won_count: index % 2,
+    lost_count: index % 2,
+    still_open_count: 1 + (index % 2),
+    missed_lead_recovery_count: index % 2,
+    feedback_captured_count: index % 2,
+    ad_spend_if_provided:
+      lead_source === 'Google Ads' ? 1200 : lead_source === 'Facebook Lead Ads' ? null : null,
+    cost_per_lead_if_provided:
+      lead_source === 'Google Ads' ? 48.0 : 'not_provided',
+    cost_per_booked_inspection_if_provided:
+      lead_source === 'Google Ads' ? 96.0 : 'not_provided',
+    roi_notes:
+      lead_source === 'Google Ads'
+        ? 'Fixture customer-provided spend; indicative only, not exact ROI'
+        : 'ROI depends on customer-provided spend/source data; unavailable without spend data',
+    data_quality_note: 'fixture_fake_data_only',
+  }));
+}
+
+function buildPlanReportingProfiles() {
+  return {
+    starter: {
+      profile_name: 'Starter reporting profile',
+      basic_lead_count: true,
+      basic_response_follow_up_summary: true,
+      basic_appointment_booked_status: true,
+      basic_weekly_monthly_summary: true,
+      limited_basic_csv_summary: true,
+      advanced_source_roi_by_default: false,
+      complex_routing_summary_by_default: false,
+      lead_source_tracking: false,
+      missed_lead_recovery_tracking: false,
+      csv_export: false,
+    },
+    growth: {
+      profile_name: 'Growth reporting profile',
+      lead_source_tracking: true,
+      missed_lead_recovery_tracking: true,
+      appointment_readiness_tracking: true,
+      booked_inspection_tracking: true,
+      post_inspection_follow_up_tracking: true,
+      feedback_capture_tracking: true,
+      weekly_monthly_reporting: true,
+      csv_export: true,
+      advanced_source_segmentation: false,
+    },
+    elite: {
+      profile_name: 'Elite reporting profile',
+      deeper_source_segmentation: true,
+      advanced_reporting: true,
+      larger_review_queue_visibility: true,
+      detailed_csv_export: true,
+      source_conversion_summaries: true,
+      campaign_ad_source_if_provided: true,
+      roi_fields_when_customer_spend_provided: true,
+      roi_fields_without_customer_data: 'unavailable',
+    },
+    custom_review: {
+      profile_name: 'Custom Review reporting profile',
+      monthly_leads_threshold: '500+',
+      locations_minimum: 2,
+      multiple_calendars: true,
+      multiple_phone_numbers: true,
+      multiple_sales_reps: true,
+      complex_routing: true,
+      advanced_reporting: true,
+      unusual_integration_needs: true,
+      custom_reporting_fields: true,
+      requires_review_before_self_serve: true,
+    },
+  };
+}
+
+function reportingImpact(config) {
+  return {
+    scenario_id: config.scenario_id,
+    reporting_focus: config.reporting_focus,
+    report_period: config.report_period || 'weekly',
+    plan_profile: config.plan_profile || 'growth',
+    fake_data_only: true,
+    fields_highlighted: config.fields_highlighted || [],
+    csv_included: config.csv_included || false,
+    live_delivery_blocked_by_activation_flag: true,
+    live_actions_performed: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    notes: config.notes || 'fixture_reporting_impact',
+  };
+}
+
+function buildTopLevelReporting(outputBase) {
+  const weeklySnapshot = buildReportingSnapshot({ report_period: '2026-W24' });
+  const monthlySnapshot = buildReportingSnapshot({ report_period: '2026-06' });
+  const csvSnapshot = buildCsvExportSnapshot();
+
+  return {
+    reporting_snapshot_summary: {
+      description:
+        'Deterministic fake-data reporting snapshot summary across weekly and monthly report periods',
+      weekly_snapshot: weeklySnapshot,
+      monthly_snapshot: monthlySnapshot,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      live_delivery_blocked_by_activation_flag: true,
+      scenario_count: outputBase.scenario_count,
+    },
+    report_periods: ['weekly', 'monthly'],
+    plan_reporting_profiles: buildPlanReportingProfiles(),
+    lead_source_summary: buildLeadSourceSummary(),
+    appointment_inspection_summary: {
+      appointment_readiness_pending: weeklySnapshot.appointment_readiness_pending,
+      appointment_ready: weeklySnapshot.appointment_ready,
+      appointment_booked: weeklySnapshot.appointment_booked,
+      inspection_completed: weeklySnapshot.inspection_completed,
+      inspection_missed_or_reschedule_needed:
+        weeklySnapshot.inspection_missed_or_reschedule_needed,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    post_inspection_summary: {
+      post_inspection_follow_up_needed: weeklySnapshot.post_inspection_follow_up_needed,
+      estimate_needed: weeklySnapshot.estimate_needed,
+      estimate_sent: weeklySnapshot.estimate_sent,
+      homeowner_follow_up_needed: weeklySnapshot.homeowner_follow_up_needed,
+      roofer_follow_up_needed: weeklySnapshot.roofer_follow_up_needed,
+      still_open: weeklySnapshot.still_open,
+      won: weeklySnapshot.won,
+      lost: weeklySnapshot.lost,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    feedback_permission_summary: {
+      feedback_requested: weeklySnapshot.feedback_requested,
+      feedback_captured: weeklySnapshot.feedback_captured,
+      feedback_issue_flagged: weeklySnapshot.feedback_issue_flagged,
+      permission_to_use_publicly_yes: weeklySnapshot.permission_to_use_publicly_yes,
+      permission_to_use_publicly_no: weeklySnapshot.permission_to_use_publicly_no,
+      permission_to_use_publicly_not_asked: weeklySnapshot.permission_to_use_publicly_not_asked,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    csv_export_snapshot_summary: csvSnapshot,
+    roi_boundary_summary: {
+      roi_depends_on_customer_provided_spend_source_data: true,
+      no_exact_roi_promise_without_customer_data: true,
+      roi_fields_null_or_not_provided_by_default: true,
+      customer_provided_spend_example_sources: ['Google Ads'],
+      boundary_note:
+        'Source ROI fields are null, not_provided, or clearly marked unavailable unless fake customer-provided spend/source data is present. RoofLeadHQ does not promise exact ROI.',
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    reporting_safety_assertions: [
+      'reporting_snapshot_uses_fake_data_only',
+      'reporting_snapshot_does_not_touch_production_data',
+      'weekly_report_snapshot_present',
+      'monthly_report_snapshot_present',
+      'lead_source_summary_present',
+      'appointment_inspection_summary_present',
+      'post_inspection_summary_present',
+      'feedback_permission_summary_present',
+      'csv_snapshot_present',
+      'csv_header_contains_required_fields',
+      'csv_sample_rows_are_fictional',
+      'csv_calendar_owner_not_jason_rlhq',
+      'permission_to_use_publicly_values_are_valid',
+      'permissiontousepublicly_absent',
+      'csv_export_is_one_directional',
+      'csv_not_native_crm_sync',
+      'csv_does_not_push_data_back',
+      'csv_does_not_auto_update_from_downloaded_file',
+      'csv_contains_homeowner_personal_information_warning',
+      'customer_responsible_for_downloaded_exported_data',
+      'source_roi_depends_on_customer_provided_spend_source_data',
+      'no_exact_roi_promise_without_customer_data',
+      'starter_reporting_limited_to_basic_summary',
+      'growth_reporting_includes_source_tracking_and_csv',
+      'elite_reporting_includes_advanced_segmentation_if_provided',
+      'custom_reporting_requires_review_for_complex_scope',
+      'live_csv_delivery_blocked_when_flag_false',
+      'live_reporting_delivery_blocked_when_flag_false',
+      'reporting_does_not_call_external_services',
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
+const FAKE_REPORTING_SNAPSHOT = buildReportingSnapshot({
   report_period: '2026-06',
-  lead_created_date: '2026-06-01',
-  homeowner_name: 'Fixture Homeowner',
-  homeowner_phone: '+15555550101',
-  homeowner_email: 'fixture.homeowner@example.test',
-  service_address: '123 Fixture Lane, Testville, TX 75001',
-  lead_source: 'Fixture Google Ads',
-  appointment_booked: 'yes',
-  appointment_status: 'booked',
-  post_inspection_status: 'still_open',
-  feedback_captured: 'yes',
-  permission_to_use_publicly: 'yes',
-  calendar_owner: 'Acme Roofing Calendar',
-  export_blocked_reason: 'live_csv_export_enabled_false',
-  homeowner_personal_information_warning: true,
-  customer_responsible_for_exported_data: true,
-  roi_depends_on_customer_spend_source_data: true,
-};
+  csv_export_state: 'fixture_snapshot_strongest',
+});
+
+const FAKE_CSV_SNAPSHOT = buildCsvExportSnapshot({
+  report_period: '2026-06',
+  row_count: 3,
+  description: 'strongest_fixture_csv_report_snapshot',
+});
 
 function buildScenario(config) {
   const guardAssertions = buildGuardAssertions(config.guard_assertion_overrides || BASE_GUARD_PASS);
@@ -312,6 +771,7 @@ function buildScenario(config) {
     final_state: config.final_state,
     review_queue_items: config.review_queue_items || [],
     reporting_snapshot: config.reporting_snapshot || null,
+    reporting_impact: config.reporting_impact || null,
     csv_snapshot_if_applicable: config.csv_snapshot_if_applicable || null,
     activation_flag_results: config.activation_flag_results || activationFlagResults(),
     audit_events: config.audit_events,
@@ -417,6 +877,17 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['no_live_send', 'fixture_only']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'normal_lead_to_appointment_readiness',
+        reporting_focus: 'appointment_readiness_tracking',
+        fields_highlighted: ['appointment_readiness_pending', 'appointment_ready'],
+        notes: 'growth_plan_appointment_readiness_counts_in_weekly_snapshot',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        appointment_readiness_pending: 1,
+        appointment_ready: 1,
+        appointment_booked: 0,
+      }),
     }),
 
     buildScenario({
@@ -611,6 +1082,16 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['recovery_simulated_only']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'missed_lead_recovery_path',
+        reporting_focus: 'missed_lead_recovery_tracking',
+        fields_highlighted: ['missed_lead_recovery_active', 'follow_up_pending'],
+        notes: 'growth_plan_missed_lead_recovery_in_source_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        missed_lead_recovery_active: 1,
+        follow_up_pending: 1,
+      }),
     }),
 
     buildScenario({
@@ -652,6 +1133,13 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['roofer_owns_business_judgment']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'roofer_review_needed_path',
+        reporting_focus: 'roofer_review_queue_visibility',
+        fields_highlighted: ['roofer_review_needed'],
+        notes: 'roofer_review_needed_increments_review_queue_count',
+      }),
+      reporting_snapshot: buildReportingSnapshot({ roofer_review_needed: 1 }),
     }),
 
     buildScenario({
@@ -697,6 +1185,13 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['system_review_only_for_workflow_data_issues']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'roofleadhq_system_review_needed_path',
+        reporting_focus: 'roofleadhq_system_review_tracking',
+        fields_highlighted: ['roofleadhq_review_needed'],
+        notes: 'system_review_needed_in_reporting_snapshot',
+      }),
+      reporting_snapshot: buildReportingSnapshot({ roofleadhq_review_needed: 1 }),
     }),
 
     buildScenario({
@@ -731,6 +1226,13 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['no_google_calendar_creation']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'appointment_booked_path',
+        reporting_focus: 'booked_inspection_tracking',
+        fields_highlighted: ['appointment_booked', 'appointment_ready'],
+        notes: 'booked_homeowner_appointment_in_appointment_inspection_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({ appointment_booked: 1, appointment_ready: 0 }),
     }),
 
     buildScenario({
@@ -758,6 +1260,16 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['post_inspection_evaluation_next']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'inspection_completed_path',
+        reporting_focus: 'inspection_completed_tracking',
+        fields_highlighted: ['inspection_completed', 'appointment_booked'],
+        notes: 'inspection_completed_in_appointment_inspection_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        inspection_completed: 1,
+        appointment_booked: 1,
+      }),
     }),
 
     buildScenario({
@@ -793,6 +1305,15 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['manual_reschedule_required']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'inspection_missed_reschedule_path',
+        reporting_focus: 'inspection_missed_reschedule_tracking',
+        fields_highlighted: ['inspection_missed_or_reschedule_needed'],
+        notes: 'missed_or_reschedule_in_appointment_inspection_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        inspection_missed_or_reschedule_needed: 1,
+      }),
     }),
 
     buildScenario({
@@ -820,6 +1341,16 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['follow_up_may_be_needed']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'post_inspection_still_open_path',
+        reporting_focus: 'post_inspection_still_open_tracking',
+        fields_highlighted: ['still_open', 'post_inspection_follow_up_needed'],
+        notes: 'still_open_in_post_inspection_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        still_open: 1,
+        post_inspection_follow_up_needed: 1,
+      }),
     }),
 
     buildScenario({
@@ -854,6 +1385,16 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['tracking_only_no_automatic_estimate']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'estimate_needed_estimate_sent_tracking_path',
+        reporting_focus: 'estimate_tracking_only',
+        fields_highlighted: ['estimate_needed', 'estimate_sent'],
+        notes: 'estimate_tracking_in_post_inspection_summary_no_document_generated',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        estimate_needed: 1,
+        estimate_sent: 1,
+      }),
     }),
 
     buildScenario({
@@ -882,6 +1423,13 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['draft_manual_only']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'homeowner_follow_up_needed_path',
+        reporting_focus: 'homeowner_follow_up_tracking',
+        fields_highlighted: ['homeowner_follow_up_needed'],
+        notes: 'homeowner_follow_up_in_post_inspection_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({ homeowner_follow_up_needed: 1 }),
     }),
 
     buildScenario({
@@ -910,6 +1458,13 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['manual_roofer_review']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'roofer_follow_up_needed_path',
+        reporting_focus: 'roofer_follow_up_tracking',
+        fields_highlighted: ['roofer_follow_up_needed'],
+        notes: 'roofer_follow_up_in_post_inspection_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({ roofer_follow_up_needed: 1 }),
     }),
 
     buildScenario({
@@ -956,6 +1511,16 @@ function runScenarios() {
         'PERMISSION_TO_USE_PUBLICLY_YES',
         'no_automatic_public_review_generation',
       ]),
+      reporting_impact: reportingImpact({
+        scenario_id: 'feedback_permission_yes_path',
+        reporting_focus: 'feedback_permission_yes',
+        fields_highlighted: ['feedback_captured', 'permission_to_use_publicly_yes'],
+        notes: 'permission_yes_in_feedback_permission_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        feedback_captured: 1,
+        permission_to_use_publicly_yes: 1,
+      }),
     }),
 
     buildScenario({
@@ -995,6 +1560,16 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['feedback_internal_only']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'feedback_permission_no_path',
+        reporting_focus: 'feedback_permission_no',
+        fields_highlighted: ['feedback_captured', 'permission_to_use_publicly_no'],
+        notes: 'permission_no_in_feedback_permission_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        feedback_captured: 1,
+        permission_to_use_publicly_no: 1,
+      }),
     }),
 
     buildScenario({
@@ -1036,6 +1611,16 @@ function runScenarios() {
         'PERMISSION_TO_USE_PUBLICLY_NOT_ASKED',
         'internal_only',
       ]),
+      reporting_impact: reportingImpact({
+        scenario_id: 'feedback_permission_not_asked_path',
+        reporting_focus: 'feedback_permission_not_asked',
+        fields_highlighted: ['feedback_captured', 'permission_to_use_publicly_not_asked'],
+        notes: 'permission_not_asked_in_feedback_permission_summary',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        feedback_captured: 1,
+        permission_to_use_publicly_not_asked: 1,
+      }),
     }),
 
     buildScenario({
@@ -1099,6 +1684,19 @@ function runScenarios() {
         'csv_one_directional_reporting_only',
         'csv_not_bidirectional_crm_integration',
       ]),
+      reporting_impact: reportingImpact({
+        scenario_id: 'csv_report_snapshot_fake_data_path',
+        reporting_focus: 'strongest_csv_report_snapshot',
+        report_period: 'monthly',
+        csv_included: true,
+        fields_highlighted: [
+          'csv_export_state',
+          'appointment_booked',
+          'inspection_completed',
+          'feedback_captured',
+        ],
+        notes: 'strongest_fixture_csv_and_reporting_snapshot_with_full_header_and_sample_rows',
+      }),
     }),
 
     buildScenario({
@@ -1138,6 +1736,18 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['starter_features_only', 'no_advanced_custom_routing']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'starter_plan_profile_path',
+        reporting_focus: 'starter_plan_basic_reporting',
+        plan_profile: 'starter',
+        fields_highlighted: ['total_leads', 'appointment_booked'],
+        notes: 'starter_limited_to_basic_summary_no_advanced_source_roi',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        total_leads: 80,
+        appointment_booked: 1,
+        csv_export_state: 'limited_basic_summary_only',
+      }),
     }),
 
     buildScenario({
@@ -1180,6 +1790,23 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['growth_features_available_in_profile']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'growth_plan_profile_path',
+        reporting_focus: 'growth_plan_source_tracking_and_csv',
+        plan_profile: 'growth',
+        csv_included: true,
+        fields_highlighted: [
+          'lead_source',
+          'missed_lead_recovery_active',
+          'feedback_captured',
+        ],
+        notes: 'growth_includes_source_tracking_missed_lead_recovery_and_csv_export',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        missed_lead_recovery_active: 1,
+        feedback_captured: 1,
+        csv_export_state: 'growth_csv_export_fixture',
+      }),
     }),
 
     buildScenario({
@@ -1211,6 +1838,19 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['elite_advanced_reporting']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'elite_plan_profile_path',
+        reporting_focus: 'elite_advanced_segmentation',
+        plan_profile: 'elite',
+        csv_included: true,
+        fields_highlighted: ['lead_source', 'won', 'lost'],
+        notes: 'elite_advanced_reporting_with_roi_when_customer_spend_provided',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        won: 1,
+        lost: 0,
+        csv_export_state: 'elite_detailed_csv_fixture',
+      }),
     }),
 
     buildScenario({
@@ -1254,6 +1894,17 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['hold_until_custom_review_completed']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'custom_review_500_plus_leads_path',
+        reporting_focus: 'custom_review_complex_scope',
+        plan_profile: 'custom_review',
+        fields_highlighted: ['total_leads'],
+        notes: 'custom_review_required_for_500_plus_leads_before_self_serve_reporting',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        total_leads: 520,
+        csv_export_state: 'custom_review_pending',
+      }),
     }),
 
     buildScenario({
@@ -1291,6 +1942,16 @@ function runScenarios() {
         }),
       ],
       safety_assertions: safetyAssertions(['hold_until_custom_review_completed']),
+      reporting_impact: reportingImpact({
+        scenario_id: 'custom_review_two_plus_locations_path',
+        reporting_focus: 'custom_review_multi_location',
+        plan_profile: 'custom_review',
+        fields_highlighted: ['total_leads'],
+        notes: 'custom_review_required_for_two_plus_locations',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        csv_export_state: 'custom_review_pending',
+      }),
     }),
 
     buildScenario({
@@ -1335,6 +1996,16 @@ function runScenarios() {
         'blocked_by_activation_flag',
         'jason_approval_required_before_live_activation',
       ]),
+      reporting_impact: reportingImpact({
+        scenario_id: 'activation_flag_false_blocks_live_action_path',
+        reporting_focus: 'live_reporting_delivery_blocked',
+        fields_highlighted: ['live_delivery_blocked_by_activation_flag', 'csv_export_state'],
+        notes: 'live_csv_and_reporting_delivery_blocked_when_activation_flag_false',
+      }),
+      reporting_snapshot: buildReportingSnapshot({
+        csv_export_state: 'fixture_snapshot_blocked_live_delivery',
+        live_delivery_blocked_by_activation_flag: true,
+      }),
     }),
   ];
 }
@@ -1345,14 +2016,16 @@ function main() {
   const failed = scenarios.filter((s) => s.result !== 'PASS').length;
   const guardSummary = computeGuardSummary(scenarios);
 
-  const output = {
+  const outputBase = {
     dry_run_name: 'native_workflow_fixture_state_model_dry_run',
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      '11ac75d test(workflow): add native workflow fixture state model dry run',
+      '1b68a5d test(workflow): expand native workflow fixture guard assertions',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
+    reporting_snapshot_expansion:
+      'native_workflow_fixture_reporting_snapshot_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -1364,6 +2037,13 @@ function main() {
     guard_categories: GUARD_CATEGORIES,
     fail_closed_assertions: FAIL_CLOSED_ASSERTIONS,
     scenarios,
+  };
+
+  const reportingOutput = buildTopLevelReporting(outputBase);
+
+  const output = {
+    ...outputBase,
+    ...reportingOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -1382,10 +2062,13 @@ function main() {
       'all_scenarios_external_services_called_no',
       'all_guard_failures_safely_routed',
       'explicit_guard_assertion_coverage',
+      'explicit_reporting_snapshot_coverage',
+      'reporting_fake_data_only',
+      'reporting_live_delivery_blocked',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion and reporting snapshot coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -1393,6 +2076,7 @@ function main() {
       live_automation_status: 'disabled',
       output_mode: 'stdout_json_only',
       guard_assertion_coverage: 'expanded',
+      reporting_snapshot_coverage: 'expanded',
     },
   };
 

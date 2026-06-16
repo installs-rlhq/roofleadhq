@@ -742,6 +742,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Reporting Snapshot Expansion (docs/NATIVE_WORKFLOW_FIXTURE_REPORTING_SNAPSHOT_EXPANSION.md + scripts/run-native-workflow-fixture-reporting-snapshot-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit reporting/export snapshot coverage: reporting_snapshot_summary, weekly/monthly report periods, plan-tier reporting profiles (Starter/Growth/Elite/Custom Review), lead source summary with ROI boundaries, appointment/inspection/post-inspection/feedback permission summaries, CSV export snapshot with one-directional/no-native-CRM-sync boundaries, reporting_safety_assertions, per-scenario reporting_impact on relevant paths, strongest CSV snapshot in scenario 19; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations/live CSV delivery; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-reporting-snapshot-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

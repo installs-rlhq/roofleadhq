@@ -5814,3 +5814,32 @@ The expansion implements:
 Use preferred lead-to-inspection language (booked inspections, lead-to-inspection, fixture state model, guard assertions, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no native CRM sync. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Reporting Snapshot Expansion
+
+The founder-led launch now includes explicit reporting/export snapshot coverage across the fixture state model dry-run.
+
+Files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_REPORTING_SNAPSHOT_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-reporting-snapshot-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-reporting-snapshot-expansion-dry-run.sh`
+
+Updated runner:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `1b68a5d test(workflow): expand native workflow fixture guard assertions`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Reporting Snapshot Expansion" / "native workflow fixture reporting snapshot expansion" / "reporting snapshot expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level reporting_snapshot_summary, weekly/monthly report periods, plan-tier reporting profiles
+- Lead source summary with ROI boundaries; appointment/inspection/post-inspection/feedback summaries
+- CSV export snapshot with one-directional/no-native-CRM-sync boundaries
+- Per-scenario reporting_impact on relevant paths; strongest CSV snapshot in scenario 19
+- demo_ready_with_live_automation_disabled preserved
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (booked inspections, lead-to-inspection, fixture state model, reporting snapshot, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no native CRM sync, no live CSV generation or delivery. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

@@ -5708,3 +5708,46 @@ node backend/scripts/verify-native-workflow-fixture-guard-assertions-expansion-r
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no native CRM sync. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Reporting Snapshot Expansion
+
+The Native Workflow Fixture Reporting Snapshot Expansion deepens explicit reporting/export snapshot coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_REPORTING_SNAPSHOT_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-reporting-snapshot-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-reporting-snapshot-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js`
+
+Canonical source of truth before this worktree: `1b68a5d test(workflow): expand native workflow fixture guard assertions`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Reporting Snapshot Expansion" / "native workflow fixture reporting snapshot expansion" / "reporting snapshot expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level reporting_snapshot_summary, weekly/monthly report periods, plan-tier reporting profiles
+- Lead source summary with ROI boundaries; appointment/inspection/post-inspection/feedback summaries
+- CSV export snapshot with one-directional/no-native-CRM-sync boundaries; reporting_safety_assertions
+- Per-scenario reporting_impact on relevant paths; strongest CSV snapshot in scenario 19
+- Local E2E runner relationship; first paid roofer relationship
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-reporting-snapshot-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-reporting-snapshot-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no native CRM sync, no live CSV generation or delivery. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

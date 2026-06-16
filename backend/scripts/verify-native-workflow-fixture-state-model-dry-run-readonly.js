@@ -265,8 +265,8 @@ if (
 ) {
   fail('feedback scenarios missing permission_to_use_publicly yes/no/not_asked');
 }
-if (feedbackJson.includes('permissiontousepublicly')) {
-  fail('permissiontousepublicly must be absent');
+if (/["']permissiontousepublicly["']\s*:/.test(feedbackJson)) {
+  fail('permissiontousepublicly field name must be absent');
 }
 console.log('PASS: feedback yes/no/not_asked scenarios and permission field naming.');
 
@@ -274,40 +274,61 @@ const csvScenario = byId.csv_report_snapshot_fake_data_path;
 if (!csvScenario.reporting_snapshot || !csvScenario.csv_snapshot_if_applicable) {
   fail('CSV/report fake snapshot is not present');
 }
-const csvFields = [
+const reportingFields = [
+  'report_period',
+  'generated_from',
+  'fake_data_only',
   'total_leads',
-  'booked_inspections',
+  'appointment_booked',
   'inspection_completed',
   'still_open',
   'roofer_review_needed',
   'roofleadhq_review_needed',
   'feedback_captured',
   'csv_export_state',
+  'live_delivery_blocked_by_activation_flag',
+  'production_data_touched',
+  'external_services_called',
 ];
-for (const field of csvFields) {
+for (const field of reportingFields) {
   if (!(field in csvScenario.reporting_snapshot)) {
     fail(`reporting snapshot missing ${field}`);
   }
 }
+const csvSnap = csvScenario.csv_snapshot_if_applicable;
+if (!csvSnap.header_row || !csvSnap.sample_rows || !csvSnap.sample_rows.length) {
+  fail('csv snapshot missing header_row or sample_rows');
+}
+const csvBoundaryFields = [
+  'one_directional_export',
+  'native_crm_sync',
+  'pushes_data_back_to_roofleadhq',
+  'auto_updates_from_downloaded_file',
+  'fake_data_only',
+  'contains_homeowner_personal_information',
+  'customer_responsible_for_downloaded_exported_data',
+];
+for (const field of csvBoundaryFields) {
+  if (!(field in csvSnap)) {
+    fail(`csv snapshot missing boundary field ${field}`);
+  }
+}
+if (csvSnap.native_crm_sync !== false) fail('csv native_crm_sync must be false');
+if (csvSnap.one_directional_export !== true) fail('csv one_directional_export must be true');
+const sampleRow = csvSnap.sample_rows[0];
 const csvRowFields = [
   'lead_id',
-  'report_period',
-  'lead_created_date',
   'homeowner_name',
-  'homeowner_phone',
-  'homeowner_email',
-  'service_address',
-  'lead_source',
-  'appointment_booked',
-  'appointment_status',
-  'post_inspection_status',
-  'feedback_captured',
   'permission_to_use_publicly',
+  'calendar_owner',
 ];
 for (const field of csvRowFields) {
-  if (!(field in csvScenario.csv_snapshot_if_applicable)) {
-    fail(`csv snapshot missing ${field}`);
+  if (!(field in sampleRow)) {
+    fail(`csv sample row missing ${field}`);
   }
+}
+if (JSON.stringify(sampleRow).includes('Jason-RLHQ')) {
+  fail('csv calendar_owner must not use Jason-RLHQ');
 }
 console.log('PASS: CSV/report fake snapshot is present.');
 

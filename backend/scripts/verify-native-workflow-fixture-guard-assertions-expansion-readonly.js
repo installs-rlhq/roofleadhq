@@ -56,6 +56,7 @@ const REQUIRED_GUARD_CATEGORIES = [
   'activation_flag_guards',
   'unsupported_request_guards',
   'lindy_bridge_safety_guards',
+  'reporting_guard_assertions',
 ];
 
 const REQUIRED_CONTACT_PERMISSION_GUARDS = [
@@ -473,8 +474,8 @@ if (
 ) {
   fail('feedback scenarios missing permission_to_use_publicly yes/no/not_asked');
 }
-if (feedbackJson.includes('permissiontousepublicly')) {
-  fail('permissiontousepublicly must be absent');
+if (/["']permissiontousepublicly["']\s*:/.test(feedbackJson)) {
+  fail('permissiontousepublicly field name must be absent');
 }
 console.log('PASS: feedback scenarios use permission_to_use_publicly yes/no/not_asked.');
 
