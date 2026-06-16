@@ -687,6 +687,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Website Pricing Volume Guardrail (website/index.html + scripts/run-website-pricing-volume-guardrail-dry-run.sh + backend/scripts/verify-website-pricing-volume-guardrail-readonly.js) -- public website pricing copy aligned to approved hybrid pricing (Starter $399/mo + $499 guided setup up to 100 leads/month, Growth $699/mo + $499 guided setup up to 300 leads/month, Elite $999/mo + $799 guided setup up to 500 leads/month, Custom for 500+ or complex scope), non-punitive plan-fit language, custom-review triggers (multi-location, complex routing, multiple calendars, multiple phone numbers), lead-to-inspection positioning, preserved Guided Setup and 14-day trial language, and forbidden public language guardrails; static website copy only; read-only verifier and dry-run wrapper only',
+    script: 'backend/scripts/verify-website-pricing-volume-guardrail-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

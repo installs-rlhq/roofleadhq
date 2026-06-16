@@ -5534,3 +5534,24 @@ The packet also documents overage protection, Fillout intake question alignment,
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, missed-lead recovery, guided setup). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, or legacy pilot promise language in public materials.
 
 Safety: planning/readiness/placement only. No live website publication, no live Fillout changes, no legal publication, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Website Pricing Volume Guardrail
+
+The public website pricing section now reflects the approved hybrid pricing-volume model for the lead-to-inspection operating layer.
+
+Files:
+- `website/index.html` (pricing section)
+- `scripts/run-website-pricing-volume-guardrail-dry-run.sh`
+- `backend/scripts/verify-website-pricing-volume-guardrail-readonly.js`
+
+Approved public website pricing:
+- Starter: $399/mo + $499 guided setup, up to 100 leads/month
+- Growth: $699/mo + $499 guided setup, up to 300 leads/month
+- Elite: $999/mo + $799 guided setup, up to 500 leads/month
+- Custom: 500+ leads/month, multi-location, complex routing, multiple calendars, multiple phone numbers, or advanced reporting
+
+Plan-fit language: choose the plan that matches monthly lead volume; help place or move into the right plan before setup or the next billing cycle; high-volume/multi-location/complex routing may require custom pricing.
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, missed-lead recovery, guided setup). Preserve Guided Setup and 14-day trial language. Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, quote/invoice/payment automation, or native CRM sync promise language in public materials.
+
+Safety: static website copy only. No backend live activation, no integrations activated, no external sends, no production Supabase writes. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

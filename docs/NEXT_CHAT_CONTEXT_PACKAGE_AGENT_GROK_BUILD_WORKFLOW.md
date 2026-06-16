@@ -593,3 +593,42 @@ node backend/scripts/verify-pricing-volume-guardrail-and-intake-alignment-readon
 ```
 
 Safety remains: planning/readiness/placement only. No live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## Website Pricing Volume Guardrail
+
+Latest Grok Build static website pricing copy update for hybrid pricing and volume guardrails.
+
+Updated source:
+- `website/index.html` (pricing section)
+
+Added files:
+- `scripts/run-website-pricing-volume-guardrail-dry-run.sh`
+- `backend/scripts/verify-website-pricing-volume-guardrail-readonly.js`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces:
+- Starter/Growth/Elite/Custom structure with approved fees and volume bands (100/300/500)
+- 500+ custom review/pricing and custom triggers (multi-location, complex routing, multiple calendars, multiple phone numbers)
+- lead-to-inspection positioning and non-punitive plan-fit language
+- Preserved Guided Setup and 14-day trial language
+- Forbidden public language guardrails (no guarantee/job/revenue/quote/invoice/payment/CRM-sync language)
+- Safety/no-live-activation boundaries (static website copy only; no backend live activation, no integrations activated, no external sends, no production Supabase writes)
+
+Dry-run command:
+
+```bash
+bash scripts/run-website-pricing-volume-guardrail-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-website-pricing-volume-guardrail-readonly.js
+```
+
+Safety remains: static website copy and read-only verification only. No live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.

@@ -1423,3 +1423,20 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Purpose: read-only guard that confirms the alignment packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for pricing tiers, volume bands, overage protection, custom triggers, Fillout intake questions, legal update checklists, CSV/reporting, lead source ROI, post-inspection follow-up and feedback capture, roofer-first escalation model, photos future/optional, later-only exclusions, preferred/forbidden language guardrails, and full safety posture.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
+
+## Website Pricing Volume Guardrail
+
+- Source: `website/index.html` (pricing section)
+- Wrapper: `scripts/run-website-pricing-volume-guardrail-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-website-pricing-volume-guardrail-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: static public website pricing/advertising copy regression guard for the approved hybrid pricing model (Starter $399/mo + $499 guided setup up to 100 leads/month, Growth $699/mo + $499 guided setup up to 300 leads/month, Elite $999/mo + $799 guided setup up to 500 leads/month, Custom for 500+ or complex scope), non-punitive plan-fit language, custom-review triggers (multi-location, complex routing, multiple calendars, multiple phone numbers), lead-to-inspection positioning, preserved Guided Setup and 14-day trial language, and forbidden public language guardrails.
+- Verifier enforces: Starter/Growth/Elite/Custom structure, tier volume limits, approved fees, 500+ custom review/pricing, custom triggers, lead-to-inspection positioning, absence of guarantee/job/revenue/quote/invoice/payment/CRM-sync language, absence of live-activation markers, wrapper wiring, aggregate/index/context/business-guide cross-references.
+- Safety: static website copy only. No backend live activation, no integrations activated, no external sends, no production Supabase writes, no auth/RLS/schema/security changes, no env/credential changes, no Fillout changes, no legal publication. Read-only verifier and dry-run wrapper only. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Website Pricing Volume Guardrail Verifier
+
+- Script: `backend/scripts/verify-website-pricing-volume-guardrail-readonly.js`
+- Purpose: read-only guard that confirms `website/index.html` pricing copy, wrapper, wiring into aggregate/index/next-chat context packages and business guide, approved hybrid pricing fees and volume bands, custom-plan guardrails, lead-to-inspection positioning, and forbidden public language guardrails.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.

@@ -5355,3 +5355,33 @@ Packet content summary:
 The wrapper `scripts/run-pricing-volume-guardrail-and-intake-alignment-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: planning/readiness/placement only. No live publication or activation. Stop after gates and diff proof. Do not commit or push.
+
+## Website Pricing Volume Guardrail
+
+The public website pricing section (`website/index.html`) now reflects the approved hybrid pricing-volume model and custom-plan guardrails for the roofing lead-to-inspection operating layer.
+
+Updated source:
+- `website/index.html` (pricing section only; layout preserved)
+
+Added files:
+- `scripts/run-website-pricing-volume-guardrail-dry-run.sh`
+- `backend/scripts/verify-website-pricing-volume-guardrail-readonly.js`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages (`docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`) and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- The dedicated verifier enforces Starter/Growth/Elite/Custom structure, tier volume limits (100/300/500), approved fees ($399/$699/$999 monthly; $499/$499/$799 guided setup), 500+ custom review/pricing, custom triggers (multi-location, complex routing, multiple calendars, multiple phone numbers), lead-to-inspection positioning, plan-fit language, preserved Guided Setup and 14-day trial language, and forbidden public language guardrails.
+
+Website pricing copy summary:
+- Starter: $399/mo + $499 guided setup, up to 100 leads/month.
+- Growth: $699/mo + $499 guided setup, up to 300 leads/month.
+- Elite: $999/mo + $799 guided setup, up to 500 leads/month.
+- Custom: 500+ leads/month, multi-location, complex routing, multiple calendars/phone numbers, advanced reporting needs.
+- Preferred language: lead-to-inspection, booked inspections, booked homeowner appointments, missed-lead recovery, guided setup, appointment readiness, post-inspection follow-up, post-inspection feedback capture, CSV export.
+
+Safety: static website copy only. No backend live activation, no integrations activated, no external sends, no production Supabase writes, no auth/RLS/schema/security changes, no env/credential changes, no Fillout changes, no legal publication. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+The wrapper `scripts/run-website-pricing-volume-guardrail-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: static copy update and read-only verification only. Stop after gates and diff proof. Do not commit or push.
