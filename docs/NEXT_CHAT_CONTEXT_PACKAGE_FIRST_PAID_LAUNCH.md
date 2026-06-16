@@ -5446,3 +5446,31 @@ Packet content summary:
 The wrapper `scripts/run-lindy-bridge-native-workflow-migration-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: planning/readiness/placement only. No live publication or activation. Stop after gates and diff proof. Do not commit or push.
+
+## CSV Export Readiness Packet
+
+The CSV Export Readiness Packet is a planning/readiness/placement artifact that defines RoofLeadHQ’s native reporting/export readiness path for one-directional CSV export. CSV/reporting is ultimately owned by RoofLeadHQ backend + Supabase source-of-truth workflow state. Lindy may temporarily assist as a low-volume bridge, but Lindy must not be the long-term reporting authority, export authority, source of truth, dashboard authority, or workflow brain.
+
+Added files:
+- `docs/CSV_EXPORT_READINESS_PACKET.md`
+- `scripts/run-csv-export-readiness-dry-run.sh`
+- `backend/scripts/verify-csv-export-readiness-readonly.js`
+
+Canonical source of truth before this worktree: `ae709cb test(pilot): add Lindy bridge native workflow migration plan`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "CSV Export Readiness" / "csv export readiness" / "native reporting readiness" / "permission_to_use_publicly" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- One-directional CSV for weekly/monthly reporting, lead source tracking, inspection outcomes, post-inspection follow-up/feedback, manual CRM import/reference, operational review, and future native RoofLeadHQ/Supabase export
+- Field definitions: core lead, response/follow-up, appointment/inspection, post-inspection, feedback (`permission_to_use_publicly` yes/no/not_asked), source ROI
+- Plan-tier availability (Starter/Growth/Elite/Custom) as native workflow engine configuration profiles
+- Fictional sample row; Lindy bridge/native workflow migration relationship; data handling notes
+- Preferred language: booked inspections, booked homeowner appointments, lead-to-inspection, native reporting readiness, Supabase source of truth
+
+The wrapper `scripts/run-csv-export-readiness-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: planning/readiness/placement only. No live CSV generation from production data, no CRM connection, no production data reads, no live publication or activation. Stop after gates and diff proof. Do not commit or push.

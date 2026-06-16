@@ -5604,3 +5604,28 @@ The packet documents:
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, temporary bridge, native workflow engine, Supabase source of truth). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, native CRM sync, or review-manipulation language in customer-facing materials.
 
 Safety: planning/readiness/placement only. No live Lindy workflows, no live automations, no sends, no CRM connection, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## CSV Export Readiness Packet
+
+The founder-led launch now includes a planning/readiness packet for native reporting/export readiness and one-directional CSV export field definitions.
+
+Files:
+- `docs/CSV_EXPORT_READINESS_PACKET.md`
+- `scripts/run-csv-export-readiness-dry-run.sh`
+- `backend/scripts/verify-csv-export-readiness-readonly.js`
+
+Canonical source of truth before this worktree: `ae709cb test(pilot): add Lindy bridge native workflow migration plan`
+
+Verifier enforces references to the packet artifacts and "CSV Export Readiness" / "csv export readiness" / "native reporting readiness" / "permission_to_use_publicly" across aggregate, index, contexts, and business guide.
+
+The packet documents:
+- One-directional CSV reporting artifact for weekly/monthly reporting, lead source tracking, inspection outcomes, post-inspection follow-up/feedback, manual CRM import/reference, and future native RoofLeadHQ/Supabase export
+- Field definitions across core lead, response/follow-up, appointment/inspection, post-inspection, feedback, and source ROI groups
+- `permission_to_use_publicly` field (yes / no / not_asked); Lindy should not be long-term CSV/reporting source of truth
+- Plan-tier availability (Starter/Growth/Elite/Custom) as native workflow engine configuration profiles
+- Fictional sample row with roofer-owned calendar; Lindy bridge/native workflow migration relationship
+- Data handling notes: homeowner personal information warning; roofer/customer responsible for downloaded/exported data
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, native reporting readiness, Supabase source of truth). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
+
+Safety: planning/readiness/placement only. No live CSV generation from production data, no CRM connection, no production data reads, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

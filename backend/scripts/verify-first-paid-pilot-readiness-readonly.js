@@ -702,6 +702,11 @@ const commands = [
     args: []
   },
   {
+    name: 'CSV Export Readiness Packet (docs/CSV_EXPORT_READINESS_PACKET.md + scripts/run-csv-export-readiness-dry-run.sh) -- planning/readiness/placement packet for native reporting/export readiness path: one-directional CSV reporting artifact for weekly/monthly reporting, lead source tracking, inspection outcome visibility, post-inspection follow-up/feedback visibility, manual CRM import/reference use, operational review, and future native RoofLeadHQ/Supabase source-of-truth export; defines core lead, response/follow-up, appointment/inspection, post-inspection, feedback, and source ROI fields; permission_to_use_publicly yes/no/not_asked; plan-tier availability (Starter/Growth/Elite/Custom) as native workflow engine configuration profiles; fictional sample row with roofer-owned calendar; Lindy bridge/native workflow migration relationship; data handling notes; forbidden/preferred language guardrails; and full safety/no-live-activation/no-production-data/no-CRM-connection boundaries',
+    script: 'backend/scripts/verify-csv-export-readiness-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

@@ -1758,3 +1758,29 @@ Key alignment for roofer dry-run onboarding:
 - Staged E2E testing proves native workflow states before any channel activation
 
 Safety remains planning/readiness/placement only. No live Lindy workflows, no live automations, no sends, no CRM connection, no production activation. demo_ready_with_live_automation_disabled.
+
+## CSV Export Readiness Packet
+
+The CSV Export Readiness Packet documents native reporting/export readiness for roofer dry-run onboarding and first-paid launch planning: one-directional CSV field definitions, plan-tier availability, and future native RoofLeadHQ/Supabase source-of-truth export path.
+
+Added files:
+- `docs/CSV_EXPORT_READINESS_PACKET.md`
+- `scripts/run-csv-export-readiness-dry-run.sh`
+- `backend/scripts/verify-csv-export-readiness-readonly.js`
+
+Canonical source of truth before this worktree: `ae709cb test(pilot): add Lindy bridge native workflow migration plan`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "CSV Export Readiness" / "csv export readiness" / "native reporting readiness" / "permission_to_use_publicly" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- CSV export is a one-directional reporting artifact for operational review and future native export — not live production export yet
+- Lindy should not own CSV/reporting long term; native RoofLeadHQ/Supabase records are the target authority
+- Plan-tier field availability maps to native workflow engine configuration profiles (Starter/Growth/Elite/Custom)
+- Fictional sample data only in readiness packet; roofer/customer responsible for downloaded/exported data handling
+- `permission_to_use_publicly` uses yes / no / not_asked only
+
+Safety remains planning/readiness/placement only. No live CSV generation from production data, no CRM connection, no production data reads, no production activation. demo_ready_with_live_automation_disabled.

@@ -714,3 +714,43 @@ node backend/scripts/verify-lindy-bridge-native-workflow-migration-readonly.js
 ```
 
 Safety remains: planning/readiness/placement only. No live Lindy workflows, no live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## CSV Export Readiness Packet
+
+Latest Grok Build planning packet for native reporting/export readiness and one-directional CSV export field definitions.
+
+Added files:
+- `docs/CSV_EXPORT_READINESS_PACKET.md`
+- `scripts/run-csv-export-readiness-dry-run.sh`
+- `backend/scripts/verify-csv-export-readiness-readonly.js`
+
+Canonical source of truth before this worktree: `ae709cb test(pilot): add Lindy bridge native workflow migration plan`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "CSV Export Readiness" / "csv export readiness" / "native reporting readiness" / "permission_to_use_publicly" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- One-directional CSV reporting artifact for weekly/monthly reporting, lead source tracking, inspection outcomes, post-inspection follow-up/feedback visibility, manual CRM import/reference, operational review, and future native RoofLeadHQ/Supabase export
+- Core lead, response/follow-up, appointment/inspection, post-inspection, feedback, and source ROI field definitions
+- `permission_to_use_publicly` field (yes / no / not_asked); not owned long-term by Lindy
+- Plan-tier availability (Starter/Growth/Elite/Custom) as native workflow engine configuration profiles
+- Fictional sample row with roofer-owned calendar (Main Sales Calendar); Lindy bridge/native workflow migration relationship
+- Data handling notes; forbidden/preferred public language guardrails
+
+Dry-run command:
+
+```bash
+bash scripts/run-csv-export-readiness-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-csv-export-readiness-readonly.js
+```
+
+Safety remains: planning/readiness/placement only. No live CSV generation from production data, no CRM connection, no production data reads, no live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.

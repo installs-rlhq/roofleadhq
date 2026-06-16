@@ -171,6 +171,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Production Tenant / Account Model Readiness Packet doc: `docs/PRODUCTION_TENANT_ACCOUNT_MODEL_READINESS_PACKET.md`
 - Production Tenant / Account Model Readiness Packet wrapper: `scripts/run-production-tenant-account-model-readiness-packet-dry-run.sh`
 - Production Tenant / Account Model Readiness Packet verifier: `node backend/scripts/verify-production-tenant-account-model-readiness-packet-readonly.js`
+- CSV Export Readiness Packet doc: `docs/CSV_EXPORT_READINESS_PACKET.md`
+- CSV Export Readiness Packet wrapper: `scripts/run-csv-export-readiness-dry-run.sh`
+- CSV Export Readiness Packet verifier: `node backend/scripts/verify-csv-export-readiness-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1472,5 +1475,22 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-lindy-bridge-native-workflow-migration-readonly.js`
 - Purpose: read-only guard that confirms the Lindy bridge migration plan doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for bridge strategy, migration buckets, native ownership, first-roofer bridge approach, tier configuration profiles, staged E2E relationship, preferred/forbidden language guardrails, and full safety posture.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## CSV Export Readiness Packet
+
+- Doc: `docs/CSV_EXPORT_READINESS_PACKET.md`
+- Wrapper: `scripts/run-csv-export-readiness-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-csv-export-readiness-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: planning/readiness/placement packet defining RoofLeadHQ native reporting/export readiness for one-directional CSV export — weekly/monthly reporting, lead source tracking, inspection outcomes, post-inspection follow-up/feedback, manual CRM import/reference, operational review, and future native RoofLeadHQ/Supabase source-of-truth generation; core/response/appointment/post-inspection/feedback/ROI field definitions; permission_to_use_publicly yes/no/not_asked; plan-tier availability as native workflow engine configuration profiles (Starter/Growth/Elite/Custom); fictional sample row; Lindy bridge/native workflow migration relationship; data handling and safety boundaries.
+- Verifier enforces: packet doc and wrapper exist; CSV purpose/scope; one-way export and not two-way CRM sync boundary; not owned long-term by Lindy; future native RoofLeadHQ/Supabase reporting readiness; all field groups documented; permission_to_use_publicly yes/no/not_asked; permissiontousepublicly absent; ROI customer-data dependency; plan-tier availability and native configuration logic; example header and fictional sample row without Jason-RLHQ calendar_owner; data handling notes; Lindy bridge relationship; forbidden language absent; safety/no-live-activation/no-production-data/no-CRM-connection boundaries; wrapper wiring; aggregate/index/context/business-guide cross-references.
+- Safety: planning/readiness/placement only. No live CSV generation from production data, no CRM connection, no production data reads, no customer data handling changes, no backend live activation, no integrations activated, no external sends, no production Supabase writes, no auth/RLS/schema/security changes, no env/credential changes, no public route activation, no Lindy live activation. Read-only verifier and dry-run wrapper only. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## CSV Export Readiness Verifier
+
+- Script: `backend/scripts/verify-csv-export-readiness-readonly.js`
+- Purpose: read-only guard that confirms the CSV export readiness packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for CSV purpose/scope, field definitions, plan-tier availability, example header/sample row, Lindy bridge relationship, data handling notes, preferred/forbidden language guardrails, and full safety posture.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
