@@ -1198,3 +1198,46 @@ node backend/scripts/verify-native-workflow-fixture-post-inspection-expansion-re
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live follow-up sends, no live feedback requests, no automatic estimates/quotes/invoices/payments, no public review generation. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Feedback Permission Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FEEDBACK_PERMISSION_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-feedback-permission-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-feedback-permission-expansion-readonly.js`
+
+Updated files:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `abcd0d0 test(workflow): expand native workflow fixture post-inspection`
+
+Wiring:
+
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Feedback Permission Expansion" / "native workflow fixture feedback permission expansion" / "feedback permission expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level feedback_permission_expansion_summary, feedback_permission_items, feedback_permission_status_summary
+- testimonial_candidate_summary, feedback_issue_summary, public_use_permission_summary
+- feedback_csv_reporting_summary, feedback_review_boundary_summary, feedback_permission_safety_assertions
+- Per-scenario feedback_permission_items; no fake reviews, review farming, automatic public review generation, or testimonial publication
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-feedback-permission-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-feedback-permission-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live feedback requests, no automatic public review generation, no testimonial/public-use publication. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

@@ -5932,3 +5932,33 @@ The expansion implements:
 Use preferred lead-to-inspection language (booked inspections, post-inspection tracking, estimate tracking, follow-up tracking, feedback capture, permission_to_use_publicly, fixture state model, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live follow-up sends, no live feedback requests, no automatic estimates/quotes/invoices/payments, no public review generation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Feedback Permission Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FEEDBACK_PERMISSION_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-feedback-permission-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-feedback-permission-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `abcd0d0 test(workflow): expand native workflow fixture post-inspection`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Feedback Permission Expansion" / "native workflow fixture feedback permission expansion" / "feedback permission expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level feedback_permission_expansion_summary, feedback_permission_items, feedback_permission_status_summary
+- testimonial_candidate_summary, feedback_issue_summary, public_use_permission_summary
+- feedback_csv_reporting_summary, feedback_review_boundary_summary, feedback_permission_safety_assertions
+- Per-scenario feedback_permission_items with required fields; permission_to_use_publicly yes/no/not_asked
+- demo_ready_with_live_automation_disabled preserved; no fake reviews, review farming, automatic public review generation, or testimonial publication
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (booked inspections, post-inspection tracking, feedback capture, permission_to_use_publicly, testimonial candidate, public-use permission, fixture state model, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live feedback requests, no automatic public review generation, no testimonial/public-use publication. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

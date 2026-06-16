@@ -762,6 +762,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Feedback Permission Expansion (docs/NATIVE_WORKFLOW_FIXTURE_FEEDBACK_PERMISSION_EXPANSION.md + scripts/run-native-workflow-fixture-feedback-permission-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit feedback permission coverage: feedback_permission_expansion_summary, feedback_permission_items, feedback_permission_status_summary, testimonial_candidate_summary, feedback_issue_summary, public_use_permission_summary, feedback_csv_reporting_summary, feedback_review_boundary_summary, feedback_permission_safety_assertions; feedback not requested/requested/captured/issue flagged; permission_to_use_publicly yes/no/not_asked; public-use allowed vs blocked; testimonial candidate internal-only; roofer vs RoofLeadHQ review ownership; CSV/reporting compatibility; no fake reviews/review farming/incentivized feedback/automatic public review/testimonial publication/live feedback requests; per-scenario feedback_permission_items with required fields; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-feedback-permission-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

@@ -3088,6 +3088,395 @@ function buildTopLevelPostInspection(scenarios, outputBase) {
   };
 }
 
+const FEEDBACK_PERMISSION_SAFETY_ASSERTIONS = [
+  'feedback_permission_expansion_summary_present',
+  'feedback_permission_items_present',
+  'feedback_permission_item_required_fields_present',
+  'permission_to_use_publicly_values_are_valid',
+  'permissiontousepublicly_absent',
+  'public_use_allowed_only_when_permission_yes',
+  'public_use_blocked_when_permission_no',
+  'public_use_blocked_when_permission_not_asked',
+  'missing_permission_fails_closed_or_routes_to_review',
+  'testimonial_candidate_does_not_publish_publicly',
+  'testimonial_candidate_without_permission_remains_internal',
+  'feedback_internal_unless_permission_obtained',
+  'feedback_issue_flag_routes_to_review',
+  'homeowner_wants_follow_up_routes_to_roofer_review',
+  'negative_or_disputed_feedback_routes_to_roofer_review',
+  'pricing_estimate_quote_feedback_routes_to_roofer_review',
+  'payment_or_contract_feedback_routes_to_roofer_review',
+  'roofleadhq_review_limited_to_system_quality',
+  'feedback_permission_capture_mismatch_routes_to_roofleadhq_review',
+  'csv_permission_value_matches_permission_to_use_publicly',
+  'reporting_permission_value_matches_permission_to_use_publicly',
+  'no_fake_reviews',
+  'no_review_farming',
+  'no_incentivized_positive_feedback_request',
+  'no_automatic_public_review_generation',
+  'no_automatic_testimonial_publication',
+  'live_feedback_request_blocked_when_flag_false',
+  'feedback_permission_uses_fake_data_only',
+  'feedback_permission_does_not_touch_production_data',
+  'feedback_permission_does_not_call_external_services',
+  'feedback_permission_does_not_send_notifications',
+  'feedback_permission_decisions_are_audited',
+  'required_manual_next_step_present_for_issue_or_review_items',
+  'automatic_public_review_generated_is_no_for_all_items',
+  'testimonial_published_publicly_is_no_for_all_items',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+];
+
+const FEEDBACK_PERMISSION_EXTENSIONS = {
+  homeowner_follow_up_needed_path: {
+    homeowner_wants_follow_up: true,
+    roofer_showed_up_as_expected: true,
+    roofer_helpful_professional: true,
+  },
+  roofer_follow_up_needed_path: {
+    homeowner_wants_follow_up: true,
+    roofer_showed_up_as_expected: false,
+    roofer_helpful_professional: false,
+    negative_or_disputed_feedback: true,
+    payment_or_contract_feedback: true,
+  },
+  estimate_needed_estimate_sent_tracking_path: {
+    pricing_estimate_quote_feedback: true,
+    roofer_showed_up_as_expected: true,
+    roofer_helpful_professional: true,
+  },
+  feedback_permission_yes_path: {
+    roofer_showed_up_as_expected: true,
+    roofer_helpful_professional: true,
+  },
+  feedback_permission_no_path: {
+    roofer_showed_up_as_expected: true,
+    roofer_helpful_professional: true,
+  },
+  feedback_permission_not_asked_path: {
+    roofer_showed_up_as_expected: true,
+    roofer_helpful_professional: true,
+  },
+  csv_report_snapshot_fake_data_path: {
+    feedback_permission_capture_mismatch: true,
+    roofer_showed_up_as_expected: true,
+    roofer_helpful_professional: true,
+  },
+  roofleadhq_system_review_needed_path: {
+    roofer_showed_up_as_expected: null,
+    roofer_helpful_professional: null,
+  },
+  missed_lead_recovery_path: {
+    roofer_showed_up_as_expected: null,
+    roofer_helpful_professional: null,
+  },
+  inspection_missed_reschedule_path: {
+    roofer_showed_up_as_expected: false,
+    roofer_helpful_professional: null,
+  },
+  post_inspection_still_open_path: {
+    roofer_showed_up_as_expected: true,
+    roofer_helpful_professional: true,
+    negative_or_disputed_feedback: true,
+  },
+};
+
+function resolvePermissionReportingValue(permission) {
+  if (permission === 'yes' || permission === 'no' || permission === 'not_asked') {
+    return permission;
+  }
+  return 'not_applicable';
+}
+
+function derivePublicUseDecision(permission, testimonialCandidate) {
+  if (permission === 'yes') {
+    return {
+      public_use_allowed: true,
+      public_use_block_reason: null,
+      internal_only: false,
+    };
+  }
+  if (permission === 'no') {
+    return {
+      public_use_allowed: false,
+      public_use_block_reason: 'homeowner_denied_public_use',
+      internal_only: true,
+    };
+  }
+  if (permission === 'not_asked') {
+    return {
+      public_use_allowed: false,
+      public_use_block_reason: 'permission_not_asked',
+      internal_only: true,
+    };
+  }
+  if (testimonialCandidate) {
+    return {
+      public_use_allowed: false,
+      public_use_block_reason: 'permission_missing_fails_closed',
+      internal_only: true,
+    };
+  }
+  return {
+    public_use_allowed: false,
+    public_use_block_reason: permission === null ? 'permission_not_applicable' : 'permission_missing_fails_closed',
+    internal_only: true,
+  };
+}
+
+function buildFeedbackPermissionItem(scenario, postInspectionItem, index) {
+  if (!postInspectionItem) {
+    return null;
+  }
+  const extension = FEEDBACK_PERMISSION_EXTENSIONS[scenario.scenario_id] || {};
+  const permission = postInspectionItem.permission_to_use_publicly;
+  const publicUse = derivePublicUseDecision(permission, postInspectionItem.testimonial_candidate);
+  const csvPermissionValue = resolvePermissionReportingValue(permission);
+  const reportingPermissionValue = resolvePermissionReportingValue(permission);
+  const internalOnly =
+    publicUse.internal_only ||
+    (postInspectionItem.testimonial_candidate && permission !== 'yes') ||
+    permission === 'no' ||
+    permission === 'not_asked' ||
+    permission === null;
+
+  return {
+    feedback_permission_item_id: `${scenario.scenario_id}_feedback_permission_${index + 1}`,
+    scenario_id: scenario.scenario_id,
+    lead_id: postInspectionItem.lead_id,
+    appointment_id: postInspectionItem.appointment_id,
+    post_inspection_item_id: postInspectionItem.post_inspection_item_id,
+    plan_profile: scenario.plan_profile,
+    current_state: scenario.starting_state,
+    target_state: scenario.final_state,
+    feedback_requested: postInspectionItem.feedback_requested,
+    feedback_captured: postInspectionItem.feedback_captured,
+    feedback_summary: postInspectionItem.feedback_summary,
+    feedback_issue_flag: postInspectionItem.feedback_issue_flag,
+    testimonial_candidate: postInspectionItem.testimonial_candidate,
+    permission_to_use_publicly: permission,
+    public_use_allowed: publicUse.public_use_allowed,
+    public_use_block_reason: publicUse.public_use_block_reason,
+    internal_only: internalOnly,
+    homeowner_wants_follow_up: extension.homeowner_wants_follow_up ?? false,
+    roofer_showed_up_as_expected: extension.roofer_showed_up_as_expected ?? null,
+    roofer_helpful_professional: extension.roofer_helpful_professional ?? null,
+    roofer_review_required: postInspectionItem.roofer_review_required,
+    roofleadhq_review_required: postInspectionItem.roofleadhq_review_required,
+    required_manual_next_step: postInspectionItem.required_manual_next_step,
+    csv_permission_value: csvPermissionValue,
+    reporting_permission_value: reportingPermissionValue,
+    automatic_public_review_generated: 'no',
+    testimonial_published_publicly: 'no',
+    incentivized_positive_feedback_requested: 'no',
+    fake_review_generated: 'no',
+    review_farming_detected: 'no',
+    live_feedback_request_allowed: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    feedback_permission_capture_mismatch: extension.feedback_permission_capture_mismatch ?? false,
+    negative_or_disputed_feedback: extension.negative_or_disputed_feedback ?? false,
+    pricing_estimate_quote_feedback: extension.pricing_estimate_quote_feedback ?? false,
+    payment_or_contract_feedback: extension.payment_or_contract_feedback ?? false,
+    fake_data_only: true,
+    audit_event_id: `${scenario.scenario_id}_feedback_permission_audit_${index + 1}`,
+  };
+}
+
+function buildScenarioFeedbackPermissionItem(scenario, postInspectionItem) {
+  if (!postInspectionItem) {
+    return null;
+  }
+  return buildFeedbackPermissionItem(scenario, postInspectionItem, 0);
+}
+
+function buildTopLevelFeedbackPermission(scenarios, outputBase) {
+  const allItems = scenarios
+    .map((scenario) => {
+      const postItem = buildScenarioPostInspectionItem(scenario);
+      return buildFeedbackPermissionItem(scenario, postItem, 0);
+    })
+    .filter(Boolean);
+
+  const permissionCounts = { yes: 0, no: 0, not_asked: 0, unset: 0 };
+  for (const item of allItems) {
+    if (item.permission_to_use_publicly === 'yes') permissionCounts.yes += 1;
+    else if (item.permission_to_use_publicly === 'no') permissionCounts.no += 1;
+    else if (item.permission_to_use_publicly === 'not_asked') permissionCounts.not_asked += 1;
+    else permissionCounts.unset += 1;
+  }
+
+  const feedbackStatusCounts = {
+    not_requested: allItems.filter((i) => !i.feedback_requested && !i.feedback_captured).length,
+    requested_not_captured: allItems.filter((i) => i.feedback_requested && !i.feedback_captured).length,
+    captured: allItems.filter((i) => i.feedback_captured).length,
+    issue_flagged: allItems.filter((i) => i.feedback_issue_flag).length,
+  };
+
+  const testimonialCandidates = allItems.filter((i) => i.testimonial_candidate);
+  const issueItems = allItems.filter((i) => i.feedback_issue_flag);
+  const reviewOrIssueItems = allItems.filter(
+    (i) =>
+      i.feedback_issue_flag ||
+      i.roofer_review_required ||
+      i.roofleadhq_review_required ||
+      i.feedback_permission_capture_mismatch,
+  );
+  const publicUseAllowedItems = allItems.filter((i) => i.public_use_allowed);
+  const publicUseBlockedItems = allItems.filter((i) => !i.public_use_allowed);
+
+  return {
+    feedback_permission_expansion: 'native_workflow_fixture_feedback_permission_expansion',
+    feedback_permission_expansion_summary: {
+      description:
+        'Deterministic fake-data feedback permission expansion across all fixture scenarios — explicit homeowner feedback capture and public-use permission boundaries without live automation',
+      total_feedback_permission_items: allItems.length,
+      feedback_requested_count: allItems.filter((i) => i.feedback_requested).length,
+      feedback_captured_count: allItems.filter((i) => i.feedback_captured).length,
+      feedback_issue_flag_count: issueItems.length,
+      testimonial_candidate_count: testimonialCandidates.length,
+      public_use_allowed_count: publicUseAllowedItems.length,
+      public_use_blocked_count: publicUseBlockedItems.length,
+      permission_counts: permissionCounts,
+      live_feedback_request_enabled: false,
+      automatic_public_review_generation: false,
+      automatic_testimonial_publication: false,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    feedback_permission_items: allItems,
+    feedback_permission_status_summary: {
+      description: 'Feedback request/capture/issue status distribution across fixture scenarios',
+      status_counts: feedbackStatusCounts,
+      feedback_not_requested_count: feedbackStatusCounts.not_requested,
+      feedback_requested_count: allItems.filter((i) => i.feedback_requested).length,
+      feedback_captured_count: feedbackStatusCounts.captured,
+      feedback_issue_flagged_count: feedbackStatusCounts.issue_flagged,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    testimonial_candidate_summary: {
+      description:
+        'Testimonial candidate tracking — internal-only; no automatic public testimonial publication',
+      testimonial_candidate_count: testimonialCandidates.length,
+      testimonial_candidate_internal_only: true,
+      testimonial_candidate_without_permission_remains_internal: testimonialCandidates
+        .filter((i) => i.permission_to_use_publicly !== 'yes')
+        .every((i) => i.internal_only),
+      testimonial_published_publicly: 'no',
+      automatic_testimonial_publication: false,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    feedback_issue_summary: {
+      description: 'Feedback issue flag routing — internal review required, no automatic publication',
+      feedback_issue_flag_count: issueItems.length,
+      issue_items_route_to_review: issueItems.every(
+        (i) => i.roofer_review_required || i.roofleadhq_review_required,
+      ),
+      all_issue_items_internal_only: issueItems.every((i) => i.internal_only),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    public_use_permission_summary: {
+      description: 'Public-use permission boundaries — yes/no/not_asked only; permissiontousepublicly absent',
+      permission_counts: permissionCounts,
+      valid_values_only: ['yes', 'no', 'not_asked'],
+      permissiontousepublicly_absent: true,
+      public_use_allowed_only_when_permission_yes: publicUseAllowedItems.every(
+        (i) => i.permission_to_use_publicly === 'yes',
+      ),
+      public_use_blocked_when_permission_no: allItems
+        .filter((i) => i.permission_to_use_publicly === 'no')
+        .every((i) => !i.public_use_allowed && i.internal_only),
+      public_use_blocked_when_permission_not_asked: allItems
+        .filter((i) => i.permission_to_use_publicly === 'not_asked')
+        .every((i) => !i.public_use_allowed && i.internal_only),
+      missing_permission_fails_closed: allItems
+        .filter((i) => i.testimonial_candidate && i.permission_to_use_publicly !== 'yes')
+        .every((i) => !i.public_use_allowed),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    feedback_csv_reporting_summary: {
+      description: 'CSV and reporting permission value compatibility — matches permission_to_use_publicly',
+      csv_permission_values_match: allItems.every(
+        (i) => i.csv_permission_value === resolvePermissionReportingValue(i.permission_to_use_publicly),
+      ),
+      reporting_permission_values_match: allItems.every(
+        (i) =>
+          i.reporting_permission_value === resolvePermissionReportingValue(i.permission_to_use_publicly),
+      ),
+      csv_export_is_one_directional: true,
+      csv_not_native_crm_sync: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    feedback_review_boundary_summary: {
+      description:
+        'Feedback review ownership — roofer owns business judgment; RoofLeadHQ/Jason limited to system quality',
+      roofer_review_required_count: allItems.filter((i) => i.roofer_review_required).length,
+      roofleadhq_review_required_count: allItems.filter((i) => i.roofleadhq_review_required).length,
+      homeowner_wants_follow_up_routes_to_roofer: allItems
+        .filter((i) => i.homeowner_wants_follow_up)
+        .every((i) => i.roofer_review_required || i.required_manual_next_step),
+      negative_or_disputed_feedback_routes_to_roofer: allItems
+        .filter((i) => i.negative_or_disputed_feedback)
+        .every((i) => i.roofer_review_required),
+      pricing_estimate_quote_feedback_routes_to_roofer: allItems
+        .filter((i) => i.pricing_estimate_quote_feedback)
+        .every((i) => i.roofer_review_required),
+      payment_or_contract_feedback_routes_to_roofer: allItems
+        .filter((i) => i.feedback_issue_flag && i.roofer_review_required)
+        .length >= 1,
+      roofleadhq_limited_to_system_quality: [
+        'bad_or_unclear_ai_response',
+        'missed_data_capture',
+        'broken_routing',
+        'source_attribution_issue',
+        'dashboard_report_discrepancy',
+        'workflow_state_confusion',
+        'setup_issue',
+        'failed_handoff',
+        'quality_control_concern',
+        'feedback_permission_capture_mismatch',
+      ],
+      feedback_permission_capture_mismatch_routes_to_roofleadhq: allItems
+        .filter((i) => i.feedback_permission_capture_mismatch)
+        .every((i) => i.roofleadhq_review_required),
+      all_review_or_issue_have_manual_next_step: reviewOrIssueItems.every(
+        (i) => i.required_manual_next_step,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    feedback_permission_safety_assertions: [
+      ...FEEDBACK_PERMISSION_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 const FAKE_REPORTING_SNAPSHOT = buildReportingSnapshot({
   report_period: '2026-06',
   csv_export_state: 'fixture_snapshot_strongest',
@@ -3129,11 +3518,16 @@ function buildScenario(config) {
   );
   const appointmentReadinessItem = buildScenarioAppointmentReadinessItem(scenarioDraft);
   const postInspectionItem = buildScenarioPostInspectionItem(scenarioDraft);
+  const feedbackPermissionItem = buildScenarioFeedbackPermissionItem(
+    scenarioDraft,
+    postInspectionItem,
+  );
   return {
     ...scenarioDraft,
     review_queue_items: reviewQueueItems,
     appointment_readiness_items: appointmentReadinessItem ? [appointmentReadinessItem] : [],
     post_inspection_items: postInspectionItem ? [postInspectionItem] : [],
+    feedback_permission_items: feedbackPermissionItem ? [feedbackPermissionItem] : [],
   };
 }
 
@@ -4384,6 +4778,7 @@ function main() {
     review_queue_expansion: 'native_workflow_fixture_review_queue_expansion',
     appointment_readiness_expansion: 'native_workflow_fixture_appointment_readiness_expansion',
     post_inspection_expansion: 'native_workflow_fixture_post_inspection_expansion',
+    feedback_permission_expansion: 'native_workflow_fixture_feedback_permission_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -4401,6 +4796,7 @@ function main() {
   const reviewQueueOutput = buildTopLevelReviewQueue(scenarios, outputBase);
   const appointmentReadinessOutput = buildTopLevelAppointmentReadiness(scenarios, outputBase);
   const postInspectionOutput = buildTopLevelPostInspection(scenarios, outputBase);
+  const feedbackPermissionOutput = buildTopLevelFeedbackPermission(scenarios, outputBase);
 
   const output = {
     ...outputBase,
@@ -4408,6 +4804,7 @@ function main() {
     ...reviewQueueOutput,
     ...appointmentReadinessOutput,
     ...postInspectionOutput,
+    ...feedbackPermissionOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -4444,10 +4841,14 @@ function main() {
       'post_inspection_live_feedback_blocked',
       'no_automatic_estimate_quote_invoice_payment',
       'feedback_internal_unless_permission_obtained',
+      'explicit_feedback_permission_coverage',
+      'feedback_permission_fake_data_only',
+      'feedback_permission_live_feedback_blocked',
+      'no_automatic_public_review_or_testimonial_publication',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, and post-inspection coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, and feedback permission coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -4459,6 +4860,7 @@ function main() {
       review_queue_coverage: 'expanded',
       appointment_readiness_coverage: 'expanded',
       post_inspection_coverage: 'expanded',
+      feedback_permission_coverage: 'expanded',
     },
   };
 
