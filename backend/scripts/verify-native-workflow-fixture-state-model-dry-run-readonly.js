@@ -167,11 +167,34 @@ for (const scenario of output.scenarios) {
   if (!scenario.audit_events || !scenario.audit_events.length) {
     fail(`scenario ${scenario.scenario_id} missing audit_events`);
   }
+  if (!scenario.guard_assertions || !scenario.guard_assertions.length) {
+    fail(`scenario ${scenario.scenario_id} missing guard_assertions`);
+  }
+  if (!Array.isArray(scenario.failed_guards)) {
+    fail(`scenario ${scenario.scenario_id} missing failed_guards array`);
+  }
   if (scenario.result !== 'PASS') {
     fail(`scenario ${scenario.scenario_id} result is not PASS`);
   }
 }
 console.log('PASS: every scenario has required safety fields and PASS result.');
+
+if (!output.guard_assertion_summary) {
+  fail('output missing guard_assertion_summary');
+}
+if (typeof output.total_guard_assertions !== 'number' || output.total_guard_assertions <= 0) {
+  fail('output missing or invalid total_guard_assertions');
+}
+if (typeof output.passed_guard_assertions !== 'number') {
+  fail('output missing passed_guard_assertions');
+}
+if (typeof output.failed_guard_assertions !== 'number') {
+  fail('output missing failed_guard_assertions');
+}
+if (!output.guard_categories) {
+  fail('output missing guard_categories');
+}
+console.log('PASS: output includes guard assertion summary and aggregate guard fields.');
 
 if (byId.normal_lead_to_appointment_readiness.final_state !== 'APPOINTMENT_READY') {
   fail('normal lead path final state is not APPOINTMENT_READY');

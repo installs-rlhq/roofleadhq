@@ -1947,3 +1947,35 @@ bash scripts/run-native-workflow-fixture-state-model-dry-run.sh
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no production data, no live automation. demo_ready_with_live_automation_disabled.
+
+## Native Workflow Fixture Guard Assertions Expansion
+
+The Native Workflow Fixture Guard Assertions Expansion deepens explicit guard assertion coverage across all 25 fixture scenarios — local fixture-only, stdout JSON only.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_GUARD_ASSERTIONS_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-guard-assertions-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-guard-assertions-expansion-dry-run.sh`
+
+Canonical source of truth before this worktree: `11ac75d test(workflow): add native workflow fixture state model dry run`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Guard Assertions Expansion" / "native workflow fixture guard assertions expansion" / "guard assertions expansion" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Explicit guard assertions prove safe routing before native persistence
+- Fail-closed guard failures route to HOLD/BLOCKED/review without live sends
+- Roofer review owns business judgment; RoofLeadHQ/Jason review limited to system/workflow/data/routing/quality
+- CSV export is one-directional reporting; not bidirectional CRM integration
+- Live automation remains disabled unless explicitly approved
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-guard-assertions-expansion-dry-run.sh
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no production data, no live automation. demo_ready_with_live_automation_disabled.

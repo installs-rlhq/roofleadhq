@@ -737,6 +737,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Guard Assertions Expansion (docs/NATIVE_WORKFLOW_FIXTURE_GUARD_ASSERTIONS_EXPANSION.md + scripts/run-native-workflow-fixture-guard-assertions-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit guard assertion coverage across all 25 scenarios: guard_assertions, failed_guards, hold_or_block_reason, manual_next_step, owner, audit_events per scenario; aggregate guard_assertion_summary with total/passed/failed counts and 14 guard categories; fail-closed safely routed guard failures; contact/permission, do-not-contact, service area, lead source, plan/custom review, appointment readiness, review ownership, feedback permission, CSV/reporting, activation flag, unsupported request, and Lindy bridge safety guards; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-guard-assertions-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

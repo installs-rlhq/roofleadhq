@@ -988,3 +988,44 @@ node backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no production data, no live automation from agent worktrees. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Guard Assertions Expansion
+
+Latest Grok Build implementation packet — guard assertions expansion for the native workflow fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_GUARD_ASSERTIONS_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-guard-assertions-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-guard-assertions-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js`
+
+Canonical source of truth before this worktree: `11ac75d test(workflow): add native workflow fixture state model dry run`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Guard Assertions Expansion" / "native workflow fixture guard assertions expansion" / "guard assertions expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Explicit guard_assertions across 14 categories for all 25 scenarios
+- Aggregate guard_assertion_summary with total/passed/failed counts
+- Fail-closed safely routed guard failures; local E2E runner relationship; first paid roofer relationship
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-guard-assertions-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-guard-assertions-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no production data, no live automation from agent worktrees. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

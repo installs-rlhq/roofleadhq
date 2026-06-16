@@ -5787,3 +5787,30 @@ The dry-run implements:
 Use preferred lead-to-inspection language (booked inspections, lead-to-inspection, fixture state model, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no native CRM sync. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Guard Assertions Expansion
+
+The founder-led launch now includes explicit guard assertion coverage across all 25 fixture scenarios from the fixture state model dry-run.
+
+Files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_GUARD_ASSERTIONS_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-guard-assertions-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-guard-assertions-expansion-dry-run.sh`
+
+Updated runner:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `11ac75d test(workflow): add native workflow fixture state model dry run`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Guard Assertions Expansion" / "native workflow fixture guard assertions expansion" / "guard assertions expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Explicit guard_assertions, failed_guards, hold_or_block_reason, manual_next_step, owner per scenario
+- Aggregate guard_assertion_summary with 14 guard categories
+- Fail-closed safely routed guard failures; demo_ready_with_live_automation_disabled preserved
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (booked inspections, lead-to-inspection, fixture state model, guard assertions, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no native CRM sync. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

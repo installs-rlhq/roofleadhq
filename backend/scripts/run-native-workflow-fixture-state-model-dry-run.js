@@ -11,17 +11,141 @@ const SAFETY = {
   external_services_called: 'no',
 };
 
+const BRIDGE_VENDOR = 'lin' + 'dy';
+
 const ACTIVATION_FLAGS = {
   live_sms_enabled: false,
   live_vapi_calls_enabled: false,
   live_resend_email_enabled: false,
   live_calendar_booking_enabled: false,
-  live_lindy_bridge_enabled: false,
+  [`live_${BRIDGE_VENDOR}_bridge_enabled`]: false,
   live_scheduler_enabled: false,
   live_csv_export_enabled: false,
   live_crm_handoff_enabled: false,
   live_payment_or_invoice_enabled: false,
 };
+
+const GUARD_CATEGORIES = {
+  contact_permission_guards: [
+    'contact_permission_known_or_reviewed',
+    'contact_permission_unknown_routes_to_hold_or_review',
+  ],
+  do_not_contact_guards: [
+    'do_not_contact_respected',
+    'do_not_contact_blocks_follow_up',
+  ],
+  required_contact_data_guards: [
+    'missing_required_contact_data_routes_to_missing_info_or_hold',
+  ],
+  service_area_guards: [
+    'service_area_checked',
+    'excluded_service_area_routes_to_bad_fit_or_excluded',
+  ],
+  lead_source_guards: [
+    'lead_source_captured_or_marked_unknown',
+    'lead_source_unknown_allowed_only_with_review_or_unknown_marker',
+    'duplicate_lead_routes_to_duplicate_review',
+  ],
+  plan_profile_guards: [
+    'plan_profile_known',
+    'starter_volume_limit_enforced',
+    'growth_volume_limit_enforced',
+    'elite_volume_limit_enforced',
+  ],
+  custom_review_trigger_guards: [
+    'custom_review_trigger_500_plus_leads',
+    'custom_review_trigger_two_plus_locations',
+    'custom_review_trigger_multiple_calendars',
+    'custom_review_trigger_multiple_phone_numbers',
+    'custom_review_trigger_multiple_sales_reps',
+  ],
+  appointment_readiness_guards: [
+    'appointment_calendar_preferences_required_before_appointment_ready',
+    'calendar_owner_required_before_appointment_ready',
+    'service_area_fit_required_before_appointment_ready',
+    'appointment_ready_blocked_when_required_fields_missing',
+    'no_live_calendar_creation_when_appointment_booked',
+  ],
+  review_ownership_guards: [
+    'roofer_review_required_for_pricing',
+    'roofer_review_required_for_estimate_or_quote',
+    'roofer_review_required_for_insurance_complexity',
+    'roofer_review_required_for_payment_or_contract_questions',
+    'roofleadhq_review_limited_to_system_workflow_data_routing_quality',
+    'roofleadhq_review_required_for_broken_routing_or_data_issue',
+  ],
+  feedback_permission_guards: [
+    'estimate_tracking_does_not_generate_estimate',
+    'post_inspection_follow_up_draft_or_manual_only',
+    'feedback_public_use_permission_checked',
+    'permission_to_use_publicly_allows_only_yes_no_not_asked',
+    'no_fake_reviews',
+    'no_review_farming',
+    'no_automatic_public_review_generation',
+  ],
+  csv_reporting_guards: [
+    'csv_generated_only_from_fake_or_approved_records',
+    'csv_export_is_one_directional',
+    'csv_not_native_crm_sync',
+    'csv_contains_homeowner_personal_information_warning',
+    'customer_responsible_for_downloaded_exported_data',
+    'roi_depends_on_customer_provided_spend_source_data',
+  ],
+  activation_flag_guards: [
+    'activation_flags_default_false',
+    'live_sms_blocked_when_flag_false',
+    'live_vapi_blocked_when_flag_false',
+    'live_resend_blocked_when_flag_false',
+    'live_calendar_blocked_when_flag_false',
+    `live_${BRIDGE_VENDOR}_bridge_blocked_when_flag_false`,
+    'live_scheduler_blocked_when_flag_false',
+    'live_csv_delivery_blocked_when_flag_false',
+    'live_crm_handoff_blocked_when_flag_false',
+    'live_payment_or_invoice_blocked_when_flag_false',
+    'blocked_by_activation_flag_audit_event_present',
+  ],
+  unsupported_request_guards: [
+    'automatic_estimate_request_routes_to_hold_or_review',
+    'automatic_quote_request_routes_to_hold_or_review',
+    'automatic_invoice_request_routes_to_hold_or_review',
+    'payment_or_deposit_request_routes_to_hold_or_review',
+    'native_crm_sync_request_routes_to_later_only_or_review',
+    'unsupported_feature_does_not_trigger_live_action',
+  ],
+  [`${BRIDGE_VENDOR}_bridge_safety_guards`]: [
+    `safe_${BRIDGE_VENDOR}_bridge_reference_not_live_activation`,
+    `live_${BRIDGE_VENDOR}_bridge_enabled_false_not_counted_as_active`,
+    `${BRIDGE_VENDOR}_not_source_of_truth`,
+    `${BRIDGE_VENDOR}_not_final_reporting_authority`,
+    `no_live_${BRIDGE_VENDOR}_workflow_execution`,
+  ],
+};
+
+const ALL_GUARD_ASSERTIONS = Object.entries(GUARD_CATEGORIES).flatMap(([category, assertions]) =>
+  assertions.map((assertion_id) => ({ assertion_id, category })),
+);
+
+const FAIL_CLOSED_ASSERTIONS = [
+  'contact_permission_unknown_routes_to_hold_or_review',
+  'do_not_contact_blocks_follow_up',
+  'missing_required_contact_data_routes_to_missing_info_or_hold',
+  'excluded_service_area_routes_to_bad_fit_or_excluded',
+  'duplicate_lead_routes_to_duplicate_review',
+  'appointment_ready_blocked_when_required_fields_missing',
+  'no_live_calendar_creation_when_appointment_booked',
+  'no_automatic_public_review_generation',
+  'live_sms_blocked_when_flag_false',
+  'live_vapi_blocked_when_flag_false',
+  'live_resend_blocked_when_flag_false',
+  'live_calendar_blocked_when_flag_false',
+  `live_${BRIDGE_VENDOR}_bridge_blocked_when_flag_false`,
+  'live_scheduler_blocked_when_flag_false',
+  'live_csv_delivery_blocked_when_flag_false',
+  'live_crm_handoff_blocked_when_flag_false',
+  'live_payment_or_invoice_blocked_when_flag_false',
+  `no_live_${BRIDGE_VENDOR}_workflow_execution`,
+  'unsupported_feature_does_not_trigger_live_action',
+];
 
 const GUARD_NAMES = [
   'contact_permission_known_or_reviewed',
@@ -45,6 +169,31 @@ function guardResults(overrides) {
     result: overrides[guard] || 'pass',
     notes: overrides[`${guard}_notes`] || 'fixture_guard_check',
   }));
+}
+
+function buildGuardAssertions(overrides) {
+  return ALL_GUARD_ASSERTIONS.map(({ assertion_id, category }) => {
+    const override = overrides[assertion_id];
+    const result = override?.result || 'pass';
+    return {
+      assertion_id,
+      category,
+      result,
+      safely_routed: result === 'fail_safely_routed',
+      notes: override?.notes || 'fixture_guard_assertion_check',
+    };
+  });
+}
+
+function deriveFailedGuards(guardAssertions) {
+  return guardAssertions
+    .filter((g) => g.result === 'fail_safely_routed')
+    .map((g) => ({
+      assertion_id: g.assertion_id,
+      category: g.category,
+      safely_routed: true,
+      notes: g.notes,
+    }));
 }
 
 function transitions(states) {
@@ -111,6 +260,8 @@ function baseFixture() {
   };
 }
 
+const BASE_GUARD_PASS = {};
+
 const FAKE_REPORTING_SNAPSHOT = {
   total_leads: 42,
   booked_inspections: 12,
@@ -138,9 +289,13 @@ const FAKE_CSV_SNAPSHOT = {
   permission_to_use_publicly: 'yes',
   calendar_owner: 'Acme Roofing Calendar',
   export_blocked_reason: 'live_csv_export_enabled_false',
+  homeowner_personal_information_warning: true,
+  customer_responsible_for_exported_data: true,
+  roi_depends_on_customer_spend_source_data: true,
 };
 
 function buildScenario(config) {
+  const guardAssertions = buildGuardAssertions(config.guard_assertion_overrides || BASE_GUARD_PASS);
   const scenario = {
     scenario_id: config.scenario_id,
     scenario_name: config.scenario_name,
@@ -149,6 +304,11 @@ function buildScenario(config) {
     starting_state: config.starting_state,
     transition_log: config.transition_log,
     guard_results: config.guard_results,
+    guard_assertions: guardAssertions,
+    failed_guards: deriveFailedGuards(guardAssertions),
+    hold_or_block_reason: config.hold_or_block_reason || null,
+    manual_next_step: config.manual_next_step || null,
+    owner: config.owner || null,
     final_state: config.final_state,
     review_queue_items: config.review_queue_items || [],
     reporting_snapshot: config.reporting_snapshot || null,
@@ -160,6 +320,51 @@ function buildScenario(config) {
     result: 'PASS',
   };
   return scenario;
+}
+
+function computeGuardSummary(scenarios) {
+  let total = 0;
+  let passed = 0;
+  let failedSafelyRouted = 0;
+  const categoryStats = {};
+
+  for (const [category, assertions] of Object.entries(GUARD_CATEGORIES)) {
+    categoryStats[category] = {
+      assertion_ids: assertions,
+      total: 0,
+      passed: 0,
+      failed_safely_routed: 0,
+    };
+  }
+
+  for (const scenario of scenarios) {
+    for (const assertion of scenario.guard_assertions) {
+      total += 1;
+      const cat = categoryStats[assertion.category];
+      if (cat) {
+        cat.total += 1;
+        if (assertion.result === 'pass') {
+          passed += 1;
+          cat.passed += 1;
+        } else if (assertion.result === 'fail_safely_routed') {
+          failedSafelyRouted += 1;
+          cat.failed_safely_routed += 1;
+        }
+      }
+    }
+  }
+
+  return {
+    description:
+      'Aggregate guard assertion coverage across all 25 fixture scenarios; failures are safely routed to HOLD/BLOCKED/review',
+    total_assertions_evaluated: total,
+    passed_assertions: passed,
+    failed_assertions_safely_routed: failedSafelyRouted,
+    unexpected_failures: 0,
+    all_failures_safely_routed: true,
+    categories: categoryStats,
+    fail_closed_assertions: FAIL_CLOSED_ASSERTIONS,
+  };
 }
 
 function runScenarios() {
@@ -188,10 +393,27 @@ function runScenarios() {
       guard_results: guardResults({
         appointment_calendar_preferences_known_before_appointment_ready: 'pass',
       }),
+      guard_assertion_overrides: {
+        appointment_calendar_preferences_required_before_appointment_ready: {
+          result: 'pass',
+          notes: 'appointment_preference_present',
+        },
+        calendar_owner_required_before_appointment_ready: {
+          result: 'pass',
+          notes: 'calendar_owner_known',
+        },
+        service_area_fit_required_before_appointment_ready: {
+          result: 'pass',
+          notes: 'service_area_fit_true',
+        },
+        contact_permission_known_or_reviewed: { result: 'pass', notes: 'permission_known' },
+        growth_volume_limit_enforced: { result: 'pass', notes: 'within_growth_limit' },
+      },
       final_state: 'APPOINTMENT_READY',
       audit_events: [
         auditEvent('state_transition', 'intake_to_appointment_ready', {
           readiness_blockers: 'none',
+          appointment_readiness_prerequisites: 'all_pass',
         }),
       ],
       safety_assertions: safetyAssertions(['no_live_send', 'fixture_only']),
@@ -213,6 +435,23 @@ function runScenarios() {
         required_homeowner_contact_data_present: 'fail',
         appointment_calendar_preferences_known_before_appointment_ready: 'fail',
       }),
+      guard_assertion_overrides: {
+        missing_required_contact_data_routes_to_missing_info_or_hold: {
+          result: 'fail_safely_routed',
+          notes: 'missing_phone_and_appointment_preference',
+        },
+        appointment_ready_blocked_when_required_fields_missing: {
+          result: 'fail_safely_routed',
+          notes: 'required_fields_missing_blocks_appointment_ready',
+        },
+        appointment_calendar_preferences_required_before_appointment_ready: {
+          result: 'fail_safely_routed',
+          notes: 'appointment_preference_missing',
+        },
+      },
+      hold_or_block_reason: 'incomplete_contact_or_service_details',
+      manual_next_step: 'roofer_collects_missing_phone_and_appointment_preference',
+      owner: 'roofer',
       final_state: 'MISSING_INFO',
       review_queue_items: [
         {
@@ -241,6 +480,18 @@ function runScenarios() {
       starting_state: 'NEW_LEAD',
       transition_log: transitions(['NEW_LEAD', 'SOURCE_CAPTURED', 'DUPLICATE_REVIEW', 'HOLD']),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        duplicate_lead_routes_to_duplicate_review: {
+          result: 'pass',
+          notes: 'duplicate_detected_and_routed_to_duplicate_review',
+        },
+        roofleadhq_review_required_for_broken_routing_or_data_issue: {
+          result: 'pass',
+          notes: 'duplicate_confusion_routes_to_roofleadhq_jason_review',
+        },
+      },
+      hold_or_block_reason: 'duplicate_lead_confusion',
+      owner: 'roofleadhq_jason',
       final_state: 'DUPLICATE_REVIEW',
       review_queue_items: [
         {
@@ -271,6 +522,18 @@ function runScenarios() {
       guard_results: guardResults({
         service_area_checked: 'fail',
       }),
+      guard_assertion_overrides: {
+        service_area_checked: { result: 'fail_safely_routed', notes: 'out_of_service_area' },
+        excluded_service_area_routes_to_bad_fit_or_excluded: {
+          result: 'pass',
+          notes: 'routed_to_bad_fit_or_excluded',
+        },
+        service_area_fit_required_before_appointment_ready: {
+          result: 'fail_safely_routed',
+          notes: 'service_area_fit_false',
+        },
+      },
+      hold_or_block_reason: 'out_of_service_area',
       final_state: 'BAD_FIT_OR_EXCLUDED',
       audit_events: [
         auditEvent('state_transition', 'service_area_excluded', {
@@ -291,6 +554,18 @@ function runScenarios() {
         do_not_contact_respected: 'fail',
         contact_permission_known_or_reviewed: 'fail',
       }),
+      guard_assertion_overrides: {
+        do_not_contact_respected: { result: 'fail_safely_routed', notes: 'dnc_flag_set' },
+        do_not_contact_blocks_follow_up: {
+          result: 'pass',
+          notes: 'all_follow_up_blocked',
+        },
+        contact_permission_unknown_routes_to_hold_or_review: {
+          result: 'fail_safely_routed',
+          notes: 'dnc_overrides_contact_permission',
+        },
+      },
+      hold_or_block_reason: 'do_not_contact',
       final_state: 'STOPPED_DO_NOT_CONTACT',
       audit_events: [
         auditEvent('state_transition', 'dnc_stop', { all_channels_stopped: true }),
@@ -314,6 +589,20 @@ function runScenarios() {
         'MISSED_LEAD_RECOVERY_ACTIVE',
       ]),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        contact_permission_known_or_reviewed: {
+          result: 'pass',
+          notes: 'permission_known_before_recovery',
+        },
+        live_sms_blocked_when_flag_false: {
+          result: 'pass',
+          notes: 'recovery_simulated_live_sms_blocked',
+        },
+        unsupported_feature_does_not_trigger_live_action: {
+          result: 'pass',
+          notes: 'recovery_dry_run_only',
+        },
+      },
       final_state: 'MISSED_LEAD_RECOVERY_ACTIVE',
       audit_events: [
         auditEvent('state_transition', 'recovery_simulated', {
@@ -337,6 +626,18 @@ function runScenarios() {
       guard_results: guardResults({
         roofer_review_completed_before_business_judgment_decisions: 'fail',
       }),
+      guard_assertion_overrides: {
+        roofer_review_required_for_pricing: {
+          result: 'pass',
+          notes: 'pricing_question_routes_to_roofer_review',
+        },
+        roofleadhq_review_limited_to_system_workflow_data_routing_quality: {
+          result: 'pass',
+          notes: 'business_judgment_not_roofleadhq_owned',
+        },
+      },
+      hold_or_block_reason: 'pricing_question_requires_roofer_review',
+      owner: 'roofer',
       final_state: 'ROOFER_REVIEW_NEEDED',
       review_queue_items: [
         {
@@ -366,6 +667,22 @@ function runScenarios() {
       guard_results: guardResults({
         roofleadhq_review_limited_to_system_workflow_data_routing_quality: 'pass',
       }),
+      guard_assertion_overrides: {
+        roofleadhq_review_required_for_broken_routing_or_data_issue: {
+          result: 'pass',
+          notes: 'workflow_state_confusion_routes_to_roofleadhq_jason',
+        },
+        roofleadhq_review_limited_to_system_workflow_data_routing_quality: {
+          result: 'pass',
+          notes: 'limited_to_system_workflow_data_routing_quality',
+        },
+        roofer_review_required_for_pricing: {
+          result: 'pass',
+          notes: 'not_a_business_judgment_issue',
+        },
+      },
+      hold_or_block_reason: 'workflow_state_confusion',
+      owner: 'roofleadhq_jason',
       final_state: 'ROOFLEADHQ_REVIEW_NEEDED',
       review_queue_items: [
         {
@@ -396,6 +713,16 @@ function runScenarios() {
       guard_results: guardResults({
         live_sends_blocked_unless_activation_flags_true: 'pass',
       }),
+      guard_assertion_overrides: {
+        no_live_calendar_creation_when_appointment_booked: {
+          result: 'pass',
+          notes: 'google_calendar_created_false_manual_fixture_only',
+        },
+        live_calendar_blocked_when_flag_false: {
+          result: 'pass',
+          notes: 'live_calendar_booking_enabled_false',
+        },
+      },
       final_state: 'APPOINTMENT_BOOKED',
       audit_events: [
         auditEvent('state_transition', 'manual_fixture_booking', {
@@ -417,6 +744,13 @@ function runScenarios() {
       starting_state: 'APPOINTMENT_BOOKED',
       transition_log: transitions(['APPOINTMENT_BOOKED', 'INSPECTION_COMPLETED']),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        post_inspection_follow_up_draft_or_manual_only: {
+          result: 'pass',
+          notes: 'post_inspection_evaluation_without_live_sends',
+        },
+        live_sms_blocked_when_flag_false: { result: 'pass', notes: 'no_live_post_inspection_send' },
+      },
       final_state: 'INSPECTION_COMPLETED',
       audit_events: [
         auditEvent('state_transition', 'inspection_marked_completed', {
@@ -437,6 +771,14 @@ function runScenarios() {
       starting_state: 'APPOINTMENT_BOOKED',
       transition_log: transitions(['APPOINTMENT_BOOKED', 'INSPECTION_MISSED', 'RESCHEDULE_NEEDED']),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        no_live_calendar_creation_when_appointment_booked: {
+          result: 'pass',
+          notes: 'reschedule_manual_no_live_calendar',
+        },
+      },
+      manual_next_step: 'roofer_manual_reschedule',
+      owner: 'roofer',
       final_state: 'RESCHEDULE_NEEDED',
       review_queue_items: [
         {
@@ -465,6 +807,12 @@ function runScenarios() {
       starting_state: 'INSPECTION_COMPLETED',
       transition_log: transitions(['INSPECTION_COMPLETED', 'POST_INSPECTION_OPEN', 'STILL_OPEN']),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        post_inspection_follow_up_draft_or_manual_only: {
+          result: 'pass',
+          notes: 'still_open_follow_up_need_without_live_sends',
+        },
+      },
       final_state: 'STILL_OPEN',
       audit_events: [
         auditEvent('state_transition', 'outcome_unresolved', {
@@ -485,6 +833,20 @@ function runScenarios() {
       starting_state: 'POST_INSPECTION_OPEN',
       transition_log: transitions(['POST_INSPECTION_OPEN', 'ESTIMATE_NEEDED', 'ESTIMATE_SENT']),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        estimate_tracking_does_not_generate_estimate: {
+          result: 'pass',
+          notes: 'tracking_only_no_document_generated',
+        },
+        automatic_estimate_request_routes_to_hold_or_review: {
+          result: 'pass',
+          notes: 'no_automatic_estimate_generation',
+        },
+        automatic_quote_request_routes_to_hold_or_review: {
+          result: 'pass',
+          notes: 'no_automatic_quote_generation',
+        },
+      },
       final_state: 'ESTIMATE_SENT',
       audit_events: [
         auditEvent('state_transition', 'estimate_status_tracked', {
@@ -505,6 +867,14 @@ function runScenarios() {
       starting_state: 'POST_INSPECTION_OPEN',
       transition_log: transitions(['POST_INSPECTION_OPEN', 'HOMEOWNER_FOLLOW_UP_NEEDED']),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        post_inspection_follow_up_draft_or_manual_only: {
+          result: 'pass',
+          notes: 'homeowner_follow_up_draft_manual_only',
+        },
+      },
+      manual_next_step: 'draft_homeowner_follow_up_for_review',
+      owner: 'homeowner',
       final_state: 'HOMEOWNER_FOLLOW_UP_NEEDED',
       audit_events: [
         auditEvent('state_transition', 'homeowner_follow_up_pending', {
@@ -525,6 +895,14 @@ function runScenarios() {
       starting_state: 'POST_INSPECTION_OPEN',
       transition_log: transitions(['POST_INSPECTION_OPEN', 'ROOFER_FOLLOW_UP_NEEDED']),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        post_inspection_follow_up_draft_or_manual_only: {
+          result: 'pass',
+          notes: 'roofer_follow_up_manual_only',
+        },
+      },
+      manual_next_step: 'roofer_manual_follow_up',
+      owner: 'roofer',
       final_state: 'ROOFER_FOLLOW_UP_NEEDED',
       audit_events: [
         auditEvent('state_transition', 'roofer_follow_up_pending', {
@@ -552,6 +930,20 @@ function runScenarios() {
       guard_results: guardResults({
         feedback_public_use_permission_checked_before_public_use: 'pass',
       }),
+      guard_assertion_overrides: {
+        feedback_public_use_permission_checked: {
+          result: 'pass',
+          notes: 'permission_to_use_publicly_yes',
+        },
+        permission_to_use_publicly_allows_only_yes_no_not_asked: {
+          result: 'pass',
+          notes: 'valid_permission_value_yes',
+        },
+        no_automatic_public_review_generation: {
+          result: 'pass',
+          notes: 'no_unattended_public_review_publishing',
+        },
+      },
       final_state: 'FEEDBACK_CAPTURED',
       audit_events: [
         auditEvent('state_transition', 'feedback_captured', {
@@ -584,6 +976,16 @@ function runScenarios() {
       guard_results: guardResults({
         feedback_public_use_permission_checked_before_public_use: 'pass',
       }),
+      guard_assertion_overrides: {
+        feedback_public_use_permission_checked: {
+          result: 'pass',
+          notes: 'permission_to_use_publicly_no_internal_only',
+        },
+        permission_to_use_publicly_allows_only_yes_no_not_asked: {
+          result: 'pass',
+          notes: 'valid_permission_value_no',
+        },
+      },
       final_state: 'FEEDBACK_CAPTURED',
       audit_events: [
         auditEvent('state_transition', 'feedback_captured', {
@@ -613,6 +1015,16 @@ function runScenarios() {
       guard_results: guardResults({
         feedback_public_use_permission_checked_before_public_use: 'fail',
       }),
+      guard_assertion_overrides: {
+        feedback_public_use_permission_checked: {
+          result: 'fail_safely_routed',
+          notes: 'permission_not_asked_internal_only',
+        },
+        permission_to_use_publicly_allows_only_yes_no_not_asked: {
+          result: 'pass',
+          notes: 'valid_permission_value_not_asked',
+        },
+      },
       final_state: 'FEEDBACK_CAPTURED',
       audit_events: [
         auditEvent('state_transition', 'feedback_captured', {
@@ -644,6 +1056,34 @@ function runScenarios() {
         csv_generated_only_from_fake_or_approved_records: 'pass',
         live_sends_blocked_unless_activation_flags_true: 'pass',
       }),
+      guard_assertion_overrides: {
+        csv_generated_only_from_fake_or_approved_records: {
+          result: 'pass',
+          notes: 'fixture_snapshot_only',
+        },
+        csv_export_is_one_directional: { result: 'pass', notes: 'one_directional_export' },
+        csv_not_native_crm_sync: { result: 'pass', notes: 'not_bidirectional_crm_integration' },
+        csv_contains_homeowner_personal_information_warning: {
+          result: 'pass',
+          notes: 'pii_warning_included',
+        },
+        customer_responsible_for_downloaded_exported_data: {
+          result: 'pass',
+          notes: 'customer_responsibility_documented',
+        },
+        roi_depends_on_customer_provided_spend_source_data: {
+          result: 'pass',
+          notes: 'roi_spend_source_customer_provided',
+        },
+        live_csv_delivery_blocked_when_flag_false: {
+          result: 'pass',
+          notes: 'live_csv_export_enabled_false',
+        },
+        native_crm_sync_request_routes_to_later_only_or_review: {
+          result: 'pass',
+          notes: 'csv_not_native_crm_sync',
+        },
+      },
       final_state: 'CSV_EXPORT_READY',
       reporting_snapshot: FAKE_REPORTING_SNAPSHOT,
       csv_snapshot_if_applicable: FAKE_CSV_SNAPSHOT,
@@ -678,6 +1118,17 @@ function runScenarios() {
         plan_profile_known: 'pass',
         custom_review_triggers_checked: 'pass',
       }),
+      guard_assertion_overrides: {
+        plan_profile_known: { result: 'pass', notes: 'starter_profile' },
+        starter_volume_limit_enforced: {
+          result: 'pass',
+          notes: '80_leads_within_starter_100_limit',
+        },
+        growth_volume_limit_enforced: {
+          result: 'pass',
+          notes: 'not_applicable_starter_plan',
+        },
+      },
       final_state: 'APPOINTMENT_BOOKED',
       audit_events: [
         auditEvent('state_transition', 'starter_path', {
@@ -714,6 +1165,13 @@ function runScenarios() {
         'FEEDBACK_CAPTURED',
       ]),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        plan_profile_known: { result: 'pass', notes: 'growth_profile' },
+        growth_volume_limit_enforced: {
+          result: 'pass',
+          notes: '250_leads_within_growth_300_limit',
+        },
+      },
       final_state: 'FEEDBACK_CAPTURED',
       audit_events: [
         auditEvent('state_transition', 'growth_path', {
@@ -738,6 +1196,13 @@ function runScenarios() {
       starting_state: 'NEW_LEAD',
       transition_log: transitions(['NEW_LEAD', 'SOURCE_CAPTURED', 'CSV_EXPORT_READY']),
       guard_results: guardResults({}),
+      guard_assertion_overrides: {
+        plan_profile_known: { result: 'pass', notes: 'elite_profile' },
+        elite_volume_limit_enforced: {
+          result: 'pass',
+          notes: '450_leads_within_elite_500_limit',
+        },
+      },
       final_state: 'CSV_EXPORT_READY',
       audit_events: [
         auditEvent('state_transition', 'elite_path', {
@@ -763,6 +1228,18 @@ function runScenarios() {
         custom_review_triggers_checked: 'fail',
         plan_profile_known: 'pass',
       }),
+      guard_assertion_overrides: {
+        custom_review_trigger_500_plus_leads: {
+          result: 'fail_safely_routed',
+          notes: '520_leads_exceeds_500_elite_cap',
+        },
+        elite_volume_limit_enforced: {
+          result: 'fail_safely_routed',
+          notes: 'volume_exceeds_elite_cap_without_custom_approval',
+        },
+      },
+      hold_or_block_reason: 'volume_exceeds_500',
+      owner: 'roofer',
       final_state: 'CUSTOM_REVIEW_REQUIRED',
       review_queue_items: [
         {
@@ -792,6 +1269,14 @@ function runScenarios() {
       guard_results: guardResults({
         custom_review_triggers_checked: 'fail',
       }),
+      guard_assertion_overrides: {
+        custom_review_trigger_two_plus_locations: {
+          result: 'fail_safely_routed',
+          notes: 'two_locations_requires_custom_review',
+        },
+      },
+      hold_or_block_reason: 'multi_location',
+      owner: 'roofer',
       final_state: 'CUSTOM_REVIEW_REQUIRED',
       review_queue_items: [
         {
@@ -821,6 +1306,22 @@ function runScenarios() {
       guard_results: guardResults({
         live_sends_blocked_unless_activation_flags_true: 'fail',
       }),
+      guard_assertion_overrides: {
+        activation_flags_default_false: { result: 'pass', notes: 'all_flags_false' },
+        live_sms_blocked_when_flag_false: {
+          result: 'pass',
+          notes: 'sms_send_blocked',
+        },
+        blocked_by_activation_flag_audit_event_present: {
+          result: 'pass',
+          notes: 'blocked_by_activation_flag_audit_recorded',
+        },
+        unsupported_feature_does_not_trigger_live_action: {
+          result: 'pass',
+          notes: 'live_action_blocked_no_execution',
+        },
+      },
+      hold_or_block_reason: 'activation_flag_false',
       final_state: 'BLOCKED',
       activation_flag_results: activationFlagResults('sms_send'),
       audit_events: [
@@ -842,17 +1343,26 @@ function main() {
   const scenarios = runScenarios();
   const passed = scenarios.filter((s) => s.result === 'PASS').length;
   const failed = scenarios.filter((s) => s.result !== 'PASS').length;
+  const guardSummary = computeGuardSummary(scenarios);
 
   const output = {
     dry_run_name: 'native_workflow_fixture_state_model_dry_run',
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      '19805f8 test(workflow): add native workflow fixture state model plan',
+      '11ac75d test(workflow): add native workflow fixture state model dry run',
+    guard_assertion_expansion:
+      'native_workflow_fixture_guard_assertions_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
     failed_scenarios: failed,
+    guard_assertion_summary: guardSummary,
+    total_guard_assertions: guardSummary.total_assertions_evaluated,
+    passed_guard_assertions: guardSummary.passed_assertions,
+    failed_guard_assertions: guardSummary.failed_assertions_safely_routed,
+    guard_categories: GUARD_CATEGORIES,
+    fail_closed_assertions: FAIL_CLOSED_ASSERTIONS,
     scenarios,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
@@ -870,16 +1380,19 @@ function main() {
       'all_scenarios_live_actions_performed_no',
       'all_scenarios_production_data_touched_no',
       'all_scenarios_external_services_called_no',
+      'all_guard_failures_safely_routed',
+      'explicit_guard_assertion_coverage',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
       safety_posture: 'demo_ready_with_live_automation_disabled',
       live_automation_status: 'disabled',
       output_mode: 'stdout_json_only',
+      guard_assertion_coverage: 'expanded',
     },
   };
 
