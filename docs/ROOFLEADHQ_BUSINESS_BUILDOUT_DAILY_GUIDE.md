@@ -5708,3 +5708,29 @@ The packet documents:
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, lead-to-inspection, native workflow engine, Supabase source of truth, plan configuration profiles, staged E2E testing, manual bridge, readiness only). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
 
 Safety: planning/readiness/foundation only. No schema changes, no production data reads/writes, no live automation activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Entity State Implementation Plan
+
+The founder-led launch now includes a planning/readiness/implementation-plan packet converting the native workflow foundation into concrete future implementation guidance.
+
+Files:
+- `docs/NATIVE_WORKFLOW_ENTITY_STATE_IMPLEMENTATION_PLAN.md`
+- `scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh`
+- `backend/scripts/verify-native-workflow-entity-state-implementation-plan-readonly.js`
+
+Canonical source of truth before this worktree: `249a8d2 test(workflow): add native workflow engine foundation readiness packet`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Entity State Implementation Plan" / "native workflow entity state implementation plan" / "entity state implementation plan" across aggregate, index, contexts, and business guide.
+
+The packet documents:
+- Future module map — workflow/entities through workflow/integrationAdapters with dependencies and fixture expectations
+- Entity implementation readiness table for 20 conceptual entities with launch phases and security blockers
+- State implementation phases Phase 0 (planning/dry-run) through Phase 5 (selective live activation)
+- Transition guard implementation plan with intake through HOLD/BLOCKED categories
+- Plan profile implementation (one core engine); Fillout/Guided Setup mapping; Lindy bridge boundary
+- Activation flag plan; fixture test plan; security/schema/RLS blockers before implementation
+- First paid roofer launch relationship; reporting/CSV dependency; future implementation sequencing
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, lead-to-inspection, native workflow engine, Supabase source of truth, plan configuration profiles, staged E2E testing, manual bridge, implementation plan, readiness only). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
+
+Safety: planning/readiness/implementation-plan only. No schema changes, no production data reads/writes, no live automation activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

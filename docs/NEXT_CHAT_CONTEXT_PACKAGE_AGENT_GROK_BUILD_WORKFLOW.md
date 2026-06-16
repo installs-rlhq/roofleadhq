@@ -872,3 +872,42 @@ node backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly
 ```
 
 Safety remains: planning/readiness/foundation only. No schema changes, no production data reads/writes, no live automation activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Entity State Implementation Plan
+
+Latest Grok Build planning packet converting native workflow foundation into concrete entity/state implementation guidance.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_ENTITY_STATE_IMPLEMENTATION_PLAN.md`
+- `scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh`
+- `backend/scripts/verify-native-workflow-entity-state-implementation-plan-readonly.js`
+
+Canonical source of truth before this worktree: `249a8d2 test(workflow): add native workflow engine foundation readiness packet`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Entity State Implementation Plan" / "native workflow entity state implementation plan" / "entity state implementation plan" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Future module map (workflow/entities through workflow/integrationAdapters)
+- Entity implementation readiness table; state phases Phase 0 through Phase 5
+- Transition guard implementation plan with all required categories and guard checks
+- Plan profile, Fillout mapping, Lindy bridge boundary, activation flags, fixture tests
+- Security/schema/RLS blockers; first paid roofer relationship; reporting/CSV dependency; implementation sequencing
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-entity-state-implementation-plan-readonly.js
+```
+
+Safety remains: planning/readiness/implementation-plan only. No schema changes, no production data reads/writes, no live automation activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.

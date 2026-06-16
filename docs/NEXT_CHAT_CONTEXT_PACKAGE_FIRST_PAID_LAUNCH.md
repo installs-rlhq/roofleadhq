@@ -5563,3 +5563,33 @@ Packet scope:
 The wrapper `scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: planning/readiness/foundation only. No schema changes, no production data reads/writes, no live automation activation. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Entity State Implementation Plan
+
+The Native Workflow Entity State Implementation Plan is a planning/readiness/implementation-plan artifact that converts the native workflow engine foundation into concrete future implementation guidance: future module map, entity implementation readiness table, state implementation phases (Phase 0 through Phase 5), transition guard implementation plan, fixture test expectations, security blockers, and launch sequencing. It does not implement the workflow engine, create or modify database schema, or activate live automation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_ENTITY_STATE_IMPLEMENTATION_PLAN.md`
+- `scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh`
+- `backend/scripts/verify-native-workflow-entity-state-implementation-plan-readonly.js`
+
+Canonical source of truth before this worktree: `249a8d2 test(workflow): add native workflow engine foundation readiness packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Entity State Implementation Plan" / "native workflow entity state implementation plan" / "entity state implementation plan" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Implementation principles: Supabase source of truth, RoofLeadHQ backend workflow decision layer, one core workflow engine with plan configuration profiles
+- Future module map: workflow/entities through workflow/integrationAdapters with purpose, dependencies, safety blockers, fixture expectations
+- Entity implementation readiness table for 20 conceptual entities with launch phase and security blockers
+- State phases Phase 0 (planning/dry-run) through Phase 5 (selective live activation)
+- Transition guard categories: intake, response/follow-up, missed-lead recovery, review queue, appointment, post-inspection, feedback, reporting/CSV, custom-review, HOLD/BLOCKED
+- Plan profile implementation, Fillout/Guided Setup mapping, Lindy bridge boundary, activation flags, fixture test plan
+- Security/schema/RLS blockers before implementation; first paid roofer launch relationship; reporting/CSV dependency
+
+The wrapper `scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: planning/readiness/implementation-plan only. No schema changes, no production data reads/writes, no live automation activation. Stop after gates and diff proof. Do not commit or push.

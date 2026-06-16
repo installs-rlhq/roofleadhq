@@ -722,6 +722,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Entity State Implementation Plan (docs/NATIVE_WORKFLOW_ENTITY_STATE_IMPLEMENTATION_PLAN.md + scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh) -- planning/readiness/implementation-plan packet converting native workflow foundation into concrete future implementation guidance: future module map (workflow/entities through workflow/integrationAdapters), entity implementation readiness table, state implementation phases (Phase 0 through Phase 5), transition guard implementation plan with intake/response/review/appointment/post-inspection/feedback/reporting/HOLD-BLOCKED categories, plan profile implementation plan (one core engine), Fillout/Guided Setup to native config mapping, Lindy bridge implementation boundary, activation flag implementation plan, fixture test implementation plan with all required fake-data paths, security/schema/RLS blockers before implementation, first paid roofer launch relationship, reporting/CSV implementation dependency, future implementation sequencing, forbidden/preferred language guardrails, and full safety/no-schema/no-live-activation/no-production-data boundaries',
+    script: 'backend/scripts/verify-native-workflow-entity-state-implementation-plan-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

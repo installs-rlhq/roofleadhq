@@ -183,6 +183,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Engine Foundation Readiness Packet doc: `docs/NATIVE_WORKFLOW_ENGINE_FOUNDATION_READINESS_PACKET.md`
 - Native Workflow Engine Foundation Readiness Packet wrapper: `scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh`
 - Native Workflow Engine Foundation Readiness Packet verifier: `node backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js`
+- Native Workflow Entity State Implementation Plan doc: `docs/NATIVE_WORKFLOW_ENTITY_STATE_IMPLEMENTATION_PLAN.md`
+- Native Workflow Entity State Implementation Plan wrapper: `scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh`
+- Native Workflow Entity State Implementation Plan verifier: `node backend/scripts/verify-native-workflow-entity-state-implementation-plan-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1552,5 +1555,22 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js`
 - Purpose: read-only guard that confirms the native workflow engine foundation readiness packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for entity/state readiness map, state machine foundation, plan-tier configuration profiles, Lindy bridge migration boundaries, integration activation flags, staged E2E testing relationship, reporting/CSV relationship, data protection/privacy/audit readiness, future implementation sequencing, preferred/forbidden language guardrails, and full safety posture.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Entity State Implementation Plan
+
+- Doc: `docs/NATIVE_WORKFLOW_ENTITY_STATE_IMPLEMENTATION_PLAN.md`
+- Wrapper: `scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-native-workflow-entity-state-implementation-plan-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: planning/readiness/implementation-plan packet converting the native workflow engine foundation into concrete future implementation guidance — future module map (workflow/entities through workflow/integrationAdapters), entity implementation readiness table, state implementation phases (Phase 0 through Phase 5), transition guard implementation plan, plan profile implementation plan (one core engine), Fillout/Guided Setup to native config mapping, Lindy bridge implementation boundary, activation flag implementation plan, fixture test implementation plan, security/schema/RLS blockers before implementation, first paid roofer launch relationship, reporting/CSV implementation dependency, future implementation sequencing, forbidden/preferred language guardrails.
+- Verifier enforces: packet doc and wrapper exist; purpose/scope; planning/readiness only and no implementation boundary; implementation principles; Supabase source of truth; RoofLeadHQ backend decision layer; Lindy temporary bridge only; future module map and all required modules; entity implementation readiness table and all required entities; state implementation phases Phase 0 through Phase 5; transition guard implementation plan with all required categories and guard checks; HOLD/BLOCKED handling; plan profile implementation plan; one core workflow engine; Fillout mapping; Lindy bridge boundary; n8n/Make boundary; activation flags; fixture test plan and all required paths; security/schema/RLS blockers; no schema before review; first paid roofer launch relationship; reporting/CSV dependency; CSV not native CRM sync boundary; future implementation sequencing; demo_ready_with_live_automation_disabled; forbidden language absent; safety boundaries; wrapper wiring; aggregate/index/context/business-guide cross-references.
+- Safety: planning/readiness/implementation-plan only. No database schema changes, no migrations, no auth/RLS/security implementation, no production Supabase writes, no production data reads, no live automation activation, no customer-facing workflow behavior changes, no external service calls, no CRM connection, no env/credential changes. Read-only verifier and dry-run wrapper only. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Native Workflow Entity State Implementation Plan Verifier
+
+- Script: `backend/scripts/verify-native-workflow-entity-state-implementation-plan-readonly.js`
+- Purpose: read-only guard that confirms the native workflow entity state implementation plan doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for future module map, entity readiness table, state phases, transition guards, plan profiles, Fillout mapping, Lindy bridge boundary, activation flags, fixture tests, security blockers, implementation sequencing, preferred/forbidden language guardrails, and full safety posture.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.

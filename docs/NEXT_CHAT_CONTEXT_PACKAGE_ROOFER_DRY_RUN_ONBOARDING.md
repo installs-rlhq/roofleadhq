@@ -1862,3 +1862,29 @@ Key alignment for roofer dry-run onboarding:
 - Staged E2E fixture paths for state transition validation with fake data only
 
 Safety remains planning/readiness/foundation only. No schema changes, no production data reads/writes, no live automation activation. demo_ready_with_live_automation_disabled.
+
+## Native Workflow Entity State Implementation Plan
+
+The Native Workflow Entity State Implementation Plan documents concrete future implementation guidance for the native workflow engine for roofer dry-run onboarding and first-paid launch planning: module map, entity readiness, state phases, transition guards, fixture tests, and security blockers before implementation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_ENTITY_STATE_IMPLEMENTATION_PLAN.md`
+- `scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh`
+- `backend/scripts/verify-native-workflow-entity-state-implementation-plan-readonly.js`
+
+Canonical source of truth before this worktree: `249a8d2 test(workflow): add native workflow engine foundation readiness packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Entity State Implementation Plan" / "native workflow entity state implementation plan" / "entity state implementation plan" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Planning/readiness/implementation-plan only — no schema, no live automation, no production records
+- Phase 0–5 implementation sequencing with fixture-first approach before persistence
+- First paid roofer manual bridge path preserved; native implementation should not block onboarding unless safety requires it
+- Roofer review owns business judgment; RoofLeadHQ/Jason review limited to system/workflow/data/routing/quality
+- Lindy temporary bridge only; fixture paths inform state-transition priorities from first-roofer operations
+
+Safety remains planning/readiness/implementation-plan only. No schema changes, no production data reads/writes, no live automation activation. demo_ready_with_live_automation_disabled.
