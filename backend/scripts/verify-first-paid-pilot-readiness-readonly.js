@@ -767,6 +767,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Manual Outreach Expansion (docs/NATIVE_WORKFLOW_FIXTURE_MANUAL_OUTREACH_EXPANSION.md + scripts/run-native-workflow-fixture-manual-outreach-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit manual outreach coverage: manual_outreach_expansion_summary, manual_outreach_items, manual_outreach_status_summary, manual_outreach_owner_summary, manual_outreach_reason_summary, manual_outreach_attempt_summary, missed_lead_manual_outreach_summary, post_inspection_manual_outreach_summary, feedback_manual_outreach_summary, manual_outreach_review_boundary_summary, manual_outreach_safety_assertions; outreach-needed vs outreach-blocked; missed lead recovery; max follow-up attempts; contact permission and do-not-contact boundaries; post-inspection and feedback follow-up; roofer vs RoofLeadHQ review ownership; owner/next-step/due-date/attempt tracking; no live SMS/email/call/notification; per-scenario manual_outreach_items with required fields; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-manual-outreach-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

@@ -1241,3 +1241,42 @@ node backend/scripts/verify-native-workflow-fixture-feedback-permission-expansio
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live feedback requests, no automatic public review generation, no testimonial/public-use publication. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Manual Outreach Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_MANUAL_OUTREACH_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-manual-outreach-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-manual-outreach-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `b765fe2 test(workflow): expand native workflow fixture feedback permission`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Manual Outreach Expansion" / "native workflow fixture manual outreach expansion" / "manual outreach expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level manual_outreach_expansion_summary, manual_outreach_items, manual_outreach_status_summary
+- manual_outreach_owner_summary, manual_outreach_reason_summary, manual_outreach_attempt_summary
+- missed_lead_manual_outreach_summary, post_inspection_manual_outreach_summary, feedback_manual_outreach_summary
+- manual_outreach_review_boundary_summary, manual_outreach_safety_assertions
+- Per-scenario manual_outreach_items; no live SMS/email/call sends, no notifications
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-manual-outreach-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-manual-outreach-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call sends, no notifications. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

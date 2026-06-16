@@ -5962,3 +5962,34 @@ The expansion implements:
 Use preferred lead-to-inspection language (booked inspections, post-inspection tracking, feedback capture, permission_to_use_publicly, testimonial candidate, public-use permission, fixture state model, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live feedback requests, no automatic public review generation, no testimonial/public-use publication. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Manual Outreach Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_MANUAL_OUTREACH_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-manual-outreach-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-manual-outreach-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `b765fe2 test(workflow): expand native workflow fixture feedback permission`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Manual Outreach Expansion" / "native workflow fixture manual outreach expansion" / "manual outreach expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level manual_outreach_expansion_summary, manual_outreach_items, manual_outreach_status_summary
+- manual_outreach_owner_summary, manual_outreach_reason_summary, manual_outreach_attempt_summary
+- missed_lead_manual_outreach_summary, post_inspection_manual_outreach_summary, feedback_manual_outreach_summary
+- manual_outreach_review_boundary_summary, manual_outreach_safety_assertions
+- Per-scenario manual_outreach_items with required fields; outreach-needed vs outreach-blocked
+- demo_ready_with_live_automation_disabled preserved; no live SMS/email/call sends, no notifications
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (booked inspections, post-inspection tracking, manual outreach, missed lead recovery, contact permission, do-not-contact, fixture state model, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call sends, no notifications. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

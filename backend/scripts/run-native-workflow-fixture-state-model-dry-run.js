@@ -3477,6 +3477,801 @@ function buildTopLevelFeedbackPermission(scenarios, outputBase) {
   };
 }
 
+const MANUAL_OUTREACH_SAFETY_ASSERTIONS = [
+  'manual_outreach_expansion_summary_present',
+  'manual_outreach_items_present',
+  'manual_outreach_item_required_fields_present',
+  'missed_lead_recovery_can_route_to_manual_outreach',
+  'max_follow_up_attempts_can_route_to_manual_outreach',
+  'missing_contact_data_blocks_manual_outreach_or_routes_to_review',
+  'unclear_contact_permission_blocks_manual_outreach_or_routes_to_review',
+  'do_not_contact_blocks_manual_outreach',
+  'homeowner_contact_ready_required_for_manual_outreach',
+  'roofer_review_required_before_business_judgment_outreach',
+  'roofleadhq_review_required_before_system_quality_outreach',
+  'pricing_question_routes_to_roofer_review_before_outreach',
+  'estimate_question_routes_to_roofer_review_before_outreach',
+  'quote_request_routes_to_roofer_review_before_outreach',
+  'insurance_complexity_routes_to_roofer_review_before_outreach',
+  'payment_or_invoice_routes_to_roofer_review_before_outreach',
+  'contract_question_routes_to_roofer_review_before_outreach',
+  'homeowner_asks_for_roofer_routes_to_roofer_review_before_outreach',
+  'upset_homeowner_routes_to_roofer_review_before_outreach',
+  'negative_or_disputed_feedback_routes_to_roofer_review_before_outreach',
+  'broken_routing_routes_to_roofleadhq_review_before_outreach',
+  'missed_data_capture_routes_to_roofleadhq_review_before_outreach',
+  'source_attribution_issue_routes_to_roofleadhq_review_before_outreach',
+  'feedback_permission_capture_mismatch_routes_to_roofleadhq_review_before_outreach',
+  'manual_outreach_owner_required',
+  'manual_next_step_required',
+  'next_step_owner_required',
+  'next_step_due_date_required_when_outreach_needed',
+  'outreach_attempt_count_present',
+  'manual_outreach_decisions_are_audited',
+  'live_sms_blocked_when_flag_false',
+  'live_email_blocked_when_flag_false',
+  'live_call_blocked_when_flag_false',
+  'notification_sent_is_no_for_all_items',
+  'live_sms_allowed_is_no_for_all_items',
+  'live_email_allowed_is_no_for_all_items',
+  'live_call_allowed_is_no_for_all_items',
+  'no_twilio_call_performed',
+  'no_vapi_call_performed',
+  'no_resend_call_performed',
+  `no_${BRIDGE_VENDOR}_live_workflow_performed`,
+  'no_google_calendar_event_created',
+  'no_external_services_called',
+  'manual_outreach_uses_fake_data_only',
+  'manual_outreach_does_not_touch_production_data',
+  'manual_outreach_does_not_send_notifications',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'unsupported_request_routes_to_review_or_later_only',
+  'unsupported_request_does_not_trigger_live_outreach',
+];
+
+const MANUAL_OUTREACH_PROFILES = {
+  normal_lead_to_appointment_readiness: {
+    outreach_needed: false,
+    outreach_status: 'not_needed',
+    outreach_reason: 'appointment_readiness_satisfied_no_manual_outreach_yet',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only_when_needed',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: null,
+    business_judgment_required: false,
+    system_quality_issue: false,
+  },
+  missing_information_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_review',
+    outreach_reason: 'missing_contact_data_blocks_manual_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'none_until_contact_ready',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-18',
+    business_judgment_required: true,
+    system_quality_issue: false,
+  },
+  duplicate_review_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_roofleadhq_review',
+    outreach_reason: 'unresolved_duplicate_review_blocks_outreach',
+    outreach_owner: 'roofleadhq_jason',
+    outreach_channel_allowed: 'none_until_review_complete',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-19',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    broken_routing: true,
+  },
+  bad_fit_excluded_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked',
+    outreach_reason: 'excluded_service_area_blocks_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'none',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: null,
+    business_judgment_required: false,
+    system_quality_issue: false,
+  },
+  stopped_do_not_contact_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked',
+    outreach_reason: 'do_not_contact_blocks_all_manual_outreach',
+    outreach_owner: 'none',
+    outreach_channel_allowed: 'none',
+    prior_follow_up_count: 2,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: null,
+    business_judgment_required: false,
+    system_quality_issue: false,
+  },
+  missed_lead_recovery_path: {
+    outreach_needed: true,
+    outreach_status: 'needed',
+    outreach_reason: 'missed_lead_recovery_requires_manual_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only',
+    prior_follow_up_count: 2,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: true,
+    manual_outreach_attempt_count: 1,
+    last_manual_outreach_attempt_date: '2026-06-14',
+    next_step_due_date: '2026-06-17',
+    business_judgment_required: false,
+    system_quality_issue: false,
+    bad_or_unclear_ai_response: true,
+  },
+  roofer_review_needed_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_roofer_review',
+    outreach_reason: 'pricing_question_requires_roofer_review_before_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'none_until_roofer_review_complete',
+    prior_follow_up_count: 1,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-18',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    pricing_question: true,
+    insurance_complexity: true,
+  },
+  roofleadhq_system_review_needed_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_roofleadhq_review',
+    outreach_reason: 'workflow_state_confusion_requires_roofleadhq_review_before_outreach',
+    outreach_owner: 'roofleadhq_jason',
+    outreach_channel_allowed: 'none_until_system_review_complete',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-19',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    broken_routing: true,
+    missed_data_capture: true,
+  },
+  appointment_booked_path: {
+    outreach_needed: false,
+    outreach_status: 'not_needed',
+    outreach_reason: 'appointment_booked_fixture_manual_coordination_only',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only_when_needed',
+    prior_follow_up_count: 1,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 1,
+    last_manual_outreach_attempt_date: '2026-06-12',
+    next_step_due_date: null,
+    business_judgment_required: false,
+    system_quality_issue: false,
+  },
+  inspection_completed_path: {
+    outreach_needed: false,
+    outreach_status: 'tracking_only',
+    outreach_reason: 'post_inspection_tracking_no_outreach_until_follow_up_needed',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only_when_needed',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: null,
+    business_judgment_required: false,
+    system_quality_issue: false,
+  },
+  inspection_missed_reschedule_path: {
+    outreach_needed: true,
+    outreach_status: 'needed_after_roofer_review',
+    outreach_reason: 'scheduling_issue_requires_roofer_manual_reschedule_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only',
+    prior_follow_up_count: 1,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-17',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    scheduling_issue: true,
+  },
+  post_inspection_still_open_path: {
+    outreach_needed: true,
+    outreach_status: 'needed',
+    outreach_reason: 'post_inspection_still_open_requires_roofer_manual_follow_up',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only',
+    prior_follow_up_count: 2,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 1,
+    last_manual_outreach_attempt_date: '2026-06-15',
+    next_step_due_date: '2026-06-18',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    negative_or_disputed_feedback: true,
+    repair_vs_replacement_question: true,
+  },
+  estimate_needed_estimate_sent_tracking_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_roofer_review',
+    outreach_reason: 'estimate_and_quote_questions_require_roofer_review_before_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'none_until_roofer_review_complete',
+    prior_follow_up_count: 1,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-18',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    estimate_question: true,
+    quote_request: true,
+    payment_or_invoice_question: true,
+  },
+  homeowner_follow_up_needed_path: {
+    outreach_needed: true,
+    outreach_status: 'needed',
+    outreach_reason: 'homeowner_follow_up_requires_manual_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only',
+    prior_follow_up_count: 2,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 1,
+    last_manual_outreach_attempt_date: '2026-06-15',
+    next_step_due_date: '2026-06-17',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    homeowner_asks_for_roofer_directly: true,
+    feedback_issue_follow_up: true,
+  },
+  roofer_follow_up_needed_path: {
+    outreach_needed: true,
+    outreach_status: 'needed_after_roofer_review',
+    outreach_reason: 'negative_feedback_and_contract_question_require_roofer_manual_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only',
+    prior_follow_up_count: 3,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 1,
+    last_manual_outreach_attempt_date: '2026-06-14',
+    next_step_due_date: '2026-06-17',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    upset_homeowner: true,
+    negative_or_disputed_feedback: true,
+    contract_question: true,
+    payment_or_invoice_question: true,
+    feedback_issue_follow_up: true,
+  },
+  feedback_permission_yes_path: {
+    outreach_needed: false,
+    outreach_status: 'tracking_only',
+    outreach_reason: 'feedback_captured_permission_yes_no_live_outreach_required',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only_when_needed',
+    prior_follow_up_count: 1,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: null,
+    business_judgment_required: false,
+    system_quality_issue: false,
+  },
+  feedback_permission_no_path: {
+    outreach_needed: false,
+    outreach_status: 'tracking_only',
+    outreach_reason: 'feedback_internal_only_permission_no_blocks_public_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only_when_needed',
+    prior_follow_up_count: 1,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: null,
+    business_judgment_required: false,
+    system_quality_issue: false,
+  },
+  feedback_permission_not_asked_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_review',
+    outreach_reason: 'unclear_contact_permission_requires_review_before_outreach',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'none_until_permission_reviewed',
+    prior_follow_up_count: 1,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-19',
+    business_judgment_required: false,
+    system_quality_issue: false,
+    unclear_contact_permission: true,
+  },
+  csv_report_snapshot_fake_data_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_roofleadhq_review',
+    outreach_reason: 'source_attribution_and_feedback_permission_mismatch_require_system_review',
+    outreach_owner: 'roofleadhq_jason',
+    outreach_channel_allowed: 'none_until_system_review_complete',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-20',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_attribution_issue: true,
+    feedback_permission_capture_mismatch: true,
+  },
+  starter_plan_profile_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_roofleadhq_review',
+    outreach_reason: 'setup_issue_requires_roofleadhq_system_review_before_outreach',
+    outreach_owner: 'roofleadhq_jason',
+    outreach_channel_allowed: 'none_until_system_review_complete',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-20',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    setup_issue: true,
+  },
+  growth_plan_profile_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_roofleadhq_review',
+    outreach_reason: 'quality_control_concern_requires_roofleadhq_system_review',
+    outreach_owner: 'roofleadhq_jason',
+    outreach_channel_allowed: 'none_until_system_review_complete',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-20',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    quality_control_concern: true,
+  },
+  elite_plan_profile_path: {
+    outreach_needed: false,
+    outreach_status: 'not_needed',
+    outreach_reason: 'elite_plan_fixture_tracking_no_manual_outreach_yet',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only_when_needed',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: null,
+    business_judgment_required: false,
+    system_quality_issue: false,
+  },
+  custom_review_500_plus_leads_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_roofer_review',
+    outreach_reason: 'custom_review_volume_boundary_blocks_outreach_until_review',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'none_until_roofer_review_complete',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-25',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    unsupported_request: true,
+  },
+  custom_review_two_plus_locations_path: {
+    outreach_needed: false,
+    outreach_status: 'blocked_pending_roofer_review',
+    outreach_reason: 'custom_review_multi_location_blocks_outreach_until_review',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'none_until_roofer_review_complete',
+    prior_follow_up_count: 0,
+    max_follow_up_attempts_reached: false,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 0,
+    last_manual_outreach_attempt_date: null,
+    next_step_due_date: '2026-06-25',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    unsupported_request: true,
+  },
+  activation_flag_false_blocks_live_action_path: {
+    outreach_needed: true,
+    outreach_status: 'needed_manual_only',
+    outreach_reason: 'max_follow_up_attempts_reached_requires_manual_outreach_live_blocked',
+    outreach_owner: 'roofer',
+    outreach_channel_allowed: 'manual_only',
+    prior_follow_up_count: 4,
+    max_follow_up_attempts_reached: true,
+    missed_lead_recovery_used: false,
+    manual_outreach_attempt_count: 2,
+    last_manual_outreach_attempt_date: '2026-06-13',
+    next_step_due_date: '2026-06-18',
+    business_judgment_required: false,
+    system_quality_issue: false,
+    unsupported_request: true,
+  },
+};
+
+function buildManualOutreachItem(
+  scenario,
+  readinessItem,
+  postItem,
+  feedbackItem,
+  profile,
+  index,
+) {
+  const input = scenario.input_fixture_summary || {};
+  const leadId = input.fixture_lead_id || `lead-fix-${scenario.scenario_id}`;
+  const appointmentId = postItem?.appointment_id || null;
+  const manualNextStep =
+    scenario.manual_next_step ||
+    readinessItem?.required_manual_next_step ||
+    postItem?.required_manual_next_step ||
+    feedbackItem?.required_manual_next_step ||
+    profile.required_manual_next_step ||
+    'manual_outreach_review_required';
+  const nextStepOwner =
+    scenario.owner ||
+    postItem?.next_step_owner ||
+    (profile.outreach_owner === 'roofleadhq_jason' ? 'roofleadhq_jason' : 'roofer');
+  const outreachOwner = profile.outreach_owner || nextStepOwner || 'roofer';
+
+  return {
+    manual_outreach_item_id: `${scenario.scenario_id}_manual_outreach_${index + 1}`,
+    scenario_id: scenario.scenario_id,
+    lead_id: leadId,
+    appointment_id: appointmentId,
+    post_inspection_item_id: postItem?.post_inspection_item_id || null,
+    feedback_permission_item_id: feedbackItem?.feedback_permission_item_id || null,
+    plan_profile: scenario.plan_profile,
+    current_state: scenario.starting_state,
+    target_state: scenario.final_state,
+    outreach_needed: profile.outreach_needed,
+    outreach_status: profile.outreach_status,
+    outreach_reason: profile.outreach_reason,
+    outreach_owner: outreachOwner,
+    outreach_channel_allowed: profile.outreach_channel_allowed,
+    contact_permission_status: readinessItem?.contact_permission_status || 'unknown',
+    do_not_contact_status: readinessItem?.do_not_contact_status ?? false,
+    homeowner_contact_ready: readinessItem?.homeowner_contact_ready ?? false,
+    roofer_review_required:
+      readinessItem?.roofer_review_required ||
+      postItem?.roofer_review_required ||
+      profile.business_judgment_required ||
+      false,
+    roofleadhq_review_required:
+      readinessItem?.roofleadhq_review_required ||
+      postItem?.roofleadhq_review_required ||
+      profile.system_quality_issue ||
+      false,
+    business_judgment_required: profile.business_judgment_required ?? false,
+    system_quality_issue: profile.system_quality_issue ?? false,
+    prior_follow_up_count: profile.prior_follow_up_count ?? 0,
+    max_follow_up_attempts_reached: profile.max_follow_up_attempts_reached ?? false,
+    missed_lead_recovery_used: profile.missed_lead_recovery_used ?? false,
+    manual_next_step: manualNextStep,
+    next_step_owner: nextStepOwner,
+    next_step_due_date: profile.next_step_due_date,
+    last_manual_outreach_attempt_date: profile.last_manual_outreach_attempt_date,
+    manual_outreach_attempt_count: profile.manual_outreach_attempt_count ?? 0,
+    manual_outreach_notes: `fixture_manual_outreach_${scenario.scenario_id}`,
+    hold_or_block_reason: scenario.hold_or_block_reason || null,
+    audit_event_id: `${scenario.scenario_id}_manual_outreach_audit_${index + 1}`,
+    live_sms_allowed: 'no',
+    live_email_allowed: 'no',
+    live_call_allowed: 'no',
+    notification_sent: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    pricing_question: profile.pricing_question ?? false,
+    estimate_question: profile.estimate_question ?? false,
+    quote_request: profile.quote_request ?? false,
+    insurance_complexity: profile.insurance_complexity ?? false,
+    payment_or_invoice_question: profile.payment_or_invoice_question ?? false,
+    contract_question: profile.contract_question ?? false,
+    homeowner_asks_for_roofer_directly: profile.homeowner_asks_for_roofer_directly ?? false,
+    upset_homeowner: profile.upset_homeowner ?? false,
+    negative_or_disputed_feedback: profile.negative_or_disputed_feedback ?? false,
+    broken_routing: profile.broken_routing ?? false,
+    missed_data_capture: profile.missed_data_capture ?? false,
+    source_attribution_issue: profile.source_attribution_issue ?? false,
+    feedback_permission_capture_mismatch: profile.feedback_permission_capture_mismatch ?? false,
+    unsupported_request: profile.unsupported_request ?? false,
+    feedback_issue_follow_up: profile.feedback_issue_follow_up ?? false,
+    scheduling_issue: profile.scheduling_issue ?? false,
+    repair_vs_replacement_question: profile.repair_vs_replacement_question ?? false,
+    setup_issue: profile.setup_issue ?? false,
+    quality_control_concern: profile.quality_control_concern ?? false,
+    unclear_contact_permission: profile.unclear_contact_permission ?? false,
+    fake_data_only: true,
+  };
+}
+
+function buildScenarioManualOutreachItem(scenario, readinessItem, postItem, feedbackItem) {
+  const profile = MANUAL_OUTREACH_PROFILES[scenario.scenario_id];
+  if (!profile) {
+    return null;
+  }
+  return buildManualOutreachItem(scenario, readinessItem, postItem, feedbackItem, profile, 0);
+}
+
+function buildTopLevelManualOutreach(scenarios, outputBase) {
+  const allItems = scenarios
+    .map((scenario) => {
+      const readinessItem = buildScenarioAppointmentReadinessItem(scenario);
+      const postItem = buildScenarioPostInspectionItem(scenario);
+      const feedbackItem = buildScenarioFeedbackPermissionItem(scenario, postItem);
+      return buildScenarioManualOutreachItem(scenario, readinessItem, postItem, feedbackItem);
+    })
+    .filter(Boolean);
+
+  const neededItems = allItems.filter((i) => i.outreach_needed);
+  const blockedItems = allItems.filter((i) => i.outreach_status.startsWith('blocked'));
+  const missedLeadItems = allItems.filter((i) => i.missed_lead_recovery_used);
+  const maxFollowUpItems = allItems.filter((i) => i.max_follow_up_attempts_reached);
+  const postInspectionOutreachItems = allItems.filter(
+    (i) =>
+      i.post_inspection_item_id &&
+      (i.outreach_needed ||
+        i.outreach_status === 'needed_after_roofer_review' ||
+        i.outreach_status === 'tracking_only'),
+  );
+  const feedbackOutreachItems = allItems.filter(
+    (i) =>
+      i.feedback_permission_item_id &&
+      (i.feedback_issue_follow_up ||
+        i.negative_or_disputed_feedback ||
+        i.feedback_permission_capture_mismatch),
+  );
+  const rooferReviewBlocked = allItems.filter(
+    (i) => i.roofer_review_required && !i.outreach_needed && i.business_judgment_required,
+  );
+  const roofleadhqReviewBlocked = allItems.filter(
+    (i) => i.roofleadhq_review_required && !i.outreach_needed && i.system_quality_issue,
+  );
+
+  const outreachStatusCounts = {};
+  for (const item of allItems) {
+    outreachStatusCounts[item.outreach_status] =
+      (outreachStatusCounts[item.outreach_status] || 0) + 1;
+  }
+
+  const outreachReasonCounts = {};
+  for (const item of allItems) {
+    outreachReasonCounts[item.outreach_reason] =
+      (outreachReasonCounts[item.outreach_reason] || 0) + 1;
+  }
+
+  const outreachOwnerCounts = {};
+  for (const item of allItems) {
+    outreachOwnerCounts[item.outreach_owner] =
+      (outreachOwnerCounts[item.outreach_owner] || 0) + 1;
+  }
+
+  return {
+    manual_outreach_expansion: 'native_workflow_fixture_manual_outreach_expansion',
+    manual_outreach_expansion_summary: {
+      description:
+        'Deterministic fake-data manual outreach expansion across all fixture scenarios — explicit outreach-needed vs outreach-blocked boundaries without live sends or notifications',
+      total_manual_outreach_items: allItems.length,
+      outreach_needed_count: neededItems.length,
+      outreach_blocked_count: blockedItems.length,
+      missed_lead_recovery_outreach_count: missedLeadItems.length,
+      max_follow_up_manual_outreach_count: maxFollowUpItems.length,
+      post_inspection_outreach_count: postInspectionOutreachItems.length,
+      feedback_outreach_count: feedbackOutreachItems.length,
+      live_sms_enabled: false,
+      live_email_enabled: false,
+      live_call_enabled: false,
+      notifications_sent: false,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    manual_outreach_items: allItems,
+    manual_outreach_status_summary: {
+      description: 'Manual outreach status distribution across fixture scenarios',
+      status_counts: outreachStatusCounts,
+      outreach_needed_count: neededItems.length,
+      outreach_blocked_count: blockedItems.length,
+      outreach_tracking_only_count: allItems.filter((i) => i.outreach_status === 'tracking_only')
+        .length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_outreach_owner_summary: {
+      description: 'Manual outreach owner assignments — roofer vs RoofLeadHQ/Jason vs none',
+      owner_counts: outreachOwnerCounts,
+      roofer_owned_count: allItems.filter((i) => i.outreach_owner === 'roofer').length,
+      roofleadhq_owned_count: allItems.filter((i) => i.outreach_owner === 'roofleadhq_jason').length,
+      none_owned_count: allItems.filter((i) => i.outreach_owner === 'none').length,
+      all_needed_items_have_owner: neededItems.every((i) => i.outreach_owner && i.outreach_owner !== 'none'),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_outreach_reason_summary: {
+      description: 'Manual outreach reason catalog across fixture scenarios',
+      reason_counts: outreachReasonCounts,
+      do_not_contact_blocks_outreach: allItems
+        .filter((i) => i.do_not_contact_status)
+        .every((i) => !i.outreach_needed && i.outreach_status === 'blocked'),
+      missing_contact_blocks_or_routes_to_review: allItems
+        .filter((i) => !i.homeowner_contact_ready)
+        .every((i) => !i.outreach_needed || i.outreach_status.includes('review')),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_outreach_attempt_summary: {
+      description: 'Manual outreach attempt logging — dry-run tracking only, no live sends',
+      total_attempt_count: allItems.reduce((sum, i) => sum + i.manual_outreach_attempt_count, 0),
+      items_with_attempts: allItems.filter((i) => i.manual_outreach_attempt_count > 0).length,
+      all_items_have_attempt_count: allItems.every(
+        (i) => i.manual_outreach_attempt_count !== undefined && i.manual_outreach_attempt_count !== null,
+      ),
+      no_live_sends_performed: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    missed_lead_manual_outreach_summary: {
+      description: 'Missed lead recovery manual outreach handling — human follow-up after safe attempts',
+      missed_lead_recovery_used_count: missedLeadItems.length,
+      missed_lead_recovery_can_route_to_manual_outreach: missedLeadItems.every(
+        (i) => i.outreach_needed && i.missed_lead_recovery_used,
+      ),
+      all_missed_lead_items_manual_only: missedLeadItems.every(
+        (i) => i.outreach_channel_allowed === 'manual_only',
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    post_inspection_manual_outreach_summary: {
+      description:
+        'Post-inspection manual outreach — homeowner/roofer follow-up tracking without live sends',
+      post_inspection_outreach_item_count: postInspectionOutreachItems.length,
+      homeowner_follow_up_outreach_count: allItems.filter(
+        (i) => i.scenario_id === 'homeowner_follow_up_needed_path' && i.outreach_needed,
+      ).length,
+      roofer_follow_up_outreach_count: allItems.filter(
+        (i) => i.scenario_id === 'roofer_follow_up_needed_path' && i.outreach_needed,
+      ).length,
+      all_post_inspection_outreach_manual_only: postInspectionOutreachItems.every(
+        (i) => i.live_sms_allowed === 'no' && i.live_email_allowed === 'no' && i.live_call_allowed === 'no',
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    feedback_manual_outreach_summary: {
+      description:
+        'Feedback issue manual outreach — negative/disputed feedback and permission mismatch routing',
+      feedback_outreach_item_count: feedbackOutreachItems.length,
+      negative_or_disputed_feedback_routes_to_roofer: allItems
+        .filter((i) => i.negative_or_disputed_feedback)
+        .every((i) => i.roofer_review_required || i.outreach_owner === 'roofer'),
+      feedback_permission_capture_mismatch_routes_to_roofleadhq: allItems
+        .filter((i) => i.feedback_permission_capture_mismatch)
+        .every((i) => i.roofleadhq_review_required),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_outreach_review_boundary_summary: {
+      description:
+        'Manual outreach review ownership — roofer owns business judgment; RoofLeadHQ/Jason limited to system quality',
+      roofer_review_blocked_count: rooferReviewBlocked.length,
+      roofleadhq_review_blocked_count: roofleadhqReviewBlocked.length,
+      pricing_question_routes_to_roofer: allItems
+        .filter((i) => i.pricing_question)
+        .every((i) => i.roofer_review_required && !i.outreach_needed),
+      estimate_question_routes_to_roofer: allItems
+        .filter((i) => i.estimate_question)
+        .every((i) => i.roofer_review_required && !i.outreach_needed),
+      quote_request_routes_to_roofer: allItems
+        .filter((i) => i.quote_request)
+        .every((i) => i.roofer_review_required && !i.outreach_needed),
+      insurance_complexity_routes_to_roofer: allItems
+        .filter((i) => i.insurance_complexity)
+        .every((i) => i.roofer_review_required),
+      payment_or_invoice_routes_to_roofer: allItems
+        .filter((i) => i.payment_or_invoice_question)
+        .every((i) => i.roofer_review_required),
+      contract_question_routes_to_roofer: allItems
+        .filter((i) => i.contract_question)
+        .every((i) => i.roofer_review_required),
+      homeowner_asks_for_roofer_routes_to_roofer: allItems
+        .filter((i) => i.homeowner_asks_for_roofer_directly)
+        .every((i) => i.roofer_review_required || i.outreach_owner === 'roofer'),
+      upset_homeowner_routes_to_roofer: allItems
+        .filter((i) => i.upset_homeowner)
+        .every((i) => i.roofer_review_required),
+      broken_routing_routes_to_roofleadhq: allItems
+        .filter((i) => i.broken_routing)
+        .every((i) => i.roofleadhq_review_required),
+      missed_data_capture_routes_to_roofleadhq: allItems
+        .filter((i) => i.missed_data_capture)
+        .every((i) => i.roofer_review_required || i.roofleadhq_review_required),
+      source_attribution_issue_routes_to_roofleadhq: allItems
+        .filter((i) => i.source_attribution_issue)
+        .every((i) => i.roofleadhq_review_required),
+      unsupported_request_routes_to_review_or_later_only: allItems
+        .filter((i) => i.unsupported_request)
+        .every((i) => !i.live_sms_allowed || i.live_sms_allowed === 'no'),
+      all_needed_items_have_manual_next_step: neededItems.every((i) => i.manual_next_step),
+      all_needed_items_have_next_step_owner: neededItems.every((i) => i.next_step_owner),
+      all_needed_items_have_due_date: neededItems.every((i) => i.next_step_due_date),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_outreach_safety_assertions: [
+      ...MANUAL_OUTREACH_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 const FAKE_REPORTING_SNAPSHOT = buildReportingSnapshot({
   report_period: '2026-06',
   csv_export_state: 'fixture_snapshot_strongest',
@@ -3522,12 +4317,19 @@ function buildScenario(config) {
     scenarioDraft,
     postInspectionItem,
   );
+  const manualOutreachItem = buildScenarioManualOutreachItem(
+    scenarioDraft,
+    appointmentReadinessItem,
+    postInspectionItem,
+    feedbackPermissionItem,
+  );
   return {
     ...scenarioDraft,
     review_queue_items: reviewQueueItems,
     appointment_readiness_items: appointmentReadinessItem ? [appointmentReadinessItem] : [],
     post_inspection_items: postInspectionItem ? [postInspectionItem] : [],
     feedback_permission_items: feedbackPermissionItem ? [feedbackPermissionItem] : [],
+    manual_outreach_items: manualOutreachItem ? [manualOutreachItem] : [],
   };
 }
 
@@ -4779,6 +5581,7 @@ function main() {
     appointment_readiness_expansion: 'native_workflow_fixture_appointment_readiness_expansion',
     post_inspection_expansion: 'native_workflow_fixture_post_inspection_expansion',
     feedback_permission_expansion: 'native_workflow_fixture_feedback_permission_expansion',
+    manual_outreach_expansion: 'native_workflow_fixture_manual_outreach_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -4797,6 +5600,7 @@ function main() {
   const appointmentReadinessOutput = buildTopLevelAppointmentReadiness(scenarios, outputBase);
   const postInspectionOutput = buildTopLevelPostInspection(scenarios, outputBase);
   const feedbackPermissionOutput = buildTopLevelFeedbackPermission(scenarios, outputBase);
+  const manualOutreachOutput = buildTopLevelManualOutreach(scenarios, outputBase);
 
   const output = {
     ...outputBase,
@@ -4805,6 +5609,7 @@ function main() {
     ...appointmentReadinessOutput,
     ...postInspectionOutput,
     ...feedbackPermissionOutput,
+    ...manualOutreachOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -4845,10 +5650,14 @@ function main() {
       'feedback_permission_fake_data_only',
       'feedback_permission_live_feedback_blocked',
       'no_automatic_public_review_or_testimonial_publication',
+      'explicit_manual_outreach_coverage',
+      'manual_outreach_fake_data_only',
+      'manual_outreach_live_sends_blocked',
+      'manual_outreach_no_notifications',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, and feedback permission coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, and manual outreach coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -4861,6 +5670,7 @@ function main() {
       appointment_readiness_coverage: 'expanded',
       post_inspection_coverage: 'expanded',
       feedback_permission_coverage: 'expanded',
+      manual_outreach_coverage: 'expanded',
     },
   };
 

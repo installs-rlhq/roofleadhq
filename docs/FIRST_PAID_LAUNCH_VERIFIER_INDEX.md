@@ -217,6 +217,10 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture Feedback Permission Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
 - Native Workflow Fixture Feedback Permission Expansion wrapper: `scripts/run-native-workflow-fixture-feedback-permission-expansion-dry-run.sh`
 - Native Workflow Fixture Feedback Permission Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-feedback-permission-expansion-readonly.js`
+- Native Workflow Fixture Manual Outreach Expansion doc: `docs/NATIVE_WORKFLOW_FIXTURE_MANUAL_OUTREACH_EXPANSION.md`
+- Native Workflow Fixture Manual Outreach Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Native Workflow Fixture Manual Outreach Expansion wrapper: `scripts/run-native-workflow-fixture-manual-outreach-expansion-dry-run.sh`
+- Native Workflow Fixture Manual Outreach Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-manual-outreach-expansion-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1746,5 +1750,23 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-native-workflow-fixture-feedback-permission-expansion-readonly.js`
 - Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded feedback permission output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Fixture Manual Outreach Expansion
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_MANUAL_OUTREACH_EXPANSION.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Wrapper: `scripts/run-native-workflow-fixture-manual-outreach-expansion-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-native-workflow-fixture-manual-outreach-expansion-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fixture-only fake-data dry-run expansion deepening explicit manual outreach coverage — manual_outreach_expansion_summary, manual_outreach_items, manual_outreach_status_summary, manual_outreach_owner_summary, manual_outreach_reason_summary, manual_outreach_attempt_summary, missed_lead_manual_outreach_summary, post_inspection_manual_outreach_summary, feedback_manual_outreach_summary, manual_outreach_review_boundary_summary, manual_outreach_safety_assertions; outreach-needed vs outreach-blocked; missed lead recovery; max follow-up attempts; contact permission and do-not-contact boundaries; post-inspection and feedback follow-up; roofer vs RoofLeadHQ review ownership; owner/next-step/due-date/attempt tracking; no live SMS/email/call/notification.
+- Verifier enforces: doc/runner/wrapper/existing fixture verifier/guard verifier/reporting verifier/review queue verifier/appointment readiness verifier/post-inspection verifier/feedback permission verifier exist; runner and verifier syntax; valid JSON output; demo_ready_with_live_automation_disabled; all 25 scenario IDs; manual outreach summaries and items with required fields; routing assertions; safety assertions; local E2E runner relationship; first paid roofer relationship; forbidden language absent; no unsafe imports/strings; safety boundaries documented; aggregate/index/context/business-guide wiring.
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS/security changes, no production data, no live automation, no integrations, no external calls, no live SMS/email/call sends, no notifications. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Native Workflow Fixture Manual Outreach Expansion Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-manual-outreach-expansion-readonly.js`
+- Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded manual outreach output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
