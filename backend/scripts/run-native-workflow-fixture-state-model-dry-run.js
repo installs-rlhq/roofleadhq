@@ -742,6 +742,475 @@ function buildTopLevelReporting(outputBase) {
   };
 }
 
+const ROOFER_REVIEW_ROUTING_TYPES = [
+  'pricing_question',
+  'estimate_question',
+  'quote_request',
+  'insurance_complexity',
+  'repair_vs_replacement_question',
+  'scheduling_issue',
+  'homeowner_asks_for_roofer_directly',
+  'upset_homeowner',
+  'legal_or_carrier_question',
+  'payment_or_invoice_question',
+  'contract_question',
+];
+
+const ROOFLEADHQ_REVIEW_ROUTING_TYPES = [
+  'bad_or_unclear_ai_response',
+  'missed_data_capture',
+  'broken_routing',
+  'duplicate_lead_confusion',
+  'source_attribution_issue',
+  'dashboard_report_discrepancy',
+  'workflow_state_confusion',
+  'setup_issue',
+  'failed_handoff',
+  'quality_control_concern',
+];
+
+const REVIEW_QUEUE_SAFETY_ASSERTIONS = [
+  'roofer_review_owns_business_judgment',
+  'roofleadhq_review_limited_to_system_quality',
+  'pricing_routes_to_roofer_review',
+  'estimate_routes_to_roofer_review',
+  'quote_routes_to_roofer_review',
+  'insurance_complexity_routes_to_roofer_review',
+  'repair_vs_replacement_routes_to_roofer_review',
+  'scheduling_issue_routes_to_roofer_review',
+  'homeowner_asks_for_roofer_routes_to_roofer_review',
+  'upset_homeowner_routes_to_roofer_review',
+  'legal_or_carrier_question_routes_to_roofer_review',
+  'payment_or_invoice_routes_to_roofer_review',
+  'contract_question_routes_to_roofer_review',
+  'duplicate_routes_to_roofleadhq_system_review',
+  'broken_routing_routes_to_roofleadhq_system_review',
+  'source_attribution_issue_routes_to_roofleadhq_system_review',
+  'dashboard_report_discrepancy_routes_to_roofleadhq_system_review',
+  'workflow_state_confusion_routes_to_roofleadhq_system_review',
+  'setup_issue_routes_to_roofleadhq_system_review',
+  'failed_handoff_routes_to_roofleadhq_system_review',
+  'quality_control_concern_routes_to_roofleadhq_system_review',
+  'review_queue_items_are_fake_data_only',
+  'review_queue_does_not_send_notifications',
+  'review_queue_does_not_touch_production_data',
+  'review_queue_does_not_call_external_services',
+  'live_review_notification_blocked_when_flag_false',
+  'review_decisions_are_audited',
+  'review_owner_required_before_next_step',
+  'review_item_has_required_manual_next_step',
+  'live_action_allowed_is_no_for_all_review_items',
+  'production_data_touched_is_no_for_all_review_items',
+  'external_services_called_is_no_for_all_review_items',
+];
+
+const REVIEW_TYPE_METADATA = {
+  pricing_question: {
+    review_owner: 'roofer',
+    review_reason: 'pricing_question_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'READY_FOR_RESPONSE',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_reviews_pricing_question_and_responds_manually',
+  },
+  estimate_question: {
+    review_owner: 'roofer',
+    review_reason: 'estimate_question_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'POST_INSPECTION_OPEN',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_reviews_estimate_question_and_responds_manually',
+  },
+  quote_request: {
+    review_owner: 'roofer',
+    review_reason: 'quote_request_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'POST_INSPECTION_OPEN',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_reviews_quote_request_and_responds_manually',
+  },
+  insurance_complexity: {
+    review_owner: 'roofer',
+    review_reason: 'insurance_complexity_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'READY_FOR_RESPONSE',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_reviews_insurance_complexity_and_responds_manually',
+  },
+  repair_vs_replacement_question: {
+    review_owner: 'roofer',
+    review_reason: 'repair_vs_replacement_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'POST_INSPECTION_OPEN',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_reviews_repair_vs_replacement_and_responds_manually',
+  },
+  scheduling_issue: {
+    review_owner: 'roofer',
+    review_reason: 'scheduling_issue_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'APPOINTMENT_BOOKED',
+    target_state: 'RESCHEDULE_NEEDED',
+    required_manual_next_step: 'roofer_manual_reschedule',
+  },
+  homeowner_asks_for_roofer_directly: {
+    review_owner: 'roofer',
+    review_reason: 'homeowner_asks_for_roofer_directly_requires_roofer_review',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'POST_INSPECTION_OPEN',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_responds_to_direct_homeowner_request_manually',
+  },
+  upset_homeowner: {
+    review_owner: 'roofer',
+    review_reason: 'upset_homeowner_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'POST_INSPECTION_OPEN',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_handles_upset_homeowner_manually',
+  },
+  legal_or_carrier_question: {
+    review_owner: 'roofer',
+    review_reason: 'legal_or_carrier_question_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'READY_FOR_RESPONSE',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_reviews_legal_or_carrier_question_manually',
+  },
+  payment_or_invoice_question: {
+    review_owner: 'roofer',
+    review_reason: 'payment_or_invoice_question_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'POST_INSPECTION_OPEN',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_reviews_payment_or_invoice_question_manually',
+  },
+  contract_question: {
+    review_owner: 'roofer',
+    review_reason: 'contract_question_requires_roofer_business_judgment',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'POST_INSPECTION_OPEN',
+    target_state: 'ROOFER_REVIEW_NEEDED',
+    required_manual_next_step: 'roofer_reviews_contract_question_manually',
+  },
+  bad_or_unclear_ai_response: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'bad_or_unclear_ai_response_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'READY_FOR_RESPONSE',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_ai_response_quality_and_routing',
+  },
+  missed_data_capture: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'missed_data_capture_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'NEW_LEAD',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_missed_data_capture_and_workflow_fix',
+  },
+  broken_routing: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'broken_routing_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'NEW_LEAD',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_broken_routing_and_workflow_fix',
+  },
+  duplicate_lead_confusion: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'duplicate_lead_confusion_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'NEW_LEAD',
+    target_state: 'DUPLICATE_REVIEW',
+    required_manual_next_step: 'jason_reviews_duplicate_lead_confusion_and_resolves_routing',
+  },
+  source_attribution_issue: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'source_attribution_issue_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'SOURCE_CAPTURED',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_source_attribution_and_data_quality',
+  },
+  dashboard_report_discrepancy: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'dashboard_report_discrepancy_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'REPORT_PERIOD_DUE',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_dashboard_report_discrepancy',
+  },
+  workflow_state_confusion: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'workflow_state_confusion_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'NEW_LEAD',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_workflow_state_confusion',
+  },
+  setup_issue: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'setup_issue_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'NEW_LEAD',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_setup_issue_and_configuration',
+  },
+  failed_handoff: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'failed_handoff_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'APPOINTMENT_READY',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_failed_handoff_and_workflow_fix',
+  },
+  quality_control_concern: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'quality_control_concern_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'READY_FOR_RESPONSE',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_quality_control_concern',
+  },
+  missing_contact_or_service_details: {
+    review_owner: 'roofer',
+    review_reason: 'missing_contact_or_service_details_requires_roofer_review',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'NEW_LEAD',
+    target_state: 'MISSING_INFO',
+    required_manual_next_step: 'roofer_collects_missing_phone_and_appointment_preference',
+  },
+  volume_exceeds_500: {
+    review_owner: 'roofer',
+    review_reason: 'volume_exceeds_500_requires_custom_review',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'NEW_LEAD',
+    target_state: 'CUSTOM_REVIEW_REQUIRED',
+    required_manual_next_step: 'roofer_completes_custom_review_for_volume',
+  },
+  multi_location: {
+    review_owner: 'roofer',
+    review_reason: 'multi_location_requires_custom_review',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'NEW_LEAD',
+    target_state: 'CUSTOM_REVIEW_REQUIRED',
+    required_manual_next_step: 'roofer_completes_custom_review_for_multi_location',
+  },
+};
+
+const ROUTING_CATALOG_SCENARIO_MAP = {
+  pricing_question: 'roofer_review_needed_path',
+  estimate_question: 'estimate_needed_estimate_sent_tracking_path',
+  quote_request: 'estimate_needed_estimate_sent_tracking_path',
+  insurance_complexity: 'roofer_review_needed_path',
+  repair_vs_replacement_question: 'post_inspection_still_open_path',
+  scheduling_issue: 'inspection_missed_reschedule_path',
+  homeowner_asks_for_roofer_directly: 'homeowner_follow_up_needed_path',
+  upset_homeowner: 'roofer_follow_up_needed_path',
+  legal_or_carrier_question: 'roofer_review_needed_path',
+  payment_or_invoice_question: 'estimate_needed_estimate_sent_tracking_path',
+  contract_question: 'roofer_follow_up_needed_path',
+  bad_or_unclear_ai_response: 'missed_lead_recovery_path',
+  missed_data_capture: 'missing_information_path',
+  broken_routing: 'roofleadhq_system_review_needed_path',
+  duplicate_lead_confusion: 'duplicate_review_path',
+  source_attribution_issue: 'missed_lead_recovery_path',
+  dashboard_report_discrepancy: 'csv_report_snapshot_fake_data_path',
+  workflow_state_confusion: 'roofleadhq_system_review_needed_path',
+  setup_issue: 'starter_plan_profile_path',
+  failed_handoff: 'appointment_booked_path',
+  quality_control_concern: 'growth_plan_profile_path',
+};
+
+const PARTIAL_REASON_TO_REVIEW_TYPE = {
+  missing_contact_or_service_details: 'missing_contact_or_service_details',
+  duplicate_lead_confusion: 'duplicate_lead_confusion',
+  pricing_question: 'pricing_question',
+  workflow_state_confusion: 'workflow_state_confusion',
+  scheduling_issue: 'scheduling_issue',
+  volume_exceeds_500: 'volume_exceeds_500',
+  multi_location: 'multi_location',
+};
+
+function buildReviewQueueItem(config) {
+  const meta = REVIEW_TYPE_METADATA[config.review_type] || {};
+  return {
+    review_item_id: config.review_item_id,
+    scenario_id: config.scenario_id,
+    review_type: config.review_type,
+    review_owner: config.review_owner || meta.review_owner,
+    review_reason: config.review_reason || meta.review_reason,
+    business_judgment_required:
+      config.business_judgment_required ?? meta.business_judgment_required ?? false,
+    system_quality_issue: config.system_quality_issue ?? meta.system_quality_issue ?? false,
+    source_state: config.source_state || meta.source_state || config.starting_state || 'NEW_LEAD',
+    target_state: config.target_state || meta.target_state || 'HOLD',
+    required_manual_next_step:
+      config.required_manual_next_step || meta.required_manual_next_step || 'manual_review_required',
+    hold_or_block_reason: config.hold_or_block_reason || null,
+    audit_event_id: config.audit_event_id,
+    live_action_allowed: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    fake_data_only: true,
+    status: config.status || 'pending',
+  };
+}
+
+function expandScenarioReviewItem(scenario, partialItem, index) {
+  const reviewType =
+    partialItem.review_type ||
+    PARTIAL_REASON_TO_REVIEW_TYPE[partialItem.reason] ||
+    partialItem.reason;
+  const auditEventId = `${scenario.scenario_id}_audit_${index}`;
+  return buildReviewQueueItem({
+    review_item_id: `${scenario.scenario_id}_review_${index + 1}`,
+    scenario_id: scenario.scenario_id,
+    review_type: reviewType,
+    review_owner: partialItem.review_owner,
+    review_reason: partialItem.reason || REVIEW_TYPE_METADATA[reviewType]?.review_reason,
+    source_state: scenario.starting_state,
+    target_state: scenario.final_state,
+    required_manual_next_step: scenario.manual_next_step,
+    hold_or_block_reason: scenario.hold_or_block_reason,
+    audit_event_id: auditEventId,
+    status: partialItem.status,
+  });
+}
+
+function buildRoutingCatalogItems() {
+  const allTypes = [...ROOFER_REVIEW_ROUTING_TYPES, ...ROOFLEADHQ_REVIEW_ROUTING_TYPES];
+  return allTypes.map((reviewType) =>
+    buildReviewQueueItem({
+      review_item_id: `routing_catalog_${reviewType}`,
+      scenario_id: ROUTING_CATALOG_SCENARIO_MAP[reviewType],
+      review_type: reviewType,
+      audit_event_id: `${ROUTING_CATALOG_SCENARIO_MAP[reviewType]}_routing_catalog_audit`,
+      hold_or_block_reason: 'review_required_before_next_step',
+    }),
+  );
+}
+
+function buildTopLevelReviewQueue(scenarios, outputBase) {
+  const scenarioItems = scenarios.flatMap((scenario) => scenario.review_queue_items || []);
+  const catalogItems = buildRoutingCatalogItems();
+  const allItems = [...scenarioItems, ...catalogItems];
+
+  const rooferItems = allItems.filter((item) => item.review_owner === 'roofer');
+  const roofleadhqItems = allItems.filter((item) => item.review_owner === 'roofleadhq_jason');
+
+  const rooferTypesPresent = new Set(
+    rooferItems.filter((item) => ROOFER_REVIEW_ROUTING_TYPES.includes(item.review_type)).map((i) => i.review_type),
+  );
+  const roofleadhqTypesPresent = new Set(
+    roofleadhqItems
+      .filter((item) => ROOFLEADHQ_REVIEW_ROUTING_TYPES.includes(item.review_type))
+      .map((i) => i.review_type),
+  );
+
+  return {
+    review_queue_summary: {
+      description:
+        'Deterministic fake-data review queue summary distinguishing roofer business-judgment review from RoofLeadHQ/Jason system-quality review',
+      total_review_items: allItems.length,
+      scenario_review_items: scenarioItems.length,
+      routing_catalog_items: catalogItems.length,
+      roofer_review_items: rooferItems.length,
+      roofleadhq_system_review_items: roofleadhqItems.length,
+      pending_review_items: allItems.filter((item) => item.status === 'pending').length,
+      roofer_routing_types_covered: rooferTypesPresent.size,
+      roofleadhq_routing_types_covered: roofleadhqTypesPresent.size,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      live_review_notification_blocked_by_activation_flag: true,
+      scenario_count: outputBase.scenario_count,
+    },
+    review_queue_items: allItems,
+    review_owner_summary: {
+      roofer: {
+        owner_label: 'roofer_contractor',
+        owns: 'business_judgment',
+        item_count: rooferItems.length,
+        routing_types: [...rooferTypesPresent],
+        does_not_own: 'system_workflow_data_routing_quality',
+      },
+      roofleadhq_jason: {
+        owner_label: 'roofleadhq_jason',
+        owns: 'system_workflow_data_routing_quality',
+        item_count: roofleadhqItems.length,
+        routing_types: [...roofleadhqTypesPresent],
+        does_not_own: 'business_judgment_pricing_estimates_contracts',
+      },
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    roofer_review_summary: {
+      description: 'Roofer/contractor review owns business judgment — pricing, estimates, insurance, scheduling, contracts',
+      total_items: rooferItems.length,
+      business_judgment_required_count: rooferItems.filter((i) => i.business_judgment_required).length,
+      routing_types_required: ROOFER_REVIEW_ROUTING_TYPES,
+      routing_types_covered: [...rooferTypesPresent],
+      all_routing_types_covered: ROOFER_REVIEW_ROUTING_TYPES.every((t) => rooferTypesPresent.has(t)),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    roofleadhq_review_summary: {
+      description:
+        'RoofLeadHQ/Jason review limited to system/workflow/data/routing/quality — not business judgment',
+      total_items: roofleadhqItems.length,
+      system_quality_issue_count: roofleadhqItems.filter((i) => i.system_quality_issue).length,
+      routing_types_required: ROOFLEADHQ_REVIEW_ROUTING_TYPES,
+      routing_types_covered: [...roofleadhqTypesPresent],
+      all_routing_types_covered: ROOFLEADHQ_REVIEW_ROUTING_TYPES.every((t) =>
+        roofleadhqTypesPresent.has(t),
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    review_safety_assertions: [
+      ...REVIEW_QUEUE_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 const FAKE_REPORTING_SNAPSHOT = buildReportingSnapshot({
   report_period: '2026-06',
   csv_export_state: 'fixture_snapshot_strongest',
@@ -755,7 +1224,7 @@ const FAKE_CSV_SNAPSHOT = buildCsvExportSnapshot({
 
 function buildScenario(config) {
   const guardAssertions = buildGuardAssertions(config.guard_assertion_overrides || BASE_GUARD_PASS);
-  const scenario = {
+  const scenarioDraft = {
     scenario_id: config.scenario_id,
     scenario_name: config.scenario_name,
     plan_profile: config.plan_profile,
@@ -769,7 +1238,6 @@ function buildScenario(config) {
     manual_next_step: config.manual_next_step || null,
     owner: config.owner || null,
     final_state: config.final_state,
-    review_queue_items: config.review_queue_items || [],
     reporting_snapshot: config.reporting_snapshot || null,
     reporting_impact: config.reporting_impact || null,
     csv_snapshot_if_applicable: config.csv_snapshot_if_applicable || null,
@@ -779,7 +1247,13 @@ function buildScenario(config) {
     ...SAFETY,
     result: 'PASS',
   };
-  return scenario;
+  const reviewQueueItems = (config.review_queue_items || []).map((item, index) =>
+    expandScenarioReviewItem(scenarioDraft, item, index),
+  );
+  return {
+    ...scenarioDraft,
+    review_queue_items: reviewQueueItems,
+  };
 }
 
 function computeGuardSummary(scenarios) {
@@ -2026,6 +2500,7 @@ function main() {
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
       'native_workflow_fixture_reporting_snapshot_expansion',
+    review_queue_expansion: 'native_workflow_fixture_review_queue_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -2040,10 +2515,12 @@ function main() {
   };
 
   const reportingOutput = buildTopLevelReporting(outputBase);
+  const reviewQueueOutput = buildTopLevelReviewQueue(scenarios, outputBase);
 
   const output = {
     ...outputBase,
     ...reportingOutput,
+    ...reviewQueueOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -2065,10 +2542,15 @@ function main() {
       'explicit_reporting_snapshot_coverage',
       'reporting_fake_data_only',
       'reporting_live_delivery_blocked',
+      'explicit_review_queue_coverage',
+      'review_queue_fake_data_only',
+      'review_queue_live_notification_blocked',
+      'roofer_review_owns_business_judgment',
+      'roofleadhq_review_limited_to_system_quality',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion and reporting snapshot coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, and review queue coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -2077,6 +2559,7 @@ function main() {
       output_mode: 'stdout_json_only',
       guard_assertion_coverage: 'expanded',
       reporting_snapshot_coverage: 'expanded',
+      review_queue_coverage: 'expanded',
     },
   };
 

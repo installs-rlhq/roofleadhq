@@ -1072,3 +1072,44 @@ node backend/scripts/verify-native-workflow-fixture-reporting-snapshot-expansion
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no native CRM sync, no live CSV generation or delivery. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Review Queue Expansion
+
+The Native Workflow Fixture Review Queue Expansion deepens explicit review queue ownership coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_REVIEW_QUEUE_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-review-queue-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-review-queue-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `fe75901 test(workflow): expand native workflow fixture reporting snapshots`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Review Queue Expansion" / "native workflow fixture review queue expansion" / "review queue expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level review_queue_summary, review_queue_items, review_owner_summary
+- Roofer/contractor owns business judgment; RoofLeadHQ/Jason limited to system/workflow/data/routing/quality
+- Per-scenario expanded review_queue_items; routing catalog for all routing types; review_safety_assertions
+- Local E2E runner relationship; first paid roofer relationship
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-review-queue-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-review-queue-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live review notifications. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

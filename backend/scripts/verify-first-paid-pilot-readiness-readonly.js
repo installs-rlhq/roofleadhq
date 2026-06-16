@@ -747,6 +747,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Review Queue Expansion (docs/NATIVE_WORKFLOW_FIXTURE_REVIEW_QUEUE_EXPANSION.md + scripts/run-native-workflow-fixture-review-queue-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit review queue ownership coverage: review_queue_summary, review_queue_items, review_owner_summary, roofer_review_summary, roofleadhq_review_summary, review_safety_assertions; roofer/contractor owns business judgment (pricing, estimates, insurance, scheduling, contracts); RoofLeadHQ/Jason limited to system/workflow/data/routing/quality issues; per-scenario expanded review_queue_items with required fields; routing catalog for all required routing types; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations/live review notifications; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-review-queue-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []
