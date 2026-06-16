@@ -5579,3 +5579,28 @@ The packet documents:
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, post-inspection follow-up, post-inspection feedback capture, is scheduled to be there). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, or review-manipulation language in customer-facing materials.
 
 Safety: planning/readiness/placement only. No live automations, no sends, no CRM connection, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Lindy Bridge + Native Workflow Migration Plan
+
+The founder-led launch now includes a planning/readiness packet for Lindy temporary bridge strategy and native workflow engine migration.
+
+Files:
+- `docs/LINDY_BRIDGE_NATIVE_WORKFLOW_MIGRATION_PLAN.md`
+- `scripts/run-lindy-bridge-native-workflow-migration-dry-run.sh`
+- `backend/scripts/verify-lindy-bridge-native-workflow-migration-readonly.js`
+
+Canonical source of truth before this worktree: `ac9525e test(pilot): add post-inspection follow-up feedback packet`
+
+The packet documents:
+- Practical Lindy temporary bridge strategy: preserve existing workflows, downgrade/limit to lowest workable/free plan, no major new Lindy business logic
+- RoofLeadHQ/Supabase as source of truth; native backend workflow logic replaces Lindy over time
+- Migration buckets and tracker table mapping workflow areas to future native ownership
+- Native workflow engine ownership (lead intake/status, follow-up, review queues, appointment readiness, booked inspection tracking, post-inspection follow-up/feedback, reporting/CSV, plan-tier flags, safety controls)
+- First paid roofer bridge plan: Lindy assists only at low volume; roofer-first escalation; RoofLeadHQ/Jason limited to system-quality issues
+- Subscription tiers as one core engine configuration profiles (Starter/Growth/Elite/Custom)
+- Staged E2E testing relationship for safe migration validation
+- n8n/Make not required unless narrow temporary bridge
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, temporary bridge, native workflow engine, Supabase source of truth). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, native CRM sync, or review-manipulation language in customer-facing materials.
+
+Safety: planning/readiness/placement only. No live Lindy workflows, no live automations, no sends, no CRM connection, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

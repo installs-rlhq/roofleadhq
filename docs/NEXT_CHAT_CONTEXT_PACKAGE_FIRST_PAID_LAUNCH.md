@@ -5415,3 +5415,34 @@ Packet content summary:
 The wrapper `scripts/run-post-inspection-follow-up-feedback-capture-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: planning/readiness/placement only. No live publication or activation. Stop after gates and diff proof. Do not commit or push.
+
+## Lindy Bridge + Native Workflow Migration Plan
+
+The Lindy Bridge + Native Workflow Migration Plan is a planning/readiness artifact that documents Jason's agreed practical bridge strategy: keep existing Lindy workflows temporarily at lowest workable/free plan, stop building major new business logic in Lindy, make RoofLeadHQ/Supabase the source of truth, and migrate workflow logic into the native backend over time.
+
+Added files:
+- `docs/LINDY_BRIDGE_NATIVE_WORKFLOW_MIGRATION_PLAN.md`
+- `scripts/run-lindy-bridge-native-workflow-migration-dry-run.sh`
+- `backend/scripts/verify-lindy-bridge-native-workflow-migration-readonly.js`
+
+Canonical source of truth before this worktree: `ac9525e test(pilot): add post-inspection follow-up feedback packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages (`docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`) and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- The dedicated verifier enforces Lindy temporary bridge strategy, cost-control/downgrade posture, migration buckets and tracker table, native workflow engine ownership, first paid roofer bridge plan, roofer-first escalation, limited RoofLeadHQ/Jason system-quality review, subscription tiers as one core engine configuration profiles (Starter/Growth/Elite/Custom), staged E2E testing relationship, n8n/Make not required unless narrow bridge, forbidden/preferred language guardrails, and full safety/no-live-activation boundaries.
+
+Packet content summary:
+- Lindy is not removed immediately; existing workflows preserved temporarily at low volume
+- Major new business logic should not be built in Lindy; n8n/Make not required unless narrow temporary bridge
+- Migration buckets: Preserve temporarily in Lindy, Move into RoofLeadHQ backend, Move into Supabase, Keep manual/founder-operated, Remove or defer
+- Native workflow engine eventually owns lead status, follow-up state, review queues, appointment readiness, booked inspection tracking, post-inspection follow-up/feedback, reporting/CSV, plan-tier flags, and safety controls
+- First paid roofer: Lindy assists only where existing low-volume flows are useful; Supabase/RoofLeadHQ increasingly authoritative; no uncontrolled live automation
+- Preferred language: booked inspections, booked homeowner appointments, lead-to-inspection, temporary bridge, native workflow engine, Supabase source of truth
+- Decision language: LINDY BRIDGE NATIVE WORKFLOW MIGRATION PLAN PASS / HOLD / BLOCKED
+- Safety: planning/readiness/placement only. No live Lindy workflows, no live SMS/Twilio/Vapi/Resend/Calendar sends, no scheduler/cron/dispatcher, no public routes, no production Supabase writes, no customer data handling changes, no auth/RLS/schema/security changes, no env/credential changes, no external service calls, no homeowner/customer notifications, no CRM sync, no payment/deposit/invoice/estimate automation. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+The wrapper `scripts/run-lindy-bridge-native-workflow-migration-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: planning/readiness/placement only. No live publication or activation. Stop after gates and diff proof. Do not commit or push.

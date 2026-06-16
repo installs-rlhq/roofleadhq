@@ -1731,3 +1731,30 @@ Key alignment for roofer dry-run onboarding:
 - CSV export and dashboard/report fields aligned with reporting preferences packet
 
 Safety remains planning/readiness/placement only. No live automations, no sends, no CRM connection, no production activation. demo_ready_with_live_automation_disabled.
+
+## Lindy Bridge + Native Workflow Migration Plan
+
+The Lindy Bridge + Native Workflow Migration Plan documents the practical temporary bridge strategy for roofer dry-run onboarding and first-paid launch planning: preserve existing Lindy workflows at lowest workable/free plan, limit Lindy to low-volume bridge use, and make RoofLeadHQ/Supabase the authoritative source of truth over time.
+
+Added files:
+- `docs/LINDY_BRIDGE_NATIVE_WORKFLOW_MIGRATION_PLAN.md`
+- `scripts/run-lindy-bridge-native-workflow-migration-dry-run.sh`
+- `backend/scripts/verify-lindy-bridge-native-workflow-migration-readonly.js`
+
+Canonical source of truth before this worktree: `ac9525e test(pilot): add post-inspection follow-up feedback packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Lindy Bridge" / "native workflow engine" / "temporary bridge" / "Supabase source of truth" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Lindy may assist only where existing low-volume workflows are already useful for first roofer dry-run
+- Supabase/RoofLeadHQ should increasingly hold authoritative records and statuses during dry-run rehearsal
+- Roofer review remains default for business judgment; RoofLeadHQ/Jason limited to system/workflow/data/routing/quality issues
+- No uncontrolled live automation; no homeowner/customer sends unless separately approved
+- Subscription tiers (Starter/Growth/Elite/Custom) are configuration profiles on one core native workflow engine
+- Staged E2E testing proves native workflow states before any channel activation
+
+Safety remains planning/readiness/placement only. No live Lindy workflows, no live automations, no sends, no CRM connection, no production activation. demo_ready_with_live_automation_disabled.

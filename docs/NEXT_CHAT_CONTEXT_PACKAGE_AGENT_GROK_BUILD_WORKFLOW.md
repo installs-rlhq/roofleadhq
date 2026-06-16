@@ -673,3 +673,44 @@ node backend/scripts/verify-post-inspection-follow-up-feedback-capture-readonly.
 ```
 
 Safety remains: planning/readiness/placement only. No live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## Lindy Bridge + Native Workflow Migration Plan
+
+Latest Grok Build planning packet for Lindy temporary bridge strategy and native workflow engine migration direction.
+
+Added files:
+- `docs/LINDY_BRIDGE_NATIVE_WORKFLOW_MIGRATION_PLAN.md`
+- `scripts/run-lindy-bridge-native-workflow-migration-dry-run.sh`
+- `backend/scripts/verify-lindy-bridge-native-workflow-migration-readonly.js`
+
+Canonical source of truth before this worktree: `ac9525e test(pilot): add post-inspection follow-up feedback packet`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Packet scope:
+- Preserve existing Lindy workflows temporarily at lowest workable/free plan; no major new Lindy business logic
+- Migration buckets and tracker table mapping Lindy responsibilities to native RoofLeadHQ/Supabase ownership; Supabase source of truth
+- Native workflow engine ownership list (lead status, follow-up, review queues, appointment readiness, booked inspection tracking, post-inspection follow-up/feedback, reporting/CSV, plan-tier flags, safety controls)
+- First paid roofer bridge plan with roofer-first escalation and limited RoofLeadHQ/Jason system-quality review
+- Subscription tiers as configuration profiles (Starter up to 100 leads/month, Growth up to 300, Elite up to 500, Custom Review triggers)
+- Staged E2E testing relationship (fixture-only first, sandbox next, live only after explicit approval)
+- n8n/Make not required unless narrow temporary bridge
+- Forbidden/preferred public language guardrails
+
+Dry-run command:
+
+```bash
+bash scripts/run-lindy-bridge-native-workflow-migration-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-lindy-bridge-native-workflow-migration-readonly.js
+```
+
+Safety remains: planning/readiness/placement only. No live Lindy workflows, no live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.

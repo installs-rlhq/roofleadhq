@@ -697,6 +697,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Lindy Bridge + Native Workflow Migration Plan (docs/LINDY_BRIDGE_NATIVE_WORKFLOW_MIGRATION_PLAN.md + scripts/run-lindy-bridge-native-workflow-migration-dry-run.sh) -- planning/readiness packet for practical Lindy temporary bridge strategy while RoofLeadHQ/Supabase becomes source of truth: preserve existing Lindy workflows at lowest workable/free plan, no major new Lindy business logic, migration buckets and tracker table, native workflow engine ownership, first paid roofer bridge plan, roofer-first escalation and limited RoofLeadHQ/Jason system-quality review, subscription tiers as one core engine configuration profiles (Starter/Growth/Elite/Custom), staged E2E testing relationship, forbidden/preferred language guardrails, and full safety/no-live-activation boundaries',
+    script: 'backend/scripts/verify-lindy-bridge-native-workflow-migration-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []
