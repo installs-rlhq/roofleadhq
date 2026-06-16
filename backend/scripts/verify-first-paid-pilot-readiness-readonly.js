@@ -692,6 +692,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Post-Inspection Follow-Up + Feedback Capture Packet (docs/POST_INSPECTION_FOLLOW_UP_AND_FEEDBACK_CAPTURE_PACKET.md + scripts/run-post-inspection-follow-up-feedback-capture-dry-run.sh) -- planning/readiness packet for post-inspection follow-through after booked homeowner inspections: stage path (Inspection Booked through Won/Lost/Still Open/Needs Review), sandbox-only timing/reminder triggers, roofer check-in prompts, homeowner message drafts (draft-only, reminder uses is scheduled to be there), 3-question feedback flow plus optional fourth question, permission_to_use_publicly yes/no/not_asked, internal-only feedback boundary, roofer-first escalation and limited RoofLeadHQ/Jason system-quality review, dashboard/report fields, CSV export fields, forbidden/preferred language guardrails, and full safety/no-live-activation boundaries',
+    script: 'backend/scripts/verify-post-inspection-follow-up-feedback-capture-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

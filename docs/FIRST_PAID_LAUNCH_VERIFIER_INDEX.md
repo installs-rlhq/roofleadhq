@@ -1440,3 +1440,20 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Purpose: read-only guard that confirms `website/index.html` pricing copy, wrapper, wiring into aggregate/index/next-chat context packages and business guide, approved hybrid pricing fees and volume bands, custom-plan guardrails, lead-to-inspection positioning, and forbidden public language guardrails.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
+
+## Post-Inspection Follow-Up + Feedback Capture Packet
+
+- Doc: `docs/POST_INSPECTION_FOLLOW_UP_AND_FEEDBACK_CAPTURE_PACKET.md`
+- Wrapper: `scripts/run-post-inspection-follow-up-feedback-capture-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-post-inspection-follow-up-feedback-capture-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: planning/readiness packet documenting RoofLeadHQ post-inspection follow-through after booked homeowner inspections — stage path (Inspection Booked → Reminder Sent → Inspection Completed? → Missed/Rescheduled/Appointment Issue → Estimate Needed? → Estimate Sent? → Homeowner/Roofer Follow-Up Needed → Won/Lost/Still Open/Needs Review), sandbox-only timing/reminder triggers, roofer check-in prompts, homeowner message drafts (draft-only; appointment reminder uses "is scheduled to be there"), approved 3-question feedback flow plus optional fourth question, `permission_to_use_publicly` (yes/no/not_asked), internal-only feedback boundary, roofer-first escalation, limited RoofLeadHQ/Jason system-quality review, dashboard/report fields, CSV export fields, forbidden/preferred language guardrails.
+- Verifier enforces: packet doc and wrapper exist; workflow stage path; missed/rescheduled and appointment issue treatment; sandbox-only timing/reminder boundary; roofer prompts; homeowner drafts; reminder phrasing; feedback flow; permission field; feedback boundaries; escalation model; dashboard/report fields; CSV export fields; forbidden language absent from packet body; safety/no-live-activation boundaries; no production writes/env/auth/RLS/schema/external sends/public route activation in wrapper; wrapper wiring; aggregate/index/context/business-guide cross-references.
+- Safety: planning/readiness/placement only. No live automations, no sends, no CRM connection, no production behavior changes, no customer data handling changes, no backend live activation, no integrations activated, no external sends, no production Supabase writes, no auth/RLS/schema/security changes, no env/credential changes, no public route activation. Read-only verifier and dry-run wrapper only. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Post-Inspection Follow-Up + Feedback Capture Verifier
+
+- Script: `backend/scripts/verify-post-inspection-follow-up-feedback-capture-readonly.js`
+- Purpose: read-only guard that confirms the post-inspection follow-up packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for workflow stages, sandbox-only triggers, roofer/homeowner drafts, feedback capture, permission field, escalation boundaries, dashboard/report fields, CSV export fields, preferred/forbidden language guardrails, and full safety posture.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.

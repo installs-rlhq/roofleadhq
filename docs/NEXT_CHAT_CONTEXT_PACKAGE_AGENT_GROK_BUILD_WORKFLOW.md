@@ -632,3 +632,44 @@ node backend/scripts/verify-website-pricing-volume-guardrail-readonly.js
 ```
 
 Safety remains: static website copy and read-only verification only. No live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## Post-Inspection Follow-Up + Feedback Capture Packet
+
+Latest Grok Build planning packet for post-inspection follow-through and feedback capture after booked homeowner inspections.
+
+Added files:
+- `docs/POST_INSPECTION_FOLLOW_UP_AND_FEEDBACK_CAPTURE_PACKET.md`
+- `scripts/run-post-inspection-follow-up-feedback-capture-dry-run.sh`
+- `backend/scripts/verify-post-inspection-follow-up-feedback-capture-readonly.js`
+
+Canonical source of truth before this worktree: `06d4c95 test(website): add pricing volume guardrail copy`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces:
+- Workflow stage path and sandbox-only timing/reminder boundary
+- Missed/rescheduled and appointment issue treatment
+- Roofer prompts and homeowner drafts (appointment reminder uses "is scheduled to be there"; no "will be there" in reminder copy)
+- 3-question feedback flow, `permission_to_use_publicly`, internal-only feedback boundary
+- Roofer-first escalation and limited RoofLeadHQ/Jason system-quality review
+- Dashboard/report fields and CSV export fields
+- Forbidden public language absent from packet body; preferred language documented
+- Safety/no-live-activation boundaries (no production writes, env changes, auth/RLS/schema, external sends, public route activation in wrapper)
+
+Dry-run command:
+
+```bash
+bash scripts/run-post-inspection-follow-up-feedback-capture-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-post-inspection-follow-up-feedback-capture-readonly.js
+```
+
+Safety remains: planning/readiness/placement only. No live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.

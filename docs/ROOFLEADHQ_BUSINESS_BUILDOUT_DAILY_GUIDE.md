@@ -5555,3 +5555,27 @@ Plan-fit language: choose the plan that matches monthly lead volume; help place 
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, missed-lead recovery, guided setup). Preserve Guided Setup and 14-day trial language. Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, quote/invoice/payment automation, or native CRM sync promise language in public materials.
 
 Safety: static website copy only. No backend live activation, no integrations activated, no external sends, no production Supabase writes. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Post-Inspection Follow-Up + Feedback Capture Packet
+
+The founder-led launch now includes a planning/readiness packet for post-inspection follow-through and feedback capture after booked homeowner inspections.
+
+Files:
+- `docs/POST_INSPECTION_FOLLOW_UP_AND_FEEDBACK_CAPTURE_PACKET.md`
+- `scripts/run-post-inspection-follow-up-feedback-capture-dry-run.sh`
+- `backend/scripts/verify-post-inspection-follow-up-feedback-capture-readonly.js`
+
+Canonical source of truth before this worktree: `06d4c95 test(website): add pricing volume guardrail copy`
+
+The packet documents:
+- Post-inspection stage path from Inspection Booked through Won / Lost / Still Open / Needs Review
+- Sandbox-only timing/reminder triggers (planned until Jason explicitly approves live activation)
+- Roofer-facing check-in prompts and homeowner-facing message drafts (draft-only, not activated, not sent)
+- Approved 3-question feedback flow plus optional fourth question
+- `permission_to_use_publicly` field (yes / no / not_asked) in dashboard/reporting and CSV export
+- Internal-only feedback boundary; roofer-first escalation; RoofLeadHQ/Jason limited to system-quality issues
+- Dashboard/report fields and CSV export field definitions
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, post-inspection follow-up, post-inspection feedback capture, is scheduled to be there). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, or review-manipulation language in customer-facing materials.
+
+Safety: planning/readiness/placement only. No live automations, no sends, no CRM connection, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

@@ -1705,3 +1705,29 @@ Key alignment for roofer dry-run onboarding:
 - CSV export, lead source ROI, post-inspection follow-up, and post-inspection feedback capture documented for reporting preference alignment.
 
 Safety remains planning/readiness/placement only. No live website publication, Fillout changes, legal publication, or production activation. demo_ready_with_live_automation_disabled.
+
+## Post-Inspection Follow-Up + Feedback Capture Packet
+
+The Post-Inspection Follow-Up + Feedback Capture Packet documents the post-inspection follow-through layer for booked homeowner inspections during roofer dry-run onboarding and first-paid launch planning. It complements the appointment outcome and manual follow-up command packets with stage definitions, draft prompts, feedback capture rules, and reporting/CSV field scope.
+
+Added files:
+- `docs/POST_INSPECTION_FOLLOW_UP_AND_FEEDBACK_CAPTURE_PACKET.md`
+- `scripts/run-post-inspection-follow-up-feedback-capture-dry-run.sh`
+- `backend/scripts/verify-post-inspection-follow-up-feedback-capture-readonly.js`
+
+Canonical source of truth before this worktree: `06d4c95 test(website): add pricing volume guardrail copy`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Post-Inspection Follow-Up" / "post-inspection feedback capture" / "permission_to_use_publicly" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Post-inspection stage path from Inspection Booked through outcome tracking (Won/Lost/Still Open/Needs Review)
+- Sandbox-only timing/reminder triggers until Jason explicitly approves live activation
+- Roofer-first escalation for pricing, estimates, scheduling, and homeowner issues; RoofLeadHQ/Jason for workflow/data/system quality only
+- `permission_to_use_publicly` (yes/no/not_asked) required for any public testimonial use
+- CSV export and dashboard/report fields aligned with reporting preferences packet
+
+Safety remains planning/readiness/placement only. No live automations, no sends, no CRM connection, no production activation. demo_ready_with_live_automation_disabled.

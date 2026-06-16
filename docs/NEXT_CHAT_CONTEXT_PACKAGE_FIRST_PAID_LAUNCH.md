@@ -5385,3 +5385,33 @@ Safety: static website copy only. No backend live activation, no integrations ac
 The wrapper `scripts/run-website-pricing-volume-guardrail-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: static copy update and read-only verification only. Stop after gates and diff proof. Do not commit or push.
+
+## Post-Inspection Follow-Up + Feedback Capture Packet
+
+The Post-Inspection Follow-Up + Feedback Capture Packet is a planning/readiness artifact that documents RoofLeadHQ's post-inspection follow-through layer after booked homeowner inspections: stage tracking, sandbox-only timing/reminder logic, roofer check-in prompts, homeowner message drafts, feedback capture, permission handling, escalation boundaries, dashboard/report fields, and CSV export scope.
+
+Added files:
+- `docs/POST_INSPECTION_FOLLOW_UP_AND_FEEDBACK_CAPTURE_PACKET.md`
+- `scripts/run-post-inspection-follow-up-feedback-capture-dry-run.sh`
+- `backend/scripts/verify-post-inspection-follow-up-feedback-capture-readonly.js`
+
+Canonical source of truth before this worktree: `06d4c95 test(website): add pricing volume guardrail copy`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages (`docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`) and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- The dedicated verifier enforces workflow stage path, missed/rescheduled and appointment issue treatment, sandbox-only timing/reminder boundary, roofer prompts, homeowner drafts (reminder uses "is scheduled to be there"), 3-question feedback flow, `permission_to_use_publicly` (yes/no/not_asked), internal-only feedback boundary, roofer-first escalation, limited RoofLeadHQ/Jason system-quality review, dashboard/report fields, CSV export fields, forbidden/preferred language guardrails, and full safety/no-live-activation boundaries.
+
+Packet content summary:
+- Workflow path: Inspection Booked → Reminder Sent → Inspection Completed? → Missed/Rescheduled/Appointment Issue → Estimate Needed? → Estimate Sent? → Homeowner/Roofer Follow-Up Needed → Won/Lost/Still Open/Needs Review
+- Planned/sandbox-only triggers: appointment time passes, roofer/homeowner outcome signals, 7+ day still open, 48+ hour needs review aging
+- Roofer check-in prompts (8) and homeowner drafts (5) — draft-only, not activated, not sent
+- Feedback: 3 required questions + optional fourth; `permission_to_use_publicly`; no fabricated endorsements or pressured public praise
+- Preferred language: booked inspections, booked homeowner appointments, lead-to-inspection, post-inspection follow-up, post-inspection feedback capture, is scheduled to be there
+- Decision language: POST INSPECTION FOLLOW UP AND FEEDBACK CAPTURE PACKET PASS / HOLD / BLOCKED
+- Safety: planning/readiness/placement only. No live automations, no sends, no CRM connection, no production behavior changes, no customer data handling changes, no backend live activation, no integrations activated, no external sends, no production Supabase writes, no auth/RLS/schema/security changes, no env/credential changes, no public route activation. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+The wrapper `scripts/run-post-inspection-follow-up-feedback-capture-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: planning/readiness/placement only. No live publication or activation. Stop after gates and diff proof. Do not commit or push.
