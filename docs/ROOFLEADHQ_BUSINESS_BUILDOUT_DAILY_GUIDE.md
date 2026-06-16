@@ -5734,3 +5734,31 @@ The packet documents:
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, lead-to-inspection, native workflow engine, Supabase source of truth, plan configuration profiles, staged E2E testing, manual bridge, implementation plan, readiness only). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
 
 Safety: planning/readiness/implementation-plan only. No schema changes, no production data reads/writes, no live automation activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture State Model Plan
+
+The founder-led launch now includes a planning/readiness/fixture-plan packet defining the first fixture-only fake-data state model plan for future native workflow implementation.
+
+Files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_PLAN.md`
+- `scripts/run-native-workflow-fixture-state-model-plan-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-state-model-plan-readonly.js`
+
+Canonical source of truth before this worktree: `8bb01c1 test(workflow): add native workflow entity state implementation plan`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture State Model Plan" / "native workflow fixture state model plan" / "fixture state model plan" across aggregate, index, contexts, and business guide.
+
+The packet documents:
+- Fixture-only principles — fake data only, no Supabase reads/writes, no live sends, deterministic expected states
+- Conceptual fixture data model — 17 fixture objects with purpose, fake fields, sample values, and expected state outputs
+- 25 required fixture scenarios — intake through post-inspection/feedback with guard checks and safety assertions
+- State transition expectation table — live action allowed: no for all rows
+- Guard failure matrix — 24 failure cases with HOLD/BLOCKED outcomes and manual next steps
+- Plan profile fixture expectations — Starter/Growth/Elite/Custom as configuration profiles, not separate engines
+- Review queue, appointment readiness, post-inspection, feedback, reporting/CSV, and activation flag expectations
+- Fixture output shape with live_actions_performed: no, production_data_touched: no, external_services_called: no
+- Local E2E runner relationship; first paid roofer relationship; future implementation sequencing
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, lead-to-inspection, fixture state model, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, readiness only). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
+
+Safety: planning/readiness/fixture-plan only. No state model implementation, no schema changes, no production data reads/writes, no live automation activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

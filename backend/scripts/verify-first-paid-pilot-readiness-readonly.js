@@ -727,6 +727,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture State Model Plan (docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_PLAN.md + scripts/run-native-workflow-fixture-state-model-plan-dry-run.sh) -- planning/readiness/fixture-plan packet defining the first fixture-only fake-data state model plan for future native workflow implementation: fixture-only principles, conceptual fixture data model (fixture_roofer_account through fixture_audit_event), 25 required fixture scenarios with expected state paths and guard checks, state transition expectation table (live action allowed: no for all rows), guard failure matrix, plan profile fixture expectations (Starter/Growth/Elite/Custom as configuration profiles), review queue fixture expectations (roofer business judgment vs RoofLeadHQ/Jason system review), appointment readiness/post-inspection/feedback fixture expectations, reporting/CSV fixture snapshot expectations, activation flag false blocking expectations, fixture output shape, local E2E runner relationship, first paid roofer relationship, future implementation sequencing, forbidden/preferred language guardrails, and full safety/no-schema/no-live-activation/no-production-data/no-implementation boundaries',
+    script: 'backend/scripts/verify-native-workflow-fixture-state-model-plan-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

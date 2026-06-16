@@ -5593,3 +5593,35 @@ Packet scope:
 The wrapper `scripts/run-native-workflow-entity-state-implementation-plan-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: planning/readiness/implementation-plan only. No schema changes, no production data reads/writes, no live automation activation. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture State Model Plan
+
+The Native Workflow Fixture State Model Plan is a planning/readiness/fixture-plan artifact that defines the first fixture-only fake-data state model plan for future native workflow implementation. It specifies fixture paths, fake records, expected states, transition guards, reporting snapshots, and validation expectations — without implementing any state model, persistence, or live behavior.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_PLAN.md`
+- `scripts/run-native-workflow-fixture-state-model-plan-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-state-model-plan-readonly.js`
+
+Canonical source of truth before this worktree: `8bb01c1 test(workflow): add native workflow entity state implementation plan`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture State Model Plan" / "native workflow fixture state model plan" / "fixture state model plan" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Fixture-only principles: fake data only, no Supabase reads/writes, no live sends, deterministic expected states, fail-closed unsafe actions
+- Conceptual fixture data model: 17 fixture objects (fixture_roofer_account through fixture_audit_event)
+- 25 required fixture scenarios with expected state paths, guard checks, audit notes, and safety assertions
+- State transition expectation table with live action allowed: no for all rows
+- Guard failure matrix with 24 failure cases
+- Plan profile fixture expectations: Starter/Growth/Elite/Custom as configuration profiles, not separate workflow engines
+- Review queue, appointment readiness, post-inspection, feedback, reporting/CSV, and activation flag fixture expectations
+- Fixture output shape with live_actions_performed: no, production_data_touched: no, external_services_called: no
+- Local E2E runner relationship; first paid roofer relationship; future implementation sequencing
+
+The wrapper `scripts/run-native-workflow-fixture-state-model-plan-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: planning/readiness/fixture-plan only. No state model implementation, no schema changes, no production data reads/writes, no live automation activation. Stop after gates and diff proof. Do not commit or push.

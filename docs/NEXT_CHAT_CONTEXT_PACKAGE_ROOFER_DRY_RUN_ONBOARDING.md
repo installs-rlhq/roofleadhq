@@ -1888,3 +1888,29 @@ Key alignment for roofer dry-run onboarding:
 - Lindy temporary bridge only; fixture paths inform state-transition priorities from first-roofer operations
 
 Safety remains planning/readiness/implementation-plan only. No schema changes, no production data reads/writes, no live automation activation. demo_ready_with_live_automation_disabled.
+
+## Native Workflow Fixture State Model Plan
+
+The Native Workflow Fixture State Model Plan documents the first fixture-only fake-data state model plan for roofer dry-run onboarding and first-paid launch planning: fixture data model, 25 required fixture scenarios, state transition expectations, guard failure matrix, plan profile differences, review queues, and reporting/CSV fixture snapshots — without implementing any state model.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_PLAN.md`
+- `scripts/run-native-workflow-fixture-state-model-plan-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-state-model-plan-readonly.js`
+
+Canonical source of truth before this worktree: `8bb01c1 test(workflow): add native workflow entity state implementation plan`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture State Model Plan" / "native workflow fixture state model plan" / "fixture state model plan" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Planning/readiness/fixture-plan only — no state model implementation, no schema, no live automation, no production records
+- Fixture paths inform state-transition priorities before native persistence
+- First paid roofer manual bridge path preserved; fixture learning informs native implementation priorities
+- Roofer review owns business judgment; RoofLeadHQ/Jason review limited to system/workflow/data/routing/quality
+- Live automation remains disabled unless explicitly approved
+
+Safety remains planning/readiness/fixture-plan only. No state model implementation, no schema changes, no production data reads/writes, no live automation activation. demo_ready_with_live_automation_disabled.

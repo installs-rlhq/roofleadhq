@@ -911,3 +911,42 @@ node backend/scripts/verify-native-workflow-entity-state-implementation-plan-rea
 ```
 
 Safety remains: planning/readiness/implementation-plan only. No schema changes, no production data reads/writes, no live automation activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture State Model Plan
+
+Latest Grok Build planning packet defining the first fixture-only fake-data state model plan for future native workflow implementation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_PLAN.md`
+- `scripts/run-native-workflow-fixture-state-model-plan-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-state-model-plan-readonly.js`
+
+Canonical source of truth before this worktree: `8bb01c1 test(workflow): add native workflow entity state implementation plan`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture State Model Plan" / "native workflow fixture state model plan" / "fixture state model plan" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Fixture-only principles and 17 conceptual fixture objects
+- 25 required fixture scenarios with state transition expectation table (live action allowed: no)
+- Guard failure matrix; plan profile fixture expectations (Starter/Growth/Elite/Custom)
+- Review queue, appointment readiness, post-inspection, feedback, reporting/CSV, activation flag expectations
+- Fixture output shape; local E2E runner relationship; first paid roofer relationship; implementation sequencing
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-state-model-plan-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-state-model-plan-readonly.js
+```
+
+Safety remains: planning/readiness/fixture-plan only. No state model implementation, no schema changes, no production data reads/writes, no live automation activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
