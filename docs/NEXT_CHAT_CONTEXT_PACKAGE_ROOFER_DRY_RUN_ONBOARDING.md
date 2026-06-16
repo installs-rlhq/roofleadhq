@@ -1914,3 +1914,36 @@ Key alignment for roofer dry-run onboarding:
 - Live automation remains disabled unless explicitly approved
 
 Safety remains planning/readiness/fixture-plan only. No state model implementation, no schema changes, no production data reads/writes, no live automation activation. demo_ready_with_live_automation_disabled.
+
+## Native Workflow Fixture State Model Dry-Run
+
+The Native Workflow Fixture State Model Dry-Run implements deterministic fake-data native workflow state paths for all 25 fixture scenarios — local fixture-only, stdout JSON only.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_DRY_RUN.md`
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js`
+- `scripts/run-native-workflow-fixture-state-model-dry-run.sh`
+
+Canonical source of truth before this worktree: `19805f8 test(workflow): add native workflow fixture state model plan`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture State Model Dry-Run" / "native workflow fixture state model dry-run" / "fixture state model dry-run" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Local fixture-only fake-data dry-run — not a production workflow engine
+- Fixture paths prove state transitions before native persistence
+- Roofer review owns business judgment; RoofLeadHQ/Jason review limited to system/workflow/data/routing/quality
+- CSV export is one-directional reporting; not native CRM sync
+- Live automation remains disabled unless explicitly approved
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-state-model-dry-run.sh
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no production data, no live automation. demo_ready_with_live_automation_disabled.

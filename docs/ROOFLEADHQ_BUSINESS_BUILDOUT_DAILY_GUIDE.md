@@ -5762,3 +5762,28 @@ The packet documents:
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, lead-to-inspection, fixture state model, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, readiness only). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
 
 Safety: planning/readiness/fixture-plan only. No state model implementation, no schema changes, no production data reads/writes, no live automation activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture State Model Dry-Run
+
+The founder-led launch now includes a local fixture-only fake-data dry-run implementing deterministic native workflow fixture state paths for all 25 scenarios.
+
+Files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_DRY_RUN.md`
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js`
+- `scripts/run-native-workflow-fixture-state-model-dry-run.sh`
+
+Canonical source of truth before this worktree: `19805f8 test(workflow): add native workflow fixture state model plan`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture State Model Dry-Run" / "native workflow fixture state model dry-run" / "fixture state model dry-run" across aggregate, index, contexts, and business guide.
+
+The dry-run implements:
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- All 25 fixture scenarios with transition_log, guard_results, audit_events
+- Activation flags default false; demo_ready_with_live_automation_disabled preserved
+- Review queue ownership; plan profile behavior; CSV/report fake snapshot
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (booked inspections, lead-to-inspection, fixture state model, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no native CRM sync. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

@@ -5625,3 +5625,44 @@ Packet scope:
 The wrapper `scripts/run-native-workflow-fixture-state-model-plan-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: planning/readiness/fixture-plan only. No state model implementation, no schema changes, no production data reads/writes, no live automation activation. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture State Model Dry-Run
+
+The Native Workflow Fixture State Model Dry-Run is the first local fixture-only fake-data dry-run implementing deterministic native workflow fixture state paths for all 25 scenarios from the fixture state model plan.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_DRY_RUN.md`
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js`
+- `scripts/run-native-workflow-fixture-state-model-dry-run.sh`
+
+Canonical source of truth before this worktree: `19805f8 test(workflow): add native workflow fixture state model plan`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture State Model Dry-Run" / "native workflow fixture state model dry-run" / "fixture state model dry-run" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run — stdout JSON only, no file writes
+- All 25 fixture scenarios with transition_log, guard_results, audit_events, safety assertions
+- Activation flags default false; blocked_by_activation_flag audit for live action attempts
+- Review queue ownership (roofer business judgment vs RoofLeadHQ/Jason system review)
+- Plan profile behavior (Starter/Growth/Elite/Custom configuration profiles)
+- CSV/report fake snapshot with one-directional export boundary (not native CRM sync)
+- Local E2E runner relationship; first paid roofer relationship
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-state-model-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no native CRM sync. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

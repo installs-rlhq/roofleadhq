@@ -950,3 +950,41 @@ node backend/scripts/verify-native-workflow-fixture-state-model-plan-readonly.js
 ```
 
 Safety remains: planning/readiness/fixture-plan only. No state model implementation, no schema changes, no production data reads/writes, no live automation activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture State Model Dry-Run
+
+Latest Grok Build implementation packet — first local fixture-only fake-data dry-run for the native workflow fixture state model.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_DRY_RUN.md`
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js`
+- `scripts/run-native-workflow-fixture-state-model-dry-run.sh`
+
+Canonical source of truth before this worktree: `19805f8 test(workflow): add native workflow fixture state model plan`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture State Model Dry-Run" / "native workflow fixture state model dry-run" / "fixture state model dry-run" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Deterministic JSON stdout for all 25 fixture scenarios
+- Activation flags default false; guard checks; review queue ownership
+- CSV/report fake snapshot; local E2E runner relationship; first paid roofer relationship
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-state-model-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no production data, no live automation from agent worktrees. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

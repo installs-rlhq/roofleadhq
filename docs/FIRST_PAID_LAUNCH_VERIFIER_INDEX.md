@@ -189,6 +189,10 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture State Model Plan doc: `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_PLAN.md`
 - Native Workflow Fixture State Model Plan wrapper: `scripts/run-native-workflow-fixture-state-model-plan-dry-run.sh`
 - Native Workflow Fixture State Model Plan verifier: `node backend/scripts/verify-native-workflow-fixture-state-model-plan-readonly.js`
+- Native Workflow Fixture State Model Dry-Run doc: `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_DRY_RUN.md`
+- Native Workflow Fixture State Model Dry-Run runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Native Workflow Fixture State Model Dry-Run wrapper: `scripts/run-native-workflow-fixture-state-model-dry-run.sh`
+- Native Workflow Fixture State Model Dry-Run verifier: `node backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1592,5 +1596,23 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-native-workflow-fixture-state-model-plan-readonly.js`
 - Purpose: read-only guard that confirms the native workflow fixture state model plan doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for fixture data model, 25 fixture scenarios, state transition table, guard failure matrix, plan profiles, review queues, appointment readiness, post-inspection, feedback, reporting/CSV snapshots, activation flags, fixture output shape, local E2E runner relationship, first paid roofer relationship, implementation sequencing, preferred/forbidden language guardrails, and full safety posture.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Fixture State Model Dry-Run
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_DRY_RUN.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Wrapper: `scripts/run-native-workflow-fixture-state-model-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fixture-only fake-data dry-run implementing deterministic native workflow fixture state paths for all 25 scenarios from the fixture state model plan — stdout JSON only, activation flags default false, guard checks, review queue ownership, plan profile behavior, CSV/report fake snapshot, blocked_by_activation_flag audit, local E2E runner relationship, first paid roofer relationship.
+- Verifier enforces: doc/runner/wrapper exist; runner syntax and valid JSON output; demo_ready_with_live_automation_disabled; all activation flags default false; all 25 scenario IDs present; every scenario live_actions_performed/production_data_touched/external_services_called no and result PASS; key routing assertions (APPOINTMENT_READY, MISSING_INFO/HOLD, STOPPED_DO_NOT_CONTACT, CUSTOM_REVIEW_REQUIRED/HOLD, BLOCKED/HOLD with blocked_by_activation_flag); roofer and RoofLeadHQ review queue items; feedback permission_to_use_publicly yes/no/not_asked; CSV/report fake snapshot; CSV not native CRM sync boundary; local E2E runner relationship; first paid roofer relationship; forbidden language absent; no unsafe imports/strings; safety boundaries documented; aggregate/index/context/business-guide wiring.
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS/security changes, no production data, no live automation, no integrations, no external calls, no native CRM sync, no payment/deposit/invoice/estimate automation. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Native Workflow Fixture State Model Dry-Run Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js`
+- Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates JSON output shape and all 25 scenario results, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.

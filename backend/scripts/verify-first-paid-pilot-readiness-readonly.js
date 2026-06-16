@@ -732,6 +732,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture State Model Dry-Run (docs/NATIVE_WORKFLOW_FIXTURE_STATE_MODEL_DRY_RUN.md + scripts/run-native-workflow-fixture-state-model-dry-run.sh) -- local fixture-only fake-data dry-run implementing deterministic native workflow fixture state paths for all 25 scenarios: stdout JSON only, no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; activation flags default false; guard checks across intake/response/review/appointment/post-inspection/feedback/reporting paths; review queue ownership rules; plan profile behavior (Starter/Growth/Elite/Custom); CSV/report fake snapshot with one-directional export boundary; blocked_by_activation_flag audit; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-state-model-dry-run-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []
