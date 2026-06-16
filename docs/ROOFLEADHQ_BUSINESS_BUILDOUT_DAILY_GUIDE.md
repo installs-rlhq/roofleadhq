@@ -5993,3 +5993,65 @@ The expansion implements:
 Use preferred lead-to-inspection language (booked inspections, post-inspection tracking, manual outreach, missed lead recovery, contact permission, do-not-contact, fixture state model, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call sends, no notifications. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Missed Lead Recovery Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_MISSED_LEAD_RECOVERY_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-missed-lead-recovery-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-missed-lead-recovery-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `955ea36 test(workflow): expand native workflow fixture manual outreach`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Missed Lead Recovery Expansion" / "native workflow fixture missed lead recovery expansion" / "missed lead recovery expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level missed_lead_recovery_expansion_summary, missed_lead_recovery_items, missed_lead_recovery_status_summary
+- missed_lead_recovery_eligibility_summary, missed_lead_recovery_blocker_summary, missed_lead_recovery_attempt_summary
+- missed_lead_recovery_owner_summary, missed_lead_recovery_manual_outreach_summary, missed_lead_recovery_review_boundary_summary
+- missed_lead_recovery_reporting_summary, missed_lead_recovery_safety_assertions
+- Per-scenario missed_lead_recovery_items with required fields; recovery-eligible vs recovery-blocked
+- demo_ready_with_live_automation_disabled preserved; no live SMS/email/call sends, no notifications
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (booked inspections, post-inspection tracking, missed lead recovery, manual outreach, contact permission, do-not-contact, fixture state model, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call sends, no notifications. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Missed Lead Recovery Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_MISSED_LEAD_RECOVERY_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-missed-lead-recovery-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-missed-lead-recovery-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `955ea36 test(workflow): expand native workflow fixture manual outreach`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Missed Lead Recovery Expansion" / "native workflow fixture missed lead recovery expansion" / "missed lead recovery expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level missed_lead_recovery_expansion_summary, missed_lead_recovery_items, missed_lead_recovery_status_summary
+- missed_lead_recovery_eligibility_summary, missed_lead_recovery_blocker_summary, missed_lead_recovery_attempt_summary
+- missed_lead_recovery_owner_summary, missed_lead_recovery_manual_outreach_summary, missed_lead_recovery_review_boundary_summary
+- missed_lead_recovery_reporting_summary, missed_lead_recovery_safety_assertions
+- Per-scenario missed_lead_recovery_items with required fields; recovery-eligible vs recovery-blocked
+- demo_ready_with_live_automation_disabled preserved; no live SMS/email/call sends, no notifications
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (booked inspections, post-inspection tracking, missed lead recovery, manual outreach, contact permission, do-not-contact, fixture state model, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call sends, no notifications. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

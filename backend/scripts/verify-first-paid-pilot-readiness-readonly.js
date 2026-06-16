@@ -772,6 +772,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Missed Lead Recovery Expansion (docs/NATIVE_WORKFLOW_FIXTURE_MISSED_LEAD_RECOVERY_EXPANSION.md + scripts/run-native-workflow-fixture-missed-lead-recovery-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit missed lead recovery coverage: missed_lead_recovery_expansion_summary, missed_lead_recovery_items, missed_lead_recovery_status_summary, missed_lead_recovery_eligibility_summary, missed_lead_recovery_blocker_summary, missed_lead_recovery_attempt_summary, missed_lead_recovery_owner_summary, missed_lead_recovery_manual_outreach_summary, missed_lead_recovery_review_boundary_summary, missed_lead_recovery_reporting_summary, missed_lead_recovery_safety_assertions; recovery-eligible vs recovery-blocked; new lead not responded in time; homeowner non-response; missed call/form/inquiry cases; contact permission and do-not-contact boundaries; max follow-up attempts; manual outreach handoff; roofer vs RoofLeadHQ review ownership; reporting/CSV compatibility; no live SMS/email/call/notification; per-scenario missed_lead_recovery_items with required fields; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-missed-lead-recovery-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []
