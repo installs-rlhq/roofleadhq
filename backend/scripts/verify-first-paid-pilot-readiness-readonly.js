@@ -757,6 +757,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Post-Inspection Expansion (docs/NATIVE_WORKFLOW_FIXTURE_POST_INSPECTION_EXPANSION.md + scripts/run-native-workflow-fixture-post-inspection-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit post-inspection coverage: post_inspection_summary, post_inspection_items, post_inspection_status_summary, estimate_tracking_summary, homeowner_follow_up_summary, roofer_follow_up_summary, outcome_summary, feedback_capture_summary, feedback_permission_summary, post_inspection_review_summary, post_inspection_safety_assertions; inspection completed/missed/reschedule tracking; estimate-needed and estimate-sent tracking only; homeowner/roofer follow-up tracking or manual only; won/lost/still-open/needs-review/closed outcomes; feedback capture and permission_to_use_publicly yes/no/not_asked; roofer review vs RoofLeadHQ system review boundaries; per-scenario post_inspection_items with required fields; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations/live follow-up sends/live feedback requests/automatic estimates/quotes/invoices/payments/public review generation; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-post-inspection-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

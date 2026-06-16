@@ -230,6 +230,7 @@ console.log('PASS: new verifier syntax check succeeded.');
 const runResult = spawnSync(process.execPath, [path.join(root, runnerPath)], {
   cwd: root,
   encoding: 'utf8',
+  maxBuffer: 16 * 1024 * 1024,
 });
 if (runResult.status !== 0) {
   fail(`runner execution failed: ${runResult.stderr || runResult.stdout}`);

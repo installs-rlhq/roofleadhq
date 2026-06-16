@@ -5901,3 +5901,34 @@ The expansion implements:
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, lead-to-inspection, fixture state model, appointment readiness, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live Google Calendar creation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Post-Inspection Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_POST_INSPECTION_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-post-inspection-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-post-inspection-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `846a388 test(workflow): expand native workflow fixture appointment readiness`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Post-Inspection Expansion" / "native workflow fixture post-inspection expansion" / "post-inspection expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level post_inspection_summary, post_inspection_items, post_inspection_status_summary
+- estimate_tracking_summary, homeowner_follow_up_summary, roofer_follow_up_summary
+- outcome_summary, feedback_capture_summary, feedback_permission_summary
+- post_inspection_review_summary, post_inspection_safety_assertions
+- Per-scenario post_inspection_items with required fields; inspection completed/missed/reschedule tracking
+- demo_ready_with_live_automation_disabled preserved; no live follow-up, feedback requests, or automatic document generation
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (booked inspections, post-inspection tracking, estimate tracking, follow-up tracking, feedback capture, permission_to_use_publicly, fixture state model, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live follow-up sends, no live feedback requests, no automatic estimates/quotes/invoices/payments, no public review generation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

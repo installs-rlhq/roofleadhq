@@ -1154,3 +1154,47 @@ node backend/scripts/verify-native-workflow-fixture-appointment-readiness-expans
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live Google Calendar creation. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Post-Inspection Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_POST_INSPECTION_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-post-inspection-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-post-inspection-expansion-readonly.js`
+
+Updated files:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `846a388 test(workflow): expand native workflow fixture appointment readiness`
+
+Wiring:
+
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Post-Inspection Expansion" / "native workflow fixture post-inspection expansion" / "post-inspection expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level post_inspection_summary, post_inspection_items, post_inspection_status_summary
+- estimate_tracking_summary, homeowner_follow_up_summary, roofer_follow_up_summary
+- outcome_summary, feedback_capture_summary, feedback_permission_summary
+- post_inspection_review_summary, post_inspection_safety_assertions
+- Per-scenario post_inspection_items; no live follow-up, feedback requests, or automatic document generation
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-post-inspection-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-post-inspection-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live follow-up sends, no live feedback requests, no automatic estimates/quotes/invoices/payments, no public review generation. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
