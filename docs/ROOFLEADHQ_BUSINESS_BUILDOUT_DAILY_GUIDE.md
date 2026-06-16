@@ -5513,3 +5513,24 @@ Safety remains demo ready with live automation disabled. Stop after all listed c
 - Evidence: writes `local-e2e-fixture-results.json` and `local-e2e-fixture-evidence.md` under `/tmp/roofleadhq-local-e2e-fixture-runner`.
 - Safety: local fixture-only; no live sends; no external sends; no production writes; no production Supabase writes; no calendar event creation; no payment automation; no credentials/env reads; no public route activation; no external service calls.
 - Next step: connect the local fixture runner to existing read-only local transformation functions, if available, while preserving fixture-only inputs and `/tmp` evidence output.
+
+## Pricing Volume Guardrail + Intake / Terms / Privacy Alignment Packet
+
+The founder-led launch now includes a planning/readiness packet for hybrid pricing, lead-volume guardrails, overage protection, and intake/legal alignment before any public publication.
+
+Files:
+- `docs/PRICING_VOLUME_GUARDRAIL_AND_INTAKE_ALIGNMENT_PACKET.md`
+- `scripts/run-pricing-volume-guardrail-and-intake-alignment-dry-run.sh`
+- `backend/scripts/verify-pricing-volume-guardrail-and-intake-alignment-readonly.js`
+
+Approved hybrid pricing (planning only until explicit publication approval):
+- Starter: $399/mo + $499 setup, up to 75–100 leads/month
+- Growth: $699/mo + $499 setup, up to 250–300 leads/month
+- Elite: $999/mo + $799 setup, up to 500 leads/month
+- Custom: 500+ leads/month or multi-location, complex routing, multiple calendars, multiple phone numbers, or advanced reporting
+
+The packet also documents overage protection, Fillout intake question alignment, Agreement/Terms/Privacy update checklists, CSV export/reporting scope, lead source ROI treatment, post-inspection follow-up, post-inspection feedback capture, roofer-first escalation, photos future/optional, and later-only exclusions (instant quotes, deposits, payment collection, native CRM sync, multi-location automation, market intel).
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, missed-lead recovery, guided setup). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, or legacy pilot promise language in public materials.
+
+Safety: planning/readiness/placement only. No live website publication, no live Fillout changes, no legal publication, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

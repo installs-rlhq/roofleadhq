@@ -1406,3 +1406,20 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Evidence: writes `local-e2e-fixture-results.json` and `local-e2e-fixture-evidence.md` under `/tmp/roofleadhq-local-e2e-fixture-runner`.
 - Safety: local fixture-only; no live sends; no external sends; no production writes; no production Supabase writes; no calendar event creation; no payment automation; no credentials/env reads; no public route activation; no external service calls.
 - Next step: connect the local fixture runner to existing read-only local transformation functions, if available, while preserving fixture-only inputs and `/tmp` evidence output.
+
+## Pricing Volume Guardrail + Intake / Terms / Privacy Alignment Packet
+
+- Doc: `docs/PRICING_VOLUME_GUARDRAIL_AND_INTAKE_ALIGNMENT_PACKET.md`
+- Wrapper: `scripts/run-pricing-volume-guardrail-and-intake-alignment-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-pricing-volume-guardrail-and-intake-alignment-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: planning/readiness packet for the approved hybrid pricing model (Starter $399/mo + $499 setup up to 75–100 leads/month, Growth $699/mo + $499 setup up to 250–300 leads/month, Elite $999/mo + $799 setup up to 500 leads/month, Custom for 500+ or complex scope), overage protection, custom-review triggers (multi-location, complex routing, multiple calendars, multiple phone numbers, advanced reporting), Fillout intake question list, Agreement/Terms/Privacy update checklists, plan-fit logic, CSV export/reporting scope, lead source ROI treatment, post-inspection follow-up, post-inspection feedback capture, roofer-first human escalation, limited RoofLeadHQ/Jason review for workflow/data/system quality only, photos future/optional, and later-only exclusions (instant quotes, deposits, payment collection, native CRM sync, multi-location automation, market intel).
+- Verifier enforces: hybrid pricing structure, volume limits, overage protection, custom triggers, Fillout questions, Agreement/Terms/Privacy checklists, CSV/reporting, post-inspection follow-up, feedback capture, roofer-first escalation, photos future/optional, later-only exclusions, forbidden/preferred language guardrails, safety/no-live-activation boundaries, wrapper wiring, aggregate/index/context/business-guide cross-references, PASS/HOLD/BLOCKED decision language, and absence of forbidden public language in the packet body.
+- Safety: planning/readiness/placement only. No live website publication, no live Fillout changes, no legal publication, no production behavior changes, no customer data handling changes, no backend live activation, no integrations activated, no external sends, no production Supabase writes, no auth/RLS/schema/security changes, no env/credential changes, no public route activation. Read-only verifier and dry-run wrapper only. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Pricing Volume Guardrail + Intake Alignment Verifier
+
+- Script: `backend/scripts/verify-pricing-volume-guardrail-and-intake-alignment-readonly.js`
+- Purpose: read-only guard that confirms the alignment packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for pricing tiers, volume bands, overage protection, custom triggers, Fillout intake questions, legal update checklists, CSV/reporting, lead source ROI, post-inspection follow-up and feedback capture, roofer-first escalation model, photos future/optional, later-only exclusions, preferred/forbidden language guardrails, and full safety posture.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.

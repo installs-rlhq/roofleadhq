@@ -552,3 +552,44 @@ All prior lessons remain in force. Stop after gates and diff proof. Do not commi
 - Evidence: writes `local-e2e-fixture-results.json` and `local-e2e-fixture-evidence.md` under `/tmp/roofleadhq-local-e2e-fixture-runner`.
 - Safety: local fixture-only; no live sends; no external sends; no production writes; no production Supabase writes; no calendar event creation; no payment automation; no credentials/env reads; no public route activation; no external service calls.
 - Next step: connect the local fixture runner to existing read-only local transformation functions, if available, while preserving fixture-only inputs and `/tmp` evidence output.
+
+## Pricing Volume Guardrail + Intake / Terms / Privacy Alignment Packet
+
+Latest Grok Build product-moving packet for hybrid pricing and intake/legal alignment.
+
+Added files:
+- `docs/PRICING_VOLUME_GUARDRAIL_AND_INTAKE_ALIGNMENT_PACKET.md`
+- `scripts/run-pricing-volume-guardrail-and-intake-alignment-dry-run.sh`
+- `backend/scripts/verify-pricing-volume-guardrail-and-intake-alignment-readonly.js`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces:
+- Hybrid pricing structure (Starter/Growth/Elite/Custom with setup fees and volume bands)
+- Overage protection and custom-review triggers
+- Fillout intake question list
+- Agreement, Terms of Service, and Privacy Policy update checklists
+- CSV export/reporting, lead source ROI, post-inspection follow-up, post-inspection feedback capture
+- Roofer-first escalation; RoofLeadHQ/Jason limited to workflow/data/system quality
+- lead-to-inspection operating layer scope and preferred public language
+- Photos future/optional; later-only exclusions
+- Forbidden/preferred public language guardrails
+- Safety/no-live-activation boundaries (no live website publication, no Fillout changes, no legal publication, no production activation)
+
+Dry-run command:
+
+```bash
+bash scripts/run-pricing-volume-guardrail-and-intake-alignment-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-pricing-volume-guardrail-and-intake-alignment-readonly.js
+```
+
+Safety remains: planning/readiness/placement only. No live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.

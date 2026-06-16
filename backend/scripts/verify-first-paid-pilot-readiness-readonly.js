@@ -682,6 +682,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Pricing Volume Guardrail + Intake Alignment (docs/PRICING_VOLUME_GUARDRAIL_AND_INTAKE_ALIGNMENT_PACKET.md + scripts/run-pricing-volume-guardrail-and-intake-alignment-dry-run.sh) -- hybrid pricing, volume limits, overage protection, Fillout/intake alignment, and Agreement/Terms/Privacy planning',
+    script: 'backend/scripts/verify-pricing-volume-guardrail-and-intake-alignment-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

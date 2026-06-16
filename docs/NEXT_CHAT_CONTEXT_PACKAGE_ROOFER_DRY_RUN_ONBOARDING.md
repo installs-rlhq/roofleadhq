@@ -1681,3 +1681,27 @@ Wired into aggregate first-paid pilot readiness, FIRST_PAID_LAUNCH_VERIFIER_INDE
 - Evidence: writes `local-e2e-fixture-results.json` and `local-e2e-fixture-evidence.md` under `/tmp/roofleadhq-local-e2e-fixture-runner`.
 - Safety: local fixture-only; no live sends; no external sends; no production writes; no production Supabase writes; no calendar event creation; no payment automation; no credentials/env reads; no public route activation; no external service calls.
 - Next step: connect the local fixture runner to existing read-only local transformation functions, if available, while preserving fixture-only inputs and `/tmp` evidence output.
+
+## Pricing Volume Guardrail + Intake / Terms / Privacy Alignment Packet
+
+The Pricing Volume Guardrail + Intake Alignment Packet aligns roofer dry-run onboarding and first-paid launch planning with the approved hybrid pricing model, lead-volume guardrails, overage protection, Fillout intake questions, Agreement/Terms/Privacy checklists, and lead-to-inspection reporting scope. It sits alongside the customer intake and reporting preference packets in the founder-led launch program.
+
+Added files:
+- `docs/PRICING_VOLUME_GUARDRAIL_AND_INTAKE_ALIGNMENT_PACKET.md`
+- `scripts/run-pricing-volume-guardrail-and-intake-alignment-dry-run.sh`
+- `backend/scripts/verify-pricing-volume-guardrail-and-intake-alignment-readonly.js`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Pricing Volume Guardrail" / "lead-to-inspection" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Plan-fit logic maps estimated lead volume to Starter (75–100), Growth (250–300), Elite (500), or Custom (500+).
+- Custom-review triggers cover multi-location, complex routing, multiple calendars, multiple phone numbers, and advanced reporting.
+- Fillout intake questions support dry-run workspace intake and first-roofer setup planning.
+- Roofer-first escalation remains default; RoofLeadHQ/Jason handles workflow/data/system quality only.
+- CSV export, lead source ROI, post-inspection follow-up, and post-inspection feedback capture documented for reporting preference alignment.
+
+Safety remains planning/readiness/placement only. No live website publication, Fillout changes, legal publication, or production activation. demo_ready_with_live_automation_disabled.

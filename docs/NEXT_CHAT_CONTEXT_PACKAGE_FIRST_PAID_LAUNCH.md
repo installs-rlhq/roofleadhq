@@ -5323,3 +5323,35 @@ Safety preserved:
 - Evidence: writes `local-e2e-fixture-results.json` and `local-e2e-fixture-evidence.md` under `/tmp/roofleadhq-local-e2e-fixture-runner`.
 - Safety: local fixture-only; no live sends; no external sends; no production writes; no production Supabase writes; no calendar event creation; no payment automation; no credentials/env reads; no public route activation; no external service calls.
 - Next step: connect the local fixture runner to existing read-only local transformation functions, if available, while preserving fixture-only inputs and `/tmp` evidence output.
+
+## Pricing Volume Guardrail + Intake / Terms / Privacy Alignment Packet
+
+The Pricing Volume Guardrail + Intake Alignment Packet is a planning/readiness artifact that captures the approved hybrid pricing model, lead-volume limits, overage protection, Fillout intake alignment, website pricing planning requirements, Agreement/Terms/Privacy update checklists, plan-fit logic, custom/multi-location handling, CSV export/reporting scope, roofer-first review/escalation, post-inspection follow-up, and post-inspection feedback capture for the roofing lead-to-inspection operating layer.
+
+Added files:
+- `docs/PRICING_VOLUME_GUARDRAIL_AND_INTAKE_ALIGNMENT_PACKET.md`
+- `scripts/run-pricing-volume-guardrail-and-intake-alignment-dry-run.sh`
+- `backend/scripts/verify-pricing-volume-guardrail-and-intake-alignment-readonly.js`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages (`docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`) and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- The dedicated verifier enforces hybrid pricing (Starter $399/mo + $499 setup up to 75–100 leads/month, Growth $699/mo + $499 setup up to 250–300 leads/month, Elite $999/mo + $799 setup up to 500 leads/month, Custom for 500+), overage protection, custom triggers, Fillout intake questions, Agreement/Terms/Privacy checklists, CSV/reporting, lead source ROI, post-inspection follow-up and feedback capture, roofer-first escalation, photos future/optional, later-only exclusions, forbidden/preferred language guardrails, and full safety/no-live-activation boundaries.
+
+Packet content summary:
+- Hybrid pricing structure with volume bands and guided setup fees.
+- Plan-fit logic and custom-review triggers (500+ leads/month, multi-location, complex routing, multiple calendars, multiple phone numbers, advanced reporting).
+- Overage protection workflow and customer-facing planning language.
+- Fillout intake question list (35 questions including plan-fit and internal review fields).
+- Agreement, Terms of Service, and Privacy Policy update checklists.
+- CSV export field scope, lead source ROI treatment, post-inspection follow-up and feedback capture.
+- Roofer-first human escalation; RoofLeadHQ/Jason review limited to workflow/data/system quality.
+- Photos future/optional; later-only exclusions (instant quotes, deposits, payment collection, native CRM sync, multi-location automation, market intel).
+- Preferred language: booked inspections, booked homeowner appointments, lead-to-inspection, missed-lead recovery, post-inspection follow-up, post-inspection feedback capture, CSV export, roofer review, contractor review, guided setup.
+- Decision language: PRICING VOLUME GUARDRAIL AND INTAKE ALIGNMENT PACKET PASS / HOLD / BLOCKED.
+- Safety: planning/readiness/placement only. No live website publication, no live Fillout changes, no legal publication, no production behavior changes, no customer data handling changes, no backend live activation, no integrations activated, no external sends, no production Supabase writes, no auth/RLS/schema/security changes, no env/credential changes, no public route activation. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+The wrapper `scripts/run-pricing-volume-guardrail-and-intake-alignment-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: planning/readiness/placement only. No live publication or activation. Stop after gates and diff proof. Do not commit or push.
