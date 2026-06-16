@@ -2063,3 +2063,44 @@ node backend/scripts/verify-native-workflow-fixture-review-queue-expansion-reado
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live review notifications. demo_ready_with_live_automation_disabled.
+
+## Native Workflow Fixture Appointment Readiness Expansion
+
+The Native Workflow Fixture Appointment Readiness Expansion deepens explicit appointment readiness coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_APPOINTMENT_READINESS_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-appointment-readiness-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-appointment-readiness-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `c743e8d test(workflow): expand native workflow fixture review queue`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Appointment Readiness Expansion" / "native workflow fixture appointment readiness expansion" / "appointment readiness expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level appointment_readiness_summary, appointment_readiness_items, appointment_blocker_summary
+- appointment_ready_summary, appointment_not_ready_summary, calendar_preference_summary, calendar_owner_summary
+- Per-scenario appointment_readiness_items; blocker catalog; appointment_readiness_safety_assertions
+- Local E2E runner relationship; first paid roofer relationship; no live Google Calendar creation
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-appointment-readiness-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-appointment-readiness-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live Google Calendar creation. demo_ready_with_live_automation_disabled.

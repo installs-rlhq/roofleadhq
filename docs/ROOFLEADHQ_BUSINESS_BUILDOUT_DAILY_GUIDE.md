@@ -5872,3 +5872,32 @@ The expansion implements:
 Use preferred lead-to-inspection language (booked inspections, lead-to-inspection, fixture state model, review queue, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live review notifications. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Appointment Readiness Expansion
+
+The founder-led launch now includes explicit appointment readiness coverage across the fixture state model dry-run.
+
+Files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_APPOINTMENT_READINESS_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-appointment-readiness-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-appointment-readiness-expansion-dry-run.sh`
+
+Updated runner:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `c743e8d test(workflow): expand native workflow fixture review queue`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Appointment Readiness Expansion" / "native workflow fixture appointment readiness expansion" / "appointment readiness expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level appointment_readiness_summary, appointment_readiness_items, appointment_blocker_summary
+- appointment_ready_summary, appointment_not_ready_summary, calendar_preference_summary, calendar_owner_summary
+- Per-scenario appointment_readiness_items with required fields; blocker catalog for required blocker types
+- appointment_readiness_safety_assertions with readiness and safety boundaries
+- demo_ready_with_live_automation_disabled preserved; no live Google Calendar event creation
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, lead-to-inspection, fixture state model, appointment readiness, fake data, native workflow engine, plan configuration profiles, staged E2E testing, manual bridge, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live Google Calendar creation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

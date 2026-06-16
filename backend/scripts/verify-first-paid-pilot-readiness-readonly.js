@@ -752,6 +752,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Appointment Readiness Expansion (docs/NATIVE_WORKFLOW_FIXTURE_APPOINTMENT_READINESS_EXPANSION.md + scripts/run-native-workflow-fixture-appointment-readiness-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit appointment readiness coverage: appointment_readiness_summary, appointment_readiness_items, appointment_blocker_summary, appointment_ready_summary, appointment_not_ready_summary, calendar_preference_summary, calendar_owner_summary, appointment_readiness_safety_assertions; ready vs not-ready decision rules for homeowner contact, permission, service area, lead source, roofing issue, urgency, calendar owner/preferences, assigned roofer/rep, human review blockers, unsupported request blockers, activation-flag boundaries; per-scenario appointment_readiness_items with required fields; blocker catalog; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations/live Google Calendar creation; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-appointment-readiness-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []
