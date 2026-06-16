@@ -793,3 +793,43 @@ node backend/scripts/verify-fillout-implementation-checklist-readonly.js
 ```
 
 Safety remains: planning/readiness/placement only. No live Fillout publication, no Fillout API calls, no production customer data collection, no live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## Agreement Terms Privacy Update Review Packet
+
+Latest Grok Build planning packet for internal Agreement, Terms of Service, and Privacy Policy update review readiness.
+
+Added files:
+- `docs/AGREEMENT_TERMS_PRIVACY_UPDATE_REVIEW_PACKET.md`
+- `scripts/run-agreement-terms-privacy-update-review-dry-run.sh`
+- `backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js`
+
+Canonical source of truth before this worktree: `d2dd118 test(onboarding): add fillout implementation checklist packet`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Agreement Terms Privacy Update Review" / "agreement terms privacy update review" / "legal review readiness" / "policy review readiness" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Internal legal/policy review readiness — not legal advice, not attorney-reviewed language, not publication-ready terms
+- Agreement/Terms/Privacy update checklists aligned to lead-to-inspection operating scope
+- Pricing/volume/overage review (Starter/Growth/Elite/Custom); Custom Review triggers (2+ locations, 500+ leads/month)
+- Messaging compliance, post-inspection feedback/public use (`permission_to_use_publicly` yes/no/not_asked)
+- CSV/export data handling, bidirectional CRM boundary, Lindy bridge/native workflow legal review
+- Unsupported/later-only features, final review tracker, forbidden/preferred language guardrails
+
+Dry-run command:
+
+```bash
+bash scripts/run-agreement-terms-privacy-update-review-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js
+```
+
+Safety remains: planning/readiness/review only. No legal publication, no website publication, no customer-facing legal terms activated, no live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.

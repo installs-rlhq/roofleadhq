@@ -1810,3 +1810,29 @@ Key alignment for roofer dry-run onboarding:
 - Roofer-first escalation; RoofLeadHQ/Jason limited to system/workflow/data quality issues
 
 Safety remains planning/readiness/placement only. No live Fillout publication, no Fillout API calls, no production customer data collection, no production activation. demo_ready_with_live_automation_disabled.
+
+## Agreement Terms Privacy Update Review Packet
+
+The Agreement Terms Privacy Update Review Packet documents internal legal/policy review readiness for roofer dry-run onboarding and first-paid launch planning: Agreement, Terms of Service, and Privacy Policy update areas aligned to lead-to-inspection scope, pricing/volume guardrails, messaging compliance, and CSV/export responsibilities.
+
+Added files:
+- `docs/AGREEMENT_TERMS_PRIVACY_UPDATE_REVIEW_PACKET.md`
+- `scripts/run-agreement-terms-privacy-update-review-dry-run.sh`
+- `backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js`
+
+Canonical source of truth before this worktree: `d2dd118 test(onboarding): add fillout implementation checklist packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Agreement Terms Privacy Update Review" / "agreement terms privacy update review" / "legal review readiness" / "policy review readiness" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Internal review/readiness only — not legal advice, not publication-ready terms
+- Agreement/Terms/Privacy checklists cover plan tiers, overage/custom review, post-inspection scope, CSV/reporting, messaging compliance
+- Custom Review triggers: 2+ locations, 500+ leads/month, multiple calendars/phone numbers/sales reps
+- Roofer-first escalation; feedback internal unless `permission_to_use_publicly` permission obtained
+- Lindy temporary bridge only; native RoofLeadHQ/Supabase is long-term source-of-truth direction
+
+Safety remains planning/readiness/review only. No legal publication, no website publication, no customer-facing legal terms activated, no production activation. demo_ready_with_live_automation_disabled.

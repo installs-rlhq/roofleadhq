@@ -5505,3 +5505,31 @@ Packet scope:
 The wrapper `scripts/run-fillout-implementation-checklist-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: planning/readiness/placement only. No live Fillout publication, no Fillout API calls, no production customer data collection, no live publication or activation. Stop after gates and diff proof. Do not commit or push.
+
+## Agreement Terms Privacy Update Review Packet
+
+The Agreement Terms Privacy Update Review Packet is an internal legal/policy review readiness artifact that identifies Agreement, Terms of Service, and Privacy Policy update areas before stronger sales, onboarding, customer setup, paid trial operation, or live workflow activation. It does not publish legal terms, modify website legal pages, or activate live workflows. This is not legal advice and not attorney-reviewed language.
+
+Added files:
+- `docs/AGREEMENT_TERMS_PRIVACY_UPDATE_REVIEW_PACKET.md`
+- `scripts/run-agreement-terms-privacy-update-review-dry-run.sh`
+- `backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js`
+
+Canonical source of truth before this worktree: `d2dd118 test(onboarding): add fillout implementation checklist packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Agreement Terms Privacy Update Review" / "agreement terms privacy update review" / "legal review readiness" / "policy review readiness" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Agreement/Terms/Privacy update checklists for lead-to-inspection operating scope
+- Pricing/volume/overage review: Starter $399/Growth $699/Elite $999 with setup fees; volume bands 100/300/500; Custom Review for 2+ locations and 500+ leads/month
+- Messaging compliance review; post-inspection feedback/public use with `permission_to_use_publicly` yes/no/not_asked
+- CSV/export data handling (one-directional, not bidirectional CRM integration); Lindy bridge/native workflow legal review
+- Unsupported/later-only features; final review tracker with 20+ rows; forbidden/preferred language guardrails
+
+The wrapper `scripts/run-agreement-terms-privacy-update-review-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: planning/readiness/review only. No legal publication, no website publication, no customer-facing legal terms activated, no live publication or activation. Stop after gates and diff proof. Do not commit or push.

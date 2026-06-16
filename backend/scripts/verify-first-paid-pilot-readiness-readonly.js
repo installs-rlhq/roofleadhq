@@ -712,6 +712,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Agreement Terms Privacy Update Review Packet (docs/AGREEMENT_TERMS_PRIVACY_UPDATE_REVIEW_PACKET.md + scripts/run-agreement-terms-privacy-update-review-dry-run.sh) -- internal legal/policy review readiness packet identifying Agreement/Terms/Privacy update areas before stronger sales, onboarding, customer setup, paid trial operation, or live workflow activation: purpose/scope and not-legal-advice boundary, Agreement/Terms/Privacy update checklists, pricing/volume/overage review (Starter/Growth/Elite/Custom with $399/$699/$999 and setup fees), Custom Review triggers (2+ locations, 500+ leads/month), messaging compliance, post-inspection feedback/public use with permission_to_use_publicly yes/no/not_asked, CSV/export data handling and bidirectional CRM boundary, native workflow/Lindy bridge legal review, unsupported/later-only features, final review tracker, forbidden/preferred language guardrails, and full safety/no-legal-publication/no-live-activation boundaries',
+    script: 'backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

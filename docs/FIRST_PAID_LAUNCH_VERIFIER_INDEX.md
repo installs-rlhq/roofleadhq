@@ -177,6 +177,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Fillout Implementation Checklist Packet doc: `docs/FILLOUT_IMPLEMENTATION_CHECKLIST_PACKET.md`
 - Fillout Implementation Checklist Packet wrapper: `scripts/run-fillout-implementation-checklist-dry-run.sh`
 - Fillout Implementation Checklist Packet verifier: `node backend/scripts/verify-fillout-implementation-checklist-readonly.js`
+- Agreement Terms Privacy Update Review Packet doc: `docs/AGREEMENT_TERMS_PRIVACY_UPDATE_REVIEW_PACKET.md`
+- Agreement Terms Privacy Update Review Packet wrapper: `scripts/run-agreement-terms-privacy-update-review-dry-run.sh`
+- Agreement Terms Privacy Update Review Packet verifier: `node backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1512,5 +1515,22 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-fillout-implementation-checklist-readonly.js`
 - Purpose: read-only guard that confirms the Fillout implementation checklist packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for all 16 form sections, plan-fit routing, native workflow/Lindy bridge relationships, preferred/forbidden language guardrails, and full safety posture.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Agreement Terms Privacy Update Review Packet
+
+- Doc: `docs/AGREEMENT_TERMS_PRIVACY_UPDATE_REVIEW_PACKET.md`
+- Wrapper: `scripts/run-agreement-terms-privacy-update-review-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: internal legal/policy review readiness packet identifying Agreement, Terms of Service, and Privacy Policy update areas before stronger sales, onboarding, customer setup, paid trial operation, or live workflow activation — not legal advice, not attorney-reviewed language, not publication-ready terms; Agreement/Terms/Privacy update checklists; pricing/volume/overage review (Starter $399/Growth $699/Elite $999 with setup fees and volume bands); Custom Review triggers (2+ locations, 500+ leads/month); messaging compliance; post-inspection feedback/public use with permission_to_use_publicly yes/no/not_asked; CSV/export data handling and bidirectional CRM boundary; native workflow/Lindy bridge legal review; unsupported/later-only features; final review tracker; forbidden/preferred language guardrails.
+- Verifier enforces: packet doc and wrapper exist; purpose/scope; not-legal-advice and no-publication boundaries; Agreement/Terms/Privacy checklists; pricing/volume/overage with plan prices and Custom Review triggers; messaging compliance; feedback/public use; CSV/export boundaries; Lindy/native workflow legal review; unsupported features; final review tracker; homeowner PII and processor lists; no sale of homeowner data; export responsibility; no-guarantee language; forbidden language absent; safety boundaries; wrapper wiring; aggregate/index/context/business-guide cross-references.
+- Safety: planning/readiness/review only. No legal publication, no website publication, no agreement/terms/privacy page changes, no customer-facing legal terms activated, no live automation activation, no production data reads, no production Supabase writes, no customer data handling changes, no backend live activation, no integrations activated, no external sends, no Fillout publication, no CRM connection. Read-only verifier and dry-run wrapper only. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Agreement Terms Privacy Update Review Verifier
+
+- Script: `backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js`
+- Purpose: read-only guard that confirms the agreement/terms/privacy update review packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for legal review readiness checklists, pricing/volume guardrails, messaging compliance, feedback/public use, CSV/export boundaries, Lindy/native workflow legal review, final review tracker, preferred/forbidden language guardrails, and full safety posture.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.

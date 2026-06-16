@@ -5657,3 +5657,29 @@ The packet documents:
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, guided setup, plan-fit routing, custom review, native workflow configuration). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
 
 Safety: planning/readiness/placement only. No live Fillout publication, no Fillout API calls, no production customer data collection, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Agreement Terms Privacy Update Review Packet
+
+The founder-led launch now includes a planning/readiness/review packet for internal Agreement, Terms of Service, and Privacy Policy update review before stronger sales, onboarding, customer setup, paid trial operation, or live workflow activation.
+
+Files:
+- `docs/AGREEMENT_TERMS_PRIVACY_UPDATE_REVIEW_PACKET.md`
+- `scripts/run-agreement-terms-privacy-update-review-dry-run.sh`
+- `backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js`
+
+Canonical source of truth before this worktree: `d2dd118 test(onboarding): add fillout implementation checklist packet`
+
+Verifier enforces references to the packet artifacts and "Agreement Terms Privacy Update Review" / "agreement terms privacy update review" / "legal review readiness" / "policy review readiness" across aggregate, index, contexts, and business guide.
+
+The packet documents:
+- Internal legal/policy review readiness — not legal advice, not attorney-reviewed language, draft-review only
+- Agreement/Terms/Privacy update checklists for plan tiers, overage/custom review, post-inspection scope, CSV/reporting, messaging compliance
+- Pricing/volume/overage: Starter $399/Growth $699/Elite $999; volume bands 100/300/500; Custom Review for 2+ locations and 500+ leads/month
+- Post-inspection feedback/public use with `permission_to_use_publicly` yes/no/not_asked
+- CSV/export one-directional boundary; contractor/customer responsible for downloaded/exported data
+- Lindy temporary bridge; native RoofLeadHQ/Supabase long-term source-of-truth direction
+- Unsupported/later-only features; final review tracker; forbidden/preferred language guardrails
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, guided setup, custom review, legal review, policy review, draft-review only). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
+
+Safety: planning/readiness/review only. No legal publication, no website publication, no customer-facing legal terms activated, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
