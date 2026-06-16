@@ -66,6 +66,75 @@ function isSafeReadOnlyOrTestArtifact(relativePath) {
   );
 }
 
+const LIVE_LINDY_ACTIVATION_PATTERNS = [
+  /LINDY_API_KEY/i,
+  /lindy\.ai/i,
+  /api\.lindy/i,
+  /live_lindy_bridge_enabled\s*:\s*true/i,
+  /live_lindy_bridge_enabled\s*=\s*true/i,
+  /process\.env\.[A-Z_]*LINDY/i,
+  /(?:fetch|axios(?:\.[a-z]+)?)\s*\([^)]*lindy/i,
+  /require\s*\(\s*['"][^'"]*lindy/i,
+  /from\s+['"][^'"]*lindy/i
+];
+
+const APPROVED_LINDY_REFERENCE_PATTERNS = [
+  /live_lindy_bridge_enabled\s*:\s*false/gi,
+  /live_lindy_bridge_enabled\s*=\s*false/gi,
+  /\blindy\s*:\s*false\b/gi,
+  /no_vapi_calendar_resend_lindy_calls/gi,
+  /demo_ready_with_live_automation_disabled/gi,
+  /live_automation_status\s*:\s*['"]disabled['"]/gi,
+  /['"]live_lindy_bridge_enabled['"]/gi,
+  /lindyBridgeAdapter/gi,
+  /LINDY_BRIDGE_/gi,
+  /verify-lindy-bridge/gi,
+  /run-lindy-bridge/gi,
+  /Lindy Bridge/gi,
+  /no live Lindy/gi,
+  /No live Lindy/gi,
+  /No Lindy/gi,
+  /no Lindy/gi,
+  /or Lindy/gi,
+  /Resend, Lindy/gi,
+  /Resend, or Lindy/gi,
+  /SMS, Twilio, Vapi, Calendar, Resend, or Lindy/gi
+];
+
+function stripApprovedLindyReferences(source) {
+  let stripped = source;
+  for (const pattern of APPROVED_LINDY_REFERENCE_PATTERNS) {
+    stripped = stripped.replace(pattern, '');
+  }
+  return stripped;
+}
+
+function hasLiveLindyActivation(source) {
+  if (LIVE_LINDY_ACTIVATION_PATTERNS.some((pattern) => pattern.test(source))) {
+    return true;
+  }
+
+  return /LINDY/i.test(stripApprovedLindyReferences(source));
+}
+
+function findLindyLiveMatches(options = {}) {
+  const exclude = new Set(options.exclude || []);
+  const matches = [];
+
+  for (const file of sourceFiles()) {
+    const rel = relative(file);
+    if (exclude.has(rel)) continue;
+    if (isSafeReadOnlyOrTestArtifact(rel)) continue;
+
+    const source = fs.readFileSync(file, 'utf8');
+    if (hasLiveLindyActivation(source)) {
+      matches.push(rel);
+    }
+  }
+
+  return Array.from(new Set(matches)).sort();
+}
+
 function currentCommit() {
   try {
     return childProcess
@@ -151,12 +220,6 @@ function liveTriggerMatches() {
     /send_email\s*\(/
   ];
 
-  const lindyPatterns = [
-    /LINDY/i,
-    /lindy\.ai/i,
-    /api\.lindy/i
-  ];
-
   const routeOrSchedulerPatterns = [
     /\bapp\.(get|post|put|patch|delete)\s*\(/,
     ...schedulerPatterns
@@ -176,14 +239,13 @@ function liveTriggerMatches() {
     resend: findMatches(resendSendPatterns, {
       exclude: ['backend/scripts/show-pilot-readiness-status.js']
     }),
-    lindy: findMatches(lindyPatterns, {
+    lindy: findLindyLiveMatches({
       exclude: [
         'backend/scripts/show-pilot-readiness-status.js',
         'backend/src/services/first-paid-launch-status-contract.service.ts',
         'backend/scripts/prepare-operator-alert-payload-readonly.js',
         'backend/scripts/vapi-test-payload-ingestion-dry-run.js'
-      ],
-      excludeSafeReadOnlyOrTestArtifacts: true
+      ]
     }),
     automation: findMatches(routeOrSchedulerPatterns, {
       exclude: ['backend/scripts/show-pilot-readiness-status.js']
@@ -350,5 +412,7 @@ if (require.main === module) {
 }
 
 module.exports = {
-  buildStatus
+  buildStatus,
+  hasLiveLindyActivation,
+  findLindyLiveMatches
 };

@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const { buildStatus } = require('./show-pilot-readiness-status');
 
 const root = path.resolve(__dirname, '../..');
 
@@ -389,5 +390,15 @@ mustHave(wrapper, '#!/usr/bin/env bash', 'wrapper shebang');
 mustHave(wrapper, 'run-native-workflow-fixture-state-model-dry-run.js', 'wrapper runner');
 mustHave(wrapper, 'verify-native-workflow-fixture-state-model-dry-run-readonly.js', 'wrapper verifier');
 console.log('PASS: dry-run wrapper references runner and verifier.');
+
+const readiness = buildStatus();
+const lindyCheck = readiness.checks.find((check) => check.name === 'Lindy live trigger');
+if (readiness.live_automation?.lindy !== false) {
+  fail('fixture dry-run must not be counted as live Lindy activation');
+}
+if ((lindyCheck?.matches || []).includes(runnerPath)) {
+  fail('fixture dry-run runner must not appear in Lindy live trigger matches');
+}
+console.log('PASS: fixture dry-run runner is not counted as live Lindy activation.');
 
 console.log('PASS: Native Workflow Fixture State Model Dry-Run is fixture-only, deterministic, and dry-run safe.');
