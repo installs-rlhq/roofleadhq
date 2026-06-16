@@ -1836,3 +1836,29 @@ Key alignment for roofer dry-run onboarding:
 - Lindy temporary bridge only; native RoofLeadHQ/Supabase is long-term source-of-truth direction
 
 Safety remains planning/readiness/review only. No legal publication, no website publication, no customer-facing legal terms activated, no production activation. demo_ready_with_live_automation_disabled.
+
+## Native Workflow Engine Foundation Readiness Packet
+
+The Native Workflow Engine Foundation Readiness Packet documents the future native RoofLeadHQ workflow engine foundation for roofer dry-run onboarding and first-paid launch planning: conceptual entities, state machine foundation, plan-tier configuration profiles, safety gates, and migration boundaries before implementation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_ENGINE_FOUNDATION_READINESS_PACKET.md`
+- `scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh`
+- `backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js`
+
+Canonical source of truth before this worktree: `b135945 test(policy): add agreement terms privacy update review packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- References in both next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Engine Foundation Readiness" / "native workflow engine foundation readiness" / "workflow foundation readiness" across aggregate, index, contexts, and business guide.
+
+Key alignment for roofer dry-run onboarding:
+- Planning/readiness/foundation only — no schema, no live automation, no production records
+- Supabase source of truth + RoofLeadHQ backend workflow decision layer direction
+- First paid roofer manual bridge path with roofer review owning business judgment
+- Lindy temporary bridge only; native RoofLeadHQ/Supabase becomes workflow authority over time
+- Staged E2E fixture paths for state transition validation with fake data only
+
+Safety remains planning/readiness/foundation only. No schema changes, no production data reads/writes, no live automation activation. demo_ready_with_live_automation_disabled.

@@ -180,6 +180,9 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Agreement Terms Privacy Update Review Packet doc: `docs/AGREEMENT_TERMS_PRIVACY_UPDATE_REVIEW_PACKET.md`
 - Agreement Terms Privacy Update Review Packet wrapper: `scripts/run-agreement-terms-privacy-update-review-dry-run.sh`
 - Agreement Terms Privacy Update Review Packet verifier: `node backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js`
+- Native Workflow Engine Foundation Readiness Packet doc: `docs/NATIVE_WORKFLOW_ENGINE_FOUNDATION_READINESS_PACKET.md`
+- Native Workflow Engine Foundation Readiness Packet wrapper: `scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh`
+- Native Workflow Engine Foundation Readiness Packet verifier: `node backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1532,5 +1535,22 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js`
 - Purpose: read-only guard that confirms the agreement/terms/privacy update review packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for legal review readiness checklists, pricing/volume guardrails, messaging compliance, feedback/public use, CSV/export boundaries, Lindy/native workflow legal review, final review tracker, preferred/forbidden language guardrails, and full safety posture.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Engine Foundation Readiness Packet
+
+- Doc: `docs/NATIVE_WORKFLOW_ENGINE_FOUNDATION_READINESS_PACKET.md`
+- Wrapper: `scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: planning/readiness/foundation packet defining the future native RoofLeadHQ workflow engine foundation before implementation — conceptual entities/readiness map, native lead-to-inspection state machine foundation, state transition guardrails and HOLD/BLOCKED examples, plan-tier configuration profiles (Starter/Growth/Elite/Custom), Fillout/Guided Setup configuration inputs, Lindy bridge migration boundaries, integration activation flags, first paid roofer manual bridge path, staged E2E testing relationship and fixture paths, reporting/CSV relationship, data protection/privacy/audit readiness, future implementation sequencing, forbidden/preferred language guardrails.
+- Verifier enforces: packet doc and wrapper exist; purpose/scope; planning/readiness only and no implementation boundary; native architecture direction; Supabase source of truth; RoofLeadHQ backend workflow decision layer; Lindy temporary bridge only; n8n/Make boundary; core entities/readiness map; all required conceptual entities; workflow state machine foundation; all required state groups; state transition guardrails; HOLD/BLOCKED examples; plan-tier profiles and Custom Review triggers; Fillout/Guided Setup inputs; Lindy bridge migration boundaries; integration activation flags; demo_ready_with_live_automation_disabled; first paid roofer manual bridge path; staged E2E testing relationship; required fixture paths; reporting/CSV relationship; CSV not native CRM sync boundary; data protection/privacy/audit readiness; future implementation sequencing; forbidden language absent; safety/no-schema/no-live-activation/no-production-data boundaries; wrapper wiring; aggregate/index/context/business-guide cross-references.
+- Safety: planning/readiness/foundation only. No database schema changes, no migrations, no auth/RLS/security implementation, no production Supabase writes, no production data reads, no live automation activation, no customer data handling changes, no backend live behavior changes, no external service calls, no CRM connection, no env/credential changes. Read-only verifier and dry-run wrapper only. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Native Workflow Engine Foundation Readiness Verifier
+
+- Script: `backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js`
+- Purpose: read-only guard that confirms the native workflow engine foundation readiness packet doc, wrapper, wiring into aggregate/index/all three next-chat context packages and business guide, and substantive content for entity/state readiness map, state machine foundation, plan-tier configuration profiles, Lindy bridge migration boundaries, integration activation flags, staged E2E testing relationship, reporting/CSV relationship, data protection/privacy/audit readiness, future implementation sequencing, preferred/forbidden language guardrails, and full safety posture.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.

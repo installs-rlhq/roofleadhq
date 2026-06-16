@@ -5533,3 +5533,33 @@ Packet scope:
 The wrapper `scripts/run-agreement-terms-privacy-update-review-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
 
 Safety remains: planning/readiness/review only. No legal publication, no website publication, no customer-facing legal terms activated, no live publication or activation. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Engine Foundation Readiness Packet
+
+The Native Workflow Engine Foundation Readiness Packet is a planning/readiness/foundation artifact that defines the future native RoofLeadHQ workflow engine foundation before implementation: conceptual entities, native lead-to-inspection state machine, plan-tier configuration profiles, safety gates, migration boundaries, and staged E2E testing fixture expectations. It does not implement the workflow engine, change database schema, or activate live automation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_ENGINE_FOUNDATION_READINESS_PACKET.md`
+- `scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh`
+- `backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js`
+
+Canonical source of truth before this worktree: `b135945 test(policy): add agreement terms privacy update review packet`
+
+Wiring:
+- Included in aggregate first-paid pilot readiness: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Documented in verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Engine Foundation Readiness" / "native workflow engine foundation readiness" / "workflow foundation readiness" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Native architecture direction: Supabase source of truth, RoofLeadHQ backend workflow decision layer, native workflow state machine, plan-tier configuration profiles
+- 20 conceptual entities (roofer_account through audit_event) with purpose, owner, fields, workflow stage, safety notes, launch priority
+- State machine foundation: lead intake, response/follow-up, review, appointment/inspection, post-inspection, feedback, reporting/export states
+- State transition guardrails and HOLD/BLOCKED examples; Starter/Growth/Elite/Custom plan profiles and Custom Review triggers
+- Fillout/Guided Setup configuration inputs; Lindy bridge migration boundaries; integration activation flags
+- First paid roofer manual bridge path; staged E2E testing relationship and required fixture paths
+- Reporting/CSV relationship (one-directional, not native CRM sync); data protection/privacy/audit readiness; future implementation sequencing
+
+The wrapper `scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh` runs node --check, the verifier, check-agent-product-quality-gate.sh, production gates, and safe readiness. No source-of-truth check inside wrapper.
+
+Safety remains: planning/readiness/foundation only. No schema changes, no production data reads/writes, no live automation activation. Stop after gates and diff proof. Do not commit or push.

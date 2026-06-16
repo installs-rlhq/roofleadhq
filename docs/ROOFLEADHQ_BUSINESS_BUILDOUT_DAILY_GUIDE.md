@@ -5683,3 +5683,28 @@ The packet documents:
 Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, guided setup, custom review, legal review, policy review, draft-review only). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
 
 Safety: planning/readiness/review only. No legal publication, no website publication, no customer-facing legal terms activated, no production activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Engine Foundation Readiness Packet
+
+The founder-led launch now includes a planning/readiness/foundation packet defining the future native RoofLeadHQ workflow engine foundation before implementation.
+
+Files:
+- `docs/NATIVE_WORKFLOW_ENGINE_FOUNDATION_READINESS_PACKET.md`
+- `scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh`
+- `backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js`
+
+Canonical source of truth before this worktree: `b135945 test(policy): add agreement terms privacy update review packet`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Engine Foundation Readiness" / "native workflow engine foundation readiness" / "workflow foundation readiness" across aggregate, index, contexts, and business guide.
+
+The packet documents:
+- Native architecture direction — Supabase source of truth, RoofLeadHQ backend workflow decision layer, native workflow state machine
+- 20 conceptual entities with readiness map; state machine foundation for lead-to-inspection operations
+- Plan-tier configuration profiles (Starter/Growth/Elite/Custom); state transition guardrails and HOLD/BLOCKED examples
+- Fillout/Guided Setup configuration inputs; Lindy bridge migration boundaries; integration activation flags
+- First paid roofer manual bridge path; staged E2E testing relationship and fixture paths
+- Reporting/CSV one-directional boundary; data protection/privacy/audit readiness; future implementation sequencing
+
+Use preferred lead-to-inspection language (booked inspections, booked homeowner appointments, lead-to-inspection, native workflow engine, Supabase source of truth, plan configuration profiles, staged E2E testing, manual bridge, readiness only). Do not use prohibited job-closing, revenue-guarantee, appointment-guarantee, two-way CRM integration, or review-manipulation language in customer-facing materials.
+
+Safety: planning/readiness/foundation only. No schema changes, no production data reads/writes, no live automation activation. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

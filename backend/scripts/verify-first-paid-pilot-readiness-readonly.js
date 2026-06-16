@@ -717,6 +717,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Engine Foundation Readiness Packet (docs/NATIVE_WORKFLOW_ENGINE_FOUNDATION_READINESS_PACKET.md + scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh) -- planning/readiness/foundation packet defining future native RoofLeadHQ workflow engine foundation before implementation: conceptual entities/readiness map (roofer_account, plan_profile, lead_record, lead_source, homeowner_contact, message_thread, follow_up_state, manual_outreach_record, missed_lead_recovery_state, appointment_readiness_record, booked_inspection_record, post_inspection_record, feedback_record, review_queue_item, report_snapshot, csv_export_snapshot, usage_volume_record, integration_activation_flag, safety_gate_record, audit_event), native lead-to-inspection state machine foundation (lead intake, response/follow-up, review, appointment/inspection, post-inspection, feedback, reporting/export states), state transition guardrails and HOLD/BLOCKED examples, plan-tier configuration profiles (Starter/Growth/Elite/Custom), Fillout/Guided Setup configuration inputs, Lindy bridge migration boundaries, integration activation flags, first paid roofer manual bridge path, staged E2E testing relationship and fixture paths, reporting/CSV relationship, data protection/privacy/audit readiness, future implementation sequencing, forbidden/preferred language guardrails, and full safety/no-schema/no-live-activation/no-production-data boundaries',
+    script: 'backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

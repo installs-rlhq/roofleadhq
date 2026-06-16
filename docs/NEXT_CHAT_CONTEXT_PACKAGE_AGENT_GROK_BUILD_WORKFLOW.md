@@ -833,3 +833,42 @@ node backend/scripts/verify-agreement-terms-privacy-update-review-readonly.js
 ```
 
 Safety remains: planning/readiness/review only. No legal publication, no website publication, no customer-facing legal terms activated, no live publication or activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Engine Foundation Readiness Packet
+
+Latest Grok Build planning packet for native workflow engine foundation readiness before implementation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_ENGINE_FOUNDATION_READINESS_PACKET.md`
+- `scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh`
+- `backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js`
+
+Canonical source of truth before this worktree: `b135945 test(policy): add agreement terms privacy update review packet`
+
+Wiring:
+- Aggregate: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Verifier index: `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- Context packages: `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- Business guide: `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Engine Foundation Readiness" / "native workflow engine foundation readiness" / "workflow foundation readiness" across aggregate, index, contexts, and business guide.
+
+Packet scope:
+- Native architecture direction: Supabase source of truth, RoofLeadHQ backend workflow decision layer, native workflow state machine
+- Conceptual entities and state machine foundation for lead-to-inspection operations
+- Plan-tier configuration profiles (Starter/Growth/Elite/Custom); Lindy bridge migration boundaries
+- Integration activation flags; first paid roofer manual bridge path; staged E2E testing fixture paths
+- Reporting/CSV relationship; data protection/privacy/audit readiness; future implementation sequencing
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-engine-foundation-readiness-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-engine-foundation-readiness-readonly.js
+```
+
+Safety remains: planning/readiness/foundation only. No schema changes, no production data reads/writes, no live automation activation from agent worktrees. Stop after gates and diff proof. Do not commit or push.
