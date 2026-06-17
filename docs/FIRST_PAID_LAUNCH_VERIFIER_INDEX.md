@@ -265,6 +265,10 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
 - Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion wrapper: `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-dry-run.sh`
 - Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-readonly.js`
+- Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion doc: `docs/NATIVE_WORKFLOW_FIXTURE_TEST_MODE_DRY_RUN_CHANNEL_SEQUENCE_PLAN_EXPANSION.md`
+- Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion wrapper: `scripts/run-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-dry-run.sh`
+- Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -2010,5 +2014,23 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-readonly.js`
 - Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded sandbox/test-mode approval runbook output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_TEST_MODE_DRY_RUN_CHANNEL_SEQUENCE_PLAN_EXPANSION.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Wrapper: `scripts/run-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fixture-only fake-data dry-run expansion deepening explicit test-mode dry-run channel sequence plan coverage — test_mode_channel_sequence_plan_expansion_summary, test_mode_channel_sequence_items, channel_sequence_order_summary, prerequisite_gate_summary, approval_dependency_summary, dry_run_rehearsal_scope_summary, channel_isolation_summary, rollback_dependency_summary, data_boundary_sequence_summary, messaging_compliance_sequence_summary, calendar_booking_sequence_summary, reporting_csv_sequence_summary, crm_handoff_sequence_summary, scheduler_dispatcher_sequence_summary, public_route_sequence_summary, supabase_persistence_sequence_summary, billing_payment_quote_sequence_summary, sequence_audit_summary, test_mode_channel_sequence_safety_assertions; 14 deterministic sequence steps; channel-sequencing readiness modeling only without sandbox/production credential reads, env value logging, external calls, live sends, test-mode sends, public routes, scheduler/cron/dispatcher enablement, or production persistence; fixture-only dry-run sequence allowed without external calls; messaging compliance prerequisite before messaging channels; data boundary prerequisite before CSV/CRM delivery; calendar preferences prerequisite before calendar booking; missing explicit approval/rollback plan/post-approval test plan/security-tenant isolation review block activation; test-mode activation requires explicit Jason approval; live activation requires separate explicit Jason approval; safe Lindy bridge fixture reference not live activation; no Twilio/Vapi/Resend/Lindy/Google Calendar/CRM/live CSV/billing/estimate-quote-invoice-payment activation.
+- Verifier enforces: doc/runner/wrapper/existing fixture verifier/e2e acceptance verifier/readiness gate verifier/approval runbook verifier exist; runner and verifier syntax; valid JSON output; demo_ready_with_live_automation_disabled; all 25 scenario IDs; test-mode channel sequence plan summaries and items with required fields; all sequence integrations and safety assertions; sequence order deterministic; local E2E runner relationship; first paid roofer relationship; forbidden language absent; no unsafe imports/strings; safety boundaries documented; aggregate/index/context/business-guide wiring.
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS/security changes, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-readonly.js`
+- Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded test-mode dry-run channel sequence plan output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.

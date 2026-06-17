@@ -6473,3 +6473,46 @@ node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-r
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion
+
+The Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion deepens explicit fake-data test-mode dry-run channel sequence plan coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_TEST_MODE_DRY_RUN_CHANNEL_SEQUENCE_PLAN_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion" / "native workflow fixture test-mode dry-run channel sequence plan expansion" / "test-mode dry-run channel sequence plan expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level test_mode_channel_sequence_plan_expansion_summary, test_mode_channel_sequence_items
+- channel_sequence_order_summary through sequence_audit_summary
+- test_mode_channel_sequence_safety_assertions
+- Per-scenario test_mode_channel_sequence_items; 14 deterministic sequence steps
+- Channel-sequencing readiness modeling only — no sandbox/production credential reads, no live automation
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

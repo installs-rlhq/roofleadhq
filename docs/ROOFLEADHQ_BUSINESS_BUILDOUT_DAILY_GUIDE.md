@@ -6316,3 +6316,32 @@ The expansion implements:
 Use preferred lead-to-inspection language (sandbox test-mode approval runbook, approval readiness, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_TEST_MODE_DRY_RUN_CHANNEL_SEQUENCE_PLAN_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-test-mode-dry-run-channel-sequence-plan-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `da5e9ec test(workflow): add sandbox test mode approval runbook`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Test-Mode Dry-Run Channel Sequence Plan Expansion" / "native workflow fixture test-mode dry-run channel sequence plan expansion" / "test-mode dry-run channel sequence plan expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level test_mode_channel_sequence_plan_expansion_summary, test_mode_channel_sequence_items
+- channel_sequence_order_summary through sequence_audit_summary
+- test_mode_channel_sequence_safety_assertions
+- Per-scenario test_mode_channel_sequence_items; 14 deterministic sequence steps
+- Channel-sequencing readiness modeling only — no sandbox/production credential reads, no live automation
+- demo_ready_with_live_automation_disabled preserved
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (test-mode channel sequence plan, channel sequencing readiness, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
