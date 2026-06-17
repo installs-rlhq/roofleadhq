@@ -356,6 +356,11 @@ const CSV_HEADER_FIELDS = [
   'cost_per_lead_if_provided',
   'cost_per_booked_inspection_if_provided',
   'roi_notes',
+  'plan_profile',
+  'included_lead_volume',
+  'current_period_lead_count',
+  'usage_over_limit',
+  'plan_limit_status',
 ];
 
 const LEAD_SOURCE_NAMES = [
@@ -479,6 +484,11 @@ function buildCsvSampleRow(overrides) {
     cost_per_lead_if_provided: 'not_provided',
     cost_per_booked_inspection_if_provided: 'not_provided',
     roi_notes: 'ROI depends on customer-provided spend/source data; no exact ROI promised',
+    plan_profile: 'growth',
+    included_lead_volume: 300,
+    current_period_lead_count: 180,
+    usage_over_limit: 'no',
+    plan_limit_status: 'within_limit',
     ...overrides,
   };
 }
@@ -534,8 +544,22 @@ function buildCsvExportSnapshot(overrides) {
         calendar_owner: 'Main Sales Calendar',
         permission_to_use_publicly: 'not_asked',
       }),
+      buildCsvSampleRow({
+        lead_id: 'lead-fix-019-e',
+        homeowner_name: 'Evan PlanVolume',
+        homeowner_phone: '+15555550505',
+        lead_source: 'Google Ads',
+        plan_profile: 'growth',
+        included_lead_volume: 300,
+        current_period_lead_count: 320,
+        usage_over_limit: 'yes',
+        plan_limit_status: 'over_limit_fake_tracking_only',
+        current_lead_status: 'POST_INSPECTION_STILL_OPEN',
+        calendar_owner: 'Main Sales Calendar',
+        permission_to_use_publicly: 'not_asked',
+      }),
     ],
-    row_count: 4,
+    row_count: 5,
     report_period: '2026-06',
     generated_from: 'fixture_runner_fake_data',
     fake_data_only: true,
@@ -5370,6 +5394,527 @@ function buildTopLevelMissedLeadRecovery(scenarios, outputBase) {
   };
 }
 
+const PLAN_INCLUDED_LEAD_VOLUME = {
+  starter: 100,
+  growth: 300,
+  elite: 500,
+};
+
+const CUSTOM_REVIEW_VOLUME_THRESHOLD = 500;
+
+const DRAFT_OVERAGE_FEE_CONCEPT = {
+  possible_draft_fee_per_50_leads_usd: 100,
+  billing_approval_status: 'draft_internal_not_approved',
+  live_billing_published: false,
+  publication_approval_required: true,
+};
+
+const USAGE_VOLUME_SAFETY_ASSERTIONS = [
+  'usage_volume_expansion_summary_present',
+  'usage_volume_items_present',
+  'usage_volume_item_required_fields_present',
+  'starter_limit_100_leads_enforced_in_fixture',
+  'growth_limit_300_leads_enforced_in_fixture',
+  'elite_limit_500_leads_enforced_in_fixture',
+  'five_hundred_plus_leads_routes_to_custom_review',
+  'two_plus_locations_routes_to_custom_review',
+  'multiple_calendars_routes_to_custom_review',
+  'multiple_phone_numbers_routes_to_custom_review',
+  'multiple_sales_reps_routes_to_custom_review',
+  'complex_routing_routes_to_custom_review',
+  'advanced_custom_reporting_routes_to_custom_review',
+  'overage_tracking_is_fake_data_only',
+  'overage_does_not_trigger_live_billing',
+  'overage_does_not_auto_upgrade_plan',
+  'plan_upgrade_recommendation_is_manual_review_only',
+  'billing_action_allowed_is_no_for_all_items',
+  'automatic_plan_change_allowed_is_no_for_all_items',
+  'live_billing_action_performed_is_no_for_all_items',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'usage_volume_does_not_touch_production_data',
+  'usage_volume_does_not_call_external_services',
+  'usage_volume_does_not_change_customer_plan',
+  'usage_volume_does_not_send_notifications',
+  'usage_volume_decisions_are_audited',
+  'reporting_summary_includes_usage_volume',
+  'csv_snapshot_preserves_plan_and_usage_context_if_applicable',
+  'public_pricing_copy_not_changed_without_approval',
+];
+
+const USAGE_VOLUME_PROFILES = {
+  normal_lead_to_appointment_readiness: {
+    current_period_lead_count: 180,
+    prior_period_lead_count: 165,
+    projected_period_lead_count: 195,
+  },
+  missing_information_path: {
+    current_period_lead_count: 175,
+    prior_period_lead_count: 160,
+    projected_period_lead_count: 190,
+  },
+  duplicate_review_path: {
+    complex_routing: true,
+    custom_review_required: true,
+    custom_review_reason: 'complex_routing',
+  },
+  bad_fit_excluded_path: {
+    current_period_lead_count: 160,
+    prior_period_lead_count: 155,
+    projected_period_lead_count: 170,
+  },
+  stopped_do_not_contact_path: {
+    current_period_lead_count: 170,
+    prior_period_lead_count: 168,
+    projected_period_lead_count: 175,
+  },
+  missed_lead_recovery_path: {
+    current_period_lead_count: 210,
+    prior_period_lead_count: 195,
+    projected_period_lead_count: 225,
+  },
+  roofer_review_needed_path: {
+    phone_number_count: 2,
+    custom_review_required: true,
+    custom_review_reason: 'multiple_phone_numbers',
+  },
+  roofleadhq_system_review_needed_path: {
+    current_period_lead_count: 190,
+    prior_period_lead_count: 185,
+    projected_period_lead_count: 200,
+  },
+  appointment_booked_path: {
+    calendar_count: 2,
+    custom_review_required: true,
+    custom_review_reason: 'multiple_calendars',
+  },
+  inspection_completed_path: {
+    sales_rep_count: 3,
+    custom_review_required: true,
+    custom_review_reason: 'multiple_sales_reps',
+  },
+  inspection_missed_reschedule_path: {
+    current_period_lead_count: 200,
+    prior_period_lead_count: 188,
+    projected_period_lead_count: 215,
+  },
+  post_inspection_still_open_path: {
+    current_period_lead_count: 320,
+    prior_period_lead_count: 290,
+    projected_period_lead_count: 335,
+    usage_over_limit: true,
+    overage_count: 20,
+    plan_upgrade_recommended: true,
+  },
+  estimate_needed_estimate_sent_tracking_path: {
+    current_period_lead_count: 205,
+    prior_period_lead_count: 198,
+    projected_period_lead_count: 218,
+  },
+  homeowner_follow_up_needed_path: {
+    current_period_lead_count: 195,
+    prior_period_lead_count: 190,
+    projected_period_lead_count: 205,
+  },
+  roofer_follow_up_needed_path: {
+    current_period_lead_count: 198,
+    prior_period_lead_count: 192,
+    projected_period_lead_count: 210,
+  },
+  feedback_permission_yes_path: {
+    current_period_lead_count: 185,
+    prior_period_lead_count: 178,
+    projected_period_lead_count: 192,
+  },
+  feedback_permission_no_path: {
+    current_period_lead_count: 182,
+    prior_period_lead_count: 176,
+    projected_period_lead_count: 188,
+  },
+  feedback_permission_not_asked_path: {
+    current_period_lead_count: 188,
+    prior_period_lead_count: 180,
+    projected_period_lead_count: 195,
+  },
+  csv_report_snapshot_fake_data_path: {
+    advanced_custom_reporting: true,
+    custom_review_required: true,
+    custom_review_reason: 'advanced_custom_reporting',
+    current_period_lead_count: 275,
+    prior_period_lead_count: 260,
+    projected_period_lead_count: 290,
+  },
+  starter_plan_profile_path: {
+    plan_profile: 'starter',
+    current_period_lead_count: 80,
+    prior_period_lead_count: 72,
+    projected_period_lead_count: 88,
+    included_lead_volume: 100,
+    volume_band: '80_100pct',
+  },
+  growth_plan_profile_path: {
+    plan_profile: 'growth',
+    current_period_lead_count: 250,
+    prior_period_lead_count: 230,
+    projected_period_lead_count: 270,
+    included_lead_volume: 300,
+    volume_band: '80_100pct',
+  },
+  elite_plan_profile_path: {
+    plan_profile: 'elite',
+    current_period_lead_count: 450,
+    prior_period_lead_count: 420,
+    projected_period_lead_count: 480,
+    included_lead_volume: 500,
+    volume_band: '80_100pct',
+  },
+  custom_review_500_plus_leads_path: {
+    plan_profile: 'elite',
+    current_period_lead_count: 520,
+    prior_period_lead_count: 490,
+    projected_period_lead_count: 550,
+    included_lead_volume: 500,
+    custom_review_required: true,
+    custom_review_reason: 'volume_exceeds_500',
+    volume_band: 'custom_review_band',
+  },
+  custom_review_two_plus_locations_path: {
+    location_count: 2,
+    current_period_lead_count: 240,
+    prior_period_lead_count: 220,
+    projected_period_lead_count: 255,
+    custom_review_required: true,
+    custom_review_reason: 'multi_location',
+  },
+  activation_flag_false_blocks_live_action_path: {
+    current_period_lead_count: 215,
+    prior_period_lead_count: 200,
+    projected_period_lead_count: 228,
+  },
+};
+
+function computeVolumeBand(current, included) {
+  if (!included) return 'custom_review_band';
+  if (current > included) return 'over_limit';
+  const pct = current / included;
+  if (pct >= 0.95) return 'at_limit';
+  if (pct >= 0.8) return '80_100pct';
+  if (pct >= 0.5) return '50_80pct';
+  return 'under_50pct';
+}
+
+function detectCustomReviewTriggers(input, profile) {
+  const reasons = [];
+  const current = profile.current_period_lead_count ?? input.monthly_leads ?? 0;
+  const locationCount = profile.location_count ?? input.location_count ?? 1;
+  const calendarCount = profile.calendar_count ?? input.calendar_count ?? 1;
+  const phoneCount = profile.phone_number_count ?? input.phone_number_count ?? 1;
+  const salesRepCount = profile.sales_rep_count ?? input.sales_rep_count ?? 1;
+
+  if (current >= CUSTOM_REVIEW_VOLUME_THRESHOLD) reasons.push('volume_exceeds_500');
+  if (locationCount >= 2) reasons.push('multi_location');
+  if (calendarCount >= 2) reasons.push('multiple_calendars');
+  if (phoneCount >= 2) reasons.push('multiple_phone_numbers');
+  if (salesRepCount >= 2) reasons.push('multiple_sales_reps');
+  if (profile.complex_routing) reasons.push('complex_routing');
+  if (profile.advanced_custom_reporting) reasons.push('advanced_custom_reporting');
+  if (profile.unusual_integration_needs) reasons.push('unusual_integration_needs');
+  if (profile.multi_location_operations) reasons.push('multi_location_operations');
+
+  return reasons;
+}
+
+function buildUsageVolumeItem(scenario, profile, index) {
+  const input = scenario.input_fixture_summary || {};
+  const planProfile = profile.plan_profile || scenario.plan_profile || input.plan_profile || 'growth';
+  const included =
+    profile.included_lead_volume ??
+    PLAN_INCLUDED_LEAD_VOLUME[planProfile] ??
+    PLAN_INCLUDED_LEAD_VOLUME.growth;
+  const current =
+    profile.current_period_lead_count ??
+    input.monthly_leads ??
+    (planProfile === 'starter' ? 80 : planProfile === 'elite' ? 450 : 180);
+  const prior = profile.prior_period_lead_count ?? Math.max(0, current - 15);
+  const projected = profile.projected_period_lead_count ?? current + 15;
+
+  const detectedTriggers = detectCustomReviewTriggers(input, {
+    ...profile,
+    current_period_lead_count: current,
+  });
+  const customReviewRequired =
+    profile.custom_review_required === true || detectedTriggers.length > 0;
+  const customReviewReason =
+    profile.custom_review_reason ||
+    (detectedTriggers.length ? detectedTriggers[0] : null);
+
+  const usageOverLimit =
+    profile.usage_over_limit === true || (included && current > included && !customReviewRequired);
+  const overageCount =
+    profile.overage_count ?? (usageOverLimit && included ? Math.max(0, current - included) : 0);
+  const overageBlockCount =
+    profile.overage_block_count_if_applicable ??
+    (overageCount > 0 ? Math.ceil(overageCount / 50) : 0);
+
+  let planLimitStatus = 'within_limit';
+  if (customReviewRequired) planLimitStatus = 'custom_review_required';
+  else if (usageOverLimit) planLimitStatus = 'over_limit_fake_tracking_only';
+
+  const volumeBand =
+    profile.volume_band ?? computeVolumeBand(current, customReviewRequired ? included : included);
+
+  return {
+    usage_volume_item_id: `${scenario.scenario_id}_usage_volume_${index + 1}`,
+    scenario_id: scenario.scenario_id,
+    roofer_account_id: input.fixture_roofer_id || 'roof-fix-001',
+    plan_profile: planProfile,
+    report_period: profile.report_period || '2026-06',
+    included_lead_volume: included,
+    current_period_lead_count: current,
+    prior_period_lead_count: prior,
+    projected_period_lead_count: projected,
+    volume_band: volumeBand,
+    plan_limit_status: planLimitStatus,
+    usage_over_limit: usageOverLimit,
+    overage_count: overageCount,
+    overage_block_count_if_applicable: overageBlockCount,
+    plan_upgrade_recommended: profile.plan_upgrade_recommended ?? (usageOverLimit && !customReviewRequired),
+    custom_review_required: customReviewRequired,
+    custom_review_reason: customReviewReason,
+    custom_review_triggers_detected: detectedTriggers,
+    location_count: profile.location_count ?? input.location_count ?? 1,
+    calendar_count: profile.calendar_count ?? input.calendar_count ?? 1,
+    phone_number_count: profile.phone_number_count ?? input.phone_number_count ?? 1,
+    sales_rep_count: profile.sales_rep_count ?? input.sales_rep_count ?? 1,
+    complex_routing: profile.complex_routing ?? false,
+    advanced_custom_reporting: profile.advanced_custom_reporting ?? false,
+    draft_overage_fee_concept: DRAFT_OVERAGE_FEE_CONCEPT,
+    billing_action_allowed: 'no',
+    automatic_plan_change_allowed: 'no',
+    live_billing_action_performed: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    audit_event_id: `${scenario.scenario_id}_usage_volume_audit_${index + 1}`,
+    fake_data_only: true,
+  };
+}
+
+function buildScenarioUsageVolumeItem(scenario) {
+  const profile = USAGE_VOLUME_PROFILES[scenario.scenario_id];
+  if (!profile) return null;
+  return buildUsageVolumeItem(scenario, profile, 0);
+}
+
+function buildTopLevelUsageVolume(scenarios, outputBase) {
+  const allItems = scenarios
+    .map((scenario) => buildScenarioUsageVolumeItem(scenario))
+    .filter(Boolean);
+
+  const starterItems = allItems.filter((i) => i.plan_profile === 'starter');
+  const growthItems = allItems.filter((i) => i.plan_profile === 'growth');
+  const eliteItems = allItems.filter((i) => i.plan_profile === 'elite');
+  const customReviewItems = allItems.filter((i) => i.custom_review_required);
+  const overageItems = allItems.filter((i) => i.usage_over_limit);
+  const upgradeRecommendedItems = allItems.filter((i) => i.plan_upgrade_recommended);
+
+  const starterWithinLimit = starterItems.every(
+    (i) => i.included_lead_volume === 100 && i.current_period_lead_count <= 100,
+  );
+  const growthWithinLimit = growthItems.filter((i) => !i.custom_review_required).every(
+    (i) =>
+      i.included_lead_volume === 300 &&
+      (i.current_period_lead_count <= 300 || i.usage_over_limit),
+  );
+  const eliteWithinLimit = eliteItems.filter((i) => !i.custom_review_required).every(
+    (i) => i.included_lead_volume === 500 && i.current_period_lead_count <= 500,
+  );
+
+  return {
+    usage_volume_expansion: 'native_workflow_fixture_usage_volume_plan_limit_expansion',
+    usage_volume_expansion_summary: {
+      description:
+        'Deterministic fake-data usage volume and plan-limit expansion across all fixture scenarios — Starter/Growth/Elite/Custom Review boundaries without live billing or plan changes',
+      total_usage_volume_items: allItems.length,
+      starter_item_count: starterItems.length,
+      growth_item_count: growthItems.length,
+      elite_item_count: eliteItems.length,
+      custom_review_item_count: customReviewItems.length,
+      overage_item_count: overageItems.length,
+      plan_upgrade_recommended_count: upgradeRecommendedItems.length,
+      draft_overage_fee_concept: DRAFT_OVERAGE_FEE_CONCEPT,
+      public_pricing_copy_changed: false,
+      public_pricing_copy_approval_required: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    usage_volume_items: allItems,
+    plan_limit_summary: {
+      description: 'Plan included lead volume boundaries — Starter 100, Growth 300, Elite 500',
+      starter_included_leads: 100,
+      growth_included_leads: 300,
+      elite_included_leads: 500,
+      custom_review_threshold_leads: CUSTOM_REVIEW_VOLUME_THRESHOLD,
+      starter_limit_100_leads_enforced_in_fixture: starterWithinLimit,
+      growth_limit_300_leads_enforced_in_fixture: growthWithinLimit,
+      elite_limit_500_leads_enforced_in_fixture: eliteWithinLimit,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    starter_volume_summary: {
+      description:
+        'Starter plan — up to 100 leads/month, simple/single-location, basic reporting, no advanced source ROI by default',
+      included_lead_volume: 100,
+      item_count: starterItems.length,
+      within_limit_count: starterItems.filter((i) => !i.usage_over_limit).length,
+      basic_reporting_only: true,
+      advanced_source_roi_by_default: false,
+      complex_routing_triggers_review: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    growth_volume_summary: {
+      description:
+        'Growth plan — up to 300 leads/month, single location, missed lead recovery, source tracking, appointment readiness, booked inspection tracking, post-inspection follow-up, feedback capture, weekly/monthly reporting, CSV export',
+      included_lead_volume: 300,
+      item_count: growthItems.length,
+      within_limit_count: growthItems.filter((i) => !i.usage_over_limit && !i.custom_review_required)
+        .length,
+      missed_lead_recovery_included: true,
+      source_tracking_included: true,
+      appointment_readiness_included: true,
+      booked_inspection_tracking_included: true,
+      post_inspection_follow_up_included: true,
+      feedback_capture_included: true,
+      weekly_monthly_reporting_included: true,
+      csv_export_included: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    elite_volume_summary: {
+      description:
+        'Elite plan — up to 500 leads/month, single location unless custom approved, advanced reporting, deeper source segmentation, larger review queue capacity, priority setup/support, detailed CSV/export',
+      included_lead_volume: 500,
+      item_count: eliteItems.length,
+      within_limit_count: eliteItems.filter((i) => !i.custom_review_required && !i.usage_over_limit)
+        .length,
+      advanced_reporting_included: true,
+      deeper_source_segmentation_included: true,
+      larger_review_queue_capacity: true,
+      priority_setup_support: true,
+      detailed_csv_export_included: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    custom_review_volume_summary: {
+      description:
+        'Custom Review triggers — 500+ leads, 2+ locations, multiple calendars/phones/reps, complex routing, advanced custom reporting, unusual integrations, multi-location operations',
+      custom_review_item_count: customReviewItems.length,
+      five_hundred_plus_leads_routes_to_custom_review: customReviewItems.some(
+        (i) =>
+          i.scenario_id === 'custom_review_500_plus_leads_path' ||
+          i.custom_review_reason === 'volume_exceeds_500',
+      ),
+      two_plus_locations_routes_to_custom_review: customReviewItems.some(
+        (i) =>
+          i.scenario_id === 'custom_review_two_plus_locations_path' ||
+          i.custom_review_reason === 'multi_location',
+      ),
+      multiple_calendars_routes_to_custom_review: customReviewItems.some(
+        (i) => i.custom_review_reason === 'multiple_calendars' || i.calendar_count >= 2,
+      ),
+      multiple_phone_numbers_routes_to_custom_review: customReviewItems.some(
+        (i) => i.custom_review_reason === 'multiple_phone_numbers' || i.phone_number_count >= 2,
+      ),
+      multiple_sales_reps_routes_to_custom_review: customReviewItems.some(
+        (i) => i.custom_review_reason === 'multiple_sales_reps' || i.sales_rep_count >= 2,
+      ),
+      complex_routing_routes_to_custom_review: customReviewItems.some(
+        (i) => i.custom_review_reason === 'complex_routing' || i.complex_routing,
+      ),
+      advanced_custom_reporting_routes_to_custom_review: customReviewItems.some(
+        (i) =>
+          i.custom_review_reason === 'advanced_custom_reporting' || i.advanced_custom_reporting,
+      ),
+      manual_review_only: true,
+      automatic_plan_change_blocked: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    overage_tracking_summary: {
+      description:
+        'Overage tracked in fake data only — no billing, no auto-upgrade, no notifications, draft $100/50 leads concept not approved',
+      overage_item_count: overageItems.length,
+      overage_tracking_is_fake_data_only: true,
+      overage_does_not_trigger_live_billing: allItems.every(
+        (i) => i.live_billing_action_performed === 'no',
+      ),
+      overage_does_not_auto_upgrade_plan: allItems.every(
+        (i) => i.automatic_plan_change_allowed === 'no',
+      ),
+      overage_does_not_send_notifications: true,
+      draft_overage_fee_concept: DRAFT_OVERAGE_FEE_CONCEPT,
+      live_overage_fee_published: false,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    plan_upgrade_recommendation_summary: {
+      description: 'Plan upgrade recommendations are manual review only — no automatic plan changes',
+      plan_upgrade_recommended_count: upgradeRecommendedItems.length,
+      plan_upgrade_recommendation_is_manual_review_only: true,
+      automatic_plan_change_allowed_is_no: allItems.every(
+        (i) => i.automatic_plan_change_allowed === 'no',
+      ),
+      billing_action_allowed_is_no: allItems.every((i) => i.billing_action_allowed === 'no'),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    usage_volume_reporting_summary: {
+      description: 'Reporting and CSV compatibility for plan profile and usage volume context',
+      reporting_summary_includes_usage_volume: true,
+      csv_snapshot_preserves_plan_and_usage_context_if_applicable: true,
+      csv_fields_preserved: [
+        'plan_profile',
+        'included_lead_volume',
+        'current_period_lead_count',
+        'usage_over_limit',
+        'plan_limit_status',
+      ],
+      weekly_snapshot_includes_plan_context: true,
+      monthly_snapshot_includes_usage_volume: true,
+      public_pricing_copy_not_changed_without_approval: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    usage_volume_safety_assertions: [
+      ...USAGE_VOLUME_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 const FAKE_REPORTING_SNAPSHOT = buildReportingSnapshot({
   report_period: '2026-06',
   csv_export_state: 'fixture_snapshot_strongest',
@@ -5427,6 +5972,7 @@ function buildScenario(config) {
     postInspectionItem,
     manualOutreachItem,
   );
+  const usageVolumeItem = buildScenarioUsageVolumeItem(scenarioDraft);
   return {
     ...scenarioDraft,
     review_queue_items: reviewQueueItems,
@@ -5435,6 +5981,7 @@ function buildScenario(config) {
     feedback_permission_items: feedbackPermissionItem ? [feedbackPermissionItem] : [],
     manual_outreach_items: manualOutreachItem ? [manualOutreachItem] : [],
     missed_lead_recovery_items: missedLeadRecoveryItem ? [missedLeadRecoveryItem] : [],
+    usage_volume_items: usageVolumeItem ? [usageVolumeItem] : [],
   };
 }
 
@@ -6688,6 +7235,7 @@ function main() {
     feedback_permission_expansion: 'native_workflow_fixture_feedback_permission_expansion',
     manual_outreach_expansion: 'native_workflow_fixture_manual_outreach_expansion',
     missed_lead_recovery_expansion: 'native_workflow_fixture_missed_lead_recovery_expansion',
+    usage_volume_expansion: 'native_workflow_fixture_usage_volume_plan_limit_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -6708,6 +7256,7 @@ function main() {
   const feedbackPermissionOutput = buildTopLevelFeedbackPermission(scenarios, outputBase);
   const manualOutreachOutput = buildTopLevelManualOutreach(scenarios, outputBase);
   const missedLeadRecoveryOutput = buildTopLevelMissedLeadRecovery(scenarios, outputBase);
+  const usageVolumeOutput = buildTopLevelUsageVolume(scenarios, outputBase);
 
   const output = {
     ...outputBase,
@@ -6718,6 +7267,7 @@ function main() {
     ...feedbackPermissionOutput,
     ...manualOutreachOutput,
     ...missedLeadRecoveryOutput,
+    ...usageVolumeOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -6766,10 +7316,15 @@ function main() {
       'missed_lead_recovery_fake_data_only',
       'missed_lead_recovery_live_sends_blocked',
       'missed_lead_recovery_no_notifications',
+      'explicit_usage_volume_plan_limit_coverage',
+      'usage_volume_fake_data_only',
+      'usage_volume_no_live_billing',
+      'usage_volume_no_auto_plan_change',
+      'usage_volume_no_notifications',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, and missed lead recovery coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, and usage volume plan-limit coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -6784,6 +7339,7 @@ function main() {
       feedback_permission_coverage: 'expanded',
       manual_outreach_coverage: 'expanded',
       missed_lead_recovery_coverage: 'expanded',
+      usage_volume_plan_limit_coverage: 'expanded',
     },
   };
 

@@ -777,6 +777,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Usage Volume Plan Limit Expansion (docs/NATIVE_WORKFLOW_FIXTURE_USAGE_VOLUME_PLAN_LIMIT_EXPANSION.md + scripts/run-native-workflow-fixture-usage-volume-plan-limit-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit usage volume and plan-limit coverage: usage_volume_expansion_summary, usage_volume_items, plan_limit_summary, starter_volume_summary, growth_volume_summary, elite_volume_summary, custom_review_volume_summary, overage_tracking_summary, plan_upgrade_recommendation_summary, usage_volume_reporting_summary, usage_volume_safety_assertions; Starter 100/Growth 300/Elite 500 lead boundaries; Custom Review triggers (500+ leads, multi-location, multiple calendars/phones/reps, complex routing, advanced custom reporting); fake-data-only overage tracking; no billing/auto-upgrade/notifications; draft $100/50 leads concept not approved; plan upgrade manual review only; reporting/CSV plan and usage context; per-scenario usage_volume_items with required fields; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations/live billing; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-usage-volume-plan-limit-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

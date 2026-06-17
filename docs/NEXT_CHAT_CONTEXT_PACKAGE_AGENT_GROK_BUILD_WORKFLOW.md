@@ -1319,3 +1319,41 @@ node backend/scripts/verify-native-workflow-fixture-missed-lead-recovery-expansi
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call sends, no notifications. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Usage Volume Plan Limit Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_USAGE_VOLUME_PLAN_LIMIT_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-usage-volume-plan-limit-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-usage-volume-plan-limit-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `00c2448 test(workflow): expand native workflow fixture missed lead recovery`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Usage Volume Plan Limit Expansion" / "native workflow fixture usage volume plan limit expansion" / "usage volume plan limit expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level usage_volume_expansion_summary, usage_volume_items, plan_limit_summary
+- starter_volume_summary, growth_volume_summary, elite_volume_summary, custom_review_volume_summary
+- overage_tracking_summary, plan_upgrade_recommendation_summary, usage_volume_reporting_summary, usage_volume_safety_assertions
+- Per-scenario usage_volume_items; no live billing, no auto-upgrade, no notifications
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-usage-volume-plan-limit-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-usage-volume-plan-limit-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live billing, no customer notifications. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

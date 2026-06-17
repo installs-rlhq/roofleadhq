@@ -225,6 +225,10 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture Missed Lead Recovery Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
 - Native Workflow Fixture Missed Lead Recovery Expansion wrapper: `scripts/run-native-workflow-fixture-missed-lead-recovery-expansion-dry-run.sh`
 - Native Workflow Fixture Missed Lead Recovery Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-missed-lead-recovery-expansion-readonly.js`
+- Native Workflow Fixture Usage Volume Plan Limit Expansion doc: `docs/NATIVE_WORKFLOW_FIXTURE_USAGE_VOLUME_PLAN_LIMIT_EXPANSION.md`
+- Native Workflow Fixture Usage Volume Plan Limit Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Native Workflow Fixture Usage Volume Plan Limit Expansion wrapper: `scripts/run-native-workflow-fixture-usage-volume-plan-limit-expansion-dry-run.sh`
+- Native Workflow Fixture Usage Volume Plan Limit Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-usage-volume-plan-limit-expansion-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1790,5 +1794,23 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-native-workflow-fixture-missed-lead-recovery-expansion-readonly.js`
 - Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded missed lead recovery output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Fixture Usage Volume Plan Limit Expansion
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_USAGE_VOLUME_PLAN_LIMIT_EXPANSION.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Wrapper: `scripts/run-native-workflow-fixture-usage-volume-plan-limit-expansion-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-native-workflow-fixture-usage-volume-plan-limit-expansion-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fixture-only fake-data dry-run expansion deepening explicit usage volume and plan-limit coverage — usage_volume_expansion_summary, usage_volume_items, plan_limit_summary, starter_volume_summary, growth_volume_summary, elite_volume_summary, custom_review_volume_summary, overage_tracking_summary, plan_upgrade_recommendation_summary, usage_volume_reporting_summary, usage_volume_safety_assertions; Starter 100/Growth 300/Elite 500 boundaries; Custom Review triggers; fake-data-only overage tracking; no billing/auto-upgrade/notifications; draft $100/50 leads concept not approved; plan upgrade manual review only; reporting/CSV plan and usage context.
+- Verifier enforces: doc/runner/wrapper/existing fixture verifier/guard verifier/reporting verifier/review queue verifier/appointment readiness verifier/post-inspection verifier/feedback permission verifier/manual outreach verifier/missed lead recovery verifier exist; runner and verifier syntax; valid JSON output; demo_ready_with_live_automation_disabled; all 25 scenario IDs; usage volume summaries and items with required fields; routing assertions; safety assertions; local E2E runner relationship; first paid roofer relationship; forbidden language absent; no unsafe imports/strings; safety boundaries documented; aggregate/index/context/business-guide wiring.
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS/security changes, no production data, no live automation, no integrations, no external calls, no live billing, no customer notifications. demo_ready_with_live_automation_disabled. Live automation and live billing remain disabled unless Jason explicitly approves activation.
+
+## Native Workflow Fixture Usage Volume Plan Limit Expansion Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-usage-volume-plan-limit-expansion-readonly.js`
+- Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded usage volume and plan-limit output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
