@@ -6229,3 +6229,32 @@ The expansion implements:
 Use preferred lead-to-inspection language (manual-to-native handoff, manual record mapping, native state mapping, handoff rehearsal, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture E2E Acceptance Rehearsal Expansion
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_E2E_ACCEPTANCE_REHEARSAL_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-e2e-acceptance-rehearsal-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-e2e-acceptance-rehearsal-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `d50d86e test(workflow): rehearse native workflow handoff`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture E2E Acceptance Rehearsal Expansion" / "native workflow fixture e2e acceptance rehearsal expansion" / "e2e acceptance rehearsal expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level e2e_acceptance_rehearsal_expansion_summary, e2e_acceptance_rehearsal_items
+- lead_to_inspection_acceptance_summary through live_activation_boundary_summary
+- e2e_acceptance_safety_assertions
+- Per-scenario e2e_acceptance_rehearsal_items; 33 acceptance paths
+- Rehearsal only — no production persistence, schema changes, or live automation
+- demo_ready_with_live_automation_disabled preserved
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (e2e acceptance rehearsal, acceptance path, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

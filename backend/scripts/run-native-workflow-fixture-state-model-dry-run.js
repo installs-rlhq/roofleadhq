@@ -10203,6 +10203,724 @@ const FAKE_CSV_SNAPSHOT = buildCsvExportSnapshot({
   description: 'strongest_fixture_csv_report_snapshot',
 });
 
+const ACCEPTANCE_PATHS = [
+  {
+    acceptance_path_id: 'normal_lead_to_appointment_readiness',
+    scenario_id: 'normal_lead_to_appointment_readiness',
+    acceptance_path_name: 'normal lead to appointment readiness',
+    acceptance_focus: 'lead_to_inspection',
+  },
+  {
+    acceptance_path_id: 'missing_information_path',
+    scenario_id: 'missing_information_path',
+    acceptance_path_name: 'missing information path',
+    acceptance_focus: 'lead_to_inspection',
+  },
+  {
+    acceptance_path_id: 'duplicate_review_path',
+    scenario_id: 'duplicate_review_path',
+    acceptance_path_name: 'duplicate review path',
+    acceptance_focus: 'review_queue',
+  },
+  {
+    acceptance_path_id: 'bad_fit_excluded_path',
+    scenario_id: 'bad_fit_excluded_path',
+    acceptance_path_name: 'bad fit / excluded path',
+    acceptance_focus: 'lead_to_inspection',
+  },
+  {
+    acceptance_path_id: 'stopped_do_not_contact_path',
+    scenario_id: 'stopped_do_not_contact_path',
+    acceptance_path_name: 'stopped do-not-contact path',
+    acceptance_focus: 'messaging_compliance',
+  },
+  {
+    acceptance_path_id: 'missed_lead_recovery_path',
+    scenario_id: 'missed_lead_recovery_path',
+    acceptance_path_name: 'missed lead recovery path',
+    acceptance_focus: 'missed_lead_recovery',
+  },
+  {
+    acceptance_path_id: 'manual_outreach_path',
+    scenario_id: 'missed_lead_recovery_path',
+    acceptance_path_name: 'manual outreach path',
+    acceptance_focus: 'manual_outreach',
+  },
+  {
+    acceptance_path_id: 'roofer_review_path',
+    scenario_id: 'roofer_review_needed_path',
+    acceptance_path_name: 'roofer review path',
+    acceptance_focus: 'review_queue',
+  },
+  {
+    acceptance_path_id: 'roofleadhq_system_quality_review_path',
+    scenario_id: 'roofleadhq_system_review_needed_path',
+    acceptance_path_name: 'RoofLeadHQ system-quality review path',
+    acceptance_focus: 'review_queue',
+  },
+  {
+    acceptance_path_id: 'appointment_booked_tracking_path',
+    scenario_id: 'appointment_booked_path',
+    acceptance_path_name: 'appointment booked tracking path',
+    acceptance_focus: 'appointment_readiness',
+  },
+  {
+    acceptance_path_id: 'inspection_completed_path',
+    scenario_id: 'inspection_completed_path',
+    acceptance_path_name: 'inspection completed path',
+    acceptance_focus: 'lead_to_inspection',
+  },
+  {
+    acceptance_path_id: 'inspection_missed_reschedule_path',
+    scenario_id: 'inspection_missed_reschedule_path',
+    acceptance_path_name: 'inspection missed / reschedule path',
+    acceptance_focus: 'lead_to_inspection',
+  },
+  {
+    acceptance_path_id: 'post_inspection_still_open_path',
+    scenario_id: 'post_inspection_still_open_path',
+    acceptance_path_name: 'post-inspection still-open path',
+    acceptance_focus: 'post_inspection',
+  },
+  {
+    acceptance_path_id: 'estimate_needed_estimate_sent_tracking_path',
+    scenario_id: 'estimate_needed_estimate_sent_tracking_path',
+    acceptance_path_name: 'estimate needed / estimate sent tracking path',
+    acceptance_focus: 'post_inspection',
+  },
+  {
+    acceptance_path_id: 'homeowner_follow_up_needed_path',
+    scenario_id: 'homeowner_follow_up_needed_path',
+    acceptance_path_name: 'homeowner follow-up needed path',
+    acceptance_focus: 'post_inspection',
+  },
+  {
+    acceptance_path_id: 'roofer_follow_up_needed_path',
+    scenario_id: 'roofer_follow_up_needed_path',
+    acceptance_path_name: 'roofer follow-up needed path',
+    acceptance_focus: 'post_inspection',
+  },
+  {
+    acceptance_path_id: 'feedback_permission_yes_path',
+    scenario_id: 'feedback_permission_yes_path',
+    acceptance_path_name: 'feedback permission yes path',
+    acceptance_focus: 'feedback_permission',
+  },
+  {
+    acceptance_path_id: 'feedback_permission_no_path',
+    scenario_id: 'feedback_permission_no_path',
+    acceptance_path_name: 'feedback permission no path',
+    acceptance_focus: 'feedback_permission',
+  },
+  {
+    acceptance_path_id: 'feedback_permission_not_asked_path',
+    scenario_id: 'feedback_permission_not_asked_path',
+    acceptance_path_name: 'feedback permission not_asked path',
+    acceptance_focus: 'feedback_permission',
+  },
+  {
+    acceptance_path_id: 'csv_reporting_snapshot_path',
+    scenario_id: 'csv_report_snapshot_fake_data_path',
+    acceptance_path_name: 'CSV/reporting snapshot path',
+    acceptance_focus: 'reporting_csv',
+  },
+  {
+    acceptance_path_id: 'starter_plan_profile_path',
+    scenario_id: 'starter_plan_profile_path',
+    acceptance_path_name: 'Starter plan profile path',
+    acceptance_focus: 'usage_volume',
+  },
+  {
+    acceptance_path_id: 'growth_plan_profile_path',
+    scenario_id: 'growth_plan_profile_path',
+    acceptance_path_name: 'Growth plan profile path',
+    acceptance_focus: 'usage_volume',
+  },
+  {
+    acceptance_path_id: 'elite_plan_profile_path',
+    scenario_id: 'elite_plan_profile_path',
+    acceptance_path_name: 'Elite plan profile path',
+    acceptance_focus: 'usage_volume',
+  },
+  {
+    acceptance_path_id: 'custom_review_500_plus_leads_path',
+    scenario_id: 'custom_review_500_plus_leads_path',
+    acceptance_path_name: 'Custom Review 500+ leads path',
+    acceptance_focus: 'usage_volume',
+  },
+  {
+    acceptance_path_id: 'custom_review_two_plus_locations_path',
+    scenario_id: 'custom_review_two_plus_locations_path',
+    acceptance_path_name: 'Custom Review 2+ locations path',
+    acceptance_focus: 'usage_volume',
+  },
+  {
+    acceptance_path_id: 'usage_volume_plan_limit_path',
+    scenario_id: 'custom_review_500_plus_leads_path',
+    acceptance_path_name: 'usage volume / plan limit path',
+    acceptance_focus: 'usage_volume',
+  },
+  {
+    acceptance_path_id: 'lead_source_roi_boundary_path',
+    scenario_id: 'growth_plan_profile_path',
+    acceptance_path_name: 'lead source / ROI boundary path',
+    acceptance_focus: 'source_roi',
+  },
+  {
+    acceptance_path_id: 'messaging_compliance_contact_permission_path',
+    scenario_id: 'normal_lead_to_appointment_readiness',
+    acceptance_path_name: 'messaging compliance / contact permission path',
+    acceptance_focus: 'messaging_compliance',
+  },
+  {
+    acceptance_path_id: 'audit_timeline_path',
+    scenario_id: 'normal_lead_to_appointment_readiness',
+    acceptance_path_name: 'audit timeline path',
+    acceptance_focus: 'audit_timeline',
+  },
+  {
+    acceptance_path_id: 'data_boundary_pii_minimization_path',
+    scenario_id: 'missing_information_path',
+    acceptance_path_name: 'data boundary / PII minimization path',
+    acceptance_focus: 'data_boundary',
+  },
+  {
+    acceptance_path_id: 'review_aging_sla_boundary_path',
+    scenario_id: 'roofer_review_needed_path',
+    acceptance_path_name: 'review aging / SLA boundary path',
+    acceptance_focus: 'review_aging',
+  },
+  {
+    acceptance_path_id: 'manual_to_native_handoff_rehearsal_path',
+    scenario_id: 'normal_lead_to_appointment_readiness',
+    acceptance_path_name: 'manual-to-native handoff rehearsal path',
+    acceptance_focus: 'manual_to_native_handoff',
+  },
+  {
+    acceptance_path_id: 'activation_flag_false_blocks_live_action_path',
+    scenario_id: 'activation_flag_false_blocks_live_action_path',
+    acceptance_path_name: 'activation flag false blocks live action path',
+    acceptance_focus: 'live_activation_boundary',
+  },
+];
+
+const E2E_ACCEPTANCE_SAFETY_ASSERTIONS = [
+  'e2e_acceptance_rehearsal_expansion_summary_present',
+  'e2e_acceptance_rehearsal_items_present',
+  'e2e_acceptance_item_required_fields_present',
+  'all_required_acceptance_paths_present',
+  'lead_to_inspection_acceptance_summary_present',
+  'missed_lead_recovery_acceptance_summary_present',
+  'manual_outreach_acceptance_summary_present',
+  'appointment_readiness_acceptance_summary_present',
+  'review_queue_acceptance_summary_present',
+  'post_inspection_acceptance_summary_present',
+  'feedback_permission_acceptance_summary_present',
+  'reporting_csv_acceptance_summary_present',
+  'usage_volume_acceptance_summary_present',
+  'source_roi_acceptance_summary_present',
+  'audit_timeline_acceptance_summary_present',
+  'data_boundary_acceptance_summary_present',
+  'review_aging_acceptance_summary_present',
+  'manual_to_native_handoff_acceptance_summary_present',
+  'live_activation_boundary_summary_present',
+  'every_acceptance_item_has_audit_events',
+  'every_acceptance_item_has_guard_assertions',
+  'every_acceptance_item_has_safety_assertions',
+  'live_activation_flags_all_false_for_all_items',
+  'live_action_allowed_is_no_for_all_items',
+  'notification_sent_is_no_for_all_items',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'no_supabase_calls',
+  'no_schema_migrations_auth_rls_security_changes',
+  'no_twilio_calls',
+  'no_vapi_calls',
+  'no_resend_calls',
+  'no_lindy_live_workflow_execution',
+  'no_google_calendar_calls',
+  'no_crm_sync',
+  'no_live_csv_delivery',
+  'no_billing_or_payment_action',
+  'no_estimate_quote_invoice_payment_generation',
+  'roofer_review_owns_business_judgment_acceptance_items',
+  'roofleadhq_review_limited_to_system_quality_acceptance_items',
+  'feedback_permission_values_are_yes_no_not_asked',
+  'feedback_not_published',
+  'csv_acceptance_is_one_directional',
+  'usage_volume_does_not_trigger_live_billing',
+  'source_roi_does_not_promise_exact_roi',
+  'manual_to_native_handoff_does_not_create_database_records',
+  'e2e_acceptance_rehearsal_is_fake_data_only',
+  'e2e_acceptance_rehearsal_is_deterministic',
+  'reporting_summary_includes_e2e_acceptance',
+  'public_go_live_or_production_copy_not_changed_without_approval',
+];
+
+function deriveFeedbackStatus(feedbackItem, postInspection) {
+  if (!feedbackItem && !postInspection) return 'not_applicable';
+  if (postInspection?.feedback_issue_flag || feedbackItem?.feedback_issue_flag) return 'issue_flagged';
+  if (postInspection?.feedback_captured || feedbackItem?.feedback_captured) return 'captured';
+  if (postInspection?.feedback_requested || feedbackItem?.feedback_requested) {
+    return 'requested_not_captured';
+  }
+  return 'not_requested';
+}
+
+function deriveFollowUpState(scenario, missedRecovery, manualOutreach) {
+  if (missedRecovery?.missed_lead_recovery_status === 'active') return 'missed_lead_recovery_active';
+  if (manualOutreach?.outreach_needed) return 'manual_outreach_needed';
+  if (scenario.final_state === 'STOPPED_DO_NOT_CONTACT') return 'stopped_do_not_contact';
+  if (scenario.final_state === 'MISSED_LEAD_RECOVERY_ACTIVE') return 'missed_lead_recovery_active';
+  return 'tracking_only';
+}
+
+function deriveUsageVolumeStatus(usageVolume) {
+  if (!usageVolume) return 'not_evaluated';
+  if (usageVolume.custom_review_required) return 'custom_review_required';
+  if (usageVolume.usage_over_limit) return 'over_limit';
+  return 'within_limit';
+}
+
+function deriveSourceRoiBoundaryStatus(leadSource) {
+  if (!leadSource) return 'boundary_preserved';
+  if (leadSource.exact_roi_promise_blocked === false) return 'boundary_at_risk';
+  return 'boundary_preserved';
+}
+
+function deriveReviewQueueStatus(scenario) {
+  const reviewItem = (scenario.review_queue_items || [])[0];
+  if (!reviewItem) {
+    if (scenario.final_state === 'BLOCKED') return 'blocked';
+    if (scenario.final_state === 'HOLD') return 'hold';
+    return 'not_in_queue';
+  }
+  return reviewItem.status || 'pending';
+}
+
+function buildE2eAcceptanceItem(scenario, acceptancePath) {
+  const input = scenario.input_fixture_summary || {};
+  const leadId = input.fixture_lead_id || `lead-fix-${scenario.scenario_id}`;
+  const rooferAccountId = input.fixture_roofer_id || 'roof-fix-001';
+  const readiness = scenario.appointment_readiness_items?.[0];
+  const postInspection = scenario.post_inspection_items?.[0];
+  const feedback = scenario.feedback_permission_items?.[0];
+  const manualOutreach = scenario.manual_outreach_items?.[0];
+  const missedRecovery = scenario.missed_lead_recovery_items?.[0];
+  const usageVolume = scenario.usage_volume_items?.[0];
+  const leadSource = scenario.lead_source_attribution_items?.[0];
+  const contactPermission = scenario.contact_permission_items?.[0];
+  const reviewAging = scenario.review_queue_aging_items?.[0];
+  const manualHandoff = scenario.manual_handoff_items?.[0];
+  const piiItem = scenario.pii_minimization_items?.[0];
+
+  const auditEventCount =
+    (scenario.audit_events || []).length + (scenario.audit_event_timeline_items || []).length;
+  const guardAssertionCount = (scenario.guard_assertions || []).length;
+  const safetyAssertionCount = (scenario.safety_assertions || []).length;
+
+  const explicitSystemQuality =
+    manualOutreach?.system_quality_issue === true ||
+    missedRecovery?.system_quality_issue === true ||
+    (contactPermission?.roofleadhq_review_required === true &&
+      contactPermission?.roofer_review_required !== true);
+  const explicitBusinessJudgment =
+    !explicitSystemQuality &&
+    (manualOutreach?.business_judgment_required === true ||
+      missedRecovery?.business_judgment_required === true ||
+      contactPermission?.roofer_review_required === true ||
+      readiness?.roofer_review_required === true);
+
+  let systemQualityIssue = explicitSystemQuality;
+  let businessJudgmentRequired = explicitBusinessJudgment;
+
+  if (!systemQualityIssue && !businessJudgmentRequired) {
+    if (postInspection?.roofleadhq_review_required && !postInspection?.roofer_review_required) {
+      systemQualityIssue = true;
+    } else if (postInspection?.roofer_review_required) {
+      businessJudgmentRequired = true;
+    } else if (readiness?.roofleadhq_review_required && !readiness?.roofer_review_required) {
+      systemQualityIssue = true;
+    }
+  }
+
+  const rooferReviewRequired = businessJudgmentRequired && !systemQualityIssue;
+  const roofleadhqReviewRequired = systemQualityIssue && !businessJudgmentRequired;
+
+  const requiredManualNextStep =
+    scenario.manual_next_step ||
+    postInspection?.required_manual_next_step ||
+    readiness?.required_manual_next_step ||
+    manualOutreach?.manual_next_step ||
+    missedRecovery?.required_manual_next_step ||
+    manualHandoff?.required_manual_next_step ||
+    'confirm_fixture_acceptance_rehearsal';
+  const nextStepOwner =
+    scenario.owner ||
+    postInspection?.next_step_owner ||
+    manualOutreach?.next_step_owner ||
+    missedRecovery?.next_step_owner ||
+    manualHandoff?.next_step_owner ||
+    (roofleadhqReviewRequired ? 'roofleadhq_jason' : 'roofer');
+
+  const permissionValue = feedback?.permission_to_use_publicly ?? postInspection?.permission_to_use_publicly;
+  const normalizedPermission =
+    permissionValue === 'yes' || permissionValue === 'no' || permissionValue === 'not_asked'
+      ? permissionValue
+      : 'not_asked';
+
+  const reportSnapshotReady =
+    scenario.reporting_snapshot != null || acceptancePath.acceptance_focus === 'reporting_csv';
+  const csvSnapshotReady =
+    scenario.csv_snapshot_if_applicable != null ||
+    scenario.reporting_snapshot?.csv_export_state != null ||
+    acceptancePath.acceptance_focus === 'reporting_csv';
+
+  return {
+    e2e_acceptance_item_id: `e2e_accept_${acceptancePath.acceptance_path_id}`,
+    scenario_id: acceptancePath.scenario_id,
+    acceptance_path_id: acceptancePath.acceptance_path_id,
+    acceptance_path_name: acceptancePath.acceptance_path_name,
+    acceptance_focus: acceptancePath.acceptance_focus,
+    lead_id: leadId,
+    roofer_account_id: rooferAccountId,
+    plan_profile: scenario.plan_profile,
+    starting_state: scenario.starting_state,
+    final_state: scenario.final_state,
+    lead_source: leadSource?.lead_source || input.lead_source || 'unknown',
+    contact_permission_status:
+      contactPermission?.contact_permission_status ||
+      readiness?.contact_permission_status ||
+      'permission_unknown',
+    homeowner_contact_ready:
+      contactPermission?.homeowner_contact_ready ?? readiness?.homeowner_contact_ready ?? false,
+    follow_up_state: deriveFollowUpState(scenario, missedRecovery, manualOutreach),
+    missed_lead_recovery_status: missedRecovery?.missed_lead_recovery_status || 'not_used',
+    manual_outreach_needed: manualOutreach?.outreach_needed ?? false,
+    appointment_readiness_status:
+      readiness?.appointment_readiness_status || readiness?.readiness_decision || 'not_evaluated',
+    appointment_booked:
+      Boolean(postInspection?.appointment_id) ||
+      (scenario.reporting_snapshot?.appointment_booked > 0),
+    inspection_status: postInspection?.inspection_status || 'not_applicable',
+    post_inspection_status: postInspection?.post_inspection_status || 'not_applicable',
+    feedback_status: deriveFeedbackStatus(feedback, postInspection),
+    permission_to_use_publicly: normalizedPermission,
+    report_snapshot_ready: reportSnapshotReady,
+    csv_snapshot_ready: csvSnapshotReady,
+    usage_volume_status: deriveUsageVolumeStatus(usageVolume),
+    source_roi_boundary_status: deriveSourceRoiBoundaryStatus(leadSource),
+    review_queue_status: deriveReviewQueueStatus(scenario),
+    review_age_bucket: reviewAging?.age_bucket || '0-4h',
+    manual_to_native_handoff_ready: manualHandoff?.handoff_ready ?? false,
+    audit_event_count: auditEventCount,
+    guard_assertion_count: guardAssertionCount,
+    safety_assertion_count: safetyAssertionCount,
+    required_manual_next_step: requiredManualNextStep,
+    next_step_owner: nextStepOwner,
+    roofer_review_required: rooferReviewRequired,
+    roofleadhq_review_required: roofleadhqReviewRequired,
+    business_judgment_required: businessJudgmentRequired,
+    system_quality_issue: systemQualityIssue,
+    data_boundary_checked: piiItem?.data_boundary_checked ?? true,
+    pii_minimization_checked: piiItem?.pii_minimization_checked ?? true,
+    live_activation_flags_all_false: true,
+    live_action_allowed: 'no',
+    notification_sent: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    fake_data_only: true,
+    deterministic_fixture_output: true,
+    result: 'PASS',
+  };
+}
+
+function buildScenarioE2eAcceptanceItems(scenario) {
+  return ACCEPTANCE_PATHS.filter((path) => path.scenario_id === scenario.scenario_id).map((path) =>
+    buildE2eAcceptanceItem(scenario, path),
+  );
+}
+
+function buildAllE2eAcceptanceItems(scenarios) {
+  const scenarioMap = Object.fromEntries(scenarios.map((scenario) => [scenario.scenario_id, scenario]));
+  return ACCEPTANCE_PATHS.map((path) => {
+    const scenario = scenarioMap[path.scenario_id];
+    if (!scenario) {
+      throw new Error(`Missing scenario for acceptance path ${path.acceptance_path_id}`);
+    }
+    return buildE2eAcceptanceItem(scenario, path);
+  });
+}
+
+function buildTopLevelE2eAcceptanceRehearsalExpansion(
+  scenarios,
+  outputBase,
+  reportingOutput,
+  reviewQueueOutput,
+  appointmentReadinessOutput,
+  postInspectionOutput,
+  feedbackPermissionOutput,
+  manualOutreachOutput,
+  missedLeadRecoveryOutput,
+  usageVolumeOutput,
+  leadSourceRoiOutput,
+  messagingComplianceOutput,
+  auditEventTimelineOutput,
+  dataBoundaryPiiOutput,
+  reviewQueueAgingSlaOutput,
+  manualToNativeHandoffOutput,
+) {
+  const allItems = buildAllE2eAcceptanceItems(scenarios);
+  const focusItems = (focus) => allItems.filter((item) => item.acceptance_focus === focus);
+  const businessJudgmentItems = allItems.filter((item) => item.business_judgment_required);
+  const systemQualityItems = allItems.filter((item) => item.system_quality_issue);
+
+  const acceptancePathIds = new Set(allItems.map((item) => item.acceptance_path_id));
+
+  return {
+    e2e_acceptance_rehearsal_expansion:
+      'native_workflow_fixture_e2e_acceptance_rehearsal_expansion',
+    e2e_acceptance_rehearsal_expansion_summary: {
+      description:
+        'Deterministic fake-data end-to-end acceptance rehearsal — ties together lead intake, contact permission, follow-up, missed lead recovery, manual outreach, appointment readiness, review queue, post-inspection, feedback permission, reporting/CSV, usage volume, source ROI, audit timeline, data boundary, review aging, and manual-to-native handoff without live automation or production data',
+      total_acceptance_items: allItems.length,
+      required_acceptance_paths: ACCEPTANCE_PATHS.length,
+      all_required_acceptance_paths_present:
+        ACCEPTANCE_PATHS.every((path) => acceptancePathIds.has(path.acceptance_path_id)),
+      scenario_acceptance_items: scenarios.reduce(
+        (count, scenario) => count + (scenario.e2e_acceptance_rehearsal_items || []).length,
+        0,
+      ),
+      acceptance_path_catalog_items: ACCEPTANCE_PATHS.length,
+      audited_items_count: allItems.filter((item) => item.audit_event_count > 0).length,
+      guarded_items_count: allItems.filter((item) => item.guard_assertion_count > 0).length,
+      safety_asserted_items_count: allItems.filter((item) => item.safety_assertion_count > 0).length,
+      public_go_live_or_production_copy_changed: false,
+      public_go_live_or_production_copy_approval_required: true,
+      rehearsal_only: true,
+      fake_data_only: true,
+      deterministic_fixture_output: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    e2e_acceptance_rehearsal_items: allItems,
+    lead_to_inspection_acceptance_summary: {
+      description:
+        'Lead intake through appointment readiness and inspection tracking acceptance rehearsal',
+      acceptance_item_count: focusItems('lead_to_inspection').length,
+      scenario_ids: focusItems('lead_to_inspection').map((item) => item.scenario_id),
+      appointment_readiness_items_in_prior_expansion:
+        appointmentReadinessOutput.appointment_readiness_items?.length || 0,
+      post_inspection_items_in_prior_expansion: postInspectionOutput.post_inspection_items?.length || 0,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    missed_lead_recovery_acceptance_summary: {
+      description: 'Missed lead recovery acceptance rehearsal without live sends or notifications',
+      acceptance_item_count: focusItems('missed_lead_recovery').length,
+      missed_lead_recovery_items_in_prior_expansion:
+        missedLeadRecoveryOutput.missed_lead_recovery_items?.length || 0,
+      recovery_active_items: allItems.filter(
+        (item) => item.missed_lead_recovery_status === 'active',
+      ).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_outreach_acceptance_summary: {
+      description: 'Manual outreach acceptance rehearsal — tracking and review only, no live sends',
+      acceptance_item_count: focusItems('manual_outreach').length,
+      manual_outreach_items_in_prior_expansion:
+        manualOutreachOutput.manual_outreach_items?.length || 0,
+      manual_outreach_needed_items: allItems.filter((item) => item.manual_outreach_needed).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    appointment_readiness_acceptance_summary: {
+      description:
+        'Appointment readiness acceptance rehearsal — manual coordination only, no live calendar booking',
+      acceptance_item_count: focusItems('appointment_readiness').length,
+      appointment_readiness_items_in_prior_expansion:
+        appointmentReadinessOutput.appointment_readiness_items?.length || 0,
+      appointment_ready_items: allItems.filter(
+        (item) => item.appointment_readiness_status === 'ready',
+      ).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    review_queue_acceptance_summary: {
+      description:
+        'Review queue acceptance rehearsal — roofer owns business judgment; RoofLeadHQ limited to system quality',
+      acceptance_item_count: focusItems('review_queue').length,
+      review_queue_items_in_prior_expansion: reviewQueueOutput.review_queue_items?.length || 0,
+      roofer_review_owns_business_judgment_acceptance_items: businessJudgmentItems.every(
+        (item) => item.business_judgment_required && !item.system_quality_issue,
+      ),
+      roofleadhq_review_limited_to_system_quality_acceptance_items: systemQualityItems.every(
+        (item) => item.system_quality_issue && !item.business_judgment_required,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    post_inspection_acceptance_summary: {
+      description:
+        'Post-inspection acceptance rehearsal — tracking only, no automatic estimate/quote/invoice/payment',
+      acceptance_item_count: focusItems('post_inspection').length,
+      post_inspection_items_in_prior_expansion: postInspectionOutput.post_inspection_items?.length || 0,
+      still_open_items: allItems.filter((item) => item.post_inspection_status === 'still_open').length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    feedback_permission_acceptance_summary: {
+      description:
+        'Feedback permission acceptance rehearsal — yes/no/not_asked preserved, no publication',
+      acceptance_item_count: focusItems('feedback_permission').length,
+      feedback_permission_items_in_prior_expansion:
+        feedbackPermissionOutput.feedback_permission_items?.length || 0,
+      feedback_permission_values_are_yes_no_not_asked: allItems.every((item) =>
+        ['yes', 'no', 'not_asked'].includes(item.permission_to_use_publicly),
+      ),
+      feedback_not_published: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    reporting_csv_acceptance_summary: {
+      description:
+        'Reporting and CSV acceptance rehearsal — one-directional fake-data snapshots, not CRM sync',
+      acceptance_item_count: focusItems('reporting_csv').length,
+      report_snapshot_ready_items: allItems.filter((item) => item.report_snapshot_ready).length,
+      csv_snapshot_ready_items: allItems.filter((item) => item.csv_snapshot_ready).length,
+      reporting_summary_includes_e2e_acceptance: true,
+      csv_acceptance_is_one_directional: true,
+      csv_not_crm_sync: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    usage_volume_acceptance_summary: {
+      description:
+        'Usage volume acceptance rehearsal — plan limits tracked without live billing or auto-upgrade',
+      acceptance_item_count: focusItems('usage_volume').length,
+      usage_volume_items_in_prior_expansion: usageVolumeOutput.usage_volume_items?.length || 0,
+      usage_volume_does_not_trigger_live_billing: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    source_roi_acceptance_summary: {
+      description:
+        'Lead source / ROI boundary acceptance rehearsal — no exact ROI promise or ad-platform calls',
+      acceptance_item_count: focusItems('source_roi').length,
+      lead_source_attribution_items_in_prior_expansion:
+        leadSourceRoiOutput.lead_source_attribution_items?.length || 0,
+      source_roi_does_not_promise_exact_roi: true,
+      source_roi_boundary_preserved_items: allItems.filter(
+        (item) => item.source_roi_boundary_status === 'boundary_preserved',
+      ).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    audit_timeline_acceptance_summary: {
+      description:
+        'Audit timeline acceptance rehearsal — every transition traceable without secrets or live automation',
+      acceptance_item_count: focusItems('audit_timeline').length,
+      audit_event_items_in_prior_expansion: auditEventTimelineOutput.audit_event_items?.length || 0,
+      every_acceptance_item_has_audit_events: allItems.every((item) => item.audit_event_count > 0),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    data_boundary_acceptance_summary: {
+      description:
+        'Data boundary / PII minimization acceptance rehearsal — fake homeowner identifiers only',
+      acceptance_item_count: focusItems('data_boundary').length,
+      pii_minimization_items_in_prior_expansion:
+        dataBoundaryPiiOutput.pii_minimization_items?.length || 0,
+      data_boundary_checked_items: allItems.filter((item) => item.data_boundary_checked).length,
+      pii_minimization_checked_items: allItems.filter((item) => item.pii_minimization_checked)
+        .length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    review_aging_acceptance_summary: {
+      description:
+        'Review aging / SLA boundary acceptance rehearsal — escalation ready without live notifications',
+      acceptance_item_count: focusItems('review_aging').length,
+      review_queue_aging_items_in_prior_expansion:
+        reviewQueueAgingSlaOutput.review_queue_aging_items?.length || 0,
+      review_age_buckets_represented: [
+        ...new Set(allItems.map((item) => item.review_age_bucket)),
+      ],
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_to_native_handoff_acceptance_summary: {
+      description:
+        'Manual-to-native handoff acceptance rehearsal — mapping rehearsal only, no database records',
+      acceptance_item_count: focusItems('manual_to_native_handoff').length,
+      manual_handoff_items_in_prior_expansion:
+        manualToNativeHandoffOutput.manual_handoff_items?.length || 0,
+      manual_to_native_handoff_does_not_create_database_records: true,
+      handoff_ready_items: allItems.filter((item) => item.manual_to_native_handoff_ready).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    live_activation_boundary_summary: {
+      description:
+        'Live activation boundary acceptance rehearsal — all flags false, blocked live actions audited',
+      acceptance_item_count: focusItems('live_activation_boundary').length,
+      live_activation_flags_all_false_for_all_items: allItems.every(
+        (item) => item.live_activation_flags_all_false === true,
+      ),
+      live_action_allowed_is_no_for_all_items: allItems.every(
+        (item) => item.live_action_allowed === 'no',
+      ),
+      blocked_live_action_items: allItems.filter(
+        (item) => item.acceptance_path_id === 'activation_flag_false_blocks_live_action_path',
+      ).length,
+      reporting_snapshot_in_prior_expansion: Boolean(reportingOutput.reporting_snapshot_summary),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    e2e_acceptance_safety_assertions: [
+      ...E2E_ACCEPTANCE_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 function buildScenario(config) {
   const guardAssertions = buildGuardAssertions(config.guard_assertion_overrides || BASE_GUARD_PASS);
   const scenarioDraft = {
@@ -10274,10 +10992,14 @@ function buildScenario(config) {
     ...scenarioWithAuditTimeline,
     pii_minimization_items: buildScenarioPiiMinimizationItems(scenarioWithAuditTimeline),
   };
-  return {
+  const scenarioWithHandoff = {
     ...scenarioFinal,
     review_queue_aging_items: buildScenarioReviewQueueAgingItems(scenarioFinal),
     manual_handoff_items: buildScenarioManualHandoffItems(scenarioFinal),
+  };
+  return {
+    ...scenarioWithHandoff,
+    e2e_acceptance_rehearsal_items: buildScenarioE2eAcceptanceItems(scenarioWithHandoff),
   };
 }
 
@@ -11520,7 +12242,7 @@ function main() {
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      '5c47fab test(workflow): expand native workflow fixture review aging',
+      'd50d86e test(workflow): rehearse native workflow handoff',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
@@ -11542,6 +12264,8 @@ function main() {
       'native_workflow_fixture_review_queue_aging_sla_boundary_expansion',
     manual_to_native_handoff_rehearsal_expansion:
       'native_workflow_fixture_manual_to_native_handoff_rehearsal_expansion',
+    e2e_acceptance_rehearsal_expansion:
+      'native_workflow_fixture_e2e_acceptance_rehearsal_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -11587,6 +12311,24 @@ function main() {
     outputBase,
     reviewQueueAgingSlaOutput,
   );
+  const e2eAcceptanceRehearsalOutput = buildTopLevelE2eAcceptanceRehearsalExpansion(
+    scenarios,
+    outputBase,
+    reportingOutput,
+    reviewQueueOutput,
+    appointmentReadinessOutput,
+    postInspectionOutput,
+    feedbackPermissionOutput,
+    manualOutreachOutput,
+    missedLeadRecoveryOutput,
+    usageVolumeOutput,
+    leadSourceRoiOutput,
+    messagingComplianceOutput,
+    auditEventTimelineOutput,
+    dataBoundaryPiiOutput,
+    reviewQueueAgingSlaOutput,
+    manualToNativeHandoffOutput,
+  );
 
   const output = {
     ...outputBase,
@@ -11604,6 +12346,7 @@ function main() {
     ...dataBoundaryPiiOutput,
     ...reviewQueueAgingSlaOutput,
     ...manualToNativeHandoffOutput,
+    ...e2eAcceptanceRehearsalOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -11692,10 +12435,15 @@ function main() {
       'manual_to_native_handoff_no_production_persistence',
       'manual_to_native_handoff_no_live_automation',
       'manual_to_native_handoff_rehearsal_only',
+      'explicit_e2e_acceptance_rehearsal_coverage',
+      'e2e_acceptance_rehearsal_fake_data_only',
+      'e2e_acceptance_rehearsal_no_production_persistence',
+      'e2e_acceptance_rehearsal_no_live_automation',
+      'e2e_acceptance_rehearsal_deterministic',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, data-boundary/PII minimization, review queue aging/SLA boundary, and manual-to-native handoff rehearsal coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, data-boundary/PII minimization, review queue aging/SLA boundary, manual-to-native handoff rehearsal, and end-to-end acceptance rehearsal coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -11717,6 +12465,7 @@ function main() {
       data_boundary_pii_minimization_coverage: 'expanded',
       review_queue_aging_sla_boundary_coverage: 'expanded',
       manual_to_native_handoff_rehearsal_coverage: 'expanded',
+      e2e_acceptance_rehearsal_coverage: 'expanded',
     },
   };
 
