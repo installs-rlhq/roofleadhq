@@ -6287,3 +6287,32 @@ The expansion implements:
 Use preferred lead-to-inspection language (sandbox test-mode readiness, integration readiness gate, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `0070f0e test(workflow): add sandbox test mode readiness gate`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion" / "native workflow fixture sandbox test-mode approval runbook expansion" / "sandbox test-mode approval runbook expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level sandbox_test_mode_approval_runbook_expansion_summary, sandbox_test_mode_approval_runbook_items
+- approval_step_summary through approval_audit_summary
+- sandbox_test_mode_approval_safety_assertions
+- Per-scenario sandbox_test_mode_approval_runbook_items; 12 channels/integrations
+- Approval-runbook modeling only — no sandbox/production credential reads, no live automation
+- demo_ready_with_live_automation_disabled preserved
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (sandbox test-mode approval runbook, approval readiness, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

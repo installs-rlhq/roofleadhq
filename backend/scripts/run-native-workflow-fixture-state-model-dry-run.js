@@ -11421,6 +11421,505 @@ function buildTopLevelSandboxTestModeIntegrationReadinessGateExpansion(
   };
 }
 
+const MESSAGING_INTEGRATIONS = new Set(['twilio', 'vapi', 'resend']);
+
+const SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_CHANNEL_DEFINITIONS =
+  SANDBOX_TEST_MODE_CHANNEL_DEFINITIONS.map((channelDef) => {
+    const isMessaging = MESSAGING_INTEGRATIONS.has(channelDef.integration_name);
+    const isSupabase = channelDef.integration_name === 'supabase';
+    const isScheduler = channelDef.integration_name === 'scheduler_cron';
+    const isDispatcher = channelDef.integration_name === 'dispatcher';
+    const isPublicRoute = channelDef.integration_name === 'public_webhook';
+
+    let approvalStage = 'pre_test_mode_channel_activation_review';
+    if (isSupabase) approvalStage = 'pre_persistence_activation_review';
+    else if (isScheduler || isDispatcher) approvalStage = 'pre_scheduler_dispatcher_activation_review';
+    else if (isPublicRoute) approvalStage = 'pre_public_route_activation_review';
+    else if (channelDef.integration_name === 'billing_payment_invoice_estimate_quote') {
+      approvalStage = 'pre_billing_automation_activation_review';
+    }
+
+    const blockerParts = [];
+    if (channelDef.explicit_approval_present !== 'yes') {
+      blockerParts.push('missing_explicit_approval_blocks_test_mode_activation');
+    }
+    if (channelDef.sandbox_credentials_required === 'yes') {
+      blockerParts.push('missing_credential_review_blocks_test_mode_activation');
+    }
+    blockerParts.push('missing_rollback_plan_blocks_test_mode_activation');
+    blockerParts.push('missing_post_approval_test_plan_blocks_test_mode_activation');
+    if (isMessaging) {
+      blockerParts.push('missing_messaging_compliance_review_blocks_messaging_test_mode');
+    }
+    if (isSupabase) {
+      blockerParts.push('missing_security_tenant_isolation_review_blocks_persistence');
+    }
+
+    return {
+      ...channelDef,
+      approval_stage: approvalStage,
+      approval_evidence_type: 'jason_explicit_written_approval',
+      approval_owner: 'jason',
+      technical_owner: 'roofleadhq_engineering',
+      business_owner: 'jason',
+      security_review_required: isSupabase ? 'yes' : 'no',
+      tenant_isolation_review_required: isSupabase ? 'yes' : 'no',
+      data_boundary_review_required: isSupabase ? 'yes' : 'no',
+      messaging_compliance_review_required: isMessaging ? 'yes' : 'no',
+      credential_review_required: channelDef.sandbox_credentials_required === 'yes' ? 'yes' : 'no',
+      public_route_review_required: channelDef.public_route_required === 'yes' ? 'yes' : 'no',
+      scheduler_dispatcher_review_required:
+        isScheduler || isDispatcher || channelDef.scheduler_required === 'yes' ? 'yes' : 'no',
+      rollback_plan_required: 'yes',
+      rollback_plan_present: 'no',
+      post_approval_test_plan_required: 'yes',
+      post_approval_test_plan_present: 'no',
+      approval_runbook_blocker_reason: blockerParts.join(';'),
+    };
+  });
+
+const SANDBOX_TEST_MODE_APPROVAL_SAFETY_ASSERTIONS = [
+  'sandbox_test_mode_approval_runbook_expansion_summary_present',
+  'sandbox_test_mode_approval_runbook_items_present',
+  'approval_runbook_item_required_fields_present',
+  'required_channels_present',
+  'approval_step_summary_present',
+  'channel_approval_summary_present',
+  'pre_approval_blocker_summary_present',
+  'explicit_approval_evidence_summary_present',
+  'credential_boundary_approval_summary_present',
+  'public_route_approval_summary_present',
+  'scheduler_dispatcher_approval_summary_present',
+  'data_boundary_approval_summary_present',
+  'security_tenant_isolation_approval_summary_present',
+  'rollback_plan_summary_present',
+  'post_approval_test_plan_summary_present',
+  'approval_audit_summary_present',
+  'explicit_approval_present_is_no_for_all_items',
+  'approval_evidence_present_is_no_for_all_items',
+  'approval_required_is_yes_for_all_items',
+  'sandbox_credentials_present_is_no_for_all_items',
+  'production_credentials_present_is_no_for_all_items',
+  'env_values_logged_is_no_for_all_items',
+  'public_route_enabled_is_no_for_all_items',
+  'scheduler_enabled_is_no_for_all_items',
+  'dispatcher_enabled_is_no_for_all_items',
+  'live_activation_flags_remain_false_for_all_items',
+  'test_mode_activation_allowed_is_no_for_all_items',
+  'live_activation_allowed_is_no_for_all_items',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'notification_sent_is_no_for_all_items',
+  'live_action_performed_is_no_for_all_items',
+  'missing_explicit_approval_blocks_test_mode_activation',
+  'missing_rollback_plan_blocks_test_mode_activation',
+  'missing_post_approval_test_plan_blocks_test_mode_activation',
+  'missing_security_tenant_isolation_review_blocks_persistence',
+  'messaging_compliance_review_required_for_messaging_channels',
+  'no_supabase_calls',
+  'no_schema_migrations_auth_rls_security_changes',
+  'no_twilio_calls',
+  'no_vapi_calls',
+  'no_resend_calls',
+  'no_lindy_live_workflow_execution',
+  'no_google_calendar_calls',
+  'no_crm_sync',
+  'no_live_csv_delivery',
+  'no_billing_or_payment_action',
+  'no_estimate_quote_invoice_payment_generation',
+  'safe_lindy_bridge_reference_not_live_activation',
+  'real_lindy_activation_patterns_remain_forbidden',
+  'sandbox_test_mode_approval_runbook_is_fake_data_only',
+  'sandbox_test_mode_approval_runbook_is_audited',
+  'reporting_summary_includes_sandbox_test_mode_approval_runbook',
+  'public_go_live_or_production_copy_not_changed_without_approval',
+];
+
+function buildSandboxTestModeApprovalRunbookItem(scenario, channelDef) {
+  const input = scenario.input_fixture_summary || {};
+  const rooferAccountId = input.fixture_roofer_id || 'roof-fix-001';
+
+  return {
+    approval_runbook_item_id: `approval_runbook_${channelDef.channel_id}`,
+    scenario_id: scenario.scenario_id,
+    roofer_account_id: rooferAccountId,
+    plan_profile: scenario.plan_profile,
+    channel: channelDef.channel,
+    integration_name: channelDef.integration_name,
+    approval_stage: channelDef.approval_stage,
+    approval_required: 'yes',
+    explicit_approval_present: 'no',
+    approval_evidence_present: 'no',
+    approval_evidence_type: channelDef.approval_evidence_type,
+    approval_owner: channelDef.approval_owner,
+    technical_owner: channelDef.technical_owner,
+    business_owner: channelDef.business_owner,
+    security_review_required: channelDef.security_review_required,
+    tenant_isolation_review_required: channelDef.tenant_isolation_review_required,
+    data_boundary_review_required: channelDef.data_boundary_review_required,
+    messaging_compliance_review_required: channelDef.messaging_compliance_review_required,
+    credential_review_required: channelDef.credential_review_required,
+    public_route_review_required: channelDef.public_route_review_required,
+    scheduler_dispatcher_review_required: channelDef.scheduler_dispatcher_review_required,
+    rollback_plan_required: channelDef.rollback_plan_required,
+    rollback_plan_present: channelDef.rollback_plan_present,
+    post_approval_test_plan_required: channelDef.post_approval_test_plan_required,
+    post_approval_test_plan_present: channelDef.post_approval_test_plan_present,
+    sandbox_credentials_required: channelDef.sandbox_credentials_required,
+    sandbox_credentials_present: 'no',
+    production_credentials_present: 'no',
+    env_values_logged: 'no',
+    public_route_required: channelDef.public_route_required,
+    public_route_enabled: 'no',
+    scheduler_required: channelDef.scheduler_required,
+    scheduler_enabled: 'no',
+    dispatcher_required: channelDef.dispatcher_required,
+    dispatcher_enabled: 'no',
+    live_activation_flag_name: channelDef.live_activation_flag_name,
+    live_activation_flag_value: false,
+    test_mode_activation_allowed: 'no',
+    live_activation_allowed: 'no',
+    readiness_status: channelDef.readiness_status,
+    blocker_reason: channelDef.approval_runbook_blocker_reason,
+    required_manual_next_step: channelDef.required_manual_next_step,
+    next_step_owner: channelDef.next_step_owner,
+    audit_event_id: `audit-approval-runbook-${channelDef.channel_id}-${scenario.scenario_id}`,
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    notification_sent: 'no',
+    live_action_performed: 'no',
+  };
+}
+
+function buildScenarioSandboxTestModeApprovalRunbookItems(scenario) {
+  return SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_CHANNEL_DEFINITIONS.filter(
+    (channelDef) => channelDef.scenario_id === scenario.scenario_id,
+  ).map((channelDef) => buildSandboxTestModeApprovalRunbookItem(scenario, channelDef));
+}
+
+function buildAllSandboxTestModeApprovalRunbookItems(scenarios) {
+  const scenarioMap = Object.fromEntries(scenarios.map((scenario) => [scenario.scenario_id, scenario]));
+  return SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_CHANNEL_DEFINITIONS.map((channelDef) => {
+    const scenario = scenarioMap[channelDef.scenario_id];
+    if (!scenario) {
+      throw new Error(`Missing scenario for approval runbook channel ${channelDef.channel_id}`);
+    }
+    return buildSandboxTestModeApprovalRunbookItem(scenario, channelDef);
+  });
+}
+
+function buildChannelApprovalSummary(items, integrationName) {
+  const channelItems = items.filter((item) => item.integration_name === integrationName);
+  return {
+    description: `Sandbox/test-mode approval runbook modeling for ${integrationName} — blocked without explicit Jason approval`,
+    approval_runbook_item_count: channelItems.length,
+    blocked_items: channelItems.filter((item) => item.readiness_status === 'BLOCKED').length,
+    needs_approval_items: channelItems.filter((item) => item.readiness_status === 'NEEDS_APPROVAL')
+      .length,
+    hold_items: channelItems.filter((item) => item.readiness_status === 'HOLD').length,
+    explicit_approval_present: 'no',
+    approval_evidence_present: 'no',
+    test_mode_activation_allowed: 'no',
+    live_activation_allowed: 'no',
+    fake_data_only: true,
+    live_actions_performed: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+  };
+}
+
+function buildTopLevelSandboxTestModeApprovalRunbookExpansion(
+  scenarios,
+  outputBase,
+  sandboxTestModeReadinessOutput,
+) {
+  const allItems = buildAllSandboxTestModeApprovalRunbookItems(scenarios);
+  const integrationNames = new Set(allItems.map((item) => item.integration_name));
+  const messagingItems = allItems.filter((item) =>
+    MESSAGING_INTEGRATIONS.has(item.integration_name),
+  );
+  const supabaseItems = allItems.filter((item) => item.integration_name === 'supabase');
+
+  return {
+    sandbox_test_mode_approval_runbook_expansion:
+      'native_workflow_fixture_sandbox_test_mode_approval_runbook_expansion',
+    sandbox_test_mode_approval_runbook_expansion_summary: {
+      description:
+        'Deterministic fake-data sandbox/test-mode approval runbook — models what Jason must review and approve before any future test-mode channel activation without enabling sandbox credentials, live sends, external calls, production persistence, public routes, cron jobs, schedulers, dispatchers, or customer-facing automation',
+      total_approval_runbook_items: allItems.length,
+      required_channels: SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_CHANNEL_DEFINITIONS.length,
+      all_required_channels_present:
+        SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_CHANNEL_DEFINITIONS.length === allItems.length &&
+        integrationNames.size === SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_CHANNEL_DEFINITIONS.length,
+      scenario_approval_runbook_items: scenarios.reduce(
+        (count, scenario) => count + (scenario.sandbox_test_mode_approval_runbook_items || []).length,
+        0,
+      ),
+      audited_items_count: allItems.length,
+      blocked_items_count: allItems.filter((item) => item.readiness_status === 'BLOCKED').length,
+      needs_approval_items_count: allItems.filter((item) => item.readiness_status === 'NEEDS_APPROVAL')
+        .length,
+      hold_items_count: allItems.filter((item) => item.readiness_status === 'HOLD').length,
+      explicit_approval_present_for_any_item: 'no',
+      approval_evidence_present_for_any_item: 'no',
+      test_mode_activation_allowed_for_all_items: 'no',
+      live_activation_allowed_for_all_items: 'no',
+      public_go_live_or_production_copy_changed: false,
+      public_go_live_or_production_copy_approval_required: true,
+      approval_runbook_modeling_only: true,
+      fake_data_only: true,
+      deterministic_fixture_output: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+      prior_readiness_gate_items:
+        sandboxTestModeReadinessOutput.sandbox_test_mode_readiness_items?.length || 0,
+    },
+    sandbox_test_mode_approval_runbook_items: allItems,
+    approval_step_summary: {
+      description:
+        'Approval step modeling — every channel requires explicit Jason approval before test-mode activation; live activation requires separate explicit Jason approval',
+      total_approval_steps: allItems.length,
+      approval_required_for_all_items: 'yes',
+      explicit_approval_present_for_any_item: 'no',
+      approval_evidence_present_for_any_item: 'no',
+      test_mode_activation_requires_explicit_approval: true,
+      live_activation_requires_separate_explicit_approval: true,
+      jason_approval_required_before_any_channel_activation: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    channel_approval_summary: {
+      description:
+        'Aggregate sandbox/test-mode channel approval runbook — all channels remain blocked or need explicit Jason approval',
+      total_channels: allItems.length,
+      channels_blocked: allItems.filter((item) => item.readiness_status === 'BLOCKED').length,
+      channels_needing_approval: allItems.filter((item) => item.readiness_status === 'NEEDS_APPROVAL')
+        .length,
+      test_mode_activation_allowed_for_all_channels: 'no',
+      live_activation_allowed_for_all_channels: 'no',
+      reporting_summary_includes_sandbox_test_mode_approval_runbook: true,
+      twilio_approval_summary: buildChannelApprovalSummary(allItems, 'twilio'),
+      vapi_approval_summary: buildChannelApprovalSummary(allItems, 'vapi'),
+      resend_approval_summary: buildChannelApprovalSummary(allItems, 'resend'),
+      google_calendar_approval_summary: buildChannelApprovalSummary(allItems, 'google_calendar'),
+      lindy_bridge_approval_summary: {
+        ...buildChannelApprovalSummary(allItems, 'lindy_bridge'),
+        safe_lindy_bridge_reference_not_live_activation: true,
+        real_lindy_client_api_webhook_live_workflow_activation_forbidden: true,
+      },
+      csv_delivery_approval_summary: buildChannelApprovalSummary(allItems, 'csv_delivery'),
+      crm_handoff_approval_summary: buildChannelApprovalSummary(allItems, 'crm_handoff_export'),
+      scheduler_dispatcher_approval_summary: {
+        scheduler_items: allItems.filter((item) => item.integration_name === 'scheduler_cron').length,
+        dispatcher_items: allItems.filter((item) => item.integration_name === 'dispatcher').length,
+        scheduler_enabled: 'no',
+        dispatcher_enabled: 'no',
+        scheduler_activation_allowed: 'no',
+        dispatcher_activation_allowed: 'no',
+        fake_data_only: true,
+        live_actions_performed: 'no',
+        production_data_touched: 'no',
+        external_services_called: 'no',
+      },
+      public_route_approval_summary: {
+        public_route_items: allItems.filter((item) => item.integration_name === 'public_webhook').length,
+        public_route_enabled: 'no',
+        public_route_activation_allowed: 'no',
+        fake_data_only: true,
+        live_actions_performed: 'no',
+        production_data_touched: 'no',
+        external_services_called: 'no',
+      },
+      supabase_approval_summary: buildChannelApprovalSummary(allItems, 'supabase'),
+      billing_approval_summary: buildChannelApprovalSummary(
+        allItems,
+        'billing_payment_invoice_estimate_quote',
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    pre_approval_blocker_summary: {
+      description:
+        'Pre-approval blockers — missing explicit approval, credential review, rollback plan, post-approval test plan, security/tenant isolation review, and messaging compliance review block activation',
+      missing_explicit_approval_blocks_test_mode_activation: true,
+      missing_credential_review_blocks_test_mode_activation: true,
+      missing_rollback_plan_blocks_test_mode_activation: true,
+      missing_post_approval_test_plan_blocks_test_mode_activation: true,
+      missing_security_tenant_isolation_review_blocks_persistence: true,
+      missing_messaging_compliance_review_blocks_messaging_test_mode: true,
+      items_missing_explicit_approval: allItems.filter(
+        (item) => item.explicit_approval_present === 'no',
+      ).length,
+      items_missing_rollback_plan: allItems.filter((item) => item.rollback_plan_present === 'no').length,
+      items_missing_post_approval_test_plan: allItems.filter(
+        (item) => item.post_approval_test_plan_present === 'no',
+      ).length,
+      supabase_items_missing_security_review: supabaseItems.filter(
+        (item) => item.security_review_required === 'yes' && item.explicit_approval_present === 'no',
+      ).length,
+      messaging_items_missing_compliance_review: messagingItems.filter(
+        (item) =>
+          item.messaging_compliance_review_required === 'yes' &&
+          item.explicit_approval_present === 'no',
+      ).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    explicit_approval_evidence_summary: {
+      description:
+        'Explicit approval evidence — absent by default; Jason written approval required before any test-mode channel activation',
+      explicit_approval_present_for_any_item: 'no',
+      approval_evidence_present_for_any_item: 'no',
+      approval_evidence_type: 'jason_explicit_written_approval',
+      items_with_explicit_approval: 0,
+      items_with_approval_evidence: 0,
+      test_mode_activation_requires_explicit_approval: true,
+      live_activation_requires_separate_explicit_approval: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    credential_boundary_approval_summary: {
+      description:
+        'Credential boundary approval — no sandbox or production credentials read; no env values logged; credential review required where sandbox credentials needed',
+      sandbox_credentials_present: 'no',
+      production_credentials_present: 'no',
+      env_values_logged: 'no',
+      api_keys_tokens_webhook_secrets_service_role_keys_logged: 'no',
+      all_items_sandbox_credentials_present_no: allItems.every(
+        (item) => item.sandbox_credentials_present === 'no',
+      ),
+      all_items_production_credentials_present_no: allItems.every(
+        (item) => item.production_credentials_present === 'no',
+      ),
+      all_items_env_values_logged_no: allItems.every((item) => item.env_values_logged === 'no'),
+      items_requiring_credential_review: allItems.filter(
+        (item) => item.credential_review_required === 'yes',
+      ).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    public_route_approval_summary: {
+      description:
+        'Public route approval — blocked without explicit Jason approval; no public routes enabled',
+      public_route_items: allItems.filter((item) => item.integration_name === 'public_webhook').length,
+      public_route_enabled: 'no',
+      public_route_activation_allowed: 'no',
+      items_requiring_public_route_review: allItems.filter(
+        (item) => item.public_route_review_required === 'yes',
+      ).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    scheduler_dispatcher_approval_summary: {
+      description:
+        'Scheduler/cron and dispatcher approval — both remain blocked without explicit Jason approval',
+      scheduler_items: allItems.filter((item) => item.integration_name === 'scheduler_cron').length,
+      dispatcher_items: allItems.filter((item) => item.integration_name === 'dispatcher').length,
+      scheduler_enabled: 'no',
+      dispatcher_enabled: 'no',
+      scheduler_activation_allowed: 'no',
+      dispatcher_activation_allowed: 'no',
+      items_requiring_scheduler_dispatcher_review: allItems.filter(
+        (item) => item.scheduler_dispatcher_review_required === 'yes',
+      ).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    data_boundary_approval_summary: {
+      description:
+        'Data boundary/PII minimization approval — data boundary review required for persistence channels',
+      data_boundary_review_required_for_persistence: true,
+      items_requiring_data_boundary_review: allItems.filter(
+        (item) => item.data_boundary_review_required === 'yes',
+      ).length,
+      homeowner_pii_minimization_required: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    security_tenant_isolation_approval_summary: {
+      description:
+        'Security/tenant isolation approval — Supabase persistence blocked until security and tenant isolation review',
+      security_review_required_for_persistence: true,
+      tenant_isolation_review_required_for_persistence: true,
+      supabase_items_count: supabaseItems.length,
+      supabase_persistence_blocked_until_review: true,
+      items_requiring_security_review: allItems.filter(
+        (item) => item.security_review_required === 'yes',
+      ).length,
+      items_requiring_tenant_isolation_review: allItems.filter(
+        (item) => item.tenant_isolation_review_required === 'yes',
+      ).length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    rollback_plan_summary: {
+      description:
+        'Rollback plan approval — rollback plan required but absent for all items; blocks test-mode activation',
+      rollback_plan_required_for_all_items: 'yes',
+      rollback_plan_present_for_any_item: 'no',
+      items_missing_rollback_plan: allItems.filter((item) => item.rollback_plan_present === 'no').length,
+      missing_rollback_plan_blocks_test_mode_activation: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    post_approval_test_plan_summary: {
+      description:
+        'Post-approval test plan — required but absent for all items; blocks test-mode activation',
+      post_approval_test_plan_required_for_all_items: 'yes',
+      post_approval_test_plan_present_for_any_item: 'no',
+      items_missing_post_approval_test_plan: allItems.filter(
+        (item) => item.post_approval_test_plan_present === 'no',
+      ).length,
+      missing_post_approval_test_plan_blocks_test_mode_activation: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    approval_audit_summary: {
+      description:
+        'Approval audit trail — every approval runbook item has a deterministic audit event ID',
+      total_audit_events: allItems.length,
+      all_items_have_audit_event_id: allItems.every((item) => Boolean(item.audit_event_id)),
+      approval_audit_event_prefix: 'audit-approval-runbook-',
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    sandbox_test_mode_approval_safety_assertions: [
+      ...SANDBOX_TEST_MODE_APPROVAL_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 function buildScenario(config) {
   const guardAssertions = buildGuardAssertions(config.guard_assertion_overrides || BASE_GUARD_PASS);
   const scenarioDraft = {
@@ -11501,6 +12000,9 @@ function buildScenario(config) {
     ...scenarioWithHandoff,
     e2e_acceptance_rehearsal_items: buildScenarioE2eAcceptanceItems(scenarioWithHandoff),
     sandbox_test_mode_readiness_items: buildScenarioSandboxTestModeReadinessItems(scenarioWithHandoff),
+    sandbox_test_mode_approval_runbook_items: buildScenarioSandboxTestModeApprovalRunbookItems(
+      scenarioWithHandoff,
+    ),
   };
 }
 
@@ -12743,7 +13245,7 @@ function main() {
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      '6f8450e test(workflow): rehearse native workflow e2e acceptance',
+      '0070f0e test(workflow): add sandbox test mode readiness gate',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
@@ -12769,6 +13271,8 @@ function main() {
       'native_workflow_fixture_e2e_acceptance_rehearsal_expansion',
     sandbox_test_mode_readiness_expansion:
       'native_workflow_fixture_sandbox_test_mode_integration_readiness_gate_expansion',
+    sandbox_test_mode_approval_runbook_expansion:
+      'native_workflow_fixture_sandbox_test_mode_approval_runbook_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -12837,6 +13341,11 @@ function main() {
     outputBase,
     e2eAcceptanceRehearsalOutput,
   );
+  const sandboxTestModeApprovalRunbookOutput = buildTopLevelSandboxTestModeApprovalRunbookExpansion(
+    scenarios,
+    outputBase,
+    sandboxTestModeReadinessOutput,
+  );
 
   const output = {
     ...outputBase,
@@ -12856,6 +13365,7 @@ function main() {
     ...manualToNativeHandoffOutput,
     ...e2eAcceptanceRehearsalOutput,
     ...sandboxTestModeReadinessOutput,
+    ...sandboxTestModeApprovalRunbookOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -12959,10 +13469,20 @@ function main() {
       'sandbox_test_mode_readiness_no_env_values_logged',
       'sandbox_test_mode_readiness_approval_gate_enforced',
       'sandbox_test_mode_readiness_deterministic',
+      'explicit_sandbox_test_mode_approval_runbook_coverage',
+      'sandbox_test_mode_approval_runbook_fake_data_only',
+      'sandbox_test_mode_approval_runbook_no_production_persistence',
+      'sandbox_test_mode_approval_runbook_no_live_automation',
+      'sandbox_test_mode_approval_runbook_no_test_mode_activation',
+      'sandbox_test_mode_approval_runbook_no_sandbox_credentials_read',
+      'sandbox_test_mode_approval_runbook_no_production_credentials_read',
+      'sandbox_test_mode_approval_runbook_no_env_values_logged',
+      'sandbox_test_mode_approval_runbook_approval_gate_enforced',
+      'sandbox_test_mode_approval_runbook_deterministic',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, data-boundary/PII minimization, review queue aging/SLA boundary, manual-to-native handoff rehearsal, end-to-end acceptance rehearsal, and sandbox/test-mode integration readiness gate coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, data-boundary/PII minimization, review queue aging/SLA boundary, manual-to-native handoff rehearsal, end-to-end acceptance rehearsal, sandbox/test-mode integration readiness gate, and sandbox/test-mode approval runbook coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -12986,6 +13506,7 @@ function main() {
       manual_to_native_handoff_rehearsal_coverage: 'expanded',
       e2e_acceptance_rehearsal_coverage: 'expanded',
       sandbox_test_mode_integration_readiness_gate_coverage: 'expanded',
+      sandbox_test_mode_approval_runbook_coverage: 'expanded',
     },
   };
 

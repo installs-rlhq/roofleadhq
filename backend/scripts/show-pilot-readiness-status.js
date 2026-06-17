@@ -107,7 +107,12 @@ const APPROVED_LINDY_REFERENCE_PATTERNS = [
   /real_lindy_client_api_webhook_live_workflow_activation_forbidden/gi,
   /integration_name:\s*['"]lindy_bridge['"]/gi,
   /channel_id:\s*['"]lindy_bridge['"]/gi,
-  /buildChannelReadinessSummary\([^)]*['"]lindy_bridge['"]\)/gi
+  /buildChannelReadinessSummary\([^)]*['"]lindy_bridge['"]\)/gi,
+  /buildChannelApprovalSummary\([^)]*['"]lindy_bridge['"]\)/gi,
+  /lindy_bridge_approval_summary/gi,
+  /safe_lindy_bridge_fixture_reference/gi,
+  /jason_reviews_lindy_bridge/gi,
+  /sandbox_test_mode_approval_runbook/gi
 ];
 
 function stripApprovedLindyReferences(source) {

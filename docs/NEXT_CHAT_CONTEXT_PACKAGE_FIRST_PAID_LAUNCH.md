@@ -6430,3 +6430,46 @@ node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-integratio
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion
+
+The Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion deepens explicit fake-data sandbox/test-mode approval runbook coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion" / "native workflow fixture sandbox test-mode approval runbook expansion" / "sandbox test-mode approval runbook expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level sandbox_test_mode_approval_runbook_expansion_summary, sandbox_test_mode_approval_runbook_items
+- approval_step_summary through approval_audit_summary
+- sandbox_test_mode_approval_safety_assertions
+- Per-scenario sandbox_test_mode_approval_runbook_items; 12 channels/integrations
+- Approval-runbook modeling only — no sandbox/production credential reads, no live automation
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

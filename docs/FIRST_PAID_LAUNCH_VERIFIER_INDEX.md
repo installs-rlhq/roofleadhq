@@ -261,6 +261,10 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture Sandbox/Test-Mode Integration Readiness Gate Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
 - Native Workflow Fixture Sandbox/Test-Mode Integration Readiness Gate Expansion wrapper: `scripts/run-native-workflow-fixture-sandbox-test-mode-integration-readiness-gate-expansion-dry-run.sh`
 - Native Workflow Fixture Sandbox/Test-Mode Integration Readiness Gate Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-integration-readiness-gate-expansion-readonly.js`
+- Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion doc: `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_EXPANSION.md`
+- Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion wrapper: `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-dry-run.sh`
+- Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1988,5 +1992,23 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-integration-readiness-gate-expansion-readonly.js`
 - Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded sandbox/test-mode integration readiness gate output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_RUNBOOK_EXPANSION.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Wrapper: `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fixture-only fake-data dry-run expansion deepening explicit sandbox/test-mode approval runbook coverage — sandbox_test_mode_approval_runbook_expansion_summary, sandbox_test_mode_approval_runbook_items, approval_step_summary, channel_approval_summary, pre_approval_blocker_summary, explicit_approval_evidence_summary, credential_boundary_approval_summary, public_route_approval_summary, scheduler_dispatcher_approval_summary, data_boundary_approval_summary, security_tenant_isolation_approval_summary, rollback_plan_summary, post_approval_test_plan_summary, approval_audit_summary, sandbox_test_mode_approval_safety_assertions; 12 channels/integrations; approval-runbook modeling only without sandbox/production credential reads, env value logging, external calls, live sends, test-mode sends, public routes, scheduler/cron/dispatcher enablement, or production persistence; missing explicit approval/credential review/rollback plan/post-approval test plan/security-tenant isolation review/messaging compliance review block activation; test-mode activation requires explicit Jason approval; live activation requires separate explicit Jason approval; safe Lindy bridge fixture reference not live activation; no Twilio/Vapi/Resend/Lindy/Google Calendar/CRM/live CSV/billing/estimate-quote-invoice-payment activation.
+- Verifier enforces: doc/runner/wrapper/existing fixture verifier/e2e acceptance verifier/readiness gate verifier exist; runner and verifier syntax; valid JSON output; demo_ready_with_live_automation_disabled; all 25 scenario IDs; sandbox test-mode approval runbook summaries and items with required fields; all channels/integrations and safety assertions; local E2E runner relationship; first paid roofer relationship; forbidden language absent; no unsafe imports/strings; safety boundaries documented; aggregate/index/context/business-guide wiring.
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS/security changes, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Native Workflow Fixture Sandbox/Test-Mode Approval Runbook Expansion Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-runbook-expansion-readonly.js`
+- Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded sandbox/test-mode approval runbook output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
