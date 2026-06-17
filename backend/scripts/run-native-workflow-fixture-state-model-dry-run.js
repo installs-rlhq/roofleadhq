@@ -10921,6 +10921,506 @@ function buildTopLevelE2eAcceptanceRehearsalExpansion(
   };
 }
 
+const SANDBOX_TEST_MODE_CHANNEL_DEFINITIONS = [
+  {
+    channel_id: 'twilio_sms',
+    scenario_id: 'missed_lead_recovery_path',
+    channel: 'sms',
+    integration_name: 'twilio',
+    test_mode_supported: 'yes',
+    test_mode_requested: 'yes',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'yes',
+    public_route_required: 'yes',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_sms_enabled',
+    readiness_status: 'NEEDS_APPROVAL',
+    blocker_reason: 'explicit_jason_approval_required_before_twilio_test_mode_activation',
+    required_manual_next_step:
+      'jason_reviews_and_explicitly_approves_twilio_test_mode_activation_prerequisites',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'vapi_calls',
+    scenario_id: 'normal_lead_to_appointment_readiness',
+    channel: 'voice',
+    integration_name: 'vapi',
+    test_mode_supported: 'yes',
+    test_mode_requested: 'yes',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'yes',
+    public_route_required: 'yes',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_vapi_calls_enabled',
+    readiness_status: 'NEEDS_APPROVAL',
+    blocker_reason: 'explicit_jason_approval_required_before_vapi_test_mode_activation',
+    required_manual_next_step:
+      'jason_reviews_and_explicitly_approves_vapi_test_mode_activation_prerequisites',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'resend_email',
+    scenario_id: 'homeowner_follow_up_needed_path',
+    channel: 'email',
+    integration_name: 'resend',
+    test_mode_supported: 'yes',
+    test_mode_requested: 'yes',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'yes',
+    public_route_required: 'no',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_resend_email_enabled',
+    readiness_status: 'NEEDS_APPROVAL',
+    blocker_reason: 'explicit_jason_approval_required_before_resend_test_mode_activation',
+    required_manual_next_step:
+      'jason_reviews_and_explicitly_approves_resend_test_mode_activation_prerequisites',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'google_calendar',
+    scenario_id: 'appointment_booked_path',
+    channel: 'calendar',
+    integration_name: 'google_calendar',
+    test_mode_supported: 'yes',
+    test_mode_requested: 'yes',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'yes',
+    public_route_required: 'no',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_calendar_booking_enabled',
+    readiness_status: 'NEEDS_APPROVAL',
+    blocker_reason: 'explicit_jason_approval_required_before_google_calendar_test_mode_activation',
+    required_manual_next_step:
+      'jason_reviews_and_explicitly_approves_google_calendar_test_mode_activation_prerequisites',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'lindy_bridge',
+    scenario_id: 'roofleadhq_system_review_needed_path',
+    channel: 'bridge',
+    integration_name: 'lindy_bridge',
+    test_mode_supported: 'yes',
+    test_mode_requested: 'yes',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'yes',
+    public_route_required: 'yes',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: `live_${BRIDGE_VENDOR}_bridge_enabled`,
+    readiness_status: 'BLOCKED',
+    blocker_reason:
+      'safe_lindy_bridge_fixture_reference_allowed_but_real_lindy_client_api_webhook_live_workflow_activation_forbidden_without_explicit_jason_approval',
+    required_manual_next_step:
+      'jason_reviews_lindy_bridge_test_mode_prerequisites_and_confirms_safe_fixture_reference_only',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'csv_delivery',
+    scenario_id: 'csv_report_snapshot_fake_data_path',
+    channel: 'csv',
+    integration_name: 'csv_delivery',
+    test_mode_supported: 'yes',
+    test_mode_requested: 'yes',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'no',
+    public_route_required: 'no',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_csv_export_enabled',
+    readiness_status: 'NEEDS_APPROVAL',
+    blocker_reason: 'explicit_jason_approval_required_before_csv_delivery_test_mode_activation',
+    required_manual_next_step:
+      'jason_reviews_and_explicitly_approves_csv_delivery_test_mode_activation_prerequisites',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'crm_handoff',
+    scenario_id: 'growth_plan_profile_path',
+    channel: 'crm',
+    integration_name: 'crm_handoff_export',
+    test_mode_supported: 'yes',
+    test_mode_requested: 'yes',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'yes',
+    public_route_required: 'no',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_crm_handoff_enabled',
+    readiness_status: 'NEEDS_APPROVAL',
+    blocker_reason: 'explicit_jason_approval_required_before_crm_handoff_test_mode_activation',
+    required_manual_next_step:
+      'jason_reviews_and_explicitly_approves_crm_handoff_export_test_mode_activation_prerequisites',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'scheduler_cron',
+    scenario_id: 'custom_review_500_plus_leads_path',
+    channel: 'scheduler',
+    integration_name: 'scheduler_cron',
+    test_mode_supported: 'no',
+    test_mode_requested: 'no',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'no',
+    public_route_required: 'no',
+    scheduler_required: 'yes',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_scheduler_enabled',
+    readiness_status: 'BLOCKED',
+    blocker_reason: 'scheduler_cron_activation_blocked_until_explicit_jason_approval_and_fixture_review',
+    required_manual_next_step:
+      'jason_reviews_scheduler_cron_readiness_prerequisites_before_any_fixture_scheduler_enablement',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'dispatcher',
+    scenario_id: 'activation_flag_false_blocks_live_action_path',
+    channel: 'dispatcher',
+    integration_name: 'dispatcher',
+    test_mode_supported: 'no',
+    test_mode_requested: 'no',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'no',
+    public_route_required: 'no',
+    scheduler_required: 'no',
+    dispatcher_required: 'yes',
+    live_activation_flag_name: 'live_dispatcher_enabled',
+    readiness_status: 'BLOCKED',
+    blocker_reason: 'dispatcher_activation_blocked_until_explicit_jason_approval_and_fixture_review',
+    required_manual_next_step:
+      'jason_reviews_dispatcher_readiness_prerequisites_before_any_fixture_dispatcher_enablement',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'public_route_webhook',
+    scenario_id: 'roofleadhq_system_review_needed_path',
+    channel: 'public_route',
+    integration_name: 'public_webhook',
+    test_mode_supported: 'no',
+    test_mode_requested: 'no',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'yes',
+    public_route_required: 'yes',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_public_webhook_enabled',
+    readiness_status: 'BLOCKED',
+    blocker_reason: 'public_route_webhook_activation_blocked_until_explicit_jason_approval',
+    required_manual_next_step:
+      'jason_reviews_public_route_webhook_readiness_prerequisites_before_any_public_route_enablement',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'supabase_persistence',
+    scenario_id: 'missing_information_path',
+    channel: 'persistence',
+    integration_name: 'supabase',
+    test_mode_supported: 'no',
+    test_mode_requested: 'no',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'yes',
+    public_route_required: 'no',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_supabase_persistence_enabled',
+    readiness_status: 'BLOCKED',
+    blocker_reason:
+      'supabase_persistence_blocked_until_security_tenant_isolation_review_and_explicit_jason_approval',
+    required_manual_next_step:
+      'jason_reviews_security_tenant_isolation_prerequisites_before_any_supabase_persistence_activation',
+    next_step_owner: 'jason',
+  },
+  {
+    channel_id: 'billing_payment_automation',
+    scenario_id: 'estimate_needed_estimate_sent_tracking_path',
+    channel: 'billing',
+    integration_name: 'billing_payment_invoice_estimate_quote',
+    test_mode_supported: 'no',
+    test_mode_requested: 'no',
+    approval_required: 'yes',
+    sandbox_credentials_required: 'yes',
+    public_route_required: 'no',
+    scheduler_required: 'no',
+    dispatcher_required: 'no',
+    live_activation_flag_name: 'live_payment_or_invoice_enabled',
+    readiness_status: 'BLOCKED',
+    blocker_reason:
+      'billing_payment_invoice_estimate_quote_automation_blocked_until_explicit_jason_approval',
+    required_manual_next_step:
+      'jason_reviews_billing_payment_invoice_estimate_quote_automation_prerequisites_before_any_activation',
+    next_step_owner: 'jason',
+  },
+];
+
+const SANDBOX_TEST_MODE_SAFETY_ASSERTIONS = [
+  'sandbox_test_mode_readiness_expansion_summary_present',
+  'sandbox_test_mode_readiness_items_present',
+  'sandbox_test_mode_readiness_item_required_fields_present',
+  'required_channels_present',
+  'twilio_test_mode_readiness_summary_present',
+  'vapi_test_mode_readiness_summary_present',
+  'resend_test_mode_readiness_summary_present',
+  'google_calendar_test_mode_readiness_summary_present',
+  'lindy_bridge_test_mode_readiness_summary_present',
+  'csv_delivery_test_mode_readiness_summary_present',
+  'crm_handoff_test_mode_readiness_summary_present',
+  'scheduler_dispatcher_readiness_summary_present',
+  'public_route_readiness_summary_present',
+  'env_credential_boundary_summary_present',
+  'approval_gate_summary_present',
+  'test_mode_activation_requires_explicit_approval',
+  'live_activation_requires_separate_explicit_approval',
+  'sandbox_credentials_present_is_no_for_all_items',
+  'production_credentials_present_is_no_for_all_items',
+  'env_values_logged_is_no_for_all_items',
+  'public_route_enabled_is_no_for_all_items',
+  'scheduler_enabled_is_no_for_all_items',
+  'dispatcher_enabled_is_no_for_all_items',
+  'live_activation_flags_remain_false_for_all_items',
+  'test_mode_activation_allowed_is_no_for_all_items',
+  'live_activation_allowed_is_no_for_all_items',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'notification_sent_is_no_for_all_items',
+  'live_action_performed_is_no_for_all_items',
+  'no_supabase_calls',
+  'no_schema_migrations_auth_rls_security_changes',
+  'no_twilio_calls',
+  'no_vapi_calls',
+  'no_resend_calls',
+  'no_lindy_live_workflow_execution',
+  'no_google_calendar_calls',
+  'no_crm_sync',
+  'no_live_csv_delivery',
+  'no_billing_or_payment_action',
+  'no_estimate_quote_invoice_payment_generation',
+  'safe_lindy_bridge_reference_not_live_activation',
+  'real_lindy_activation_patterns_remain_forbidden',
+  'sandbox_test_mode_readiness_is_fake_data_only',
+  'sandbox_test_mode_readiness_is_audited',
+  'reporting_summary_includes_sandbox_test_mode_readiness',
+  'public_go_live_or_production_copy_not_changed_without_approval',
+];
+
+function buildSandboxTestModeReadinessItem(scenario, channelDef) {
+  const input = scenario.input_fixture_summary || {};
+  const rooferAccountId = input.fixture_roofer_id || 'roof-fix-001';
+
+  return {
+    sandbox_test_mode_item_id: `sandbox_test_mode_${channelDef.channel_id}`,
+    scenario_id: scenario.scenario_id,
+    roofer_account_id: rooferAccountId,
+    plan_profile: scenario.plan_profile,
+    channel: channelDef.channel,
+    integration_name: channelDef.integration_name,
+    test_mode_supported: channelDef.test_mode_supported,
+    test_mode_requested: channelDef.test_mode_requested,
+    approval_required: channelDef.approval_required,
+    explicit_approval_present: 'no',
+    sandbox_credentials_required: channelDef.sandbox_credentials_required,
+    sandbox_credentials_present: 'no',
+    production_credentials_present: 'no',
+    env_values_logged: 'no',
+    public_route_required: channelDef.public_route_required,
+    public_route_enabled: 'no',
+    scheduler_required: channelDef.scheduler_required,
+    scheduler_enabled: 'no',
+    dispatcher_required: channelDef.dispatcher_required,
+    dispatcher_enabled: 'no',
+    live_activation_flag_name: channelDef.live_activation_flag_name,
+    live_activation_flag_value: false,
+    test_mode_activation_allowed: 'no',
+    live_activation_allowed: 'no',
+    readiness_status: channelDef.readiness_status,
+    blocker_reason: channelDef.blocker_reason,
+    required_manual_next_step: channelDef.required_manual_next_step,
+    next_step_owner: channelDef.next_step_owner,
+    audit_event_id: `audit-sandbox-test-mode-${channelDef.channel_id}-${scenario.scenario_id}`,
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    notification_sent: 'no',
+    live_action_performed: 'no',
+  };
+}
+
+function buildScenarioSandboxTestModeReadinessItems(scenario) {
+  return SANDBOX_TEST_MODE_CHANNEL_DEFINITIONS.filter(
+    (channelDef) => channelDef.scenario_id === scenario.scenario_id,
+  ).map((channelDef) => buildSandboxTestModeReadinessItem(scenario, channelDef));
+}
+
+function buildAllSandboxTestModeReadinessItems(scenarios) {
+  const scenarioMap = Object.fromEntries(scenarios.map((scenario) => [scenario.scenario_id, scenario]));
+  return SANDBOX_TEST_MODE_CHANNEL_DEFINITIONS.map((channelDef) => {
+    const scenario = scenarioMap[channelDef.scenario_id];
+    if (!scenario) {
+      throw new Error(`Missing scenario for sandbox test-mode channel ${channelDef.channel_id}`);
+    }
+    return buildSandboxTestModeReadinessItem(scenario, channelDef);
+  });
+}
+
+function buildChannelReadinessSummary(items, integrationName) {
+  const channelItems = items.filter((item) => item.integration_name === integrationName);
+  return {
+    description: `Sandbox/test-mode readiness modeling for ${integrationName} — blocked without explicit Jason approval`,
+    readiness_item_count: channelItems.length,
+    blocked_items: channelItems.filter((item) => item.readiness_status === 'BLOCKED').length,
+    needs_approval_items: channelItems.filter((item) => item.readiness_status === 'NEEDS_APPROVAL')
+      .length,
+    hold_items: channelItems.filter((item) => item.readiness_status === 'HOLD').length,
+    test_mode_activation_allowed: 'no',
+    live_activation_allowed: 'no',
+    explicit_approval_present: 'no',
+    sandbox_credentials_present: 'no',
+    production_credentials_present: 'no',
+    env_values_logged: 'no',
+    fake_data_only: true,
+    live_actions_performed: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+  };
+}
+
+function buildTopLevelSandboxTestModeIntegrationReadinessGateExpansion(
+  scenarios,
+  outputBase,
+  e2eAcceptanceRehearsalOutput,
+) {
+  const allItems = buildAllSandboxTestModeReadinessItems(scenarios);
+  const channelIds = new Set(allItems.map((item) => item.integration_name));
+
+  return {
+    sandbox_test_mode_readiness_expansion:
+      'native_workflow_fixture_sandbox_test_mode_integration_readiness_gate_expansion',
+    sandbox_test_mode_readiness_expansion_summary: {
+      description:
+        'Deterministic fake-data sandbox/test-mode integration readiness gate — models future test-mode channel activation prerequisites without enabling sandbox credentials, live sends, external calls, production persistence, public routes, cron jobs, schedulers, dispatchers, or customer-facing automation',
+      total_readiness_items: allItems.length,
+      required_channels: SANDBOX_TEST_MODE_CHANNEL_DEFINITIONS.length,
+      all_required_channels_present:
+        SANDBOX_TEST_MODE_CHANNEL_DEFINITIONS.length === allItems.length &&
+        channelIds.size === SANDBOX_TEST_MODE_CHANNEL_DEFINITIONS.length,
+      scenario_readiness_items: scenarios.reduce(
+        (count, scenario) => count + (scenario.sandbox_test_mode_readiness_items || []).length,
+        0,
+      ),
+      audited_items_count: allItems.length,
+      blocked_items_count: allItems.filter((item) => item.readiness_status === 'BLOCKED').length,
+      needs_approval_items_count: allItems.filter((item) => item.readiness_status === 'NEEDS_APPROVAL')
+        .length,
+      hold_items_count: allItems.filter((item) => item.readiness_status === 'HOLD').length,
+      public_go_live_or_production_copy_changed: false,
+      public_go_live_or_production_copy_approval_required: true,
+      readiness_gate_modeling_only: true,
+      fake_data_only: true,
+      deterministic_fixture_output: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    sandbox_test_mode_readiness_items: allItems,
+    channel_readiness_summary: {
+      description:
+        'Aggregate sandbox/test-mode channel readiness — all channels remain blocked or need explicit Jason approval',
+      total_channels: allItems.length,
+      channels_blocked: allItems.filter((item) => item.readiness_status === 'BLOCKED').length,
+      channels_needing_approval: allItems.filter((item) => item.readiness_status === 'NEEDS_APPROVAL')
+        .length,
+      test_mode_activation_allowed_for_all_channels: 'no',
+      live_activation_allowed_for_all_channels: 'no',
+      reporting_summary_includes_sandbox_test_mode_readiness: true,
+      e2e_acceptance_items_in_prior_expansion:
+        e2eAcceptanceRehearsalOutput.e2e_acceptance_rehearsal_items?.length || 0,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    twilio_test_mode_readiness_summary: buildChannelReadinessSummary(allItems, 'twilio'),
+    vapi_test_mode_readiness_summary: buildChannelReadinessSummary(allItems, 'vapi'),
+    resend_test_mode_readiness_summary: buildChannelReadinessSummary(allItems, 'resend'),
+    google_calendar_test_mode_readiness_summary: buildChannelReadinessSummary(allItems, 'google_calendar'),
+    lindy_bridge_test_mode_readiness_summary: {
+      ...buildChannelReadinessSummary(allItems, 'lindy_bridge'),
+      safe_lindy_bridge_reference_not_live_activation: true,
+      real_lindy_client_api_webhook_live_workflow_activation_forbidden: true,
+    },
+    csv_delivery_test_mode_readiness_summary: buildChannelReadinessSummary(allItems, 'csv_delivery'),
+    crm_handoff_test_mode_readiness_summary: buildChannelReadinessSummary(allItems, 'crm_handoff_export'),
+    scheduler_dispatcher_readiness_summary: {
+      description:
+        'Scheduler/cron and dispatcher readiness — both remain blocked without explicit Jason approval',
+      scheduler_items: allItems.filter((item) => item.integration_name === 'scheduler_cron').length,
+      dispatcher_items: allItems.filter((item) => item.integration_name === 'dispatcher').length,
+      scheduler_enabled: 'no',
+      dispatcher_enabled: 'no',
+      scheduler_activation_allowed: 'no',
+      dispatcher_activation_allowed: 'no',
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    public_route_readiness_summary: {
+      description:
+        'Public route/webhook readiness — blocked without explicit Jason approval; no public routes enabled',
+      public_route_items: allItems.filter((item) => item.integration_name === 'public_webhook').length,
+      public_route_enabled: 'no',
+      public_route_activation_allowed: 'no',
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    env_credential_boundary_summary: {
+      description:
+        'Environment and credential boundary — no sandbox or production credentials read; no env values logged',
+      sandbox_credentials_present: 'no',
+      production_credentials_present: 'no',
+      env_values_logged: 'no',
+      api_keys_tokens_webhook_secrets_service_role_keys_logged: 'no',
+      all_items_sandbox_credentials_present_no: allItems.every(
+        (item) => item.sandbox_credentials_present === 'no',
+      ),
+      all_items_production_credentials_present_no: allItems.every(
+        (item) => item.production_credentials_present === 'no',
+      ),
+      all_items_env_values_logged_no: allItems.every((item) => item.env_values_logged === 'no'),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    approval_gate_summary: {
+      description:
+        'Approval gate — test-mode activation requires explicit Jason approval; live activation requires separate explicit Jason approval',
+      test_mode_activation_requires_explicit_approval: true,
+      live_activation_requires_separate_explicit_approval: true,
+      explicit_approval_present_for_any_item: 'no',
+      test_mode_activation_allowed_for_all_items: 'no',
+      live_activation_allowed_for_all_items: 'no',
+      jason_approval_required_before_any_channel_activation: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    sandbox_test_mode_safety_assertions: [
+      ...SANDBOX_TEST_MODE_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 function buildScenario(config) {
   const guardAssertions = buildGuardAssertions(config.guard_assertion_overrides || BASE_GUARD_PASS);
   const scenarioDraft = {
@@ -11000,6 +11500,7 @@ function buildScenario(config) {
   return {
     ...scenarioWithHandoff,
     e2e_acceptance_rehearsal_items: buildScenarioE2eAcceptanceItems(scenarioWithHandoff),
+    sandbox_test_mode_readiness_items: buildScenarioSandboxTestModeReadinessItems(scenarioWithHandoff),
   };
 }
 
@@ -12242,7 +12743,7 @@ function main() {
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      'd50d86e test(workflow): rehearse native workflow handoff',
+      '6f8450e test(workflow): rehearse native workflow e2e acceptance',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
@@ -12266,6 +12767,8 @@ function main() {
       'native_workflow_fixture_manual_to_native_handoff_rehearsal_expansion',
     e2e_acceptance_rehearsal_expansion:
       'native_workflow_fixture_e2e_acceptance_rehearsal_expansion',
+    sandbox_test_mode_readiness_expansion:
+      'native_workflow_fixture_sandbox_test_mode_integration_readiness_gate_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -12329,6 +12832,11 @@ function main() {
     reviewQueueAgingSlaOutput,
     manualToNativeHandoffOutput,
   );
+  const sandboxTestModeReadinessOutput = buildTopLevelSandboxTestModeIntegrationReadinessGateExpansion(
+    scenarios,
+    outputBase,
+    e2eAcceptanceRehearsalOutput,
+  );
 
   const output = {
     ...outputBase,
@@ -12347,6 +12855,7 @@ function main() {
     ...reviewQueueAgingSlaOutput,
     ...manualToNativeHandoffOutput,
     ...e2eAcceptanceRehearsalOutput,
+    ...sandboxTestModeReadinessOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -12440,10 +12949,20 @@ function main() {
       'e2e_acceptance_rehearsal_no_production_persistence',
       'e2e_acceptance_rehearsal_no_live_automation',
       'e2e_acceptance_rehearsal_deterministic',
+      'explicit_sandbox_test_mode_integration_readiness_gate_coverage',
+      'sandbox_test_mode_readiness_fake_data_only',
+      'sandbox_test_mode_readiness_no_production_persistence',
+      'sandbox_test_mode_readiness_no_live_automation',
+      'sandbox_test_mode_readiness_no_test_mode_activation',
+      'sandbox_test_mode_readiness_no_sandbox_credentials_read',
+      'sandbox_test_mode_readiness_no_production_credentials_read',
+      'sandbox_test_mode_readiness_no_env_values_logged',
+      'sandbox_test_mode_readiness_approval_gate_enforced',
+      'sandbox_test_mode_readiness_deterministic',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, data-boundary/PII minimization, review queue aging/SLA boundary, manual-to-native handoff rehearsal, and end-to-end acceptance rehearsal coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, data-boundary/PII minimization, review queue aging/SLA boundary, manual-to-native handoff rehearsal, end-to-end acceptance rehearsal, and sandbox/test-mode integration readiness gate coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -12466,6 +12985,7 @@ function main() {
       review_queue_aging_sla_boundary_coverage: 'expanded',
       manual_to_native_handoff_rehearsal_coverage: 'expanded',
       e2e_acceptance_rehearsal_coverage: 'expanded',
+      sandbox_test_mode_integration_readiness_gate_coverage: 'expanded',
     },
   };
 

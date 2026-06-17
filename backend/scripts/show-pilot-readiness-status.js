@@ -99,7 +99,15 @@ const APPROVED_LINDY_REFERENCE_PATTERNS = [
   /Resend, Lindy/gi,
   /Resend, or Lindy/gi,
   /SMS, Twilio, Vapi, Calendar, Resend, or Lindy/gi,
-  /no_lindy_live_workflow_execution/gi
+  /no_lindy_live_workflow_execution/gi,
+  /safe_lindy_bridge/gi,
+  /lindy_bridge_test_mode/gi,
+  /lindy_bridge_fixture_reference/gi,
+  /real_lindy_activation_patterns_remain_forbidden/gi,
+  /real_lindy_client_api_webhook_live_workflow_activation_forbidden/gi,
+  /integration_name:\s*['"]lindy_bridge['"]/gi,
+  /channel_id:\s*['"]lindy_bridge['"]/gi,
+  /buildChannelReadinessSummary\([^)]*['"]lindy_bridge['"]\)/gi
 ];
 
 function stripApprovedLindyReferences(source) {
