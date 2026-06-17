@@ -6142,4 +6142,31 @@ The expansion implements:
 
 Use preferred lead-to-inspection language (audit trail, state transition, guard decision, review routing, activation flag, fake data, native workflow engine, dry-run only).
 
+## Native Workflow Fixture Data Boundary / PII Minimization Expansion
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_DATA_BOUNDARY_PII_MINIMIZATION_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-data-boundary-pii-minimization-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-data-boundary-pii-minimization-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `e4d3268 test(workflow): expand native workflow fixture audit timeline`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Data Boundary / PII Minimization Expansion" / "native workflow fixture data boundary pii minimization expansion" / "data boundary pii minimization expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level data_boundary_pii_expansion_summary, pii_minimization_items, data_category_summary
+- fake_homeowner_data_summary, production_data_boundary_summary, secret_logging_boundary_summary
+- csv_pii_warning_summary, reporting_pii_boundary_summary, audit_pii_boundary_summary
+- review_queue_pii_boundary_summary, feedback_pii_boundary_summary, data_boundary_safety_assertions
+- Per-scenario pii_minimization_items; 23 data categories; fake homeowner identifiers only
+- demo_ready_with_live_automation_disabled preserved; no secrets/credentials/production data/live automation
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (data boundary, PII minimization, fake homeowner data, CSV warning, customer export responsibility, fake data, native workflow engine, dry-run only).
+
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

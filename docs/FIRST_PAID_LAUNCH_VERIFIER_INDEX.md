@@ -241,6 +241,10 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture Audit Event / Timeline Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
 - Native Workflow Fixture Audit Event / Timeline Expansion wrapper: `scripts/run-native-workflow-fixture-audit-event-timeline-expansion-dry-run.sh`
 - Native Workflow Fixture Audit Event / Timeline Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-audit-event-timeline-expansion-readonly.js`
+- Native Workflow Fixture Data Boundary / PII Minimization Expansion doc: `docs/NATIVE_WORKFLOW_FIXTURE_DATA_BOUNDARY_PII_MINIMIZATION_EXPANSION.md`
+- Native Workflow Fixture Data Boundary / PII Minimization Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Native Workflow Fixture Data Boundary / PII Minimization Expansion wrapper: `scripts/run-native-workflow-fixture-data-boundary-pii-minimization-expansion-dry-run.sh`
+- Native Workflow Fixture Data Boundary / PII Minimization Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-data-boundary-pii-minimization-expansion-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1878,5 +1882,23 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-native-workflow-fixture-audit-event-timeline-expansion-readonly.js`
 - Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded audit event and timeline output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Fixture Data Boundary / PII Minimization Expansion
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_DATA_BOUNDARY_PII_MINIMIZATION_EXPANSION.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Wrapper: `scripts/run-native-workflow-fixture-data-boundary-pii-minimization-expansion-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-data-boundary-pii-minimization-expansion-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fixture-only fake-data dry-run expansion deepening explicit data-boundary and homeowner PII minimization coverage — data_boundary_pii_expansion_summary, pii_minimization_items, data_category_summary, fake_homeowner_data_summary, production_data_boundary_summary, secret_logging_boundary_summary, csv_pii_warning_summary, reporting_pii_boundary_summary, audit_pii_boundary_summary, review_queue_pii_boundary_summary, feedback_pii_boundary_summary, data_boundary_safety_assertions; 23 data categories; fake homeowner identifiers only; CSV PII warnings and customer export responsibility; no secrets/credentials/production data/live automation/external calls.
+- Verifier enforces: doc/runner/wrapper/existing fixture verifier/audit timeline verifier exist; runner and verifier syntax; valid JSON output; demo_ready_with_live_automation_disabled; all 25 scenario IDs; data boundary PII summaries and items with required fields; data category and safety assertions; local E2E runner relationship; first paid roofer relationship; forbidden language absent; no unsafe imports/strings; safety boundaries documented; aggregate/index/context/business-guide wiring.
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS/security changes, no production data, no live automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Native Workflow Fixture Data Boundary / PII Minimization Expansion Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-data-boundary-pii-minimization-expansion-readonly.js`
+- Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded data-boundary and PII minimization output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.

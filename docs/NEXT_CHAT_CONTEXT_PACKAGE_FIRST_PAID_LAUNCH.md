@@ -6214,3 +6214,46 @@ node backend/scripts/verify-native-workflow-fixture-audit-event-timeline-expansi
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Data Boundary / PII Minimization Expansion
+
+The Native Workflow Fixture Data Boundary / PII Minimization Expansion deepens explicit fake-data data-boundary and homeowner personal information minimization coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_DATA_BOUNDARY_PII_MINIMIZATION_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-data-boundary-pii-minimization-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-data-boundary-pii-minimization-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Data Boundary / PII Minimization Expansion" / "native workflow fixture data boundary pii minimization expansion" / "data boundary pii minimization expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level data_boundary_pii_expansion_summary, pii_minimization_items, data_category_summary
+- fake_homeowner_data_summary, production_data_boundary_summary, secret_logging_boundary_summary
+- csv_pii_warning_summary, reporting_pii_boundary_summary, audit_pii_boundary_summary
+- review_queue_pii_boundary_summary, feedback_pii_boundary_summary, data_boundary_safety_assertions
+- Per-scenario pii_minimization_items; fake homeowner identifiers only; no secrets/credentials/production data/live automation
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-data-boundary-pii-minimization-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-data-boundary-pii-minimization-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

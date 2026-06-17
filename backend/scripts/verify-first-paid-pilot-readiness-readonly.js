@@ -797,6 +797,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Data Boundary / PII Minimization Expansion (docs/NATIVE_WORKFLOW_FIXTURE_DATA_BOUNDARY_PII_MINIMIZATION_EXPANSION.md + scripts/run-native-workflow-fixture-data-boundary-pii-minimization-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit data-boundary and homeowner PII minimization coverage: data_boundary_pii_expansion_summary, pii_minimization_items, data_category_summary, fake_homeowner_data_summary, production_data_boundary_summary, secret_logging_boundary_summary, csv_pii_warning_summary, reporting_pii_boundary_summary, audit_pii_boundary_summary, review_queue_pii_boundary_summary, feedback_pii_boundary_summary, data_boundary_safety_assertions; 23 data categories (contractor account, roofer contact, homeowner name/phone/email, service address, city/state/service area, roofing issue, urgency, insurance claim, appointment windows, lead source, campaign/ad source, message/call summaries future optional, appointment/booking, follow-up, review notes, post-inspection status/feedback, report data, CSV export, photo status only, photos future optional); fake homeowner identifiers only; CSV PII warnings and customer export responsibility; CSV one-directional/no push-back/no auto-update; no native CRM sync/live CSV delivery/external calls/live SMS/email/calls/customer notifications; per-scenario pii_minimization_items; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-data-boundary-pii-minimization-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

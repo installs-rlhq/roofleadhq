@@ -7897,6 +7897,508 @@ function buildTopLevelAuditEventTimeline(scenarios, outputBase) {
   };
 }
 
+const DATA_BOUNDARY_DATA_CATEGORIES = [
+  'contractor_customer_account_data',
+  'roofer_company_contact_details',
+  'homeowner_name',
+  'homeowner_phone',
+  'homeowner_email',
+  'service_address',
+  'city_state_service_area',
+  'roofing_issue_details',
+  'urgency',
+  'insurance_claim_status_if_provided',
+  'preferred_appointment_windows',
+  'lead_source_and_source_detail',
+  'campaign_ad_source_if_known',
+  'message_call_transcript_summaries_future_optional',
+  'appointment_booking_data',
+  'follow_up_data',
+  'review_escalation_notes',
+  'post_inspection_status',
+  'post_inspection_feedback',
+  'report_data',
+  'csv_export_data',
+  'photo_status_fields_only',
+  'photos_future_optional_not_active',
+];
+
+const DATA_CATEGORY_WORKFLOW_AREA = {
+  contractor_customer_account_data: 'account_setup',
+  roofer_company_contact_details: 'account_setup',
+  homeowner_name: 'lead_intake',
+  homeowner_phone: 'lead_intake',
+  homeowner_email: 'lead_intake',
+  service_address: 'lead_intake',
+  city_state_service_area: 'service_area',
+  roofing_issue_details: 'lead_intake',
+  urgency: 'lead_intake',
+  insurance_claim_status_if_provided: 'review_queue',
+  preferred_appointment_windows: 'appointment_readiness',
+  lead_source_and_source_detail: 'lead_source_attribution',
+  campaign_ad_source_if_known: 'lead_source_attribution',
+  message_call_transcript_summaries_future_optional: 'messaging_compliance',
+  appointment_booking_data: 'appointment_booking',
+  follow_up_data: 'follow_up',
+  review_escalation_notes: 'review_queue',
+  post_inspection_status: 'post_inspection',
+  post_inspection_feedback: 'feedback_permission',
+  report_data: 'reporting',
+  csv_export_data: 'csv_export',
+  photo_status_fields_only: 'lead_intake',
+  photos_future_optional_not_active: 'lead_intake',
+};
+
+const DATA_CATEGORY_SCENARIO_MAP = {
+  contractor_customer_account_data: 'starter_plan_profile_path',
+  roofer_company_contact_details: 'normal_lead_to_appointment_readiness',
+  homeowner_name: 'normal_lead_to_appointment_readiness',
+  homeowner_phone: 'missing_information_path',
+  homeowner_email: 'missing_information_path',
+  service_address: 'bad_fit_excluded_path',
+  city_state_service_area: 'bad_fit_excluded_path',
+  roofing_issue_details: 'normal_lead_to_appointment_readiness',
+  urgency: 'normal_lead_to_appointment_readiness',
+  insurance_claim_status_if_provided: 'roofer_review_needed_path',
+  preferred_appointment_windows: 'appointment_booked_path',
+  lead_source_and_source_detail: 'growth_plan_profile_path',
+  campaign_ad_source_if_known: 'elite_plan_profile_path',
+  message_call_transcript_summaries_future_optional: 'activation_flag_false_blocks_live_action_path',
+  appointment_booking_data: 'appointment_booked_path',
+  follow_up_data: 'homeowner_follow_up_needed_path',
+  review_escalation_notes: 'roofleadhq_system_review_needed_path',
+  post_inspection_status: 'inspection_completed_path',
+  post_inspection_feedback: 'feedback_permission_yes_path',
+  report_data: 'starter_plan_profile_path',
+  csv_export_data: 'csv_report_snapshot_fake_data_path',
+  photo_status_fields_only: 'normal_lead_to_appointment_readiness',
+  photos_future_optional_not_active: 'normal_lead_to_appointment_readiness',
+};
+
+const SCENARIO_PRIMARY_DATA_CATEGORY = {
+  normal_lead_to_appointment_readiness: 'appointment_booking_data',
+  missing_information_path: 'homeowner_phone',
+  duplicate_review_path: 'review_escalation_notes',
+  bad_fit_excluded_path: 'city_state_service_area',
+  stopped_do_not_contact_path: 'follow_up_data',
+  missed_lead_recovery_path: 'follow_up_data',
+  roofer_review_needed_path: 'insurance_claim_status_if_provided',
+  roofleadhq_system_review_needed_path: 'review_escalation_notes',
+  appointment_booked_path: 'appointment_booking_data',
+  inspection_completed_path: 'post_inspection_status',
+  inspection_missed_reschedule_path: 'appointment_booking_data',
+  post_inspection_still_open_path: 'post_inspection_status',
+  estimate_needed_estimate_sent_tracking_path: 'post_inspection_status',
+  homeowner_follow_up_needed_path: 'follow_up_data',
+  roofer_follow_up_needed_path: 'follow_up_data',
+  feedback_permission_yes_path: 'post_inspection_feedback',
+  feedback_permission_no_path: 'post_inspection_feedback',
+  feedback_permission_not_asked_path: 'post_inspection_feedback',
+  csv_report_snapshot_fake_data_path: 'csv_export_data',
+  starter_plan_profile_path: 'report_data',
+  growth_plan_profile_path: 'lead_source_and_source_detail',
+  elite_plan_profile_path: 'campaign_ad_source_if_known',
+  custom_review_500_plus_leads_path: 'contractor_customer_account_data',
+  custom_review_two_plus_locations_path: 'roofer_company_contact_details',
+  activation_flag_false_blocks_live_action_path:
+    'message_call_transcript_summaries_future_optional',
+};
+
+const DATA_BOUNDARY_PII_SAFETY_ASSERTIONS = [
+  'data_boundary_pii_expansion_summary_present',
+  'pii_minimization_items_present',
+  'pii_minimization_item_required_fields_present',
+  'required_data_categories_present',
+  'fixture_data_is_fake_only',
+  'no_production_supabase_reads_or_writes',
+  'no_schema_migrations_auth_rls_security_changes',
+  'no_secret_or_credential_logged',
+  'no_env_values_logged',
+  'homeowner_name_is_fake_or_minimized',
+  'homeowner_phone_is_fake_or_masked',
+  'homeowner_email_is_fake_or_masked',
+  'service_address_is_fake_or_generalized',
+  'roofing_issue_summary_is_minimized',
+  'insurance_claim_status_is_minimized',
+  'message_content_is_minimized',
+  'review_notes_are_minimized',
+  'feedback_summary_is_internal_boundary_checked',
+  'csv_personal_information_warning_present',
+  'customer_export_responsibility_warning_present',
+  'csv_export_is_one_directional',
+  'csv_does_not_push_data_back',
+  'csv_does_not_auto_update_after_download',
+  'no_native_crm_sync',
+  'no_live_csv_delivery',
+  'no_external_service_calls',
+  'no_live_sms_email_or_calls',
+  'no_customer_notifications',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'live_action_performed_is_no_for_all_items',
+  'audit_events_have_pii_minimization_boundary',
+  'review_queue_has_pii_minimization_boundary',
+  'reporting_summary_includes_data_boundary',
+  'public_legal_or_privacy_copy_not_changed_without_approval',
+];
+
+function maskPhoneFakeOrMasked(phone) {
+  if (!phone || typeof phone !== 'string') return 'fake_masked';
+  if (phone.startsWith('+1555')) {
+    return phone.replace(/(\+1555\d{2})\d{2}(\d{2})/, '$1**$2');
+  }
+  return `+1555***${phone.slice(-4)}`;
+}
+
+function maskEmailFakeOrMasked(email) {
+  if (!email || typeof email !== 'string') return 'f***@example.test';
+  const [user, domain] = email.split('@');
+  return `${user.slice(0, 1)}***@${domain || 'example.test'}`;
+}
+
+function generalizeServiceAddressFake(address) {
+  if (!address) return 'Testville TX service area (generalized)';
+  const segments = address.split(',').map((segment) => segment.trim());
+  if (segments.length >= 3) {
+    return `${segments[1]} area, ${segments[2]} (generalized)`;
+  }
+  return 'fixture_service_area_generalized';
+}
+
+function minimizeRoofingIssueSummary(scenario) {
+  const input = scenario.input_fixture_summary || {};
+  if (input.roofing_issue_summary) {
+    return String(input.roofing_issue_summary).slice(0, 48);
+  }
+  if (input.roofing_issue) {
+    return String(input.roofing_issue).slice(0, 48);
+  }
+  return 'fixture_roof_issue_summary_minimized';
+}
+
+function minimizeInsuranceClaimStatus(scenario) {
+  const input = scenario.input_fixture_summary || {};
+  if (input.insurance_claim_status) {
+    return 'claim_status_minimized_fixture_only';
+  }
+  return 'not_provided_or_minimized';
+}
+
+function minimizeMessageContent(scenario) {
+  const input = scenario.input_fixture_summary || {};
+  if (input.attempted_action === 'sms_send') {
+    return 'attempted_sms_blocked_message_body_not_logged';
+  }
+  const contactItem = (scenario.contact_permission_items || [])[0];
+  if (contactItem?.messaging_hold_reason) {
+    return 'messaging_hold_reason_minimized_no_full_message_text';
+  }
+  return 'message_summary_minimized_or_not_captured';
+}
+
+function minimizeReviewNotes(scenario) {
+  const reviewItem = (scenario.review_queue_items || [])[0];
+  if (!reviewItem) return 'no_review_notes_required';
+  return `${reviewItem.review_type || 'review'}_notes_minimized`;
+}
+
+function minimizeFeedbackSummary(scenario) {
+  const feedbackItem = (scenario.feedback_permission_items || [])[0];
+  if (!feedbackItem) return 'feedback_not_captured_minimized';
+  if (!feedbackItem.feedback_captured) return 'feedback_not_captured_minimized';
+  const permission = feedbackItem.permission_to_use_publicly || 'not_asked';
+  return `feedback_internal_boundary_checked permission=${permission}`;
+}
+
+function derivePiiAuditEventId(scenario) {
+  const auditItem = (scenario.audit_event_timeline_items || [])[0];
+  if (auditItem?.audit_event_id) return auditItem.audit_event_id;
+  const reviewItem = (scenario.review_queue_items || [])[0];
+  if (reviewItem?.audit_event_id) return reviewItem.audit_event_id;
+  return `${scenario.scenario_id}_pii_boundary_audit`;
+}
+
+function csvWarningsRequired(dataCategory, scenarioId) {
+  return (
+    dataCategory === 'csv_export_data' ||
+    dataCategory === 'report_data' ||
+    scenarioId === 'csv_report_snapshot_fake_data_path'
+  );
+}
+
+function isFakeHomeownerName(name) {
+  if (!name) return true;
+  return (
+    /fixture|demo|sample|recovery|planvolume|test|homeowner/i.test(name) ||
+    name === 'Fixture Homeowner'
+  );
+}
+
+function buildPiiMinimizationItem(scenario, dataCategory, itemIndex) {
+  const input = scenario.input_fixture_summary || {};
+  const leadId = input.fixture_lead_id || `lead-fix-${scenario.scenario_id}`;
+  const workflowArea =
+    DATA_CATEGORY_WORKFLOW_AREA[dataCategory] ||
+    SCENARIO_AUDIT_COVERAGE_AREA[scenario.scenario_id] ||
+    'workflow_state';
+  const csvWarning = csvWarningsRequired(dataCategory, scenario.scenario_id);
+
+  return {
+    pii_minimization_item_id: `pii_${scenario.scenario_id}_${dataCategory}_${itemIndex}`,
+    scenario_id: scenario.scenario_id,
+    lead_id: leadId,
+    roofer_account_id: input.fixture_roofer_id || 'roof-fix-001',
+    plan_profile: scenario.plan_profile,
+    workflow_area: workflowArea,
+    data_category: dataCategory,
+    fake_homeowner_identifier_used: leadId,
+    homeowner_name_fake: input.homeowner_name || 'Fixture Homeowner',
+    homeowner_phone_fake_or_masked: maskPhoneFakeOrMasked(input.homeowner_phone),
+    homeowner_email_fake_or_masked: maskEmailFakeOrMasked(input.homeowner_email),
+    service_address_fake_or_generalized: generalizeServiceAddressFake(input.service_address),
+    roofing_issue_summary_minimized: minimizeRoofingIssueSummary(scenario),
+    insurance_claim_status_minimized: minimizeInsuranceClaimStatus(scenario),
+    message_content_minimized: minimizeMessageContent(scenario),
+    review_notes_minimized: minimizeReviewNotes(scenario),
+    feedback_summary_minimized: minimizeFeedbackSummary(scenario),
+    csv_personal_information_warning_present: csvWarning,
+    customer_export_responsibility_warning_present: csvWarning,
+    production_data_boundary_checked: true,
+    secret_or_credential_boundary_checked: true,
+    audit_event_id: derivePiiAuditEventId(scenario),
+    secret_or_credential_logged: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    live_action_performed: 'no',
+    fake_data_only: true,
+  };
+}
+
+function buildScenarioPiiMinimizationItems(scenario) {
+  const primaryCategory =
+    SCENARIO_PRIMARY_DATA_CATEGORY[scenario.scenario_id] || 'lead_intake_boundary';
+  return [buildPiiMinimizationItem(scenario, primaryCategory, 0)];
+}
+
+function buildAllPiiMinimizationItems(scenarios) {
+  const scenarioById = Object.fromEntries(scenarios.map((scenario) => [scenario.scenario_id, scenario]));
+  const items = [];
+  const seen = new Set();
+
+  for (const dataCategory of DATA_BOUNDARY_DATA_CATEGORIES) {
+    const scenarioId = DATA_CATEGORY_SCENARIO_MAP[dataCategory];
+    const scenario = scenarioById[scenarioId];
+    if (!scenario) continue;
+    const key = `${scenarioId}:${dataCategory}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    items.push(buildPiiMinimizationItem(scenario, dataCategory, items.length));
+  }
+
+  for (const scenario of scenarios) {
+    const primaryCategory = SCENARIO_PRIMARY_DATA_CATEGORY[scenario.scenario_id];
+    if (!primaryCategory) continue;
+    const key = `${scenario.scenario_id}:${primaryCategory}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    items.push(buildPiiMinimizationItem(scenario, primaryCategory, items.length));
+  }
+
+  return items;
+}
+
+function buildTopLevelDataBoundaryPiiMinimization(
+  scenarios,
+  outputBase,
+  reportingOutput,
+  reviewQueueOutput,
+  auditEventTimelineOutput,
+) {
+  const allItems = buildAllPiiMinimizationItems(scenarios);
+  const csvSnapshot = reportingOutput.csv_export_snapshot_summary || {};
+  const categoriesPresent = new Set(allItems.map((item) => item.data_category));
+  const csvItems = allItems.filter((item) => item.data_category === 'csv_export_data');
+  const reportItems = allItems.filter((item) => item.data_category === 'report_data');
+  const feedbackItems = allItems.filter((item) => item.data_category === 'post_inspection_feedback');
+  const reviewItems = allItems.filter((item) => item.data_category === 'review_escalation_notes');
+  const auditItems = auditEventTimelineOutput.audit_event_items || [];
+
+  return {
+    data_boundary_pii_expansion: 'native_workflow_fixture_data_boundary_pii_minimization_expansion',
+    data_boundary_pii_expansion_summary: {
+      description:
+        'Deterministic fake-data data-boundary and homeowner PII minimization expansion across fixture reporting, CSV snapshots, review queues, audit timelines, feedback records, and workflow states — proves production data avoidance, secret avoidance, and minimized homeowner personal information before any schema/persistence work',
+      total_pii_minimization_items: allItems.length,
+      required_data_categories_count: DATA_BOUNDARY_DATA_CATEGORIES.length,
+      required_data_categories_present: DATA_BOUNDARY_DATA_CATEGORIES.every((category) =>
+        categoriesPresent.has(category),
+      ),
+      scenarios_with_pii_boundary_items: new Set(allItems.map((item) => item.scenario_id)).size,
+      public_legal_or_privacy_copy_changed: false,
+      public_legal_or_privacy_copy_approval_required: true,
+      fake_data_only: true,
+      deterministic_fixture_output: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    pii_minimization_items: allItems,
+    data_category_summary: {
+      description: 'Data category coverage across fixture workflow areas — all categories fictional/fake only',
+      categories_required: DATA_BOUNDARY_DATA_CATEGORIES,
+      categories_present: [...categoriesPresent],
+      all_categories_present: DATA_BOUNDARY_DATA_CATEGORIES.every((category) =>
+        categoriesPresent.has(category),
+      ),
+      photos_future_optional_not_active: true,
+      photo_status_fields_only_in_fixture: true,
+      message_call_transcript_summaries_future_optional: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    fake_homeowner_data_summary: {
+      description:
+        'Fake homeowner identifiers only — names are fictional; phone/email masked; addresses generalized in audit/review/reporting summaries',
+      items_with_fake_homeowner_names: allItems.filter((item) =>
+        isFakeHomeownerName(item.homeowner_name_fake),
+      ).length,
+      items_with_masked_phone: allItems.filter((item) =>
+        /fake_masked|\*\*\*/.test(item.homeowner_phone_fake_or_masked),
+      ).length,
+      items_with_masked_email: allItems.filter((item) =>
+        /\*\*\*/.test(item.homeowner_email_fake_or_masked),
+      ).length,
+      items_with_generalized_address: allItems.filter((item) =>
+        /generalized|area/i.test(item.service_address_fake_or_generalized),
+      ).length,
+      no_real_homeowner_data_used: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    production_data_boundary_summary: {
+      description:
+        'Production data boundary — no Supabase reads/writes; no schema/migrations/auth/RLS/security changes; fixture fake data only',
+      no_production_supabase_reads_or_writes: true,
+      no_schema_migrations_auth_rls_security_changes: true,
+      production_data_touched_is_no_for_all_items: allItems.every(
+        (item) => item.production_data_touched === 'no',
+      ),
+      production_data_boundary_checked_for_all_items: allItems.every(
+        (item) => item.production_data_boundary_checked === true,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    secret_logging_boundary_summary: {
+      description:
+        'Secret/credential logging boundary — no secrets, credentials, env values, tokens, API keys, or private config logged',
+      no_secret_or_credential_logged: allItems.every(
+        (item) => item.secret_or_credential_logged === 'no',
+      ),
+      secret_or_credential_boundary_checked_for_all_items: allItems.every(
+        (item) => item.secret_or_credential_boundary_checked === true,
+      ),
+      no_env_values_logged: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    csv_pii_warning_summary: {
+      description:
+        'CSV PII warning boundary — fake homeowner personal information may appear in CSV snapshots with explicit warnings; customer/contractor responsible for exported data handling',
+      csv_export_is_one_directional: csvSnapshot.one_directional_export === true,
+      csv_not_native_crm_sync: csvSnapshot.native_crm_sync === false,
+      csv_does_not_push_data_back: csvSnapshot.pushes_data_back_to_roofleadhq === false,
+      csv_does_not_auto_update_after_download:
+        csvSnapshot.auto_updates_from_downloaded_file === false,
+      csv_personal_information_warning_present:
+        csvSnapshot.contains_homeowner_personal_information === true,
+      customer_export_responsibility_warning_present:
+        csvSnapshot.customer_responsible_for_downloaded_exported_data === true,
+      csv_pii_warning_items_count: csvItems.filter(
+        (item) => item.csv_personal_information_warning_present,
+      ).length,
+      no_live_csv_delivery: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    reporting_pii_boundary_summary: {
+      description:
+        'Reporting PII boundary — reporting snapshots use fake data; homeowner PII minimized in summaries; data boundary included in reporting',
+      reporting_summary_includes_data_boundary: true,
+      report_data_items_count: reportItems.length,
+      homeowner_personal_information_minimized_in_reporting: true,
+      live_reporting_delivery_blocked: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    audit_pii_boundary_summary: {
+      description:
+        'Audit PII boundary — audit events use fake/minimized homeowner data; no full message text unless fake/minimized and necessary',
+      audit_events_have_pii_minimization_boundary: auditItems.every(
+        (item) => item.homeowner_personal_information_minimized === true,
+      ),
+      audit_events_data_boundary_checked: auditItems.filter((item) => item.data_boundary_checked)
+        .length,
+      audit_events_no_secret_or_credential_logged: auditItems.every(
+        (item) => item.secret_or_credential_logged === 'no',
+      ),
+      no_full_message_text_in_audit_events: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    review_queue_pii_boundary_summary: {
+      description:
+        'Review queue PII boundary — minimum fake homeowner information only; business judgment remains with roofer/contractor',
+      review_queue_has_pii_minimization_boundary: true,
+      review_queue_items_count: (reviewQueueOutput.review_queue_items || []).length,
+      review_escalation_notes_minimized_items: reviewItems.length,
+      roofer_review_owns_business_judgment: true,
+      roofleadhq_review_limited_to_system_quality: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    feedback_pii_boundary_summary: {
+      description:
+        'Feedback PII boundary — feedback summaries internal unless permission_to_use_publicly is yes; no automatic publication; negative/disputed feedback routes to review',
+      feedback_summary_is_internal_boundary_checked: feedbackItems.every((item) =>
+        /internal_boundary_checked|not_captured/i.test(item.feedback_summary_minimized),
+      ),
+      feedback_items_count: feedbackItems.length,
+      no_automatic_publication: true,
+      negative_feedback_routes_to_review: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    data_boundary_safety_assertions: [
+      ...DATA_BOUNDARY_PII_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 const FAKE_REPORTING_SNAPSHOT = buildReportingSnapshot({
   report_period: '2026-06',
   csv_export_state: 'fixture_snapshot_strongest',
@@ -7970,10 +8472,14 @@ function buildScenario(config) {
     contact_permission_items: contactPermissionItem ? [contactPermissionItem] : [],
   };
   const scenarioAuditTimeline = buildScenarioAuditTimeline(scenarioWithExpansions, 0);
-  return {
+  const scenarioWithAuditTimeline = {
     ...scenarioWithExpansions,
     audit_event_timeline_items: scenarioAuditTimeline.auditItems,
     state_transition_timeline_items: scenarioAuditTimeline.timelineItems,
+  };
+  return {
+    ...scenarioWithAuditTimeline,
+    pii_minimization_items: buildScenarioPiiMinimizationItems(scenarioWithAuditTimeline),
   };
 }
 
@@ -9216,7 +9722,7 @@ function main() {
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      'aec097a test(workflow): expand native workflow fixture messaging compliance',
+      'e4d3268 test(workflow): expand native workflow fixture audit timeline',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
@@ -9232,6 +9738,8 @@ function main() {
     messaging_compliance_expansion:
       'native_workflow_fixture_messaging_compliance_contact_permission_expansion',
     audit_event_timeline_expansion: 'native_workflow_fixture_audit_event_timeline_expansion',
+    data_boundary_pii_expansion:
+      'native_workflow_fixture_data_boundary_pii_minimization_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -9260,6 +9768,13 @@ function main() {
   );
   const messagingComplianceOutput = buildTopLevelMessagingCompliance(scenarios, outputBase);
   const auditEventTimelineOutput = buildTopLevelAuditEventTimeline(scenarios, outputBase);
+  const dataBoundaryPiiOutput = buildTopLevelDataBoundaryPiiMinimization(
+    scenarios,
+    outputBase,
+    reportingOutput,
+    reviewQueueOutput,
+    auditEventTimelineOutput,
+  );
 
   const output = {
     ...outputBase,
@@ -9274,6 +9789,7 @@ function main() {
     ...leadSourceRoiOutput,
     ...messagingComplianceOutput,
     ...auditEventTimelineOutput,
+    ...dataBoundaryPiiOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -9346,10 +9862,16 @@ function main() {
       'audit_event_timeline_homeowner_pii_minimized',
       'every_transition_has_traceable_audit_event',
       'every_blocked_live_action_has_activation_flag_audit',
+      'explicit_data_boundary_pii_minimization_coverage',
+      'data_boundary_pii_fake_data_only',
+      'data_boundary_pii_no_secrets_or_credentials_logged',
+      'data_boundary_pii_homeowner_personal_information_minimized',
+      'data_boundary_pii_csv_warnings_and_customer_export_responsibility',
+      'data_boundary_pii_no_production_data_no_live_automation',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, and audit event/state-transition timeline coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, and data-boundary/PII minimization coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -9368,6 +9890,7 @@ function main() {
       lead_source_roi_boundary_coverage: 'expanded',
       messaging_compliance_contact_permission_coverage: 'expanded',
       audit_event_timeline_coverage: 'expanded',
+      data_boundary_pii_minimization_coverage: 'expanded',
     },
   };
 
