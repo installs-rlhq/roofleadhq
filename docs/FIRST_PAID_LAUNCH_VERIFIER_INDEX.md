@@ -245,6 +245,10 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture Data Boundary / PII Minimization Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
 - Native Workflow Fixture Data Boundary / PII Minimization Expansion wrapper: `scripts/run-native-workflow-fixture-data-boundary-pii-minimization-expansion-dry-run.sh`
 - Native Workflow Fixture Data Boundary / PII Minimization Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-data-boundary-pii-minimization-expansion-readonly.js`
+- Native Workflow Fixture Review Queue Aging / SLA Boundary Expansion doc: `docs/NATIVE_WORKFLOW_FIXTURE_REVIEW_QUEUE_AGING_SLA_BOUNDARY_EXPANSION.md`
+- Native Workflow Fixture Review Queue Aging / SLA Boundary Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Native Workflow Fixture Review Queue Aging / SLA Boundary Expansion wrapper: `scripts/run-native-workflow-fixture-review-queue-aging-sla-boundary-expansion-dry-run.sh`
+- Native Workflow Fixture Review Queue Aging / SLA Boundary Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-review-queue-aging-sla-boundary-expansion-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1900,5 +1904,23 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-native-workflow-fixture-data-boundary-pii-minimization-expansion-readonly.js`
 - Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded data-boundary and PII minimization output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Fixture Review Queue Aging / SLA Boundary Expansion
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_REVIEW_QUEUE_AGING_SLA_BOUNDARY_EXPANSION.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Wrapper: `scripts/run-native-workflow-fixture-review-queue-aging-sla-boundary-expansion-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-review-queue-aging-sla-boundary-expansion-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fixture-only fake-data dry-run expansion deepening explicit review queue aging and SLA-boundary coverage — review_queue_aging_sla_expansion_summary, review_queue_aging_items, review_age_bucket_summary, stale_review_summary, blocked_review_summary, hold_state_summary, manual_next_step_owner_summary, roofer_review_aging_summary, roofleadhq_review_aging_summary, review_sla_boundary_summary, review_queue_aging_safety_assertions; deterministic age buckets; stale review at fixture threshold; blocked/hold states; manual next-step ownership; escalation ready without live notifications; no Twilio/Vapi/Resend/Lindy/Google Calendar/CRM/live CSV/billing.
+- Verifier enforces: doc/runner/wrapper/existing fixture verifier/review queue verifier/data boundary verifier exist; runner and verifier syntax; valid JSON output; demo_ready_with_live_automation_disabled; all 25 scenario IDs; review queue aging summaries and items with required fields; aging coverage types and safety assertions; local E2E runner relationship; first paid roofer relationship; forbidden language absent; no unsafe imports/strings; safety boundaries documented; aggregate/index/context/business-guide wiring.
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS/security changes, no production data, no live automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Native Workflow Fixture Review Queue Aging / SLA Boundary Expansion Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-review-queue-aging-sla-boundary-expansion-readonly.js`
+- Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded review queue aging/SLA boundary output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.

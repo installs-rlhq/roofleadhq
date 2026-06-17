@@ -6170,3 +6170,32 @@ The expansion implements:
 Use preferred lead-to-inspection language (data boundary, PII minimization, fake homeowner data, CSV warning, customer export responsibility, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Review Queue Aging / SLA Boundary Expansion
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_REVIEW_QUEUE_AGING_SLA_BOUNDARY_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-review-queue-aging-sla-boundary-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-review-queue-aging-sla-boundary-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `6e3f68f test(workflow): expand native workflow fixture data boundary`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Review Queue Aging / SLA Boundary Expansion" / "native workflow fixture review queue aging sla boundary expansion" / "review queue aging sla boundary expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level review_queue_aging_sla_expansion_summary, review_queue_aging_items, review_age_bucket_summary
+- stale_review_summary, blocked_review_summary, hold_state_summary
+- manual_next_step_owner_summary, roofer_review_aging_summary, roofleadhq_review_aging_summary
+- review_sla_boundary_summary, review_queue_aging_safety_assertions
+- Per-scenario review_queue_aging_items; deterministic age buckets (0-4h, 4-24h, 24-48h, 48h+); stale review at 24h fixture threshold
+- demo_ready_with_live_automation_disabled preserved; escalation ready without live notifications
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (review queue aging, SLA boundary, stale review, hold state, blocked review, manual next step, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

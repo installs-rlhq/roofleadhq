@@ -802,6 +802,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Review Queue Aging / SLA Boundary Expansion (docs/NATIVE_WORKFLOW_FIXTURE_REVIEW_QUEUE_AGING_SLA_BOUNDARY_EXPANSION.md + scripts/run-native-workflow-fixture-review-queue-aging-sla-boundary-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit review queue aging and SLA-boundary coverage: review_queue_aging_sla_expansion_summary, review_queue_aging_items, review_age_bucket_summary, stale_review_summary, blocked_review_summary, hold_state_summary, manual_next_step_owner_summary, roofer_review_aging_summary, roofleadhq_review_aging_summary, review_sla_boundary_summary, review_queue_aging_safety_assertions; deterministic age buckets (0-4h, 4-24h, 24-48h, 48h+); stale review at 24h fixture threshold; blocked/hold states with hold reason and required manual next step; roofer owns business judgment; RoofLeadHQ/Jason limited to system/workflow/data/routing/quality; escalation ready without live notifications; pricing/estimate/quote/insurance/payment/contract, upset homeowner, AI response, missed data, broken routing, source attribution, dashboard discrepancy, workflow confusion, setup, feedback permission mismatch, missed lead recovery blocked, appointment readiness blocked, post-inspection follow-up blocked, usage volume/custom, data boundary/PII issue coverage; per-scenario review_queue_aging_items; no Twilio/Vapi/Resend/Lindy/Google Calendar/CRM/live CSV/billing; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-review-queue-aging-sla-boundary-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

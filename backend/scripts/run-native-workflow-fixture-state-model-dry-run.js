@@ -1062,6 +1062,51 @@ const REVIEW_TYPE_METADATA = {
     target_state: 'CUSTOM_REVIEW_REQUIRED',
     required_manual_next_step: 'roofer_completes_custom_review_for_multi_location',
   },
+  feedback_permission_mismatch: {
+    review_owner: 'roofer',
+    review_reason: 'feedback_permission_mismatch_requires_roofer_review',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'POST_INSPECTION_OPEN',
+    target_state: 'HOLD',
+    required_manual_next_step: 'roofer_resolves_feedback_permission_mismatch_manually',
+  },
+  missed_lead_recovery_blocked: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'missed_lead_recovery_blocked_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'MISSED_LEAD_RECOVERY_BLOCKED',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_missed_lead_recovery_blocker_and_manual_recovery_path',
+  },
+  appointment_readiness_blocked: {
+    review_owner: 'roofer',
+    review_reason: 'appointment_readiness_blocked_requires_roofer_review',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'APPOINTMENT_NOT_READY',
+    target_state: 'HOLD',
+    required_manual_next_step: 'roofer_resolves_appointment_readiness_blocker_manually',
+  },
+  post_inspection_follow_up_blocked: {
+    review_owner: 'roofer',
+    review_reason: 'post_inspection_follow_up_blocked_requires_roofer_review',
+    business_judgment_required: true,
+    system_quality_issue: false,
+    source_state: 'POST_INSPECTION_OPEN',
+    target_state: 'HOLD',
+    required_manual_next_step: 'roofer_resolves_post_inspection_follow_up_blocker_manually',
+  },
+  data_boundary_pii_issue: {
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'data_boundary_pii_issue_requires_system_quality_review',
+    business_judgment_required: false,
+    system_quality_issue: true,
+    source_state: 'REPORT_PERIOD_DUE',
+    target_state: 'ROOFLEADHQ_REVIEW_NEEDED',
+    required_manual_next_step: 'jason_reviews_data_boundary_pii_issue_and_fixture_boundary_fix',
+  },
 };
 
 const ROUTING_CATALOG_SCENARIO_MAP = {
@@ -1243,6 +1288,483 @@ function buildTopLevelReviewQueue(scenarios, outputBase) {
     },
     review_safety_assertions: [
       ...REVIEW_QUEUE_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
+const FIXTURE_AGING_REFERENCE_ISO = '2026-06-17T12:00:00.000Z';
+const STALE_REVIEW_THRESHOLD_HOURS = 24;
+const REVIEW_SLA_DUE_HOURS = 24;
+const AGE_BUCKETS = ['0-4h', '4-24h', '24-48h', '48h+'];
+
+const REVIEW_QUEUE_AGING_HOURS_PRESET = {
+  pricing_question: 2,
+  estimate_question: 6,
+  quote_request: 12,
+  insurance_complexity: 18,
+  repair_vs_replacement_question: 3,
+  scheduling_issue: 8,
+  homeowner_asks_for_roofer_directly: 5,
+  upset_homeowner: 28,
+  legal_or_carrier_question: 1,
+  payment_or_invoice_question: 14,
+  contract_question: 20,
+  missing_contact_or_service_details: 4,
+  volume_exceeds_500: 55,
+  multi_location: 60,
+  bad_or_unclear_ai_response: 10,
+  missed_data_capture: 22,
+  broken_routing: 30,
+  duplicate_lead_confusion: 7,
+  source_attribution_issue: 16,
+  dashboard_report_discrepancy: 40,
+  workflow_state_confusion: 50,
+  setup_issue: 3,
+  failed_handoff: 25,
+  quality_control_concern: 9,
+  feedback_permission_mismatch: 32,
+  missed_lead_recovery_blocked: 45,
+  appointment_readiness_blocked: 38,
+  post_inspection_follow_up_blocked: 52,
+  data_boundary_pii_issue: 65,
+};
+
+const REVIEW_QUEUE_AGING_HOLD_METADATA = {
+  feedback_permission_mismatch: {
+    hold_state: 'hold',
+    hold_reason: 'feedback_permission_mismatch_requires_manual_resolution',
+    blocked_state: false,
+  },
+  missed_lead_recovery_blocked: {
+    hold_state: 'blocked',
+    hold_reason: 'missed_lead_recovery_blocked_pending_manual_review',
+    blocked_state: true,
+  },
+  appointment_readiness_blocked: {
+    hold_state: 'blocked',
+    hold_reason: 'appointment_readiness_blocker_requires_manual_resolution',
+    blocked_state: true,
+  },
+  post_inspection_follow_up_blocked: {
+    hold_state: 'hold',
+    hold_reason: 'post_inspection_follow_up_blocked_pending_manual_review',
+    blocked_state: true,
+  },
+  data_boundary_pii_issue: {
+    hold_state: 'hold',
+    hold_reason: 'data_boundary_pii_issue_requires_fixture_boundary_review',
+    blocked_state: false,
+  },
+  broken_routing: {
+    hold_state: 'blocked',
+    hold_reason: 'broken_routing_blocks_automated_next_step',
+    blocked_state: true,
+  },
+  workflow_state_confusion: {
+    hold_state: 'hold',
+    hold_reason: 'workflow_state_confusion_requires_manual_clarification',
+    blocked_state: false,
+  },
+};
+
+const REVIEW_QUEUE_AGING_EXTRA_TYPES = [
+  'feedback_permission_mismatch',
+  'missed_lead_recovery_blocked',
+  'appointment_readiness_blocked',
+  'post_inspection_follow_up_blocked',
+  'data_boundary_pii_issue',
+];
+
+const REVIEW_QUEUE_AGING_EXTRA_SCENARIO_MAP = {
+  feedback_permission_mismatch: 'feedback_permission_no_path',
+  missed_lead_recovery_blocked: 'missed_lead_recovery_path',
+  appointment_readiness_blocked: 'missing_information_path',
+  post_inspection_follow_up_blocked: 'post_inspection_still_open_path',
+  data_boundary_pii_issue: 'csv_report_snapshot_fake_data_path',
+};
+
+const REVIEW_QUEUE_AGING_SAFETY_ASSERTIONS = [
+  'review_queue_aging_sla_expansion_summary_present',
+  'review_queue_aging_items_present',
+  'review_queue_aging_item_required_fields_present',
+  'review_age_bucket_summary_present',
+  'stale_review_summary_present',
+  'blocked_review_summary_present',
+  'hold_state_summary_present',
+  'manual_next_step_owner_summary_present',
+  'roofer_review_aging_summary_present',
+  'roofleadhq_review_aging_summary_present',
+  'review_sla_boundary_summary_present',
+  'age_bucket_is_deterministic',
+  'stale_review_flag_uses_fixture_threshold',
+  'blocked_state_has_hold_reason',
+  'hold_state_has_required_manual_next_step',
+  'next_step_owner_present_for_all_review_items',
+  'next_step_due_date_fixture_present_for_all_review_items',
+  'overdue_review_does_not_send_notification',
+  'escalation_ready_does_not_send_notification',
+  'roofer_review_owns_business_judgment_items',
+  'roofleadhq_review_limited_to_system_quality_items',
+  'notification_allowed_is_no_for_all_items',
+  'live_notification_sent_is_no_for_all_items',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'no_twilio_calls',
+  'no_vapi_calls',
+  'no_resend_calls',
+  'no_lindy_live_workflow_execution',
+  'no_google_calendar_calls',
+  'no_crm_sync',
+  'no_live_csv_delivery',
+  'no_billing_or_payment_action',
+  'review_queue_aging_is_fake_data_only',
+  'review_queue_aging_is_audited',
+  'reporting_summary_includes_review_queue_aging',
+  'public_sla_or_support_copy_not_changed_without_approval',
+];
+
+function deriveAgeBucket(ageHours) {
+  if (ageHours < 4) return '0-4h';
+  if (ageHours < 24) return '4-24h';
+  if (ageHours < 48) return '24-48h';
+  return '48h+';
+}
+
+function shiftIsoHours(iso, hours) {
+  const date = new Date(iso);
+  date.setUTCHours(date.getUTCHours() + hours);
+  return date.toISOString();
+}
+
+function buildReviewQueueAgingItem(config) {
+  const meta = REVIEW_TYPE_METADATA[config.review_type] || {};
+  const holdMeta = REVIEW_QUEUE_AGING_HOLD_METADATA[config.review_type] || {};
+  const ageHours =
+    config.age_hours ??
+    REVIEW_QUEUE_AGING_HOURS_PRESET[config.review_type] ??
+    6;
+  const ageBucket = deriveAgeBucket(ageHours);
+  const staleReview = ageHours >= STALE_REVIEW_THRESHOLD_HOURS;
+  const blockedState = config.blocked_state ?? holdMeta.blocked_state ?? false;
+  const holdState = config.hold_state ?? holdMeta.hold_state ?? (blockedState ? 'blocked' : 'none');
+  const holdReason =
+    config.hold_reason ??
+    holdMeta.hold_reason ??
+    config.hold_or_block_reason ??
+    (holdState !== 'none' ? 'review_hold_or_block_requires_manual_next_step' : null);
+  const reviewOwner = config.review_owner || meta.review_owner || 'roofer';
+  const businessJudgmentRequired =
+    config.business_judgment_required ?? meta.business_judgment_required ?? false;
+  const systemQualityIssue = config.system_quality_issue ?? meta.system_quality_issue ?? false;
+  const requiredManualNextStep =
+    config.required_manual_next_step ||
+    meta.required_manual_next_step ||
+    'manual_review_required';
+  const createdAtFixture = shiftIsoHours(FIXTURE_AGING_REFERENCE_ISO, -ageHours);
+  const lastUpdatedAtFixture = shiftIsoHours(
+    FIXTURE_AGING_REFERENCE_ISO,
+    -Math.max(1, Math.floor(ageHours * 0.35)),
+  );
+  const nextStepDueDateFixture = shiftIsoHours(createdAtFixture, REVIEW_SLA_DUE_HOURS);
+  const nextStepOverdue = ageHours > REVIEW_SLA_DUE_HOURS;
+  const escalationReadyForManualReview =
+    staleReview && (blockedState || holdState !== 'none' || nextStepOverdue);
+
+  return {
+    review_queue_aging_item_id: config.review_queue_aging_item_id,
+    scenario_id: config.scenario_id,
+    lead_id: config.lead_id,
+    roofer_account_id: config.roofer_account_id,
+    plan_profile: config.plan_profile,
+    review_item_id: config.review_item_id,
+    review_type: config.review_type,
+    review_owner: reviewOwner,
+    review_reason: config.review_reason || meta.review_reason || 'review_requires_manual_attention',
+    source_state: config.source_state || meta.source_state || 'NEW_LEAD',
+    target_state: config.target_state || meta.target_state || 'HOLD',
+    current_state: config.current_state || config.target_state || meta.target_state || 'HOLD',
+    created_at_fixture: createdAtFixture,
+    last_updated_at_fixture: lastUpdatedAtFixture,
+    age_hours: ageHours,
+    age_bucket: ageBucket,
+    stale_review: staleReview,
+    blocked_state: blockedState,
+    hold_state: holdState,
+    hold_reason: holdReason,
+    required_manual_next_step: requiredManualNextStep,
+    next_step_owner: config.next_step_owner || reviewOwner,
+    next_step_due_date_fixture: nextStepDueDateFixture,
+    next_step_overdue: nextStepOverdue,
+    roofer_review_required:
+      config.roofer_review_required ?? (reviewOwner === 'roofer' || businessJudgmentRequired),
+    roofleadhq_review_required:
+      config.roofleadhq_review_required ??
+      (reviewOwner === 'roofleadhq_jason' || systemQualityIssue),
+    business_judgment_required: businessJudgmentRequired,
+    system_quality_issue: systemQualityIssue,
+    escalation_ready_for_manual_review: escalationReadyForManualReview,
+    notification_allowed: 'no',
+    live_notification_sent: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    audit_event_id: config.audit_event_id,
+    fake_data_only: true,
+  };
+}
+
+function buildReviewQueueAgingItemFromReviewItem(scenario, reviewItem, itemIndex, idPrefix) {
+  const input = scenario.input_fixture_summary || {};
+  return buildReviewQueueAgingItem({
+    review_queue_aging_item_id: `${idPrefix || scenario.scenario_id}_aging_${itemIndex + 1}`,
+    scenario_id: scenario.scenario_id,
+    lead_id: input.fixture_lead_id || `lead-fix-${scenario.scenario_id}`,
+    roofer_account_id: input.fixture_roofer_id || 'roof-fix-001',
+    plan_profile: scenario.plan_profile,
+    review_item_id: reviewItem.review_item_id,
+    review_type: reviewItem.review_type,
+    review_owner: reviewItem.review_owner,
+    review_reason: reviewItem.review_reason,
+    source_state: reviewItem.source_state,
+    target_state: reviewItem.target_state,
+    current_state: reviewItem.target_state,
+    required_manual_next_step: reviewItem.required_manual_next_step,
+    hold_or_block_reason: reviewItem.hold_or_block_reason || scenario.hold_or_block_reason,
+    business_judgment_required: reviewItem.business_judgment_required,
+    system_quality_issue: reviewItem.system_quality_issue,
+    audit_event_id: reviewItem.audit_event_id,
+  });
+}
+
+function buildScenarioReviewQueueAgingItems(scenario) {
+  return (scenario.review_queue_items || []).map((reviewItem, index) =>
+    buildReviewQueueAgingItemFromReviewItem(scenario, reviewItem, index),
+  );
+}
+
+function buildAgingCatalogItems() {
+  const routingTypes = [
+    ...ROOFER_REVIEW_ROUTING_TYPES,
+    ...ROOFLEADHQ_REVIEW_ROUTING_TYPES,
+    ...REVIEW_QUEUE_AGING_EXTRA_TYPES,
+  ];
+  return routingTypes.map((reviewType) => {
+    const scenarioId =
+      ROUTING_CATALOG_SCENARIO_MAP[reviewType] ||
+      REVIEW_QUEUE_AGING_EXTRA_SCENARIO_MAP[reviewType];
+    return buildReviewQueueAgingItem({
+      review_queue_aging_item_id: `aging_catalog_${reviewType}`,
+      scenario_id: scenarioId,
+      lead_id: `lead-fix-${scenarioId}`,
+      roofer_account_id: 'roof-fix-001',
+      plan_profile: 'starter',
+      review_item_id: `routing_catalog_${reviewType}`,
+      review_type: reviewType,
+      audit_event_id: `${scenarioId}_aging_catalog_audit`,
+      hold_or_block_reason: 'review_required_before_next_step',
+    });
+  });
+}
+
+function buildAllReviewQueueAgingItems(scenarios) {
+  const scenarioItems = scenarios.flatMap((scenario) => scenario.review_queue_aging_items || []);
+  const catalogItems = buildAgingCatalogItems();
+  const seen = new Set();
+  const merged = [];
+  for (const item of [...scenarioItems, ...catalogItems]) {
+    if (seen.has(item.review_queue_aging_item_id)) continue;
+    seen.add(item.review_queue_aging_item_id);
+    merged.push(item);
+  }
+  return merged;
+}
+
+function buildTopLevelReviewQueueAgingSlaBoundary(scenarios, outputBase, reviewQueueOutput) {
+  const allItems = buildAllReviewQueueAgingItems(scenarios);
+  const bucketCounts = Object.fromEntries(AGE_BUCKETS.map((bucket) => [bucket, 0]));
+  for (const item of allItems) {
+    bucketCounts[item.age_bucket] = (bucketCounts[item.age_bucket] || 0) + 1;
+  }
+
+  const staleItems = allItems.filter((item) => item.stale_review);
+  const blockedItems = allItems.filter((item) => item.blocked_state);
+  const holdItems = allItems.filter((item) => item.hold_state !== 'none');
+  const rooferAgingItems = allItems.filter((item) => item.roofer_review_required);
+  const roofleadhqAgingItems = allItems.filter((item) => item.roofleadhq_review_required);
+  const overdueItems = allItems.filter((item) => item.next_step_overdue);
+  const escalationReadyItems = allItems.filter((item) => item.escalation_ready_for_manual_review);
+
+  const nextStepOwnerCounts = {};
+  for (const item of allItems) {
+    nextStepOwnerCounts[item.next_step_owner] = (nextStepOwnerCounts[item.next_step_owner] || 0) + 1;
+  }
+
+  return {
+    review_queue_aging_sla_expansion:
+      'native_workflow_fixture_review_queue_aging_sla_boundary_expansion',
+    review_queue_aging_sla_expansion_summary: {
+      description:
+        'Deterministic fake-data review queue aging and SLA-boundary expansion — tracks review item age, manual next-step ownership, stale holds, blocked states, and escalation readiness without live notifications or production data',
+      total_review_queue_aging_items: allItems.length,
+      scenario_aging_items: scenarios.reduce(
+        (count, scenario) => count + (scenario.review_queue_aging_items || []).length,
+        0,
+      ),
+      aging_catalog_items: buildAgingCatalogItems().length,
+      stale_review_threshold_hours: STALE_REVIEW_THRESHOLD_HOURS,
+      review_sla_due_hours: REVIEW_SLA_DUE_HOURS,
+      age_buckets: AGE_BUCKETS,
+      all_age_buckets_represented: AGE_BUCKETS.every((bucket) => bucketCounts[bucket] > 0),
+      stale_review_items: staleItems.length,
+      blocked_review_items: blockedItems.length,
+      hold_state_items: holdItems.length,
+      overdue_review_items: overdueItems.length,
+      escalation_ready_items: escalationReadyItems.length,
+      public_sla_or_support_copy_changed: false,
+      public_sla_or_support_copy_approval_required: true,
+      fake_data_only: true,
+      deterministic_fixture_output: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    review_queue_aging_items: allItems,
+    review_age_bucket_summary: {
+      description: 'Deterministic age buckets for fake-data review queue aging — 0-4h, 4-24h, 24-48h, 48h+',
+      buckets: AGE_BUCKETS,
+      bucket_counts: bucketCounts,
+      all_buckets_represented: AGE_BUCKETS.every((bucket) => bucketCounts[bucket] > 0),
+      age_bucket_is_deterministic: true,
+      fixture_reference_timestamp: FIXTURE_AGING_REFERENCE_ISO,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    stale_review_summary: {
+      description:
+        'Stale review flags when fake age crosses fixture threshold — escalation may be marked but notifications remain blocked',
+      stale_review_threshold_hours: STALE_REVIEW_THRESHOLD_HOURS,
+      stale_review_items_count: staleItems.length,
+      stale_review_flag_uses_fixture_threshold: staleItems.every(
+        (item) => item.age_hours >= STALE_REVIEW_THRESHOLD_HOURS,
+      ),
+      escalation_ready_without_notification: escalationReadyItems.every(
+        (item) =>
+          item.notification_allowed === 'no' && item.live_notification_sent === 'no',
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    blocked_review_summary: {
+      description:
+        'Blocked review states preserve hold reason and required manual next step — no live automation',
+      blocked_review_items_count: blockedItems.length,
+      blocked_state_has_hold_reason: blockedItems.every((item) => Boolean(item.hold_reason)),
+      blocked_state_has_required_manual_next_step: blockedItems.every((item) =>
+        Boolean(item.required_manual_next_step),
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    hold_state_summary: {
+      description: 'Hold states preserve reason and required manual next step for fixture review aging',
+      hold_state_items_count: holdItems.length,
+      hold_states_present: [...new Set(holdItems.map((item) => item.hold_state))],
+      hold_state_has_required_manual_next_step: holdItems.every((item) =>
+        Boolean(item.required_manual_next_step),
+      ),
+      hold_state_has_hold_reason: holdItems.every((item) => Boolean(item.hold_reason)),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_next_step_owner_summary: {
+      description:
+        'Manual next-step ownership — roofer owns business judgment; RoofLeadHQ/Jason owns system/workflow/data/routing/quality issues',
+      next_step_owner_counts: nextStepOwnerCounts,
+      next_step_owner_present_for_all_review_items: allItems.every((item) =>
+        Boolean(item.next_step_owner),
+      ),
+      next_step_due_date_fixture_present_for_all_review_items: allItems.every((item) =>
+        Boolean(item.next_step_due_date_fixture),
+      ),
+      overdue_review_does_not_send_notification: overdueItems.every(
+        (item) =>
+          item.notification_allowed === 'no' && item.live_notification_sent === 'no',
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    roofer_review_aging_summary: {
+      description:
+        'Roofer review aging — business judgment items including pricing, estimates, insurance, contracts, upset homeowners, and blocked appointment/post-inspection paths',
+      total_items: rooferAgingItems.length,
+      roofer_review_owns_business_judgment_items: rooferAgingItems.every(
+        (item) => item.business_judgment_required && !item.system_quality_issue,
+      ),
+      business_judgment_items_count: rooferAgingItems.filter((item) => item.business_judgment_required)
+        .length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    roofleadhq_review_aging_summary: {
+      description:
+        'RoofLeadHQ/Jason review aging limited to system/workflow/data/routing/quality issues — not business judgment',
+      total_items: roofleadhqAgingItems.length,
+      roofleadhq_review_limited_to_system_quality_items: roofleadhqAgingItems.every(
+        (item) => item.system_quality_issue && !item.business_judgment_required,
+      ),
+      system_quality_items_count: roofleadhqAgingItems.filter((item) => item.system_quality_issue)
+        .length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    review_sla_boundary_summary: {
+      description:
+        'Review SLA boundary — fixture-only aging thresholds, overdue tracking, escalation readiness without live notifications',
+      review_sla_due_hours: REVIEW_SLA_DUE_HOURS,
+      stale_review_threshold_hours: STALE_REVIEW_THRESHOLD_HOURS,
+      overdue_items_count: overdueItems.length,
+      escalation_ready_items_count: escalationReadyItems.length,
+      escalation_ready_does_not_send_notification: escalationReadyItems.every(
+        (item) =>
+          item.notification_allowed === 'no' && item.live_notification_sent === 'no',
+      ),
+      reporting_summary_includes_review_queue_aging: true,
+      review_queue_items_in_prior_expansion: (reviewQueueOutput.review_queue_items || []).length,
+      public_sla_or_support_copy_not_changed_without_approval: true,
+      no_twilio_calls: true,
+      no_vapi_calls: true,
+      no_resend_calls: true,
+      no_lindy_live_workflow_execution: true,
+      no_google_calendar_calls: true,
+      no_crm_sync: true,
+      no_live_csv_delivery: true,
+      no_billing_or_payment_action: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    review_queue_aging_safety_assertions: [
+      ...REVIEW_QUEUE_AGING_SAFETY_ASSERTIONS,
       'no_supabase_reads_or_writes',
       'no_production_data',
       'no_live_automation',
@@ -8477,9 +8999,13 @@ function buildScenario(config) {
     audit_event_timeline_items: scenarioAuditTimeline.auditItems,
     state_transition_timeline_items: scenarioAuditTimeline.timelineItems,
   };
-  return {
+  const scenarioFinal = {
     ...scenarioWithAuditTimeline,
     pii_minimization_items: buildScenarioPiiMinimizationItems(scenarioWithAuditTimeline),
+  };
+  return {
+    ...scenarioFinal,
+    review_queue_aging_items: buildScenarioReviewQueueAgingItems(scenarioFinal),
   };
 }
 
@@ -9722,7 +10248,7 @@ function main() {
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      'e4d3268 test(workflow): expand native workflow fixture audit timeline',
+      '6e3f68f test(workflow): expand native workflow fixture data boundary',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
@@ -9740,6 +10266,8 @@ function main() {
     audit_event_timeline_expansion: 'native_workflow_fixture_audit_event_timeline_expansion',
     data_boundary_pii_expansion:
       'native_workflow_fixture_data_boundary_pii_minimization_expansion',
+    review_queue_aging_sla_expansion:
+      'native_workflow_fixture_review_queue_aging_sla_boundary_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -9775,6 +10303,11 @@ function main() {
     reviewQueueOutput,
     auditEventTimelineOutput,
   );
+  const reviewQueueAgingSlaOutput = buildTopLevelReviewQueueAgingSlaBoundary(
+    scenarios,
+    outputBase,
+    reviewQueueOutput,
+  );
 
   const output = {
     ...outputBase,
@@ -9790,6 +10323,7 @@ function main() {
     ...messagingComplianceOutput,
     ...auditEventTimelineOutput,
     ...dataBoundaryPiiOutput,
+    ...reviewQueueAgingSlaOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -9868,10 +10402,15 @@ function main() {
       'data_boundary_pii_homeowner_personal_information_minimized',
       'data_boundary_pii_csv_warnings_and_customer_export_responsibility',
       'data_boundary_pii_no_production_data_no_live_automation',
+      'explicit_review_queue_aging_sla_boundary_coverage',
+      'review_queue_aging_fake_data_only',
+      'review_queue_aging_no_live_notifications',
+      'review_queue_aging_stale_hold_blocked_states_tracked',
+      'review_queue_aging_escalation_ready_without_notification',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, and data-boundary/PII minimization coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, data-boundary/PII minimization, and review queue aging/SLA boundary coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -9891,6 +10430,7 @@ function main() {
       messaging_compliance_contact_permission_coverage: 'expanded',
       audit_event_timeline_coverage: 'expanded',
       data_boundary_pii_minimization_coverage: 'expanded',
+      review_queue_aging_sla_boundary_coverage: 'expanded',
     },
   };
 

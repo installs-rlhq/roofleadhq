@@ -98,7 +98,8 @@ const APPROVED_LINDY_REFERENCE_PATTERNS = [
   /or Lindy/gi,
   /Resend, Lindy/gi,
   /Resend, or Lindy/gi,
-  /SMS, Twilio, Vapi, Calendar, Resend, or Lindy/gi
+  /SMS, Twilio, Vapi, Calendar, Resend, or Lindy/gi,
+  /no_lindy_live_workflow_execution/gi
 ];
 
 function stripApprovedLindyReferences(source) {
