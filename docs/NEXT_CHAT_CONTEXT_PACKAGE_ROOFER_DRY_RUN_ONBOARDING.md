@@ -2385,3 +2385,45 @@ node backend/scripts/verify-native-workflow-fixture-messaging-compliance-contact
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call, no customer notifications. demo_ready_with_live_automation_disabled.
+
+## Native Workflow Fixture Audit Event / Timeline Expansion
+
+The Native Workflow Fixture Audit Event / Timeline Expansion deepens explicit fake-data audit event and state-transition timeline coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_AUDIT_EVENT_TIMELINE_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-audit-event-timeline-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-audit-event-timeline-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Audit Event / Timeline Expansion" / "native workflow fixture audit event timeline expansion" / "audit event timeline expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level audit_event_timeline_expansion_summary, audit_event_items, state_transition_timeline_items
+- guard_decision_trace_summary, review_routing_trace_summary, activation_flag_audit_summary
+- manual_next_step_audit_summary, data_boundary_audit_summary, timeline_reporting_summary
+- audit_event_safety_assertions
+- Per-scenario audit_event_timeline_items and state_transition_timeline_items
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-audit-event-timeline-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-audit-event-timeline-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery. demo_ready_with_live_automation_disabled.

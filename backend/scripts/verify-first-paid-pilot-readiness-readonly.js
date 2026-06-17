@@ -792,6 +792,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Audit Event / Timeline Expansion (docs/NATIVE_WORKFLOW_FIXTURE_AUDIT_EVENT_TIMELINE_EXPANSION.md + scripts/run-native-workflow-fixture-audit-event-timeline-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit audit event and state-transition timeline coverage: audit_event_timeline_expansion_summary, audit_event_items, state_transition_timeline_items, guard_decision_trace_summary, review_routing_trace_summary, activation_flag_audit_summary, manual_next_step_audit_summary, data_boundary_audit_summary, timeline_reporting_summary, audit_event_safety_assertions; 16 audit coverage areas (lead intake, missing info, duplicate review, bad fit, do-not-contact, messaging compliance, follow-up/missed lead, manual outreach, appointment readiness, review queue, post-inspection, feedback permission, reporting/CSV, usage volume, lead source/ROI, activation flag); every transition traceable; roofer vs RoofLeadHQ review ownership; no secrets/credentials/production data/live automation/external calls; per-scenario audit_event_timeline_items and state_transition_timeline_items; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-audit-event-timeline-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

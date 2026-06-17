@@ -6114,3 +6114,32 @@ The expansion implements:
 Use preferred lead-to-inspection language (contact permission, channel eligibility, messaging hold, do-not-contact, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call, no customer notifications. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Audit Event / Timeline Expansion
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_AUDIT_EVENT_TIMELINE_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-audit-event-timeline-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-audit-event-timeline-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `aec097a test(workflow): expand native workflow fixture messaging compliance`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Audit Event / Timeline Expansion" / "native workflow fixture audit event timeline expansion" / "audit event timeline expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level audit_event_timeline_expansion_summary, audit_event_items, state_transition_timeline_items
+- guard_decision_trace_summary, review_routing_trace_summary, activation_flag_audit_summary
+- manual_next_step_audit_summary, data_boundary_audit_summary, timeline_reporting_summary
+- audit_event_safety_assertions
+- Per-scenario audit_event_timeline_items and state_transition_timeline_items; 16 audit coverage areas
+- demo_ready_with_live_automation_disabled preserved; no secrets/credentials/production data/live automation
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (audit trail, state transition, guard decision, review routing, activation flag, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

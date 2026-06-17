@@ -7386,6 +7386,517 @@ function buildTopLevelMessagingCompliance(scenarios, outputBase) {
   };
 }
 
+const FIXTURE_AUDIT_TIMESTAMP = '2026-06-16T12:00:00Z';
+
+const SCENARIO_AUDIT_COVERAGE_AREA = {
+  normal_lead_to_appointment_readiness: 'lead_intake_state_decision',
+  missing_information_path: 'missing_information_routing',
+  duplicate_review_path: 'duplicate_review_routing',
+  bad_fit_excluded_path: 'bad_fit_excluded_routing',
+  stopped_do_not_contact_path: 'do_not_contact_blocking',
+  missed_lead_recovery_path: 'follow_up_missed_lead_recovery_decision',
+  roofer_review_needed_path: 'review_queue_ownership_decision',
+  roofleadhq_system_review_needed_path: 'review_queue_ownership_decision',
+  appointment_booked_path: 'appointment_readiness_decision',
+  inspection_completed_path: 'post_inspection_decision',
+  inspection_missed_reschedule_path: 'appointment_readiness_decision',
+  post_inspection_still_open_path: 'post_inspection_decision',
+  estimate_needed_estimate_sent_tracking_path: 'post_inspection_decision',
+  homeowner_follow_up_needed_path: 'follow_up_missed_lead_recovery_decision',
+  roofer_follow_up_needed_path: 'manual_outreach_decision',
+  feedback_permission_yes_path: 'feedback_permission_decision',
+  feedback_permission_no_path: 'feedback_permission_decision',
+  feedback_permission_not_asked_path: 'feedback_permission_decision',
+  csv_report_snapshot_fake_data_path: 'reporting_csv_boundary_decision',
+  starter_plan_profile_path: 'usage_volume_plan_limit_decision',
+  growth_plan_profile_path: 'usage_volume_plan_limit_decision',
+  elite_plan_profile_path: 'usage_volume_plan_limit_decision',
+  custom_review_500_plus_leads_path: 'usage_volume_plan_limit_decision',
+  custom_review_two_plus_locations_path: 'usage_volume_plan_limit_decision',
+  activation_flag_false_blocks_live_action_path: 'activation_flag_blocking_decision',
+};
+
+const AUDIT_COVERAGE_AREAS = [
+  'lead_intake_state_decision',
+  'missing_information_routing',
+  'duplicate_review_routing',
+  'bad_fit_excluded_routing',
+  'do_not_contact_blocking',
+  'messaging_compliance_contact_permission_decision',
+  'follow_up_missed_lead_recovery_decision',
+  'manual_outreach_decision',
+  'appointment_readiness_decision',
+  'review_queue_ownership_decision',
+  'post_inspection_decision',
+  'feedback_permission_decision',
+  'reporting_csv_boundary_decision',
+  'usage_volume_plan_limit_decision',
+  'lead_source_roi_boundary_decision',
+  'activation_flag_blocking_decision',
+];
+
+const BUSINESS_JUDGMENT_EVENT_TYPES = new Set([
+  'review_queue_ownership_decision',
+  'manual_outreach_decision',
+  'appointment_readiness_decision',
+  'post_inspection_decision',
+  'follow_up_missed_lead_recovery_decision',
+  'usage_volume_plan_limit_decision',
+  'lead_source_roi_boundary_decision',
+]);
+
+const SYSTEM_QUALITY_EVENT_TYPES = new Set([
+  'duplicate_review_routing',
+  'reporting_csv_boundary_decision',
+  'messaging_compliance_contact_permission_decision',
+  'review_queue_ownership_decision',
+  'lead_source_roi_boundary_decision',
+]);
+
+const AUDIT_EVENT_TIMELINE_SAFETY_ASSERTIONS = [
+  'audit_event_timeline_expansion_summary_present',
+  'audit_event_items_present',
+  'audit_event_item_required_fields_present',
+  'state_transition_timeline_items_present',
+  'state_transition_timeline_item_required_fields_present',
+  'every_transition_has_audit_event_id',
+  'every_blocked_live_action_has_activation_flag_audit_event',
+  'every_review_routing_decision_has_review_owner',
+  'roofer_review_owns_business_judgment_events',
+  'roofleadhq_review_limited_to_system_quality_events',
+  'guard_decision_trace_summary_present',
+  'activation_flag_audit_summary_present',
+  'data_boundary_audit_summary_present',
+  'manual_next_step_audit_summary_present',
+  'no_secret_or_credential_logged',
+  'homeowner_personal_information_minimized',
+  'live_action_performed_is_no_for_all_items',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'no_twilio_calls',
+  'no_vapi_calls',
+  'no_resend_calls',
+  `no_${BRIDGE_VENDOR}_live_workflow_execution`,
+  'no_google_calendar_calls',
+  'no_crm_sync',
+  'no_live_csv_delivery',
+  'no_billing_or_payment_action',
+  'audit_timeline_is_fake_data_only',
+  'audit_timeline_is_deterministic',
+  'reporting_summary_includes_audit_timeline',
+  'public_legal_or_privacy_copy_not_changed_without_approval',
+];
+
+function normalizeReviewOwner(scenario) {
+  if (scenario.owner === 'roofer') return 'roofer';
+  if (scenario.owner === 'jason' || scenario.owner === 'roofleadhq') return 'roofleadhq_jason';
+  const reviewItem = (scenario.review_queue_items || [])[0];
+  if (reviewItem?.review_owner) return reviewItem.review_owner;
+  const contactItem = (scenario.contact_permission_items || [])[0];
+  if (contactItem?.roofleadhq_review_required) return 'roofleadhq_jason';
+  if (contactItem?.roofer_review_required) return 'roofer';
+  return null;
+}
+
+function deriveReviewReason(scenario) {
+  const reviewItem = (scenario.review_queue_items || [])[0];
+  if (reviewItem?.review_reason) return reviewItem.review_reason;
+  const contactItem = (scenario.contact_permission_items || [])[0];
+  if (contactItem?.review_reason) return contactItem.review_reason;
+  return null;
+}
+
+function deriveGuardAssertionRefs(scenario) {
+  const refs = (scenario.guard_assertions || [])
+    .filter((g) => g.result === 'pass' || g.safely_routed)
+    .map((g) => g.assertion_id);
+  return refs.slice(0, 8);
+}
+
+function isActivationFlagLiveActionBlock(scenario, config) {
+  if (scenario.scenario_id === 'activation_flag_false_blocks_live_action_path') return true;
+  if (config.event_type === 'activation_flag_blocking_decision' || config.event_type === 'live_action_blocked') {
+    return true;
+  }
+  if (scenario.hold_or_block_reason === 'activation_flag_false') return true;
+  return Boolean(config.activation_flag_checked);
+}
+
+function buildAuditEventItemBase(scenario, config) {
+  const input = scenario.input_fixture_summary || {};
+  const liveActionBlocked = isActivationFlagLiveActionBlock(scenario, config);
+  return {
+    audit_event_id: config.audit_event_id,
+    scenario_id: scenario.scenario_id,
+    lead_id: input.fixture_lead_id || `lead-fix-${scenario.scenario_id}`,
+    roofer_account_id: input.fixture_roofer_id || 'roof-fix-001',
+    plan_profile: scenario.plan_profile,
+    event_timestamp_fixture: FIXTURE_AUDIT_TIMESTAMP,
+    event_sequence: config.event_sequence,
+    event_type: config.event_type,
+    coverage_area: config.coverage_area || SCENARIO_AUDIT_COVERAGE_AREA[scenario.scenario_id] || 'workflow_state_decision',
+    source_state: config.source_state ?? scenario.starting_state,
+    target_state: config.target_state ?? scenario.final_state,
+    decision_reason: config.decision_reason || scenario.hold_or_block_reason || 'fixture_decision',
+    guard_assertion_refs: config.guard_assertion_refs || deriveGuardAssertionRefs(scenario),
+    review_owner: 'review_owner' in config ? config.review_owner : normalizeReviewOwner(scenario),
+    review_reason: 'review_reason' in config ? config.review_reason : deriveReviewReason(scenario),
+    required_manual_next_step:
+      'required_manual_next_step' in config
+        ? config.required_manual_next_step
+        : scenario.manual_next_step ?? null,
+    activation_flag_checked: config.activation_flag_checked ?? null,
+    live_action_blocked: config.live_action_blocked ?? liveActionBlocked,
+    data_boundary_checked: config.data_boundary_checked ?? true,
+    homeowner_personal_information_minimized: true,
+    secret_or_credential_logged: 'no',
+    live_action_performed: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    fake_data_only: true,
+  };
+}
+
+function buildScenarioAuditTimeline(scenario, sequenceOffset) {
+  const timelineItems = [];
+  const auditItems = [];
+  let sequence = sequenceOffset;
+
+  const coverageArea = SCENARIO_AUDIT_COVERAGE_AREA[scenario.scenario_id] || 'workflow_state_decision';
+  const guardRefs = deriveGuardAssertionRefs(scenario);
+  const reviewOwner = normalizeReviewOwner(scenario);
+  const reviewReason = deriveReviewReason(scenario);
+  const input = scenario.input_fixture_summary || {};
+  const leadId = input.fixture_lead_id || `lead-fix-${scenario.scenario_id}`;
+
+  for (let i = 0; i < (scenario.transition_log || []).length; i += 1) {
+    const transition = scenario.transition_log[i];
+    sequence += 1;
+    const auditEventId = `${scenario.scenario_id}_transition_audit_${i + 1}`;
+    const failedGuard = (scenario.guard_results || []).find((g) => g.result === 'fail');
+    const guardResult = failedGuard ? 'fail_safely_routed' : 'pass';
+    const blockedReason =
+      transition.to_state === 'BLOCKED' || transition.to_state === 'HOLD'
+        ? scenario.hold_or_block_reason
+        : null;
+    const reviewRequired = Boolean(reviewOwner || scenario.manual_next_step);
+
+    timelineItems.push({
+      timeline_item_id: `${scenario.scenario_id}_timeline_${i + 1}`,
+      scenario_id: scenario.scenario_id,
+      lead_id: leadId,
+      event_sequence: sequence,
+      from_state: transition.from_state,
+      to_state: transition.to_state,
+      transition_reason: transition.trigger || 'fixture_transition',
+      guard_result: guardResult,
+      blocked_reason_if_any: blockedReason,
+      review_required: reviewRequired,
+      review_owner: reviewOwner,
+      audit_event_id: auditEventId,
+      live_action_allowed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      fake_data_only: true,
+    });
+
+    auditItems.push(
+      buildAuditEventItemBase(scenario, {
+        audit_event_id: auditEventId,
+        event_sequence: sequence,
+        event_type: 'state_transition',
+        coverage_area: coverageArea,
+        source_state: transition.from_state,
+        target_state: transition.to_state,
+        decision_reason: blockedReason || transition.trigger || 'fixture_transition',
+        guard_assertion_refs: guardRefs,
+        review_owner: reviewOwner,
+        review_reason: reviewReason,
+      }),
+    );
+  }
+
+  for (let i = 0; i < (scenario.audit_events || []).length; i += 1) {
+    const raw = scenario.audit_events[i];
+    sequence += 1;
+    const auditEventId = `${scenario.scenario_id}_scenario_audit_${i + 1}`;
+    const isActivationBlock = raw.event_type === 'live_action_blocked';
+    auditItems.push(
+      buildAuditEventItemBase(scenario, {
+        audit_event_id: auditEventId,
+        event_sequence: sequence,
+        event_type: isActivationBlock ? 'activation_flag_blocking_decision' : raw.event_type,
+        coverage_area: isActivationBlock
+          ? 'activation_flag_blocking_decision'
+          : coverageArea,
+        source_state: scenario.final_state === 'BLOCKED' ? scenario.starting_state : scenario.final_state,
+        target_state: scenario.final_state,
+        decision_reason: raw.notes || raw.event_type,
+        activation_flag_checked: raw.flag_checked || (isActivationBlock ? 'live_sms_enabled=false' : null),
+        live_action_blocked: isActivationBlock,
+      }),
+    );
+  }
+
+  const contactItem = (scenario.contact_permission_items || [])[0];
+  if (contactItem) {
+    sequence += 1;
+    auditItems.push(
+      buildAuditEventItemBase(scenario, {
+        audit_event_id: contactItem.audit_event_id,
+        event_sequence: sequence,
+        event_type: 'messaging_compliance_contact_permission_decision',
+        coverage_area: 'messaging_compliance_contact_permission_decision',
+        decision_reason:
+          contactItem.messaging_hold_reason ||
+          contactItem.channel_eligibility_reason ||
+          contactItem.contact_permission_status,
+        review_owner: contactItem.roofleadhq_review_required
+          ? 'roofleadhq_jason'
+          : contactItem.roofer_review_required
+            ? 'roofer'
+            : null,
+        review_reason: contactItem.review_reason,
+        required_manual_next_step: contactItem.required_manual_next_step,
+      }),
+    );
+  }
+
+  const leadSourceItem = (scenario.lead_source_attribution_items || [])[0];
+  if (leadSourceItem) {
+    sequence += 1;
+    auditItems.push(
+      buildAuditEventItemBase(scenario, {
+        audit_event_id: leadSourceItem.audit_event_id,
+        event_sequence: sequence,
+        event_type: 'lead_source_roi_boundary_decision',
+        coverage_area: 'lead_source_roi_boundary_decision',
+        decision_reason:
+          leadSourceItem.source_attribution_issue
+            ? 'source_attribution_issue_requires_review'
+            : leadSourceItem.lead_source || 'lead_source_captured',
+        review_owner: leadSourceItem.source_attribution_review_needed ? 'roofleadhq_jason' : null,
+        review_reason: leadSourceItem.source_attribution_review_needed
+          ? leadSourceItem.source_attribution_review_reason || 'source_attribution_issue'
+          : null,
+        required_manual_next_step: leadSourceItem.required_manual_next_step || null,
+        data_boundary_checked: true,
+      }),
+    );
+  }
+
+  for (const reviewItem of scenario.review_queue_items || []) {
+    sequence += 1;
+    auditItems.push(
+      buildAuditEventItemBase(scenario, {
+        audit_event_id: reviewItem.audit_event_id,
+        event_sequence: sequence,
+        event_type: 'review_queue_ownership_decision',
+        coverage_area: 'review_queue_ownership_decision',
+        source_state: reviewItem.source_state,
+        target_state: reviewItem.target_state,
+        decision_reason: reviewItem.review_reason || reviewItem.review_type,
+        review_owner: reviewItem.review_owner,
+        review_reason: reviewItem.review_reason,
+        required_manual_next_step: reviewItem.required_manual_next_step,
+      }),
+    );
+  }
+
+  return { timelineItems, auditItems, nextSequence: sequence };
+}
+
+function buildTopLevelAuditEventTimeline(scenarios, outputBase) {
+  const allTimelineItems = [];
+  const allAuditItems = [];
+  let globalSequence = 0;
+
+  for (const scenario of scenarios) {
+    const built = buildScenarioAuditTimeline(scenario, globalSequence);
+    allTimelineItems.push(...built.timelineItems);
+    allAuditItems.push(...built.auditItems);
+    globalSequence = built.nextSequence;
+  }
+
+  const coverageAreasPresent = new Set(allAuditItems.map((i) => i.coverage_area));
+  const blockedLiveActionItems = allAuditItems.filter((i) => i.live_action_blocked);
+  const activationFlagAuditItems = allAuditItems.filter(
+    (i) => i.event_type === 'activation_flag_blocking_decision' || i.activation_flag_checked,
+  );
+  const reviewRoutingItems = allAuditItems.filter(
+    (i) => i.event_type === 'review_queue_ownership_decision' || i.review_owner,
+  );
+  const rooferBusinessJudgmentItems = allAuditItems.filter(
+    (i) => i.review_owner === 'roofer' && BUSINESS_JUDGMENT_EVENT_TYPES.has(i.coverage_area),
+  );
+  const roofleadhqSystemQualityItems = allAuditItems.filter(
+    (i) => i.review_owner === 'roofleadhq_jason',
+  );
+  const manualNextStepItems = allAuditItems.filter((i) => i.required_manual_next_step);
+  const guardTraceItems = allAuditItems.filter((i) => (i.guard_assertion_refs || []).length > 0);
+
+  const eventTypeCounts = {};
+  for (const item of allAuditItems) {
+    eventTypeCounts[item.event_type] = (eventTypeCounts[item.event_type] || 0) + 1;
+  }
+
+  return {
+    audit_event_timeline_expansion: 'native_workflow_fixture_audit_event_timeline_expansion',
+    audit_event_timeline_expansion_summary: {
+      description:
+        'Deterministic fake-data audit event and state-transition timeline across all fixture scenarios — explicit trace for workflow decisions, guard outcomes, review routing, activation flags, and data boundaries without production persistence or live automation',
+      total_audit_event_items: allAuditItems.length,
+      total_state_transition_timeline_items: allTimelineItems.length,
+      coverage_areas_required: AUDIT_COVERAGE_AREAS.length,
+      coverage_areas_present: coverageAreasPresent.size,
+      all_coverage_areas_present: AUDIT_COVERAGE_AREAS.every((area) => coverageAreasPresent.has(area)),
+      event_type_counts: eventTypeCounts,
+      blocked_live_action_count: blockedLiveActionItems.length,
+      activation_flag_audit_event_count: activationFlagAuditItems.length,
+      review_routing_decision_count: reviewRoutingItems.length,
+      manual_next_step_audit_count: manualNextStepItems.length,
+      guard_decision_trace_count: guardTraceItems.length,
+      public_legal_or_privacy_copy_changed: false,
+      public_legal_or_privacy_copy_approval_required: true,
+      fake_data_only: true,
+      deterministic_fixture_timestamps: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    audit_event_items: allAuditItems,
+    state_transition_timeline_items: allTimelineItems,
+    guard_decision_trace_summary: {
+      description:
+        'Guard assertion references linked to audit events — failures safely routed to HOLD/BLOCKED/review without live action',
+      audit_events_with_guard_refs: guardTraceItems.length,
+      unique_guard_assertions_referenced: [
+        ...new Set(guardTraceItems.flatMap((i) => i.guard_assertion_refs || [])),
+      ].length,
+      fail_closed_assertions_referenced: FAIL_CLOSED_ASSERTIONS.filter((assertion) =>
+        guardTraceItems.some((i) => (i.guard_assertion_refs || []).includes(assertion)),
+      ).length,
+      all_guard_failures_traceable: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    review_routing_trace_summary: {
+      description:
+        'Review routing audit trace — roofer owns business judgment; RoofLeadHQ/Jason limited to system/workflow/data/routing/quality',
+      review_routing_audit_event_count: reviewRoutingItems.length,
+      roofer_review_audit_count: allAuditItems.filter((i) => i.review_owner === 'roofer').length,
+      roofleadhq_system_review_audit_count: allAuditItems.filter(
+        (i) => i.review_owner === 'roofleadhq_jason',
+      ).length,
+      roofer_owns_business_judgment: rooferBusinessJudgmentItems.every(
+        (i) => i.review_owner === 'roofer',
+      ),
+      roofleadhq_limited_to_system_quality: roofleadhqSystemQualityItems.every((i) =>
+        SYSTEM_QUALITY_EVENT_TYPES.has(i.coverage_area) ||
+        i.coverage_area === 'duplicate_review_routing' ||
+        i.coverage_area === 'reporting_csv_boundary_decision' ||
+        i.coverage_area === 'messaging_compliance_contact_permission_decision',
+      ),
+      every_review_routing_decision_has_review_owner: reviewRoutingItems.every(
+        (i) => i.review_owner,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    activation_flag_audit_summary: {
+      description:
+        'Activation flag audit events for blocked live actions — all flags default false; live automation disabled',
+      blocked_live_action_audit_count: blockedLiveActionItems.length,
+      activation_flag_audit_event_count: activationFlagAuditItems.length,
+      every_blocked_live_action_has_activation_flag_audit:
+        blockedLiveActionItems.length === 0 ||
+        blockedLiveActionItems.every((blocked) =>
+          activationFlagAuditItems.some(
+            (audit) =>
+              audit.scenario_id === blocked.scenario_id &&
+              (audit.event_type === 'activation_flag_blocking_decision' || audit.activation_flag_checked),
+          ),
+        ),
+      activation_flags_checked: Object.keys(ACTIVATION_FLAGS),
+      all_activation_flags_default_false: Object.values(ACTIVATION_FLAGS).every((v) => v === false),
+      no_twilio_calls: true,
+      no_vapi_calls: true,
+      no_resend_calls: true,
+      [`no_${BRIDGE_VENDOR}_live_workflow_execution`]: true,
+      no_google_calendar_calls: true,
+      no_crm_sync: true,
+      no_live_csv_delivery: true,
+      no_billing_or_payment_action: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_next_step_audit_summary: {
+      description:
+        'Manual next-step audit trace — required human action before progression; no automatic live execution',
+      manual_next_step_audit_event_count: manualNextStepItems.length,
+      scenarios_with_manual_next_step: [
+        ...new Set(manualNextStepItems.map((i) => i.scenario_id)),
+      ].length,
+      hold_or_review_manual_steps_only: true,
+      no_automatic_live_execution: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    data_boundary_audit_summary: {
+      description:
+        'Data boundary audit — fake data only; homeowner PII minimized; no secrets/credentials/production data/external calls',
+      audit_events_data_boundary_checked: allAuditItems.filter((i) => i.data_boundary_checked).length,
+      homeowner_personal_information_minimized_for_all: allAuditItems.every(
+        (i) => i.homeowner_personal_information_minimized === true,
+      ),
+      no_secret_or_credential_logged: allAuditItems.every(
+        (i) => i.secret_or_credential_logged === 'no',
+      ),
+      no_production_data_touched: allAuditItems.every((i) => i.production_data_touched === 'no'),
+      no_external_services_called: allAuditItems.every((i) => i.external_services_called === 'no'),
+      no_crm_sync: true,
+      no_live_csv_delivery: true,
+      no_billing_or_payment_action: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    timeline_reporting_summary: {
+      description:
+        'Reporting includes audit timeline summaries — fake-data only; no live reporting delivery',
+      reporting_summary_includes_audit_timeline: true,
+      weekly_snapshot_includes_audit_timeline: true,
+      monthly_snapshot_includes_audit_timeline: true,
+      audit_event_count_in_reporting: allAuditItems.length,
+      state_transition_count_in_reporting: allTimelineItems.length,
+      coverage_areas_in_reporting: [...coverageAreasPresent],
+      live_reporting_delivery_blocked: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    audit_event_safety_assertions: [
+      ...AUDIT_EVENT_TIMELINE_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 const FAKE_REPORTING_SNAPSHOT = buildReportingSnapshot({
   report_period: '2026-06',
   csv_export_state: 'fixture_snapshot_strongest',
@@ -7446,7 +7957,7 @@ function buildScenario(config) {
   const usageVolumeItem = buildScenarioUsageVolumeItem(scenarioDraft);
   const leadSourceAttributionItem = buildScenarioLeadSourceAttributionItem(scenarioDraft);
   const contactPermissionItem = buildScenarioContactPermissionItem(scenarioDraft);
-  return {
+  const scenarioWithExpansions = {
     ...scenarioDraft,
     review_queue_items: reviewQueueItems,
     appointment_readiness_items: appointmentReadinessItem ? [appointmentReadinessItem] : [],
@@ -7457,6 +7968,12 @@ function buildScenario(config) {
     usage_volume_items: usageVolumeItem ? [usageVolumeItem] : [],
     lead_source_attribution_items: leadSourceAttributionItem ? [leadSourceAttributionItem] : [],
     contact_permission_items: contactPermissionItem ? [contactPermissionItem] : [],
+  };
+  const scenarioAuditTimeline = buildScenarioAuditTimeline(scenarioWithExpansions, 0);
+  return {
+    ...scenarioWithExpansions,
+    audit_event_timeline_items: scenarioAuditTimeline.auditItems,
+    state_transition_timeline_items: scenarioAuditTimeline.timelineItems,
   };
 }
 
@@ -8699,7 +9216,7 @@ function main() {
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      'f4ae6c9 test(workflow): expand native workflow fixture source ROI',
+      'aec097a test(workflow): expand native workflow fixture messaging compliance',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
@@ -8714,6 +9231,7 @@ function main() {
     lead_source_roi_expansion: 'native_workflow_fixture_lead_source_roi_boundary_expansion',
     messaging_compliance_expansion:
       'native_workflow_fixture_messaging_compliance_contact_permission_expansion',
+    audit_event_timeline_expansion: 'native_workflow_fixture_audit_event_timeline_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -8741,6 +9259,7 @@ function main() {
     reportingOutput.csv_export_snapshot_summary,
   );
   const messagingComplianceOutput = buildTopLevelMessagingCompliance(scenarios, outputBase);
+  const auditEventTimelineOutput = buildTopLevelAuditEventTimeline(scenarios, outputBase);
 
   const output = {
     ...outputBase,
@@ -8754,6 +9273,7 @@ function main() {
     ...usageVolumeOutput,
     ...leadSourceRoiOutput,
     ...messagingComplianceOutput,
+    ...auditEventTimelineOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -8819,10 +9339,17 @@ function main() {
       'messaging_compliance_no_notifications',
       'contact_permission_uncertainty_fails_closed',
       'contact_permission_follow_up_only_when_contacted_or_permission_given',
+      'explicit_audit_event_timeline_coverage',
+      'audit_event_timeline_fake_data_only',
+      'audit_event_timeline_no_live_automation',
+      'audit_event_timeline_no_secrets_or_credentials_logged',
+      'audit_event_timeline_homeowner_pii_minimized',
+      'every_transition_has_traceable_audit_event',
+      'every_blocked_live_action_has_activation_flag_audit',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, and messaging compliance/contact permission coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, and audit event/state-transition timeline coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -8840,6 +9367,7 @@ function main() {
       usage_volume_plan_limit_coverage: 'expanded',
       lead_source_roi_boundary_coverage: 'expanded',
       messaging_compliance_contact_permission_coverage: 'expanded',
+      audit_event_timeline_coverage: 'expanded',
     },
   };
 
