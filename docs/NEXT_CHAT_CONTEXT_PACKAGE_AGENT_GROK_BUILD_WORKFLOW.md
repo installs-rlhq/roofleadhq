@@ -1734,3 +1734,37 @@ node backend/scripts/verify-native-workflow-fixture-test-mode-dry-run-channel-se
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Test-Mode Channel Preflight Evidence Packet Expansion
+
+The Native Workflow Fixture Test-Mode Channel Preflight Evidence Packet Expansion (native workflow fixture test-mode channel preflight evidence packet expansion / test-mode channel preflight evidence packet expansion) deepens explicit fake-data test-mode channel preflight evidence packet coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_TEST_MODE_CHANNEL_PREFLIGHT_EVIDENCE_PACKET_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-test-mode-channel-preflight-evidence-packet-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-test-mode-channel-preflight-evidence-packet-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Test-Mode Channel Preflight Evidence Packet Expansion" / "native workflow fixture test-mode channel preflight evidence packet expansion" / "test-mode channel preflight evidence packet expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-test-mode-channel-preflight-evidence-packet-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-test-mode-channel-preflight-evidence-packet-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

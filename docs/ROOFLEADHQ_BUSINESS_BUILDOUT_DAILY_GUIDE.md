@@ -6345,3 +6345,32 @@ The expansion implements:
 Use preferred lead-to-inspection language (test-mode channel sequence plan, channel sequencing readiness, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Test-Mode Channel Preflight Evidence Packet Expansion
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_TEST_MODE_CHANNEL_PREFLIGHT_EVIDENCE_PACKET_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-test-mode-channel-preflight-evidence-packet-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-test-mode-channel-preflight-evidence-packet-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `e97a635 test(workflow): add test mode channel sequence plan`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Test-Mode Channel Preflight Evidence Packet Expansion" / "native workflow fixture test-mode channel preflight evidence packet expansion" / "test-mode channel preflight evidence packet expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level test_mode_channel_preflight_evidence_expansion_summary, test_mode_channel_preflight_evidence_items
+- preflight_evidence_packet_summary through preflight_audit_summary
+- test_mode_channel_preflight_safety_assertions
+- Per-scenario test_mode_channel_preflight_evidence_items; 14 deterministic preflight evidence steps
+- Preflight evidence modeling only — no sandbox/production credential reads, no live automation
+- demo_ready_with_live_automation_disabled preserved
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (test-mode channel preflight evidence packet, preflight evidence modeling, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
