@@ -2307,3 +2307,42 @@ node backend/scripts/verify-native-workflow-fixture-usage-volume-plan-limit-expa
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live billing, no customer notifications. demo_ready_with_live_automation_disabled.
+
+## Native Workflow Fixture Lead Source Attribution / ROI Boundary Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_LEAD_SOURCE_ROI_BOUNDARY_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-lead-source-roi-boundary-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-lead-source-roi-boundary-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `9e84029 test(workflow): expand native workflow fixture usage volume`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Lead Source Attribution / ROI Boundary Expansion" / "native workflow fixture lead source roi boundary expansion" / "lead source roi boundary expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level lead_source_roi_expansion_summary, lead_source_attribution_items, lead_source_quality_summary
+- lead_source_unknown_summary, campaign_ad_source_summary, source_conversion_summary
+- source_roi_boundary_summary, customer_provided_spend_summary, source_reporting_summary
+- source_csv_export_summary, lead_source_review_summary, lead_source_safety_assertions
+- Per-scenario lead_source_attribution_items; no ad platform calls, no CRM sync, no live CSV delivery
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-lead-source-roi-boundary-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-lead-source-roi-boundary-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no ad platform integrations, no CRM sync, no live CSV delivery. demo_ready_with_live_automation_disabled.

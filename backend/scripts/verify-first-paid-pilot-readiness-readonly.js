@@ -782,6 +782,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Lead Source Attribution / ROI Boundary Expansion (docs/NATIVE_WORKFLOW_FIXTURE_LEAD_SOURCE_ROI_BOUNDARY_EXPANSION.md + scripts/run-native-workflow-fixture-lead-source-roi-boundary-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit lead source attribution and ROI boundary coverage: lead_source_roi_expansion_summary, lead_source_attribution_items, lead_source_quality_summary, lead_source_unknown_summary, campaign_ad_source_summary, source_conversion_summary, source_roi_boundary_summary, customer_provided_spend_summary, source_reporting_summary, source_csv_export_summary, lead_source_review_summary, lead_source_safety_assertions; required lead source categories (Website form, Google Ads, Google Business Profile, Google Local Services Ads, Facebook Lead Ads, Angi / HomeAdvisor, Thumbtack, Referrals, Manual outreach list, Other); unknown/conflicting attribution review routing; customer-provided spend ROI boundaries; no exact ROI promise; no ad platform API calls; no CRM sync; no live CSV delivery; CSV one-directional/no push-back; per-scenario lead_source_attribution_items with required fields; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-lead-source-roi-boundary-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

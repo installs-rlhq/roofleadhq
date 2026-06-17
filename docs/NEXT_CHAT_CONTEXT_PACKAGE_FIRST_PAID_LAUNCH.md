@@ -6085,3 +6085,46 @@ node backend/scripts/verify-native-workflow-fixture-usage-volume-plan-limit-expa
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live billing, no customer notifications. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Lead Source Attribution / ROI Boundary Expansion
+
+The Native Workflow Fixture Lead Source Attribution / ROI Boundary Expansion deepens explicit lead source attribution and ROI boundary coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_LEAD_SOURCE_ROI_BOUNDARY_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-lead-source-roi-boundary-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-lead-source-roi-boundary-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Clear references added to next-chat context packages and `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Lead Source Attribution / ROI Boundary Expansion" / "native workflow fixture lead source roi boundary expansion" / "lead source roi boundary expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level lead_source_roi_expansion_summary, lead_source_attribution_items, lead_source_quality_summary
+- lead_source_unknown_summary, campaign_ad_source_summary, source_conversion_summary
+- source_roi_boundary_summary, customer_provided_spend_summary, source_reporting_summary
+- source_csv_export_summary, lead_source_review_summary, lead_source_safety_assertions
+- Per-scenario lead_source_attribution_items; no ad platform calls, no CRM sync, no live CSV delivery
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-lead-source-roi-boundary-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-lead-source-roi-boundary-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no ad platform integrations, no CRM sync, no live CSV delivery. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

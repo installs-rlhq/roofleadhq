@@ -5915,6 +5915,784 @@ function buildTopLevelUsageVolume(scenarios, outputBase) {
   };
 }
 
+const LEAD_SOURCE_ATTRIBUTION_SAFETY_ASSERTIONS = [
+  'lead_source_roi_expansion_summary_present',
+  'lead_source_attribution_items_present',
+  'lead_source_item_required_fields_present',
+  'required_lead_source_categories_present',
+  'website_form_source_present',
+  'google_ads_source_present',
+  'google_business_profile_source_present',
+  'google_local_services_ads_source_present',
+  'facebook_lead_ads_source_present',
+  'angi_homeadvisor_source_present',
+  'thumbtack_source_present',
+  'referrals_source_present',
+  'manual_outreach_list_source_present',
+  'other_source_present',
+  'unknown_source_requires_unknown_marker_or_review',
+  'conflicting_source_routes_to_review',
+  'source_attribution_issue_routes_to_system_quality_review',
+  'campaign_or_ad_source_optional_and_marked_when_missing',
+  'roi_depends_on_customer_provided_spend_source_data',
+  'exact_roi_not_promised',
+  'missing_spend_data_blocks_exact_roi_claim',
+  'cost_per_lead_only_when_spend_and_count_present',
+  'cost_per_booked_inspection_only_when_spend_and_booked_count_present',
+  'no_ad_platform_api_calls',
+  'no_crm_sync',
+  'no_live_csv_delivery',
+  'csv_export_is_one_directional',
+  'csv_does_not_push_data_back',
+  'csv_does_not_auto_update_after_download',
+  'homeowner_personal_information_warning_present',
+  'customer_responsible_for_downloaded_exported_data',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'source_roi_decisions_are_audited',
+  'public_roi_or_pricing_copy_not_changed_without_approval',
+];
+
+const LEAD_SOURCE_ATTRIBUTION_PROFILES = {
+  normal_lead_to_appointment_readiness: {
+    lead_source: 'Website form',
+    lead_source_detail: 'fixture_website_contact_form_submission',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 12,
+    booked_inspection_from_source: 4,
+    inspection_completed_from_source: 3,
+    won_from_source: 1,
+    lost_from_source: 1,
+    still_open_from_source: 1,
+    missed_lead_recovery_from_source: 1,
+    feedback_captured_from_source: 2,
+  },
+  missing_information_path: {
+    lead_source: 'Google Ads',
+    lead_source_detail: 'fixture_google_ads_summer_campaign',
+    campaign_or_ad_source_if_known: 'fixture_campaign_summer_2026',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 8,
+    booked_inspection_from_source: 2,
+    inspection_completed_from_source: 1,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 2,
+    missed_lead_recovery_from_source: 1,
+    feedback_captured_from_source: 0,
+    ad_spend_if_provided: 1200,
+  },
+  duplicate_review_path: {
+    lead_source: 'Google Business Profile',
+    lead_source_detail: 'fixture_gbp_message_inquiry',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'medium',
+    total_count_from_source: 6,
+    booked_inspection_from_source: 1,
+    inspection_completed_from_source: 0,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 1,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  bad_fit_excluded_path: {
+    lead_source: 'Google Local Services Ads',
+    lead_source_detail: 'fixture_glsa_lead_outside_service_area',
+    campaign_or_ad_source_if_known: 'fixture_glsa_campaign_roofing',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 4,
+    booked_inspection_from_source: 0,
+    inspection_completed_from_source: 0,
+    won_from_source: 0,
+    lost_from_source: 1,
+    still_open_from_source: 0,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  stopped_do_not_contact_path: {
+    lead_source: 'Facebook Lead Ads',
+    lead_source_detail: 'fixture_facebook_lead_form_storm_damage',
+    campaign_or_ad_source_if_known: 'fixture_fb_campaign_storm_2026',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 5,
+    booked_inspection_from_source: 0,
+    inspection_completed_from_source: 0,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 0,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  missed_lead_recovery_path: {
+    lead_source: 'Angi / HomeAdvisor',
+    lead_source_detail: 'conflicting_angi_and_website_form_attribution',
+    campaign_or_ad_source_if_known: 'unknown',
+    lead_source_status: 'conflicting',
+    source_attribution_confidence: 'low',
+    source_attribution_review_needed: true,
+    source_attribution_review_reason:
+      'source_attribution_issue_requires_roofleadhq_system_quality_review',
+    source_attribution_issue: true,
+    conflicting_source: true,
+    total_count_from_source: 7,
+    booked_inspection_from_source: 1,
+    inspection_completed_from_source: 0,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 2,
+    missed_lead_recovery_from_source: 2,
+    feedback_captured_from_source: 0,
+  },
+  roofer_review_needed_path: {
+    lead_source: 'Thumbtack',
+    lead_source_detail: 'fixture_thumbtack_direct_message',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'medium',
+    total_count_from_source: 9,
+    booked_inspection_from_source: 2,
+    inspection_completed_from_source: 1,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 1,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  roofleadhq_system_review_needed_path: {
+    lead_source: 'Referrals',
+    lead_source_detail: 'fixture_referral_from_past_customer',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 10,
+    booked_inspection_from_source: 3,
+    inspection_completed_from_source: 2,
+    won_from_source: 1,
+    lost_from_source: 0,
+    still_open_from_source: 1,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 1,
+  },
+  appointment_booked_path: {
+    lead_source: 'Manual outreach list',
+    lead_source_detail: 'fixture_manual_outreach_storm_list_june',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 15,
+    booked_inspection_from_source: 5,
+    inspection_completed_from_source: 0,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 5,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  inspection_completed_path: {
+    lead_source: 'Other',
+    lead_source_detail: 'fixture_other_source_yard_sign',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'medium',
+    total_count_from_source: 3,
+    booked_inspection_from_source: 2,
+    inspection_completed_from_source: 2,
+    won_from_source: 1,
+    lost_from_source: 0,
+    still_open_from_source: 0,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 1,
+  },
+  inspection_missed_reschedule_path: {
+    lead_source: 'Website form',
+    lead_source_detail: 'fixture_website_form_reschedule_case',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 6,
+    booked_inspection_from_source: 2,
+    inspection_completed_from_source: 0,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 2,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  post_inspection_still_open_path: {
+    lead_source: 'Google Ads',
+    lead_source_detail: 'fixture_google_ads_brand_campaign',
+    campaign_or_ad_source_if_known: 'fixture_campaign_brand_2026',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 11,
+    booked_inspection_from_source: 3,
+    inspection_completed_from_source: 2,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 3,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 1,
+    ad_spend_if_provided: 2400,
+  },
+  estimate_needed_estimate_sent_tracking_path: {
+    lead_source: 'Google Business Profile',
+    lead_source_detail: 'fixture_gbp_call_tracking_lead',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'medium',
+    total_count_from_source: 8,
+    booked_inspection_from_source: 2,
+    inspection_completed_from_source: 2,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 2,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  homeowner_follow_up_needed_path: {
+    lead_source: 'Google Local Services Ads',
+    lead_source_detail: 'fixture_glsa_follow_up_needed',
+    campaign_or_ad_source_if_known: 'fixture_glsa_campaign_repair',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 7,
+    booked_inspection_from_source: 2,
+    inspection_completed_from_source: 1,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 2,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  roofer_follow_up_needed_path: {
+    lead_source: 'Facebook Lead Ads',
+    lead_source_detail: 'fixture_facebook_lead_roofer_follow_up',
+    campaign_or_ad_source_if_known: 'fixture_fb_campaign_replacement',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 6,
+    booked_inspection_from_source: 2,
+    inspection_completed_from_source: 1,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 1,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  feedback_permission_yes_path: {
+    lead_source: 'Angi / HomeAdvisor',
+    lead_source_detail: 'fixture_angi_lead_feedback_yes',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'medium',
+    total_count_from_source: 5,
+    booked_inspection_from_source: 2,
+    inspection_completed_from_source: 2,
+    won_from_source: 1,
+    lost_from_source: 0,
+    still_open_from_source: 0,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 2,
+  },
+  feedback_permission_no_path: {
+    lead_source: 'Thumbtack',
+    lead_source_detail: 'fixture_thumbtack_feedback_no',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'medium',
+    total_count_from_source: 4,
+    booked_inspection_from_source: 1,
+    inspection_completed_from_source: 1,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 1,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 1,
+  },
+  feedback_permission_not_asked_path: {
+    lead_source: 'Referrals',
+    lead_source_detail: 'fixture_referral_feedback_not_asked',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 6,
+    booked_inspection_from_source: 2,
+    inspection_completed_from_source: 1,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 1,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+  csv_report_snapshot_fake_data_path: {
+    lead_source: 'Manual outreach list',
+    lead_source_detail: 'fixture_manual_outreach_csv_snapshot_strongest',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 20,
+    booked_inspection_from_source: 6,
+    inspection_completed_from_source: 4,
+    won_from_source: 2,
+    lost_from_source: 1,
+    still_open_from_source: 3,
+    missed_lead_recovery_from_source: 1,
+    feedback_captured_from_source: 2,
+    ad_spend_if_provided: 800,
+  },
+  starter_plan_profile_path: {
+    lead_source: 'Website form',
+    lead_source_detail: 'fixture_starter_plan_website_form',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 80,
+    booked_inspection_from_source: 12,
+    inspection_completed_from_source: 8,
+    won_from_source: 3,
+    lost_from_source: 2,
+    still_open_from_source: 5,
+    missed_lead_recovery_from_source: 2,
+    feedback_captured_from_source: 4,
+  },
+  growth_plan_profile_path: {
+    lead_source: 'Google Ads',
+    lead_source_detail: 'fixture_growth_plan_google_ads_tracking',
+    campaign_or_ad_source_if_known: 'fixture_growth_campaign_2026',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 250,
+    booked_inspection_from_source: 45,
+    inspection_completed_from_source: 30,
+    won_from_source: 10,
+    lost_from_source: 8,
+    still_open_from_source: 12,
+    missed_lead_recovery_from_source: 5,
+    feedback_captured_from_source: 15,
+    ad_spend_if_provided: 6000,
+  },
+  elite_plan_profile_path: {
+    lead_source: 'Google Business Profile',
+    lead_source_detail: 'fixture_elite_plan_gbp_segmentation',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 450,
+    booked_inspection_from_source: 80,
+    inspection_completed_from_source: 55,
+    won_from_source: 20,
+    lost_from_source: 15,
+    still_open_from_source: 25,
+    missed_lead_recovery_from_source: 8,
+    feedback_captured_from_source: 30,
+  },
+  custom_review_500_plus_leads_path: {
+    lead_source: 'Google Local Services Ads',
+    lead_source_detail: 'fixture_custom_review_glsa_high_volume',
+    campaign_or_ad_source_if_known: 'fixture_glsa_high_volume_campaign',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'medium',
+    total_count_from_source: 520,
+    booked_inspection_from_source: 90,
+    inspection_completed_from_source: 60,
+    won_from_source: 25,
+    lost_from_source: 18,
+    still_open_from_source: 30,
+    missed_lead_recovery_from_source: 10,
+    feedback_captured_from_source: 35,
+  },
+  custom_review_two_plus_locations_path: {
+    lead_source: 'Facebook Lead Ads',
+    lead_source_detail: 'fixture_custom_review_multi_location_fb',
+    campaign_or_ad_source_if_known: 'fixture_fb_multi_location_campaign',
+    lead_source_status: 'captured',
+    source_attribution_confidence: 'high',
+    total_count_from_source: 240,
+    booked_inspection_from_source: 40,
+    inspection_completed_from_source: 28,
+    won_from_source: 12,
+    lost_from_source: 8,
+    still_open_from_source: 15,
+    missed_lead_recovery_from_source: 4,
+    feedback_captured_from_source: 18,
+  },
+  activation_flag_false_blocks_live_action_path: {
+    lead_source: 'unknown',
+    lead_source_detail: 'source_not_provided_at_intake',
+    campaign_or_ad_source_if_known: 'not_provided',
+    lead_source_status: 'unknown',
+    lead_source_unknown_marker_used: true,
+    source_attribution_confidence: 'unknown',
+    source_attribution_review_needed: true,
+    source_attribution_review_reason: 'unknown_source_requires_explicit_marker_and_review',
+    total_count_from_source: 1,
+    booked_inspection_from_source: 0,
+    inspection_completed_from_source: 0,
+    won_from_source: 0,
+    lost_from_source: 0,
+    still_open_from_source: 1,
+    missed_lead_recovery_from_source: 0,
+    feedback_captured_from_source: 0,
+  },
+};
+
+function computeLeadSourceRoiFields(profile) {
+  const spend = profile.ad_spend_if_provided;
+  const total = profile.total_count_from_source ?? 0;
+  const booked = profile.booked_inspection_from_source ?? 0;
+
+  let costPerLead = 'not_provided';
+  let costPerBooked = 'not_provided';
+  let roiNotes =
+    'ROI depends on customer-provided spend/source data; unavailable without spend data';
+  let roiCalculationAllowed = false;
+
+  if (typeof spend === 'number' && spend > 0) {
+    if (total > 0) {
+      costPerLead = Math.round((spend / total) * 100) / 100;
+    }
+    if (booked > 0) {
+      costPerBooked = Math.round((spend / booked) * 100) / 100;
+    }
+    roiNotes =
+      'Fixture customer-provided spend; indicative cost metrics only — exact ROI not promised';
+    roiCalculationAllowed = true;
+  } else {
+    roiNotes = 'requires customer-provided spend data';
+  }
+
+  return {
+    cost_per_lead_if_provided: costPerLead,
+    cost_per_booked_inspection_if_provided: costPerBooked,
+    roi_notes: roiNotes,
+    roi_calculation_allowed: roiCalculationAllowed,
+  };
+}
+
+function buildLeadSourceAttributionItem(scenario, profile, index) {
+  const input = scenario.input_fixture_summary || {};
+  const leadId = input.fixture_lead_id || `lead-fix-${scenario.scenario_id}`;
+  const planProfile = profile.plan_profile || scenario.plan_profile || input.plan_profile || 'growth';
+  const reportPeriod = profile.report_period || '2026-06';
+  const roiFields = computeLeadSourceRoiFields(profile);
+
+  return {
+    lead_source_item_id: `${scenario.scenario_id}_lead_source_${index + 1}`,
+    scenario_id: scenario.scenario_id,
+    lead_id: leadId,
+    roofer_account_id: input.fixture_roofer_id || 'roof-fix-001',
+    plan_profile: planProfile,
+    report_period: reportPeriod,
+    lead_source: profile.lead_source,
+    lead_source_detail: profile.lead_source_detail,
+    campaign_or_ad_source_if_known: profile.campaign_or_ad_source_if_known || 'not_provided',
+    lead_source_status: profile.lead_source_status || 'captured',
+    lead_source_unknown_marker_used: profile.lead_source_unknown_marker_used ?? false,
+    source_attribution_confidence: profile.source_attribution_confidence || 'medium',
+    source_attribution_review_needed: profile.source_attribution_review_needed ?? false,
+    source_attribution_review_reason: profile.source_attribution_review_reason || null,
+    total_count_from_source: profile.total_count_from_source ?? 0,
+    booked_inspection_from_source: profile.booked_inspection_from_source ?? 0,
+    inspection_completed_from_source: profile.inspection_completed_from_source ?? 0,
+    won_from_source: profile.won_from_source ?? 0,
+    lost_from_source: profile.lost_from_source ?? 0,
+    still_open_from_source: profile.still_open_from_source ?? 0,
+    missed_lead_recovery_from_source: profile.missed_lead_recovery_from_source ?? 0,
+    feedback_captured_from_source: profile.feedback_captured_from_source ?? 0,
+    ad_spend_if_provided: profile.ad_spend_if_provided ?? null,
+    cost_per_lead_if_provided: roiFields.cost_per_lead_if_provided,
+    cost_per_booked_inspection_if_provided: roiFields.cost_per_booked_inspection_if_provided,
+    roi_notes: roiFields.roi_notes,
+    roi_calculation_allowed: roiFields.roi_calculation_allowed,
+    exact_roi_promised: 'no',
+    native_crm_sync_allowed: 'no',
+    pushes_data_back_to_roofleadhq: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    live_csv_delivery_performed: 'no',
+    conflicting_source: profile.conflicting_source ?? false,
+    source_attribution_issue: profile.source_attribution_issue ?? false,
+    audit_event_id: `${scenario.scenario_id}_lead_source_audit_${index + 1}`,
+    fake_data_only: true,
+  };
+}
+
+function buildScenarioLeadSourceAttributionItem(scenario) {
+  const profile = LEAD_SOURCE_ATTRIBUTION_PROFILES[scenario.scenario_id];
+  if (!profile) return null;
+  return buildLeadSourceAttributionItem(scenario, profile, 0);
+}
+
+function buildTopLevelLeadSourceRoiBoundary(scenarios, outputBase, csvSnapshot) {
+  const allItems = scenarios
+    .map((scenario) => buildScenarioLeadSourceAttributionItem(scenario))
+    .filter(Boolean);
+
+  const sourceCounts = {};
+  for (const item of allItems) {
+    sourceCounts[item.lead_source] = (sourceCounts[item.lead_source] || 0) + 1;
+  }
+
+  const reviewNeededItems = allItems.filter((i) => i.source_attribution_review_needed);
+  const unknownMarkerItems = allItems.filter((i) => i.lead_source_unknown_marker_used);
+  const conflictingItems = allItems.filter(
+    (i) => i.conflicting_source || i.lead_source_status === 'conflicting',
+  );
+  const systemQualityReviewItems = allItems.filter((i) => i.source_attribution_issue);
+  const spendProvidedItems = allItems.filter(
+    (i) => typeof i.ad_spend_if_provided === 'number' && i.ad_spend_if_provided > 0,
+  );
+  const campaignKnownItems = allItems.filter(
+    (i) =>
+      i.campaign_or_ad_source_if_known &&
+      i.campaign_or_ad_source_if_known !== 'not_provided' &&
+      i.campaign_or_ad_source_if_known !== 'unknown',
+  );
+  const campaignMissingItems = allItems.filter(
+    (i) =>
+      !i.campaign_or_ad_source_if_known ||
+      i.campaign_or_ad_source_if_known === 'not_provided' ||
+      i.campaign_or_ad_source_if_known === 'unknown',
+  );
+
+  const categoryPresent = {};
+  for (const source of LEAD_SOURCE_NAMES) {
+    categoryPresent[source] = allItems.some((i) => i.lead_source === source);
+  }
+
+  return {
+    lead_source_roi_expansion: 'native_workflow_fixture_lead_source_roi_boundary_expansion',
+    lead_source_roi_expansion_summary: {
+      description:
+        'Deterministic fake-data lead source attribution and ROI boundary expansion across all fixture scenarios — source tracking, conversion outcomes, customer-provided spend boundaries, and CSV/reporting limits without live integrations',
+      total_lead_source_attribution_items: allItems.length,
+      required_lead_source_categories_count: LEAD_SOURCE_NAMES.length,
+      required_lead_source_categories_present: LEAD_SOURCE_NAMES.every(
+        (source) => categoryPresent[source],
+      ),
+      review_needed_item_count: reviewNeededItems.length,
+      unknown_marker_item_count: unknownMarkerItems.length,
+      conflicting_source_item_count: conflictingItems.length,
+      spend_provided_item_count: spendProvidedItems.length,
+      public_roi_or_pricing_copy_changed: false,
+      public_roi_or_pricing_copy_approval_required: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    lead_source_attribution_items: allItems,
+    lead_source_quality_summary: {
+      description: 'Lead source data quality and attribution confidence across fixture scenarios',
+      source_item_counts: sourceCounts,
+      captured_count: allItems.filter((i) => i.lead_source_status === 'captured').length,
+      unknown_count: allItems.filter((i) => i.lead_source_status === 'unknown').length,
+      conflicting_count: conflictingItems.length,
+      high_confidence_count: allItems.filter((i) => i.source_attribution_confidence === 'high')
+        .length,
+      medium_confidence_count: allItems.filter((i) => i.source_attribution_confidence === 'medium')
+        .length,
+      low_confidence_count: allItems.filter((i) => i.source_attribution_confidence === 'low').length,
+      review_needed_count: reviewNeededItems.length,
+      unknown_requires_marker_or_review: unknownMarkerItems.every(
+        (i) => i.lead_source_unknown_marker_used && i.source_attribution_review_needed,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    lead_source_unknown_summary: {
+      description:
+        'Unknown lead source handling — allowed only with explicit unknown marker and review routing',
+      unknown_marker_item_count: unknownMarkerItems.length,
+      unknown_source_requires_unknown_marker_or_review: unknownMarkerItems.every(
+        (i) =>
+          i.lead_source_unknown_marker_used &&
+          (i.source_attribution_review_needed || i.lead_source_status === 'unknown'),
+      ),
+      activation_flag_scenario_demonstrates_unknown_marker: unknownMarkerItems.some(
+        (i) => i.scenario_id === 'activation_flag_false_blocks_live_action_path',
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    campaign_ad_source_summary: {
+      description:
+        'Campaign/ad source is optional — must be marked unknown or not_provided when absent',
+      campaign_known_item_count: campaignKnownItems.length,
+      campaign_missing_or_unknown_item_count: campaignMissingItems.length,
+      campaign_or_ad_source_optional_and_marked_when_missing: campaignMissingItems.every(
+        (i) =>
+          i.campaign_or_ad_source_if_known === 'not_provided' ||
+          i.campaign_or_ad_source_if_known === 'unknown',
+      ),
+      no_ad_platform_api_calls: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    source_conversion_summary: {
+      description:
+        'Source conversion outcomes — booked inspections, completed inspections, won/lost/still open, missed lead recovery, feedback',
+      total_leads_across_sources: allItems.reduce((sum, i) => sum + i.total_count_from_source, 0),
+      total_booked_inspections: allItems.reduce(
+        (sum, i) => sum + i.booked_inspection_from_source,
+        0,
+      ),
+      total_inspections_completed: allItems.reduce(
+        (sum, i) => sum + i.inspection_completed_from_source,
+        0,
+      ),
+      total_won: allItems.reduce((sum, i) => sum + i.won_from_source, 0),
+      total_lost: allItems.reduce((sum, i) => sum + i.lost_from_source, 0),
+      total_still_open: allItems.reduce((sum, i) => sum + i.still_open_from_source, 0),
+      total_missed_lead_recovery: allItems.reduce(
+        (sum, i) => sum + i.missed_lead_recovery_from_source,
+        0,
+      ),
+      total_feedback_captured: allItems.reduce(
+        (sum, i) => sum + i.feedback_captured_from_source,
+        0,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    source_roi_boundary_summary: {
+      description:
+        'ROI boundary rules — depends on customer-provided spend/source data; exact ROI not promised',
+      roi_depends_on_customer_provided_spend_source_data: true,
+      exact_roi_not_promised: true,
+      missing_spend_data_blocks_exact_roi_claim: allItems
+        .filter((i) => i.ad_spend_if_provided === null)
+        .every((i) => !i.roi_calculation_allowed && i.exact_roi_promised === 'no'),
+      cost_per_lead_only_when_spend_and_count_present: allItems.every((i) => {
+        if (typeof i.cost_per_lead_if_provided === 'number') {
+          return (
+            typeof i.ad_spend_if_provided === 'number' &&
+            i.ad_spend_if_provided > 0 &&
+            i.total_count_from_source > 0
+          );
+        }
+        return i.cost_per_lead_if_provided === 'not_provided';
+      }),
+      cost_per_booked_inspection_only_when_spend_and_booked_count_present: allItems.every((i) => {
+        if (typeof i.cost_per_booked_inspection_if_provided === 'number') {
+          return (
+            typeof i.ad_spend_if_provided === 'number' &&
+            i.ad_spend_if_provided > 0 &&
+            i.booked_inspection_from_source > 0
+          );
+        }
+        return i.cost_per_booked_inspection_if_provided === 'not_provided';
+      }),
+      no_ad_platform_api_calls: true,
+      no_crm_sync: true,
+      no_exact_roi_promise_without_customer_data: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    customer_provided_spend_summary: {
+      description:
+        'Customer-provided spend fields — fixture fake data only; RoofLeadHQ does not infer real ad spend',
+      spend_provided_item_count: spendProvidedItems.length,
+      spend_not_provided_item_count: allItems.length - spendProvidedItems.length,
+      spend_sources_with_fixture_data: spendProvidedItems.map((i) => i.lead_source),
+      does_not_infer_real_customer_ad_spend: true,
+      does_not_call_ad_platforms: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    source_reporting_summary: {
+      description:
+        'Source reporting boundaries — fake-data summaries only; no live reporting delivery or CRM sync',
+      reporting_summary_includes_lead_source_attribution: true,
+      weekly_snapshot_includes_lead_source_summary: true,
+      monthly_snapshot_includes_lead_source_summary: true,
+      growth_plan_includes_source_tracking: true,
+      elite_plan_includes_advanced_segmentation: true,
+      starter_plan_limited_source_roi: true,
+      live_reporting_delivery_blocked: true,
+      no_live_reporting_delivery: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    source_csv_export_summary: {
+      description:
+        'CSV export boundaries for lead source data — one-directional, fake-data/local only, no push-back',
+      csv_export_is_one_directional: csvSnapshot.one_directional_export === true,
+      csv_not_native_crm_sync: csvSnapshot.native_crm_sync === false,
+      csv_does_not_push_data_back: csvSnapshot.pushes_data_back_to_roofleadhq === false,
+      csv_does_not_auto_update_after_download:
+        csvSnapshot.auto_updates_from_downloaded_file === false,
+      csv_contains_lead_source_fields: (csvSnapshot.header_row || []).includes('lead_source'),
+      csv_contains_roi_fields:
+        (csvSnapshot.header_row || []).includes('ad_spend_if_provided') &&
+        (csvSnapshot.header_row || []).includes('roi_notes'),
+      homeowner_personal_information_warning_present:
+        csvSnapshot.contains_homeowner_personal_information === true,
+      customer_responsible_for_downloaded_exported_data:
+        csvSnapshot.customer_responsible_for_downloaded_exported_data === true,
+      no_live_csv_delivery: true,
+      live_csv_delivery_performed_is_no_for_all_items: allItems.every(
+        (i) => i.live_csv_delivery_performed === 'no',
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    lead_source_review_summary: {
+      description:
+        'Source attribution review routing — RoofLeadHQ/Jason system-quality review for attribution issues; roofer clarifies own source setup when needed',
+      review_needed_item_count: reviewNeededItems.length,
+      conflicting_source_routes_to_review: conflictingItems.every(
+        (i) => i.source_attribution_review_needed,
+      ),
+      source_attribution_issue_routes_to_system_quality_review: systemQualityReviewItems.every(
+        (i) => i.source_attribution_review_needed && i.source_attribution_issue,
+      ),
+      missed_lead_recovery_path_demonstrates_conflicting_source: conflictingItems.some(
+        (i) => i.scenario_id === 'missed_lead_recovery_path',
+      ),
+      system_quality_review_owner: 'roofleadhq_jason',
+      roofer_clarifies_own_source_setup_when_needed: true,
+      does_not_trigger_live_reporting_or_crm_sync: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    lead_source_safety_assertions: [
+      ...LEAD_SOURCE_ATTRIBUTION_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 const FAKE_REPORTING_SNAPSHOT = buildReportingSnapshot({
   report_period: '2026-06',
   csv_export_state: 'fixture_snapshot_strongest',
@@ -5973,6 +6751,7 @@ function buildScenario(config) {
     manualOutreachItem,
   );
   const usageVolumeItem = buildScenarioUsageVolumeItem(scenarioDraft);
+  const leadSourceAttributionItem = buildScenarioLeadSourceAttributionItem(scenarioDraft);
   return {
     ...scenarioDraft,
     review_queue_items: reviewQueueItems,
@@ -5982,6 +6761,7 @@ function buildScenario(config) {
     manual_outreach_items: manualOutreachItem ? [manualOutreachItem] : [],
     missed_lead_recovery_items: missedLeadRecoveryItem ? [missedLeadRecoveryItem] : [],
     usage_volume_items: usageVolumeItem ? [usageVolumeItem] : [],
+    lead_source_attribution_items: leadSourceAttributionItem ? [leadSourceAttributionItem] : [],
   };
 }
 
@@ -7224,7 +8004,7 @@ function main() {
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      '1b68a5d test(workflow): expand native workflow fixture guard assertions',
+      '9e84029 test(workflow): expand native workflow fixture usage volume',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
@@ -7236,6 +8016,7 @@ function main() {
     manual_outreach_expansion: 'native_workflow_fixture_manual_outreach_expansion',
     missed_lead_recovery_expansion: 'native_workflow_fixture_missed_lead_recovery_expansion',
     usage_volume_expansion: 'native_workflow_fixture_usage_volume_plan_limit_expansion',
+    lead_source_roi_expansion: 'native_workflow_fixture_lead_source_roi_boundary_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -7257,6 +8038,11 @@ function main() {
   const manualOutreachOutput = buildTopLevelManualOutreach(scenarios, outputBase);
   const missedLeadRecoveryOutput = buildTopLevelMissedLeadRecovery(scenarios, outputBase);
   const usageVolumeOutput = buildTopLevelUsageVolume(scenarios, outputBase);
+  const leadSourceRoiOutput = buildTopLevelLeadSourceRoiBoundary(
+    scenarios,
+    outputBase,
+    reportingOutput.csv_export_snapshot_summary,
+  );
 
   const output = {
     ...outputBase,
@@ -7268,6 +8054,7 @@ function main() {
     ...manualOutreachOutput,
     ...missedLeadRecoveryOutput,
     ...usageVolumeOutput,
+    ...leadSourceRoiOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -7321,10 +8108,16 @@ function main() {
       'usage_volume_no_live_billing',
       'usage_volume_no_auto_plan_change',
       'usage_volume_no_notifications',
+      'explicit_lead_source_roi_boundary_coverage',
+      'lead_source_attribution_fake_data_only',
+      'lead_source_roi_no_ad_platform_calls',
+      'lead_source_roi_no_crm_sync',
+      'lead_source_roi_no_live_csv_delivery',
+      'lead_source_roi_exact_roi_not_promised',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, and usage volume plan-limit coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, and lead source attribution/ROI boundary coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -7340,6 +8133,7 @@ function main() {
       manual_outreach_coverage: 'expanded',
       missed_lead_recovery_coverage: 'expanded',
       usage_volume_plan_limit_coverage: 'expanded',
+      lead_source_roi_boundary_coverage: 'expanded',
     },
   };
 
