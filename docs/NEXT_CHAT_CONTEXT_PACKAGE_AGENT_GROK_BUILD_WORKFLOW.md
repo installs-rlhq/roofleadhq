@@ -1559,3 +1559,46 @@ node backend/scripts/verify-native-workflow-fixture-review-queue-aging-sla-bound
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Manual-to-Native Handoff Rehearsal Expansion
+
+The Native Workflow Fixture Manual-to-Native Handoff Rehearsal Expansion deepens explicit fake-data manual-to-native handoff rehearsal coverage from the fixture state model dry-run.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_MANUAL_TO_NATIVE_HANDOFF_REHEARSAL_EXPANSION.md`
+- `backend/scripts/verify-native-workflow-fixture-manual-to-native-handoff-rehearsal-expansion-readonly.js`
+- `scripts/run-native-workflow-fixture-manual-to-native-handoff-rehearsal-expansion-dry-run.sh`
+
+Updated files:
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Manual-to-Native Handoff Rehearsal Expansion" / "native workflow fixture manual to native handoff rehearsal expansion" / "manual to native handoff rehearsal expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level manual_to_native_handoff_expansion_summary, manual_handoff_items, manual_record_mapping_summary
+- native_state_mapping_summary, handoff_gap_summary, handoff_review_summary
+- handoff_blocker_summary, handoff_owner_summary, handoff_audit_summary
+- handoff_reporting_summary, manual_to_native_handoff_safety_assertions
+- Per-scenario manual_handoff_items; 14 manual record sources; 19 native entity targets; 17 handoff coverage areas
+- Rehearsal only — no production persistence, schema changes, or live automation
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-manual-to-native-handoff-rehearsal-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-manual-to-native-handoff-rehearsal-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.

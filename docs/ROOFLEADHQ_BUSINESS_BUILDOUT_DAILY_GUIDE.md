@@ -6199,3 +6199,33 @@ The expansion implements:
 Use preferred lead-to-inspection language (review queue aging, SLA boundary, stale review, hold state, blocked review, manual next step, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Manual-to-Native Handoff Rehearsal Expansion
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_MANUAL_TO_NATIVE_HANDOFF_REHEARSAL_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-manual-to-native-handoff-rehearsal-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-manual-to-native-handoff-rehearsal-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `5c47fab test(workflow): expand native workflow fixture review aging`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Manual-to-Native Handoff Rehearsal Expansion" / "native workflow fixture manual to native handoff rehearsal expansion" / "manual to native handoff rehearsal expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level manual_to_native_handoff_expansion_summary, manual_handoff_items, manual_record_mapping_summary
+- native_state_mapping_summary, handoff_gap_summary, handoff_review_summary
+- handoff_blocker_summary, handoff_owner_summary, handoff_audit_summary
+- handoff_reporting_summary, manual_to_native_handoff_safety_assertions
+- Per-scenario manual_handoff_items; 14 manual record sources; 19 native entity targets; 17 handoff coverage areas
+- Rehearsal only — no production persistence, schema changes, or live automation
+- demo_ready_with_live_automation_disabled preserved
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (manual-to-native handoff, manual record mapping, native state mapping, handoff rehearsal, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

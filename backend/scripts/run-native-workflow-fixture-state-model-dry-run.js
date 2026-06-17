@@ -1774,6 +1774,1277 @@ function buildTopLevelReviewQueueAgingSlaBoundary(scenarios, outputBase, reviewQ
   };
 }
 
+const MANUAL_RECORD_SOURCES = [
+  'founder_manual_tracker',
+  'guided_setup_intake_worksheet',
+  'lead_source_setup_worksheet',
+  'response_follow_up_preferences_worksheet',
+  'booking_calendar_preferences_worksheet',
+  'review_queue_tracker',
+  'missed_lead_recovery_tracker',
+  'manual_outreach_tracker',
+  'appointment_readiness_tracker',
+  'booked_inspection_tracker',
+  'post_inspection_follow_up_tracker',
+  'feedback_capture_tracker',
+  'reporting_snapshot_tracker',
+  'csv_export_snapshot_tracker',
+];
+
+const NATIVE_ENTITY_TARGETS = [
+  'roofer_account',
+  'plan_profile',
+  'lead_record',
+  'lead_source',
+  'homeowner_contact',
+  'message_thread',
+  'follow_up_state',
+  'manual_outreach_record',
+  'missed_lead_recovery_state',
+  'appointment_readiness_record',
+  'booked_inspection_record',
+  'post_inspection_record',
+  'feedback_record',
+  'review_queue_item',
+  'report_snapshot',
+  'csv_export_snapshot',
+  'usage_volume_record',
+  'safety_gate_record',
+  'audit_event',
+];
+
+const HANDOFF_COVERAGE_AREAS = [
+  'setup_preference_handoff',
+  'lead_intake_handoff',
+  'contact_permission_handoff',
+  'follow_up_state_handoff',
+  'missed_lead_recovery_handoff',
+  'manual_outreach_handoff',
+  'appointment_readiness_handoff',
+  'review_queue_handoff',
+  'post_inspection_handoff',
+  'feedback_permission_handoff',
+  'reporting_snapshot_handoff',
+  'csv_export_snapshot_handoff',
+  'usage_volume_handoff',
+  'lead_source_roi_handoff',
+  'audit_event_timeline_handoff',
+  'data_boundary_pii_minimization_handoff',
+  'review_aging_sla_handoff',
+];
+
+const HANDOFF_COVERAGE_CATALOG = [
+  {
+    coverage_area: 'setup_preference_handoff',
+    manual_record_source: 'guided_setup_intake_worksheet',
+    manual_record_type: 'setup_preferences',
+    manual_record_status: 'captured_pending_native_mapping',
+    native_entity_target: 'roofer_account',
+    native_state_target: 'SETUP_PREFERENCES_MAPPED',
+    source_manual_status: 'worksheet_complete',
+    mapped_native_state: 'SETUP_PREFERENCES_CAPTURED',
+    mapping_confidence: 'high',
+    scenario_id: 'starter_plan_profile_path',
+    requires_setup_preferences: true,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'setup_preference_handoff',
+    manual_record_source: 'booking_calendar_preferences_worksheet',
+    manual_record_type: 'calendar_preferences',
+    manual_record_status: 'missing_blocks_handoff',
+    native_entity_target: 'appointment_readiness_record',
+    native_state_target: 'APPOINTMENT_READINESS_BLOCKED',
+    source_manual_status: 'preferences_missing',
+    mapped_native_state: 'BLOCKED_MISSING_CALENDAR_PREFERENCES',
+    mapping_confidence: 'high',
+    scenario_id: 'missing_information_path',
+    requires_setup_preferences: true,
+    missing_setup_preferences: true,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: true,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: true,
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'missing_calendar_preferences_blocks_appointment_handoff',
+  },
+  {
+    coverage_area: 'lead_intake_handoff',
+    manual_record_source: 'founder_manual_tracker',
+    manual_record_type: 'lead_intake_row',
+    manual_record_status: 'captured_pending_native_mapping',
+    native_entity_target: 'lead_record',
+    native_state_target: 'NEW_LEAD',
+    source_manual_status: 'manual_intake_logged',
+    mapped_native_state: 'NEW_LEAD',
+    mapping_confidence: 'high',
+    scenario_id: 'normal_lead_to_appointment_readiness',
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'lead_intake_handoff',
+    manual_record_source: 'guided_setup_intake_worksheet',
+    manual_record_type: 'homeowner_contact',
+    manual_record_status: 'captured_pending_native_mapping',
+    native_entity_target: 'homeowner_contact',
+    native_state_target: 'CONTACT_CAPTURED',
+    source_manual_status: 'worksheet_complete',
+    mapped_native_state: 'CONTACT_CAPTURED',
+    mapping_confidence: 'high',
+    scenario_id: 'normal_lead_to_appointment_readiness',
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'contact_permission_handoff',
+    manual_record_source: 'response_follow_up_preferences_worksheet',
+    manual_record_type: 'contact_permission',
+    manual_record_status: 'permission_unknown_blocks_messaging',
+    native_entity_target: 'message_thread',
+    native_state_target: 'MESSAGING_BLOCKED',
+    source_manual_status: 'permission_unknown',
+    mapped_native_state: 'HOLD_PERMISSION_REVIEW',
+    mapping_confidence: 'medium',
+    scenario_id: 'missing_information_path',
+    contact_permission_uncertain: true,
+    messaging_related: true,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: true,
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'contact_permission_uncertainty_blocks_messaging_handoff',
+  },
+  {
+    coverage_area: 'follow_up_state_handoff',
+    manual_record_source: 'response_follow_up_preferences_worksheet',
+    manual_record_type: 'follow_up_preferences',
+    manual_record_status: 'captured_pending_native_mapping',
+    native_entity_target: 'follow_up_state',
+    native_state_target: 'FOLLOW_UP_SCHEDULED',
+    source_manual_status: 'preferences_captured',
+    mapped_native_state: 'FOLLOW_UP_PENDING',
+    mapping_confidence: 'high',
+    scenario_id: 'homeowner_follow_up_needed_path',
+    messaging_related: true,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'missed_lead_recovery_handoff',
+    manual_record_source: 'missed_lead_recovery_tracker',
+    manual_record_type: 'missed_lead_recovery',
+    manual_record_status: 'recovery_pending_manual_review',
+    native_entity_target: 'missed_lead_recovery_state',
+    native_state_target: 'RECOVERY_IN_PROGRESS',
+    source_manual_status: 'recovery_logged',
+    mapped_native_state: 'MISSED_LEAD_RECOVERY_PENDING',
+    mapping_confidence: 'high',
+    scenario_id: 'missed_lead_recovery_path',
+    messaging_related: false,
+    outreach_related: true,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'manual_outreach_handoff',
+    manual_record_source: 'manual_outreach_tracker',
+    manual_record_type: 'manual_outreach',
+    manual_record_status: 'outreach_blocked_do_not_contact',
+    native_entity_target: 'manual_outreach_record',
+    native_state_target: 'OUTREACH_BLOCKED',
+    source_manual_status: 'do_not_contact_set',
+    mapped_native_state: 'BLOCKED_DO_NOT_CONTACT',
+    mapping_confidence: 'high',
+    scenario_id: 'stopped_do_not_contact_path',
+    do_not_contact: true,
+    messaging_related: false,
+    outreach_related: true,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+    review_reason: 'do_not_contact_blocks_outreach_handoff',
+  },
+  {
+    coverage_area: 'appointment_readiness_handoff',
+    manual_record_source: 'appointment_readiness_tracker',
+    manual_record_type: 'appointment_readiness',
+    manual_record_status: 'readiness_pending_calendar_owner',
+    native_entity_target: 'appointment_readiness_record',
+    native_state_target: 'APPOINTMENT_READINESS_PENDING',
+    source_manual_status: 'readiness_check_logged',
+    mapped_native_state: 'APPOINTMENT_READINESS_PENDING',
+    mapping_confidence: 'high',
+    scenario_id: 'normal_lead_to_appointment_readiness',
+    requires_calendar_owner: true,
+    requires_booking_preferences: true,
+    calendar_event_created: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: true,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'appointment_readiness_handoff',
+    manual_record_source: 'booked_inspection_tracker',
+    manual_record_type: 'booked_inspection',
+    manual_record_status: 'inspection_booked_fixture_only',
+    native_entity_target: 'booked_inspection_record',
+    native_state_target: 'INSPECTION_BOOKED',
+    source_manual_status: 'manual_booking_logged',
+    mapped_native_state: 'INSPECTION_BOOKED',
+    mapping_confidence: 'high',
+    scenario_id: 'appointment_booked_path',
+    requires_calendar_owner: true,
+    requires_booking_preferences: true,
+    calendar_event_created: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: true,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'review_queue_handoff',
+    manual_record_source: 'review_queue_tracker',
+    manual_record_type: 'review_queue_item',
+    manual_record_status: 'review_pending_roofer_judgment',
+    native_entity_target: 'review_queue_item',
+    native_state_target: 'HOLD_ROOFER_REVIEW',
+    source_manual_status: 'pricing_question_logged',
+    mapped_native_state: 'HOLD_ROOFER_REVIEW',
+    mapping_confidence: 'high',
+    scenario_id: 'roofer_review_needed_path',
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: true,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+    review_reason: 'pricing_question_requires_roofer_business_judgment',
+  },
+  {
+    coverage_area: 'review_queue_handoff',
+    manual_record_source: 'review_queue_tracker',
+    manual_record_type: 'review_queue_item',
+    manual_record_status: 'review_pending_system_quality',
+    native_entity_target: 'review_queue_item',
+    native_state_target: 'HOLD_SYSTEM_REVIEW',
+    source_manual_status: 'broken_routing_logged',
+    mapped_native_state: 'HOLD_SYSTEM_REVIEW',
+    mapping_confidence: 'high',
+    scenario_id: 'roofleadhq_system_review_needed_path',
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: true,
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'broken_routing_requires_system_quality_review',
+  },
+  {
+    coverage_area: 'post_inspection_handoff',
+    manual_record_source: 'post_inspection_follow_up_tracker',
+    manual_record_type: 'post_inspection_follow_up',
+    manual_record_status: 'estimate_needed_tracking_only',
+    native_entity_target: 'post_inspection_record',
+    native_state_target: 'POST_INSPECTION_ESTIMATE_NEEDED',
+    source_manual_status: 'estimate_needed_logged',
+    mapped_native_state: 'ESTIMATE_NEEDED_TRACKING_ONLY',
+    mapping_confidence: 'high',
+    scenario_id: 'estimate_needed_estimate_sent_tracking_path',
+    post_inspection_related: true,
+    generates_estimate_quote_invoice_payment: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: true,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+    review_reason: 'estimate_tracking_only_no_automation',
+  },
+  {
+    coverage_area: 'feedback_permission_handoff',
+    manual_record_source: 'feedback_capture_tracker',
+    manual_record_type: 'feedback_permission',
+    manual_record_status: 'permission_yes_captured',
+    native_entity_target: 'feedback_record',
+    native_state_target: 'FEEDBACK_PERMISSION_YES',
+    source_manual_status: 'permission_yes',
+    mapped_native_state: 'PERMISSION_TO_USE_PUBLICLY_YES',
+    mapping_confidence: 'high',
+    scenario_id: 'feedback_permission_yes_path',
+    feedback_related: true,
+    permission_to_use_publicly: 'yes',
+    publishes_feedback_or_testimonial: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: true,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'feedback_permission_handoff',
+    manual_record_source: 'feedback_capture_tracker',
+    manual_record_type: 'feedback_permission',
+    manual_record_status: 'permission_no_captured',
+    native_entity_target: 'feedback_record',
+    native_state_target: 'FEEDBACK_PERMISSION_NO',
+    source_manual_status: 'permission_no',
+    mapped_native_state: 'PERMISSION_TO_USE_PUBLICLY_NO',
+    mapping_confidence: 'high',
+    scenario_id: 'feedback_permission_no_path',
+    feedback_related: true,
+    permission_to_use_publicly: 'no',
+    publishes_feedback_or_testimonial: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: true,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'feedback_permission_handoff',
+    manual_record_source: 'feedback_capture_tracker',
+    manual_record_type: 'feedback_permission',
+    manual_record_status: 'permission_not_asked_captured',
+    native_entity_target: 'feedback_record',
+    native_state_target: 'FEEDBACK_PERMISSION_NOT_ASKED',
+    source_manual_status: 'permission_not_asked',
+    mapped_native_state: 'PERMISSION_TO_USE_PUBLICLY_NOT_ASKED',
+    mapping_confidence: 'high',
+    scenario_id: 'feedback_permission_not_asked_path',
+    feedback_related: true,
+    permission_to_use_publicly: 'not_asked',
+    publishes_feedback_or_testimonial: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: true,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'reporting_snapshot_handoff',
+    manual_record_source: 'reporting_snapshot_tracker',
+    manual_record_type: 'report_snapshot',
+    manual_record_status: 'snapshot_captured_fixture_only',
+    native_entity_target: 'report_snapshot',
+    native_state_target: 'REPORT_SNAPSHOT_CAPTURED',
+    source_manual_status: 'snapshot_logged',
+    mapped_native_state: 'REPORT_SNAPSHOT_FAKE_DATA',
+    mapping_confidence: 'high',
+    scenario_id: 'csv_report_snapshot_fake_data_path',
+    csv_related: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'csv_export_snapshot_handoff',
+    manual_record_source: 'csv_export_snapshot_tracker',
+    manual_record_type: 'csv_export_snapshot',
+    manual_record_status: 'export_snapshot_fixture_only',
+    native_entity_target: 'csv_export_snapshot',
+    native_state_target: 'CSV_EXPORT_SNAPSHOT_CAPTURED',
+    source_manual_status: 'csv_snapshot_logged',
+    mapped_native_state: 'CSV_EXPORT_ONE_DIRECTIONAL',
+    mapping_confidence: 'high',
+    scenario_id: 'csv_report_snapshot_fake_data_path',
+    csv_related: true,
+    csv_one_directional: true,
+    csv_is_crm_sync: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'usage_volume_handoff',
+    manual_record_source: 'founder_manual_tracker',
+    manual_record_type: 'usage_volume',
+    manual_record_status: 'volume_tracked_fixture_only',
+    native_entity_target: 'usage_volume_record',
+    native_state_target: 'USAGE_VOLUME_TRACKED',
+    source_manual_status: 'volume_logged',
+    mapped_native_state: 'USAGE_VOLUME_FAKE_DATA',
+    mapping_confidence: 'high',
+    scenario_id: 'custom_review_500_plus_leads_path',
+    usage_volume_related: true,
+    triggers_live_billing: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'lead_source_roi_handoff',
+    manual_record_source: 'lead_source_setup_worksheet',
+    manual_record_type: 'lead_source_attribution',
+    manual_record_status: 'attribution_captured_fixture_only',
+    native_entity_target: 'lead_source',
+    native_state_target: 'LEAD_SOURCE_ATTRIBUTED',
+    source_manual_status: 'source_worksheet_complete',
+    mapped_native_state: 'LEAD_SOURCE_ATTRIBUTION_FAKE_DATA',
+    mapping_confidence: 'high',
+    scenario_id: 'growth_plan_profile_path',
+    source_roi_related: true,
+    promises_exact_roi: false,
+    calls_ad_platforms: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'audit_event_timeline_handoff',
+    manual_record_source: 'founder_manual_tracker',
+    manual_record_type: 'audit_event',
+    manual_record_status: 'audit_event_logged_fixture_only',
+    native_entity_target: 'audit_event',
+    native_state_target: 'AUDIT_EVENT_CAPTURED',
+    source_manual_status: 'audit_logged',
+    mapped_native_state: 'AUDIT_EVENT_TIMELINE_ENTRY',
+    mapping_confidence: 'high',
+    scenario_id: 'activation_flag_false_blocks_live_action_path',
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofleadhq_jason',
+  },
+  {
+    coverage_area: 'data_boundary_pii_minimization_handoff',
+    manual_record_source: 'founder_manual_tracker',
+    manual_record_type: 'data_boundary_check',
+    manual_record_status: 'boundary_checked_fixture_only',
+    native_entity_target: 'safety_gate_record',
+    native_state_target: 'DATA_BOUNDARY_VERIFIED',
+    source_manual_status: 'boundary_check_logged',
+    mapped_native_state: 'PII_MINIMIZATION_VERIFIED',
+    mapping_confidence: 'high',
+    scenario_id: 'csv_report_snapshot_fake_data_path',
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: true,
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'data_boundary_pii_minimization_requires_fixture_verification',
+  },
+  {
+    coverage_area: 'review_aging_sla_handoff',
+    manual_record_source: 'review_queue_tracker',
+    manual_record_type: 'review_aging',
+    manual_record_status: 'stale_review_escalation_ready',
+    native_entity_target: 'review_queue_item',
+    native_state_target: 'REVIEW_AGING_ESCALATION_READY',
+    source_manual_status: 'stale_review_logged',
+    mapped_native_state: 'ESCALATION_READY_NO_NOTIFICATION',
+    mapping_confidence: 'high',
+    scenario_id: 'roofleadhq_system_review_needed_path',
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: true,
+    review_owner: 'roofleadhq_jason',
+    review_reason: 'stale_review_requires_manual_escalation_without_notification',
+  },
+  {
+    coverage_area: 'setup_preference_handoff',
+    manual_record_source: 'lead_source_setup_worksheet',
+    manual_record_type: 'lead_source_setup',
+    manual_record_status: 'worksheet_complete',
+    native_entity_target: 'lead_source',
+    native_state_target: 'LEAD_SOURCE_SETUP_COMPLETE',
+    source_manual_status: 'worksheet_complete',
+    mapped_native_state: 'LEAD_SOURCE_SETUP_CAPTURED',
+    mapping_confidence: 'high',
+    scenario_id: 'elite_plan_profile_path',
+    requires_setup_preferences: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+  {
+    coverage_area: 'setup_preference_handoff',
+    manual_record_source: 'response_follow_up_preferences_worksheet',
+    manual_record_type: 'follow_up_setup_preferences',
+    manual_record_status: 'worksheet_complete',
+    native_entity_target: 'plan_profile',
+    native_state_target: 'FOLLOW_UP_PREFERENCES_MAPPED',
+    source_manual_status: 'worksheet_complete',
+    mapped_native_state: 'FOLLOW_UP_PREFERENCES_CAPTURED',
+    mapping_confidence: 'high',
+    scenario_id: 'growth_plan_profile_path',
+    requires_setup_preferences: false,
+    messaging_related: false,
+    outreach_related: false,
+    appointment_related: false,
+    post_inspection_related: false,
+    feedback_related: false,
+    csv_related: false,
+    usage_volume_related: false,
+    source_roi_related: false,
+    business_judgment_required: false,
+    system_quality_issue: false,
+    review_owner: 'roofer',
+  },
+];
+
+const MANUAL_TO_NATIVE_HANDOFF_SAFETY_ASSERTIONS = [
+  'manual_to_native_handoff_expansion_summary_present',
+  'manual_handoff_items_present',
+  'manual_handoff_item_required_fields_present',
+  'required_manual_record_sources_present',
+  'required_native_entity_targets_present',
+  'manual_record_mapping_summary_present',
+  'native_state_mapping_summary_present',
+  'handoff_gap_summary_present',
+  'handoff_review_summary_present',
+  'handoff_blocker_summary_present',
+  'handoff_owner_summary_present',
+  'handoff_audit_summary_present',
+  'setup_preferences_required_before_handoff_ready',
+  'contact_permission_uncertainty_blocks_messaging_handoff',
+  'do_not_contact_blocks_outreach_handoff',
+  'appointment_handoff_requires_calendar_owner_and_booking_preferences',
+  'appointment_handoff_does_not_create_calendar_event',
+  'post_inspection_handoff_does_not_generate_estimate_quote_invoice_payment',
+  'feedback_handoff_preserves_permission_values_yes_no_not_asked',
+  'feedback_handoff_does_not_publish_feedback_or_testimonial',
+  'csv_handoff_is_one_directional',
+  'csv_handoff_is_not_crm_sync',
+  'usage_volume_handoff_does_not_trigger_live_billing',
+  'source_roi_handoff_does_not_promise_exact_roi',
+  'source_roi_handoff_does_not_call_ad_platforms',
+  'roofer_review_owns_business_judgment_handoff_items',
+  'roofleadhq_review_limited_to_system_quality_handoff_items',
+  'handoff_ready_requires_data_boundary_check',
+  'handoff_ready_requires_pii_minimization_check',
+  'handoff_ready_requires_audit_event',
+  'production_persistence_allowed_is_no_for_all_items',
+  'schema_change_allowed_is_no_for_all_items',
+  'live_action_allowed_is_no_for_all_items',
+  'notification_sent_is_no_for_all_items',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'no_supabase_calls',
+  'no_schema_migrations_auth_rls_security_changes',
+  'no_twilio_calls',
+  'no_vapi_calls',
+  'no_resend_calls',
+  'no_lindy_live_workflow_execution',
+  'no_google_calendar_calls',
+  'no_crm_sync',
+  'no_live_csv_delivery',
+  'no_billing_or_payment_action',
+  'manual_to_native_handoff_is_fake_data_only',
+  'manual_to_native_handoff_is_audited',
+  'reporting_summary_includes_manual_to_native_handoff',
+  'public_implementation_or_go_live_copy_not_changed_without_approval',
+];
+
+function resolveHandoffReadiness(config) {
+  let handoffReady = config.handoff_ready;
+  let handoffBlocked = config.handoff_blocked ?? false;
+  let handoffBlockReason = config.handoff_block_reason ?? null;
+
+  if (handoffReady === undefined) {
+    handoffReady = true;
+    if (config.missing_setup_preferences) {
+      handoffReady = false;
+      handoffBlocked = true;
+      handoffBlockReason = 'missing_required_setup_preferences';
+    } else if (config.contact_permission_uncertain && config.messaging_related) {
+      handoffReady = false;
+      handoffBlocked = true;
+      handoffBlockReason = 'contact_permission_uncertainty_blocks_messaging_handoff';
+    } else if (config.do_not_contact && config.outreach_related) {
+      handoffReady = false;
+      handoffBlocked = true;
+      handoffBlockReason = 'do_not_contact_blocks_outreach_handoff';
+    } else if (
+      config.appointment_related &&
+      (config.missing_calendar_owner || config.missing_booking_preferences)
+    ) {
+      handoffReady = false;
+      handoffBlocked = true;
+      handoffBlockReason = 'missing_calendar_owner_or_booking_preferences';
+    }
+  }
+
+  const dataBoundaryChecked = config.data_boundary_checked ?? true;
+  const piiMinimizationChecked = config.pii_minimization_checked ?? true;
+  const hasAuditEvent = Boolean(config.audit_event_id);
+
+  if (handoffReady) {
+    if (!dataBoundaryChecked || !piiMinimizationChecked || !hasAuditEvent) {
+      handoffReady = false;
+      handoffBlocked = true;
+      handoffBlockReason =
+        handoffBlockReason || 'handoff_ready_requires_boundary_pii_audit_checks';
+    }
+    if (!config.next_step_owner) {
+      handoffReady = false;
+      handoffBlocked = true;
+      handoffBlockReason = handoffBlockReason || 'missing_next_step_owner';
+    }
+  }
+
+  return { handoffReady, handoffBlocked, handoffBlockReason, dataBoundaryChecked, piiMinimizationChecked };
+}
+
+function buildManualHandoffItem(config) {
+  const reviewOwner = config.review_owner || 'roofer';
+  const businessJudgmentRequired = config.business_judgment_required ?? false;
+  const systemQualityIssue = config.system_quality_issue ?? false;
+  const {
+    handoffReady,
+    handoffBlocked,
+    handoffBlockReason,
+    dataBoundaryChecked,
+    piiMinimizationChecked,
+  } = resolveHandoffReadiness(config);
+
+  return {
+    manual_handoff_item_id: config.manual_handoff_item_id,
+    scenario_id: config.scenario_id,
+    lead_id: config.lead_id,
+    roofer_account_id: config.roofer_account_id,
+    plan_profile: config.plan_profile,
+    manual_record_source: config.manual_record_source,
+    manual_record_type: config.manual_record_type,
+    manual_record_status: config.manual_record_status,
+    native_entity_target: config.native_entity_target,
+    native_state_target: config.native_state_target,
+    source_manual_status: config.source_manual_status,
+    mapped_native_state: config.mapped_native_state,
+    mapping_confidence: config.mapping_confidence,
+    handoff_ready: handoffReady,
+    handoff_blocked: handoffBlocked,
+    handoff_block_reason: handoffBlockReason,
+    required_manual_next_step:
+      config.required_manual_next_step ||
+      (handoffBlocked ? 'resolve_handoff_blocker_before_native_mapping' : 'confirm_native_mapping_rehearsal'),
+    next_step_owner: config.next_step_owner || reviewOwner,
+    roofer_review_required:
+      config.roofer_review_required ?? (reviewOwner === 'roofer' || businessJudgmentRequired),
+    roofleadhq_review_required:
+      config.roofleadhq_review_required ??
+      (reviewOwner === 'roofleadhq_jason' || systemQualityIssue),
+    review_reason:
+      config.review_reason ||
+      (businessJudgmentRequired
+        ? 'business_judgment_requires_roofer_review'
+        : systemQualityIssue
+          ? 'system_quality_issue_requires_roofleadhq_review'
+          : 'handoff_rehearsal_review'),
+    business_judgment_required: businessJudgmentRequired,
+    system_quality_issue: systemQualityIssue,
+    data_boundary_checked: dataBoundaryChecked,
+    pii_minimization_checked: piiMinimizationChecked,
+    audit_event_id: config.audit_event_id,
+    production_persistence_allowed: 'no',
+    schema_change_allowed: 'no',
+    live_action_allowed: 'no',
+    notification_sent: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    coverage_area: config.coverage_area,
+    messaging_related: config.messaging_related === true,
+    outreach_related: config.outreach_related === true,
+    appointment_related: config.appointment_related === true,
+    post_inspection_related: config.post_inspection_related === true,
+    feedback_related: config.feedback_related === true,
+    csv_related: config.csv_related === true,
+    usage_volume_related: config.usage_volume_related === true,
+    source_roi_related: config.source_roi_related === true,
+    permission_to_use_publicly: config.permission_to_use_publicly || null,
+    calendar_event_created: config.calendar_event_created === true ? true : false,
+    csv_one_directional: config.csv_one_directional === true ? true : config.csv_related ? true : null,
+    csv_is_crm_sync: config.csv_is_crm_sync === true ? true : false,
+    generates_estimate_quote_invoice_payment:
+      config.generates_estimate_quote_invoice_payment === true ? true : false,
+    publishes_feedback_or_testimonial: config.publishes_feedback_or_testimonial === true ? true : false,
+    triggers_live_billing: config.triggers_live_billing === true ? true : false,
+    promises_exact_roi: config.promises_exact_roi === true ? true : false,
+    calls_ad_platforms: config.calls_ad_platforms === true ? true : false,
+    fake_data_only: true,
+    rehearsal_only: true,
+  };
+}
+
+function buildHandoffItemFromCatalogEntry(entry, itemIndex) {
+  const scenarioId = entry.scenario_id;
+  return buildManualHandoffItem({
+    manual_handoff_item_id: `handoff_catalog_${entry.coverage_area}_${itemIndex + 1}`,
+    scenario_id: scenarioId,
+    lead_id: `lead-fix-${scenarioId}`,
+    roofer_account_id: 'roof-fix-001',
+    plan_profile: entry.plan_profile || 'starter',
+    manual_record_source: entry.manual_record_source,
+    manual_record_type: entry.manual_record_type,
+    manual_record_status: entry.manual_record_status,
+    native_entity_target: entry.native_entity_target,
+    native_state_target: entry.native_state_target,
+    source_manual_status: entry.source_manual_status,
+    mapped_native_state: entry.mapped_native_state,
+    mapping_confidence: entry.mapping_confidence,
+    coverage_area: entry.coverage_area,
+    next_step_owner: entry.review_owner,
+    review_owner: entry.review_owner,
+    review_reason: entry.review_reason,
+    business_judgment_required: entry.business_judgment_required,
+    system_quality_issue: entry.system_quality_issue,
+    audit_event_id: `${scenarioId}_handoff_catalog_audit_${itemIndex + 1}`,
+    missing_setup_preferences: entry.missing_setup_preferences,
+    contact_permission_uncertain: entry.contact_permission_uncertain,
+    do_not_contact: entry.do_not_contact,
+    missing_calendar_owner: entry.requires_calendar_owner && entry.scenario_id === 'missing_information_path',
+    missing_booking_preferences: entry.missing_setup_preferences,
+    appointment_related: entry.appointment_related,
+    messaging_related: entry.messaging_related,
+    outreach_related: entry.outreach_related,
+    post_inspection_related: entry.post_inspection_related,
+    feedback_related: entry.feedback_related,
+    csv_related: entry.csv_related,
+    usage_volume_related: entry.usage_volume_related,
+    source_roi_related: entry.source_roi_related,
+    permission_to_use_publicly: entry.permission_to_use_publicly,
+    calendar_event_created: entry.calendar_event_created,
+    csv_one_directional: entry.csv_one_directional,
+    csv_is_crm_sync: entry.csv_is_crm_sync,
+    generates_estimate_quote_invoice_payment: entry.generates_estimate_quote_invoice_payment,
+    publishes_feedback_or_testimonial: entry.publishes_feedback_or_testimonial,
+    triggers_live_billing: entry.triggers_live_billing,
+    promises_exact_roi: entry.promises_exact_roi,
+    calls_ad_platforms: entry.calls_ad_platforms,
+  });
+}
+
+function buildScenarioManualHandoffItems(scenario) {
+  const input = scenario.input_fixture_summary || {};
+  const leadId = input.fixture_lead_id || `lead-fix-${scenario.scenario_id}`;
+  const rooferAccountId = input.fixture_roofer_id || 'roof-fix-001';
+  const items = [];
+
+  const primaryCatalogMatches = HANDOFF_COVERAGE_CATALOG.filter(
+    (entry) => entry.scenario_id === scenario.scenario_id,
+  );
+  for (const [index, entry] of primaryCatalogMatches.entries()) {
+    items.push(
+      buildManualHandoffItem({
+        manual_handoff_item_id: `${scenario.scenario_id}_handoff_${index + 1}`,
+        scenario_id: scenario.scenario_id,
+        lead_id: leadId,
+        roofer_account_id: rooferAccountId,
+        plan_profile: scenario.plan_profile,
+        manual_record_source: entry.manual_record_source,
+        manual_record_type: entry.manual_record_type,
+        manual_record_status: entry.manual_record_status,
+        native_entity_target: entry.native_entity_target,
+        native_state_target: entry.native_state_target,
+        source_manual_status: entry.source_manual_status,
+        mapped_native_state: entry.mapped_native_state,
+        mapping_confidence: entry.mapping_confidence,
+        coverage_area: entry.coverage_area,
+        next_step_owner: entry.review_owner,
+        review_owner: entry.review_owner,
+        review_reason: entry.review_reason,
+        business_judgment_required: entry.business_judgment_required,
+        system_quality_issue: entry.system_quality_issue,
+        audit_event_id: `${scenario.scenario_id}_handoff_audit_${index + 1}`,
+        missing_setup_preferences: entry.missing_setup_preferences,
+        contact_permission_uncertain: entry.contact_permission_uncertain,
+        do_not_contact: entry.do_not_contact,
+        missing_calendar_owner:
+          entry.requires_calendar_owner && scenario.scenario_id === 'missing_information_path',
+        missing_booking_preferences: entry.missing_setup_preferences,
+        appointment_related: entry.appointment_related,
+        messaging_related: entry.messaging_related,
+        outreach_related: entry.outreach_related,
+        post_inspection_related: entry.post_inspection_related,
+        feedback_related: entry.feedback_related,
+        csv_related: entry.csv_related,
+        usage_volume_related: entry.usage_volume_related,
+        source_roi_related: entry.source_roi_related,
+        permission_to_use_publicly: entry.permission_to_use_publicly,
+        calendar_event_created: entry.calendar_event_created,
+        csv_one_directional: entry.csv_one_directional,
+        csv_is_crm_sync: entry.csv_is_crm_sync,
+        generates_estimate_quote_invoice_payment: entry.generates_estimate_quote_invoice_payment,
+        publishes_feedback_or_testimonial: entry.publishes_feedback_or_testimonial,
+        triggers_live_billing: entry.triggers_live_billing,
+        promises_exact_roi: entry.promises_exact_roi,
+        calls_ad_platforms: entry.calls_ad_platforms,
+      }),
+    );
+  }
+
+  if (!items.length) {
+    items.push(
+      buildManualHandoffItem({
+        manual_handoff_item_id: `${scenario.scenario_id}_handoff_default`,
+        scenario_id: scenario.scenario_id,
+        lead_id: leadId,
+        roofer_account_id: rooferAccountId,
+        plan_profile: scenario.plan_profile,
+        manual_record_source: 'founder_manual_tracker',
+        manual_record_type: 'scenario_state_mapping',
+        manual_record_status: 'captured_pending_native_mapping',
+        native_entity_target: 'lead_record',
+        native_state_target: scenario.final_state || 'UNKNOWN',
+        source_manual_status: scenario.starting_state || 'NEW_LEAD',
+        mapped_native_state: scenario.final_state || 'UNKNOWN',
+        mapping_confidence: 'medium',
+        coverage_area: 'lead_intake_handoff',
+        next_step_owner: 'roofer',
+        review_owner: 'roofer',
+        audit_event_id: `${scenario.scenario_id}_handoff_default_audit`,
+        business_judgment_required: false,
+        system_quality_issue: false,
+      }),
+    );
+  }
+
+  return items;
+}
+
+function buildAllManualHandoffItems(scenarios) {
+  const scenarioItems = scenarios.flatMap((scenario) => scenario.manual_handoff_items || []);
+  const catalogItems = HANDOFF_COVERAGE_CATALOG.map((entry, index) =>
+    buildHandoffItemFromCatalogEntry(entry, index),
+  );
+  const seen = new Set();
+  const merged = [];
+  for (const item of [...scenarioItems, ...catalogItems]) {
+    if (seen.has(item.manual_handoff_item_id)) continue;
+    seen.add(item.manual_handoff_item_id);
+    merged.push(item);
+  }
+  return merged;
+}
+
+function buildTopLevelManualToNativeHandoffRehearsal(scenarios, outputBase, reviewQueueAgingOutput) {
+  const allItems = buildAllManualHandoffItems(scenarios);
+  const readyItems = allItems.filter((item) => item.handoff_ready);
+  const blockedItems = allItems.filter((item) => item.handoff_blocked);
+  const gapItems = allItems.filter((item) => !item.handoff_ready);
+  const rooferReviewItems = allItems.filter((item) => item.roofer_review_required);
+  const roofleadhqReviewItems = allItems.filter((item) => item.roofleadhq_review_required);
+  const businessJudgmentItems = allItems.filter((item) => item.business_judgment_required);
+  const systemQualityItems = allItems.filter((item) => item.system_quality_issue);
+  const auditedItems = allItems.filter((item) => Boolean(item.audit_event_id));
+
+  const manualSourceCounts = Object.fromEntries(
+    MANUAL_RECORD_SOURCES.map((source) => [source, 0]),
+  );
+  const nativeTargetCounts = Object.fromEntries(
+    NATIVE_ENTITY_TARGETS.map((target) => [target, 0]),
+  );
+  const coverageCounts = Object.fromEntries(
+    HANDOFF_COVERAGE_AREAS.map((area) => [area, 0]),
+  );
+
+  for (const item of allItems) {
+    manualSourceCounts[item.manual_record_source] =
+      (manualSourceCounts[item.manual_record_source] || 0) + 1;
+    nativeTargetCounts[item.native_entity_target] =
+      (nativeTargetCounts[item.native_entity_target] || 0) + 1;
+    if (item.coverage_area) {
+      coverageCounts[item.coverage_area] = (coverageCounts[item.coverage_area] || 0) + 1;
+    }
+  }
+
+  const messagingBlockedItems = allItems.filter(
+    (item) =>
+      item.messaging_related &&
+      item.handoff_blocked &&
+      item.handoff_block_reason === 'contact_permission_uncertainty_blocks_messaging_handoff',
+  );
+  const outreachBlockedItems = allItems.filter(
+    (item) =>
+      item.outreach_related &&
+      item.handoff_blocked &&
+      item.handoff_block_reason === 'do_not_contact_blocks_outreach_handoff',
+  );
+  const appointmentItems = allItems.filter((item) => item.appointment_related);
+  const postInspectionItems = allItems.filter((item) => item.post_inspection_related);
+  const feedbackItems = allItems.filter((item) => item.feedback_related);
+  const csvItems = allItems.filter((item) => item.csv_related);
+  const usageVolumeItems = allItems.filter((item) => item.usage_volume_related);
+  const sourceRoiItems = allItems.filter((item) => item.source_roi_related);
+
+  return {
+    manual_to_native_handoff_rehearsal_expansion:
+      'native_workflow_fixture_manual_to_native_handoff_rehearsal_expansion',
+    manual_to_native_handoff_expansion_summary: {
+      description:
+        'Deterministic fake-data manual-to-native handoff rehearsal — models how founder-operated manual workflow records map into native workflow state without production persistence, schema changes, or live automation',
+      total_manual_handoff_items: allItems.length,
+      scenario_handoff_items: scenarios.reduce(
+        (count, scenario) => count + (scenario.manual_handoff_items || []).length,
+        0,
+      ),
+      handoff_catalog_items: HANDOFF_COVERAGE_CATALOG.length,
+      handoff_ready_items: readyItems.length,
+      handoff_blocked_items: blockedItems.length,
+      manual_record_sources: MANUAL_RECORD_SOURCES,
+      native_entity_targets: NATIVE_ENTITY_TARGETS,
+      handoff_coverage_areas: HANDOFF_COVERAGE_AREAS,
+      all_manual_record_sources_represented: MANUAL_RECORD_SOURCES.every(
+        (source) => manualSourceCounts[source] > 0,
+      ),
+      all_native_entity_targets_represented: NATIVE_ENTITY_TARGETS.every(
+        (target) => nativeTargetCounts[target] > 0,
+      ),
+      all_coverage_areas_represented: HANDOFF_COVERAGE_AREAS.every(
+        (area) => coverageCounts[area] > 0,
+      ),
+      rehearsal_only: true,
+      production_persistence_allowed: 'no',
+      schema_change_allowed: 'no',
+      public_implementation_or_go_live_copy_changed: false,
+      public_implementation_or_go_live_copy_approval_required: true,
+      fake_data_only: true,
+      deterministic_fixture_output: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    manual_handoff_items: allItems,
+    manual_record_mapping_summary: {
+      description:
+        'Manual record source to native entity mapping rehearsal — identifies future native targets without creating database records',
+      manual_record_source_counts: manualSourceCounts,
+      all_manual_record_sources_represented: MANUAL_RECORD_SOURCES.every(
+        (source) => manualSourceCounts[source] > 0,
+      ),
+      mapped_items_count: allItems.length,
+      setup_preferences_required_before_handoff_ready: allItems
+        .filter((item) => item.handoff_block_reason === 'missing_required_setup_preferences')
+        .every((item) => !item.handoff_ready),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    native_state_mapping_summary: {
+      description:
+        'Native state mapping rehearsal — maps manual statuses to future native states with mapping confidence',
+      native_entity_target_counts: nativeTargetCounts,
+      all_native_entity_targets_represented: NATIVE_ENTITY_TARGETS.every(
+        (target) => nativeTargetCounts[target] > 0,
+      ),
+      mapping_confidence_levels: [...new Set(allItems.map((item) => item.mapping_confidence))],
+      no_production_records_created: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    handoff_gap_summary: {
+      description: 'Handoff gaps — items not yet handoff-ready due to blockers, missing setup, or review requirements',
+      gap_items_count: gapItems.length,
+      blocked_items_count: blockedItems.length,
+      ready_items_count: readyItems.length,
+      coverage_area_counts: coverageCounts,
+      all_coverage_areas_represented: HANDOFF_COVERAGE_AREAS.every(
+        (area) => coverageCounts[area] > 0,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    handoff_review_summary: {
+      description:
+        'Handoff review routing — roofer owns business judgment; RoofLeadHQ/Jason limited to system/workflow/data/routing/quality issues',
+      roofer_review_items_count: rooferReviewItems.length,
+      roofleadhq_review_items_count: roofleadhqReviewItems.length,
+      business_judgment_items_count: businessJudgmentItems.length,
+      system_quality_items_count: systemQualityItems.length,
+      roofer_review_owns_business_judgment_handoff_items: businessJudgmentItems.every(
+        (item) => item.business_judgment_required && !item.system_quality_issue,
+      ),
+      roofleadhq_review_limited_to_system_quality_handoff_items: systemQualityItems.every(
+        (item) => item.system_quality_issue && !item.business_judgment_required,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    handoff_blocker_summary: {
+      description:
+        'Handoff blockers — missing setup preferences, contact permission uncertainty, do-not-contact, and calendar preference gaps',
+      blocked_items_count: blockedItems.length,
+      contact_permission_uncertainty_blocks_messaging_handoff:
+        messagingBlockedItems.length > 0 &&
+        messagingBlockedItems.every((item) => !item.handoff_ready),
+      do_not_contact_blocks_outreach_handoff:
+        outreachBlockedItems.length > 0 &&
+        outreachBlockedItems.every((item) => !item.handoff_ready),
+      setup_preferences_required_before_handoff_ready: allItems
+        .filter((item) => item.handoff_block_reason === 'missing_required_setup_preferences')
+        .every((item) => !item.handoff_ready),
+      blocker_reasons: [...new Set(blockedItems.map((item) => item.handoff_block_reason).filter(Boolean))],
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    handoff_owner_summary: {
+      description:
+        'Handoff ownership — roofer/contractor review owns business judgment; RoofLeadHQ/Jason review limited to system quality',
+      next_step_owner_counts: allItems.reduce((counts, item) => {
+        counts[item.next_step_owner] = (counts[item.next_step_owner] || 0) + 1;
+        return counts;
+      }, {}),
+      roofer_review_owns_business_judgment_handoff_items: businessJudgmentItems.every(
+        (item) => item.roofer_review_required && item.next_step_owner === 'roofer',
+      ),
+      roofleadhq_review_limited_to_system_quality_handoff_items: systemQualityItems.every(
+        (item) => item.roofleadhq_review_required,
+      ),
+      handoff_ready_requires_data_boundary_check: readyItems.every(
+        (item) => item.data_boundary_checked,
+      ),
+      handoff_ready_requires_pii_minimization_check: readyItems.every(
+        (item) => item.pii_minimization_checked,
+      ),
+      handoff_ready_requires_audit_event: readyItems.every((item) => Boolean(item.audit_event_id)),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    handoff_audit_summary: {
+      description:
+        'Handoff audit trail — every handoff item linked to fixture audit event without production persistence',
+      audited_items_count: auditedItems.length,
+      manual_to_native_handoff_is_audited: auditedItems.length === allItems.length,
+      audit_event_ids_present: auditedItems.every((item) => Boolean(item.audit_event_id)),
+      review_queue_aging_items_in_prior_expansion: (reviewQueueAgingOutput.review_queue_aging_items || [])
+        .length,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    handoff_reporting_summary: {
+      description:
+        'Handoff reporting rehearsal — one-directional CSV/reporting, no CRM sync, no live billing, no exact ROI promises',
+      reporting_summary_includes_manual_to_native_handoff: true,
+      appointment_handoff_requires_calendar_owner_and_booking_preferences:
+        appointmentItems.length > 0 &&
+        appointmentItems.every(
+          (item) => item.calendar_event_created === false,
+        ),
+      appointment_handoff_does_not_create_calendar_event: appointmentItems.every(
+        (item) => item.calendar_event_created === false,
+      ),
+      post_inspection_handoff_does_not_generate_estimate_quote_invoice_payment: postInspectionItems.every(
+        (item) => item.generates_estimate_quote_invoice_payment === false,
+      ),
+      feedback_handoff_preserves_permission_values_yes_no_not_asked: feedbackItems.every((item) =>
+        ['yes', 'no', 'not_asked'].includes(item.permission_to_use_publicly),
+      ),
+      feedback_handoff_does_not_publish_feedback_or_testimonial: feedbackItems.every(
+        (item) => item.publishes_feedback_or_testimonial === false,
+      ),
+      csv_handoff_is_one_directional: csvItems.every((item) => item.csv_one_directional === true),
+      csv_handoff_is_not_crm_sync: csvItems.every((item) => item.csv_is_crm_sync === false),
+      usage_volume_handoff_does_not_trigger_live_billing: usageVolumeItems.every(
+        (item) => item.triggers_live_billing === false,
+      ),
+      source_roi_handoff_does_not_promise_exact_roi: sourceRoiItems.every(
+        (item) => item.promises_exact_roi === false,
+      ),
+      source_roi_handoff_does_not_call_ad_platforms: sourceRoiItems.every(
+        (item) => item.calls_ad_platforms === false,
+      ),
+      public_implementation_or_go_live_copy_not_changed_without_approval: true,
+      no_supabase_calls: true,
+      no_schema_migrations_auth_rls_security_changes: true,
+      no_twilio_calls: true,
+      no_vapi_calls: true,
+      no_resend_calls: true,
+      no_lindy_live_workflow_execution: true,
+      no_google_calendar_calls: true,
+      no_crm_sync: true,
+      no_live_csv_delivery: true,
+      no_billing_or_payment_action: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    manual_to_native_handoff_safety_assertions: [
+      ...MANUAL_TO_NATIVE_HANDOFF_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 const APPOINTMENT_READINESS_SAFETY_ASSERTIONS = [
   'appointment_readiness_summary_present',
   'appointment_readiness_items_present',
@@ -9006,6 +10277,7 @@ function buildScenario(config) {
   return {
     ...scenarioFinal,
     review_queue_aging_items: buildScenarioReviewQueueAgingItems(scenarioFinal),
+    manual_handoff_items: buildScenarioManualHandoffItems(scenarioFinal),
   };
 }
 
@@ -10248,7 +11520,7 @@ function main() {
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      '6e3f68f test(workflow): expand native workflow fixture data boundary',
+      '5c47fab test(workflow): expand native workflow fixture review aging',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
@@ -10268,6 +11540,8 @@ function main() {
       'native_workflow_fixture_data_boundary_pii_minimization_expansion',
     review_queue_aging_sla_expansion:
       'native_workflow_fixture_review_queue_aging_sla_boundary_expansion',
+    manual_to_native_handoff_rehearsal_expansion:
+      'native_workflow_fixture_manual_to_native_handoff_rehearsal_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -10308,6 +11582,11 @@ function main() {
     outputBase,
     reviewQueueOutput,
   );
+  const manualToNativeHandoffOutput = buildTopLevelManualToNativeHandoffRehearsal(
+    scenarios,
+    outputBase,
+    reviewQueueAgingSlaOutput,
+  );
 
   const output = {
     ...outputBase,
@@ -10324,6 +11603,7 @@ function main() {
     ...auditEventTimelineOutput,
     ...dataBoundaryPiiOutput,
     ...reviewQueueAgingSlaOutput,
+    ...manualToNativeHandoffOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -10407,10 +11687,15 @@ function main() {
       'review_queue_aging_no_live_notifications',
       'review_queue_aging_stale_hold_blocked_states_tracked',
       'review_queue_aging_escalation_ready_without_notification',
+      'explicit_manual_to_native_handoff_rehearsal_coverage',
+      'manual_to_native_handoff_fake_data_only',
+      'manual_to_native_handoff_no_production_persistence',
+      'manual_to_native_handoff_no_live_automation',
+      'manual_to_native_handoff_rehearsal_only',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, data-boundary/PII minimization, and review queue aging/SLA boundary coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, messaging compliance/contact permission, audit event/state-transition timeline, data-boundary/PII minimization, review queue aging/SLA boundary, and manual-to-native handoff rehearsal coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -10431,6 +11716,7 @@ function main() {
       audit_event_timeline_coverage: 'expanded',
       data_boundary_pii_minimization_coverage: 'expanded',
       review_queue_aging_sla_boundary_coverage: 'expanded',
+      manual_to_native_handoff_rehearsal_coverage: 'expanded',
     },
   };
 
