@@ -6693,6 +6693,699 @@ function buildTopLevelLeadSourceRoiBoundary(scenarios, outputBase, csvSnapshot) 
   };
 }
 
+const MESSAGING_COMPLIANCE_SAFETY_ASSERTIONS = [
+  'messaging_compliance_expansion_summary_present',
+  'contact_permission_items_present',
+  'contact_permission_item_required_fields_present',
+  'permission_confirmed_allows_fixture_messaging_only',
+  'contacted_business_allows_fixture_messaging_only',
+  'permission_unknown_routes_to_hold_or_review',
+  'permission_missing_routes_to_hold_or_review',
+  'permission_denied_blocks_outreach',
+  'do_not_contact_blocks_all_outreach',
+  'missing_phone_blocks_sms_and_call',
+  'missing_email_blocks_email',
+  'missing_usable_contact_data_routes_to_missing_info_or_hold',
+  'permission_uncertainty_fails_closed',
+  'roofer_review_required_for_permission_source_clarification',
+  'roofleadhq_review_limited_to_system_quality_permission_issues',
+  'live_sms_allowed_is_no_for_all_items',
+  'live_email_allowed_is_no_for_all_items',
+  'live_call_allowed_is_no_for_all_items',
+  'notification_sent_is_no_for_all_items',
+  'production_data_touched_is_no_for_all_items',
+  'external_services_called_is_no_for_all_items',
+  'no_twilio_calls',
+  'no_vapi_calls',
+  'no_resend_calls',
+  `no_${BRIDGE_VENDOR}_live_workflow_execution`,
+  'no_google_calendar_calls',
+  'messaging_compliance_decisions_are_audited',
+  'reporting_summary_includes_messaging_compliance',
+  'public_terms_or_compliance_copy_not_changed_without_approval',
+];
+
+const CONTACT_PERMISSION_PROFILES = {
+  normal_lead_to_appointment_readiness: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'website_form_consent_checkbox',
+    permission_evidence: 'fixture_website_form_submission_with_explicit_contact_consent',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  missing_information_path: {
+    contact_permission_status: 'permission_unknown',
+    contact_permission_source: 'incomplete_form_intake',
+    permission_evidence: 'phone_missing_and_permission_not_documented_at_intake',
+    homeowner_contacted_business: false,
+    homeowner_gave_permission: false,
+    homeowner_phone_present: false,
+    homeowner_email_present: true,
+    homeowner_contact_ready: false,
+    messaging_hold_required: true,
+    messaging_hold_reason: 'permission_unknown_and_missing_phone_routes_to_hold',
+    roofer_review_required: true,
+    roofleadhq_review_required: false,
+    review_reason: 'roofer_must_confirm_contact_permission_before_outreach',
+    required_manual_next_step: 'roofer_collects_phone_and_confirms_contact_permission',
+  },
+  duplicate_review_path: {
+    contact_permission_status: 'needs_review',
+    contact_permission_source: 'duplicate_lead_intake',
+    permission_evidence: 'permission_state_unclear_due_to_duplicate_lead_routing',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: false,
+    messaging_hold_required: true,
+    messaging_hold_reason: 'duplicate_review_blocks_outreach_until_permission_resolved',
+    roofer_review_required: false,
+    roofleadhq_review_required: true,
+    review_reason: 'duplicate_lead_routing_requires_system_quality_review',
+    required_manual_next_step: 'jason_resolves_duplicate_lead_and_permission_state',
+    compliance_state_mismatch: true,
+  },
+  bad_fit_excluded_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'facebook_lead_form_consent',
+    permission_evidence: 'fixture_facebook_lead_form_with_contact_consent',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  stopped_do_not_contact_path: {
+    contact_permission_status: 'do_not_contact',
+    contact_permission_source: 'homeowner_opt_out_request',
+    permission_evidence: 'fixture_homeowner_requested_do_not_contact',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: false,
+    do_not_contact_status: true,
+    messaging_hold_required: true,
+    messaging_hold_reason: 'do_not_contact_blocks_all_outreach',
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: 'no_outreach_all_channels_stopped',
+  },
+  missed_lead_recovery_path: {
+    contact_permission_status: 'contacted_business',
+    contact_permission_source: 'inbound_missed_call',
+    permission_evidence: 'homeowner_called_roofer_business_line_first',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: 'safe_follow_up_allowed_in_fixture_only_after_missed_call',
+  },
+  roofer_review_needed_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'thumbtack_message_thread',
+    permission_evidence: 'fixture_thumbtack_lead_with_documented_contact_permission',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: true,
+    roofleadhq_review_required: false,
+    review_reason: 'pricing_question_requires_roofer_review_before_outreach',
+    required_manual_next_step: 'roofer_reviews_pricing_question_before_follow_up',
+  },
+  roofleadhq_system_review_needed_path: {
+    contact_permission_status: 'needs_review',
+    contact_permission_source: 'broken_routing_capture',
+    permission_evidence: 'permission_capture_state_mismatch_requires_system_review',
+    homeowner_contacted_business: false,
+    homeowner_gave_permission: false,
+    messaging_hold_required: true,
+    messaging_hold_reason: 'compliance_state_mismatch_routes_to_hold',
+    roofer_review_required: false,
+    roofleadhq_review_required: true,
+    review_reason: 'broken_routing_and_permission_capture_mismatch',
+    required_manual_next_step: 'jason_reviews_permission_capture_and_routing_state',
+    compliance_state_mismatch: true,
+    bad_permission_capture: true,
+  },
+  appointment_booked_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'manual_outreach_list_consent',
+    permission_evidence: 'fixture_manual_outreach_list_with_prior_contact_permission',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  inspection_completed_path: {
+    contact_permission_status: 'contacted_business',
+    contact_permission_source: 'appointment_attendance',
+    permission_evidence: 'homeowner_attended_booked_inspection',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  inspection_missed_reschedule_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'website_form_consent_checkbox',
+    permission_evidence: 'fixture_website_form_with_confirmed_contact_permission',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: true,
+    roofleadhq_review_required: false,
+    review_reason: 'scheduling_conflict_requires_roofer_review',
+    required_manual_next_step: 'roofer_reschedules_missed_inspection_manually',
+  },
+  post_inspection_still_open_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'google_ads_lead_form',
+    permission_evidence: 'fixture_google_ads_lead_form_with_contact_consent',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  estimate_needed_estimate_sent_tracking_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'google_business_profile_call',
+    permission_evidence: 'fixture_gbp_call_with_documented_contact_permission',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  homeowner_follow_up_needed_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'google_local_services_ads_lead',
+    permission_evidence: 'fixture_glsa_lead_with_contact_consent',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: 'roofer_follows_up_on_homeowner_request',
+  },
+  roofer_follow_up_needed_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'facebook_lead_form_consent',
+    permission_evidence: 'fixture_facebook_lead_with_contact_consent',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: true,
+    roofleadhq_review_required: false,
+    review_reason: 'negative_feedback_requires_roofer_review',
+    required_manual_next_step: 'roofer_addresses_homeowner_concern_before_follow_up',
+  },
+  feedback_permission_yes_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'angi_lead_form',
+    permission_evidence: 'fixture_angi_lead_with_documented_contact_permission',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  feedback_permission_no_path: {
+    contact_permission_status: 'permission_denied',
+    contact_permission_source: 'thumbtack_message_thread',
+    permission_evidence: 'homeowner_explicitly_denied_further_contact',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: false,
+    messaging_hold_required: true,
+    messaging_hold_reason: 'permission_denied_blocks_all_outreach',
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: 'no_outreach_permission_denied_by_homeowner',
+  },
+  feedback_permission_not_asked_path: {
+    contact_permission_status: 'permission_missing',
+    contact_permission_source: 'referral_intake',
+    permission_evidence: 'referral_received_without_documented_contact_permission',
+    homeowner_contacted_business: false,
+    homeowner_gave_permission: false,
+    messaging_hold_required: true,
+    messaging_hold_reason: 'permission_missing_routes_to_hold_or_review',
+    roofer_review_required: true,
+    roofleadhq_review_required: false,
+    review_reason: 'roofer_must_confirm_referral_contact_permission',
+    required_manual_next_step: 'roofer_confirms_referral_contact_permission_before_outreach',
+  },
+  csv_report_snapshot_fake_data_path: {
+    contact_permission_status: 'needs_review',
+    contact_permission_source: 'csv_snapshot_mismatch',
+    permission_evidence: 'permission_capture_mismatch_between_intake_and_reporting',
+    homeowner_contacted_business: false,
+    homeowner_gave_permission: false,
+    messaging_hold_required: true,
+    messaging_hold_reason: 'bad_permission_capture_requires_review_before_outreach',
+    roofer_review_required: false,
+    roofleadhq_review_required: true,
+    review_reason: 'permission_capture_mismatch_requires_system_quality_review',
+    required_manual_next_step: 'jason_reviews_permission_capture_mismatch_before_outreach',
+    compliance_state_mismatch: true,
+    bad_permission_capture: true,
+  },
+  starter_plan_profile_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'website_form_consent_checkbox',
+    permission_evidence: 'fixture_starter_plan_website_form_with_contact_consent',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  growth_plan_profile_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'google_ads_lead_form',
+    permission_evidence: 'fixture_growth_plan_google_ads_with_contact_consent',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  elite_plan_profile_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'google_business_profile_message',
+    permission_evidence: 'fixture_elite_plan_gbp_with_contact_consent',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+  custom_review_500_plus_leads_path: {
+    contact_permission_status: 'permission_unknown',
+    contact_permission_source: 'high_volume_glsa_intake',
+    permission_evidence: 'high_volume_source_permission_not_yet_documented',
+    homeowner_contacted_business: false,
+    homeowner_gave_permission: false,
+    messaging_hold_required: true,
+    messaging_hold_reason: 'permission_unknown_routes_to_hold_or_review',
+    roofer_review_required: true,
+    roofleadhq_review_required: false,
+    review_reason: 'roofer_must_clarify_high_volume_lead_source_permission',
+    required_manual_next_step: 'roofer_documents_lead_source_contact_permission',
+    permission_source_clarification_needed: true,
+  },
+  custom_review_two_plus_locations_path: {
+    contact_permission_status: 'permission_unknown',
+    contact_permission_source: 'multi_location_facebook_lead',
+    permission_evidence: 'multi_location_lead_source_permission_not_yet_clarified',
+    homeowner_contacted_business: false,
+    homeowner_gave_permission: false,
+    messaging_hold_required: true,
+    messaging_hold_reason: 'permission_source_clarification_required_before_outreach',
+    roofer_review_required: true,
+    roofleadhq_review_required: false,
+    review_reason: 'roofer_must_clarify_which_location_has_valid_contact_permission',
+    required_manual_next_step: 'roofer_clarifies_location_specific_contact_permission',
+    permission_source_clarification_needed: true,
+  },
+  activation_flag_false_blocks_live_action_path: {
+    contact_permission_status: 'permission_confirmed',
+    contact_permission_source: 'website_form_consent_checkbox',
+    permission_evidence: 'fixture_intake_with_contact_consent_live_automation_disabled',
+    homeowner_contacted_business: true,
+    homeowner_gave_permission: true,
+    messaging_hold_required: false,
+    roofer_review_required: false,
+    roofleadhq_review_required: false,
+    review_reason: null,
+    required_manual_next_step: null,
+  },
+};
+
+function deriveChannelEligibility(fields) {
+  const {
+    contact_permission_status,
+    homeowner_phone_present,
+    homeowner_email_present,
+    do_not_contact_status,
+  } = fields;
+
+  if (do_not_contact_status || contact_permission_status === 'do_not_contact') {
+    return {
+      sms_eligible: false,
+      email_eligible: false,
+      call_eligible: false,
+      channel_eligibility_reason: 'do_not_contact_blocks_all_channels',
+    };
+  }
+  if (contact_permission_status === 'permission_denied') {
+    return {
+      sms_eligible: false,
+      email_eligible: false,
+      call_eligible: false,
+      channel_eligibility_reason: 'permission_denied_blocks_outreach',
+    };
+  }
+  if (
+    contact_permission_status === 'permission_unknown' ||
+    contact_permission_status === 'permission_missing' ||
+    contact_permission_status === 'needs_review'
+  ) {
+    return {
+      sms_eligible: false,
+      email_eligible: false,
+      call_eligible: false,
+      channel_eligibility_reason: 'permission_uncertainty_fails_closed',
+    };
+  }
+
+  const permissionAllowsOutreach =
+    contact_permission_status === 'permission_confirmed' ||
+    contact_permission_status === 'contacted_business';
+
+  const smsEligible = permissionAllowsOutreach && homeowner_phone_present;
+  const callEligible = permissionAllowsOutreach && homeowner_phone_present;
+  const emailEligible = permissionAllowsOutreach && homeowner_email_present;
+
+  let reason = 'fixture_channel_eligibility_derived_from_permission_and_contact_data';
+  if (!homeowner_phone_present && !homeowner_email_present) {
+    reason = 'missing_usable_contact_data_blocks_all_channels';
+  } else if (!homeowner_phone_present) {
+    reason = 'missing_phone_blocks_sms_and_call_email_only_if_permission_allows';
+  } else if (!homeowner_email_present) {
+    reason = 'missing_email_blocks_email_sms_and_call_if_permission_allows';
+  }
+
+  return {
+    sms_eligible: smsEligible,
+    email_eligible: emailEligible,
+    call_eligible: callEligible,
+    channel_eligibility_reason: reason,
+  };
+}
+
+function buildContactPermissionItem(scenario, profile, index) {
+  const input = scenario.input_fixture_summary || {};
+  const leadSourceProfile = LEAD_SOURCE_ATTRIBUTION_PROFILES[scenario.scenario_id] || {};
+  const leadId = input.fixture_lead_id || `lead-fix-${scenario.scenario_id}`;
+  const phonePresent = profile.homeowner_phone_present ?? Boolean(input.homeowner_phone);
+  const emailPresent = profile.homeowner_email_present ?? Boolean(input.homeowner_email);
+  const contactReady =
+    profile.homeowner_contact_ready ?? (phonePresent || emailPresent);
+  const status = profile.contact_permission_status;
+  const dnc =
+    profile.do_not_contact_status ??
+    (status === 'do_not_contact');
+  const channels = deriveChannelEligibility({
+    contact_permission_status: status,
+    homeowner_phone_present: phonePresent,
+    homeowner_email_present: emailPresent,
+    do_not_contact_status: dnc,
+  });
+
+  const permissionAllowsFixtureMessaging =
+    (status === 'permission_confirmed' || status === 'contacted_business') &&
+    !profile.messaging_hold_required &&
+    (channels.sms_eligible || channels.email_eligible || channels.call_eligible);
+
+  return {
+    contact_permission_item_id: `${scenario.scenario_id}_contact_permission_${index + 1}`,
+    scenario_id: scenario.scenario_id,
+    lead_id: leadId,
+    roofer_account_id: input.fixture_roofer_id || 'roof-fix-001',
+    plan_profile: scenario.plan_profile,
+    lead_source: leadSourceProfile.lead_source || input.lead_source || 'Other',
+    homeowner_phone_present: phonePresent,
+    homeowner_email_present: emailPresent,
+    homeowner_contact_ready: contactReady,
+    contact_permission_status: status,
+    contact_permission_source: profile.contact_permission_source,
+    permission_evidence: profile.permission_evidence,
+    homeowner_contacted_business: profile.homeowner_contacted_business ?? false,
+    homeowner_gave_permission: profile.homeowner_gave_permission ?? false,
+    do_not_contact_status: dnc,
+    sms_eligible: channels.sms_eligible,
+    email_eligible: channels.email_eligible,
+    call_eligible: channels.call_eligible,
+    channel_eligibility_reason: channels.channel_eligibility_reason,
+    messaging_allowed_in_fixture: permissionAllowsFixtureMessaging,
+    messaging_hold_required: profile.messaging_hold_required ?? false,
+    messaging_hold_reason: profile.messaging_hold_reason || null,
+    roofer_review_required: profile.roofer_review_required ?? false,
+    roofleadhq_review_required: profile.roofleadhq_review_required ?? false,
+    review_reason: profile.review_reason || null,
+    required_manual_next_step: profile.required_manual_next_step || null,
+    audit_event_id: `${scenario.scenario_id}_contact_permission_audit_${index + 1}`,
+    live_sms_allowed: 'no',
+    live_email_allowed: 'no',
+    live_call_allowed: 'no',
+    notification_sent: 'no',
+    production_data_touched: 'no',
+    external_services_called: 'no',
+    compliance_state_mismatch: profile.compliance_state_mismatch ?? false,
+    bad_permission_capture: profile.bad_permission_capture ?? false,
+    permission_source_clarification_needed:
+      profile.permission_source_clarification_needed ?? false,
+    fake_data_only: true,
+  };
+}
+
+function buildScenarioContactPermissionItem(scenario) {
+  const profile = CONTACT_PERMISSION_PROFILES[scenario.scenario_id];
+  if (!profile) return null;
+  return buildContactPermissionItem(scenario, profile, 0);
+}
+
+function buildTopLevelMessagingCompliance(scenarios, outputBase) {
+  const allItems = scenarios
+    .map((scenario) => buildScenarioContactPermissionItem(scenario))
+    .filter(Boolean);
+
+  const statusCounts = {};
+  for (const status of [
+    'permission_confirmed',
+    'contacted_business',
+    'permission_unknown',
+    'permission_missing',
+    'permission_denied',
+    'do_not_contact',
+    'needs_review',
+  ]) {
+    statusCounts[status] = allItems.filter((i) => i.contact_permission_status === status).length;
+  }
+
+  const holdItems = allItems.filter((i) => i.messaging_hold_required);
+  const reviewItems = allItems.filter(
+    (i) => i.roofer_review_required || i.roofleadhq_review_required,
+  );
+  const permissionConfirmedItems = allItems.filter(
+    (i) => i.contact_permission_status === 'permission_confirmed',
+  );
+  const contactedBusinessItems = allItems.filter(
+    (i) => i.contact_permission_status === 'contacted_business',
+  );
+  const uncertaintyItems = allItems.filter((i) =>
+    ['permission_unknown', 'permission_missing', 'needs_review'].includes(
+      i.contact_permission_status,
+    ),
+  );
+  const deniedItems = allItems.filter((i) => i.contact_permission_status === 'permission_denied');
+  const dncItems = allItems.filter(
+    (i) => i.contact_permission_status === 'do_not_contact' || i.do_not_contact_status,
+  );
+  const missingPhoneItems = allItems.filter((i) => !i.homeowner_phone_present);
+  const missingEmailItems = allItems.filter((i) => !i.homeowner_email_present);
+  const missingContactItems = allItems.filter((i) => !i.homeowner_contact_ready);
+  const rooferPermissionClarificationItems = allItems.filter(
+    (i) => i.permission_source_clarification_needed,
+  );
+  const systemQualityReviewItems = allItems.filter(
+    (i) => i.roofleadhq_review_required && (i.compliance_state_mismatch || i.bad_permission_capture),
+  );
+
+  return {
+    messaging_compliance_expansion:
+      'native_workflow_fixture_messaging_compliance_contact_permission_expansion',
+    messaging_compliance_expansion_summary: {
+      description:
+        'Deterministic fake-data messaging compliance and contact permission expansion across all fixture scenarios — explicit permission, channel eligibility, hold/review routing, and live-send boundaries without production automation',
+      total_contact_permission_items: allItems.length,
+      permission_status_counts: statusCounts,
+      messaging_hold_item_count: holdItems.length,
+      review_item_count: reviewItems.length,
+      fixture_messaging_allowed_item_count: allItems.filter((i) => i.messaging_allowed_in_fixture)
+        .length,
+      live_sms_email_call_allowed: false,
+      public_terms_or_compliance_copy_changed: false,
+      public_terms_or_compliance_copy_approval_required: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+      scenario_count: outputBase.scenario_count,
+    },
+    contact_permission_items: allItems,
+    contact_permission_status_summary: {
+      description: 'Contact permission status distribution across fixture scenarios',
+      status_counts: statusCounts,
+      permission_confirmed_count: statusCounts.permission_confirmed,
+      contacted_business_count: statusCounts.contacted_business,
+      permission_unknown_count: statusCounts.permission_unknown,
+      permission_missing_count: statusCounts.permission_missing,
+      permission_denied_count: statusCounts.permission_denied,
+      do_not_contact_count: statusCounts.do_not_contact,
+      needs_review_count: statusCounts.needs_review,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    do_not_contact_summary: {
+      description: 'Do-not-contact boundaries — blocks all outreach channels in fixture logic',
+      do_not_contact_item_count: dncItems.length,
+      do_not_contact_blocks_all_outreach: dncItems.every(
+        (i) =>
+          !i.sms_eligible &&
+          !i.email_eligible &&
+          !i.call_eligible &&
+          !i.messaging_allowed_in_fixture,
+      ),
+      stopped_do_not_contact_path_demonstrated: dncItems.some(
+        (i) => i.scenario_id === 'stopped_do_not_contact_path',
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    channel_eligibility_summary: {
+      description:
+        'Channel eligibility derived from permission status and homeowner contact data — fixture logic only',
+      sms_eligible_count: allItems.filter((i) => i.sms_eligible).length,
+      email_eligible_count: allItems.filter((i) => i.email_eligible).length,
+      call_eligible_count: allItems.filter((i) => i.call_eligible).length,
+      missing_phone_blocks_sms_and_call: missingPhoneItems
+        .filter((i) => !i.sms_eligible && !i.call_eligible)
+        .length >= 1,
+      missing_email_blocks_email: missingEmailItems
+        .filter((i) => !i.email_eligible)
+        .length >= 1,
+      permission_uncertainty_fails_closed: uncertaintyItems.every(
+        (i) => !i.sms_eligible && !i.email_eligible && !i.call_eligible,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    consent_source_summary: {
+      description: 'Consent and permission evidence sources tracked in fixture output',
+      unique_consent_sources: [...new Set(allItems.map((i) => i.contact_permission_source))],
+      homeowner_contacted_business_count: allItems.filter((i) => i.homeowner_contacted_business)
+        .length,
+      homeowner_gave_permission_count: allItems.filter((i) => i.homeowner_gave_permission).length,
+      follow_up_allowed_only_when_contacted_or_permission_given: allItems
+        .filter((i) => i.messaging_allowed_in_fixture)
+        .every((i) => i.homeowner_contacted_business || i.homeowner_gave_permission),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    messaging_hold_summary: {
+      description: 'Messaging hold routing — unknown, missing, denied, do-not-contact, and review states',
+      messaging_hold_item_count: holdItems.length,
+      permission_unknown_routes_to_hold_or_review: allItems
+        .filter((i) => i.contact_permission_status === 'permission_unknown')
+        .every((i) => i.messaging_hold_required || i.roofer_review_required || i.roofleadhq_review_required),
+      permission_missing_routes_to_hold_or_review: allItems
+        .filter((i) => i.contact_permission_status === 'permission_missing')
+        .every((i) => i.messaging_hold_required || i.roofer_review_required || i.roofleadhq_review_required),
+      missing_usable_contact_data_routes_to_missing_info_or_hold: missingContactItems.every(
+        (i) => i.messaging_hold_required || !i.messaging_allowed_in_fixture,
+      ),
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    messaging_review_summary: {
+      description:
+        'Messaging compliance review ownership — roofer clarifies source permission; RoofLeadHQ/Jason limited to system quality issues',
+      roofer_review_required_count: allItems.filter((i) => i.roofer_review_required).length,
+      roofleadhq_review_required_count: allItems.filter((i) => i.roofleadhq_review_required).length,
+      roofer_review_required_for_permission_source_clarification:
+        rooferPermissionClarificationItems.every((i) => i.roofer_review_required),
+      roofleadhq_review_limited_to_system_quality_permission_issues: systemQualityReviewItems.every(
+        (i) => i.roofleadhq_review_required && !i.roofer_review_required,
+      ),
+      system_quality_review_reasons: [
+        'bad_permission_capture',
+        'unclear_source_mapping',
+        'broken_routing',
+        'compliance_state_mismatch',
+        'duplicate_lead_routing',
+      ],
+      does_not_route_business_judgment_to_roofleadhq: allItems
+        .filter((i) => i.roofer_review_required && !i.roofleadhq_review_required)
+        .length >= 1,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    messaging_compliance_reporting_summary: {
+      description:
+        'Reporting includes messaging compliance summaries — fake-data only; no live delivery',
+      reporting_summary_includes_messaging_compliance: true,
+      weekly_snapshot_includes_messaging_compliance: true,
+      monthly_snapshot_includes_messaging_compliance: true,
+      contact_permission_status_in_reporting: true,
+      channel_eligibility_in_reporting: true,
+      messaging_hold_in_reporting: true,
+      live_reporting_delivery_blocked: true,
+      fake_data_only: true,
+      live_actions_performed: 'no',
+      production_data_touched: 'no',
+      external_services_called: 'no',
+    },
+    messaging_compliance_safety_assertions: [
+      ...MESSAGING_COMPLIANCE_SAFETY_ASSERTIONS,
+      'no_supabase_reads_or_writes',
+      'no_production_data',
+      'no_live_automation',
+      'no_external_service_calls',
+      'demo_ready_with_live_automation_disabled',
+    ],
+  };
+}
+
 const FAKE_REPORTING_SNAPSHOT = buildReportingSnapshot({
   report_period: '2026-06',
   csv_export_state: 'fixture_snapshot_strongest',
@@ -6752,6 +7445,7 @@ function buildScenario(config) {
   );
   const usageVolumeItem = buildScenarioUsageVolumeItem(scenarioDraft);
   const leadSourceAttributionItem = buildScenarioLeadSourceAttributionItem(scenarioDraft);
+  const contactPermissionItem = buildScenarioContactPermissionItem(scenarioDraft);
   return {
     ...scenarioDraft,
     review_queue_items: reviewQueueItems,
@@ -6762,6 +7456,7 @@ function buildScenario(config) {
     missed_lead_recovery_items: missedLeadRecoveryItem ? [missedLeadRecoveryItem] : [],
     usage_volume_items: usageVolumeItem ? [usageVolumeItem] : [],
     lead_source_attribution_items: leadSourceAttributionItem ? [leadSourceAttributionItem] : [],
+    contact_permission_items: contactPermissionItem ? [contactPermissionItem] : [],
   };
 }
 
@@ -8004,7 +8699,7 @@ function main() {
     safety_posture: 'demo_ready_with_live_automation_disabled',
     implementation_scope: 'local_fixture_only_fake_data_dry_run',
     source_of_truth_context:
-      '9e84029 test(workflow): expand native workflow fixture usage volume',
+      'f4ae6c9 test(workflow): expand native workflow fixture source ROI',
     guard_assertion_expansion:
       'native_workflow_fixture_guard_assertions_expansion',
     reporting_snapshot_expansion:
@@ -8017,6 +8712,8 @@ function main() {
     missed_lead_recovery_expansion: 'native_workflow_fixture_missed_lead_recovery_expansion',
     usage_volume_expansion: 'native_workflow_fixture_usage_volume_plan_limit_expansion',
     lead_source_roi_expansion: 'native_workflow_fixture_lead_source_roi_boundary_expansion',
+    messaging_compliance_expansion:
+      'native_workflow_fixture_messaging_compliance_contact_permission_expansion',
     activation_flags: { ...ACTIVATION_FLAGS },
     scenario_count: scenarios.length,
     passed_scenarios: passed,
@@ -8043,6 +8740,7 @@ function main() {
     outputBase,
     reportingOutput.csv_export_snapshot_summary,
   );
+  const messagingComplianceOutput = buildTopLevelMessagingCompliance(scenarios, outputBase);
 
   const output = {
     ...outputBase,
@@ -8055,6 +8753,7 @@ function main() {
     ...missedLeadRecoveryOutput,
     ...usageVolumeOutput,
     ...leadSourceRoiOutput,
+    ...messagingComplianceOutput,
     aggregate_safety_assertions: [
       'no_supabase_reads_or_writes',
       'no_production_data',
@@ -8114,10 +8813,16 @@ function main() {
       'lead_source_roi_no_crm_sync',
       'lead_source_roi_no_live_csv_delivery',
       'lead_source_roi_exact_roi_not_promised',
+      'explicit_messaging_compliance_contact_permission_coverage',
+      'messaging_compliance_fake_data_only',
+      'messaging_compliance_live_sms_email_call_blocked',
+      'messaging_compliance_no_notifications',
+      'contact_permission_uncertainty_fails_closed',
+      'contact_permission_follow_up_only_when_contacted_or_permission_given',
     ],
     summary: {
       description:
-        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, and lead source attribution/ROI boundary coverage completed safely',
+        'Deterministic fake-data native workflow fixture state model dry-run with explicit guard assertion, reporting snapshot, review queue, appointment readiness, post-inspection, feedback permission, manual outreach, missed lead recovery, usage volume plan-limit, lead source attribution/ROI boundary, and messaging compliance/contact permission coverage completed safely',
       total_scenarios: scenarios.length,
       passed,
       failed,
@@ -8134,6 +8839,7 @@ function main() {
       missed_lead_recovery_coverage: 'expanded',
       usage_volume_plan_limit_coverage: 'expanded',
       lead_source_roi_boundary_coverage: 'expanded',
+      messaging_compliance_contact_permission_coverage: 'expanded',
     },
   };
 

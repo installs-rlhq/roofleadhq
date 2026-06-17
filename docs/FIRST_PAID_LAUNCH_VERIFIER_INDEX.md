@@ -233,6 +233,10 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture Lead Source Attribution / ROI Boundary Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
 - Native Workflow Fixture Lead Source Attribution / ROI Boundary Expansion wrapper: `scripts/run-native-workflow-fixture-lead-source-roi-boundary-expansion-dry-run.sh`
 - Native Workflow Fixture Lead Source Attribution / ROI Boundary Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-lead-source-roi-boundary-expansion-readonly.js`
+- Native Workflow Fixture Messaging Compliance / Contact Permission Expansion doc: `docs/NATIVE_WORKFLOW_FIXTURE_MESSAGING_COMPLIANCE_CONTACT_PERMISSION_EXPANSION.md`
+- Native Workflow Fixture Messaging Compliance / Contact Permission Expansion runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Native Workflow Fixture Messaging Compliance / Contact Permission Expansion wrapper: `scripts/run-native-workflow-fixture-messaging-compliance-contact-permission-expansion-dry-run.sh`
+- Native Workflow Fixture Messaging Compliance / Contact Permission Expansion verifier: `node backend/scripts/verify-native-workflow-fixture-messaging-compliance-contact-permission-expansion-readonly.js`
 - Brand Positioning and Public Messaging System Packet doc: `docs/BRAND_POSITIONING_PUBLIC_MESSAGING_SYSTEM_PACKET.md`
 - Brand Positioning and Public Messaging System Packet wrapper: `scripts/run-brand-positioning-public-messaging-system-packet-dry-run.sh`
 - Brand Positioning and Public Messaging System Packet verifier: `node backend/scripts/verify-brand-positioning-public-messaging-system-packet-readonly.js`
@@ -1834,5 +1838,23 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 
 - Script: `backend/scripts/verify-native-workflow-fixture-lead-source-roi-boundary-expansion-readonly.js`
 - Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded lead source attribution and ROI boundary output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
+## Native Workflow Fixture Messaging Compliance / Contact Permission Expansion
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_MESSAGING_COMPLIANCE_CONTACT_PERMISSION_EXPANSION.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+- Wrapper: `scripts/run-native-workflow-fixture-messaging-compliance-contact-permission-expansion-dry-run.sh`
+- Read-only verifier: `backend/scripts/verify-native-workflow-fixture-messaging-compliance-contact-permission-expansion-readonly.js`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fixture-only fake-data dry-run expansion deepening explicit messaging compliance and contact permission coverage — messaging_compliance_expansion_summary, contact_permission_items, contact_permission_status_summary, do_not_contact_summary, channel_eligibility_summary, consent_source_summary, messaging_hold_summary, messaging_review_summary, messaging_compliance_reporting_summary, messaging_compliance_safety_assertions; permission statuses (permission_confirmed, contacted_business, permission_unknown, permission_missing, permission_denied, do_not_contact, needs_review); channel eligibility and hold/review routing; roofer permission-source clarification vs RoofLeadHQ system-quality review; no live SMS/email/call/notifications.
+- Verifier enforces: doc/runner/wrapper/existing fixture verifier/guard verifier/reporting verifier/review queue verifier/appointment readiness verifier/post-inspection verifier/feedback permission verifier/manual outreach verifier/missed lead recovery verifier/usage volume verifier/lead source ROI verifier exist; runner and verifier syntax; valid JSON output; demo_ready_with_live_automation_disabled; all 25 scenario IDs; messaging compliance summaries and items with required fields; routing assertions; safety assertions; local E2E runner relationship; first paid roofer relationship; forbidden language absent; no unsafe imports/strings; safety boundaries documented; aggregate/index/context/business-guide wiring.
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS/security changes, no production data, no live automation, no integrations, no external calls, no live SMS/email/call, no customer notifications. demo_ready_with_live_automation_disabled. Live automation remains disabled unless Jason explicitly approves activation.
+
+## Native Workflow Fixture Messaging Compliance / Contact Permission Expansion Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-messaging-compliance-contact-permission-expansion-readonly.js`
+- Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded messaging compliance and contact permission output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.

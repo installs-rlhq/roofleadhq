@@ -787,6 +787,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Messaging Compliance / Contact Permission Expansion (docs/NATIVE_WORKFLOW_FIXTURE_MESSAGING_COMPLIANCE_CONTACT_PERMISSION_EXPANSION.md + scripts/run-native-workflow-fixture-messaging-compliance-contact-permission-expansion-dry-run.sh) -- local fixture-only fake-data dry-run expansion deepening explicit messaging compliance and contact permission coverage: messaging_compliance_expansion_summary, contact_permission_items, contact_permission_status_summary, do_not_contact_summary, channel_eligibility_summary, consent_source_summary, messaging_hold_summary, messaging_review_summary, messaging_compliance_reporting_summary, messaging_compliance_safety_assertions; permission statuses (permission_confirmed, contacted_business, permission_unknown, permission_missing, permission_denied, do_not_contact, needs_review); channel eligibility and hold/review routing; roofer permission-source clarification vs RoofLeadHQ system-quality review; no live SMS/email/call/notifications; per-scenario contact_permission_items with required fields; no Supabase/production data/schema/migrations/auth/RLS/live automation/external integrations; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-native-workflow-fixture-messaging-compliance-contact-permission-expansion-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

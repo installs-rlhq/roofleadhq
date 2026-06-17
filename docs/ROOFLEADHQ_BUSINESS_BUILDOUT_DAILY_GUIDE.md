@@ -6085,3 +6085,32 @@ The expansion implements:
 Use preferred lead-to-inspection language (lead source attribution, booked inspections, customer-provided spend, ROI boundaries, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no ad platform integrations, no CRM sync, no live CSV delivery. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Native Workflow Fixture Messaging Compliance / Contact Permission Expansion
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_MESSAGING_COMPLIANCE_CONTACT_PERMISSION_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-messaging-compliance-contact-permission-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-messaging-compliance-contact-permission-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `f4ae6c9 test(workflow): expand native workflow fixture source ROI`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Messaging Compliance / Contact Permission Expansion" / "native workflow fixture messaging compliance contact permission expansion" / "messaging compliance contact permission expansion" across aggregate, index, contexts, and business guide.
+
+The expansion implements:
+
+- Local fixture-only fake-data dry-run — stdout JSON only, no Supabase/production data
+- Top-level messaging_compliance_expansion_summary, contact_permission_items, contact_permission_status_summary
+- do_not_contact_summary, channel_eligibility_summary, consent_source_summary
+- messaging_hold_summary, messaging_review_summary, messaging_compliance_reporting_summary
+- messaging_compliance_safety_assertions
+- Per-scenario contact_permission_items with required fields; all seven permission statuses demonstrated
+- demo_ready_with_live_automation_disabled preserved; no live SMS/email/call, no notifications
+- Local E2E runner relationship; first paid roofer relationship
+
+Use preferred lead-to-inspection language (contact permission, channel eligibility, messaging hold, do-not-contact, fake data, native workflow engine, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call, no customer notifications. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.

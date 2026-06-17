@@ -2346,3 +2346,42 @@ node backend/scripts/verify-native-workflow-fixture-lead-source-roi-boundary-exp
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no ad platform integrations, no CRM sync, no live CSV delivery. demo_ready_with_live_automation_disabled.
+
+## Native Workflow Fixture Messaging Compliance / Contact Permission Expansion
+
+Packet artifacts:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_MESSAGING_COMPLIANCE_CONTACT_PERMISSION_EXPANSION.md`
+- `scripts/run-native-workflow-fixture-messaging-compliance-contact-permission-expansion-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-messaging-compliance-contact-permission-expansion-readonly.js`
+
+Updated runner:
+
+- `backend/scripts/run-native-workflow-fixture-state-model-dry-run.js`
+
+Canonical source of truth before this worktree: `f4ae6c9 test(workflow): expand native workflow fixture source ROI`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Messaging Compliance / Contact Permission Expansion" / "native workflow fixture messaging compliance contact permission expansion" / "messaging compliance contact permission expansion" across aggregate, index, contexts, and business guide.
+
+Dry-run scope:
+
+- Local fixture-only fake-data dry-run expansion — stdout JSON only, no file writes
+- Top-level messaging_compliance_expansion_summary, contact_permission_items, contact_permission_status_summary
+- do_not_contact_summary, channel_eligibility_summary, consent_source_summary
+- messaging_hold_summary, messaging_review_summary, messaging_compliance_reporting_summary
+- messaging_compliance_safety_assertions
+- Per-scenario contact_permission_items; no live SMS/email/call, no notifications
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-messaging-compliance-contact-permission-expansion-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-messaging-compliance-contact-permission-expansion-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no live automation, no integrations, no external calls, no live SMS/email/call, no customer notifications. demo_ready_with_live_automation_disabled.
