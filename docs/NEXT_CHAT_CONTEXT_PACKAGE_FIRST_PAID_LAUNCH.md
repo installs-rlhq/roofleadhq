@@ -7710,6 +7710,49 @@ node backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-walkth
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Walkthrough + observation/triage only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Demo Roofer Walkthrough Observation Evidence Capture
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_WALKTHROUGH_OBSERVATION_EVIDENCE_CAPTURE.md`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-walkthrough-observation-evidence-capture-readonly.js`
+- `scripts/run-native-workflow-fixture-demo-roofer-walkthrough-observation-evidence-capture-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/demo-walkthrough-observation-evidence-capture.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer Walkthrough Observation Evidence Capture" / "native workflow fixture demo roofer walkthrough observation evidence capture" / "demo roofer walkthrough observation evidence capture" across aggregate, index, contexts, and business guide.
+- Evidence capture documents completed demo roofer walkthrough/observation/triage layer — source_of_truth_commit c6df554, prior commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554.
+- Walkthrough/triage packet PASS; walkthrough/triage verifier PASS 91 assertions; walkthrough/triage wrapper PASS.
+- Summit Peak Roofing Demo LLC fake; 25 walkthrough sections/25 scenarios/25 matched outcomes.
+- Observation status PASS/PASS_WITH_NOTE/REVIEW_NEEDED/FAIL_NO_GO; severity INFO/LOW/MEDIUM/HIGH/BLOCKER; owners Jason/Roofer/Engineering/Product/Legal/Compliance/Hold.
+- Issue categories: fake data clarity, scenario wording, expected outcome mismatch, review queue ambiguity, escalation ambiguity, compliance/messaging concern, post-inspection concern, feedback permission concern, reporting/CSV concern, source ROI concern, safety boundary concern, old 90-day plan reconciliation candidate, other.
+- recommended_next_step PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT; final triage decisions PASS_LOCAL_DEMO_WALKTHROUGH/PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT/HOLD_FOR_REVIEW/FAIL_NO_GO_KEEP_BLOCKED.
+- Pilot readiness demo_ready_with_live_automation_disabled; safe readiness fast lane PASS 17 checks; backend build PASS; source-of-truth PASS HEAD == origin/main at c6df554; final clean check blank.
+- activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false; approved_channels empty; approved_external_services empty.
+- activation_occurred false; external_calls_made false; credentials_env_api_webhook_access false; production_data_access false; schema_auth_rls_security_changes false; public_route_webhook_scheduler_cron_dispatcher_changes false; billing_payment_deposit_invoice_quote_estimate_automation false; live_services_used false.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-demo-roofer-walkthrough-observation-evidence-capture-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-demo-roofer-walkthrough-observation-evidence-capture-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Walkthrough observation evidence capture only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

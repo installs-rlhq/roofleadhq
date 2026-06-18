@@ -2597,6 +2597,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind. No command execution in this packet.
 
+## Native Workflow Fixture Demo Roofer Walkthrough Observation Evidence Capture
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_WALKTHROUGH_OBSERVATION_EVIDENCE_CAPTURE.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/demo-walkthrough-observation-evidence-capture.json`
+- Wrapper: `scripts/run-native-workflow-fixture-demo-roofer-walkthrough-observation-evidence-capture-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-demo-roofer-walkthrough-observation-evidence-capture-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data evidence capture documents completed demo roofer walkthrough/observation/triage layer — source_of_truth_commit c6df554, prior commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554, walkthrough_triage_packet PASS, walkthrough_triage_verifier PASS 91 assertions, walkthrough_triage_wrapper PASS, Summit Peak Roofing Demo LLC fake, 25 walkthrough sections/25 scenarios/25 matched outcomes, observation status PASS/PASS_WITH_NOTE/REVIEW_NEEDED/FAIL_NO_GO, severity INFO/LOW/MEDIUM/HIGH/BLOCKER, owners Jason/Roofer/Engineering/Product/Legal/Compliance/Hold, issue categories for fake data clarity/scenario wording/expected outcome mismatch/review queue/escalation/compliance/post-inspection/feedback permission/reporting-CSV/source ROI/safety boundary/old 90-day plan reconciliation/other, recommended_next_step PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT, final triage decisions PASS_LOCAL_DEMO_WALKTHROUGH/PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT/HOLD_FOR_REVIEW/FAIL_NO_GO_KEEP_BLOCKED, pilot readiness demo_ready_with_live_automation_disabled, safe readiness fast lane PASS 17 checks, backend build PASS, source-of-truth PASS HEAD == origin/main at c6df554, final clean check blank, activation_approval_status not_granted, command_execution_status not_run_by_this_packet, approved_for_activation_now false, approved_channels empty, approved_external_services empty, activation_occurred false, external_calls_made false, credentials_env_api_webhook_access false, production_data_access false, schema_auth_rls_security_changes false, public_route_webhook_scheduler_cron_dispatcher_changes false, billing_payment_deposit_invoice_quote_estimate_automation false, live_services_used false, old 90-day plan boundary guard, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only.
+- Verifier enforces: evidence doc/fixture; walkthrough/triage layer evidence fields; all 25 scenario IDs; 25 walkthrough sections; observation/triage options; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (verifier + backend build only).
+- Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Walkthrough observation evidence capture only; activation and external services remain blocked. No execution performed.
+
+## Native Workflow Fixture Demo Roofer Walkthrough Observation Evidence Capture Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-demo-roofer-walkthrough-observation-evidence-capture-readonly.js`
+- Purpose: read-only fail-closed guard that validates the demo roofer walkthrough observation evidence capture documentation, structured evidence fixture, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind. No command execution in this packet.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
