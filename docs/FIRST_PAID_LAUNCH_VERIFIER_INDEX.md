@@ -2093,6 +2093,26 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
 
+## Native Workflow Fixture Channel Replay Acceptance Gate Dry Run
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_CHANNEL_REPLAY_ACCEPTANCE_GATE_DRY_RUN.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-channel-replay-acceptance-gate-dry-run.js`
+- Wrapper: `scripts/run-native-workflow-fixture-channel-replay-acceptance-gate-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-channel-replay-acceptance-gate-dry-run-readonly.js`
+- Fast safe readiness (additive): `bash scripts/verify-safe-readiness-fast.sh`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data channel replay acceptance gate dry-run summarizing go/no-go readiness across channel contracts, replay scenarios, blocked delivery, audit evidence, owner routing, approval prerequisites, rollback readiness, and post-approval test readiness — channel_replay_acceptance_gate_dry_run_summary, channel_replay_acceptance_gate_items, acceptance_gate_matrix_summary, go_no_go_decision_summary, per-area readiness summaries, channel_replay_acceptance_gate_safety_assertions; 22 acceptance gate areas; acceptance gate only without sandbox/production credential reads, env value logging, external calls, live sends, test-mode sends, public routes, scheduler/cron/dispatcher enablement, or production persistence; all items dry_run_only and not_approved; relationship to channel adapter contract and channel payload replay dry runs; fast-lane verification additive; full aggregate regression preserved.
+- Verifier enforces: doc/runner/wrapper/fast-lane references; valid JSON output; common gate fields; all gate areas; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; dry-run wrapper safe.
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Fast lane does not replace full regression.
+
+## Native Workflow Fixture Channel Replay Acceptance Gate Dry Run Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-channel-replay-acceptance-gate-dry-run-readonly.js`
+- Purpose: read-only fail-closed guard that executes the channel replay acceptance gate dry-run runner, validates acceptance gate output and safety posture, and confirms wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
