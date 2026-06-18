@@ -2052,3 +2052,22 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Purpose: read-only fail-closed guard that executes the fixture dry-run runner, validates expanded test-mode channel preflight evidence packet output, and confirms wiring into aggregate/index/all three next-chat context packages and business guide.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_ROOFER_DRY_RUN_ONBOARDING.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
+
+## Verifier Quiet Mode + Fast-Lane Performance Cleanup
+
+- Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
+- Wrapper: `scripts/run-verifier-quiet-mode-fast-lane-performance-cleanup-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-verifier-quiet-mode-fast-lane-performance-cleanup-readonly.js`
+- Fast safe readiness (additive): `bash scripts/verify-safe-readiness-fast.sh`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: additive performance cleanup documenting fast lane (targeted packet verifier + quiet safe readiness smoke + backend build) vs full regression lane (full aggregate readiness + historical fixture expansion checks + verbose log redirection + FAIL/ETIMEDOUT grep); reduces repeated historical PASS output during normal builds without weakening safety; timeout handling and quiet-mode log redirection guidance; demo_ready_with_live_automation_disabled preserved; full aggregate regression lane preserved.
+- Verifier enforces: doc/fast-lane/full-lane definitions; safety rules (no safety weakening, no live activation, no credential/env logging, no production data, no schema/auth/RLS/security changes); wiring into aggregate/index/contexts/business guide; fast readiness script additive; dry-run wrapper safe; pilot readiness status checks.
+- Safety: local read-only/dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no credentials, no env logging, no live automation, no test-mode automation, no integrations, no external calls. Fast lane does not replace full regression.
+
+## Verifier Quiet Mode + Fast-Lane Performance Cleanup Verifier
+
+- Script: `backend/scripts/verify-verifier-quiet-mode-fast-lane-performance-cleanup-readonly.js`
+- Purpose: read-only fail-closed guard validating quiet-mode/fast-lane documentation, scripts, wiring, and safety posture without removing full aggregate regression.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.

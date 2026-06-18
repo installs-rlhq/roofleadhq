@@ -837,6 +837,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Verifier Quiet Mode + Fast-Lane Performance Cleanup (docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md + scripts/run-verifier-quiet-mode-fast-lane-performance-cleanup-dry-run.sh + scripts/verify-safe-readiness-fast.sh) -- additive performance cleanup documenting fast lane vs full regression lane; fast lane uses targeted packet verifier + quiet safe readiness smoke + backend build; full regression lane preserves scripts/verify-safe-readiness.sh aggregate; no safety weakening; no live activation; no credential/env logging; timeout/log redirection guidance; demo_ready_with_live_automation_disabled preserved',
+    script: 'backend/scripts/verify-verifier-quiet-mode-fast-lane-performance-cleanup-readonly.js',
+    args: []
+  },
+  {
     name: 'First Roofer Day-One Command Center (docs/FIRST_ROOFER_DAY_ONE_COMMAND_CENTER.md + scripts/run-first-roofer-day-one-command-center-dry-run.sh) -- first-roofer founder/operator day-one command center cockpit for manual lead intake through inspection/appointment readiness and end-of-day reporting',
     script: 'backend/scripts/verify-first-roofer-day-one-command-center-readonly.js',
     args: []

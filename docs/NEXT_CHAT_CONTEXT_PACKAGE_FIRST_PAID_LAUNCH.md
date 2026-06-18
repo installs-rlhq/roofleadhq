@@ -6557,3 +6557,44 @@ node backend/scripts/verify-native-workflow-fixture-test-mode-channel-preflight-
 ```
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Stop after gates and diff proof. Do not commit or push.
+
+## Verifier Quiet Mode + Fast-Lane Performance Cleanup
+
+Added files:
+- `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
+- `backend/scripts/verify-verifier-quiet-mode-fast-lane-performance-cleanup-readonly.js`
+- `scripts/run-verifier-quiet-mode-fast-lane-performance-cleanup-dry-run.sh`
+- `scripts/verify-safe-readiness-fast.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `scripts/verify-safe-readiness.sh` (comment only — full lane preserved)
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Verifier Quiet Mode + Fast-Lane Performance Cleanup" / "verifier quiet mode fast lane performance cleanup" / "quiet mode fast lane performance cleanup" / `verify-safe-readiness-fast.sh` across aggregate, index, contexts, and business guide.
+- Fast lane (normal builds): targeted packet verifier + packet dry-run wrapper + `scripts/verify-safe-readiness-fast.sh` + backend build + Terminal 1 source-of-truth verification.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` + log redirection + FAIL/ETIMEDOUT grep + backend build + source-of-truth verification.
+- Fast lane is additive; does not replace full aggregate regression.
+
+Dry-run command:
+
+```bash
+bash scripts/run-verifier-quiet-mode-fast-lane-performance-cleanup-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-verifier-quiet-mode-fast-lane-performance-cleanup-readonly.js
+```
+
+Fast safe readiness:
+
+```bash
+bash scripts/verify-safe-readiness-fast.sh
+```
+
+Safety remains: local read-only/dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no credentials, no env logging, no live automation, no test-mode automation, no integrations, no external calls. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Stop after gates and diff proof. Do not commit or push.

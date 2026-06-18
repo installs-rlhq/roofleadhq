@@ -6374,3 +6374,26 @@ The expansion implements:
 Use preferred lead-to-inspection language (test-mode channel preflight evidence packet, preflight evidence modeling, fake data, native workflow engine, dry-run only).
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
+## Verifier Quiet Mode + Fast-Lane Performance Cleanup
+
+- `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
+- `scripts/run-verifier-quiet-mode-fast-lane-performance-cleanup-dry-run.sh`
+- `backend/scripts/verify-verifier-quiet-mode-fast-lane-performance-cleanup-readonly.js`
+- `scripts/verify-safe-readiness-fast.sh` (additive fast lane)
+- `scripts/verify-safe-readiness.sh` (full regression lane — preserved)
+
+Verifier enforces references to the packet artifacts and "Verifier Quiet Mode + Fast-Lane Performance Cleanup" / "verifier quiet mode fast lane performance cleanup" / "quiet mode fast lane performance cleanup" / `verify-safe-readiness-fast.sh` across aggregate, index, contexts, and business guide.
+
+The cleanup implements:
+
+- Fast lane for normal builds: targeted packet verifier + quiet safe readiness smoke + backend build
+- Full regression lane for milestones: full aggregate via `scripts/verify-safe-readiness.sh` with log redirection
+- Reduced repeated historical PASS output during normal iteration
+- Timeout handling and verbose log redirection guidance
+- demo_ready_with_live_automation_disabled preserved
+- No safety weakening; fast lane is additive only
+
+Use preferred lead-to-inspection language (verifier quiet mode, fast lane, quiet safe readiness, fake data, dry-run only).
+
+Safety: local read-only/dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no credentials, no env logging, no live automation, no test-mode automation, no integrations, no external calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
