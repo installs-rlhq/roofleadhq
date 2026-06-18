@@ -6515,6 +6515,35 @@ Use preferred lead-to-inspection language (readiness lock, controlled launch rev
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Approval Request Packet Dry Run
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_APPROVAL_REQUEST_PACKET_DRY_RUN.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-approval-request-packet-dry-run.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-approval-request-packet-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approval-request-packet-dry-run-readonly.js`
+- `scripts/verify-safe-readiness-fast.sh` (additive fast lane)
+
+Canonical source of truth before this worktree: `c3ef676 test(workflow): add first controlled launch readiness lock dry run`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Approval Request Packet Dry Run" / "native workflow fixture first controlled launch approval request packet dry run" / "first controlled launch approval request packet dry run" / `verify-safe-readiness-fast.sh` across aggregate, index, contexts, and business guide.
+
+The dry run implements:
+
+- Local fake-data first controlled launch approval request packet — stdout JSON only, no Supabase/production data
+- Top-level first_controlled_launch_approval_request_packet_dry_run_summary, first_controlled_launch_approval_request_items
+- approval_request_packet_toc_summary through forbidden_next_actions_before_approval_summary
+- approval_not_granted_summary and first_controlled_launch_approval_request_safety_assertions
+- 32 approval request areas (executive approval request summary, evidence chain completeness, readiness lock evidence, human review packet evidence, channel adapter contract, channel payload replay, channel replay acceptance gate, SMS/email/call/calendar scope requests, CSV/CRM/Lindy bridge/scheduler/dispatcher/public route/Supabase, billing blocked boundary, credential/env review, messaging compliance review, data boundary/PII, audit/timeline, owner routing, rollback plan, post-approval test plan, unresolved blocker register, approval decision checklist, allowed/forbidden next actions before approval, explicit approval still required, approval not granted, first controlled launch remains blocked)
+- Approval request packet only — no sandbox/production credential reads, no live or test-mode activation, no approval granted
+- Relationship to channel adapter contract, channel payload replay, channel replay acceptance gate, human review packet, readiness lock, and verifier fast-lane cleanup
+- First controlled launch, sandbox/test-mode, and live activation remain blocked until separate explicit Jason approval
+- demo_ready_with_live_automation_disabled preserved
+- Fast lane additive; full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (approval request packet, controlled launch review, fake data, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
