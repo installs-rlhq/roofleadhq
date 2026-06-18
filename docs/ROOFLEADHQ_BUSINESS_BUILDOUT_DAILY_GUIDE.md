@@ -6402,6 +6402,34 @@ Use preferred lead-to-inspection language (channel adapter contract, payload con
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Channel Payload Replay Dry Run
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_CHANNEL_PAYLOAD_REPLAY_DRY_RUN.md`
+- `backend/scripts/run-native-workflow-fixture-channel-payload-replay-dry-run.js`
+- `scripts/run-native-workflow-fixture-channel-payload-replay-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-channel-payload-replay-dry-run-readonly.js`
+- `scripts/verify-safe-readiness-fast.sh` (additive fast lane)
+
+Canonical source of truth before this worktree: `3d68069 test(workflow): add channel adapter contract dry run`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Channel Payload Replay Dry Run" / "native workflow fixture channel payload replay dry run" / "channel payload replay dry run" / `verify-safe-readiness-fast.sh` across aggregate, index, contexts, and business guide.
+
+The dry run implements:
+
+- Local fake-data channel payload replay — stdout JSON only, no Supabase/production data
+- Top-level channel_payload_replay_dry_run_summary, channel_payload_replay_items
+- replay_scenario_matrix_summary through owner_routing_summary
+- channel_payload_replay_safety_assertions
+- 20 replay scenarios (SMS outbound draft/blocked, SMS inbound reply, email outbound draft/blocked, call intent/result, calendar appointment request/result, CSV export handoff, CRM handoff/export, Lindy bridge handoff, scheduler/dispatcher queued-action, public route/webhook received-event, Supabase persistence handoff, billing blocked, malformed, activation violation, credential leakage, unsupported channel)
+- Replay only — no sandbox/production credential reads, no live or test-mode activation
+- Relationship to channel adapter contract dry run
+- demo_ready_with_live_automation_disabled preserved
+- Fast lane additive; full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (channel payload replay, validation and blocked delivery routing, fake data, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
