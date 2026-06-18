@@ -7345,6 +7345,43 @@ Use preferred lead-to-inspection language (P2 refinement, edge cases, old 90-day
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture P3 Future Approval Planning Packet
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_FUTURE_SANDBOX_TEST_MODE_APPROVAL_REQUEST_DRAFT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_FUTURE_LIVE_ACTIVATION_APPROVAL_REQUEST_DRAFT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_EXACT_COMMAND_EXECUTION_APPROVAL_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_CREDENTIAL_SERVICE_ENVIRONMENT_STOP_CONDITION_MATRIX.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_ROLLBACK_AND_EVIDENCE_CAPTURE_CHECKLIST.md`
+- `scripts/run-native-workflow-fixture-p3-future-approval-planning-packet-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-p3-future-approval-planning-packet-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/p3-future-approval-planning-packet.json`
+
+Canonical source of truth: `db9ece3 test(workflow): add local demo e2e p2 refinement batch`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture P3 Future Approval Planning Packet" / "native workflow fixture p3 future approval planning packet" / "p3 future approval planning packet" across aggregate, index, contexts, and business guide.
+
+The P3 future approval planning packet implements:
+
+- Future sandbox/test-mode approval request draft (not_granted, request template only)
+- Future live activation approval request draft (not_granted, requires successful sandbox/test-mode evidence first)
+- Exact command execution approval template (no command approved by template)
+- Credential/service/environment/stop-condition matrix with 11 service rows (all approval statuses not_granted or blocked)
+- Rollback and evidence capture checklist with 20 items
+- source_of_truth_commit db9ece3; evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3
+- p3_planning_status completed; p1_polish_status completed; p2_refinement_status completed; evidence_chain_status passed; p0_blockers_count 0
+- current_recommended_next_step HOLD_FOR_JASON_REVIEW_OR_PREPARE_SEPARATE_SANDBOX_TEST_MODE_APPROVAL_REQUEST
+- activation_approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (P3 planning, future approval drafts, service matrix, rollback checklist, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

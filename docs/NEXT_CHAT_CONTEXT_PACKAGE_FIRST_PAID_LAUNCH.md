@@ -7882,6 +7882,47 @@ node backend/scripts/verify-native-workflow-fixture-local-demo-e2e-p2-refinement
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. P2 refinement batch only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture P3 Future Approval Planning Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_FUTURE_SANDBOX_TEST_MODE_APPROVAL_REQUEST_DRAFT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_FUTURE_LIVE_ACTIVATION_APPROVAL_REQUEST_DRAFT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_EXACT_COMMAND_EXECUTION_APPROVAL_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_CREDENTIAL_SERVICE_ENVIRONMENT_STOP_CONDITION_MATRIX.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_P3_ROLLBACK_AND_EVIDENCE_CAPTURE_CHECKLIST.md`
+- `backend/scripts/verify-native-workflow-fixture-p3-future-approval-planning-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-p3-future-approval-planning-packet-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/p3-future-approval-planning-packet.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture P3 Future Approval Planning Packet" / "native workflow fixture p3 future approval planning packet" / "p3 future approval planning packet" across aggregate, index, contexts, and business guide.
+- P3 future approval planning packet completes future sandbox/test-mode approval request draft, future live activation approval request draft, exact command execution approval template, credential/service/environment/stop-condition matrix, and rollback/evidence capture checklist — source_of_truth_commit db9ece3, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3, p3_planning_status completed.
+- p1_polish_status completed; p2_refinement_status completed; 11 service matrix rows; 20 rollback checklist items; evidence_chain_status passed; p0_blockers_count 0.
+- Sandbox/test-mode and live activation request drafts remain not_granted; live activation requires successful sandbox/test-mode evidence first; no command approved by template.
+- current_recommended_next_step HOLD_FOR_JASON_REVIEW_OR_PREPARE_SEPARATE_SANDBOX_TEST_MODE_APPROVAL_REQUEST; activation_approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-p3-future-approval-planning-packet-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-p3-future-approval-planning-packet-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. P3 planning packet only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
