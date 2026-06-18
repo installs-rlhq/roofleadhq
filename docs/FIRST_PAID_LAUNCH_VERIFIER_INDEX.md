@@ -2654,6 +2654,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind. No command execution in this packet.
 
+## Native Workflow Fixture Local Demo E2E P2 Refinement Batch
+
+- Docs: `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_FAKE_DATA_EDGE_CASE_EXPANSION.md`, `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_OLD_90_DAY_PLAN_RECONCILIATION_AUDIT.md`, `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_DASHBOARD_ADMIN_SCREENSHOT_CHECKLIST.md`, `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_CSV_REPORTING_EXAMPLE_REVIEW.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/local-demo-e2e-p2-refinement-batch.json`
+- Wrapper: `scripts/run-native-workflow-fixture-local-demo-e2e-p2-refinement-batch-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-local-demo-e2e-p2-refinement-batch-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data P2 refinement batch completes fake-data edge case expansion, old 90-day plan reconciliation audit non-overriding, local dashboard/admin screenshot checklist documentation-only, and local CSV/reporting example review fake-data only — source_of_truth_commit 5ef9ef5, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5, p2_refinement_status completed, p1_polish_status completed, Summit Peak Roofing Demo LLC fake, 25 scenarios/25 expected outcomes/25 matched outcomes/0 missing/0 unexpected, 15 edge case categories, 11 dashboard/admin checklist items, 10 CSV/reporting review groups, evidence_chain_status passed, p0_blockers_count 0, audit-only non-overriding old 90-day plan reconciliation, CSV/reporting one-directional not CRM sync, permission_to_use_publicly yes/no/not_asked preserved, standing local build approval recorded but limited to local-only/fake-data/read-only/dry-run/review-only, current_recommended_next_step CONTINUE_LOCAL_REFINEMENT_OR_HOLD_FOR_REVIEW, activation_approval_status not_granted, command_execution_status not_run_by_this_packet, approved_for_activation_now false, approved_channels empty, approved_external_services empty, live_activation_allowed false, sandbox_test_mode_activation_allowed false, external_calls_allowed false, credentials_access_allowed false, production_data_access_allowed false, schema_auth_rls_security_changes_allowed false, public_route_webhook_scheduler_cron_dispatcher_allowed false, billing_payment_automation_allowed false, public_go_live_or_production_copy_changes_allowed false, pilot readiness demo_ready_with_live_automation_disabled, old 90-day plan boundary guard, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only.
+- Verifier enforces: all four docs/fixture; 15 edge case categories with required fields; audit-only non-overriding old 90-day plan reconciliation; 11 dashboard/admin checklist items; 10 CSV/reporting review groups; P2 items completed; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (verifier + backend build only).
+- Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. P2 refinement batch only; activation and external services remain blocked. No execution performed.
+
+## Native Workflow Fixture Local Demo E2E P2 Refinement Batch Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-local-demo-e2e-p2-refinement-batch-readonly.js`
+- Purpose: read-only fail-closed guard that validates the P2 refinement documentation set, structured fixture, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind. No command execution in this packet.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
