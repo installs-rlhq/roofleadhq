@@ -1925,6 +1925,45 @@ bash scripts/verify-safe-readiness-fast.sh
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Readiness Lock Dry Run
+
+The Native Workflow Fixture First Controlled Launch Readiness Lock Dry Run (native workflow fixture first controlled launch readiness lock dry run / first controlled launch readiness lock dry run) consolidates upstream contract, replay, acceptance gate, human review packet, and verifier fast-lane evidence into a final readiness lock summary without activating any live, sandbox, or controlled launch channel execution.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_READINESS_LOCK_DRY_RUN.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-readiness-lock-dry-run.js`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-readiness-lock-dry-run-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-readiness-lock-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Readiness Lock Dry Run" / "native workflow fixture first controlled launch readiness lock dry run" / "first controlled launch readiness lock dry run" / `verify-safe-readiness-fast.sh` across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-readiness-lock-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-readiness-lock-dry-run-readonly.js
+```
+
+Fast safe readiness:
+
+```bash
+bash scripts/verify-safe-readiness-fast.sh
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. First controlled launch remains blocked. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
