@@ -2578,6 +2578,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind. No command execution in this packet.
 
+## Native Workflow Fixture Demo Roofer Local E2E Walkthrough Script + Observation/Triage Packet
+
+- Docs: `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_WALKTHROUGH_SCRIPT.md`, `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_OBSERVATION_TRIAGE_PACKET.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/demo-local-e2e-walkthrough-observation-triage.json`
+- Wrapper: `scripts/run-native-workflow-fixture-demo-roofer-local-e2e-walkthrough-observation-triage-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-walkthrough-observation-triage-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data demo walkthrough script and observation/triage packet guides Jason narrative review of Summit Peak Roofing Demo LLC fake-data E2E flow — source_of_truth_commit 3800512, prior commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512, 25 scenarios/25 expected outcomes/25 matched outcomes/25 walkthrough sections, observation status PASS/PASS_WITH_NOTE/REVIEW_NEEDED/FAIL_NO_GO, severity INFO/LOW/MEDIUM/HIGH/BLOCKER, owners Jason/Roofer/Engineering/Product/Legal/Compliance/Hold, issue categories for fake data clarity/scenario wording/expected outcome mismatch/review queue/escalation/compliance/post-inspection/feedback permission/reporting-CSV/source ROI/safety boundary/old 90-day plan reconciliation/other, recommended_next_step PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT, final triage decisions PASS_LOCAL_DEMO_WALKTHROUGH/PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT/HOLD_FOR_REVIEW/FAIL_NO_GO_KEEP_BLOCKED, triage does not approve activation, activation_approval_status not_granted, command_execution_status not_run_by_this_packet, approved_for_activation_now false, approved_channels empty, approved_external_services empty, old 90-day plan boundary guard, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only.
+- Verifier enforces: walkthrough/observation triage docs/fixture; all 25 scenario IDs; 25 walkthrough sections; required local review commands; observation/triage options; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (verifier + backend build only).
+- Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Walkthrough + observation/triage only; activation and external services remain blocked. No execution performed.
+
+## Native Workflow Fixture Demo Roofer Local E2E Walkthrough Script + Observation/Triage Packet Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-walkthrough-observation-triage-readonly.js`
+- Purpose: read-only fail-closed guard that validates the demo roofer local E2E walkthrough script documentation, observation/triage packet documentation, structured walkthrough/triage fixture, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind. No command execution in this packet.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

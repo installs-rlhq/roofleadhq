@@ -7669,6 +7669,47 @@ node backend/scripts/verify-native-workflow-fixture-final-local-demo-e2e-readine
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Final readiness summary + next decision only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Demo Roofer Local E2E Walkthrough Script + Observation/Triage Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_WALKTHROUGH_SCRIPT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_OBSERVATION_TRIAGE_PACKET.md`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-walkthrough-observation-triage-readonly.js`
+- `scripts/run-native-workflow-fixture-demo-roofer-local-e2e-walkthrough-observation-triage-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/demo-local-e2e-walkthrough-observation-triage.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer Local E2E Walkthrough Script + Observation/Triage Packet" / "native workflow fixture demo roofer local e2e walkthrough observation triage" / "demo roofer local e2e walkthrough observation triage" across aggregate, index, contexts, and business guide.
+- Walkthrough script guides Jason narrative review of Summit Peak Roofing Demo LLC fake-data E2E flow — source_of_truth_commit 3800512, prior commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512.
+- 25 walkthrough sections with observe/expected/concern guidance; 25 scenario IDs in observation/triage table.
+- Observation status PASS/PASS_WITH_NOTE/REVIEW_NEEDED/FAIL_NO_GO; severity INFO/LOW/MEDIUM/HIGH/BLOCKER; owners Jason/Roofer/Engineering/Product/Legal/Compliance/Hold.
+- Issue categories: fake data clarity, scenario wording, expected outcome mismatch, review queue ambiguity, escalation ambiguity, compliance/messaging concern, post-inspection concern, feedback permission concern, reporting/CSV concern, source ROI concern, safety boundary concern, old 90-day plan reconciliation candidate, other.
+- recommended_next_step PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT; final triage decisions PASS_LOCAL_DEMO_WALKTHROUGH/PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT/HOLD_FOR_REVIEW/FAIL_NO_GO_KEEP_BLOCKED.
+- No triage decision approves activation; activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false; approved_channels empty; approved_external_services empty.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-demo-roofer-local-e2e-walkthrough-observation-triage-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-walkthrough-observation-triage-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Walkthrough + observation/triage only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

@@ -7178,6 +7178,38 @@ Use preferred lead-to-inspection language (final local demo E2E readiness summar
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Demo Roofer Local E2E Walkthrough Script + Observation/Triage Packet
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_WALKTHROUGH_SCRIPT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_OBSERVATION_TRIAGE_PACKET.md`
+- `scripts/run-native-workflow-fixture-demo-roofer-local-e2e-walkthrough-observation-triage-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-walkthrough-observation-triage-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/demo-local-e2e-walkthrough-observation-triage.json`
+
+Canonical source of truth: `3800512 test(workflow): add final local demo e2e readiness decision`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer Local E2E Walkthrough Script + Observation/Triage Packet" / "native workflow fixture demo roofer local e2e walkthrough observation triage" / "demo roofer local e2e walkthrough observation triage" across aggregate, index, contexts, and business guide.
+
+The demo roofer local E2E walkthrough script + observation/triage packet implements:
+
+- Operator-facing narrative walkthrough script for Jason across 25 fake-data E2E scenarios
+- Observation/triage packet with scenario observation table, status/severity/owner options, issue categories, and final triage decision options
+- Structured walkthrough/triage fixture with source_of_truth_commit 3800512, recommended_next_step PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT
+- Summit Peak Roofing Demo LLC fake; 25 scenarios/25 expected outcomes/25 matched outcomes/25 walkthrough sections
+- Observation status PASS/PASS_WITH_NOTE/REVIEW_NEEDED/FAIL_NO_GO; severity INFO/LOW/MEDIUM/HIGH/BLOCKER; owners Jason/Roofer/Engineering/Product/Legal/Compliance/Hold
+- Final triage decisions PASS_LOCAL_DEMO_WALKTHROUGH/PASS_WITH_NOTES_CONTINUE_LOCAL_REFINEMENT/HOLD_FOR_REVIEW/FAIL_NO_GO_KEEP_BLOCKED
+- No triage decision approves activation; activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (demo walkthrough script, observation triage packet, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
