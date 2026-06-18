@@ -2293,6 +2293,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
 
+## Native Workflow Fixture First Controlled Launch Scoped Approval Capture Dry Run
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_SCOPED_APPROVAL_CAPTURE.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-first-controlled-launch-scoped-approval-capture.js`
+- Wrapper: `scripts/run-native-workflow-fixture-first-controlled-launch-scoped-approval-capture-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-scoped-approval-capture-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data first controlled launch scoped approval capture dry-run records Jason's planning-only move-forward approval ("Approved to move forward.") without granting activation — scoped_approval_capture_record, first_controlled_launch_scoped_approval_capture_items, executive/jason/planning-only/activation-blocked/placeholder/required-next-decision/forbidden-scope summaries, first_controlled_launch_scoped_approval_capture_safety_assertions; 20 capture areas; approval_interpretation move_forward_to_next_controlled_planning_step_only, approval_scope prepare_controlled_test_mode_activation_plan_only, approval_decision_status scoped_planning_approved, all activation flags false, approved_channels and approved_external_services empty, start/operator/rollback blank_placeholder, required_next_decision exact controlled test-mode channel/start/operator/rollback approval.
+- Verifier enforces: doc/runner/wrapper references; valid JSON output; common capture fields; all capture areas; scoped_approval_capture_record fields; Jason approval statement captured; planning-only interpretation; no activation allowed; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (targeted verifier only).
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Scoped planning approved only; activation remains blocked until separate exact approval. No execution performed.
+
+## Native Workflow Fixture First Controlled Launch Scoped Approval Capture Dry Run Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-scoped-approval-capture-readonly.js`
+- Purpose: read-only fail-closed guard that executes the first controlled launch scoped approval capture dry-run runner, validates capture output and safety posture, and confirms wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

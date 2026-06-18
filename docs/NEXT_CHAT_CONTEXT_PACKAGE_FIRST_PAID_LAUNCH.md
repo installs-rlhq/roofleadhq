@@ -7070,6 +7070,43 @@ bash scripts/verify-safe-readiness-fast.sh
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Approval not granted. First controlled launch remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Scoped Approval Capture Dry Run
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_SCOPED_APPROVAL_CAPTURE.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-scoped-approval-capture.js`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-scoped-approval-capture-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-scoped-approval-capture-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Scoped Approval Capture Dry Run" / "native workflow fixture first controlled launch scoped approval capture dry run" / "first controlled launch scoped approval capture dry run" across aggregate, index, contexts, and business guide.
+- Local fake-data first controlled launch scoped approval capture dry-run — 20 capture areas with common fields (fixture_delivery_mode dry_run_only, all activation flags false, fixture_approval_interpretation move_forward_to_next_controlled_planning_step_only).
+- Scoped approval capture dry-run only — records Jason's planning-only move-forward approval without sandbox/production credential reads, no live automation, no test-mode activation, no activation granted, no execution performed.
+- scoped_approval_capture_record: approval_statement_received "Approved to move forward.", approval_interpretation move_forward_to_next_controlled_planning_step_only, approval_scope prepare_controlled_test_mode_activation_plan_only, approval_decision_status scoped_planning_approved, all activation flags false, approved_channels and approved_external_services empty, start/operator/rollback blank_placeholder, required_next_decision exact controlled test-mode channel/start/operator/rollback approval.
+- Relationship to approval decision draft.
+- Activation remains blocked until separate exact scope/start/operator/rollback approval.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-scoped-approval-capture-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-scoped-approval-capture-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Scoped planning approved only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

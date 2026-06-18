@@ -6719,6 +6719,34 @@ Use preferred lead-to-inspection language (approval decision draft, controlled l
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Scoped Approval Capture Dry Run
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_SCOPED_APPROVAL_CAPTURE.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-scoped-approval-capture.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-scoped-approval-capture-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-scoped-approval-capture-readonly.js`
+
+Canonical source of truth before this worktree: `003d287 test(workflow): add first controlled launch approval decision draft`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Scoped Approval Capture Dry Run" / "native workflow fixture first controlled launch scoped approval capture dry run" / "first controlled launch scoped approval capture dry run" across aggregate, index, contexts, and business guide.
+
+The dry run implements:
+
+- Local fake-data first controlled launch scoped approval capture — stdout JSON only, no Supabase/production data
+- Top-level first_controlled_launch_scoped_approval_capture_dry_run_summary, scoped_approval_capture_record, first_controlled_launch_scoped_approval_capture_items
+- executive/jason/planning-only/activation-blocked/placeholder/required-next-decision/forbidden-scope summaries and first_controlled_launch_scoped_approval_capture_safety_assertions
+- 20 capture areas (executive summary, Jason approval statement, planning-only interpretation, approval scope/decision status, activation blocked boundaries, approved channels/services empty, start/operator/rollback placeholders, required next decision, forbidden scope, approval decision draft relationship, not-activation boundary, credential/env, schema/auth/RLS/security)
+- Scoped approval capture dry-run only — records Jason's planning-only move-forward approval without sandbox/production credential reads, no live or test-mode activation, no activation granted, no execution performed
+- scoped_approval_capture_record: approval_statement_received "Approved to move forward.", approval_interpretation move_forward_to_next_controlled_planning_step_only, approval_scope prepare_controlled_test_mode_activation_plan_only, approval_decision_status scoped_planning_approved, all activation flags false, approved_channels and approved_external_services empty, start/operator/rollback blank_placeholder, required_next_decision exact controlled test-mode channel/start/operator/rollback approval
+- Relationship to approval decision draft
+- Activation remains blocked until separate exact scope/start/operator/rollback approval
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (scoped approval capture, planning-only move-forward approval, fake data, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
