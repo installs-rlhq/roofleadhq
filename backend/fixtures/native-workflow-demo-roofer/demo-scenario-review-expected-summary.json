@@ -1,0 +1,68 @@
+{
+  "fixture_bundle_id": "native_workflow_demo_roofer_scenario_review_expected_summary",
+  "fixture_delivery_mode": "local_fake_data_review_only",
+  "data_classification": "fake_demo_data_only",
+  "production_data_touched": false,
+  "external_services_called": false,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "activation_approval_status": "not_granted",
+  "activation_command_approval_status": "not_granted",
+  "final_jason_activation_approval": "not_granted",
+  "approved_for_activation_now": false,
+  "approved_channels": [],
+  "approved_external_services": [],
+  "source_of_truth_commit": "cf566ae",
+  "demo_roofer_bundle_commit": "17abae0",
+  "post_run_evidence_readiness_commit": "cf566ae",
+  "runner_name": "native_workflow_fixture_demo_roofer_scenario_review_runner",
+  "demo_roofer_name": "Summit Peak Roofing Demo LLC",
+  "fake_lead_count": 25,
+  "scenario_count": 25,
+  "expected_outcome_count": 25,
+  "matched_expected_outcomes": 25,
+  "missing_expected_outcomes": [],
+  "unexpected_expected_outcomes": [],
+  "blocked_external_service_scenarios": [
+    "scenario-024-external-service-boundary-blocked"
+  ],
+  "blocked_unsupported_automation_scenarios": [
+    "scenario-023-unsupported-automation-blocked"
+  ],
+  "review_queue_scenarios": [
+    "scenario-002-new-lead-missing-contact-review-queue",
+    "scenario-003-new-lead-no-contact-permission",
+    "scenario-017-messaging-compliance-contact-permission",
+    "scenario-020-review-queue-aging-sla-boundary",
+    "scenario-021-human-escalation-roofer-judgment",
+    "scenario-022-roofleadhq-escalation-system-review",
+    "scenario-023-unsupported-automation-blocked"
+  ],
+  "human_escalation_scenarios": [
+    "scenario-021-human-escalation-roofer-judgment",
+    "scenario-022-roofleadhq-escalation-system-review"
+  ],
+  "post_inspection_scenarios": [
+    "scenario-010-post-inspection-estimate-pending",
+    "scenario-011-post-inspection-estimate-sent"
+  ],
+  "feedback_permission_scenarios": [
+    "scenario-012-feedback-permission-not-asked",
+    "scenario-013-feedback-permission-yes",
+    "scenario-014-feedback-permission-no"
+  ],
+  "safety_status": "demo_ready_with_live_automation_disabled",
+  "command_execution_status": "not_run_by_this_runner",
+  "final_decision": "PASS LOCAL DEMO ROOFER SCENARIO REVIEW",
+  "delivery_posture": {
+    "delivery_mode": "local-only",
+    "data_mode": "fake-data-only",
+    "access_mode": "read-only",
+    "execution_mode": "dry-run-only",
+    "review_mode": "review-only"
+  },
+  "external_calls_made": false,
+  "credentials_env_api_webhook_references_used": false,
+  "production_supabase_data_path_used": false,
+  "schema_auth_rls_security_migration_required": false,
+  "old_90_day_plan_boundary": "old 90-day plan cannot override current source-of-truth direction"
+}

@@ -7454,6 +7454,50 @@ node backend/scripts/verify-native-workflow-fixture-post-run-evidence-and-demo-e
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Post-run evidence and demo E2E readiness only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Demo Roofer Scenario Review Runner
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_SCENARIO_REVIEW_RUNNER.md`
+- `backend/scripts/run-native-workflow-fixture-demo-roofer-scenario-review-runner.js`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-scenario-review-runner-readonly.js`
+- `scripts/run-native-workflow-fixture-demo-roofer-scenario-review-runner-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/demo-scenario-review-expected-summary.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer Scenario Review Runner" / "native workflow fixture demo roofer scenario review runner" / "demo roofer scenario review runner" across aggregate, index, contexts, and business guide.
+- Scenario review runner walks all 25 demo roofer E2E scenarios against 25 expected outcomes — source_of_truth_commit cf566ae, demo_roofer_bundle_commit 17abae0, post_run_evidence_readiness_commit cf566ae, Summit Peak Roofing Demo LLC fake, final_decision PASS LOCAL DEMO ROOFER SCENARIO REVIEW, without approving live activation, sandbox/test-mode activation, or external services.
+- Command execution status not_run_by_this_runner; activation_approval_status not_granted; approved_for_activation_now false; approved_channels empty; approved_external_services empty.
+- Post-run review template required after any future local demo E2E run.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-demo-roofer-scenario-review-runner-dry-run.sh
+```
+
+Runner:
+
+```bash
+node backend/scripts/run-native-workflow-fixture-demo-roofer-scenario-review-runner.js
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-demo-roofer-scenario-review-runner-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Scenario review runner only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

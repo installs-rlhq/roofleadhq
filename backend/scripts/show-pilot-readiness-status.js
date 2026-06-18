@@ -120,7 +120,31 @@ const APPROVED_LINDY_REFERENCE_PATTERNS = [
   /lindy_bridge_temporary_bridge_only/gi,
   /Lindy bridge remains/gi,
   /buildChannelSequenceSummary\([^)]*['"]lindy_bridge['"]\)/gi,
-  /['"]lindy_bridge['"]/gi
+  /['"]lindy_bridge['"]/gi,
+  /lindy_called/gi,
+  /lindy_live_enabled/gi,
+  /lindy_live_workflow_execution/gi,
+  /no_lindy_live_workflow_execution/gi,
+  /no_lindy_live_activation/gi,
+  /no Lindy production activation/gi,
+  /No Lindy production activation/gi,
+  /Twilio\/Vapi\/Resend\/Calendar\/Lindy/gi,
+  /Vapi\/Resend\/Calendar\/Lindy/gi,
+  /Resend\/Calendar\/Lindy/gi,
+  /Calendar\/Lindy/gi
+];
+
+const BLOCKED_EXTERNAL_SERVICE_VALIDATION_PATTERNS = [
+  /external_services_called/gi,
+  /twilio_called/gi,
+  /vapi_called/gi,
+  /resend_called/gi,
+  /google_calendar_called/gi,
+  /crm_sync_called/gi,
+  /live_csv_delivery_called/gi,
+  /blocked_external_service/gi,
+  /external_service_block/gi,
+  /external_service_calls_blocked/gi
 ];
 
 function stripApprovedLindyReferences(source) {
@@ -131,12 +155,24 @@ function stripApprovedLindyReferences(source) {
   return stripped;
 }
 
+function stripBlockedExternalServiceValidationReferences(source) {
+  let stripped = source;
+  for (const pattern of BLOCKED_EXTERNAL_SERVICE_VALIDATION_PATTERNS) {
+    stripped = stripped.replace(pattern, '');
+  }
+  return stripped;
+}
+
 function hasLiveLindyActivation(source) {
   if (LIVE_LINDY_ACTIVATION_PATTERNS.some((pattern) => pattern.test(source))) {
     return true;
   }
 
-  return /LINDY/i.test(stripApprovedLindyReferences(source));
+  const stripped = stripBlockedExternalServiceValidationReferences(
+    stripApprovedLindyReferences(source)
+  );
+
+  return /\blindy\b/i.test(stripped);
 }
 
 function findLindyLiveMatches(options = {}) {

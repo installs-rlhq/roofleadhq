@@ -7016,6 +7016,39 @@ Use preferred lead-to-inspection language (post-run evidence, demo roofer E2E re
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Demo Roofer Scenario Review Runner
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_SCENARIO_REVIEW_RUNNER.md`
+- `backend/scripts/run-native-workflow-fixture-demo-roofer-scenario-review-runner.js`
+- `scripts/run-native-workflow-fixture-demo-roofer-scenario-review-runner-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-scenario-review-runner-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/demo-scenario-review-expected-summary.json`
+
+Canonical source of truth: `cf566ae test(workflow): add post run evidence and demo e2e readiness`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer Scenario Review Runner" / "native workflow fixture demo roofer scenario review runner" / "demo roofer scenario review runner" across aggregate, index, contexts, and business guide.
+
+The scenario review runner implements:
+
+- Reads committed demo roofer fixtures and walks all 25 E2E scenarios against 25 expected outcomes
+- Prints structured JSON review summary with final_decision PASS LOCAL DEMO ROOFER SCENARIO REVIEW
+- Demo roofer bundle from 17abae0; post-run evidence/readiness from cf566ae
+- Summit Peak Roofing Demo LLC fake; stop-condition and unsupported automation blocked
+- Human escalation routes to roofer for judgment; Jason/RoofLeadHQ escalation limited to system review cases
+- Does not approve live activation, sandbox/test-mode activation, or external services
+- Does not run final activation command; command_execution_status not_run_by_this_runner
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- Post-run review template required after any future local demo E2E run
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (scenario review runner, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
