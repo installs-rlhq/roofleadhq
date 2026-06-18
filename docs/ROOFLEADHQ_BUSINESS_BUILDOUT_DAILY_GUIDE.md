@@ -7486,6 +7486,38 @@ Use preferred lead-to-inspection language (exact values completeness review evid
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Sandbox/Test-Mode Approval Decision Draft Packet
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_DECISION_DRAFT_PACKET.md`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-decision-draft-packet-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-decision-draft-packet-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-approval-decision-draft-packet.json`
+
+Canonical source of truth: `816dfc2 test(workflow): add exact values completeness review evidence`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Approval Decision Draft Packet" / "native workflow fixture sandbox test mode approval decision draft packet" / "sandbox test mode approval decision draft packet" across aggregate, index, contexts, and business guide.
+
+The sandbox/test-mode approval decision draft packet implements:
+
+- Approval decision draft packet doc (default_decision HOLD, go_available false, completeness_status incomplete, approval_status not_granted)
+- Final Jason GO/HOLD/NO-GO decision draft template for future sandbox/test-mode planning
+- source_of_truth_commit 816dfc2; evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2
+- local_evidence_chain_status passed; p0_blockers_count 0; p1/p2/p3 statuses completed
+- exact_values_required_count 19; exact_values_filled_count 0; all_exact_values_filled false
+- blank_placeholders_are_not_approval true; all_approved_insufficient_without_exact_values true
+- evidence_review_does_not_equal_approval true; decision_draft_does_not_equal_approval true
+- sandbox_test_mode_approval_requires_separate_jason_approval true; live_activation_requires_separate_later_approval true
+- current_recommended_next_step JASON_REVIEW_SANDBOX_TEST_MODE_APPROVAL_DECISION_DRAFT_HOLD_UNTIL_EXACT_VALUES_COMPLETE
+- sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (sandbox/test-mode approval decision draft packet, GO/HOLD/NO-GO, fake data, review-only, HOLD default).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

@@ -8048,6 +8048,47 @@ node backend/scripts/verify-native-workflow-fixture-exact-values-completeness-re
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Completeness review evidence packet only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Sandbox/Test-Mode Approval Decision Draft Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_DECISION_DRAFT_PACKET.md`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-decision-draft-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-decision-draft-packet-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-approval-decision-draft-packet.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Approval Decision Draft Packet" / "native workflow fixture sandbox test mode approval decision draft packet" / "sandbox test mode approval decision draft packet" across aggregate, index, contexts, and business guide.
+- Sandbox/test-mode approval decision draft packet structures final Jason GO/HOLD/NO-GO decision draft template — source_of_truth_commit 816dfc2, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2.
+- completeness_status incomplete; approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; local_evidence_chain_status passed.
+- p0_blockers_count 0; p1_polish_status completed; p2_refinement_status completed; p3_planning_status completed.
+- exact_values_required_count 19; exact_values_filled_count 0; all_exact_values_filled false; default_decision HOLD; go_available false.
+- blank_placeholders_are_not_approval true; all_approved_insufficient_without_exact_values true; evidence_review_does_not_equal_approval true; decision_draft_does_not_equal_approval true.
+- sandbox_test_mode_approval_requires_separate_jason_approval true; live_activation_requires_separate_later_approval true.
+- reviewed completeness evidence status incomplete; current_recommended_next_step JASON_REVIEW_SANDBOX_TEST_MODE_APPROVAL_DECISION_DRAFT_HOLD_UNTIL_EXACT_VALUES_COMPLETE; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- This packet does not approve sandbox/test-mode activation; live activation remains not granted; decision draft does not equal approval; GO unavailable until exact values complete and separate Jason approval.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-sandbox-test-mode-approval-decision-draft-packet-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-decision-draft-packet-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Approval decision draft packet only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
