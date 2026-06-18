@@ -2388,6 +2388,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
 
+## Native Workflow Fixture First Controlled Launch Final Activation Command Draft Dry Run
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_FINAL_ACTIVATION_COMMAND_DRAFT.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft.js`
+- Wrapper: `scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data first controlled launch final activation command draft dry-run documents exact local-only dry-run command Jason could review and separately approve later — final_activation_command_draft_record, proposed_command_record, before_command_can_run_checklist, stop_conditions, post_run_review_template, first_controlled_launch_final_activation_command_draft_items, executive/prior-scoped-capture/exact-scope-draft/pre-activation-checklist/recommended-values-proposal/approved-test-mode-values-capture-reference/command-draft-status/activation-blocked/activation-not-granted/activation-command-not-granted/activation-boundary/proposed-command/before-command-can-run/stop-conditions/finish-everything-we-can/post-run-review summaries, first_controlled_launch_final_activation_command_draft_safety_assertions; 28 command draft areas; prior_scoped_approval_capture_commit 287627f, exact_scope_authorization_draft_commit d7506bf, pre_activation_checklist_commit 2b753e8, recommended_values_proposal_commit 205a6c4, approved_test_mode_values_capture_commit 75f24e5, command_draft_type final_activation_command_draft, command_draft_status review_only_not_approved_for_execution, activation_approval_status not_granted, activation_command_approval_status not_granted, final_jason_activation_approval not_granted, all activation flags false, approved_channels and approved_external_services empty, proposed_command documented but not approved for execution, proposed_command_requires_separate_jason_approval true, proposed_command_mode local_fake_data_review_only, approved_for_activation_now false.
+- Verifier enforces: doc/runner/wrapper references; valid JSON output; common command draft fields; all command draft areas; final_activation_command_draft_record fields; approved test-mode values capture commit 75f24e5 referenced; proposed command documented not approved for execution; activation and activation command approval not granted; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (targeted verifier only).
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Command draft only; activation and command execution remain blocked until separate explicit Jason approval of exact command string. No execution performed.
+
+## Native Workflow Fixture First Controlled Launch Final Activation Command Draft Dry Run Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-readonly.js`
+- Purpose: read-only fail-closed guard that executes the first controlled launch final activation command draft dry-run runner, validates command draft output and safety posture, and confirms wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

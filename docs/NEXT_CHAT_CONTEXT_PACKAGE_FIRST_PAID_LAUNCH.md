@@ -7263,6 +7263,46 @@ node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-appr
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Approved planned values captured for local dry-run planning only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Final Activation Command Draft Dry Run
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_FINAL_ACTIVATION_COMMAND_DRAFT.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft.js`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Final Activation Command Draft Dry Run" / "native workflow fixture first controlled launch final activation command draft dry run" / "first controlled launch final activation command draft dry run" across aggregate, index, contexts, and business guide.
+- Local fake-data first controlled launch final activation command draft dry-run — 28 command draft areas with common fields (fixture_delivery_mode dry_run_only, all activation flags false, fixture_command_draft_type final_activation_command_draft).
+- Final activation command draft dry-run only — documents exact local-only dry-run command without sandbox/production credential reads, no live automation, no test-mode activation, no activation approval granted, no command execution approval granted, no execution performed.
+- final_activation_command_draft_record: prior_scoped_approval_capture_commit 287627f, exact_scope_authorization_draft_commit d7506bf, pre_activation_checklist_commit 2b753e8, recommended_values_proposal_commit 205a6c4, approved_test_mode_values_capture_commit 75f24e5, command_draft_type final_activation_command_draft, command_draft_status review_only_not_approved_for_execution, activation_approval_status not_granted, activation_command_approval_status not_granted, final_jason_activation_approval not_granted, all activation flags false, approved_channels and approved_external_services empty, proposed_command bash scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh, proposed_command_approval_status not_granted, proposed_command_execution_allowed_now false, proposed_command_requires_separate_jason_approval true, proposed_command_mode local_fake_data_review_only, approved_for_activation_now false.
+- before_command_can_run_checklist: 11 items with activation_allowed_now false; all remain unconfirmed or not_granted.
+- Stop conditions: 9 documented stop triggers including external calls, credential/env access, production data, real sends, scheduler/cron/dispatcher, schema/auth/RLS/security changes, failed safety assertions, unexpected Supabase production access, public route/webhook exposure.
+- Finish everything we can section — safe to finish command draft, final no-go/go review packet, post-run review template; not safe without separate explicit approval: run command as activation, call external services, use credentials, touch production data, send real messages, schedule cron/dispatcher, expose public routes/webhooks.
+- Activation and command execution remain blocked until separate explicit Jason approval of exact command string.
+- Relationship to scoped approval capture, exact scope authorization draft, pre-activation checklist, recommended values proposal, and approved test-mode values capture.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Command draft only; activation and command execution remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
