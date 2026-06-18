@@ -6660,6 +6660,35 @@ Use preferred lead-to-inspection language (final handoff snapshot, controlled la
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Approval Boundary Guard Dry Run
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_APPROVAL_BOUNDARY_GUARD_DRY_RUN.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-approval-boundary-guard-dry-run.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-approval-boundary-guard-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approval-boundary-guard-dry-run-readonly.js`
+- `scripts/verify-safe-readiness-fast.sh` (additive fast lane)
+
+Canonical source of truth before this worktree: `5a63e74 test(workflow): add first controlled launch final handoff snapshot dry run`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Approval Boundary Guard Dry Run" / "native workflow fixture first controlled launch approval boundary guard dry run" / "first controlled launch approval boundary guard dry run" / `verify-safe-readiness-fast.sh` across aggregate, index, contexts, and business guide.
+
+The dry run implements:
+
+- Local fake-data first controlled launch approval boundary guard — stdout JSON only, no Supabase/production data
+- Top-level first_controlled_launch_approval_boundary_guard_dry_run_summary, first_controlled_launch_approval_boundary_guard_items
+- approval_boundary_guard_toc_summary through final_guard_result_summary
+- approval_not_granted_summary and first_controlled_launch_approval_boundary_guard_safety_assertions
+- 37 approval boundary guard areas (executive guard summary, evidence chain complete-for-review, final handoff snapshot evidence, final review packet evidence, decision ledger evidence, execution runbook evidence, approval request packet evidence, readiness lock evidence, human review packet evidence, channel adapter contract, channel payload replay, channel replay acceptance gate, required explicit Jason approval language, signer/timestamp boundary, separate future approval record boundary, production/sandbox/live activation flag boundaries, external call/credential/env/schema boundaries, SMS/email/call/calendar/CSV/CRM/Lindy bridge/scheduler/dispatcher/public route/Supabase approval boundaries, billing blocked boundary, audit/timeline, owner routing, rollback/post-approval test, approval not granted, first controlled launch remains blocked)
+- Approval boundary guard dry-run only — no sandbox/production credential reads, no live or test-mode activation, no approval granted, no execution performed
+- Relationship to final handoff snapshot, final review packet, decision ledger, execution runbook, approval request packet, readiness lock, channel adapter contract, channel payload replay, channel replay acceptance gate, human review packet, and verifier fast-lane cleanup
+- First controlled launch, sandbox/test-mode, and live activation remain blocked until separate explicit Jason approval
+- demo_ready_with_live_automation_disabled preserved
+- Fast lane additive; full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (approval boundary guard, controlled launch evidence chain boundary enforcement, fake data, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
