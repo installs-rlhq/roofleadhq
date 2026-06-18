@@ -6776,6 +6776,36 @@ Use preferred lead-to-inspection language (exact test-mode scope authorization d
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Pre-Activation Checklist Dry Run
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_PRE_ACTIVATION_CHECKLIST.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-pre-activation-checklist.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-pre-activation-checklist-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-pre-activation-checklist-readonly.js`
+
+Canonical source of truth before this worktree: `d7506bf test(workflow): add first controlled launch exact test mode scope draft`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Pre-Activation Checklist Dry Run" / "native workflow fixture first controlled launch pre-activation checklist dry run" / "first controlled launch pre-activation checklist dry run" across aggregate, index, contexts, and business guide.
+
+The dry run implements:
+
+- Local fake-data first controlled launch pre-activation checklist — stdout JSON only, no Supabase/production data
+- Top-level first_controlled_launch_pre_activation_checklist_dry_run_summary, pre_activation_checklist_record, final_approval_checklist_table, first_controlled_launch_pre_activation_checklist_items
+- executive/prior-scoped-capture/exact-scope-draft-reference/checklist-status/activation-blocked/required-fields/approval-cannot-be-inferred/activation-command-separate-approval summaries and first_controlled_launch_pre_activation_checklist_safety_assertions
+- 30 checklist areas (executive summary, prior scoped approval capture reference, exact scope authorization draft reference, checklist type/status, activation approval status, activation blocked boundaries, approved channels/services empty, all required checklist fields not_filled, final Jason activation approval not_granted, approval cannot be inferred, activation command separately approved, final approval checklist table, credential/env, schema/auth/RLS/security)
+- Pre-activation checklist dry-run only — consolidates required fields for Jason review before any exact controlled test-mode activation approval without sandbox/production credential reads, no live or test-mode activation, no activation approval granted, no execution performed
+- pre_activation_checklist_record: prior_scoped_approval_capture_commit 287627f, exact_scope_authorization_draft_commit d7506bf, checklist_type pre_activation_checklist, checklist_status approval_ready_draft_only, activation_approval_status not_granted, all activation flags false, approved_channels and approved_external_services empty, all required checklist fields not_filled, required_final_jason_activation_approval not_granted, activation command must be separately approved
+- final_approval_checklist_table: 14 rows all remain not_filled or not_granted with activation_allowed_now false
+- Approval cannot be inferred — checklist completion is not approval
+- Relationship to scoped approval capture and exact scope authorization draft
+- Activation remains blocked until separate explicit Jason approval after all checklist fields are filled and activation command is separately approved
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (pre-activation checklist, controlled launch final approval checklist, fake data, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

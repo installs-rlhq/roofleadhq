@@ -7145,6 +7145,45 @@ node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-exac
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Authorization draft only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Pre-Activation Checklist Dry Run
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_PRE_ACTIVATION_CHECKLIST.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-pre-activation-checklist.js`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-pre-activation-checklist-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-pre-activation-checklist-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Pre-Activation Checklist Dry Run" / "native workflow fixture first controlled launch pre-activation checklist dry run" / "first controlled launch pre-activation checklist dry run" across aggregate, index, contexts, and business guide.
+- Local fake-data first controlled launch pre-activation checklist dry-run — 30 checklist areas with common fields (fixture_delivery_mode dry_run_only, all activation flags false, fixture_checklist_type pre_activation_checklist).
+- Pre-activation checklist dry-run only — consolidates the final approval-ready checklist Jason would review before any exact controlled test-mode activation approval without sandbox/production credential reads, no live automation, no test-mode activation, no activation approval granted, no execution performed.
+- pre_activation_checklist_record: prior_scoped_approval_capture_commit 287627f, exact_scope_authorization_draft_commit d7506bf, checklist_type pre_activation_checklist, checklist_status approval_ready_draft_only, activation_approval_status not_granted, all activation flags false, approved_channels and approved_external_services empty, all required checklist fields not_filled, required_final_jason_activation_approval not_granted, activation command must be separately approved.
+- final_approval_checklist_table: 14 rows all remain not_filled or not_granted with activation_allowed_now false.
+- Approval cannot be inferred — checklist completion is not approval; Jason must explicitly approve final activation decision.
+- Relationship to scoped approval capture and exact scope authorization draft.
+- Activation remains blocked until separate explicit Jason approval after all checklist fields are filled and activation command is separately approved.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-pre-activation-checklist-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-pre-activation-checklist-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Checklist only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
