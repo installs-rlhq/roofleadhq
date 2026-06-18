@@ -2521,6 +2521,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind. No command execution in this packet.
 
+## Native Workflow Fixture Demo Roofer Local E2E Operator Runbook + Go/No-Go Evidence Gate
+
+- Docs: `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_OPERATOR_RUNBOOK.md`, `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_GO_NO_GO_EVIDENCE_GATE.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/demo-local-e2e-go-no-go-gate.json`
+- Wrapper: `scripts/run-native-workflow-fixture-demo-roofer-local-e2e-operator-runbook-go-no-go-gate-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-operator-runbook-go-no-go-gate-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data operator runbook and go/no-go evidence gate guides structured local demo roofer E2E review — source_of_truth_commit 401bfc7, prior commits 17abae0/cf566ae/728ad03/401bfc7, 25 fake leads/scenarios/expected outcomes/matched outcomes, evidence_conclusion PASS LOCAL DEMO ROOFER E2E EVIDENCE REPORT, explicit GO_LOCAL_DEMO_E2E_REVIEW_ONLY/NO_GO_KEEP_BLOCKED/HOLD_FOR_REVIEW decision options, command_execution_status not_run_by_this_gate, activation_approval_status not_granted, approved_for_activation_now false, approved_channels empty, approved_external_services empty, safety_status demo_ready_with_live_automation_disabled, old 90-day plan boundary guard, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only; GO does not approve activation/external services or run final activation command.
+- Verifier enforces: operator runbook/go-no-go gate docs/fixture; all required local review commands; pass/fail criteria; gate fixture JSON; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (verifier + backend build only).
+- Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Operator runbook + go/no-go gate only; activation and external services remain blocked. No execution performed.
+
+## Native Workflow Fixture Demo Roofer Local E2E Operator Runbook + Go/No-Go Evidence Gate Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-operator-runbook-go-no-go-gate-readonly.js`
+- Purpose: read-only fail-closed guard that validates the operator runbook documentation, go/no-go evidence gate documentation, structured gate fixture, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind. No command execution in this packet.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

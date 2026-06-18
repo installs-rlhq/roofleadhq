@@ -7543,6 +7543,47 @@ node backend/scripts/verify-native-workflow-fixture-demo-roofer-e2e-evidence-rep
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. E2E evidence report only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Demo Roofer Local E2E Operator Runbook + Go/No-Go Evidence Gate
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_OPERATOR_RUNBOOK.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_GO_NO_GO_EVIDENCE_GATE.md`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-operator-runbook-go-no-go-gate-readonly.js`
+- `scripts/run-native-workflow-fixture-demo-roofer-local-e2e-operator-runbook-go-no-go-gate-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/demo-local-e2e-go-no-go-gate.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer Local E2E Operator Runbook + Go/No-Go Evidence Gate" / "native workflow fixture demo roofer local e2e operator runbook go no go gate" / "demo roofer local e2e operator runbook go no go gate" across aggregate, index, contexts, and business guide.
+- Operator runbook guides structured local fake-data demo roofer E2E review — source_of_truth_commit 401bfc7, prior commits 17abae0/cf566ae/728ad03/401bfc7, required pre-run state, required fake fixtures, exact local review commands, operator checklist, stop conditions, pass/fail evidence capture.
+- Go/no-go evidence gate provides explicit GO_LOCAL_DEMO_E2E_REVIEW_ONLY/NO_GO_KEEP_BLOCKED/HOLD_FOR_REVIEW decision options without approving activation or external services.
+- GO does not approve activation, external services, or run final activation command.
+- 25 fake leads/scenarios/expected outcomes/matched outcomes; evidence_conclusion PASS LOCAL DEMO ROOFER E2E EVIDENCE REPORT.
+- Command execution status not_run_by_this_gate; activation_approval_status not_granted; approved_for_activation_now false; approved_channels empty; approved_external_services empty.
+- Post-run review template required after any future local demo E2E run.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-demo-roofer-local-e2e-operator-runbook-go-no-go-gate-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-operator-runbook-go-no-go-gate-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Operator runbook + go/no-go gate only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

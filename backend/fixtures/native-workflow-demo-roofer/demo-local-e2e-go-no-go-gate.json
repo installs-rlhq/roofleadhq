@@ -1,0 +1,72 @@
+{
+  "fixture_bundle_id": "native_workflow_demo_roofer_local_e2e_go_no_go_gate",
+  "fixture_delivery_mode": "local_fake_data_review_only",
+  "data_classification": "fake_demo_data_only",
+  "production_data_touched": false,
+  "external_services_called": false,
+  "source_of_truth_commit": "401bfc7",
+  "prior_commits": {
+    "demo_roofer_bundle_commit": "17abae0",
+    "post_run_evidence_readiness_commit": "cf566ae",
+    "scenario_review_runner_commit": "728ad03",
+    "e2e_evidence_report_commit": "401bfc7"
+  },
+  "gate_name": "native_workflow_fixture_demo_roofer_local_e2e_go_no_go_gate",
+  "gate_status": "review_only",
+  "allowed_decisions": [
+    "GO_LOCAL_DEMO_E2E_REVIEW_ONLY",
+    "NO_GO_KEEP_BLOCKED",
+    "HOLD_FOR_REVIEW"
+  ],
+  "current_recommended_decision": "GO_LOCAL_DEMO_E2E_REVIEW_ONLY",
+  "activation_approval_status": "not_granted",
+  "activation_command_approval_status": "not_granted",
+  "final_jason_activation_approval": "not_granted",
+  "command_execution_status": "not_run_by_this_gate",
+  "approved_for_activation_now": false,
+  "approved_channels": [],
+  "approved_external_services": [],
+  "required_counts": {
+    "fake_leads": 25,
+    "scenarios": 25,
+    "expected_outcomes": 25,
+    "matched_outcomes": 25
+  },
+  "evidence_conclusion": "PASS LOCAL DEMO ROOFER E2E EVIDENCE REPORT",
+  "missing_expected_outcomes": [],
+  "unexpected_expected_outcomes": [],
+  "blockers": {
+    "external_calls": false,
+    "credentials": false,
+    "production_data": false,
+    "schema_auth_rls_security_changes": false,
+    "public_routes_webhooks": false,
+    "schedulers_cron_dispatchers": false,
+    "billing_payment_automation": false,
+    "live_services": false
+  },
+  "safety_status": "demo_ready_with_live_automation_disabled",
+  "external_calls_made": false,
+  "credentials_env_api_webhook_references_used": false,
+  "production_supabase_data_path_used": false,
+  "schema_auth_rls_security_migration_required": false,
+  "public_route_webhook_scheduler_cron_dispatcher_changes": false,
+  "billing_payment_deposit_invoice_quote_estimate_automation": false,
+  "live_sms_activation": false,
+  "twilio_activation": false,
+  "vapi_activation": false,
+  "resend_activation": false,
+  "google_calendar_activation": false,
+  "lindy_live_activation": false,
+  "crm_sync_activation": false,
+  "live_csv_delivery_activation": false,
+  "old_90_day_plan_boundary": "old 90-day plan cannot override current source-of-truth direction",
+  "delivery_posture": {
+    "delivery_mode": "local-only",
+    "data_mode": "fake-data-only",
+    "access_mode": "read-only",
+    "execution_mode": "dry-run-only",
+    "review_mode": "review-only"
+  },
+  "public_website_go_live_copy_changed": false
+}

@@ -7083,6 +7083,37 @@ Use preferred lead-to-inspection language (E2E evidence report, fake data, revie
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Demo Roofer Local E2E Operator Runbook + Go/No-Go Evidence Gate
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_OPERATOR_RUNBOOK.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_GO_NO_GO_EVIDENCE_GATE.md`
+- `scripts/run-native-workflow-fixture-demo-roofer-local-e2e-operator-runbook-go-no-go-gate-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-operator-runbook-go-no-go-gate-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/demo-local-e2e-go-no-go-gate.json`
+
+Canonical source of truth: `401bfc7 test(workflow): add demo roofer e2e evidence report`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer Local E2E Operator Runbook + Go/No-Go Evidence Gate" / "native workflow fixture demo roofer local e2e operator runbook go no go gate" / "demo roofer local e2e operator runbook go no go gate" across aggregate, index, contexts, and business guide.
+
+The operator runbook + go/no-go evidence gate implements:
+
+- Operator-facing local fake-data demo roofer E2E review guide with required pre-run state, fake fixtures, exact local review commands, operator checklist, stop conditions, and pass/fail evidence capture
+- Go/no-go evidence gate with explicit GO_LOCAL_DEMO_E2E_REVIEW_ONLY/NO_GO_KEEP_BLOCKED/HOLD_FOR_REVIEW decision options
+- Structured gate fixture with source_of_truth_commit 401bfc7, 25 fake leads/scenarios/expected outcomes/matched outcomes, evidence_conclusion PASS LOCAL DEMO ROOFER E2E EVIDENCE REPORT
+- GO does not approve activation, external services, or run final activation command
+- Command execution status not_run_by_this_gate; activation_approval_status not_granted; approved_for_activation_now false
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- Post-run review template required after any future local demo E2E run
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (operator runbook, go/no-go gate, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
