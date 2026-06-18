@@ -2316,6 +2316,37 @@ node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-pre-
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Checklist only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Recommended Test-Mode Values Proposal Dry Run
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_RECOMMENDED_TEST_MODE_VALUES_PROPOSAL.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal.js`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Recommended Test-Mode Values Proposal Dry Run" / "native workflow fixture first controlled launch recommended test-mode values proposal dry run" / "first controlled launch recommended test-mode values proposal dry run" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Proposal only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

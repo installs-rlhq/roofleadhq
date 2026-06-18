@@ -2350,6 +2350,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
 
+## Native Workflow Fixture First Controlled Launch Recommended Test-Mode Values Proposal Dry Run
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_RECOMMENDED_TEST_MODE_VALUES_PROPOSAL.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal.js`
+- Wrapper: `scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data first controlled launch recommended test-mode values proposal dry-run offers conservative safe defaults Jason can review before any exact controlled test-mode activation decision — recommended_test_mode_values_proposal_record, recommended_values_checklist_table, first_controlled_launch_recommended_test_mode_values_proposal_items, executive/prior-scoped-capture/exact-scope-draft/pre-activation-checklist-reference/proposal-status/activation-blocked/proposed-values/proposed-values-not-approved/required-next-decision/operator-questions-deferred/activation-command-separate-approval summaries, first_controlled_launch_recommended_test_mode_values_proposal_safety_assertions; 32 proposal areas; prior_scoped_approval_capture_commit 287627f, exact_scope_authorization_draft_commit d7506bf, pre_activation_checklist_commit 2b753e8, proposal_type recommended_test_mode_values_proposal, proposal_status proposed_only_not_approved, activation_approval_status not_granted, final_jason_activation_approval not_granted, all activation flags false, approved_channels and approved_external_services empty, proposed values exist but are not approved, local fake channel adapters only proposed, no external services proposed as approved.
+- Verifier enforces: doc/runner/wrapper references; valid JSON output; common proposal fields; all proposal areas; recommended_test_mode_values_proposal_record fields; prior scoped approval capture, exact scope draft, and pre-activation checklist references; proposal only not activation approved; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (targeted verifier only).
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Proposal only; activation remains blocked until separate explicit Jason approval. No execution performed.
+
+## Native Workflow Fixture First Controlled Launch Recommended Test-Mode Values Proposal Dry Run Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-readonly.js`
+- Purpose: read-only fail-closed guard that executes the first controlled launch recommended test-mode values proposal dry-run runner, validates proposal output and safety posture, and confirms wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

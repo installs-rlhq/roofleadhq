@@ -6806,6 +6806,37 @@ Use preferred lead-to-inspection language (pre-activation checklist, controlled 
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Recommended Test-Mode Values Proposal Dry Run
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_RECOMMENDED_TEST_MODE_VALUES_PROPOSAL.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-readonly.js`
+
+Canonical source of truth before this worktree: `2b753e8 test(workflow): add first controlled launch pre activation checklist`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Recommended Test-Mode Values Proposal Dry Run" / "native workflow fixture first controlled launch recommended test-mode values proposal dry run" / "first controlled launch recommended test-mode values proposal dry run" across aggregate, index, contexts, and business guide.
+
+The dry run implements:
+
+- Local fake-data first controlled launch recommended test-mode values proposal — stdout JSON only, no Supabase/production data
+- Top-level first_controlled_launch_recommended_test_mode_values_proposal_dry_run_summary, recommended_test_mode_values_proposal_record, recommended_values_checklist_table, first_controlled_launch_recommended_test_mode_values_proposal_items
+- executive/prior-scoped-capture/exact-scope-draft/pre-activation-checklist-reference/proposal-status/activation-blocked/proposed-values/proposed-values-not-approved/required-next-decision/operator-questions-deferred/activation-command-separate-approval summaries and first_controlled_launch_recommended_test_mode_values_proposal_safety_assertions
+- 32 proposal areas (executive summary, prior scoped approval capture reference, exact scope authorization draft reference, pre-activation checklist reference, proposal type/status, activation approval status, activation blocked boundaries, approved channels/services empty, all proposed values, proposed values not approved boundary, required next decision, operator questions deferred, activation command separately approved, recommended values checklist table, credential/env, schema/auth/RLS/security)
+- Recommended test-mode values proposal dry-run only — offers conservative safe defaults for Jason review before any exact controlled test-mode activation decision without sandbox/production credential reads, no live or test-mode activation, no activation approval granted, no execution performed
+- recommended_test_mode_values_proposal_record: prior_scoped_approval_capture_commit 287627f, exact_scope_authorization_draft_commit d7506bf, pre_activation_checklist_commit 2b753e8, proposal_type recommended_test_mode_values_proposal, proposal_status proposed_only_not_approved, activation_approval_status not_granted, final_jason_activation_approval not_granted, all activation flags false, approved_channels and approved_external_services empty, proposed_channel_scope local fake channel adapters only, proposed_service_scope no external services
+- recommended_values_checklist_table: 14 rows with recommended values, why safest default, approval_status proposed_only_not_approved, activation_allowed_now false
+- Operator questions deferred — no blocking questions required to create this proposal
+- Proposed values are not approved — Jason must explicitly approve exact proposed values and separately approve any activation command
+- Relationship to scoped approval capture, exact scope authorization draft, and pre-activation checklist
+- Activation remains blocked until separate explicit Jason approval after proposed values are reviewed and activation command is separately approved
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (recommended test-mode values proposal, controlled launch safe defaults, fake data, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

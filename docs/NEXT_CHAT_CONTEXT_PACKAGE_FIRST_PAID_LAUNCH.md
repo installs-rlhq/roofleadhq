@@ -7184,6 +7184,46 @@ node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-pre-
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Checklist only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Recommended Test-Mode Values Proposal Dry Run
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_RECOMMENDED_TEST_MODE_VALUES_PROPOSAL.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal.js`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Recommended Test-Mode Values Proposal Dry Run" / "native workflow fixture first controlled launch recommended test-mode values proposal dry run" / "first controlled launch recommended test-mode values proposal dry run" across aggregate, index, contexts, and business guide.
+- Local fake-data first controlled launch recommended test-mode values proposal dry-run — 32 proposal areas with common fields (fixture_delivery_mode dry_run_only, all activation flags false, fixture_proposal_type recommended_test_mode_values_proposal).
+- Recommended test-mode values proposal dry-run only — offers conservative safe defaults Jason can review before any exact controlled test-mode activation decision without sandbox/production credential reads, no live automation, no test-mode activation, no activation approval granted, no execution performed.
+- recommended_test_mode_values_proposal_record: prior_scoped_approval_capture_commit 287627f, exact_scope_authorization_draft_commit d7506bf, pre_activation_checklist_commit 2b753e8, proposal_type recommended_test_mode_values_proposal, proposal_status proposed_only_not_approved, activation_approval_status not_granted, final_jason_activation_approval not_granted, all activation flags false, approved_channels and approved_external_services empty, proposed_channel_scope local fake channel adapters only, proposed_service_scope no external services, all proposed values proposed_only_not_approved.
+- recommended_values_checklist_table: 14 rows with recommended values, why safest default, approval_status proposed_only_not_approved, activation_allowed_now false.
+- Operator questions deferred — no blocking questions required to create this proposal; questions become required only before a real external/test-mode service is selected.
+- Proposed values are not approved — Jason must explicitly approve exact proposed values and separately approve any activation command before activation.
+- Relationship to scoped approval capture, exact scope authorization draft, and pre-activation checklist.
+- Activation remains blocked until separate explicit Jason approval after proposed values are reviewed and activation command is separately approved.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-recommended-test-mode-values-proposal-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Proposal only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
