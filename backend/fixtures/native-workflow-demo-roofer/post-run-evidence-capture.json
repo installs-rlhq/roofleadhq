@@ -1,0 +1,78 @@
+{
+  "fixture_bundle_id": "native_workflow_fixture_local_dry_run_post_run_evidence_capture",
+  "fixture_delivery_mode": "local_fake_data_review_only",
+  "data_classification": "fake_demo_data_only",
+  "production_data_touched": false,
+  "external_services_called": false,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "activation_approval_status": "not_granted",
+  "activation_command_approval_status": "not_granted",
+  "final_jason_activation_approval": "not_granted",
+  "approved_for_activation_now": false,
+  "approved_channels": [],
+  "approved_external_services": [],
+  "source_of_truth_before_run": "17abae0",
+  "source_of_truth_after_run": "17abae0",
+  "head_equals_origin_main": true,
+  "jason_explicit_approval": "granted_for_local_fake_data_dry_run_only",
+  "exact_command_approved_by_jason": "bash scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh",
+  "command_execution_type": "local fake-data verifier smoke wrapper only",
+  "command_execution_status": "completed_local_fake_data_verifier_smoke_wrapper_only",
+  "pre_run_evidence": {
+    "pre_run_source_of_truth": "PASS",
+    "pre_run_git_clean_status": "blank",
+    "pre_run_safe_readiness_fast_lane": "PASS",
+    "pre_run_safe_readiness_fast_lane_check_count": 17
+  },
+  "command_evidence": {
+    "approved_exact_local_fake_data_command": "PASS",
+    "command_wrapper_result": "PASS",
+    "final_activation_command_draft_verifier": "PASS",
+    "final_activation_command_draft_verifier_assertion_count": 45,
+    "command_beyond_smoke_wrapper_executed": false
+  },
+  "post_run_evidence": {
+    "post_run_safe_readiness_fast_lane": "PASS",
+    "post_run_safe_readiness_fast_lane_check_count": 17,
+    "backend_build": "PASS",
+    "post_run_source_of_truth": "PASS",
+    "post_run_git_clean_status": "blank"
+  },
+  "safety_boundary": {
+    "activation_occurred": false,
+    "live_activation_occurred": false,
+    "sandbox_test_mode_activation_occurred": false,
+    "external_calls_occurred": false,
+    "credentials_env_api_webhook_access_occurred": false,
+    "production_data_access_occurred": false,
+    "schema_auth_rls_security_changes_occurred": false,
+    "public_route_webhook_scheduler_cron_dispatcher_changes_occurred": false,
+    "billing_payment_deposit_invoice_quote_estimate_automation_occurred": false
+  },
+  "decision": {
+    "decision": "PASS LOCAL DRY-RUN REVIEW",
+    "decision_scope": "local fake-data dry-run review only",
+    "approves_live_activation": false,
+    "approves_sandbox_test_mode_activation": false,
+    "approves_external_services": false,
+    "approves_command_execution_beyond_smoke_wrapper": false,
+    "important_nuance": "this does not approve live activation or external/test-mode activation"
+  },
+  "demo_roofer_bundle_reference": {
+    "source_of_truth_commit": "17abae0",
+    "bundle_doc": "docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_TEST_BUNDLE.md",
+    "fixture_dir": "backend/fixtures/native-workflow-demo-roofer/",
+    "fake_company_name": "Summit Peak Roofing Demo LLC",
+    "fake_homeowner_lead_count": 25,
+    "e2e_scenario_count": 25,
+    "expected_outcome_count": 25
+  },
+  "delivery_posture": {
+    "delivery_mode": "local-only",
+    "data_mode": "fake-data-only",
+    "access_mode": "read-only",
+    "execution_mode": "dry-run-only",
+    "review_mode": "review-only"
+  },
+  "old_90_day_plan_boundary": "old 90-day plan cannot override current source-of-truth direction"
+}

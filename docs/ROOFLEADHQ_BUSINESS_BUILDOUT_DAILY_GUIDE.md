@@ -6987,6 +6987,35 @@ Use preferred lead-to-inspection language (demo roofer local E2E test bundle, fa
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Post-Run Evidence and Demo E2E Readiness
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_LOCAL_DRY_RUN_POST_RUN_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_E2E_EXECUTION_READINESS_PACKET.md`
+- `scripts/run-native-workflow-fixture-post-run-evidence-and-demo-e2e-readiness-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-post-run-evidence-and-demo-e2e-readiness-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/post-run-evidence-capture.json`
+
+Canonical source of truth: `17abae0 test(workflow): add demo roofer local e2e test bundle`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Post-Run Evidence and Demo E2E Readiness" / "native workflow fixture post-run evidence and demo e2e readiness" / "post-run evidence and demo e2e readiness" across aggregate, index, contexts, and business guide.
+
+The post-run evidence and demo E2E readiness packet implements:
+
+- Post-run evidence capture for completed Terminal 1 local dry-run with decision PASS LOCAL DRY-RUN REVIEW — exact command bash scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh executed as local fake-data verifier smoke wrapper only
+- Demo roofer E2E execution readiness — next local-only fake-data scenario review step with 25 fake homeowner leads, 25 E2E scenarios, 25 expected outcomes, Summit Peak Roofing Demo LLC fake
+- Does not approve live activation, sandbox/test-mode activation, or external services
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- Post-run evidence and demo E2E readiness review-only — no activation approval, no external service approval, no credentials, no production data
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (post-run evidence, demo roofer E2E readiness, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

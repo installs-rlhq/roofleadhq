@@ -2462,6 +2462,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind. No command execution in this packet.
 
+## Native Workflow Fixture Post-Run Evidence and Demo E2E Readiness
+
+- Docs: `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_LOCAL_DRY_RUN_POST_RUN_EVIDENCE.md`, `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_E2E_EXECUTION_READINESS_PACKET.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/post-run-evidence-capture.json`
+- Wrapper: `scripts/run-native-workflow-fixture-post-run-evidence-and-demo-e2e-readiness-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-post-run-evidence-and-demo-e2e-readiness-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data post-run evidence capture and demo roofer E2E execution readiness packet documents completed Terminal 1 local dry-run with PASS LOCAL DRY-RUN REVIEW decision and defines next local-only demo roofer fake-data scenario review step — source_of_truth_commit 17abae0, exact command bash scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh executed as local fake-data verifier smoke wrapper only, pre-run/post-run gate evidence captured, activation_occurred false, external_calls_occurred false, demo roofer bundle 25 fake homeowner leads/25 E2E scenarios/25 expected outcomes, Summit Peak Roofing Demo LLC fake, old 90-day plan boundary guard, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only; does not approve live activation, sandbox/test-mode activation, or external services.
+- Verifier enforces: both docs and structured evidence fixture; post-run evidence fields; demo roofer E2E readiness next-step definition; activation and external service blockers; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (targeted verifier only).
+- Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Post-run evidence and demo E2E readiness only; activation and external services remain blocked. No execution performed.
+
+## Native Workflow Fixture Post-Run Evidence and Demo E2E Readiness Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-post-run-evidence-and-demo-e2e-readiness-readonly.js`
+- Purpose: read-only fail-closed guard that validates the post-run evidence capture documentation, demo roofer E2E execution readiness documentation, structured evidence fixture, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind. No command execution in this packet.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

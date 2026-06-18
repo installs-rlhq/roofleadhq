@@ -7417,6 +7417,43 @@ node backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-test-b
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Demo roofer E2E test bundle only; activation and command execution remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Post-Run Evidence and Demo E2E Readiness
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_LOCAL_DRY_RUN_POST_RUN_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_E2E_EXECUTION_READINESS_PACKET.md`
+- `backend/scripts/verify-native-workflow-fixture-post-run-evidence-and-demo-e2e-readiness-readonly.js`
+- `scripts/run-native-workflow-fixture-post-run-evidence-and-demo-e2e-readiness-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/post-run-evidence-capture.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Post-Run Evidence and Demo E2E Readiness" / "native workflow fixture post-run evidence and demo e2e readiness" / "post-run evidence and demo e2e readiness" across aggregate, index, contexts, and business guide.
+- Post-run evidence capture documents completed Terminal 1 local dry-run with decision PASS LOCAL DRY-RUN REVIEW — source_of_truth_commit 17abae0, exact command bash scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh executed as local fake-data verifier smoke wrapper only, pre-run/post-run gate evidence, activation_occurred false, external_calls_occurred false, without approving live activation, sandbox/test-mode activation, or external services.
+- Demo roofer E2E execution readiness defines next local-only fake-data scenario review step — 25 fake homeowner leads, 25 E2E scenarios, 25 expected outcomes, Summit Peak Roofing Demo LLC fake, post-run review template required after any future local demo E2E run.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction; later narrow reconciliation audit must not override current launch safety posture.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-post-run-evidence-and-demo-e2e-readiness-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-post-run-evidence-and-demo-e2e-readiness-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Post-run evidence and demo E2E readiness only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
