@@ -2369,6 +2369,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
 
+## Native Workflow Fixture First Controlled Launch Approved Test-Mode Values Capture Dry Run
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_APPROVED_TEST_MODE_VALUES_CAPTURE.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-first-controlled-launch-approved-test-mode-values-capture.js`
+- Wrapper: `scripts/run-native-workflow-fixture-first-controlled-launch-approved-test-mode-values-capture-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approved-test-mode-values-capture-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data first controlled launch approved test-mode values capture dry-run records Jason approval of recommended values from 205a6c4 as exact planned local-only dry-run values — approved_test_mode_values_capture_record, approved_planned_values_table, first_controlled_launch_approved_test_mode_values_capture_items, executive/jason-approval-statement/approval-interpretation/prior-scoped-capture/exact-scope-draft/pre-activation-checklist/recommended-values-proposal-reference/approved-values-status/activation-blocked/activation-not-granted/activation-command-not-granted/activation-boundary/approved-planned-values/finish-everything-we-can/required-next-decision/activation-command-separate-approval summaries, first_controlled_launch_approved_test_mode_values_capture_safety_assertions; 37 capture areas; prior_scoped_approval_capture_commit 287627f, exact_scope_authorization_draft_commit d7506bf, pre_activation_checklist_commit 2b753e8, recommended_values_proposal_commit 205a6c4, jason_approval_statement captured, approval_interpretation approved_recommended_values_for_local_dry_run_planning_only, approved_values_status approved_as_exact_planned_local_dry_run_values, activation_approval_status not_granted, activation_command_approval_status not_granted, final_jason_activation_approval not_granted, all activation flags false, approved_channels and approved_external_services empty, local fake channel adapters only approved as planned scope, no external services approved, approved_for_activation_now false.
+- Verifier enforces: doc/runner/wrapper references; valid JSON output; common capture fields; all capture areas; approved_test_mode_values_capture_record fields; Jason approval statement captured; recommended values proposal commit 205a6c4 referenced; values approved only as exact planned local dry-run values; activation and activation command approval not granted; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (targeted verifier only).
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Approved planned values captured for local dry-run planning only; activation remains blocked until separate activation command approval. No execution performed.
+
+## Native Workflow Fixture First Controlled Launch Approved Test-Mode Values Capture Dry Run Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approved-test-mode-values-capture-readonly.js`
+- Purpose: read-only fail-closed guard that executes the first controlled launch approved test-mode values capture dry-run runner, validates capture output and safety posture, and confirms wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

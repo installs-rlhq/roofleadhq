@@ -6837,6 +6837,38 @@ Use preferred lead-to-inspection language (recommended test-mode values proposal
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Approved Test-Mode Values Capture Dry Run
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_APPROVED_TEST_MODE_VALUES_CAPTURE.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-approved-test-mode-values-capture.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-approved-test-mode-values-capture-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approved-test-mode-values-capture-readonly.js`
+
+Canonical source of truth before this worktree: `205a6c4 test(workflow): add first controlled launch recommended test mode values proposal`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Approved Test-Mode Values Capture Dry Run" / "native workflow fixture first controlled launch approved test-mode values capture dry run" / "first controlled launch approved test-mode values capture dry run" across aggregate, index, contexts, and business guide.
+
+The dry run implements:
+
+- Local fake-data first controlled launch approved test-mode values capture — stdout JSON only, no Supabase/production data
+- Top-level first_controlled_launch_approved_test_mode_values_capture_dry_run_summary, approved_test_mode_values_capture_record, approved_planned_values_table, first_controlled_launch_approved_test_mode_values_capture_items
+- executive/jason-approval-statement/approval-interpretation/prior-scoped-capture/exact-scope-draft/pre-activation-checklist/recommended-values-proposal-reference/approved-values-status/activation-blocked/activation-not-granted/activation-command-not-granted/activation-boundary/approved-planned-values/finish-everything-we-can/required-next-decision/activation-command-separate-approval summaries and first_controlled_launch_approved_test_mode_values_capture_safety_assertions
+- 37 capture areas (executive summary, Jason approval statement, approval interpretation, prior scoped approval capture reference, exact scope authorization draft reference, pre-activation checklist reference, recommended values proposal reference, approved values status, activation approval status, activation command approval status, activation blocked boundaries, approved channels/services empty, all approved planned values, activation not granted boundary, activation command not granted boundary, activation boundary, finish everything we can, approved planned values table, credential/env, schema/auth/RLS/security)
+- Approved test-mode values capture dry-run only — records Jason approval of recommended values from 205a6c4 as exact planned local-only dry-run values without sandbox/production credential reads, no live or test-mode activation, no activation approval granted, no execution performed
+- approved_test_mode_values_capture_record: prior_scoped_approval_capture_commit 287627f, exact_scope_authorization_draft_commit d7506bf, pre_activation_checklist_commit 2b753e8, recommended_values_proposal_commit 205a6c4, jason_approval_statement captured, approval_interpretation approved_recommended_values_for_local_dry_run_planning_only, approved_values_status approved_as_exact_planned_local_dry_run_values, activation_approval_status not_granted, activation_command_approval_status not_granted, final_jason_activation_approval not_granted, all activation flags false, approved_channels and approved_external_services empty, approved_planned_channel_scope local fake channel adapters only, approved_planned_service_scope no external services, approved_for_activation_now false
+- approved_planned_values_table: 14 rows with approved planned value, what remains blocked, evidence required, activation_allowed_now false
+- Finish everything we can — safe to finish approved local dry-run values capture, final activation command draft, final go/no-go review structure; not safe without separate approval: execute activation, call external services, use credentials, touch production data, send real messages, schedule cron/dispatcher, expose public routes/webhooks
+- Activation remains blocked until separate activation command approval
+- Relationship to scoped approval capture, exact scope authorization draft, pre-activation checklist, and recommended values proposal
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (approved test-mode values capture, controlled launch local dry-run planning, fake data, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
