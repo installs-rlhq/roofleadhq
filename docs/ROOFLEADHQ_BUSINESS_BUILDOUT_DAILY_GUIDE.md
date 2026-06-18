@@ -7240,6 +7240,39 @@ Use preferred lead-to-inspection language (walkthrough observation evidence capt
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Local Demo E2E Master Review Index + Remaining Refinement Backlog + Future Approval Boundary Packet
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_MASTER_REVIEW_INDEX.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_REMAINING_REFINEMENT_BACKLOG.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FUTURE_APPROVAL_BOUNDARY_PACKET.md`
+- `scripts/run-native-workflow-fixture-local-demo-e2e-master-review-index-refinement-backlog-future-approval-boundary-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-local-demo-e2e-master-review-index-refinement-backlog-future-approval-boundary-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/local-demo-e2e-master-review-index-refinement-backlog-future-approval-boundary.json`
+
+Canonical source of truth: `f752452 test(workflow): capture demo roofer walkthrough evidence`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Local Demo E2E Master Review Index + Remaining Refinement Backlog + Future Approval Boundary Packet" / "native workflow fixture local demo e2e master review index refinement backlog future approval boundary" / "local demo e2e master review index refinement backlog future approval boundary" across aggregate, index, contexts, and business guide.
+
+The combined master review index + refinement backlog + future approval boundary packet implements:
+
+- Master index of full local demo E2E evidence chain with source_of_truth_commit f752452 and evidence_chain_status passed
+- Summit Peak Roofing Demo LLC fake; 25 fake leads/25 scenarios/25 expected outcomes/25 matched outcomes/0 missing/0 unexpected
+- All nine completed local evidence packets indexed; P0 blockers count 0; P1/P2/P3 backlog priorities documented
+- 11 future approval categories with separate scoped approval requirements
+- Standing local build approval recorded but limited to local-only/fake-data/read-only/dry-run/review-only
+- current_recommended_next_step CONTINUE_LOCAL_REFINEMENT_OR_HOLD_FOR_REVIEW
+- activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (master review index, refinement backlog, future approval boundary, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

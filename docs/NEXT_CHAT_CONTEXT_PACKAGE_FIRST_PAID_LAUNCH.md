@@ -7753,6 +7753,51 @@ node backend/scripts/verify-native-workflow-fixture-demo-roofer-walkthrough-obse
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Walkthrough observation evidence capture only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Local Demo E2E Master Review Index + Remaining Refinement Backlog + Future Approval Boundary Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_MASTER_REVIEW_INDEX.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_REMAINING_REFINEMENT_BACKLOG.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FUTURE_APPROVAL_BOUNDARY_PACKET.md`
+- `backend/scripts/verify-native-workflow-fixture-local-demo-e2e-master-review-index-refinement-backlog-future-approval-boundary-readonly.js`
+- `scripts/run-native-workflow-fixture-local-demo-e2e-master-review-index-refinement-backlog-future-approval-boundary-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/local-demo-e2e-master-review-index-refinement-backlog-future-approval-boundary.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Local Demo E2E Master Review Index + Remaining Refinement Backlog + Future Approval Boundary Packet" / "native workflow fixture local demo e2e master review index refinement backlog future approval boundary" / "local demo e2e master review index refinement backlog future approval boundary" across aggregate, index, contexts, and business guide.
+- Combined packet indexes full local demo E2E evidence chain — source_of_truth_commit f752452, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452, evidence_chain_status passed.
+- Summit Peak Roofing Demo LLC fake; 25 fake leads/25 scenarios/25 expected outcomes/25 matched outcomes/0 missing/0 unexpected.
+- Scenario review PASS; e2e evidence report PASS; operator gate PASS; local demo E2E evidence capture PASS; final local demo readiness decision PASS/review-only; walkthrough triage PASS; walkthrough observation evidence capture PASS.
+- p0_blockers_count 0; P1/P2/P3 backlog priorities with scope/allowed/blocked/verifier/approval fields per item.
+- 11 future approval categories; standing local build approval recorded but limited to local-only/fake-data/read-only/dry-run/review-only.
+- current_recommended_next_step CONTINUE_LOCAL_REFINEMENT_OR_HOLD_FOR_REVIEW.
+- Pilot readiness demo_ready_with_live_automation_disabled; safe readiness fast lane PASS 17 checks; backend build PASS; source-of-truth PASS; final clean check blank.
+- activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false; approved_channels empty; approved_external_services empty.
+- live_activation_allowed false; sandbox_test_mode_activation_allowed false; external_calls_allowed false; credentials_access_allowed false; production_data_access_allowed false; schema_auth_rls_security_changes_allowed false; public_route_webhook_scheduler_cron_dispatcher_allowed false; billing_payment_automation_allowed false.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-local-demo-e2e-master-review-index-refinement-backlog-future-approval-boundary-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-local-demo-e2e-master-review-index-refinement-backlog-future-approval-boundary-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Combined master review index + refinement backlog + future approval boundary only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
