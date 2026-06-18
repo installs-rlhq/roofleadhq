@@ -6901,6 +6901,33 @@ Use preferred lead-to-inspection language (final activation command draft, contr
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Final Go/No-Go Review Packet
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_FINAL_GO_NO_GO_REVIEW_PACKET.md`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-final-go-no-go-review-packet-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-final-go-no-go-review-packet-readonly.js`
+
+Canonical source of truth before this worktree: `9acb4f3 test(workflow): add first controlled launch final activation command draft`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Final Go/No-Go Review Packet" / "native workflow fixture first controlled launch final go/no-go review packet" / "first controlled launch final go/no-go review packet" across aggregate, index, contexts, and business guide.
+
+The review packet implements:
+
+- Local fake-data first controlled launch final go/no-go review packet — consolidates evidence chain, approved local dry-run values, final activation command draft, remaining blockers, and explicit decision options
+- Current state: latest_source_of_truth_commit 9acb4f3; approved_test_mode_values_capture_commit 75f24e5; approved_values_status approved_as_exact_planned_local_dry_run_values; final_activation_command_draft_commit 9acb4f3; activation_approval_status not_granted; activation_command_approval_status not_granted; final_jason_activation_approval not_granted; approved_for_activation_now false; approved_channels and approved_external_services empty
+- Decision options: NO-GO, GO FOR LOCAL DRY-RUN COMMAND ONLY (exact command bash scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh requiring separate explicit approval), HOLD
+- Old 90-day plan boundary: old 90-day plan is not imported into current launch path; current source-of-truth direction wins; later narrow reconciliation audit must not override current launch safety posture
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- Final go/no-go review packet review-only — no activation approval, no command execution approval, no external calls, no credentials, no production data
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (final go/no-go review, controlled launch human decision artifact, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

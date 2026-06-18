@@ -2407,6 +2407,24 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
 
+## Native Workflow Fixture First Controlled Launch Final Go/No-Go Review Packet
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_FINAL_GO_NO_GO_REVIEW_PACKET.md`
+- Wrapper: `scripts/run-native-workflow-fixture-first-controlled-launch-final-go-no-go-review-packet-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-final-go-no-go-review-packet-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data first controlled launch final go/no-go review packet consolidates evidence chain, approved local dry-run values (75f24e5), final activation command draft (9acb4f3), remaining blockers, and explicit NO-GO / GO FOR LOCAL DRY-RUN COMMAND ONLY / HOLD decision options — current state with latest_source_of_truth_commit 9acb4f3, activation_approval_status not_granted, activation_command_approval_status not_granted, final_jason_activation_approval not_granted, approved_for_activation_now false, approved_channels and approved_external_services empty, exact command bash scripts/run-native-workflow-fixture-first-controlled-launch-final-activation-command-draft-dry-run.sh documented as requiring separate explicit approval only, old 90-day plan boundary guard, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only.
+- Verifier enforces: doc/wrapper references; review-only scope; evidence chain complete for human review; activation and command approval not granted; decision options present; old 90-day plan cannot override current source-of-truth; forbidden actions blocked; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (targeted verifier + backend build only).
+- Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Review packet only; activation and command execution remain blocked. No execution performed.
+
+## Native Workflow Fixture First Controlled Launch Final Go/No-Go Review Packet Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-final-go-no-go-review-packet-readonly.js`
+- Purpose: read-only fail-closed guard that validates the final go/no-go review packet documentation, decision options, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
