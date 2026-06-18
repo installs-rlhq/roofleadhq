@@ -6811,6 +6811,49 @@ bash scripts/verify-safe-readiness-fast.sh
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Approval not granted. First controlled launch remains blocked. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Execution Runbook Dry Run
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_EXECUTION_RUNBOOK_DRY_RUN.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-execution-runbook-dry-run.js`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-execution-runbook-dry-run-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-execution-runbook-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Execution Runbook Dry Run" / "native workflow fixture first controlled launch execution runbook dry run" / "first controlled launch execution runbook dry run" / `verify-safe-readiness-fast.sh` across aggregate, index, contexts, and business guide.
+- Local fake-data first controlled launch execution runbook dry-run — 29 execution runbook areas with common fields (fixture_delivery_mode dry_run_only, fixture_approval_status not_approved, fixture_execution_decision blocked_until_explicit_approval, all activation flags false).
+- Execution runbook dry-run only — documents operator sequence after future explicit Jason approval without sandbox/production credential reads, no live automation, no test-mode activation, no approval granted, no execution performed.
+- Relationship to approval request packet, readiness lock, channel adapter contract, channel payload replay, channel replay acceptance gate, human review packet, and verifier fast-lane cleanup.
+- First controlled launch, sandbox/test-mode, and live activation remain blocked until separate explicit Jason approval.
+- Fast lane (normal builds): targeted packet verifier + packet dry-run wrapper + `scripts/verify-safe-readiness-fast.sh` + backend build.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-execution-runbook-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-execution-runbook-dry-run-readonly.js
+```
+
+Fast safe readiness:
+
+```bash
+bash scripts/verify-safe-readiness-fast.sh
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Approval not granted. First controlled launch remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
