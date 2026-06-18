@@ -6689,6 +6689,36 @@ Use preferred lead-to-inspection language (approval boundary guard, controlled l
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Approval Decision Draft Dry Run
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_APPROVAL_DECISION_DRAFT.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-approval-decision-draft.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-approval-decision-draft-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approval-decision-draft-readonly.js`
+- `scripts/verify-safe-readiness-fast.sh` (additive fast lane)
+
+Canonical source of truth before this worktree: `ed8ff7e test(workflow): add first controlled launch approval boundary guard dry run`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Approval Decision Draft Dry Run" / "native workflow fixture first controlled launch approval decision draft dry run" / "first controlled launch approval decision draft dry run" / `verify-safe-readiness-fast.sh` across aggregate, index, contexts, and business guide.
+
+The dry run implements:
+
+- Local fake-data first controlled launch approval decision draft — stdout JSON only, no Supabase/production data
+- Top-level first_controlled_launch_approval_decision_draft_dry_run_summary, approval_decision_record, first_controlled_launch_approval_decision_draft_items
+- approval_decision_draft_toc_summary through final_decision_draft_result_summary
+- approval_not_granted_summary, first_controlled_launch_remains_blocked_summary, and first_controlled_launch_approval_decision_draft_safety_assertions
+- 42 decision draft areas (executive decision draft summary, evidence chain complete-for-review, approval boundary guard evidence, final handoff/final review/decision ledger/execution runbook/approval request/readiness lock/human review/acceptance gate/payload replay/adapter contract, approval decision record structure and fields, activation flags/scope/excluded scope/approved channels placeholders, signer/timestamp/operator/rollback owner placeholders, required future action, SMS/email/call/calendar/CSV/CRM/Lindy bridge/scheduler/dispatcher/public route/Supabase/billing channel decision drafts, credential/env, schema/auth/RLS/security, audit/timeline, owner routing, rollback/post-approval test)
+- Approval decision draft dry-run only — no sandbox/production credential reads, no live or test-mode activation, no approval granted, no execution performed
+- approval_decision_record: approval_decision not_granted, approval_status not_approved, launch_status blocked, approval_scope placeholder_only, approved_channels empty, signer/timestamp/operator/rollback_owner blank_placeholder, required_future_action separate explicit Jason approval required
+- Relationship to approval boundary guard, final handoff snapshot, final review packet, decision ledger, execution runbook, approval request packet, readiness lock, channel adapter contract, channel payload replay, channel replay acceptance gate, human review packet, and verifier fast-lane cleanup
+- First controlled launch, sandbox/test-mode, and live activation remain blocked until separate explicit Jason approval
+- demo_ready_with_live_automation_disabled preserved
+- Fast lane additive; full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (approval decision draft, controlled launch formal decision artifact, fake data, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

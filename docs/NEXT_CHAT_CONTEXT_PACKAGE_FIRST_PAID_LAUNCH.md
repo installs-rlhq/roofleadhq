@@ -7026,6 +7026,50 @@ bash scripts/verify-safe-readiness-fast.sh
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Approval not granted. First controlled launch remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Approval Decision Draft Dry Run
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_APPROVAL_DECISION_DRAFT.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-approval-decision-draft.js`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approval-decision-draft-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-approval-decision-draft-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Approval Decision Draft Dry Run" / "native workflow fixture first controlled launch approval decision draft dry run" / "first controlled launch approval decision draft dry run" / `verify-safe-readiness-fast.sh` across aggregate, index, contexts, and business guide.
+- Local fake-data first controlled launch approval decision draft dry-run — 42 decision draft areas with common fields (fixture_delivery_mode dry_run_only, fixture_approval_status not_approved, fixture_approval_decision not_granted, all activation flags false).
+- Approval decision draft dry-run only — formal decision artifact structure for Jason review without sandbox/production credential reads, no live automation, no test-mode activation, no approval granted, no execution performed.
+- approval_decision_record: approval_decision not_granted, approval_status not_approved, launch_status blocked, approval_scope placeholder_only, approved_channels empty, signer/timestamp/operator/rollback_owner blank_placeholder, required_future_action separate explicit Jason approval required.
+- Relationship to approval boundary guard, final handoff snapshot, final review packet, decision ledger, execution runbook, approval request packet, readiness lock, channel adapter contract, channel payload replay, channel replay acceptance gate, human review packet, and verifier fast-lane cleanup.
+- First controlled launch, sandbox/test-mode, and live activation remain blocked until separate explicit Jason approval.
+- Fast lane (normal builds): targeted packet verifier + packet dry-run wrapper + `scripts/verify-safe-readiness-fast.sh` + backend build.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-approval-decision-draft-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approval-decision-draft-readonly.js
+```
+
+Fast safe readiness:
+
+```bash
+bash scripts/verify-safe-readiness-fast.sh
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Approval not granted. First controlled launch remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

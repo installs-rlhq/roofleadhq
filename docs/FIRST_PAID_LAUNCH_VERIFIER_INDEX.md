@@ -2273,6 +2273,26 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
 
+## Native Workflow Fixture First Controlled Launch Approval Decision Draft Dry Run
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_APPROVAL_DECISION_DRAFT.md`
+- Runner: `backend/scripts/run-native-workflow-fixture-first-controlled-launch-approval-decision-draft.js`
+- Wrapper: `scripts/run-native-workflow-fixture-first-controlled-launch-approval-decision-draft-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approval-decision-draft-readonly.js`
+- Fast safe readiness (additive): `bash scripts/verify-safe-readiness-fast.sh`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data first controlled launch approval decision draft dry-run formal decision artifact structure Jason could review before any first controlled launch approval without granting approval or activating anything — first_controlled_launch_approval_decision_draft_dry_run_summary, approval_decision_record, first_controlled_launch_approval_decision_draft_items, approval_decision_draft_toc_summary, executive_decision_draft_summary, explicit_non_approval_summary, first_controlled_launch_blocked_summary, sandbox_test_mode_activation_blocked_summary, live_activation_blocked_summary, evidence_chain_complete_for_review_not_approved_summary, relationship summaries (approval boundary guard, final handoff snapshot, final review packet, decision ledger, execution runbook, approval request packet, readiness lock), allowed/forbidden actions, approval language/signer/timestamp placeholders, future separate approval record boundary, activation flags/scope/excluded scope/approved channels boundaries, channel decision drafts, audit/timeline/owner routing/rollback boundaries, approval_not_granted_summary, first_controlled_launch_remains_blocked_summary, final_decision_draft_result_summary, first_controlled_launch_approval_decision_draft_safety_assertions; 42 decision draft areas; approval_decision not_granted, approval_status not_approved, launch_status blocked, approval_scope placeholder_only, approved_channels empty, signer/timestamp/operator/rollback_owner blank_placeholder, required_future_action separate explicit Jason approval required.
+- Verifier enforces: doc/runner/wrapper references; valid JSON output; common decision draft fields; all decision draft areas; approval_decision_record fields; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (targeted verifier only).
+- Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Fast lane does not replace full regression. Approval not granted. First controlled launch remains blocked. No execution performed.
+
+## Native Workflow Fixture First Controlled Launch Approval Decision Draft Dry Run Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-approval-decision-draft-readonly.js`
+- Purpose: read-only fail-closed guard that executes the first controlled launch approval decision draft dry-run runner, validates decision draft output and safety posture, and confirms wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
