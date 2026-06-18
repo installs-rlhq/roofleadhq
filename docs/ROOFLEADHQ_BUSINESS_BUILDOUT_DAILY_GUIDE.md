@@ -6928,6 +6928,33 @@ Use preferred lead-to-inspection language (final go/no-go review, controlled lau
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Post-Run Review Template
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_POST_RUN_REVIEW_TEMPLATE.md`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-post-run-review-template-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-post-run-review-template-readonly.js`
+
+Canonical source of truth before this worktree: `a26c652 test(workflow): add first controlled launch final go no go review packet`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Post-Run Review Template" / "native workflow fixture first controlled launch post-run review template" / "first controlled launch post-run review template" across aggregate, index, contexts, and business guide.
+
+The post-run review template implements:
+
+- Local fake-data first controlled launch post-run review template — fill-in structure for Jason/operator review after a future explicitly approved local fake-data dry-run command is executed
+- Current state: latest_source_of_truth_commit a26c652; final go/no-go review packet complete; evidence chain complete for human review; approved local dry-run values exist only as planned local fake-data values; final activation command draft exists; command_execution_status not_run_in_this_packet; activation_approval_status not_granted; activation_command_approval_status not_granted; final_jason_activation_approval not_granted; approved_for_activation_now false; approved_channels and approved_external_services empty
+- 29 post-run fill-in sections and decision options: PASS LOCAL DRY-RUN REVIEW, PASS WITH FOLLOW-UP, FAIL / NO-GO, HOLD
+- Old 90-day plan boundary: old 90-day plan is not imported into this post-run path; current source-of-truth direction wins; later narrow reconciliation audit must not override current launch safety posture
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- Post-run review template review-only — no activation approval, no command execution approval, no command execution in this packet, no external calls, no credentials, no production data
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (post-run review template, controlled launch local dry-run review, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

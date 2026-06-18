@@ -2425,6 +2425,24 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
 
+## Native Workflow Fixture First Controlled Launch Post-Run Review Template
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_POST_RUN_REVIEW_TEMPLATE.md`
+- Wrapper: `scripts/run-native-workflow-fixture-first-controlled-launch-post-run-review-template-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-post-run-review-template-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data first controlled launch post-run review template provides fill-in structure for Jason/operator review after a future explicitly approved local fake-data dry-run command is executed — current state with latest_source_of_truth_commit a26c652, final go/no-go review packet complete, evidence chain complete for human review, approved local dry-run values exist only as planned local fake-data values, final activation command draft exists, command_execution_status not_run_in_this_packet, activation_approval_status not_granted, activation_command_approval_status not_granted, final_jason_activation_approval not_granted, approved_for_activation_now false, approved_channels and approved_external_services empty, 29 post-run fill-in sections, PASS LOCAL DRY-RUN REVIEW / PASS WITH FOLLOW-UP / FAIL NO-GO / HOLD decision options, old 90-day plan boundary guard, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only.
+- Verifier enforces: doc/wrapper references; template-only review-only scope; command execution not run in this packet; activation and command approval not granted; all post-run sections present; decision options present; old 90-day plan cannot override current source-of-truth; forbidden actions blocked; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (targeted verifier + backend build only).
+- Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Post-run review template only; activation and command execution remain blocked. No execution performed.
+
+## Native Workflow Fixture First Controlled Launch Post-Run Review Template Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-post-run-review-template-readonly.js`
+- Purpose: read-only fail-closed guard that validates the post-run review template documentation, fill-in sections, decision options, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind. No command execution in this packet.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

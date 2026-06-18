@@ -7339,6 +7339,43 @@ node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-fina
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Review packet only; activation and command execution remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Post-Run Review Template
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_POST_RUN_REVIEW_TEMPLATE.md`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-post-run-review-template-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-post-run-review-template-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Post-Run Review Template" / "native workflow fixture first controlled launch post-run review template" / "first controlled launch post-run review template" across aggregate, index, contexts, and business guide.
+- Local fake-data first controlled launch post-run review template — fill-in structure for Jason/operator review after a future explicitly approved local fake-data dry-run command is executed, without granting activation or command execution approval and without running any command in this packet.
+- Current state: latest_source_of_truth_commit a26c652; final go/no-go review packet complete; evidence chain complete for human review; approved local dry-run values exist only as planned local fake-data values; final activation command draft exists; command_execution_status not_run_in_this_packet; activation_approval_status not_granted; activation_command_approval_status not_granted; final_jason_activation_approval not_granted; approved_for_activation_now false; approved_channels and approved_external_services empty; safety demo_ready_with_live_automation_disabled.
+- 29 post-run fill-in sections: review date/time, operator, reviewer, exact command approved/executed, approval evidence, pre-run checks, execution transcript, verifier/wrapper/build results, safety boundary reviews, findings, required fixes, final post-run decision.
+- Post-run decision options: PASS LOCAL DRY-RUN REVIEW (evidence accepted, still does not approve live activation), PASS WITH FOLLOW-UP (follow-up required, no activation approval), FAIL / NO-GO (keep all activation paths blocked), HOLD (pause for product/business/legal/compliance/operator/old 90-day plan reconciliation review).
+- Old 90-day plan boundary: old 90-day plan is not imported into this post-run path; current source-of-truth direction wins; any old-plan review must remain later narrow reconciliation audit and must not override current launch safety posture.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-post-run-review-template-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-post-run-review-template-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Post-run review template only; activation and command execution remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
