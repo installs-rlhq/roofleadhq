@@ -7584,6 +7584,49 @@ node backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-operat
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Operator runbook + go/no-go gate only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Local Demo E2E Run Evidence Capture
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_RUN_EVIDENCE_CAPTURE.md`
+- `backend/scripts/verify-native-workflow-fixture-local-demo-e2e-run-evidence-capture-readonly.js`
+- `scripts/run-native-workflow-fixture-local-demo-e2e-run-evidence-capture-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/local-demo-e2e-run-evidence-capture.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Local Demo E2E Run Evidence Capture" / "native workflow fixture local demo e2e run evidence capture" / "local demo e2e run evidence capture" across aggregate, index, contexts, and business guide.
+- Evidence capture documents completed Terminal 1 local demo roofer fake-data E2E review run — source_of_truth_commit edceb29, log_path /tmp/roofleadhq-demo-roofer-local-e2e-review-20260618T161559Z.log, run_type local_demo_roofer_fake_data_e2e_review.
+- Summit Peak Roofing Demo LLC fake; 25 fake leads/25 E2E scenarios/25 expected outcomes/25 matched outcomes/0 missing/0 unexpected.
+- scenario_review_final_decision PASS LOCAL DEMO ROOFER SCENARIO REVIEW; evidence_conclusion PASS LOCAL DEMO ROOFER E2E EVIDENCE REPORT.
+- e2e_report_wrapper PASS 64 assertions; operator_gate_wrapper PASS 66 assertions.
+- Pre-run source-of-truth PASS; pre-run pilot readiness demo_ready_with_live_automation_disabled; pre-run safe readiness fast lane PASS 17 checks.
+- Post-run pilot readiness demo_ready_with_live_automation_disabled; post-run safe readiness fast lane PASS 17 checks; post-run source-of-truth PASS; final git status blank.
+- final_decision PASS LOCAL DEMO E2E REVIEW; activation_occurred false; final_activation_command_executed false.
+- approved_for_activation_now false; approved_channels empty; approved_external_services empty.
+- Next boundary: local demo E2E evidence can support a future go/no-go decision, but does not approve live/sandbox/test-mode/external activation.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-local-demo-e2e-run-evidence-capture-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-local-demo-e2e-run-evidence-capture-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Evidence capture only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

@@ -7114,6 +7114,37 @@ Use preferred lead-to-inspection language (operator runbook, go/no-go gate, fake
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Local Demo E2E Run Evidence Capture
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_LOCAL_DEMO_E2E_RUN_EVIDENCE_CAPTURE.md`
+- `scripts/run-native-workflow-fixture-local-demo-e2e-run-evidence-capture-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-local-demo-e2e-run-evidence-capture-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/local-demo-e2e-run-evidence-capture.json`
+
+Canonical source of truth: `edceb29 test(workflow): add demo roofer local e2e operator gate`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Local Demo E2E Run Evidence Capture" / "native workflow fixture local demo e2e run evidence capture" / "local demo e2e run evidence capture" across aggregate, index, contexts, and business guide.
+
+The local demo E2E run evidence capture implements:
+
+- Committed evidence capture for completed Terminal 1 local demo roofer fake-data E2E review run
+- Structured evidence fixture with source_of_truth_commit edceb29, log_path, run_type, demo roofer identity, scenario/outcome counts, wrapper assertion counts, pre-run and post-run gate results
+- Summit Peak Roofing Demo LLC fake; 25 fake leads/25 E2E scenarios/25 expected outcomes/25 matched outcomes/0 missing/0 unexpected
+- scenario_review_final_decision PASS LOCAL DEMO ROOFER SCENARIO REVIEW; evidence_conclusion PASS LOCAL DEMO ROOFER E2E EVIDENCE REPORT
+- e2e_report_wrapper PASS 64 assertions; operator_gate_wrapper PASS 66 assertions
+- final_decision PASS LOCAL DEMO E2E REVIEW; activation_occurred false; final_activation_command_executed false
+- Next boundary: local demo E2E evidence can support a future go/no-go decision, but does not approve live/sandbox/test-mode/external activation
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (local demo E2E evidence capture, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
