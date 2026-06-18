@@ -7049,6 +7049,40 @@ Use preferred lead-to-inspection language (scenario review runner, fake data, re
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Demo Roofer E2E Evidence Report
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_E2E_EVIDENCE_REPORT.md`
+- `backend/scripts/generate-native-workflow-fixture-demo-roofer-e2e-evidence-report.js`
+- `scripts/run-native-workflow-fixture-demo-roofer-e2e-evidence-report-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-e2e-evidence-report-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/demo-e2e-evidence-report-summary.json`
+
+Canonical source of truth: `728ad03 test(workflow): add demo roofer scenario review runner`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer E2E Evidence Report" / "native workflow fixture demo roofer e2e evidence report" / "demo roofer e2e evidence report" across aggregate, index, contexts, and business guide.
+
+The E2E evidence report implements:
+
+- Reads committed demo roofer fixtures and reuses scenario review runner logic locally
+- Summarizes all 25 fake demo roofer E2E scenarios with expected outcomes and matched results
+- Documents blocked external/service behavior, review queue paths, human escalation paths, post-inspection paths, and feedback permission paths
+- Prints structured JSON evidence summary with evidence_conclusion PASS LOCAL DEMO ROOFER E2E EVIDENCE REPORT
+- Scenario review runner from 728ad03; Summit Peak Roofing Demo LLC fake
+- Lindy false-positive fix preserved safety and did not enable Lindy
+- Does not approve live activation, sandbox/test-mode activation, or external services
+- Does not run final activation command; command_execution_status not_run_by_this_report
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- Post-run review template required after any future local demo E2E run
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (E2E evidence report, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

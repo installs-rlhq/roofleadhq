@@ -2574,6 +2574,44 @@ node backend/scripts/verify-native-workflow-fixture-demo-roofer-scenario-review-
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Scenario review runner only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Demo Roofer E2E Evidence Report
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_E2E_EVIDENCE_REPORT.md`
+- `backend/scripts/generate-native-workflow-fixture-demo-roofer-e2e-evidence-report.js`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-e2e-evidence-report-readonly.js`
+- `scripts/run-native-workflow-fixture-demo-roofer-e2e-evidence-report-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/demo-e2e-evidence-report-summary.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer E2E Evidence Report" / "native workflow fixture demo roofer e2e evidence report" / "demo roofer e2e evidence report" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-demo-roofer-e2e-evidence-report-dry-run.sh
+```
+
+Generator:
+
+```bash
+node backend/scripts/generate-native-workflow-fixture-demo-roofer-e2e-evidence-report.js
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-demo-roofer-e2e-evidence-report-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. E2E evidence report only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

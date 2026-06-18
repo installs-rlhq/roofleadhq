@@ -1,0 +1,136 @@
+{
+  "fixture_bundle_id": "native_workflow_demo_roofer_e2e_evidence_report_summary",
+  "fixture_delivery_mode": "local_fake_data_review_only",
+  "data_classification": "fake_demo_data_only",
+  "production_data_touched": false,
+  "external_services_called": false,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "activation_approval_status": "not_granted",
+  "activation_command_approval_status": "not_granted",
+  "final_jason_activation_approval": "not_granted",
+  "approved_for_activation_now": false,
+  "approved_channels": [],
+  "approved_external_services": [],
+  "report_name": "native_workflow_fixture_demo_roofer_e2e_evidence_report",
+  "source_of_truth_commit": "728ad03",
+  "scenario_review_runner_commit": "728ad03",
+  "demo_roofer_name": "Summit Peak Roofing Demo LLC",
+  "demo_roofer_is_fake": true,
+  "fake_lead_count": 25,
+  "scenario_count": 25,
+  "expected_outcome_count": 25,
+  "matched_expected_outcomes": 25,
+  "missing_expected_outcomes": [],
+  "unexpected_expected_outcomes": [],
+  "final_decision": "PASS LOCAL DEMO ROOFER SCENARIO REVIEW",
+  "command_execution_status": "not_run_by_this_report",
+  "external_calls_made": false,
+  "credentials_env_api_webhook_references_used": false,
+  "production_supabase_data_path_used": false,
+  "schema_auth_rls_security_migration_required": false,
+  "public_route_webhook_scheduler_cron_dispatcher_changes": false,
+  "billing_payment_deposit_invoice_quote_estimate_automation": false,
+  "safety_status": "demo_ready_with_live_automation_disabled",
+  "scenario_groups": {
+    "new_lead": [
+      "scenario-001-new-paid-lead-qualified-appointment-ready",
+      "scenario-002-new-lead-missing-contact-review-queue",
+      "scenario-003-new-lead-no-contact-permission"
+    ],
+    "missed_lead_recovery": [
+      "scenario-004-missed-lead-recovery"
+    ],
+    "manual_outreach": [
+      "scenario-005-manual-outreach"
+    ],
+    "appointment_readiness": [
+      "scenario-006-appointment-readiness",
+      "scenario-007-appointment-scheduled-placeholder"
+    ],
+    "reschedule": [
+      "scenario-008-appointment-reschedule-request"
+    ],
+    "no_show": [
+      "scenario-009-missed-appointment-no-show"
+    ],
+    "post_inspection": [
+      "scenario-010-post-inspection-estimate-pending",
+      "scenario-011-post-inspection-estimate-sent"
+    ],
+    "feedback_permission": [
+      "scenario-012-feedback-permission-not-asked",
+      "scenario-013-feedback-permission-yes",
+      "scenario-014-feedback-permission-no"
+    ],
+    "source_roi": [
+      "scenario-015-lead-source-roi-attribution"
+    ],
+    "usage_volume": [
+      "scenario-016-usage-volume-plan-limit-boundary"
+    ],
+    "messaging_compliance": [
+      "scenario-017-messaging-compliance-contact-permission"
+    ],
+    "data_minimization": [
+      "scenario-018-data-minimization-pii-boundary"
+    ],
+    "audit_timeline": [
+      "scenario-019-audit-timeline-event-expectation"
+    ],
+    "review_aging": [
+      "scenario-020-review-queue-aging-sla-boundary"
+    ],
+    "human_escalation": [
+      "scenario-021-human-escalation-roofer-judgment",
+      "scenario-022-roofleadhq-escalation-system-review"
+    ],
+    "unsupported_automation_blocked": [
+      "scenario-023-unsupported-automation-blocked"
+    ],
+    "external_service_blocked": [
+      "scenario-024-external-service-boundary-blocked"
+    ],
+    "stop_condition_boundary": [
+      "scenario-025-stop-condition-boundary"
+    ]
+  },
+  "blocked_external_service_scenarios": [
+    "scenario-024-external-service-boundary-blocked"
+  ],
+  "blocked_unsupported_automation_scenarios": [
+    "scenario-023-unsupported-automation-blocked"
+  ],
+  "review_queue_scenarios": [
+    "scenario-002-new-lead-missing-contact-review-queue",
+    "scenario-003-new-lead-no-contact-permission",
+    "scenario-017-messaging-compliance-contact-permission",
+    "scenario-020-review-queue-aging-sla-boundary",
+    "scenario-021-human-escalation-roofer-judgment",
+    "scenario-022-roofleadhq-escalation-system-review",
+    "scenario-023-unsupported-automation-blocked"
+  ],
+  "human_escalation_scenarios": [
+    "scenario-021-human-escalation-roofer-judgment",
+    "scenario-022-roofleadhq-escalation-system-review"
+  ],
+  "post_inspection_scenarios": [
+    "scenario-010-post-inspection-estimate-pending",
+    "scenario-011-post-inspection-estimate-sent"
+  ],
+  "feedback_permission_scenarios": [
+    "scenario-012-feedback-permission-not-asked",
+    "scenario-013-feedback-permission-yes",
+    "scenario-014-feedback-permission-no"
+  ],
+  "lindy_false_positive_fix_preserved": true,
+  "lindy_live_activation_enabled": false,
+  "old_90_day_plan_boundary": "old 90-day plan cannot override current source-of-truth direction",
+  "delivery_posture": {
+    "delivery_mode": "local-only",
+    "data_mode": "fake-data-only",
+    "access_mode": "read-only",
+    "execution_mode": "dry-run-only",
+    "review_mode": "review-only"
+  },
+  "evidence_conclusion": "PASS LOCAL DEMO ROOFER E2E EVIDENCE REPORT"
+}
