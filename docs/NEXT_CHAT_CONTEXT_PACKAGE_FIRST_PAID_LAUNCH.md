@@ -7627,6 +7627,48 @@ node backend/scripts/verify-native-workflow-fixture-local-demo-e2e-run-evidence-
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Evidence capture only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Final Local Demo E2E Readiness Summary + Next Decision Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_LOCAL_DEMO_E2E_READINESS_SUMMARY.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_LOCAL_DEMO_E2E_NEXT_DECISION_PACKET.md`
+- `backend/scripts/verify-native-workflow-fixture-final-local-demo-e2e-readiness-summary-next-decision-readonly.js`
+- `scripts/run-native-workflow-fixture-final-local-demo-e2e-readiness-summary-next-decision-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/final-local-demo-e2e-next-decision.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Final Local Demo E2E Readiness Summary + Next Decision Packet" / "native workflow fixture final local demo e2e readiness summary next decision" / "final local demo e2e readiness summary next decision" across aggregate, index, contexts, and business guide.
+- Final readiness summary consolidates completed demo roofer local E2E evidence chain — source_of_truth_commit df388f4, prior commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4, local_demo_e2e_evidence_status passed.
+- Summit Peak Roofing Demo LLC fake; 25 fake leads/25 E2E scenarios/25 expected outcomes/25 matched outcomes/0 missing/0 unexpected.
+- scenario_review PASS LOCAL DEMO ROOFER SCENARIO REVIEW; evidence_conclusion PASS LOCAL DEMO ROOFER E2E EVIDENCE REPORT; operator_gate PASS; local_demo_e2e_evidence_capture PASS LOCAL DEMO E2E REVIEW.
+- Pre/post pilot readiness demo_ready_with_live_automation_disabled; pre/post safe readiness fast lane PASS 17 checks; backend build PASS; source-of-truth PASS; final git status blank.
+- current_recommended_decision GO_CONTINUE_LOCAL_FAKE_DATA_DEMO_E2E_REFINEMENT_ONLY; allowed_decisions GO_CONTINUE_LOCAL_FAKE_DATA_DEMO_E2E_REFINEMENT_ONLY/HOLD_FOR_REVIEW/NO_GO_KEEP_BLOCKED/SEPARATE_FUTURE_APPROVAL_REQUIRED_FOR_SANDBOX_OR_LIVE.
+- GO does not approve activation; HOLD does not approve activation; NO-GO keeps blocked; separate future approval required for sandbox/test-mode or live activation planning.
+- activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false; approved_channels empty; approved_external_services empty.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-final-local-demo-e2e-readiness-summary-next-decision-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-final-local-demo-e2e-readiness-summary-next-decision-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Final readiness summary + next decision only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
