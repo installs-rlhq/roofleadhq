@@ -3081,17 +3081,7 @@ Updated files:
 - `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
 - `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 
-- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Release Candidate Management Summary + Jason Review Packet" / "native workflow fixture release candidate management summary jason review packet" / "release candidate management summary jason review packet" across aggregate, index, contexts, and business guide.
-- Release candidate management summary Jason review packet condenses frozen local demo release candidate evidence — source_of_truth_commit 2dd1016, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016.
-- local_demo_e2e_evidence_chain_status passed; local_demo_evidence_freeze_release_candidate_review_status completed; 25 fake homeowner leads; 25 E2E scenarios; 25 expected outcomes; 25 matched outcomes; 0 missing; 0 unexpected.
-- p0_blockers_count 0; p1_polish_status completed; p2_refinement_status completed; p3_planning_status completed.
-- exact_values_required_count 19; exact_values_filled_count 0; completeness_status incomplete; default_sandbox_test_mode_decision HOLD; go_available false.
-- jason_review_packet_does_not_equal_approval true; release_candidate_summary_does_not_equal_approval true; release_candidate_review_does_not_equal_approval true; evidence_freeze_does_not_equal_approval true; evidence_review_does_not_equal_approval true; decision_draft_does_not_equal_approval true.
-- sandbox_test_mode_approval_requires_separate_jason_approval true; live_activation_requires_separate_later_approval_after_sandbox_test_mode_evidence true.
-- approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
-- This packet does not approve sandbox/test-mode activation; live activation remains not granted; Jason review packet does not equal approval; release candidate summary does not equal approval; GO remains unavailable by default.
-- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
-- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Release Candidate Management Summary + Jason Review Packet" / "native workflow fixture release candidate management summary jason review packet" / "release candidate management summary jason review packet" across aggregate, index, contexts, and business guide.
 
 Dry-run command:
 
@@ -3106,6 +3096,40 @@ node backend/scripts/verify-native-workflow-fixture-release-candidate-management
 ```
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Management summary Jason review packet only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
+## Native Workflow Fixture Roofer Pilot Essentials Planning Batch
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_ROOFER_PILOT_ESSENTIALS_PLANNING_BATCH.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_PLAN.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_REAL_ROOFER_PILOT_SETUP_CHECKLIST.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_VALIDATION_PLAN.md`
+- `backend/scripts/verify-native-workflow-fixture-roofer-pilot-essentials-planning-batch-readonly.js`
+- `scripts/run-native-workflow-fixture-roofer-pilot-essentials-planning-batch-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/roofer-pilot-essentials-planning-batch.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Roofer Pilot Essentials Planning Batch" / "native workflow fixture roofer pilot essentials planning batch" / "roofer pilot essentials planning batch" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-roofer-pilot-essentials-planning-batch-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-roofer-pilot-essentials-planning-batch-readonly.js
+```
+
+Safety remains: local fake-data planning-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Pilot planning batch only; activation and external services remain blocked. source_of_truth_commit 11e74d4. Release candidate management summary Jason review completed. Jason review packet does not equal approval. Release candidate summary does not equal approval. Recommended scenario counts are not approval. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 

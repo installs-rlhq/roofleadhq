@@ -7585,6 +7585,41 @@ Use preferred lead-to-inspection language (release candidate management summary 
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Roofer Pilot Essentials Planning Batch
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_ROOFER_PILOT_ESSENTIALS_PLANNING_BATCH.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_PLAN.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_REAL_ROOFER_PILOT_SETUP_CHECKLIST.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_VALIDATION_PLAN.md`
+- `scripts/run-native-workflow-fixture-roofer-pilot-essentials-planning-batch-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-roofer-pilot-essentials-planning-batch-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/roofer-pilot-essentials-planning-batch.json`
+
+Canonical source of truth: `11e74d4 test(workflow): add release candidate management summary jason review`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Roofer Pilot Essentials Planning Batch" / "native workflow fixture roofer pilot essentials planning batch" / "roofer pilot essentials planning batch" across aggregate, index, contexts, and business guide.
+
+The roofer pilot essentials planning batch implements:
+
+- Planning batch doc (local_demo_e2e_evidence_chain_status passed, local_demo_evidence_freeze_release_candidate_review_status completed, local_demo_release_candidate_management_summary_jason_review_status completed, completeness_status incomplete, approval_status not_granted)
+- Fastest safe path from local fake-data readiness to sandbox/test-mode validation and one controlled real roofer pilot
+- source_of_truth_commit 11e74d4; evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4
+- 25 fake homeowner leads; 25 E2E scenarios; 25 expected outcomes; 25 matched outcomes; 0 missing; 0 unexpected
+- p0_blockers_count 0; p1/p2/p3 statuses completed
+- exact_values_required_count 19; exact_values_filled_count 0; default_sandbox_test_mode_decision HOLD
+- pilot_planning_does_not_equal_approval true; recommended_scenario_counts_are_not_approval true; jason_review_packet_does_not_equal_approval true; release_candidate_summary_does_not_equal_approval true; management_summary_jason_review_does_not_equal_approval true
+- recommended_default_counts: SMS 5, call-vapi 3, lead-intake 5, manual-review 4, calendar 4, reporting 3, audit 3, stop-rollback 3, total-sandbox 30, setup-steps 12, limited-validation 5 (RECOMMENDED_DEFAULT_ONLY_NOT_APPROVED)
+- current_recommended_next_step JASON_REVIEW_ROOFER_PILOT_ESSENTIALS_PLANNING_BATCH_HOLD_UNTIL_EXACT_VALUES_AND_SEPARATE_SANDBOX_TEST_MODE_APPROVAL
+- sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (roofer pilot essentials planning batch, fake data, planning-only, HOLD default).
+
+Safety: local fake-data planning-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
