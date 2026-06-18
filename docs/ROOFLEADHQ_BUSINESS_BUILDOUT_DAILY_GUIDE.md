@@ -7418,6 +7418,41 @@ Use preferred lead-to-inspection language (separate sandbox/test-mode approval r
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Sandbox/Test-Mode Exact Values Capture Draft
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_EXACT_VALUES_CAPTURE_DRAFT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_EXACT_VALUES_WORKSHEET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_EXACT_VALUES_COMPLETENESS_REVIEW.md`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-exact-values-capture-draft-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-exact-values-capture-draft-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-exact-values-capture-draft.json`
+
+Canonical source of truth: `ae9154b test(workflow): add separate sandbox test mode approval request`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Exact Values Capture Draft" / "native workflow fixture sandbox test mode exact values capture draft" / "sandbox test mode exact values capture draft" across aggregate, index, contexts, and business guide.
+
+The sandbox/test-mode exact values capture draft implements:
+
+- Exact values capture draft doc (capture_status blank_draft_only, approval_status not_granted)
+- Exact values worksheet with 19 blank rows
+- Exact values completeness review with 19 not_captured rows
+- source_of_truth_commit ae9154b; evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b
+- local_evidence_chain_status passed; p0_blockers_count 0; p1/p2/p3 statuses completed
+- exact_values_required_count 19; exact_values_filled_count 0; all_exact_values_filled false
+- blank_placeholders_are_not_approval true; all_approved_insufficient_without_exact_values true
+- current_recommended_next_step JASON_REVIEW_SANDBOX_TEST_MODE_EXACT_VALUES_CAPTURE_DRAFT
+- sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (exact values capture draft, worksheet, completeness review, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

@@ -2711,6 +2711,25 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind. No command execution in this packet.
 
+## Native Workflow Fixture Sandbox/Test-Mode Exact Values Capture Draft
+
+- Docs: `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_EXACT_VALUES_CAPTURE_DRAFT.md`, `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_EXACT_VALUES_WORKSHEET.md`, `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_EXACT_VALUES_COMPLETENESS_REVIEW.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-exact-values-capture-draft.json`
+- Wrapper: `scripts/run-native-workflow-fixture-sandbox-test-mode-exact-values-capture-draft-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-exact-values-capture-draft-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data sandbox/test-mode exact values capture draft structures 19 exact values all blank by default for Jason review before any future sandbox/test-mode activation — source_of_truth_commit ae9154b, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b, capture_status blank_draft_only, approval_status not_granted, sandbox_test_mode_approval_status not_granted, live_activation_approval_status not_granted, local_evidence_chain_status passed, p0_blockers_count 0, p1/p2/p3 statuses completed, exact_values_required_count 19, exact_values_filled_count 0, all_exact_values_filled false, blank_placeholders_are_not_approval true, all_approved_insufficient_without_exact_values true, 19 worksheet rows blank, 19 completeness review rows not_captured, current_recommended_next_step JASON_REVIEW_SANDBOX_TEST_MODE_EXACT_VALUES_CAPTURE_DRAFT, command_execution_status not_run_by_this_packet, approved_for_activation_now false, approved_channels empty, approved_external_services empty, live_activation_allowed false, sandbox_test_mode_activation_allowed false, external_calls_allowed false, credentials_access_allowed false, production_data_access_allowed false, schema_auth_rls_security_changes_allowed false, public_route_webhook_scheduler_cron_dispatcher_allowed false, billing_payment_automation_allowed false, public_go_live_or_production_copy_changes_allowed false, real_demo_sandbox_live_testing_allowed false, pilot readiness demo_ready_with_live_automation_disabled, old 90-day plan boundary guard, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only.
+- Verifier enforces: all three docs/fixture; capture_status blank_draft_only; approval statuses remain not_granted; all 19 exact values blank in fixture and worksheet; completeness review not_captured rows; blank placeholders are not approval; all approved insufficient without exact values; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (verifier + backend build only).
+- Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no live SMS/email/call, no customer notifications, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Exact values capture draft only; activation and external services remain blocked. No execution performed.
+
+## Native Workflow Fixture Sandbox/Test-Mode Exact Values Capture Draft Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-exact-values-capture-draft-readonly.js`
+- Purpose: read-only fail-closed guard that validates the sandbox/test-mode exact values capture draft documentation set, structured fixture, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind. No command execution in this packet.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
