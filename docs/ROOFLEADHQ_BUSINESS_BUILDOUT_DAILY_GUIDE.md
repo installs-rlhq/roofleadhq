@@ -7382,6 +7382,42 @@ Use preferred lead-to-inspection language (P3 planning, future approval drafts, 
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Separate Sandbox/Test-Mode Approval Request Packet
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_SEPARATE_SANDBOX_TEST_MODE_APPROVAL_REQUEST_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_SCOPE_CHECKLIST.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_NO_GO_STOP_CONDITION_CHECKLIST.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_EVIDENCE_REQUIREMENTS.md`
+- `scripts/run-native-workflow-fixture-separate-sandbox-test-mode-approval-request-packet-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-separate-sandbox-test-mode-approval-request-packet-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/separate-sandbox-test-mode-approval-request-packet.json`
+
+Canonical source of truth: `04e0de6 test(workflow): add p3 future approval planning packet`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Separate Sandbox/Test-Mode Approval Request Packet" / "native workflow fixture separate sandbox test mode approval request packet" / "separate sandbox test mode approval request packet" across aggregate, index, contexts, and business guide.
+
+The separate sandbox/test-mode approval request packet implements:
+
+- Separate sandbox/test-mode approval request doc (request_status draft_only, approval_status not_granted)
+- Sandbox/test-mode scope checklist with 15 sections (not approved until completed language)
+- No-go and stop-condition checklist with 21 items (NO_GO_KEEP_BLOCKED or STOP_AND_ROLL_BACK)
+- Evidence requirements with 23 items (evidence capture does not equal live approval)
+- source_of_truth_commit 04e0de6; evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6
+- local_evidence_chain_status passed; p0_blockers_count 0; p1/p2/p3 statuses completed
+- current_recommended_next_step JASON_REVIEW_SEPARATE_SANDBOX_TEST_MODE_APPROVAL_REQUEST
+- sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Exact approval placeholders required (services, test accounts, environment, command, boundaries, stop conditions, rollback/evidence owners, log path, approval expiry)
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (separate sandbox/test-mode approval request, scope checklist, no-go/stop conditions, evidence requirements, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
