@@ -7107,6 +7107,44 @@ node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-scop
 
 Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Scoped planning approved only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture First Controlled Launch Exact Test-Mode Scope Authorization Draft Dry Run
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_EXACT_TEST_MODE_SCOPE_AUTHORIZATION_DRAFT.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-exact-test-mode-scope-authorization-draft.js`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-exact-test-mode-scope-authorization-draft-readonly.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-exact-test-mode-scope-authorization-draft-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Exact Test-Mode Scope Authorization Draft Dry Run" / "native workflow fixture first controlled launch exact test-mode scope authorization draft dry run" / "first controlled launch exact test-mode scope authorization draft dry run" across aggregate, index, contexts, and business guide.
+- Local fake-data first controlled launch exact test-mode scope authorization draft dry-run — 25 authorization draft areas with common fields (fixture_delivery_mode dry_run_only, all activation flags false, fixture_authorization_type exact_test_mode_scope_authorization_draft).
+- Exact test-mode scope authorization draft dry-run only — structures the formal exact-scope authorization artifact Jason would review before any controlled test-mode activation without sandbox/production credential reads, no live automation, no test-mode activation, no activation approval granted, no execution performed.
+- exact_test_mode_scope_authorization_draft_record: approval_statement_reference "Approved to move forward.", prior_capture_commit 287627f, authorization_type exact_test_mode_scope_authorization_draft, authorization_status draft_only_not_approved_for_activation, activation_approval_status not_granted, approval_scope exact_scope_review_only, all activation flags false, approved_channels and approved_external_services empty, candidate_channel_scope placeholder_only, start/operator/rollback blank_placeholder, stop_conditions/observation_window/rollback_plan_status placeholder_required_before_activation, required_next_decision Jason must explicitly approve exact channel/start/operator/rollback/stop-condition details before any activation.
+- jason_approval_fields_table: 13 fields all remain placeholders requiring Jason explicit approval.
+- Relationship to scoped approval capture.
+- Activation remains blocked until separate explicit Jason approval after exact channel scope, start window, operator, rollback owner, and stop conditions are filled.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-first-controlled-launch-exact-test-mode-scope-authorization-draft-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-exact-test-mode-scope-authorization-draft-readonly.js
+```
+
+Safety remains: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Full aggregate via `scripts/verify-safe-readiness.sh` preserved for milestones. Authorization draft only; activation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

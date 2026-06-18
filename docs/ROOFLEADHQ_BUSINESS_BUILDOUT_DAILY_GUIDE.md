@@ -6747,6 +6747,35 @@ Use preferred lead-to-inspection language (scoped approval capture, planning-onl
 
 Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture First Controlled Launch Exact Test-Mode Scope Authorization Draft Dry Run
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_EXACT_TEST_MODE_SCOPE_AUTHORIZATION_DRAFT.md`
+- `backend/scripts/run-native-workflow-fixture-first-controlled-launch-exact-test-mode-scope-authorization-draft.js`
+- `scripts/run-native-workflow-fixture-first-controlled-launch-exact-test-mode-scope-authorization-draft-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-first-controlled-launch-exact-test-mode-scope-authorization-draft-readonly.js`
+
+Canonical source of truth before this worktree: `287627f test(workflow): add first controlled launch scoped approval capture`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture First Controlled Launch Exact Test-Mode Scope Authorization Draft Dry Run" / "native workflow fixture first controlled launch exact test-mode scope authorization draft dry run" / "first controlled launch exact test-mode scope authorization draft dry run" across aggregate, index, contexts, and business guide.
+
+The dry run implements:
+
+- Local fake-data first controlled launch exact test-mode scope authorization draft — stdout JSON only, no Supabase/production data
+- Top-level first_controlled_launch_exact_test_mode_scope_authorization_draft_dry_run_summary, exact_test_mode_scope_authorization_draft_record, jason_approval_fields_table, first_controlled_launch_exact_test_mode_scope_authorization_draft_items
+- executive/prior-scoped-capture/jason-statement-reference/authorization-draft-status/activation-blocked/placeholder/required-next-decision/forbidden-scope summaries and first_controlled_launch_exact_test_mode_scope_authorization_draft_safety_assertions
+- 25 authorization draft areas (executive summary, prior scoped approval capture reference, Jason approval statement reference, authorization type/status, approval scope, activation blocked boundaries, approved channels/services empty, candidate channel scope/start/operator/rollback/stop-condition/observation-window/rollback-plan placeholders, required next decision, forbidden scope, scoped approval capture relationship, not-activation boundary, Jason approval fields table, credential/env, schema/auth/RLS/security)
+- Exact test-mode scope authorization draft dry-run only — structures the formal exact-scope authorization artifact Jason would review before any controlled test-mode activation without sandbox/production credential reads, no live or test-mode activation, no activation approval granted, no execution performed
+- exact_test_mode_scope_authorization_draft_record: approval_statement_reference "Approved to move forward.", prior_capture_commit 287627f, authorization_type exact_test_mode_scope_authorization_draft, authorization_status draft_only_not_approved_for_activation, activation_approval_status not_granted, approval_scope exact_scope_review_only, all activation flags false, approved_channels and approved_external_services empty, candidate_channel_scope placeholder_only, start/operator/rollback blank_placeholder, stop_conditions/observation_window/rollback_plan_status placeholder_required_before_activation, required_next_decision Jason must explicitly approve exact channel/start/operator/rollback/stop-condition details before any activation.
+- jason_approval_fields_table: 13 fields all remain placeholders requiring Jason explicit approval
+- Relationship to scoped approval capture
+- Activation remains blocked until separate explicit Jason approval after exact channel scope, start window, operator, rollback owner, and stop conditions are filled
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (exact test-mode scope authorization draft, controlled launch formal authorization artifact, fake data, dry-run only).
+
+Safety: local fake-data dry-run only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
