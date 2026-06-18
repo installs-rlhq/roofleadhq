@@ -6955,6 +6955,38 @@ Use preferred lead-to-inspection language (post-run review template, controlled 
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Demo Roofer Local E2E Test Bundle
+
+Added files:
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_TEST_BUNDLE.md`
+- `scripts/run-native-workflow-fixture-demo-roofer-local-e2e-test-bundle-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-test-bundle-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/demo-roofer-profile.json`
+- `backend/fixtures/native-workflow-demo-roofer/demo-homeowner-leads.json`
+- `backend/fixtures/native-workflow-demo-roofer/demo-e2e-scenarios.json`
+- `backend/fixtures/native-workflow-demo-roofer/demo-expected-outcomes.json`
+- `backend/fixtures/native-workflow-demo-roofer/demo-operator-checklist.json`
+
+Canonical source of truth before this worktree: `7894948 test(workflow): add first controlled launch post run review template`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer Local E2E Test Bundle" / "native workflow fixture demo roofer local e2e test bundle" / "demo roofer local e2e test bundle" across aggregate, index, contexts, and business guide.
+
+The demo roofer local E2E test bundle implements:
+
+- Local fake-data demo roofer local E2E test bundle — Summit Peak Roofing Demo LLC fake roofer profile, 25 fake homeowner leads, 25 local E2E scenarios, expected outcomes, and operator checklist for future explicitly approved local fake-data dry-run review
+- Current state: latest_source_of_truth_commit 7894948; final go/no-go review packet complete; post-run review template complete; evidence chain complete for human review; approved local dry-run values exist only as planned local fake-data values; final activation command draft exists; command_execution_status not_run_in_this_packet; activation_approval_status not_granted; activation_command_approval_status not_granted; final_jason_activation_approval not_granted; approved_for_activation_now false; approved_channels and approved_external_services empty
+- Scenario coverage: new lead, missed lead recovery, manual outreach, appointment readiness, reschedule, no-show, post-inspection, feedback permission, source ROI, usage volume, messaging compliance, data minimization, audit timeline, review aging, human escalation, unsupported automation block, external service block, stop conditions
+- Old 90-day plan boundary: old 90-day plan is not imported into this demo roofer local E2E path; current source-of-truth direction wins; later narrow reconciliation audit must not override current launch safety posture
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only
+- Demo roofer local E2E test bundle review-only — no activation approval, no command execution approval, no command execution in this packet, no external calls, no credentials, no production data
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (demo roofer local E2E test bundle, fake data, review-only).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

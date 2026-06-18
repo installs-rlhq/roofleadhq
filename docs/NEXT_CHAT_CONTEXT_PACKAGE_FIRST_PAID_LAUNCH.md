@@ -7376,6 +7376,47 @@ node backend/scripts/verify-native-workflow-fixture-first-controlled-launch-post
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Post-run review template only; activation and command execution remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Demo Roofer Local E2E Test Bundle
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_DEMO_ROOFER_LOCAL_E2E_TEST_BUNDLE.md`
+- `backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-test-bundle-readonly.js`
+- `scripts/run-native-workflow-fixture-demo-roofer-local-e2e-test-bundle-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/demo-roofer-profile.json`
+- `backend/fixtures/native-workflow-demo-roofer/demo-homeowner-leads.json`
+- `backend/fixtures/native-workflow-demo-roofer/demo-e2e-scenarios.json`
+- `backend/fixtures/native-workflow-demo-roofer/demo-expected-outcomes.json`
+- `backend/fixtures/native-workflow-demo-roofer/demo-operator-checklist.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Demo Roofer Local E2E Test Bundle" / "native workflow fixture demo roofer local e2e test bundle" / "demo roofer local e2e test bundle" across aggregate, index, contexts, and business guide.
+- Local fake-data demo roofer local E2E test bundle — Summit Peak Roofing Demo LLC fake roofer profile, 25 fake homeowner leads, 25 local E2E scenarios, expected outcomes, and operator checklist for future explicitly approved local fake-data dry-run review, without granting activation or command execution approval and without running any command in this packet.
+- Current state: latest_source_of_truth_commit 7894948; final go/no-go review packet complete; post-run review template complete; evidence chain complete for human review; approved local dry-run values exist only as planned local fake-data values; final activation command draft exists; command_execution_status not_run_in_this_packet; activation_approval_status not_granted; activation_command_approval_status not_granted; final_jason_activation_approval not_granted; approved_for_activation_now false; approved_channels and approved_external_services empty; safety demo_ready_with_live_automation_disabled.
+- Scenario coverage: new lead, missed lead recovery, manual outreach, appointment readiness, reschedule, no-show, post-inspection, feedback permission, source ROI, usage volume, messaging compliance, data minimization, audit timeline, review aging, human escalation, unsupported automation block, external service block, stop conditions.
+- Old 90-day plan boundary: old 90-day plan is not imported into this demo roofer local E2E path; current source-of-truth direction wins; any old-plan review must remain later narrow reconciliation audit and must not override current launch safety posture.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only.
+- Full regression lane (milestones/high-risk): `scripts/verify-safe-readiness.sh` preserved.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-demo-roofer-local-e2e-test-bundle-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-test-bundle-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Demo roofer E2E test bundle only; activation and command execution remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

@@ -1,0 +1,168 @@
+{
+  "fixture_bundle_id": "native_workflow_demo_roofer_local_e2e_test_bundle",
+  "fixture_delivery_mode": "local_fake_data_review_only",
+  "checklist_title": "Demo Roofer Local E2E Operator Checklist",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "activation_approval_status": "not_granted",
+  "activation_command_approval_status": "not_granted",
+  "final_jason_activation_approval": "not_granted",
+  "approved_for_activation_now": false,
+  "approved_channels": [],
+  "approved_external_services": [],
+  "pre_run_checks": [
+    {
+      "check_id": "pre-001",
+      "label": "Confirm latest source-of-truth commit is 7894948 before this packet",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    },
+    {
+      "check_id": "pre-002",
+      "label": "Confirm demo roofer is Summit Peak Roofing Demo LLC (obviously fake)",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    },
+    {
+      "check_id": "pre-003",
+      "label": "Confirm all homeowner leads use fake example.com emails and +1555010xxxx phones",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    },
+    {
+      "check_id": "pre-004",
+      "label": "Confirm activation approval is not granted",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    },
+    {
+      "check_id": "pre-005",
+      "label": "Confirm activation command approval is not granted",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    },
+    {
+      "check_id": "pre-006",
+      "label": "Confirm final Jason activation approval is not granted",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    },
+    {
+      "check_id": "pre-007",
+      "label": "Confirm approved_for_activation_now is false",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    },
+    {
+      "check_id": "pre-008",
+      "label": "Confirm approved_channels and approved_external_services are empty",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    },
+    {
+      "check_id": "pre-009",
+      "label": "Confirm no credentials, env, API, or webhook access",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    },
+    {
+      "check_id": "pre-010",
+      "label": "Confirm no production Supabase data access",
+      "required": true,
+      "status_fixture": "not_run_in_this_packet"
+    }
+  ],
+  "scenario_review_steps": [
+    {
+      "step_id": "scenario-review-001",
+      "label": "Review all 25 local E2E scenarios against expected outcomes",
+      "required": true
+    },
+    {
+      "step_id": "scenario-review-002",
+      "label": "Verify new lead, missed lead recovery, manual outreach, and appointment paths",
+      "required": true
+    },
+    {
+      "step_id": "scenario-review-003",
+      "label": "Verify post-inspection, feedback permission, source ROI, and usage volume paths",
+      "required": true
+    },
+    {
+      "step_id": "scenario-review-004",
+      "label": "Verify messaging compliance, data minimization, audit timeline, and review aging paths",
+      "required": true
+    },
+    {
+      "step_id": "scenario-review-005",
+      "label": "Verify human escalation, unsupported automation block, external service block, and stop conditions",
+      "required": true
+    }
+  ],
+  "dry_run_execution_checks": [
+    {
+      "check_id": "dry-run-001",
+      "label": "Run read-only verifier only inside worktree",
+      "command_fixture": "node backend/scripts/verify-native-workflow-fixture-demo-roofer-local-e2e-test-bundle-readonly.js",
+      "required": true
+    },
+    {
+      "check_id": "dry-run-002",
+      "label": "Run dry-run wrapper only inside worktree",
+      "command_fixture": "bash scripts/run-native-workflow-fixture-demo-roofer-local-e2e-test-bundle-dry-run.sh",
+      "required": true
+    },
+    {
+      "check_id": "dry-run-003",
+      "label": "Do not run final activation command draft",
+      "required": true
+    },
+    {
+      "check_id": "dry-run-004",
+      "label": "Do not run source-of-truth verification inside worktree",
+      "required": true
+    },
+    {
+      "check_id": "dry-run-005",
+      "label": "Do not run full aggregate regression unless Terminal 1 explicitly asks",
+      "required": true
+    }
+  ],
+  "post_run_review_requirements": [
+    {
+      "requirement_id": "post-run-001",
+      "label": "After any future explicitly approved local dry-run, complete post-run review template",
+      "doc_reference": "docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_POST_RUN_REVIEW_TEMPLATE.md",
+      "required": true
+    },
+    {
+      "requirement_id": "post-run-002",
+      "label": "Final activation command draft remains not approved for execution",
+      "doc_reference": "docs/NATIVE_WORKFLOW_FIXTURE_FIRST_CONTROLLED_LAUNCH_FINAL_ACTIVATION_COMMAND_DRAFT.md",
+      "required": true
+    }
+  ],
+  "stop_conditions": [
+    "external_call_attempt",
+    "credential_env_access_attempt",
+    "production_data_access_attempt",
+    "schema_auth_rls_security_change_attempt",
+    "scheduler_cron_dispatcher_attempt",
+    "webhook_public_route_attempt",
+    "sandbox_test_mode_activation_attempt",
+    "live_service_activation_attempt",
+    "failed_safety_assertion"
+  ],
+  "forbidden_actions": [
+    "activate_sandbox_or_test_mode_services",
+    "activate_live_services",
+    "make_external_calls",
+    "access_credentials_env_api_webhooks",
+    "touch_production_supabase_data",
+    "make_schema_auth_rls_security_changes",
+    "add_public_routes_webhooks_schedulers_cron_dispatchers",
+    "enable_live_sends_crm_sync_billing_payment_quote_invoice_estimate_automation",
+    "approve_activation",
+    "approve_command_execution",
+    "execute_final_activation_command"
+  ]
+}

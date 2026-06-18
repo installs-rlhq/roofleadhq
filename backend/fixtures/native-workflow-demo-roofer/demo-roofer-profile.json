@@ -1,0 +1,79 @@
+{
+  "fixture_bundle_id": "native_workflow_demo_roofer_local_e2e_test_bundle",
+  "fixture_delivery_mode": "local_fake_data_review_only",
+  "data_classification": "fake_demo_data_only",
+  "production_data_touched": false,
+  "external_services_called": false,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "activation_approval_status": "not_granted",
+  "activation_command_approval_status": "not_granted",
+  "final_jason_activation_approval": "not_granted",
+  "approved_for_activation_now": false,
+  "approved_channels": [],
+  "approved_external_services": [],
+  "demo_roofer_profile": {
+    "roofer_account_id": "fixture-demo-roofer-summit-peak-001",
+    "company_name": "Summit Peak Roofing Demo LLC",
+    "company_name_is_fake": true,
+    "display_name": "Summit Peak Roofing Demo",
+    "business_type": "demo_roofer_fixture",
+    "plan_profile": "growth",
+    "service_area": {
+      "primary_city": "Demo Ridge City",
+      "primary_state": "DR",
+      "service_radius_miles": 25,
+      "is_fake_location": true
+    },
+    "owner": {
+      "name": "Jordan Demo Operator",
+      "title": "Demo Owner",
+      "email": "jordan.demo.operator@example.com",
+      "phone": "+15550101001",
+      "is_fake_contact": true
+    },
+    "operations_contact": {
+      "name": "Casey Demo Scheduler",
+      "email": "casey.demo.scheduler@example.com",
+      "phone": "+15550101002",
+      "is_fake_contact": true
+    },
+    "billing_contact": {
+      "name": "Alex Demo Billing",
+      "email": "alex.demo.billing@example.com",
+      "phone": "+15550101003",
+      "is_fake_contact": true
+    },
+    "office_address": {
+      "street": "9000 Summit Peak Demo Parkway",
+      "city": "Demo Ridge City",
+      "state": "DR",
+      "postal_code": "00001",
+      "country": "US",
+      "is_fake_address": true
+    },
+    "lead_sources_enabled": [
+      "fake_website_form",
+      "fake_google_ads_placeholder",
+      "fake_referral_partner_demo",
+      "fake_phone_inquiry_placeholder"
+    ],
+    "calendar_owner": "roofer_manual_only",
+    "calendar_sync_enabled": false,
+    "sms_confirmation_enabled": false,
+    "vapi_outbound_enabled": false,
+    "resend_enabled": false,
+    "lindy_live_enabled": false,
+    "crm_sync_enabled": false,
+    "live_csv_delivery_enabled": false,
+    "billing_automation_enabled": false,
+    "quote_estimate_invoice_payment_automation_enabled": false,
+    "activation_approval_status": "not_granted",
+    "activation_command_approval_status": "not_granted",
+    "final_jason_activation_approval": "not_granted",
+    "approved_for_activation_now": false,
+    "approved_channels": [],
+    "approved_external_services": [],
+    "safety_posture": "demo_ready_with_live_automation_disabled",
+    "notes": "Obviously fake demo roofer fixture for local E2E review only. No real roofer, homeowner, customer, production, credential, or external service data."
+  }
+}
