@@ -8172,6 +8172,44 @@ Use preferred lead-to-inspection language (signed approval pre-run guard pass, f
 
 Safety: local fake-data review-only pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Approved Command Wrapper Correction Packet
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_APPROVED_COMMAND_WRAPPER_CORRECTION_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_APPROVED_COMMAND_WRAPPER_CORRECTION_PACKET_NO_GO_REVIEW.md`
+- `backend/fixtures/native-workflow-demo-roofer/approved-command-wrapper-correction-packet.json`
+- `backend/scripts/verify-native-workflow-fixture-approved-command-wrapper-correction-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-approved-command-wrapper-correction-packet-dry-run.sh`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh`
+
+Canonical source of truth: `9106d8f test(workflow): add signed approval pre run guard pass`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Approved Command Wrapper Correction Packet" / "native workflow fixture approved command wrapper correction" / "approved command wrapper correction" across aggregate, index, contexts, and business guide.
+
+The approved command wrapper correction packet implements:
+
+- Missing exact approved command path correction at 9106d8f
+- correction_status approved_command_wrapper_path_materialized; missing_command_path_detected true; exact_approved_command_path_materialized true
+- Upstream signed approval capture and pre-run guard pass verification
+- approval_capture_status captured; jason_signed_approval_status signed; approval_signature_name Jason Lohse; approval_timestamp 06/18/2026 10:00PM MST
+- All 19 exact values accepted and approved for exact scoped sandbox/test-mode only
+- prior_pre_run_guard_status passed_for_exact_scoped_sandbox_test_mode_only; prior_pre_run_guard_decision PASS_FOR_EXACT_APPROVED_SANDBOX_TEST_MODE_COMMAND_ONLY
+- All 10 wrapper correction checks passed
+- Similar scripts documented as not approved substitutes
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted
+- exact_approved_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh; exact_approved_working_directory /root/roofleadhq
+- corrected_approved_command_wrapper_path scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh
+- wrapper_correction_does_not_execute_approved_command_as_live_or_external_run true
+- future_command_status ready_for_exact_approved_command_review_after_wrapper_correction_closeout; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Next step: exact approved command review after canonical main closeout only
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not execute approved command; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, wrapper-correction-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (approved command wrapper correction, fake data, review-only, exact approved command review after closeout).
+
+Safety: local fake-data review-only wrapper-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

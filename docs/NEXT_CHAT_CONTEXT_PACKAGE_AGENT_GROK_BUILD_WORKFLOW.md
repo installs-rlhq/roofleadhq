@@ -3711,6 +3711,39 @@ node backend/scripts/verify-native-workflow-fixture-signed-approval-pre-run-guar
 
 Safety remains: local fake-data review-only pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Pre-run guard pass only; not activation, non-executing. source_of_truth_commit 06a6f7f. Pre-run guard PASSED / SCOPED ONLY. All 19 exact values accepted and approved. All 20 pre-run guard checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. future_command_status ready_for_exact_approved_command_review_only. Next step: exact approved command review/execution consideration after canonical main closeout only. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Approved Command Wrapper Correction Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_APPROVED_COMMAND_WRAPPER_CORRECTION_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_APPROVED_COMMAND_WRAPPER_CORRECTION_PACKET_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-approved-command-wrapper-correction-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-approved-command-wrapper-correction-packet-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/approved-command-wrapper-correction-packet.json`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Approved Command Wrapper Correction Packet" / "native workflow fixture approved command wrapper correction" / "approved command wrapper correction" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-approved-command-wrapper-correction-packet-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-approved-command-wrapper-correction-packet-readonly.js
+```
+
+Safety remains: local fake-data review-only wrapper-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Wrapper correction only; not activation, non-executing. source_of_truth_commit 9106d8f. correction_status approved_command_wrapper_path_materialized. missing_command_path_detected true. exact_approved_command_path_materialized true. All 19 exact values accepted and approved. All 10 wrapper correction checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. future_command_status ready_for_exact_approved_command_review_after_wrapper_correction_closeout. Next step: exact approved command review after canonical main closeout only. No sandbox/test-mode run performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

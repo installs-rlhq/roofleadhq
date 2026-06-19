@@ -8973,6 +8973,52 @@ node backend/scripts/verify-native-workflow-fixture-signed-approval-pre-run-guar
 
 Safety remains: local fake-data review-only pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Pre-run guard pass only; not activation, non-executing. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Approved Command Wrapper Correction Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_APPROVED_COMMAND_WRAPPER_CORRECTION_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_APPROVED_COMMAND_WRAPPER_CORRECTION_PACKET_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-approved-command-wrapper-correction-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-approved-command-wrapper-correction-packet-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/approved-command-wrapper-correction-packet.json`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Approved Command Wrapper Correction Packet" / "native workflow fixture approved command wrapper correction" / "approved command wrapper correction" across aggregate, index, contexts, and business guide.
+- Approved command wrapper correction — source_of_truth_commit 9106d8f, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818/15644fa/cc67563/0159faf/dbb30a7/436813f/32c2c8b/f36a247/7f57e7d/e96ff0e/1c04c0c/06529ab/06a6f7f/9106d8f.
+- correction_status approved_command_wrapper_path_materialized; missing_command_path_detected true; exact_approved_command_path_materialized true.
+- approval_capture_status captured; jason_signed_approval_status signed; approval_signature_name Jason Lohse; approval_timestamp 06/18/2026 10:00PM MST.
+- exact_values_required_count 19; accepted_exact_values_count 19; approved_exact_values_filled_count 19; all_19_exact_values_status accepted_and_approved_for_exact_scoped_sandbox_test_mode_only.
+- prior_pre_run_guard_status passed_for_exact_scoped_sandbox_test_mode_only; prior_pre_run_guard_decision PASS_FOR_EXACT_APPROVED_SANDBOX_TEST_MODE_COMMAND_ONLY.
+- live_activation_approval_status not_granted; real_homeowner_contact_approval_status not_granted; real_roofer_contact_approval_status not_granted; production_supabase_write_approval_status not_granted; schema_auth_rls_security_change_approval_status not_granted; billing_payment_automation_approval_status not_granted.
+- exact_approved_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh; exact_approved_working_directory /root/roofleadhq.
+- corrected_approved_command_wrapper_path scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh.
+- wrapper_correction_does_not_execute_approved_command_as_live_or_external_run true.
+- future_command_status ready_for_exact_approved_command_review_after_wrapper_correction_closeout; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- Original approved command path was missing. Similar scripts are not approved substitutes.
+- This packet materializes the exact approved command wrapper path; does not execute sandbox/test-mode as external/live run; does not activate sandbox/test-mode or live automation.
+- Next step: exact approved command review after canonical main closeout only.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-approved-command-wrapper-correction-packet-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-approved-command-wrapper-correction-packet-readonly.js
+```
+
+Safety remains: local fake-data review-only wrapper-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Wrapper correction only; not activation, non-executing. No sandbox/test-mode run performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
