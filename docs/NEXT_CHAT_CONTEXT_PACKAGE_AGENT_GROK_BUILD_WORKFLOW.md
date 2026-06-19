@@ -3517,6 +3517,38 @@ node backend/scripts/verify-native-workflow-fixture-pilot-readiness-master-no-go
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Pilot readiness master dependency summary only; activation and external services remain blocked. source_of_truth_commit 32c2c8b. Pilot readiness master gate decision NO_GO (HOLD). Master summary does not equal approval. Dependency summary does not equal approval. All upstream completeness gates completed (structure only). Channel validation 0/30 captured. Setup 0/12 captured. Limited validation 0/5 captured. Approval capture status not_captured. Jason signed approval status not_signed. Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Post-Approval Sandbox/Test-Mode Operator Runbook Draft
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_POST_APPROVAL_SANDBOX_TEST_MODE_OPERATOR_RUNBOOK_DRAFT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_POST_APPROVAL_SANDBOX_TEST_MODE_OPERATOR_NO_GO_CHECKLIST.md`
+- `backend/scripts/verify-native-workflow-fixture-post-approval-sandbox-test-mode-operator-runbook-draft-readonly.js`
+- `scripts/run-native-workflow-fixture-post-approval-sandbox-test-mode-operator-runbook-draft-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/post-approval-sandbox-test-mode-operator-runbook-draft.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Post-Approval Sandbox/Test-Mode Operator Runbook Draft" / "native workflow fixture post approval sandbox test mode operator runbook draft" / "post approval sandbox test mode operator runbook draft" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-post-approval-sandbox-test-mode-operator-runbook-draft-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-post-approval-sandbox-test-mode-operator-runbook-draft-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Post-approval operator runbook draft only; activation and external services remain blocked. source_of_truth_commit f36a247. Post-approval runbook draft gate decision NO_GO (HOLD). Post-approval runbook draft does not equal approval. Operator runbook does not equal approval. No-go checklist does not equal approval. All 12 blocked operator sequence steps remain blocked_until_prerequisites. future_command_status blocked_until_exact_signed_approval_and_gate_pass. Channel validation 0/30 captured. Approval capture status not_captured. Jason signed approval status not_signed. Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
