@@ -7939,6 +7939,33 @@ Use preferred lead-to-inspection language (controlled real roofer limited valida
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Controlled Real Roofer Limited Validation Completeness Gate
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_COMPLETENESS_GATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_COMPLETENESS_NO_GO_REVIEW.md`
+- `backend/fixtures/native-workflow-demo-roofer/controlled-real-roofer-limited-validation-completeness-gate.json`
+- `backend/scripts/verify-native-workflow-fixture-controlled-real-roofer-limited-validation-completeness-gate-readonly.js`
+- `scripts/run-native-workflow-fixture-controlled-real-roofer-limited-validation-completeness-gate-dry-run.sh`
+
+Canonical source of truth: `436813f test(workflow): add controlled real roofer limited validation evidence capture`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Controlled Real Roofer Limited Validation Completeness Gate" / "native workflow fixture controlled real roofer limited validation completeness gate" / "controlled real roofer limited validation completeness gate" across aggregate, index, contexts, and business guide.
+
+The controlled real roofer limited validation completeness gate implements:
+
+- Limited validation completeness gate doc (limited_validation_evidence_capture_packet_status completed, channel_validation_gate_decision NO_GO, controlled_real_roofer_limited_validation_completeness_status incomplete, controlled_real_roofer_limited_validation_gate_decision NO_GO, controlled_real_roofer_validation_approval_status not_granted, approval_capture_gate_decision NO_GO, completeness_status incomplete, approval_status not_granted)
+- No-go review checklist with 15 missing evidence items before limited validation can be marked complete
+- Twelve-layer boundary separating recommended defaults, accepted exact values, approved exact values, signed approval capture, approval capture completeness gate, channel validation evidence capture, channel validation completeness gate, controlled real roofer setup evidence capture, controlled real roofer setup completeness gate, controlled real roofer limited validation evidence capture, controlled real roofer limited validation completeness gate, and activation approval
+- Structured fixture with 5 scenarios at 0 captured and 15 evidence fields per scenario
+- Read-only verifier and narrow dry-run wrapper (verifier + backend build only; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (controlled real roofer limited validation completeness gate, fake data, review-only, NO_GO/HOLD default).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

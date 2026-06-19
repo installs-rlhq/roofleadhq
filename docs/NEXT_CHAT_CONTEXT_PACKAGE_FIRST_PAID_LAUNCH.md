@@ -8631,6 +8631,48 @@ node backend/scripts/verify-native-workflow-fixture-controlled-real-roofer-limit
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Controlled real roofer limited validation evidence capture packet only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Controlled Real Roofer Limited Validation Completeness Gate
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_COMPLETENESS_GATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_COMPLETENESS_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-controlled-real-roofer-limited-validation-completeness-gate-readonly.js`
+- `scripts/run-native-workflow-fixture-controlled-real-roofer-limited-validation-completeness-gate-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/controlled-real-roofer-limited-validation-completeness-gate.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Controlled Real Roofer Limited Validation Completeness Gate" / "native workflow fixture controlled real roofer limited validation completeness gate" / "controlled real roofer limited validation completeness gate" across aggregate, index, contexts, and business guide.
+- Controlled real roofer limited validation completeness gate provides pre-activation NO_GO/HOLD completeness review for 5 limited validation scenarios — source_of_truth_commit 436813f, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818/15644fa/cc67563/0159faf/dbb30a7/436813f.
+- limited_validation_evidence_capture_packet_status completed; controlled_real_roofer_pilot_setup_completeness_gate_status completed; setup_evidence_capture_packet_status completed; channel_validation_completeness_gate_status completed; approval_capture_completeness_gate_status completed; local_demo_e2e_evidence_chain_status passed.
+- exact_values_required_count 19; accepted_exact_values_count 0; approved_exact_values_filled_count 0; completeness_status incomplete; default_sandbox_test_mode_decision HOLD.
+- recommended_scenario_counts_are_not_approval true; limited_validation_completeness_gate_does_not_equal_approval true; limited_validation_completeness_no_go_review_does_not_equal_approval true; limited_validation_evidence_capture_packet_does_not_equal_approval true; limited_validation_evidence_template_does_not_equal_approval true.
+- controlled_real_roofer_limited_validation_scenarios_count 5; captured_limited_validation_scenarios_count 0; passed_limited_validation_scenarios_count 0; failed_limited_validation_scenarios_count 0; missing_limited_validation_evidence_scenarios_count 5 (CRLV-01 controlled lead arrives through CRLV-05 appointment/outcome/reporting reviewed).
+- approval_capture_status not_captured; jason_signed_approval_status not_signed; approval_capture_gate_decision NO_GO; channel_validation_gate_decision NO_GO; controlled_real_roofer_setup_gate_decision NO_GO; controlled_real_roofer_limited_validation_completeness_status incomplete; controlled_real_roofer_limited_validation_gate_decision NO_GO; controlled_real_roofer_validation_approval_status not_granted.
+- approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; real_roofer_onboarding_contact_allowed false; real_roofer_contact_allowed false; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- Controlled real roofer validation blocked until sandbox/test-mode evidence, setup evidence, and limited validation evidence are complete and separately approved. This packet does not approve sandbox/test-mode activation; does not approve live activation; does not approve controlled real roofer validation; does not contact a roofer; does not send email, SMS, or calls.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-controlled-real-roofer-limited-validation-completeness-gate-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-controlled-real-roofer-limited-validation-completeness-gate-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Controlled real roofer limited validation completeness gate only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
