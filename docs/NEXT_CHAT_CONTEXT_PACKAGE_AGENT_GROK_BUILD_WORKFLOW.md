@@ -3744,6 +3744,40 @@ node backend/scripts/verify-native-workflow-fixture-approved-command-wrapper-cor
 
 Safety remains: local fake-data review-only wrapper-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Wrapper correction only; not activation, non-executing. source_of_truth_commit 9106d8f. correction_status approved_command_wrapper_path_materialized. missing_command_path_detected true. exact_approved_command_path_materialized true. All 19 exact values accepted and approved. All 10 wrapper correction checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. future_command_status ready_for_exact_approved_command_review_after_wrapper_correction_closeout. Next step: exact approved command review after canonical main closeout only. No sandbox/test-mode run performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Exact Approved Command Post-Run Evidence
+
+The Native Workflow Fixture Exact Approved Command Post-Run Evidence (native workflow fixture exact approved command post-run evidence / exact approved command post-run evidence) captures observed output from running the exact approved command wrapper as a local review-only dry-run from /root/roofleadhq.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_EXACT_APPROVED_COMMAND_POST_RUN_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_EXACT_APPROVED_COMMAND_POST_RUN_EVIDENCE_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-exact-approved-command-post-run-evidence-readonly.js`
+- `scripts/run-native-workflow-fixture-exact-approved-command-post-run-evidence-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/exact-approved-command-post-run-evidence.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Exact Approved Command Post-Run Evidence" / "native workflow fixture exact approved command post-run evidence" / "exact approved command post-run evidence" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-exact-approved-command-post-run-evidence-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-exact-approved-command-post-run-evidence-readonly.js
+```
+
+Safety remains: local fake-data review-only post-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Post-run evidence capture only; not activation, non-executing. source_of_truth_commit fbe793e. exact_approved_command_run_status completed_local_review_only_wrapper_passed. command_execution_status exact_approved_command_ran_local_review_only. wrapper_pass_status passed. channel_validation_completeness_gate_assertions 124. channel_validation_evidence_capture_packet_assertions 115. backend_build_status passed. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_status not_captured_by_this_run. Historical/local channel validation evidence still 0 of 30. All 10 post-run evidence checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. future_command_status post_run_evidence_captured_pending_next_exact_approval_decision. Separate Jason approval/decision required before any future actual 30-scenario validation batch. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

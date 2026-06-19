@@ -9019,6 +9019,53 @@ node backend/scripts/verify-native-workflow-fixture-approved-command-wrapper-cor
 
 Safety remains: local fake-data review-only wrapper-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Wrapper correction only; not activation, non-executing. No sandbox/test-mode run performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Exact Approved Command Post-Run Evidence
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_EXACT_APPROVED_COMMAND_POST_RUN_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_EXACT_APPROVED_COMMAND_POST_RUN_EVIDENCE_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-exact-approved-command-post-run-evidence-readonly.js`
+- `scripts/run-native-workflow-fixture-exact-approved-command-post-run-evidence-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/exact-approved-command-post-run-evidence.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Exact Approved Command Post-Run Evidence" / "native workflow fixture exact approved command post-run evidence" / "exact approved command post-run evidence" across aggregate, index, contexts, and business guide.
+- Exact approved command post-run evidence — source_of_truth_commit fbe793e, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818/15644fa/cc67563/0159faf/dbb30a7/436813f/32c2c8b/f36a247/7f57e7d/e96ff0e/1c04c0c/06529ab/06a6f7f/9106d8f/fbe793e.
+- exact_approved_command_run_status completed_local_review_only_wrapper_passed; command_execution_status exact_approved_command_ran_local_review_only; wrapper_pass_status passed.
+- exact_approved_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh; exact_approved_working_directory /root/roofleadhq.
+- channel_validation_completeness_gate_assertions 124; channel_validation_evidence_capture_packet_assertions 115; backend_build_status passed.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- approval_capture_status captured; jason_signed_approval_status signed; approval_signature_name Jason Lohse; approval_timestamp 06/18/2026 10:00PM MST.
+- prior_pre_run_guard_status passed_for_exact_scoped_sandbox_test_mode_only; prior_pre_run_guard_decision PASS_FOR_EXACT_APPROVED_SANDBOX_TEST_MODE_COMMAND_ONLY.
+- sandbox_test_mode_approval_status granted_scoped_one_time_pending_pre_run_guard.
+- live_activation_approval_status not_granted; real_homeowner_contact_approval_status not_granted; real_roofer_contact_approval_status not_granted; production_supabase_write_approval_status not_granted; schema_auth_rls_security_change_approval_status not_granted; billing_payment_automation_approval_status not_granted.
+- external_calls_made false; credentials_accessed false; production_data_accessed false; sms_email_calls_calendar_booking_performed false; public_route_webhook_scheduler_cron_dispatcher_activated false.
+- demo_ready_with_live_automation_disabled preserved.
+- future_command_status post_run_evidence_captured_pending_next_exact_approval_decision; separate_decision_required_before_future_30_scenario_validation_batch true.
+- Historical/local channel validation evidence still 0 of 30 scenarios captured. Controlled real roofer setup and live activation remain blocked.
+- This packet documents exact approved command wrapper local dry-run pass only; does not claim full 30-scenario validation passed; does not claim live/sandbox external testing completed; does not capture actual external/live/sandbox channel validation evidence.
+- Separate Jason approval/decision required on whether one-time approval was consumed or refreshed approval is needed for any future actual 30-scenario validation batch.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-exact-approved-command-post-run-evidence-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-exact-approved-command-post-run-evidence-readonly.js
+```
+
+Safety remains: local fake-data review-only post-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Post-run evidence capture only; not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

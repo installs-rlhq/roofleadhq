@@ -8210,6 +8210,45 @@ Use preferred lead-to-inspection language (approved command wrapper correction, 
 
 Safety: local fake-data review-only wrapper-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Exact Approved Command Post-Run Evidence
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_EXACT_APPROVED_COMMAND_POST_RUN_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_EXACT_APPROVED_COMMAND_POST_RUN_EVIDENCE_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-exact-approved-command-post-run-evidence-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-exact-approved-command-post-run-evidence-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/exact-approved-command-post-run-evidence.json`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh` (observed run)
+
+Canonical source of truth: `fbe793e test(workflow): add approved command wrapper correction`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Exact Approved Command Post-Run Evidence" / "native workflow fixture exact approved command post-run evidence" / "exact approved command post-run evidence" across aggregate, index, contexts, and business guide.
+
+The exact approved command post-run evidence packet implements:
+
+- Observed run of exact approved command wrapper from /root/roofleadhq as local review-only dry-run
+- exact_approved_command_run_status completed_local_review_only_wrapper_passed; command_execution_status exact_approved_command_ran_local_review_only; wrapper_pass_status passed
+- channel_validation_completeness_gate_assertions 124; channel_validation_evidence_capture_packet_assertions 115; backend_build_status passed
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_status not_captured_by_this_run
+- Upstream approved command wrapper correction, signed approval capture, and pre-run guard pass verification
+- approval_capture_status captured; jason_signed_approval_status signed; approval_signature_name Jason Lohse; approval_timestamp 06/18/2026 10:00PM MST
+- prior_pre_run_guard_status passed_for_exact_scoped_sandbox_test_mode_only; prior_pre_run_guard_decision PASS_FOR_EXACT_APPROVED_SANDBOX_TEST_MODE_COMMAND_ONLY
+- All 10 post-run evidence checks passed
+- Historical/local channel validation evidence still 0 of 30 scenarios captured
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted
+- external_calls_made false; credentials_accessed false; production_data_accessed false; sms_email_calls_calendar_booking_performed false; public_route_webhook_scheduler_cron_dispatcher_activated false
+- exact_approved_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh; exact_approved_working_directory /root/roofleadhq
+- future_command_status post_run_evidence_captured_pending_next_exact_approval_decision; separate_decision_required_before_future_30_scenario_validation_batch true; approved_for_activation_now false
+- Does not claim full 30-scenario validation passed; does not claim live/sandbox external testing completed; does not capture actual external/live/sandbox channel validation evidence
+- Separate Jason approval/decision required before any future actual 30-scenario validation batch
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not execute sandbox/test-mode as external/live run; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, post-run-evidence-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (exact approved command post-run evidence, fake data, review-only, separate approval decision pending).
+
+Safety: local fake-data review-only post-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
