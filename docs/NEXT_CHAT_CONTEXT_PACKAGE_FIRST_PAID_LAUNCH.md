@@ -8804,6 +8804,49 @@ node backend/scripts/verify-native-workflow-fixture-post-approval-sandbox-test-m
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Post-approval pre-run guard draft only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Final Sandbox/Test-Mode Approval Decision Board
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_SANDBOX_TEST_MODE_APPROVAL_DECISION_BOARD.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_SANDBOX_TEST_MODE_APPROVAL_DECISION_BOARD_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-final-sandbox-test-mode-approval-decision-board-readonly.js`
+- `scripts/run-native-workflow-fixture-final-sandbox-test-mode-approval-decision-board-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/final-sandbox-test-mode-approval-decision-board.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Final Sandbox/Test-Mode Approval Decision Board" / "native workflow fixture final sandbox test mode approval decision board" / "final sandbox test mode approval decision board" across aggregate, index, contexts, and business guide.
+- Final sandbox/test-mode approval decision board — source_of_truth_commit e96ff0e, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818/15644fa/cc67563/0159faf/dbb30a7/436813f/32c2c8b/f36a247/7f57e7d/e96ff0e.
+- post_approval_sandbox_test_mode_operator_runbook_draft_status completed; post_approval_sandbox_test_mode_pre_run_guard_draft_status completed; pilot_readiness_master_gate_decision NO_GO; decision_board_status blocked; decision_board_gate_decision NO_GO.
+- final_decision_board_does_not_equal_approval true; final_decision_board_no_go_review_does_not_equal_approval true; recommended_defaults_are_not_approval true; operator_runbook_draft_does_not_equal_approval true; pre_run_guard_draft_does_not_equal_approval true.
+- exact_values_required_count 19; accepted_exact_values_count 0; approved_exact_values_filled_count 0; default_sandbox_test_mode_decision HOLD.
+- sandbox_test_mode_channel_validation_scenarios_count 30; captured_sandbox_test_mode_channel_validation_scenarios_count 0; missing_sandbox_test_mode_channel_validation_scenarios_count 30.
+- controlled_real_roofer_setup_steps_count 12; captured_controlled_real_roofer_setup_steps_count 0; missing_controlled_real_roofer_setup_steps_count 12.
+- controlled_real_roofer_limited_validation_scenarios_count 5; captured_controlled_real_roofer_limited_validation_scenarios_count 0; missing_controlled_real_roofer_limited_validation_scenarios_count 5.
+- approval_capture_status not_captured; jason_signed_approval_status not_signed; approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; controlled_real_roofer_validation_approval_status not_granted.
+- future_command_status blocked_until_exact_signed_approval_and_gate_pass; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- 8-step approval dependency ladder all not_complete. All 19 exact values not_approved (recommended_default_exists true; accepted_by_jason false; approved_by_jason false).
+- Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-final-sandbox-test-mode-approval-decision-board-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-final-sandbox-test-mode-approval-decision-board-readonly.js
+```
+
+Safety remains: local fake-data review-only planning-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Final decision board only; not approval, not activation, non-executing. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

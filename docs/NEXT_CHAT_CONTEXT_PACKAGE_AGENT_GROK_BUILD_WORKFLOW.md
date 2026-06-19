@@ -3583,6 +3583,38 @@ node backend/scripts/verify-native-workflow-fixture-post-approval-sandbox-test-m
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Post-approval pre-run guard draft only; activation and external services remain blocked. source_of_truth_commit 7f57e7d. Pre-run guard status blocked. Pre-run guard decision NO_GO (HOLD). Pre-run guard draft does not equal approval. Pre-run guard no-go review does not equal approval. Operator runbook draft does not equal approval. All 20 blocked pre-run guard checks remain blocked_until_prerequisites. future_command_status blocked_until_exact_signed_approval_and_gate_pass. Channel validation 0/30 captured. Approval capture status not_captured. Jason signed approval status not_signed. Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Final Sandbox/Test-Mode Approval Decision Board
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_SANDBOX_TEST_MODE_APPROVAL_DECISION_BOARD.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_SANDBOX_TEST_MODE_APPROVAL_DECISION_BOARD_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-final-sandbox-test-mode-approval-decision-board-readonly.js`
+- `scripts/run-native-workflow-fixture-final-sandbox-test-mode-approval-decision-board-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/final-sandbox-test-mode-approval-decision-board.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Final Sandbox/Test-Mode Approval Decision Board" / "native workflow fixture final sandbox test mode approval decision board" / "final sandbox test mode approval decision board" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-final-sandbox-test-mode-approval-decision-board-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-final-sandbox-test-mode-approval-decision-board-readonly.js
+```
+
+Safety remains: local fake-data review-only planning-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Final decision board only; not approval, not activation, non-executing. source_of_truth_commit e96ff0e. Master gate NO_GO (HOLD). Final decision board does not equal approval. All 19 exact values not_approved. Channel validation 0/30. Setup steps 0/12. Limited validation 0/5. Approval capture NOT CAPTURED / NOT SIGNED / NOT GRANTED. future_command_status blocked_until_exact_signed_approval_and_gate_pass. Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
