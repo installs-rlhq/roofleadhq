@@ -7966,6 +7966,32 @@ Use preferred lead-to-inspection language (controlled real roofer limited valida
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Pilot Readiness Master NO-GO / Approval Dependency Summary
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_PILOT_READINESS_MASTER_NO_GO_APPROVAL_DEPENDENCY_SUMMARY.md`
+- `backend/fixtures/native-workflow-demo-roofer/pilot-readiness-master-no-go-approval-dependency-summary.json`
+- `backend/scripts/verify-native-workflow-fixture-pilot-readiness-master-no-go-approval-dependency-summary-readonly.js`
+- `scripts/run-native-workflow-fixture-pilot-readiness-master-no-go-approval-dependency-summary-dry-run.sh`
+
+Canonical source of truth: `32c2c8b test(workflow): add controlled real roofer limited validation completeness gate`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Pilot Readiness Master NO-GO / Approval Dependency Summary" / "native workflow fixture pilot readiness master no go approval dependency summary" / "pilot readiness master no go approval dependency summary" across aggregate, index, contexts, and business guide.
+
+The pilot readiness master dependency summary implements:
+
+- Master summary doc consolidating all remaining approval dependencies and NO-GO/HOLD gates (pilot_readiness_master_gate_decision NO_GO, master_summary_does_not_equal_approval true, dependency_summary_does_not_equal_approval true)
+- Six-step operator dependency ladder from Jason signed sandbox/test-mode approval through separate later live activation approval
+- Upstream completeness gate references (approval capture, channel validation, controlled real roofer setup, controlled real roofer limited validation) — all completed structure only, all evidence not_captured
+- Structured fixture with 30 channel validation scenarios, 12 setup steps, and 5 limited validation scenarios all at 0 captured
+- Read-only verifier and narrow dry-run wrapper (verifier + backend build only; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (pilot readiness master dependency summary, fake data, review-only, NO_GO/HOLD default).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
