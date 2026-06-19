@@ -3948,6 +3948,40 @@ node backend/scripts/verify-native-workflow-fixture-refreshed-actual-30-scenario
 
 Safety remains: local fake-data review-only refreshed-command-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Refreshed command run evidence only; not activation, non-executing. source_of_truth_commit 0da2457. refreshed_exact_approved_command_run_status completed_local_review_only_wrapper_passed. command_execution_status refreshed_exact_approved_command_ran_local_review_only. wrapper_pass_status passed. channel_validation_completeness_gate_assertions 124. channel_validation_evidence_capture_packet_assertions 115. backend_build_status passed. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_missing_count 30. actual_30_scenario_external_validation_status not_captured_by_this_run. missing_validation_evidence_scenarios_count 30. future_command_status refreshed_command_run_evidence_captured_pending_next_exact_decision. separate_decision_required_before_future_30_scenario_validation_batch true. separate_decision_required_for_different_external_sandbox_runner true. Does not claim full 30-scenario validation passed. Does not claim live/sandbox external testing completed. Next step separate decision: stop/review, consume refreshed approval, or create/approve different actual external/sandbox 30-scenario validation runner. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Design
+
+The Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Design (native workflow fixture actual external sandbox 30 scenario runner design / actual external sandbox 30 scenario runner design) documents proposed future requirements for a different actual external/sandbox 30-scenario validation runner without building, approving, or running any actual external/sandbox runner.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_DESIGN.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_DESIGN_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-readonly.js`
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-runner-design.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Design" / "native workflow fixture actual external sandbox 30 scenario runner design" / "actual external sandbox 30 scenario runner design" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-readonly.js
+```
+
+Safety remains: local fake-data review-only runner-design-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner design only; not approval, not activation, non-executing. source_of_truth_commit 0150699. prior_refreshed_command_run_status completed_local_review_only_wrapper_passed. current_runner_gap_status existing_wrapper_is_local_only_not_actual_external_sandbox_runner. different_runner_required true. proposed_runner_status design_only_not_built_not_approved_not_run. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_missing_count 30. actual_30_scenario_external_validation_status not_captured_by_this_run. proposed_future_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh (proposed only). proposed_working_directory /root/roofleadhq. future_command_status blocked_until_actual_external_sandbox_runner_built_and_exact_approval_captured_and_pre_run_guard_passes. command_execution_status not_run_by_this_packet. Does not build proposed runner. Does not approve proposed runner. Does not approve command execution. Next step separate exact approval to build different actual external/sandbox runner, or stop/review. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

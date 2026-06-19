@@ -8450,6 +8450,44 @@ Use preferred lead-to-inspection language (refreshed command run evidence captur
 
 Safety: local fake-data review-only refreshed-command-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Design
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_DESIGN.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_DESIGN_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-runner-design.json`
+
+Canonical source of truth: `0150699 test(workflow): capture refreshed actual 30 scenario command run evidence`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Design" / "native workflow fixture actual external sandbox 30 scenario runner design" / "actual external sandbox 30 scenario runner design" across aggregate, index, contexts, and business guide.
+
+The actual external/sandbox 30-scenario runner design packet implements:
+
+- Documents gap between prior refreshed local-only wrapper command and different actual external/sandbox runner required
+- source_of_truth_commit 0150699; prior_refreshed_command_run_status completed_local_review_only_wrapper_passed
+- current_runner_gap_status existing_wrapper_is_local_only_not_actual_external_sandbox_runner; different_runner_required true
+- proposed_runner_status design_only_not_built_not_approved_not_run
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- proposed_future_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh (proposed only); proposed_working_directory /root/roofleadhq
+- 8 scenario groups totaling 30 scenarios; 15 required evidence fields per scenario; 10 aggregate counters specified
+- Upstream refreshed command run evidence fixture verification
+- All 10 design checks passed
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted
+- external_calls_allowed_by_this_packet false; credentials_access_allowed_by_this_packet false; production_data_access_allowed_by_this_packet false; sms_email_calls_calendar_booking_allowed_by_this_packet false
+- future_command_status blocked_until_actual_external_sandbox_runner_built_and_exact_approval_captured_and_pre_run_guard_passes; command_execution_status not_run_by_this_packet
+- approved_for_activation_now false; documents proposed future runner requirements only; does not build or approve proposed runner
+- Next step separate exact approval to build different actual external/sandbox runner, or stop/review
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not build or execute proposed runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, design-only, not-built, not-approved, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (runner design captured, fake data, review-only, local wrapper gap documented, actual external 30-scenario validation not captured, separate exact approval required before build).
+
+Safety: local fake-data review-only runner-design-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

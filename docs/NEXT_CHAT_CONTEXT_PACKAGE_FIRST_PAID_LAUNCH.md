@@ -9299,6 +9299,47 @@ node backend/scripts/verify-native-workflow-fixture-refreshed-actual-30-scenario
 
 Safety remains: local fake-data review-only refreshed-command-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Refreshed command run evidence only; not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Design
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_DESIGN.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_DESIGN_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-readonly.js`
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-runner-design.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Design" / "native workflow fixture actual external sandbox 30 scenario runner design" / "actual external sandbox 30 scenario runner design" across aggregate, index, contexts, and business guide.
+- Runner design — source_of_truth_commit 0150699, prior_refreshed_command_run_status completed_local_review_only_wrapper_passed, current_runner_gap_status existing_wrapper_is_local_only_not_actual_external_sandbox_runner, different_runner_required true, proposed_runner_status design_only_not_built_not_approved_not_run.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- proposed_future_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh (proposed only, not built); proposed_working_directory /root/roofleadhq; 8 scenario groups totaling 30 scenarios; 15 required evidence fields per scenario; 10 aggregate counters specified.
+- live_activation_approval_status not_granted; real_homeowner_contact_approval_status not_granted; real_roofer_contact_approval_status not_granted; production_supabase_write_approval_status not_granted; schema_auth_rls_security_change_approval_status not_granted; billing_payment_automation_approval_status not_granted.
+- external_calls_allowed_by_this_packet false; credentials_access_allowed_by_this_packet false; production_data_access_allowed_by_this_packet false; sms_email_calls_calendar_booking_allowed_by_this_packet false.
+- demo_ready_with_live_automation_disabled preserved; approved_for_activation_now false; command_execution_status not_run_by_this_packet.
+- future_command_status blocked_until_actual_external_sandbox_runner_built_and_exact_approval_captured_and_pre_run_guard_passes.
+- This packet documents proposed future runner requirements only; does not build proposed runner; does not approve proposed runner; does not approve command execution; prior refreshed approval was local-only wrapper.
+- Next step is separate exact approval to build different actual external/sandbox runner, or stop/review. Any future runner must fail closed on stop conditions.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-design-readonly.js
+```
+
+Safety remains: local fake-data review-only runner-design-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner design only; not approval, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
