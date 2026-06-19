@@ -8761,6 +8761,49 @@ node backend/scripts/verify-native-workflow-fixture-post-approval-sandbox-test-m
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Post-approval operator runbook draft only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Post-Approval Sandbox/Test-Mode Pre-Run Guard Draft
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_POST_APPROVAL_SANDBOX_TEST_MODE_PRE_RUN_GUARD_DRAFT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_POST_APPROVAL_SANDBOX_TEST_MODE_PRE_RUN_GUARD_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-post-approval-sandbox-test-mode-pre-run-guard-draft-readonly.js`
+- `scripts/run-native-workflow-fixture-post-approval-sandbox-test-mode-pre-run-guard-draft-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/post-approval-sandbox-test-mode-pre-run-guard-draft.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Post-Approval Sandbox/Test-Mode Pre-Run Guard Draft" / "native workflow fixture post approval sandbox test mode pre run guard draft" / "post approval sandbox test mode pre run guard draft" across aggregate, index, contexts, and business guide.
+- Post-approval pre-run guard draft — source_of_truth_commit 7f57e7d, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818/15644fa/cc67563/0159faf/dbb30a7/436813f/32c2c8b/f36a247/7f57e7d.
+- post_approval_sandbox_test_mode_operator_runbook_draft_status completed; pilot_readiness_master_no_go_approval_dependency_summary_status completed; pilot_readiness_master_gate_decision NO_GO; pre_run_guard_status blocked; pre_run_guard_decision NO_GO; pre_run_guard_draft_gate_decision NO_GO.
+- pre_run_guard_draft_does_not_equal_approval true; pre_run_guard_no_go_review_does_not_equal_approval true; operator_runbook_draft_does_not_equal_approval true; post_approval_runbook_draft_does_not_equal_approval true.
+- exact_values_required_count 19; accepted_exact_values_count 0; approved_exact_values_filled_count 0; default_sandbox_test_mode_decision HOLD.
+- sandbox_test_mode_channel_validation_scenarios_count 30; captured_sandbox_test_mode_channel_validation_scenarios_count 0; missing_sandbox_test_mode_channel_validation_scenarios_count 30.
+- approval_capture_status not_captured; jason_signed_approval_status not_signed; approval_capture_gate_decision NO_GO; channel_validation_gate_decision NO_GO.
+- controlled_real_roofer_setup_gate_decision NO_GO; controlled_real_roofer_limited_validation_gate_decision NO_GO.
+- approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; controlled_real_roofer_validation_approval_status not_granted.
+- future_command_status blocked_until_exact_signed_approval_and_gate_pass; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- Blocked 20-check pre-run guard sequence (all checks blocked_until_prerequisites): HEAD match, signed approval, timestamp, scope, 19 exact values accepted/approved, approval gate pass, scope match, environment, working directory, command match, stop conditions, rollback owner, evidence owner, expiry, one-time-use, safety state, external services, production data, live activation path.
+- Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-post-approval-sandbox-test-mode-pre-run-guard-draft-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-post-approval-sandbox-test-mode-pre-run-guard-draft-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Post-approval pre-run guard draft only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

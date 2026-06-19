@@ -8019,6 +8019,34 @@ Use preferred lead-to-inspection language (post-approval operator runbook draft,
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Post-Approval Sandbox/Test-Mode Pre-Run Guard Draft
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_POST_APPROVAL_SANDBOX_TEST_MODE_PRE_RUN_GUARD_DRAFT.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_POST_APPROVAL_SANDBOX_TEST_MODE_PRE_RUN_GUARD_NO_GO_REVIEW.md`
+- `backend/fixtures/native-workflow-demo-roofer/post-approval-sandbox-test-mode-pre-run-guard-draft.json`
+- `backend/scripts/verify-native-workflow-fixture-post-approval-sandbox-test-mode-pre-run-guard-draft-readonly.js`
+- `scripts/run-native-workflow-fixture-post-approval-sandbox-test-mode-pre-run-guard-draft-dry-run.sh`
+
+Canonical source of truth: `7f57e7d test(workflow): add post approval sandbox test mode operator runbook draft`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Post-Approval Sandbox/Test-Mode Pre-Run Guard Draft" / "native workflow fixture post approval sandbox test mode pre run guard draft" / "post approval sandbox test mode pre run guard draft" across aggregate, index, contexts, and business guide.
+
+The post-approval pre-run guard draft implements:
+
+- Blocked 20-check pre-run guard for future approved sandbox/test-mode command execution (all checks blocked_until_prerequisites)
+- Pre-run guard status blocked; pre-run guard decision NO_GO; pre_run_guard_draft_gate_decision NO_GO
+- pre_run_guard_draft_does_not_equal_approval true; pre_run_guard_no_go_review_does_not_equal_approval true; operator_runbook_draft_does_not_equal_approval true; post_approval_runbook_draft_does_not_equal_approval true
+- Upstream post-approval operator runbook draft and pilot readiness master NO-GO / approval dependency summary referenced as completed (structure only)
+- Structured fixture with 30 channel validation scenarios at 0 captured; future_command_status blocked_until_exact_signed_approval_and_gate_pass
+- Read-only verifier and narrow dry-run wrapper (verifier + backend build only; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (post-approval pre-run guard draft, fake data, review-only, NO_GO/HOLD default).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
