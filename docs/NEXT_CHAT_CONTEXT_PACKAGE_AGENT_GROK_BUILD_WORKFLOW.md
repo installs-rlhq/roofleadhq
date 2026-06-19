@@ -3812,6 +3812,40 @@ node backend/scripts/verify-native-workflow-fixture-one-time-approval-consumptio
 
 Safety remains: local fake-data review-only approval-consumption-decision-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Consumption decision only; not activation, non-executing. source_of_truth_commit 415abca. signed_approval_capture_commit 06a6f7f. pre_run_guard_pass_commit 9106d8f. wrapper_correction_commit fbe793e. post_run_evidence_commit 415abca. exact_approved_command_run_status completed_local_review_only_wrapper_passed. one_time_approval_consumption_decision consumed_by_local_wrapper_execution. refreshed_exact_approval_required_for_future_30_scenario_validation true. future_command_status blocked_until_refreshed_exact_approval_for_actual_30_scenario_validation. command_execution_status no_further_command_execution_approved_by_this_packet. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_status not_captured_by_this_run. Historical/local channel validation evidence still 0 of 30. All 10 consumption decision checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. Prior one-time approval treated as consumed. Refreshed exact approval required before any future actual 30-scenario validation batch. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Refreshed Exact Approval for Actual 30-Scenario Validation
+
+The Native Workflow Fixture Refreshed Exact Approval for Actual 30-Scenario Validation (native workflow fixture refreshed exact approval for actual 30 scenario validation / refreshed exact approval for actual 30 scenario validation) prepares a local review-only refreshed exact approval template for Jason to approve a future actual 30-scenario sandbox/test-mode validation batch after the prior one-time approval was consumed by local wrapper execution.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_EXACT_APPROVAL_FOR_ACTUAL_30_SCENARIO_VALIDATION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_EXACT_APPROVAL_FOR_ACTUAL_30_SCENARIO_VALIDATION_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-refreshed-exact-approval-for-actual-30-scenario-validation-readonly.js`
+- `scripts/run-native-workflow-fixture-refreshed-exact-approval-for-actual-30-scenario-validation-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/refreshed-exact-approval-for-actual-30-scenario-validation.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Refreshed Exact Approval for Actual 30-Scenario Validation" / "native workflow fixture refreshed exact approval for actual 30 scenario validation" / "refreshed exact approval for actual 30 scenario validation" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-refreshed-exact-approval-for-actual-30-scenario-validation-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-refreshed-exact-approval-for-actual-30-scenario-validation-readonly.js
+```
+
+Safety remains: local fake-data review-only refreshed-exact-approval-template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Refreshed template only; not approval, not activation, non-executing. source_of_truth_commit 6411949. prior_one_time_approval_consumption_decision consumed_by_local_wrapper_execution. refreshed_exact_approval_required_for_future_30_scenario_validation true. refreshed_approval_capture_status not_captured. refreshed_jason_signed_approval_status not_signed. refreshed_exact_values_required_count 19. refreshed_exact_values_accepted_count 0. refreshed_exact_values_approved_count 0. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_status not_captured_by_this_run. recommended_exact_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh. recommended_exact_working_directory /root/roofleadhq. recommended_defaults_status RECOMMENDED_DEFAULT_ONLY_NOT_APPROVED. future_command_status blocked_until_refreshed_exact_approval_captured_and_pre_run_guard_passes. command_execution_status not_run_by_this_packet. All 10 refreshed approval template checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. Prior consumed approval does not equal refreshed approval. Recommended defaults do not equal approval. This packet does not grant refreshed approval or permit command execution. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
