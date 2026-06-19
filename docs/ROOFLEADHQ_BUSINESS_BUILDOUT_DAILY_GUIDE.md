@@ -8140,6 +8140,38 @@ Use preferred lead-to-inspection language (signed approval capture, fake data, r
 
 Safety: local fake-data review-only approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Signed Approval Pre-Run Guard Pass
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_SIGNED_APPROVAL_PRE_RUN_GUARD_PASS.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SIGNED_APPROVAL_PRE_RUN_GUARD_PASS_NO_GO_REVIEW.md`
+- `backend/fixtures/native-workflow-demo-roofer/signed-approval-pre-run-guard-pass.json`
+- `backend/scripts/verify-native-workflow-fixture-signed-approval-pre-run-guard-pass-readonly.js`
+- `scripts/run-native-workflow-fixture-signed-approval-pre-run-guard-pass-dry-run.sh`
+
+Canonical source of truth: `06a6f7f test(workflow): capture signed sandbox test mode approval`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Signed Approval Pre-Run Guard Pass" / "native workflow fixture signed approval pre run guard pass" / "signed approval pre run guard pass" across aggregate, index, contexts, and business guide.
+
+The signed approval pre-run guard pass packet implements:
+
+- Signed sandbox/test-mode approval verification from upstream capture packet at 06a6f7f
+- approval_capture_status captured; jason_signed_approval_status signed; approval_signature_name Jason Lohse; approval_timestamp 06/18/2026 10:00PM MST
+- All 19 exact values accepted and approved for exact scoped sandbox/test-mode only
+- pre_run_guard_status passed_for_exact_scoped_sandbox_test_mode_only; pre_run_guard_decision PASS_FOR_EXACT_APPROVED_SANDBOX_TEST_MODE_COMMAND_ONLY
+- All 20 pre-run guard checks passed
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted
+- approved_exact_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh; approved_exact_working_directory /root/roofleadhq
+- future_command_status ready_for_exact_approved_command_review_only; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Next step: exact approved command review/execution consideration after canonical main closeout only
+- Read-only verifier and narrow dry-run wrapper (verifier + backend build only; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, pre-run-guard-pass-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (signed approval pre-run guard pass, fake data, review-only, exact approved command review only).
+
+Safety: local fake-data review-only pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

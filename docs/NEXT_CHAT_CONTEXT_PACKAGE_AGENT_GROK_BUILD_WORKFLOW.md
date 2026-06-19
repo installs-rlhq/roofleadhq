@@ -3679,6 +3679,38 @@ node backend/scripts/verify-native-workflow-fixture-signed-sandbox-test-mode-app
 
 Safety remains: local fake-data review-only approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Signed approval capture only; not activation, non-executing. source_of_truth_commit 06529ab. Approval capture CAPTURED / SIGNED. All 19 exact values accepted and approved. sandbox_test_mode_approval_status granted_scoped_one_time_pending_pre_run_guard. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. future_command_status blocked_until_pre_run_guard_passes. Next step: separate pre-run guard pass. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Signed Approval Pre-Run Guard Pass
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_SIGNED_APPROVAL_PRE_RUN_GUARD_PASS.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SIGNED_APPROVAL_PRE_RUN_GUARD_PASS_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-signed-approval-pre-run-guard-pass-readonly.js`
+- `scripts/run-native-workflow-fixture-signed-approval-pre-run-guard-pass-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/signed-approval-pre-run-guard-pass.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Signed Approval Pre-Run Guard Pass" / "native workflow fixture signed approval pre run guard pass" / "signed approval pre run guard pass" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-signed-approval-pre-run-guard-pass-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-signed-approval-pre-run-guard-pass-readonly.js
+```
+
+Safety remains: local fake-data review-only pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Pre-run guard pass only; not activation, non-executing. source_of_truth_commit 06a6f7f. Pre-run guard PASSED / SCOPED ONLY. All 19 exact values accepted and approved. All 20 pre-run guard checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. future_command_status ready_for_exact_approved_command_review_only. Next step: exact approved command review/execution consideration after canonical main closeout only. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

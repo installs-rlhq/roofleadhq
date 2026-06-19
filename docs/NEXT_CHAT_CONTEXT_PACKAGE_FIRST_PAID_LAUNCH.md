@@ -8932,6 +8932,47 @@ node backend/scripts/verify-native-workflow-fixture-signed-sandbox-test-mode-app
 
 Safety remains: local fake-data review-only approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Signed approval capture only; not activation, non-executing. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Signed Approval Pre-Run Guard Pass
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_SIGNED_APPROVAL_PRE_RUN_GUARD_PASS.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SIGNED_APPROVAL_PRE_RUN_GUARD_PASS_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-signed-approval-pre-run-guard-pass-readonly.js`
+- `scripts/run-native-workflow-fixture-signed-approval-pre-run-guard-pass-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/signed-approval-pre-run-guard-pass.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Signed Approval Pre-Run Guard Pass" / "native workflow fixture signed approval pre run guard pass" / "signed approval pre run guard pass" across aggregate, index, contexts, and business guide.
+- Signed approval pre-run guard pass — source_of_truth_commit 06a6f7f, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818/15644fa/cc67563/0159faf/dbb30a7/436813f/32c2c8b/f36a247/7f57e7d/e96ff0e/1c04c0c/06529ab/06a6f7f.
+- approval_capture_status captured; jason_signed_approval_status signed; approval_signature_name Jason Lohse; approval_timestamp 06/18/2026 10:00PM MST.
+- exact_values_required_count 19; accepted_exact_values_count 19; approved_exact_values_filled_count 19; all_19_exact_values_status accepted_and_approved_for_exact_scoped_sandbox_test_mode_only.
+- pre_run_guard_status passed_for_exact_scoped_sandbox_test_mode_only; pre_run_guard_decision PASS_FOR_EXACT_APPROVED_SANDBOX_TEST_MODE_COMMAND_ONLY.
+- live_activation_approval_status not_granted; real_homeowner_contact_approval_status not_granted; real_roofer_contact_approval_status not_granted; production_supabase_write_approval_status not_granted; schema_auth_rls_security_change_approval_status not_granted; billing_payment_automation_approval_status not_granted.
+- approved_exact_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh; approved_exact_working_directory /root/roofleadhq.
+- future_command_status ready_for_exact_approved_command_review_only; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- This packet passes pre-run guard for exact approved sandbox/test-mode command only; does not execute approved command; does not activate sandbox/test-mode or live automation.
+- Next step: exact approved command review/execution consideration after canonical main closeout only.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-signed-approval-pre-run-guard-pass-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-signed-approval-pre-run-guard-pass-readonly.js
+```
+
+Safety remains: local fake-data review-only pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Pre-run guard pass only; not activation, non-executing. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
