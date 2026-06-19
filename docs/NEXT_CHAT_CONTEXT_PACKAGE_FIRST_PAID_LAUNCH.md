@@ -9066,6 +9066,53 @@ node backend/scripts/verify-native-workflow-fixture-exact-approved-command-post-
 
 Safety remains: local fake-data review-only post-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Post-run evidence capture only; not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture One-Time Approval Consumption Decision
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_ONE_TIME_APPROVAL_CONSUMPTION_DECISION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_ONE_TIME_APPROVAL_CONSUMPTION_DECISION_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-one-time-approval-consumption-decision-readonly.js`
+- `scripts/run-native-workflow-fixture-one-time-approval-consumption-decision-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/one-time-approval-consumption-decision.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture One-Time Approval Consumption Decision" / "native workflow fixture one-time approval consumption decision" / "one-time approval consumption decision" across aggregate, index, contexts, and business guide.
+- One-time approval consumption decision — source_of_truth_commit 415abca, signed_approval_capture_commit 06a6f7f, pre_run_guard_pass_commit 9106d8f, wrapper_correction_commit fbe793e, post_run_evidence_commit 415abca, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818/15644fa/cc67563/0159faf/dbb30a7/436813f/32c2c8b/f36a247/7f57e7d/e96ff0e/1c04c0c/06529ab/06a6f7f/9106d8f/fbe793e/415abca.
+- exact_approved_command_run_status completed_local_review_only_wrapper_passed; wrapper_pass_status passed.
+- exact_approved_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh; exact_approved_working_directory /root/roofleadhq.
+- channel_validation_completeness_gate_assertions 124; channel_validation_evidence_capture_packet_assertions 115; backend_build_status passed.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- one_time_approval_consumption_decision consumed_by_local_wrapper_execution; refreshed_exact_approval_required_for_future_30_scenario_validation true.
+- future_command_status blocked_until_refreshed_exact_approval_for_actual_30_scenario_validation; command_execution_status no_further_command_execution_approved_by_this_packet.
+- approval_capture_status captured; jason_signed_approval_status signed; approval_signature_name Jason Lohse; approval_timestamp 06/18/2026 10:00PM MST.
+- prior_pre_run_guard_status passed_for_exact_scoped_sandbox_test_mode_only; prior_pre_run_guard_decision PASS_FOR_EXACT_APPROVED_SANDBOX_TEST_MODE_COMMAND_ONLY.
+- live_activation_approval_status not_granted; real_homeowner_contact_approval_status not_granted; real_roofer_contact_approval_status not_granted; production_supabase_write_approval_status not_granted; schema_auth_rls_security_change_approval_status not_granted; billing_payment_automation_approval_status not_granted.
+- external_calls_made false; credentials_accessed false; production_data_accessed false; sms_email_calls_calendar_booking_performed false; public_route_webhook_scheduler_cron_dispatcher_activated false.
+- demo_ready_with_live_automation_disabled preserved.
+- approved_for_activation_now false. This packet does not approve any new command.
+- Prior one-time approval treated as consumed by local wrapper execution. Refreshed exact approval required before any future actual 30-scenario validation batch.
+- Historical/local channel validation evidence still 0 of 30 scenarios captured. Controlled real roofer setup and live activation remain blocked.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-one-time-approval-consumption-decision-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-one-time-approval-consumption-decision-readonly.js
+```
+
+Safety remains: local fake-data review-only approval-consumption-decision-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Consumption decision only; not activation, non-executing. No new command approved. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

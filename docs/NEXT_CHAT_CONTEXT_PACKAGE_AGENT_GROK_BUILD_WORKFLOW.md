@@ -3778,6 +3778,40 @@ node backend/scripts/verify-native-workflow-fixture-exact-approved-command-post-
 
 Safety remains: local fake-data review-only post-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Post-run evidence capture only; not activation, non-executing. source_of_truth_commit fbe793e. exact_approved_command_run_status completed_local_review_only_wrapper_passed. command_execution_status exact_approved_command_ran_local_review_only. wrapper_pass_status passed. channel_validation_completeness_gate_assertions 124. channel_validation_evidence_capture_packet_assertions 115. backend_build_status passed. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_status not_captured_by_this_run. Historical/local channel validation evidence still 0 of 30. All 10 post-run evidence checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. future_command_status post_run_evidence_captured_pending_next_exact_approval_decision. Separate Jason approval/decision required before any future actual 30-scenario validation batch. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture One-Time Approval Consumption Decision
+
+The Native Workflow Fixture One-Time Approval Consumption Decision (native workflow fixture one-time approval consumption decision / one-time approval consumption decision) resolves the status of Jason's one-time signed sandbox/test-mode approval after the exact approved command wrapper ran locally and passed, while actual 30-scenario external/live sandbox validation remains 0 captured.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_ONE_TIME_APPROVAL_CONSUMPTION_DECISION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_ONE_TIME_APPROVAL_CONSUMPTION_DECISION_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-one-time-approval-consumption-decision-readonly.js`
+- `scripts/run-native-workflow-fixture-one-time-approval-consumption-decision-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/one-time-approval-consumption-decision.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture One-Time Approval Consumption Decision" / "native workflow fixture one-time approval consumption decision" / "one-time approval consumption decision" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-one-time-approval-consumption-decision-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-one-time-approval-consumption-decision-readonly.js
+```
+
+Safety remains: local fake-data review-only approval-consumption-decision-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Consumption decision only; not activation, non-executing. source_of_truth_commit 415abca. signed_approval_capture_commit 06a6f7f. pre_run_guard_pass_commit 9106d8f. wrapper_correction_commit fbe793e. post_run_evidence_commit 415abca. exact_approved_command_run_status completed_local_review_only_wrapper_passed. one_time_approval_consumption_decision consumed_by_local_wrapper_execution. refreshed_exact_approval_required_for_future_30_scenario_validation true. future_command_status blocked_until_refreshed_exact_approval_for_actual_30_scenario_validation. command_execution_status no_further_command_execution_approved_by_this_packet. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_status not_captured_by_this_run. Historical/local channel validation evidence still 0 of 30. All 10 consumption decision checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. Prior one-time approval treated as consumed. Refreshed exact approval required before any future actual 30-scenario validation batch. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
