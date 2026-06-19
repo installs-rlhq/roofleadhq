@@ -3259,6 +3259,38 @@ node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-jason-appr
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Jason approval capture packet only; activation and external services remain blocked. source_of_truth_commit 878fc77. Recommended defaults are not approval. Recommended defaults are not accepted exact values. Acceptance boundary does not equal approval. Approval request ready packet does not equal approval. Approval capture worksheet does not equal approval. Final Jason approval statement template does not equal approval. Captured Jason approval statement NOT CAPTURED / NOT SIGNED / NOT GRANTED. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Sandbox/Test-Mode Approval Capture Completeness Gate
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_CAPTURE_COMPLETENESS_GATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_CAPTURE_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-readonly.js`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-approval-capture-completeness-gate.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Approval Capture Completeness Gate" / "native workflow fixture sandbox test mode approval capture completeness gate" / "sandbox test mode approval capture completeness gate" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Approval capture completeness gate only; activation and external services remain blocked. source_of_truth_commit f56340f. Jason approval capture packet completed upstream. Approval capture completeness status incomplete. Approval capture gate decision NO_GO (HOLD). Recommended defaults are not approval. Recommended defaults are not accepted exact values. Acceptance boundary does not equal approval. Approval request ready packet does not equal approval. Approval capture worksheet does not equal approval. Final Jason approval statement template does not equal approval. Approval capture completeness gate does not equal approval. No-go review does not equal approval. Captured Jason approval statement NOT CAPTURED / NOT SIGNED / NOT GRANTED. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

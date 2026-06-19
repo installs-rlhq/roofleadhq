@@ -7746,6 +7746,38 @@ Use preferred lead-to-inspection language (sandbox test mode Jason approval capt
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Sandbox/Test-Mode Approval Capture Completeness Gate
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_CAPTURE_COMPLETENESS_GATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_CAPTURE_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-approval-capture-completeness-gate.json`
+
+Canonical source of truth: `f56340f test(workflow): add sandbox test mode jason approval capture packet`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Approval Capture Completeness Gate" / "native workflow fixture sandbox test mode approval capture completeness gate" / "sandbox test mode approval capture completeness gate" across aggregate, index, contexts, and business guide.
+
+The sandbox/test-mode approval capture completeness gate implements:
+
+- Approval capture completeness gate doc (jason_approval_capture_packet_status completed, local_demo_e2e_evidence_chain_status passed, local_demo_evidence_freeze_release_candidate_review_status completed, local_demo_release_candidate_management_summary_jason_review_status completed, roofer_pilot_essentials_planning_batch_status completed, recommended_defaults_proposal_status recommended_defaults_proposed_only, recommended_defaults_acceptance_boundary_status completed, approval_request_ready_status completed, approval_capture_completeness_status incomplete, approval_capture_gate_decision NO_GO, completeness_status incomplete, approval_status not_granted)
+- No-go review checklist with 13 missing items (11 signed approval capture fields + all 19 accepted exact values + all 19 approved exact values)
+- Six-layer boundary separating recommended defaults, accepted exact values, approved exact values, signed approval capture, completeness gate, and activation approval
+- source_of_truth_commit f56340f; evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f
+- exact_values_required_count 19; recommended_exact_values_proposed_count 19; accepted_exact_values_count 0; accepted_exact_values_filled_count 0; approved_exact_values_filled_count 0; exact_values_filled_count 0; default_sandbox_test_mode_decision HOLD
+- recommended_defaults_are_not_approval true; recommended_defaults_are_not_accepted_exact_values true; jason_review_worksheet_does_not_equal_approval true; accept_edit_replace_template_does_not_equal_approval true; acceptance_boundary_does_not_equal_approval true; approval_request_ready_packet_does_not_equal_approval true; approval_capture_worksheet_does_not_equal_approval true; final_jason_approval_statement_template_does_not_equal_approval true; approval_capture_completeness_gate_does_not_equal_approval true; no_go_review_does_not_equal_approval true
+- approval_capture_status not_captured; jason_signed_approval_status not_signed; captured_jason_approval_statement NOT_CAPTURED_NOT_SIGNED_NOT_GRANTED
+- current_recommended_next_step JASON_COMPLETE_SANDBOX_TEST_MODE_APPROVAL_CAPTURE_BEFORE_ACTIVATION_CONSIDERATION
+- sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (sandbox test mode approval capture completeness gate, fake data, review-only, NO_GO/HOLD default).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

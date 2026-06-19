@@ -8377,6 +8377,47 @@ node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-jason-appr
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Jason approval capture packet only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Sandbox/Test-Mode Approval Capture Completeness Gate
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_CAPTURE_COMPLETENESS_GATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_APPROVAL_CAPTURE_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-readonly.js`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-approval-capture-completeness-gate.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Approval Capture Completeness Gate" / "native workflow fixture sandbox test mode approval capture completeness gate" / "sandbox test mode approval capture completeness gate" across aggregate, index, contexts, and business guide.
+- Sandbox/test-mode approval capture completeness gate provides pre-activation NO_GO/HOLD completeness review — source_of_truth_commit f56340f, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f.
+- jason_approval_capture_packet_status completed; local_demo_e2e_evidence_chain_status passed; local_demo_evidence_freeze_release_candidate_review_status completed; local_demo_release_candidate_management_summary_jason_review_status completed; roofer_pilot_essentials_planning_batch_status completed; recommended_defaults_proposal_status recommended_defaults_proposed_only; recommended_defaults_acceptance_boundary_status completed; approval_request_ready_status completed.
+- exact_values_required_count 19; recommended_exact_values_proposed_count 19; accepted_exact_values_count 0; accepted_exact_values_filled_count 0; approved_exact_values_filled_count 0; exact_values_filled_count 0; completeness_status incomplete; default_sandbox_test_mode_decision HOLD.
+- recommended_defaults_are_not_approval true; recommended_defaults_are_not_accepted_exact_values true; jason_review_worksheet_does_not_equal_approval true; accept_edit_replace_template_does_not_equal_approval true; acceptance_boundary_does_not_equal_approval true; approval_request_ready_packet_does_not_equal_approval true; approval_capture_worksheet_does_not_equal_approval true; final_jason_approval_statement_template_does_not_equal_approval true; approval_capture_completeness_gate_does_not_equal_approval true; no_go_review_does_not_equal_approval true.
+- approval_capture_status not_captured; jason_signed_approval_status not_signed; approval_capture_completeness_status incomplete; approval_capture_gate_decision NO_GO; captured_jason_approval_statement NOT_CAPTURED_NOT_SIGNED_NOT_GRANTED.
+- approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- This packet does not approve sandbox/test-mode activation; live activation remains not granted; no future sandbox/test-mode activation command can even be considered until all 13 missing items are completed.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-capture-completeness-gate-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Approval capture completeness gate only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
