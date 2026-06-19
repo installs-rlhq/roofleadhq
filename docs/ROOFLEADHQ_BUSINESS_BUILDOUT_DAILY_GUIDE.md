@@ -8370,6 +8370,47 @@ Use preferred lead-to-inspection language (refreshed signed approval captured, f
 
 Safety: local fake-data review-only refreshed-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Refreshed Pre-Run Guard Pass for Actual 30-Scenario Validation
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_PRE_RUN_GUARD_PASS_FOR_ACTUAL_30_SCENARIO_VALIDATION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_PRE_RUN_GUARD_PASS_FOR_ACTUAL_30_SCENARIO_VALIDATION_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-refreshed-pre-run-guard-pass-for-actual-30-scenario-validation-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-refreshed-pre-run-guard-pass-for-actual-30-scenario-validation-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/refreshed-pre-run-guard-pass-for-actual-30-scenario-validation.json`
+
+Canonical source of truth: `fbdc9d6 test(workflow): capture refreshed exact approval for actual 30 scenario validation`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Refreshed Pre-Run Guard Pass for Actual 30-Scenario Validation" / "native workflow fixture refreshed pre run guard pass for actual 30 scenario validation" / "refreshed pre run guard pass for actual 30 scenario validation" across aggregate, index, contexts, and business guide.
+
+The refreshed pre-run guard pass packet implements:
+
+- Verifies refreshed signed approval captured at fbdc9d6 for actual 30-scenario sandbox/test-mode validation batch only
+- capture_refreshed_exact_approval_commit fbdc9d6; refreshed_exact_approval_template_commit ae61d53; one_time_approval_consumption_decision_commit 6411949; signed_approval_capture_commit 06a6f7f; pre_run_guard_pass_commit 9106d8f; wrapper_correction_commit fbe793e; post_run_evidence_commit 415abca
+- prior_one_time_approval_consumption_decision consumed_by_local_wrapper_execution; prior_one_time_approval_consumed true
+- refreshed_approval_capture_status captured; refreshed_jason_signed_approval_status signed; refreshed_approval_signature_name Jason Lohse; refreshed_approval_timestamp 06/18/2026 10:57 PM MST
+- refreshed_exact_values_required_count 19; refreshed_exact_values_accepted_count 19; refreshed_exact_values_approved_count 19; refreshed_exact_values_status accepted_and_approved_for_actual_30_scenario_sandbox_test_mode_validation_only
+- refreshed_pre_run_guard_status passed_for_exact_scoped_actual_30_scenario_sandbox_test_mode_validation_only; refreshed_pre_run_guard_decision PASS_FOR_EXACT_APPROVED_ACTUAL_30_SCENARIO_SANDBOX_TEST_MODE_COMMAND_ONLY
+- actual_30_scenario_validation_approval_status granted_scoped_one_time_pending_refreshed_pre_run_guard
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_status not_captured_by_this_run
+- approved_exact_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh; approved_exact_working_directory /root/roofleadhq
+- future_command_status ready_for_exact_approved_actual_30_scenario_command_review_only; command_execution_status not_run_by_this_packet
+- Upstream capture refreshed exact approval fixture verification
+- All 20 refreshed pre-run guard checks passed
+- Historical/local channel validation evidence still 0 of 30 scenarios captured
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted
+- external_calls_allowed_by_this_packet false; credentials_access_allowed_by_this_packet false; production_data_access_allowed_by_this_packet false; sms_email_calls_calendar_booking_allowed_by_this_packet false; public_route_webhook_scheduler_cron_dispatcher_allowed_by_this_packet false
+- approved_for_activation_now false; passes refreshed pre-run guard only; does not execute approved command; does not activate sandbox/test-mode
+- Next step exact approved actual 30-scenario command review/execution consideration after canonical closeout only
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not execute approved command; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, refreshed-pre-run-guard-pass-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (refreshed pre-run guard passed, fake data, review-only, actual 30-scenario validation ready for command review only after canonical closeout, no command execution).
+
+Safety: local fake-data review-only refreshed-pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

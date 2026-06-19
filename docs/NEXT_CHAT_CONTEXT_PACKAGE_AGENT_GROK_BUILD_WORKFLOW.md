@@ -3880,6 +3880,40 @@ node backend/scripts/verify-native-workflow-fixture-capture-refreshed-exact-appr
 
 Safety remains: local fake-data review-only refreshed-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Refreshed approval capture only; not activation, non-executing. source_of_truth_commit ae61d53. refreshed_approval_capture_status captured. refreshed_jason_signed_approval_status signed. refreshed_approval_signature_name Jason Lohse. refreshed_approval_timestamp 06/18/2026 10:57 PM MST. refreshed_exact_values_required_count 19. refreshed_exact_values_accepted_count 19. refreshed_exact_values_approved_count 19. actual_30_scenario_validation_approval_status granted_scoped_one_time_pending_refreshed_pre_run_guard. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_status not_captured_by_this_run. approved_exact_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh. approved_exact_working_directory /root/roofleadhq. future_command_status blocked_until_refreshed_pre_run_guard_passes. command_execution_status not_run_by_this_packet. All 10 refreshed approval capture checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. external_calls_allowed_by_this_packet false. credentials_access_allowed_by_this_packet false. production_data_access_allowed_by_this_packet false. sms_email_calls_calendar_booking_allowed_by_this_packet false. Next step is separate refreshed pre-run guard pass. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Refreshed Pre-Run Guard Pass for Actual 30-Scenario Validation
+
+The Native Workflow Fixture Refreshed Pre-Run Guard Pass for Actual 30-Scenario Validation (native workflow fixture refreshed pre run guard pass for actual 30 scenario validation / refreshed pre run guard pass for actual 30 scenario validation) verifies the refreshed signed approval captured at source-of-truth commit fbdc9d6 and moves future command status to ready_for_exact_approved_actual_30_scenario_command_review_only after the capture packet closed in canonical main.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_PRE_RUN_GUARD_PASS_FOR_ACTUAL_30_SCENARIO_VALIDATION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_PRE_RUN_GUARD_PASS_FOR_ACTUAL_30_SCENARIO_VALIDATION_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-refreshed-pre-run-guard-pass-for-actual-30-scenario-validation-readonly.js`
+- `scripts/run-native-workflow-fixture-refreshed-pre-run-guard-pass-for-actual-30-scenario-validation-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/refreshed-pre-run-guard-pass-for-actual-30-scenario-validation.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Refreshed Pre-Run Guard Pass for Actual 30-Scenario Validation" / "native workflow fixture refreshed pre run guard pass for actual 30 scenario validation" / "refreshed pre run guard pass for actual 30 scenario validation" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-refreshed-pre-run-guard-pass-for-actual-30-scenario-validation-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-refreshed-pre-run-guard-pass-for-actual-30-scenario-validation-readonly.js
+```
+
+Safety remains: local fake-data review-only refreshed-pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Refreshed pre-run guard pass only; not activation, non-executing. source_of_truth_commit fbdc9d6. refreshed_approval_capture_status captured. refreshed_jason_signed_approval_status signed. refreshed_approval_signature_name Jason Lohse. refreshed_approval_timestamp 06/18/2026 10:57 PM MST. refreshed_exact_values_required_count 19. refreshed_exact_values_accepted_count 19. refreshed_exact_values_approved_count 19. refreshed_pre_run_guard_status passed_for_exact_scoped_actual_30_scenario_sandbox_test_mode_validation_only. refreshed_pre_run_guard_decision PASS_FOR_EXACT_APPROVED_ACTUAL_30_SCENARIO_SANDBOX_TEST_MODE_COMMAND_ONLY. actual_30_scenario_validation_approval_status granted_scoped_one_time_pending_refreshed_pre_run_guard. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_status not_captured_by_this_run. approved_exact_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh. approved_exact_working_directory /root/roofleadhq. future_command_status ready_for_exact_approved_actual_30_scenario_command_review_only. command_execution_status not_run_by_this_packet. All 20 refreshed pre-run guard checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. external_calls_allowed_by_this_packet false. credentials_access_allowed_by_this_packet false. production_data_access_allowed_by_this_packet false. sms_email_calls_calendar_booking_allowed_by_this_packet false. Next step exact approved actual 30-scenario command review only after canonical closeout. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
