@@ -3421,6 +3421,39 @@ node backend/scripts/verify-native-workflow-fixture-controlled-real-roofer-pilot
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Controlled real roofer pilot setup completeness gate only; activation and external services remain blocked. source_of_truth_commit 0159faf. Setup evidence capture packet completed upstream. Controlled real roofer setup completeness status incomplete. Channel validation gate decision NO_GO (HOLD). Controlled real roofer setup gate decision NO_GO (HOLD). Recommended setup step counts are not approval. Setup completeness gate does not equal approval. Setup completeness no-go review does not equal approval. Setup evidence capture packet does not equal approval. All 12 setup steps not_captured (0 captured, 12 missing). Controlled real roofer setup blocked until sandbox/test-mode evidence complete and separately approved. Controlled real roofer validation blocked until setup evidence complete and separately approved. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Controlled Real Roofer Limited Validation Evidence Capture Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_EVIDENCE_CAPTURE_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_EVIDENCE_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-controlled-real-roofer-limited-validation-evidence-capture-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-controlled-real-roofer-limited-validation-evidence-capture-packet-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/controlled-real-roofer-limited-validation-evidence-capture-packet.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Controlled Real Roofer Limited Validation Evidence Capture Packet" / "native workflow fixture controlled real roofer limited validation evidence capture packet" / "controlled real roofer limited validation evidence capture packet" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-controlled-real-roofer-limited-validation-evidence-capture-packet-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-controlled-real-roofer-limited-validation-evidence-capture-packet-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Controlled real roofer limited validation evidence capture packet only; activation and external services remain blocked. source_of_truth_commit dbb30a7. Controlled real roofer pilot setup completeness gate completed upstream. Limited validation evidence capture status not_captured. Channel validation gate decision NO_GO (HOLD). Controlled real roofer setup gate decision NO_GO (HOLD). Controlled real roofer limited validation gate decision NO_GO (HOLD). Controlled real roofer validation approval status not_granted. Recommended scenario counts are not approval. Limited validation evidence capture packet does not equal approval. Limited validation evidence template does not equal approval. Limited validation no-go review does not equal approval. All 5 limited validation scenarios not_captured (0 captured, 5 missing). Controlled real roofer validation blocked until sandbox/test-mode evidence and setup evidence complete and separately approved. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

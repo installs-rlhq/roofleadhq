@@ -7910,6 +7910,35 @@ Use preferred lead-to-inspection language (controlled real roofer pilot setup co
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Controlled Real Roofer Limited Validation Evidence Capture Packet
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_EVIDENCE_CAPTURE_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_EVIDENCE_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_REAL_ROOFER_LIMITED_VALIDATION_NO_GO_REVIEW.md`
+- `backend/fixtures/native-workflow-demo-roofer/controlled-real-roofer-limited-validation-evidence-capture-packet.json`
+- `backend/scripts/verify-native-workflow-fixture-controlled-real-roofer-limited-validation-evidence-capture-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-controlled-real-roofer-limited-validation-evidence-capture-packet-dry-run.sh`
+
+Canonical source of truth: `dbb30a7 test(workflow): add controlled real roofer pilot setup completeness gate`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Controlled Real Roofer Limited Validation Evidence Capture Packet" / "native workflow fixture controlled real roofer limited validation evidence capture packet" / "controlled real roofer limited validation evidence capture packet" across aggregate, index, contexts, and business guide.
+
+The controlled real roofer limited validation evidence capture packet implements:
+
+- Limited validation evidence capture doc (controlled_real_roofer_pilot_setup_completeness_gate_status completed, channel_validation_gate_decision NO_GO, controlled_real_roofer_limited_validation_status incomplete, controlled_real_roofer_limited_validation_gate_decision NO_GO, controlled_real_roofer_validation_approval_status not_granted, approval_capture_gate_decision NO_GO, completeness_status incomplete, approval_status not_granted)
+- Evidence template with 5 recommended limited validation scenarios (CRLV-01 controlled lead arrives through CRLV-05 appointment/outcome/reporting reviewed) and 15 required evidence fields per scenario
+- No-go review checklist for missing limited validation evidence before validation can be marked complete
+- Eleven-layer boundary separating recommended defaults, accepted exact values, approved exact values, signed approval capture, approval capture completeness gate, channel validation evidence capture, channel validation completeness gate, controlled real roofer setup evidence capture, controlled real roofer setup completeness gate, controlled real roofer limited validation evidence capture, and activation approval
+- Structured fixture with 5 scenarios at 0 captured
+- Read-only verifier and narrow dry-run wrapper (verifier + backend build only; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (controlled real roofer limited validation evidence capture packet, fake data, review-only, NO_GO/HOLD default).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
