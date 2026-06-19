@@ -8078,6 +8078,37 @@ Use preferred lead-to-inspection language (final decision board, fake data, revi
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Final Jason Exact Sandbox/Test-Mode Approval Copy/Paste Packet
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_JASON_EXACT_SANDBOX_TEST_MODE_APPROVAL_COPY_PASTE_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_JASON_EXACT_SANDBOX_TEST_MODE_APPROVAL_COPY_PASTE_PACKET_NO_GO_REVIEW.md`
+- `backend/fixtures/native-workflow-demo-roofer/final-jason-exact-sandbox-test-mode-approval-copy-paste-packet.json`
+- `backend/scripts/verify-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-dry-run.sh`
+
+Canonical source of truth: `1c04c0c test(workflow): add final sandbox test mode approval decision board`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Final Jason Exact Sandbox/Test-Mode Approval Copy/Paste Packet" / "native workflow fixture final jason exact sandbox test mode approval copy paste packet" / "final jason exact sandbox test mode approval copy paste packet" across aggregate, index, contexts, and business guide.
+
+The final Jason exact sandbox/test-mode approval copy/paste packet implements:
+
+- Unsigned copy/paste approval template for future Jason review (TEMPLATE ONLY — NOT SIGNED — NOT APPROVED — DO NOT EXECUTE)
+- Copy/paste packet status template_only_blocked; copy_paste_packet_gate_decision NO_GO; pilot_readiness_master_gate_decision NO_GO
+- copy_paste_packet_does_not_equal_approval true; template_presence_does_not_equal_approval true
+- Upstream final decision board, post-approval operator runbook draft, and pre-run guard draft referenced as completed (structure only)
+- 19 blank exact value fields (accepted_exact_values_count 0; approved_exact_values_filled_count 0)
+- Vague approval phrase rejection; approval cannot be inferred from build progress, closeout, passed verifier, or packet commit
+- Structured fixture with 30 channel validation scenarios at 0 captured; 12 setup steps at 0 captured; 5 limited validation scenarios at 0 captured
+- future_command_status blocked_until_exact_signed_approval_and_gate_pass
+- Read-only verifier and narrow dry-run wrapper (verifier + backend build only; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, template-only, not-approved, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (copy/paste template, fake data, review-only, NO_GO/HOLD default).
+
+Safety: local fake-data review-only template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

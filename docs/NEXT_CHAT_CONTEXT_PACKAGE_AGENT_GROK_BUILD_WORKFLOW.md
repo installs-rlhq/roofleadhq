@@ -3615,6 +3615,38 @@ node backend/scripts/verify-native-workflow-fixture-final-sandbox-test-mode-appr
 
 Safety remains: local fake-data review-only planning-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Final decision board only; not approval, not activation, non-executing. source_of_truth_commit e96ff0e. Master gate NO_GO (HOLD). Final decision board does not equal approval. All 19 exact values not_approved. Channel validation 0/30. Setup steps 0/12. Limited validation 0/5. Approval capture NOT CAPTURED / NOT SIGNED / NOT GRANTED. future_command_status blocked_until_exact_signed_approval_and_gate_pass. Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Final Jason Exact Sandbox/Test-Mode Approval Copy/Paste Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_JASON_EXACT_SANDBOX_TEST_MODE_APPROVAL_COPY_PASTE_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_JASON_EXACT_SANDBOX_TEST_MODE_APPROVAL_COPY_PASTE_PACKET_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/final-jason-exact-sandbox-test-mode-approval-copy-paste-packet.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Final Jason Exact Sandbox/Test-Mode Approval Copy/Paste Packet" / "native workflow fixture final jason exact sandbox test mode approval copy paste packet" / "final jason exact sandbox test mode approval copy paste packet" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-readonly.js
+```
+
+Safety remains: local fake-data review-only planning-only template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Copy/paste template only; not approval, not activation, non-executing. source_of_truth_commit 1c04c0c. Master gate NO_GO (HOLD). Copy/paste packet does not equal approval. Template presence does not equal approval. All 19 exact values not_approved. Channel validation 0/30. Setup steps 0/12. Limited validation 0/5. Approval capture NOT CAPTURED / NOT SIGNED / NOT GRANTED. future_command_status blocked_until_exact_signed_approval_and_gate_pass. Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

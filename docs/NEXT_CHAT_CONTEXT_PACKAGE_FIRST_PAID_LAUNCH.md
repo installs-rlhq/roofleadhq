@@ -8847,6 +8847,50 @@ node backend/scripts/verify-native-workflow-fixture-final-sandbox-test-mode-appr
 
 Safety remains: local fake-data review-only planning-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Final decision board only; not approval, not activation, non-executing. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Final Jason Exact Sandbox/Test-Mode Approval Copy/Paste Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_JASON_EXACT_SANDBOX_TEST_MODE_APPROVAL_COPY_PASTE_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FINAL_JASON_EXACT_SANDBOX_TEST_MODE_APPROVAL_COPY_PASTE_PACKET_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/final-jason-exact-sandbox-test-mode-approval-copy-paste-packet.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Final Jason Exact Sandbox/Test-Mode Approval Copy/Paste Packet" / "native workflow fixture final jason exact sandbox test mode approval copy paste packet" / "final jason exact sandbox test mode approval copy paste packet" across aggregate, index, contexts, and business guide.
+- Final Jason exact sandbox/test-mode approval copy/paste packet — source_of_truth_commit 1c04c0c, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818/15644fa/cc67563/0159faf/dbb30a7/436813f/32c2c8b/f36a247/7f57e7d/e96ff0e/1c04c0c.
+- final_sandbox_test_mode_approval_decision_board_status completed; post_approval_sandbox_test_mode_operator_runbook_draft_status completed; post_approval_sandbox_test_mode_pre_run_guard_draft_status completed; pilot_readiness_master_gate_decision NO_GO; copy_paste_packet_status template_only_blocked; copy_paste_packet_gate_decision NO_GO.
+- copy_paste_packet_does_not_equal_approval true; template_presence_does_not_equal_approval true; recommended_defaults_are_not_approval true; final_decision_board_does_not_equal_approval true; operator_runbook_draft_does_not_equal_approval true; pre_run_guard_draft_does_not_equal_approval true.
+- exact_values_required_count 19; accepted_exact_values_count 0; approved_exact_values_filled_count 0; default_sandbox_test_mode_decision HOLD.
+- sandbox_test_mode_channel_validation_scenarios_count 30; captured_sandbox_test_mode_channel_validation_scenarios_count 0; missing_sandbox_test_mode_channel_validation_scenarios_count 30.
+- controlled_real_roofer_setup_steps_count 12; captured_controlled_real_roofer_setup_steps_count 0; missing_controlled_real_roofer_setup_steps_count 12.
+- controlled_real_roofer_limited_validation_scenarios_count 5; captured_controlled_real_roofer_limited_validation_scenarios_count 0; missing_controlled_real_roofer_limited_validation_scenarios_count 5.
+- approval_capture_status not_captured; jason_signed_approval_status not_signed; approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; controlled_real_roofer_validation_approval_status not_granted.
+- future_command_status blocked_until_exact_signed_approval_and_gate_pass; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- Single fenced copy/paste template labeled TEMPLATE ONLY — NOT SIGNED — NOT APPROVED — DO NOT EXECUTE with 19 blank exact value fields.
+- Vague approval phrases (go, ok, looks good, approved, all approved, let's do it, continue) do not count as approval.
+- Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-final-jason-exact-sandbox-test-mode-approval-copy-paste-packet-readonly.js
+```
+
+Safety remains: local fake-data review-only planning-only template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Copy/paste template only; not approval, not activation, non-executing. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
