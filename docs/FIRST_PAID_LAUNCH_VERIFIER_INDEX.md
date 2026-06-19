@@ -2826,6 +2826,26 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind. No command execution in this packet.
 
+## Native Workflow Fixture Sandbox/Test-Mode Exact Values Recommended Defaults Proposal
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_EXACT_VALUES_RECOMMENDED_DEFAULTS_PROPOSAL.md`
+- Worksheet: `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_EXACT_VALUES_JASON_REVIEW_WORKSHEET.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-exact-values-recommended-defaults-proposal.json`
+- Wrapper: `scripts/run-native-workflow-fixture-sandbox-test-mode-exact-values-recommended-defaults-proposal-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-exact-values-recommended-defaults-proposal-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data sandbox/test-mode exact values recommended defaults proposal proposes fastest-safe recommended defaults for all 19 exact values toward controlled roofer pilot readiness without granting activation — source_of_truth_commit 0cceb00, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00, local_demo_e2e_evidence_chain_status passed, local_demo_evidence_freeze_release_candidate_review_status completed, local_demo_release_candidate_management_summary_jason_review_status completed, roofer_pilot_essentials_planning_batch_status completed, exact_values_required_count 19, recommended_exact_values_proposed_count 19, approved_exact_values_filled_count 0, exact_values_filled_count 0, completeness_status incomplete, default_sandbox_test_mode_decision HOLD, recommended_defaults_are_not_approval true, jason_review_worksheet_does_not_equal_approval true, recommended_default_counts total-sandbox 30/setup-steps 12/limited-validation 5 (RECOMMENDED_DEFAULT_ONLY_NOT_APPROVED), approval_status not_granted, sandbox_test_mode_approval_status not_granted, live_activation_approval_status not_granted, current_recommended_next_step JASON_REVIEW_SANDBOX_TEST_MODE_EXACT_VALUES_RECOMMENDED_DEFAULTS_PROPOSAL, command_execution_status not_run_by_this_packet, approved_for_activation_now false, approved_channels empty, approved_external_services empty, live_activation_allowed false, sandbox_test_mode_activation_allowed false, pilot readiness demo_ready_with_live_automation_disabled, old 90-day plan boundary guard, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only/planning-only/not-approved/non-executing.
+- Verifier enforces: proposal doc/worksheet/fixture; roofer pilot essentials planning batch completed upstream; all 19 recommended defaults proposed and non-empty; all 19 approved exact values blank; recommended_defaults_are_not_approval; jason_review_worksheet_does_not_equal_approval; completeness_status incomplete; approval statuses remain not_granted; default_sandbox_test_mode_decision HOLD; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (verifier + backend build only).
+- Safety: local fake-data planning-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Recommended defaults proposal only; activation and external services remain blocked. No execution performed.
+
+## Native Workflow Fixture Sandbox/Test-Mode Exact Values Recommended Defaults Proposal Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-exact-values-recommended-defaults-proposal-readonly.js`
+- Purpose: read-only fail-closed guard that validates the sandbox/test-mode exact values recommended defaults proposal documentation, Jason review worksheet, structured fixture, upstream roofer pilot essentials planning batch consistency, all 19 recommended default boundaries, approval posture, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind. No command execution in this packet.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
