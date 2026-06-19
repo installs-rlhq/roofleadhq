@@ -3914,6 +3914,40 @@ node backend/scripts/verify-native-workflow-fixture-refreshed-pre-run-guard-pass
 
 Safety remains: local fake-data review-only refreshed-pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Refreshed pre-run guard pass only; not activation, non-executing. source_of_truth_commit fbdc9d6. refreshed_approval_capture_status captured. refreshed_jason_signed_approval_status signed. refreshed_approval_signature_name Jason Lohse. refreshed_approval_timestamp 06/18/2026 10:57 PM MST. refreshed_exact_values_required_count 19. refreshed_exact_values_accepted_count 19. refreshed_exact_values_approved_count 19. refreshed_pre_run_guard_status passed_for_exact_scoped_actual_30_scenario_sandbox_test_mode_validation_only. refreshed_pre_run_guard_decision PASS_FOR_EXACT_APPROVED_ACTUAL_30_SCENARIO_SANDBOX_TEST_MODE_COMMAND_ONLY. actual_30_scenario_validation_approval_status granted_scoped_one_time_pending_refreshed_pre_run_guard. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_status not_captured_by_this_run. approved_exact_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh. approved_exact_working_directory /root/roofleadhq. future_command_status ready_for_exact_approved_actual_30_scenario_command_review_only. command_execution_status not_run_by_this_packet. All 20 refreshed pre-run guard checks passed. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. external_calls_allowed_by_this_packet false. credentials_access_allowed_by_this_packet false. production_data_access_allowed_by_this_packet false. sms_email_calls_calendar_booking_allowed_by_this_packet false. Next step exact approved actual 30-scenario command review only after canonical closeout. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Refreshed Actual 30-Scenario Command Run Evidence
+
+The Native Workflow Fixture Refreshed Actual 30-Scenario Command Run Evidence (native workflow fixture refreshed actual 30 scenario command run evidence / refreshed actual 30 scenario command run evidence) captures observed output from exact refreshed approved command wrapper execution after refreshed pre-run guard pass as local review-only dry-run from /root/roofleadhq without capturing actual external/live 30-scenario sandbox/test-mode channel validation evidence.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_ACTUAL_30_SCENARIO_COMMAND_RUN_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_ACTUAL_30_SCENARIO_COMMAND_RUN_EVIDENCE_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-refreshed-actual-30-scenario-command-run-evidence-readonly.js`
+- `scripts/run-native-workflow-fixture-refreshed-actual-30-scenario-command-run-evidence-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/refreshed-actual-30-scenario-command-run-evidence.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Refreshed Actual 30-Scenario Command Run Evidence" / "native workflow fixture refreshed actual 30 scenario command run evidence" / "refreshed actual 30 scenario command run evidence" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-refreshed-actual-30-scenario-command-run-evidence-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-refreshed-actual-30-scenario-command-run-evidence-readonly.js
+```
+
+Safety remains: local fake-data review-only refreshed-command-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Refreshed command run evidence only; not activation, non-executing. source_of_truth_commit 0da2457. refreshed_exact_approved_command_run_status completed_local_review_only_wrapper_passed. command_execution_status refreshed_exact_approved_command_ran_local_review_only. wrapper_pass_status passed. channel_validation_completeness_gate_assertions 124. channel_validation_evidence_capture_packet_assertions 115. backend_build_status passed. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_missing_count 30. actual_30_scenario_external_validation_status not_captured_by_this_run. missing_validation_evidence_scenarios_count 30. future_command_status refreshed_command_run_evidence_captured_pending_next_exact_decision. separate_decision_required_before_future_30_scenario_validation_batch true. separate_decision_required_for_different_external_sandbox_runner true. Does not claim full 30-scenario validation passed. Does not claim live/sandbox external testing completed. Next step separate decision: stop/review, consume refreshed approval, or create/approve different actual external/sandbox 30-scenario validation runner. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.

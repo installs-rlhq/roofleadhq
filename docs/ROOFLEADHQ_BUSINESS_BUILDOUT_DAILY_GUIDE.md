@@ -8411,6 +8411,45 @@ Use preferred lead-to-inspection language (refreshed pre-run guard passed, fake 
 
 Safety: local fake-data review-only refreshed-pre-run-guard-pass-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Refreshed Actual 30-Scenario Command Run Evidence
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_ACTUAL_30_SCENARIO_COMMAND_RUN_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_REFRESHED_ACTUAL_30_SCENARIO_COMMAND_RUN_EVIDENCE_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-refreshed-actual-30-scenario-command-run-evidence-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-refreshed-actual-30-scenario-command-run-evidence-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/refreshed-actual-30-scenario-command-run-evidence.json`
+
+Canonical source of truth: `0da2457 test(workflow): add refreshed pre run guard pass for actual 30 scenario validation`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Refreshed Actual 30-Scenario Command Run Evidence" / "native workflow fixture refreshed actual 30 scenario command run evidence" / "refreshed actual 30 scenario command run evidence" across aggregate, index, contexts, and business guide.
+
+The refreshed command run evidence packet implements:
+
+- Captures observed output from exact refreshed approved command wrapper execution after refreshed pre-run guard pass
+- source_of_truth_commit 0da2457; capture_refreshed_exact_approval_commit fbdc9d6; refreshed_pre_run_guard_pass_commit 0da2457
+- refreshed_exact_approved_command_run_status completed_local_review_only_wrapper_passed; command_execution_status refreshed_exact_approved_command_ran_local_review_only; wrapper_pass_status passed
+- exact_approved_command bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-dry-run.sh; exact_approved_working_directory /root/roofleadhq
+- channel_validation_completeness_gate_assertions 124; channel_validation_evidence_capture_packet_assertions 115; backend_build_status passed
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- missing_validation_evidence_scenarios_count 30; captured_validation_scenarios_count 0; passed_validation_scenarios_count 0
+- Upstream capture refreshed exact approval and refreshed pre-run guard fixture verification
+- All 10 command run evidence checks passed
+- Historical/local channel validation evidence still 0 of 30 scenarios captured
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted
+- external_calls_made false; credentials_accessed false; production_data_accessed false; sms_email_calls_calendar_booking_performed false; public_route_webhook_scheduler_cron_dispatcher_activated false
+- future_command_status refreshed_command_run_evidence_captured_pending_next_exact_decision; separate_decision_required_before_future_30_scenario_validation_batch true; separate_decision_required_for_different_external_sandbox_runner true
+- approved_for_activation_now false; documents local wrapper pass only; does not claim full 30-scenario validation passed; does not claim live/sandbox external testing completed
+- Next step separate decision: stop/review, consume refreshed approval, or create/approve different actual external/sandbox 30-scenario validation runner
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not execute approved command; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, refreshed-command-run-evidence-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (refreshed command run evidence captured, fake data, review-only, local wrapper passed, actual external 30-scenario validation not captured, separate decision pending).
+
+Safety: local fake-data review-only refreshed-command-run-evidence-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
