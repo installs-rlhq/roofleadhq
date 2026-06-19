@@ -8418,6 +8418,49 @@ node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-approval-c
 
 Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Approval capture completeness gate only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Sandbox/Test-Mode Channel Validation Evidence Capture Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_EVIDENCE_CAPTURE_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_EVIDENCE_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_STOP_ROLLBACK_CHECKLIST.md`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-channel-validation-evidence-capture-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-evidence-capture-packet-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-channel-validation-evidence-capture-packet.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Channel Validation Evidence Capture Packet" / "native workflow fixture sandbox test mode channel validation evidence capture packet" / "sandbox test mode channel validation evidence capture packet" across aggregate, index, contexts, and business guide.
+- Sandbox/test-mode channel validation evidence capture packet provides pre-activation evidence capture structure for 30 recommended validation scenarios — source_of_truth_commit aa3f818, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818.
+- approval_capture_completeness_gate_status completed; local_demo_e2e_evidence_chain_status passed; local_demo_evidence_freeze_release_candidate_review_status completed; local_demo_release_candidate_management_summary_jason_review_status completed; roofer_pilot_essentials_planning_batch_status completed.
+- exact_values_required_count 19; accepted_exact_values_count 0; accepted_exact_values_filled_count 0; approved_exact_values_filled_count 0; completeness_status incomplete; default_sandbox_test_mode_decision HOLD.
+- recommended_scenario_counts_are_not_approval true; channel_validation_evidence_capture_packet_does_not_equal_approval true; evidence_template_does_not_equal_approval true; stop_rollback_checklist_does_not_equal_approval true.
+- total_sandbox_test_mode_validation_scenarios 30 (SMS 5, call/Vapi 3, lead intake 5, manual review/escalation 4, calendar/appointment 4, reporting/admin visibility 3, audit/log evidence 3, stop/rollback 3).
+- approval_capture_status not_captured; jason_signed_approval_status not_signed; approval_capture_gate_decision NO_GO; evidence_capture_status not_captured; all 30 scenarios evidence_capture_status not_captured.
+- approval_status not_granted; sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false.
+- This packet does not approve sandbox/test-mode activation; live activation remains not granted; no channel validation evidence captured yet.
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction.
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-evidence-capture-packet-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-channel-validation-evidence-capture-packet-readonly.js
+```
+
+Safety remains: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. demo_ready_with_live_automation_disabled. Channel validation evidence capture packet only; activation and external services remain blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

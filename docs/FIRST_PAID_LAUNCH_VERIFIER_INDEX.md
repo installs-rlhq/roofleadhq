@@ -2926,6 +2926,27 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind. No command execution in this packet.
 
+## Native Workflow Fixture Sandbox/Test-Mode Channel Validation Evidence Capture Packet
+
+- Doc: `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_EVIDENCE_CAPTURE_PACKET.md`
+- Evidence template: `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_EVIDENCE_TEMPLATE.md`
+- Stop/rollback checklist: `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_STOP_ROLLBACK_CHECKLIST.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-channel-validation-evidence-capture-packet.json`
+- Wrapper: `scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-evidence-capture-packet-dry-run.sh`
+- Read-only verifier: `node backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-channel-validation-evidence-capture-packet-readonly.js`
+- Full safe readiness (preserved): `bash scripts/verify-safe-readiness.sh`
+- Aggregate readiness: wired through `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- Purpose: local fake-data sandbox/test-mode channel validation evidence capture packet provides pre-activation evidence capture structure for 30 recommended validation scenarios without granting activation — source_of_truth_commit aa3f818, evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818, approval_capture_completeness_gate_status completed, local_demo_e2e_evidence_chain_status passed, approval_capture_status not_captured, jason_signed_approval_status not_signed, approval_capture_gate_decision NO_GO, evidence_capture_status not_captured, exact_values_required_count 19, accepted_exact_values_count 0, approved_exact_values_filled_count 0, completeness_status incomplete, default_sandbox_test_mode_decision HOLD, recommended_scenario_counts_are_not_approval true, channel_validation_evidence_capture_packet_does_not_equal_approval true, evidence_template_does_not_equal_approval true, stop_rollback_checklist_does_not_equal_approval true, total_sandbox_test_mode_validation_scenarios 30, all_30_scenarios_evidence_capture_status not_captured, approval_status not_granted, sandbox_test_mode_approval_status not_granted, live_activation_approval_status not_granted, command_execution_status not_run_by_this_packet, approved_for_activation_now false, pilot readiness demo_ready_with_live_automation_disabled, delivery posture local-only/fake-data-only/read-only/dry-run-only/review-only/planning-only/not-approved/non-executing.
+- Verifier enforces: packet doc/evidence template/stop-rollback checklist/fixture; upstream approval capture completeness gate consistency; all 30 scenarios with 14 blank evidence fields; seven-layer boundary assertions including evidence capture packet; approval statuses remain not_granted; default_sandbox_test_mode_decision HOLD; safety assertions; demo_ready_with_live_automation_disabled; wiring into aggregate/index/contexts/business guide; narrow dry-run wrapper safe (verifier + backend build only).
+- Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Channel validation evidence capture packet only; activation and external services remain blocked. No execution performed.
+
+## Native Workflow Fixture Sandbox/Test-Mode Channel Validation Evidence Capture Packet Verifier
+
+- Script: `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-channel-validation-evidence-capture-packet-readonly.js`
+- Purpose: read-only fail-closed guard that validates the sandbox/test-mode channel validation evidence capture documentation, evidence template, stop/rollback checklist, structured fixture, upstream approval capture completeness gate consistency, seven-layer boundary assertions, evidence capture posture, safety posture, and wiring into aggregate/index/context packages and business guide.
+- Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- Safety: read-only. No production activation of any kind. No command execution in this packet.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - Doc: `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

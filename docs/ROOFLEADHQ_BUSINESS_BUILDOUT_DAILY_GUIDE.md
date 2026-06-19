@@ -7778,6 +7778,41 @@ Use preferred lead-to-inspection language (sandbox test mode approval capture co
 
 Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Sandbox/Test-Mode Channel Validation Evidence Capture Packet
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_EVIDENCE_CAPTURE_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_EVIDENCE_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SANDBOX_TEST_MODE_CHANNEL_VALIDATION_STOP_ROLLBACK_CHECKLIST.md`
+- `scripts/run-native-workflow-fixture-sandbox-test-mode-channel-validation-evidence-capture-packet-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-sandbox-test-mode-channel-validation-evidence-capture-packet-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/sandbox-test-mode-channel-validation-evidence-capture-packet.json`
+
+Canonical source of truth: `aa3f818 test(workflow): add sandbox test mode approval capture completeness gate`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Sandbox/Test-Mode Channel Validation Evidence Capture Packet" / "native workflow fixture sandbox test mode channel validation evidence capture packet" / "sandbox test mode channel validation evidence capture packet" across aggregate, index, contexts, and business guide.
+
+The sandbox/test-mode channel validation evidence capture packet implements:
+
+- Channel validation evidence capture packet doc (approval_capture_completeness_gate_status completed, local_demo_e2e_evidence_chain_status passed, evidence_capture_status not_captured, approval_capture_gate_decision NO_GO, completeness_status incomplete, approval_status not_granted)
+- Evidence template with 30 blank scenario worksheets (14 evidence fields each)
+- Stop/rollback checklist for channel validation evidence runs
+- Seven-layer boundary separating recommended defaults, accepted exact values, approved exact values, signed approval capture, completeness gate, evidence capture, and activation approval
+- source_of_truth_commit aa3f818; evidence chain commits 17abae0/cf566ae/728ad03/401bfc7/edceb29/df388f4/3800512/c6df554/f752452/0d7ae0d/5ef9ef5/db9ece3/04e0de6/ae9154b/6b2fe60/816dfc2/ef79784/2dd1016/11e74d4/0cceb00/b6d852c/7f375a4/878fc77/f56340f/aa3f818
+- total_sandbox_test_mode_validation_scenarios 30 (SMS 5, call/Vapi 3, lead intake 5, manual review/escalation 4, calendar/appointment 4, reporting/admin visibility 3, audit/log evidence 3, stop/rollback 3)
+- exact_values_required_count 19; accepted_exact_values_count 0; approved_exact_values_filled_count 0; default_sandbox_test_mode_decision HOLD
+- recommended_scenario_counts_are_not_approval true; channel_validation_evidence_capture_packet_does_not_equal_approval true; evidence_template_does_not_equal_approval true; stop_rollback_checklist_does_not_equal_approval true
+- approval_capture_status not_captured; jason_signed_approval_status not_signed; all 30 scenarios evidence_capture_status not_captured
+- current_recommended_next_step JASON_GRANT_SEPARATE_SANDBOX_TEST_MODE_APPROVAL_THEN_CAPTURE_CHANNEL_VALIDATION_EVIDENCE
+- sandbox_test_mode_approval_status not_granted; live_activation_approval_status not_granted; command_execution_status not_run_by_this_packet; approved_for_activation_now false
+- Old 90-day plan boundary: old 90-day plan cannot override current source-of-truth direction
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, planning-only, not-approved, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (sandbox test mode channel validation evidence capture, fake data, review-only, HOLD default).
+
+Safety: local fake-data review-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
