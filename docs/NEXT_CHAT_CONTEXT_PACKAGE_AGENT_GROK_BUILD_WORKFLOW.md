@@ -3647,6 +3647,38 @@ node backend/scripts/verify-native-workflow-fixture-final-jason-exact-sandbox-te
 
 Safety remains: local fake-data review-only planning-only template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Copy/paste template only; not approval, not activation, non-executing. source_of_truth_commit 1c04c0c. Master gate NO_GO (HOLD). Copy/paste packet does not equal approval. Template presence does not equal approval. All 19 exact values not_approved. Channel validation 0/30. Setup steps 0/12. Limited validation 0/5. Approval capture NOT CAPTURED / NOT SIGNED / NOT GRANTED. future_command_status blocked_until_exact_signed_approval_and_gate_pass. Sandbox/test-mode activation remains blocked. Live activation remains blocked. Real roofer onboarding/contact remains blocked. Controlled real roofer validation remains blocked. No execution performed. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Signed Sandbox/Test-Mode Approval Capture Packet
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_SIGNED_SANDBOX_TEST_MODE_APPROVAL_CAPTURE_PACKET.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_SIGNED_SANDBOX_TEST_MODE_APPROVAL_CAPTURE_PACKET_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-signed-sandbox-test-mode-approval-capture-packet-readonly.js`
+- `scripts/run-native-workflow-fixture-signed-sandbox-test-mode-approval-capture-packet-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/signed-sandbox-test-mode-approval-capture-packet.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Signed Sandbox/Test-Mode Approval Capture Packet" / "native workflow fixture signed sandbox test mode approval capture packet" / "signed sandbox test mode approval capture packet" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-signed-sandbox-test-mode-approval-capture-packet-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-signed-sandbox-test-mode-approval-capture-packet-readonly.js
+```
+
+Safety remains: local fake-data review-only approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Signed approval capture only; not activation, non-executing. source_of_truth_commit 06529ab. Approval capture CAPTURED / SIGNED. All 19 exact values accepted and approved. sandbox_test_mode_approval_status granted_scoped_one_time_pending_pre_run_guard. Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted. future_command_status blocked_until_pre_run_guard_passes. Next step: separate pre-run guard pass. No execution performed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
