@@ -10748,6 +10748,49 @@ node backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-executi
 
 Safety remains: local fake-data review-only capture-fresh-runner-execution-approval-after-build-134-after-after-after-after-guard-fresh-chain-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Approval capture only; not fresh pre-run guard pass, not runner execution, not activation, non-executing. source_of_truth_commit a07dda6. prior_fresh_runner_execution_decision_after_after_all_after_guard_fresh_chain_wiring_correction_status closed. future_command_status blocked_until_fresh_execution_pre_run_guard_passes_after_build_134_after_after_after_after_guard_fresh_chain_wiring_correction_approval_capture. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 134 Approval Capture
+
+The Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 134 Approval Capture (native workflow fixture fresh execution pre run guard after build 134 approval capture / fresh execution pre run guard after build 134 approval capture) provides a local review-only fresh execution pre-run guard packet after Build 135 closed fresh runner-execution approval capture at 9b736c0 verifies Jason signed approval after Build 134 after-after-after-after-guard fresh-chain wiring correction, all 24 exact values, exact command/manifest/runner readiness, and 30 guard checks without running the runner, invoking the exact approved command, or performing actual 30-scenario validation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_BUILD_134_APPROVAL_CAPTURE.md`
+- `backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-134-approval-capture-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-134-approval-capture.json`
+- `scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-134-approval-capture-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 134 Approval Capture" / "native workflow fixture fresh execution pre run guard after build 134 approval capture" / "fresh execution pre run guard after build 134 approval capture" across aggregate, index, contexts, and business guide.
+- source_of_truth_commit 9b736c0; prior_capture_fresh_runner_execution_approval_after_build_134_commit 9b736c0; prior_capture_fresh_runner_execution_approval_after_build_134_status closed.
+- prior_fresh_runner_execution_decision_after_after_after_after_guard_fresh_chain_wiring_correction_commit a07dda6; prior_fresh_runner_execution_decision_after_after_after_after_guard_fresh_chain_wiring_correction_status closed.
+- prior_runner_execution_path_after_after_all_after_guard_fresh_chain_wiring_correction_commit 1e2af98; prior_post_build_131_blocked_evidence_commit 0dc6d88; prior_command_attempt_consumption_status consumed_by_blocked_fail_closed_result_after_build_131_guard.
+- fresh_runner_execution_approval_capture_status captured; fresh_runner_execution_jason_signed_approval_status signed.
+- fresh_execution_pre_run_guard_status passed; fresh_execution_pre_run_guard_checks_required_count 30; fresh_execution_pre_run_guard_checks_passed_count 30; fresh_execution_pre_run_guard_failed_count 0.
+- external_sandbox_calls_approval_status granted_scoped_test_mode_only_after_fresh_guard; credentials_access_approval_status granted_scoped_test_mode_only_no_secret_logging_after_fresh_guard; test_account_use_approval_status granted_scoped_test_accounts_only_after_fresh_guard.
+- future_command_status ready_for_exact_approved_runner_execution_command_after_build_134_after_after_after_after_guard_fresh_chain_wiring_correction_guard_review_only.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- approved_for_activation_now false; fresh pre-run guard pass only; does not run runner.
+- Build 132 consumed post-Build-131 attempt. Prior Build 128/129/130/131 decision/approval/guard chain not reusable. Next step exact approved runner execution command after Build 134 after-after-after-after-guard fresh-chain wiring correction guard review only.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-134-approval-capture-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-134-approval-capture-readonly.js
+```
+
+Safety remains: local fake-data review-only fresh-execution-pre-run-guard-after-build-134-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh pre-run guard pass only; not runner execution, not activation, non-executing. source_of_truth_commit 9b736c0. future_command_status ready_for_exact_approved_runner_execution_command_after_build_134_after_after_after_after_guard_fresh_chain_wiring_correction_guard_review_only. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
+
 ## Native Workflow Fixture Capture Fresh Runner-Execution Approval After After-After-After-Guard Fresh-Chain Wiring Correction
 
 The Native Workflow Fixture Capture Fresh Runner-Execution Approval After After-After-After-Guard Fresh-Chain Wiring Correction (native workflow fixture capture fresh runner execution approval after after after after guard fresh chain wiring correction / capture fresh runner execution approval after after after after guard fresh chain wiring correction) provides a local review-only fresh runner-execution approval evidence capture packet after Build 129 closed fresh decision/template at e3a576a records Jason exact signed fresh approval from chat for one-time scoped sandbox/test-mode run after after-after-after-guard fresh-chain wiring correction without running the runner, passing fresh execution pre-run guard, invoking the exact approved command, or executing activation.

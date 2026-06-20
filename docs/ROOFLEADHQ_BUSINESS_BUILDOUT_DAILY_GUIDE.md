@@ -9717,6 +9717,40 @@ Use preferred lead-to-inspection language (after-after-after-after-guard fresh-c
 
 Safety: local fake-data review-only capture-fresh-runner-execution-approval-after-build-134-after-after-after-after-guard-fresh-chain-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 134 Approval Capture
+
+Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 134 Approval Capture / native workflow fixture fresh execution pre run guard after build 134 approval capture / fresh execution pre run guard after build 134 approval capture packet.
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_BUILD_134_APPROVAL_CAPTURE.md`
+- `scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-134-approval-capture-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-134-approval-capture-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-134-approval-capture.json`
+
+The fresh execution pre-run guard after Build 134 approval capture packet implements:
+
+- Local review-only fresh execution pre-run guard after Build 135 closed fresh runner-execution approval capture at 9b736c0
+- source_of_truth_commit 9b736c0; prior_capture_fresh_runner_execution_approval_after_build_134_commit 9b736c0; prior_capture_fresh_runner_execution_approval_after_build_134_status closed
+- prior_fresh_runner_execution_decision_after_after_after_after_guard_fresh_chain_wiring_correction_commit a07dda6; prior_runner_execution_path_after_after_all_after_guard_fresh_chain_wiring_correction_commit 1e2af98; prior_post_build_131_blocked_evidence_commit 0dc6d88
+- References Build 135 capture, Build 134 fresh decision, Build 133 after-after-after-after-guard fresh-chain wiring correction, Build 132 post-Build-131 blocked evidence, Build 131 fresh pre-run guard, Build 130 capture, and Build 103 runner scaffolding build packets
+- fresh_runner_execution_approval_capture_status captured; fresh_runner_execution_jason_signed_approval_status signed
+- fresh_execution_pre_run_guard_status passed; fresh_execution_pre_run_guard_checks_required_count 30; fresh_execution_pre_run_guard_checks_passed_count 30; fresh_execution_pre_run_guard_failed_count 0
+- external_sandbox_calls_approval_status granted_scoped_test_mode_only_after_fresh_guard; credentials_access_approval_status granted_scoped_test_mode_only_no_secret_logging_after_fresh_guard; test_account_use_approval_status granted_scoped_test_accounts_only_after_fresh_guard
+- runner_command_path_status corrected_fail_closed_ready_for_exact_approved_execution_after_build_134_after_after_after_after_guard_fresh_chain_wiring_correction_guard
+- runner_command_invoked_by_this_packet false; runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- future_command_status ready_for_exact_approved_runner_execution_command_after_build_134_after_after_after_after_guard_fresh_chain_wiring_correction_guard_review_only
+- approved_for_activation_now false; fresh pre-run guard pass only; does not run runner; does not perform actual validation
+- Build 132 consumed post-Build-131 attempt. Prior Build 128/129/130/131 decision/approval/guard chain not reusable.
+- Next step exact approved runner execution command after Build 134 after-after-after-after-guard fresh-chain wiring correction guard review only, not automatic execution
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not invoke runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, fresh-execution-pre-run-guard-passed-after-build-134-approval-capture, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (fresh execution pre-run guard passed at 9b736c0 after Build 135 approval capture, fake data, runner not run, actual external 30-scenario validation not captured, exact approved runner execution command review next).
+
+Safety: local fake-data review-only fresh-execution-pre-run-guard-after-build-134-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Native Workflow Fixture Capture Fresh Runner-Execution Approval After After-After-After-Guard Fresh-Chain Wiring Correction
 
 Native Workflow Fixture Capture Fresh Runner-Execution Approval After After-After-After-Guard Fresh-Chain Wiring Correction / native workflow fixture capture fresh runner execution approval after after after after guard fresh chain wiring correction / capture fresh runner execution approval after after after after guard fresh chain wiring correction packet.
