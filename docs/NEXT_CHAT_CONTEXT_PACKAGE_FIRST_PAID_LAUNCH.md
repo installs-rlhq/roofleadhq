@@ -9899,6 +9899,57 @@ node backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guar
 
 Safety remains: local fake-data review-only fresh-execution-pre-run-guard-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh execution pre-run guard only; not runner execution, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Capture Fresh Runner Command Blocked Evidence
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_FRESH_RUNNER_COMMAND_BLOCKED_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_FRESH_RUNNER_COMMAND_BLOCKED_EVIDENCE_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-command-blocked-evidence-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/capture-fresh-runner-command-blocked-evidence.json`
+- `scripts/run-native-workflow-fixture-capture-fresh-runner-command-blocked-evidence-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Capture Fresh Runner Command Blocked Evidence" / "native workflow fixture capture fresh runner command blocked evidence" / "capture fresh runner command blocked evidence" across aggregate, index, contexts, and business guide.
+- Fresh blocked runner command evidence capture — source_of_truth_commit 135b367, fresh_execution_pre_run_guard_commit 135b367, capture_fresh_signed_runner_execution_approval_commit a1f4dd7, runner_state_wiring_correction_commit 77f2a00, capture_runner_command_blocked_evidence_commit 4a618fa.
+- exact_command_attempted_from_working_directory /root/roofleadhq; exact_command_attempted bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh.
+- fresh_runner_command_attempt_status attempted_blocked_nonzero; fresh_runner_command_exit_status nonzero_blocked.
+- fresh_runner_command_attempt_consumption_status consumed_by_blocked_fail_closed_result.
+- runner_direct_invocation_status_after_fresh_guard blocked_nonzero_expected; runner_command_path_status corrected_fail_closed_ready_for_exact_approved_execution_after_guard.
+- fresh_runner_execution_approval_capture_status captured; fresh_runner_execution_jason_signed_approval_status signed.
+- fresh_runner_execution_exact_values_required_count 24; fresh_runner_execution_exact_values_accepted_count 24; fresh_runner_execution_exact_values_approved_count 24.
+- fresh_execution_pre_run_guard_status passed; fresh_execution_pre_run_guard_checks_required_count 30; fresh_execution_pre_run_guard_checks_passed_count 30; fresh_execution_pre_run_guard_failed_count 0.
+- no_immediate_rerun_allowed true; no_immediate_runner_invocation_by_blocked_path true.
+- runner_command_invoked_by_this_packet false; runner_command_rerun_by_this_packet false.
+- runner_execution_status not_run; command_execution_status not_run.
+- external_calls_made_by_runner_attempt false; credentials_accessed_by_runner_attempt false; secret_values_logged_by_runner_attempt false.
+- production_data_accessed_by_runner_attempt false; real_contact_made_by_runner_attempt false; sms_email_calls_calendar_booking_performed_by_runner_attempt false.
+- validation_log_written_by_runner_attempt false; structured_evidence_written_by_runner_attempt false.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet.
+- future_command_status blocked_until_runner_execution_path_correction_and_fresh_decision.
+- approved_for_activation_now false; evidence capture only; does not rerun runner; does not perform validation; does not make external calls.
+- Next step runner execution path correction/design and fresh decision path, not immediate rerun.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-capture-fresh-runner-command-blocked-evidence-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-command-blocked-evidence-readonly.js
+```
+
+Safety remains: local fake-data review-only fresh-blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh blocked command evidence capture only; not runner rerun, not validation, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
