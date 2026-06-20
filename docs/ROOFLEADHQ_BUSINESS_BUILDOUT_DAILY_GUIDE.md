@@ -9372,6 +9372,43 @@ Use preferred lead-to-inspection language (fresh execution pre-run guard passed 
 
 Safety: local fake-data review-only fresh-execution-pre-run-guard-after-after-guard-wiring-correction-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Capture Post-Build-121 Runner Command Blocked Evidence
+
+Packet artifacts:
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_121_RUNNER_COMMAND_BLOCKED_EVIDENCE.md`
+- `scripts/run-native-workflow-fixture-capture-post-build-121-runner-command-blocked-evidence-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-capture-post-build-121-runner-command-blocked-evidence-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/capture-post-build-121-runner-command-blocked-evidence.json`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Capture Post-Build-121 Runner Command Blocked Evidence" / "native workflow fixture capture post build 121 runner command blocked evidence" / "capture post build 121 runner command blocked evidence" across aggregate, index, contexts, and business guide.
+
+The post-Build-121 blocked command evidence capture packet implements:
+
+- Local review-only post-Build-121 blocked runner command evidence capture after Build 121 closed fresh execution pre-run guard after after-guard wiring correction at 7cb5222
+- source_of_truth_commit 7cb5222; prior_fresh_execution_pre_run_guard_after_after_guard_wiring_correction_commit 7cb5222; prior_fresh_execution_pre_run_guard_after_after_guard_wiring_correction_status closed
+- References Build 121 fresh pre-run guard after after-guard wiring correction, Build 120 capture after after-guard wiring correction, Build 119 fresh decision, Build 118 after-guard wiring correction, Build 117 post-Build-116 blocked evidence, and Build 103 runner scaffolding build packets
+- exact_command_attempted_after_build_121_status attempted_blocked_nonzero; exact_command_exit_status nonzero_blocked
+- command_attempt_consumption_status consumed_by_blocked_fail_closed_result_after_build_121_guard
+- runner_output_source_of_truth_commit_observed ae23997; runner_output_state_after_build_121_status stale_pre_build_118_119_120_121_state_detected
+- runner_recognized_build_114_115_116_chain_status true; runner_did_not_recognize_build_118_after_guard_wiring_correction_status true; runner_did_not_recognize_build_119_fresh_decision_status true; runner_did_not_recognize_build_120_approval_capture_status true; runner_did_not_recognize_build_121_pre_run_guard_status true
+- runner_execution_path_after_after_guard_fresh_chain_wiring_gap_status detected
+- runner_command_path_status corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_after_guard_wiring_correction
+- runner_command_invoked_by_this_packet false; runner_execution_status not_run; command_execution_status not_run
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- future_command_status blocked_until_runner_execution_path_after_after_guard_fresh_chain_wiring_correction_and_fresh_decision
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet
+- approved_for_activation_now false; evidence capture only; does not rerun runner; does not perform actual validation
+- Next step runner execution path after-after-guard fresh-chain wiring correction/design and fresh decision path, not immediate rerun
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not invoke runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, post-build-121-blocked-command-evidence-capture-only-not-run, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (post-Build-121 blocked command evidence captured, stale after-after-guard runner state detected, fake data, runner not rerun, actual external 30-scenario validation not captured, after-after-guard fresh-chain wiring correction next).
+
+Safety: local fake-data review-only post-build-121-blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
