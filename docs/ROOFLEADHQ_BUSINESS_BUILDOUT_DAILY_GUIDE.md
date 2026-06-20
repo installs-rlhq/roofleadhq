@@ -8780,6 +8780,48 @@ Use preferred lead-to-inspection language (runner-execution pre-run guard passed
 
 Safety: local fake-data review-only execution-pre-run-guard-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Capture Runner Command Blocked Evidence
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_RUNNER_COMMAND_BLOCKED_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_RUNNER_COMMAND_BLOCKED_EVIDENCE_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-capture-runner-command-blocked-evidence-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-capture-runner-command-blocked-evidence-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/capture-runner-command-blocked-evidence.json`
+
+Canonical source of truth: `b834baa test(workflow): add runner execution pre run guard`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Capture Runner Command Blocked Evidence" / "native workflow fixture capture runner command blocked evidence" / "capture runner command blocked evidence" across aggregate, index, contexts, and business guide.
+
+The blocked runner command evidence capture packet implements:
+
+- Records the exact approved runner command attempt that blocked safely in Terminal 1 from /root/roofleadhq without rerunning the runner or fixing the runner
+- source_of_truth_commit b834baa; references Build 106 runner-execution pre-run guard, Build 105 signed runner-execution approval capture, Build 104 runner-execution exact approval template, and Build 103 runner scaffolding build packets
+- approval_scope run_actual_external_sandbox_30_scenario_validation_once_only; signed_approval_timestamp 06/19/2026 9:47pm MST
+- exact_working_directory /root/roofleadhq; exact_command_attempted bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh
+- command_attempt_status attempted_blocked_nonzero; command_exit_status nonzero_blocked; runner_blocked_reason runner_script_still_scaffolding_only_not_recognizing_captured_approval_and_pre_run_guard; runner_state_wiring_gap_status detected
+- expected_repo_future_command_status_before_attempt ready_for_exact_approved_runner_execution_command_review_only
+- observed_runner_execution_approval_status not_granted; observed_runner_command_path_status created_fail_closed_not_approved_to_run; observed_future_command_status blocked_until_runner_execution_exact_approval_captured_and_execution_pre_run_guard_passes
+- runner_execution_approval_capture_status captured; runner_execution_jason_signed_approval_status signed; runner_execution_exact_values_required_count 24; runner_execution_exact_values_accepted_count 24; runner_execution_exact_values_approved_count 24
+- execution_pre_run_guard_status passed; execution_pre_run_guard_checks_required_count 30; execution_pre_run_guard_checks_passed_count 30; execution_pre_run_guard_failed_count 0
+- runner_command_invoked_by_this_packet false; runner_command_rerun_by_this_packet false
+- external_calls_made_by_attempt false; credentials_accessed_by_attempt false; production_data_accessed_by_attempt false; real_contact_made_by_attempt false; sms_email_calls_calendar_booking_performed_by_attempt false
+- runner_execution_status blocked_not_run_to_validation; command_execution_status blocked_not_run_to_validation
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- Upstream Build 106 runner-execution pre-run guard, Build 105 signed runner-execution approval capture, Build 104 runner-execution exact approval template, and Build 103 runner scaffolding build fixture verification
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet
+- future_command_status blocked_until_runner_state_wiring_correction_packet_and_fresh_exact_execution_decision
+- approved_for_activation_now false; does not fix runner; does not rerun runner; does not perform external calls in this packet
+- Next step runner state wiring correction packet and fresh exact execution decision, not immediate rerun
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not invoke or rerun runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, blocked-command-evidence-capture-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (blocked command attempt captured, runner state wiring gap detected, fake data, review-only, runner not rerun, actual external 30-scenario validation not captured, runner state wiring correction next).
+
+Safety: local fake-data review-only blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

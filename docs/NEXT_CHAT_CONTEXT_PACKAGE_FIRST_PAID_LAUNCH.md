@@ -9659,6 +9659,54 @@ node backend/scripts/verify-native-workflow-fixture-runner-execution-pre-run-gua
 
 Safety remains: local fake-data review-only execution-pre-run-guard-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner-execution pre-run guard only; not runner execution, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Capture Runner Command Blocked Evidence
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_RUNNER_COMMAND_BLOCKED_EVIDENCE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_RUNNER_COMMAND_BLOCKED_EVIDENCE_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-capture-runner-command-blocked-evidence-readonly.js`
+- `scripts/run-native-workflow-fixture-capture-runner-command-blocked-evidence-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/capture-runner-command-blocked-evidence.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Capture Runner Command Blocked Evidence" / "native workflow fixture capture runner command blocked evidence" / "capture runner command blocked evidence" across aggregate, index, contexts, and business guide.
+- Blocked runner command evidence capture — source_of_truth_commit b834baa, runner_execution_pre_run_guard_commit b834baa, capture_signed_runner_execution_approval_commit bb0bc14, runner_execution_exact_approval_template_commit 67393ed, runner_scaffolding_build_commit 145bf15.
+- approval_scope run_actual_external_sandbox_30_scenario_validation_once_only; signed_approval_timestamp 06/19/2026 9:47pm MST.
+- exact_working_directory /root/roofleadhq; exact_command_attempted bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh.
+- command_attempt_status attempted_blocked_nonzero; command_exit_status nonzero_blocked; runner_blocked_reason runner_script_still_scaffolding_only_not_recognizing_captured_approval_and_pre_run_guard; runner_state_wiring_gap_status detected.
+- expected_repo_future_command_status_before_attempt ready_for_exact_approved_runner_execution_command_review_only.
+- observed_runner_execution_approval_status not_granted; observed_future_command_status blocked_until_runner_execution_exact_approval_captured_and_execution_pre_run_guard_passes.
+- runner_execution_approval_capture_status captured; runner_execution_jason_signed_approval_status signed; runner_execution_exact_values_required_count 24; runner_execution_exact_values_accepted_count 24; runner_execution_exact_values_approved_count 24.
+- execution_pre_run_guard_status passed; execution_pre_run_guard_checks_required_count 30; execution_pre_run_guard_checks_passed_count 30; execution_pre_run_guard_failed_count 0.
+- runner_command_invoked_by_this_packet false; runner_command_rerun_by_this_packet false.
+- external_calls_made_by_attempt false; credentials_accessed_by_attempt false; production_data_accessed_by_attempt false; real_contact_made_by_attempt false; sms_email_calls_calendar_booking_performed_by_attempt false.
+- runner_execution_status blocked_not_run_to_validation; command_execution_status blocked_not_run_to_validation.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- demo_ready_with_live_automation_disabled preserved; approved_for_activation_now false.
+- future_command_status blocked_until_runner_state_wiring_correction_packet_and_fresh_exact_execution_decision.
+- This packet captures blocked command attempt evidence only; does not fix runner; does not rerun runner.
+- Next step is runner state wiring correction packet and fresh exact execution decision, not immediate rerun.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-capture-runner-command-blocked-evidence-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-capture-runner-command-blocked-evidence-readonly.js
+```
+
+Safety remains: local fake-data review-only blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Blocked command evidence capture only; not runner fix, not runner rerun, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
