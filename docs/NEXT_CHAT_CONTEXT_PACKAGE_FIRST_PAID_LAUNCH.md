@@ -10746,6 +10746,45 @@ node backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-executi
 
 Safety remains: local fake-data review-only capture-fresh-runner-execution-approval-after-after-after-after-guard-fresh-chain-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Approval capture only; not fresh pre-run guard pass, not runner execution, not activation, non-executing. source_of_truth_commit e3a576a. prior_fresh_runner_execution_decision_after_after_after_after_guard_fresh_chain_wiring_correction_status closed. future_command_status blocked_until_fresh_execution_pre_run_guard_passes_after_after_after_after_guard_fresh_chain_wiring_correction_approval_capture. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Fresh Execution Pre-Run Guard After After-After-After-Guard Fresh-Chain Wiring Correction Approval Capture
+
+The Native Workflow Fixture Fresh Execution Pre-Run Guard After After-After-After-Guard Fresh-Chain Wiring Correction Approval Capture (native workflow fixture fresh execution pre run guard after after after after guard fresh chain wiring correction approval capture / fresh execution pre run guard after after after after guard fresh chain wiring correction approval capture) provides a local review-only fresh execution pre-run guard packet after Build 130 closed fresh runner-execution approval capture at 7953121 verifies Jason signed approval after after-after-after-guard fresh-chain wiring correction, all 24 exact values, exact command/manifest/runner readiness, and 30 guard checks without running the runner, invoking the exact approved command, or performing actual 30-scenario validation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_CAPTURE.md`
+- `backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-after-after-after-guard-fresh-chain-wiring-correction-approval-capture-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-after-after-after-guard-fresh-chain-wiring-correction-approval-capture.json`
+- `scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-after-after-after-guard-fresh-chain-wiring-correction-approval-capture-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Fresh Execution Pre-Run Guard After After-After-After-Guard Fresh-Chain Wiring Correction Approval Capture" / "native workflow fixture fresh execution pre run guard after after after after guard fresh chain wiring correction approval capture" / "fresh execution pre run guard after after after after guard fresh chain wiring correction approval capture" across aggregate, index, contexts, and business guide.
+- source_of_truth_commit 7953121; prior_capture_fresh_runner_execution_approval_after_after_after_after_guard_fresh_chain_wiring_correction_commit 7953121; prior_capture_fresh_runner_execution_approval_after_after_after_after_guard_fresh_chain_wiring_correction_status closed.
+- fresh_execution_pre_run_guard_status passed; fresh_execution_pre_run_guard_checks_required_count 30; fresh_execution_pre_run_guard_checks_passed_count 30; fresh_execution_pre_run_guard_failed_count 0.
+- future_command_status ready_for_exact_approved_runner_execution_command_after_after_after_after_guard_fresh_chain_wiring_correction_guard_review_only.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- approved_for_activation_now false; fresh pre-run guard pass only; does not run runner.
+- Build 127 consumed post-Build-126 attempt. Prior Build 124/125/126 decision/approval/guard chain not reusable. Next step exact approved runner execution command after after-after-after-guard fresh-chain wiring correction guard review only.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-after-after-after-guard-fresh-chain-wiring-correction-approval-capture-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-after-after-after-guard-fresh-chain-wiring-correction-approval-capture-readonly.js
+```
+
+Safety remains: local fake-data review-only fresh-execution-pre-run-guard-after-after-after-after-guard-fresh-chain-wiring-correction-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh pre-run guard pass only; not runner execution, not activation, non-executing. source_of_truth_commit 7953121. future_command_status ready_for_exact_approved_runner_execution_command_after_after_after_after_guard_fresh_chain_wiring_correction_guard_review_only. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
