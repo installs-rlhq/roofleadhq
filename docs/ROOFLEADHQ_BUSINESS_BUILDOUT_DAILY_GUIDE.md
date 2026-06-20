@@ -9177,6 +9177,43 @@ Use preferred lead-to-inspection language (fresh execution pre-run guard passed 
 
 Safety: local fake-data review-only fresh-execution-pre-run-guard-after-path-correction-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Capture Post-Build-116 Runner Command Blocked Evidence
+
+Packet artifacts:
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_116_RUNNER_COMMAND_BLOCKED_EVIDENCE.md`
+- `scripts/run-native-workflow-fixture-capture-post-build-116-runner-command-blocked-evidence-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-capture-post-build-116-runner-command-blocked-evidence-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/capture-post-build-116-runner-command-blocked-evidence.json`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Capture Post-Build-116 Runner Command Blocked Evidence" / "native workflow fixture capture post build 116 runner command blocked evidence" / "capture post build 116 runner command blocked evidence" across aggregate, index, contexts, and business guide.
+
+The post-Build-116 blocked command evidence capture packet implements:
+
+- Local review-only post-Build-116 blocked runner command evidence capture after Build 116 closed fresh execution pre-run guard after path correction at 2f1bbe3
+- source_of_truth_commit 2f1bbe3; prior_fresh_execution_pre_run_guard_after_path_correction_commit 2f1bbe3; prior_fresh_execution_pre_run_guard_after_path_correction_status closed
+- References Build 116 fresh pre-run guard after path correction, Build 115 capture after path correction, Build 114 fresh decision after path correction, Build 113 path correction, Build 112 blocked evidence, and Build 103 runner scaffolding build packets
+- exact_command_attempted_after_build_116_status attempted_blocked_nonzero; exact_command_exit_status nonzero_blocked
+- command_attempt_consumption_status consumed_by_blocked_fail_closed_result_after_build_116_guard
+- runner_output_state_after_build_116_status stale_pre_build_114_115_116_state_detected
+- runner_did_not_recognize_build_114_fresh_decision_status true; runner_did_not_recognize_build_115_approval_capture_status true; runner_did_not_recognize_build_116_pre_run_guard_status true
+- runner_execution_path_after_guard_wiring_gap_status detected
+- runner_command_path_status corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_execution_path_correction
+- runner_command_invoked_by_this_packet false; runner_execution_status not_run; command_execution_status not_run
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- future_command_status blocked_until_runner_execution_path_after_guard_wiring_correction_and_fresh_decision
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet
+- approved_for_activation_now false; evidence capture only; does not rerun runner; does not perform actual validation
+- Next step runner execution path after-guard wiring correction/design and fresh decision path, not immediate rerun
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not invoke runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, post-build-116-blocked-command-evidence-capture-only-not-run, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (post-Build-116 blocked command evidence captured, stale runner state detected, fake data, runner not rerun, actual external 30-scenario validation not captured, after-guard wiring correction next).
+
+Safety: local fake-data review-only post-build-116-blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

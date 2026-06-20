@@ -10136,6 +10136,49 @@ node backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guar
 
 Safety remains: local fake-data review-only fresh-execution-pre-run-guard-after-path-correction-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh pre-run guard pass only; not runner execution, not actual validation, not activation, non-executing. source_of_truth_commit ddd193f. prior_capture_fresh_runner_execution_approval_after_path_correction_status closed. fresh_execution_pre_run_guard_status passed. future_command_status ready_for_exact_approved_runner_execution_command_after_path_correction_guard_review_only. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Capture Post-Build-116 Runner Command Blocked Evidence
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_116_RUNNER_COMMAND_BLOCKED_EVIDENCE.md`
+- `backend/scripts/verify-native-workflow-fixture-capture-post-build-116-runner-command-blocked-evidence-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/capture-post-build-116-runner-command-blocked-evidence.json`
+- `scripts/run-native-workflow-fixture-capture-post-build-116-runner-command-blocked-evidence-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Capture Post-Build-116 Runner Command Blocked Evidence" / "native workflow fixture capture post build 116 runner command blocked evidence" / "capture post build 116 runner command blocked evidence" across aggregate, index, contexts, and business guide.
+- Post-Build-116 blocked command evidence capture — source_of_truth_commit 2f1bbe3, prior_fresh_execution_pre_run_guard_after_path_correction_commit 2f1bbe3, prior_fresh_execution_pre_run_guard_after_path_correction_status closed.
+- exact_command_attempted_after_build_116_status attempted_blocked_nonzero; exact_command_exit_status nonzero_blocked.
+- command_attempt_consumption_status consumed_by_blocked_fail_closed_result_after_build_116_guard.
+- runner_output_state_after_build_116_status stale_pre_build_114_115_116_state_detected.
+- runner_did_not_recognize_build_114_fresh_decision_status true; runner_did_not_recognize_build_115_approval_capture_status true; runner_did_not_recognize_build_116_pre_run_guard_status true.
+- runner_execution_path_after_guard_wiring_gap_status detected.
+- runner_command_path_status corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_execution_path_correction.
+- runner_command_invoked_by_this_packet false; runner_execution_status not_run; command_execution_status not_run.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- future_command_status blocked_until_runner_execution_path_after_guard_wiring_correction_and_fresh_decision.
+- approved_for_activation_now false; evidence capture only; does not rerun runner; does not perform actual validation.
+- Next step runner execution path after-guard wiring correction/design and fresh decision path, not immediate rerun.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-capture-post-build-116-runner-command-blocked-evidence-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-capture-post-build-116-runner-command-blocked-evidence-readonly.js
+```
+
+Safety remains: local fake-data review-only post-build-116-blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Evidence capture only; not runner execution, not actual validation, not activation, non-executing. source_of_truth_commit 2f1bbe3. prior_fresh_execution_pre_run_guard_after_path_correction_status closed. future_command_status blocked_until_runner_execution_path_after_guard_wiring_correction_and_fresh_decision. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
