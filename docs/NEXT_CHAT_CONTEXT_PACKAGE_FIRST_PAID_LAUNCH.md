@@ -9340,6 +9340,49 @@ node backend/scripts/verify-native-workflow-fixture-actual-external-sandbox-30-s
 
 Safety remains: local fake-data review-only runner-design-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner design only; not approval, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Exact Approval to Build Actual External/Sandbox 30-Scenario Runner
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_EXACT_APPROVAL_TO_BUILD_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_EXACT_APPROVAL_TO_BUILD_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-exact-approval-to-build-actual-external-sandbox-30-scenario-runner-readonly.js`
+- `scripts/run-native-workflow-fixture-exact-approval-to-build-actual-external-sandbox-30-scenario-runner-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/exact-approval-to-build-actual-external-sandbox-30-scenario-runner.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Exact Approval to Build Actual External/Sandbox 30-Scenario Runner" / "native workflow fixture exact approval to build actual external sandbox 30 scenario runner" / "exact approval to build actual external sandbox 30 scenario runner" across aggregate, index, contexts, and business guide.
+- Build-runner exact approval template — source_of_truth_commit 40d0d24, runner_design_commit 40d0d24, current_runner_gap_status existing_wrapper_is_local_only_not_actual_external_sandbox_runner, different_runner_required true, prior_proposed_runner_status design_only_not_built_not_approved_not_run.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- build_runner_approval_capture_status not_captured; build_runner_jason_signed_approval_status not_signed; build_runner_exact_values_required_count 19; build_runner_exact_values_accepted_count 0; build_runner_exact_values_approved_count 0.
+- runner_execution_approval_status not_granted; external_calls_approval_status not_granted; credentials_access_approval_status not_granted; production_data_access_approval_status not_granted.
+- proposed_future_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh (reference default only); proposed_working_directory /root/roofleadhq; proposed paths are reference defaults only, not approval.
+- live_activation_approval_status not_granted; real_homeowner_contact_approval_status not_granted; real_roofer_contact_approval_status not_granted; production_supabase_write_approval_status not_granted; schema_auth_rls_security_change_approval_status not_granted; billing_payment_automation_approval_status not_granted.
+- external_calls_allowed_by_this_packet false; credentials_access_allowed_by_this_packet false; production_data_access_allowed_by_this_packet false; sms_email_calls_calendar_booking_allowed_by_this_packet false.
+- demo_ready_with_live_automation_disabled preserved; approved_for_activation_now false; command_execution_status not_run_by_this_packet.
+- future_command_status blocked_until_build_runner_exact_approval_captured.
+- This packet provides blank BUILD RUNNER TEMPLATE ONLY copy/paste approval for scaffolding only; does not build runner; does not run runner; does not grant build-runner approval.
+- Next step is Jason review/sign exact build-runner approval, or stop/review.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-exact-approval-to-build-actual-external-sandbox-30-scenario-runner-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-exact-approval-to-build-actual-external-sandbox-30-scenario-runner-readonly.js
+```
+
+Safety remains: local fake-data review-only build-runner-approval-template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Build-runner approval template only; not approval, not activation, non-executing. Does not build runner. Does not run runner. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
