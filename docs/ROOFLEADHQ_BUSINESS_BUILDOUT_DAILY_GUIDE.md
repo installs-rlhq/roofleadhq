@@ -8656,6 +8656,46 @@ Use preferred lead-to-inspection language (runner scaffolding built, fake data, 
 
 Safety: local fake-data review-only runner-scaffolding-build-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Runner-Execution Exact Approval Template
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_EXACT_APPROVAL_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_EXACT_APPROVAL_TEMPLATE_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-runner-execution-exact-approval-template-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-runner-execution-exact-approval-template-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/runner-execution-exact-approval-template.json`
+
+Canonical source of truth: `145bf15 test(workflow): build external sandbox runner scaffolding`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Runner-Execution Exact Approval Template" / "native workflow fixture runner execution exact approval template" / "runner execution exact approval template" across aggregate, index, contexts, and business guide.
+
+The runner-execution exact approval template packet implements:
+
+- Provides local review-only exact approval template for one-time actual external/sandbox 30-scenario validation runner execution decision without running the runner
+- source_of_truth_commit 145bf15; references Build 103 scaffolding build, Build 102 pre-run guard, Build 101 signed approval capture, Build 100 template, and Build 99 runner design packets
+- runner_scaffolding_build_status built_review_only; runner_command_path_status created_fail_closed_not_approved_to_run; runner_fail_closed_sanity_check_status blocked_exit_code_1
+- total_manifest_scenarios_count 30; all scenarios execution_status not_run; all scenarios pass_fail_status not_captured
+- runner_execution_approval_template_status created_review_only; runner_execution_approval_capture_status not_captured; runner_execution_jason_signed_approval_status not_signed
+- runner_execution_exact_values_required_count 24; runner_execution_exact_values_accepted_count 0; runner_execution_exact_values_approved_count 0
+- runner_execution_approval_status not_granted; external_sandbox_calls_approval_status not_granted; credentials_access_approval_status not_granted; test_account_use_approval_status not_granted; production_data_access_approval_status not_granted
+- runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- Upstream Build 103 scaffolding build, Build 102 pre-run guard, Build 101 signed approval capture, Build 100 template, and Build 99 runner design fixture verification
+- All 10 runner execution approval template checks passed
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, SMS/email/calls/calendar booking, and billing/payment automation remain not_granted in this packet
+- external_calls_allowed_by_this_packet false; credentials_access_allowed_by_this_packet false; production_data_access_allowed_by_this_packet false; sms_email_calls_calendar_booking_allowed_by_this_packet false
+- future_command_status blocked_until_runner_execution_exact_approval_captured
+- approved_for_activation_now false; does not run runner; does not capture approval; does not grant runner execution approval
+- Next step Jason review/sign exact runner-execution approval template or stop/review, not execution
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not invoke runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, runner-execution-exact-approval-template-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (runner-execution approval template created, fake data, review-only, runner not run, actual external 30-scenario validation not captured, Jason review/sign next).
+
+Safety: local fake-data review-only runner-execution-exact-approval-template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`

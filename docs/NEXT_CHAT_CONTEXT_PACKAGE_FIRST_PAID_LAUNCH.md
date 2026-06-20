@@ -9520,6 +9520,52 @@ node backend/scripts/verify-native-workflow-fixture-actual-external-sandbox-30-s
 
 Safety remains: local fake-data review-only runner-scaffolding-build-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner scaffolding build only; not runner execution, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Runner-Execution Exact Approval Template
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_EXACT_APPROVAL_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_EXACT_APPROVAL_TEMPLATE_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-runner-execution-exact-approval-template-readonly.js`
+- `scripts/run-native-workflow-fixture-runner-execution-exact-approval-template-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/runner-execution-exact-approval-template.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Runner-Execution Exact Approval Template" / "native workflow fixture runner execution exact approval template" / "runner execution exact approval template" across aggregate, index, contexts, and business guide.
+- Runner-execution exact approval template — source_of_truth_commit 145bf15, runner_scaffolding_build_commit 145bf15, build_runner_pre_run_guard_commit 640df59, capture_signed_build_runner_approval_commit 912b3aa, build_runner_exact_approval_template_commit 07421c8, runner_design_commit 40d0d24.
+- runner_scaffolding_build_status built_review_only; runner_command_path_status created_fail_closed_not_approved_to_run; runner_fail_closed_sanity_check_status blocked_exit_code_1.
+- total_manifest_scenarios_count 30; all_manifest_scenarios_execution_status not_run; all_manifest_scenarios_pass_fail_status not_captured.
+- runner_execution_approval_template_status created_review_only; runner_execution_approval_capture_status not_captured; runner_execution_jason_signed_approval_status not_signed.
+- runner_execution_exact_values_required_count 24; runner_execution_exact_values_accepted_count 0; runner_execution_exact_values_approved_count 0.
+- runner_execution_approval_status not_granted; external_sandbox_calls_approval_status not_granted; credentials_access_approval_status not_granted; test_account_use_approval_status not_granted; production_data_access_approval_status not_granted.
+- runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- live_activation_approval_status not_granted; real_homeowner_contact_approval_status not_granted; real_roofer_contact_approval_status not_granted; production_supabase_write_approval_status not_granted; schema_auth_rls_security_change_approval_status not_granted; sms_email_calls_calendar_booking_approval_status not_granted; billing_payment_automation_approval_status not_granted.
+- external_calls_allowed_by_this_packet false; credentials_access_allowed_by_this_packet false; production_data_access_allowed_by_this_packet false; sms_email_calls_calendar_booking_allowed_by_this_packet false.
+- demo_ready_with_live_automation_disabled preserved; approved_for_activation_now false.
+- future_command_status blocked_until_runner_execution_exact_approval_captured.
+- This packet is runner-execution approval template only; does not run runner; does not capture approval; does not grant runner execution approval.
+- Next step is Jason review/sign exact runner-execution approval template or stop/review, not execution.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-runner-execution-exact-approval-template-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-runner-execution-exact-approval-template-readonly.js
+```
+
+Safety remains: local fake-data review-only runner-execution-exact-approval-template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner-execution approval template only; not signed, not approved, not runner execution, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
