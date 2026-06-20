@@ -11,38 +11,30 @@ const packetDocPath =
   'docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_DECISION_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION.md';
 const approvalTemplateDocPath =
   'docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_DECISION_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_TEMPLATE.md';
-const afterAfterAfterGuardFreshChainWiringCorrectionPacketDocPath =
+const afterAfterAllAfterGuardFreshChainWiringCorrectionPacketDocPath =
+  'docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION.md';
+const postBuild131BlockedEvidenceDocPath =
+  'docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_131_RUNNER_COMMAND_BLOCKED_EVIDENCE.md';
+const freshPreRunGuardAfterAfterAllAfterGuardFreshChainWiringCorrectionDocPath =
+  'docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_CAPTURE.md';
+const captureAfterAfterAllAfterGuardFreshChainWiringCorrectionPacketDocPath =
+  'docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_FRESH_RUNNER_EXECUTION_APPROVAL_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION.md';
+const afterAfterAllGuardFreshChainWiringCorrectionPacketDocPath =
   'docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION.md';
-const postBuild126BlockedEvidenceDocPath =
-  'docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_126_RUNNER_COMMAND_BLOCKED_EVIDENCE.md';
-const freshPreRunGuardAfterAfterAfterGuardWiringCorrectionDocPath =
-  'docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_CAPTURE.md';
-const captureAfterAfterAfterGuardWiringCorrectionPacketDocPath =
-  'docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_FRESH_RUNNER_EXECUTION_APPROVAL_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION.md';
-const freshDecisionAfterAfterAfterGuardWiringCorrectionDocPath =
-  'docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_DECISION_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION.md';
-const afterAfterGuardFreshChainWiringCorrectionPacketDocPath =
-  'docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION.md';
-const postBuild121BlockedEvidenceDocPath =
-  'docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_121_RUNNER_COMMAND_BLOCKED_EVIDENCE.md';
 const scaffoldingBuildDocPath =
   'docs/NATIVE_WORKFLOW_FIXTURE_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_SCAFFOLDING_BUILD.md';
 const fixturePath =
   'backend/fixtures/native-workflow-demo-roofer/fresh-runner-execution-decision-after-after-after-after-guard-fresh-chain-wiring-correction.json';
-const upstreamAfterAfterAfterGuardFreshChainWiringCorrectionFixturePath =
+const upstreamAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath =
+  'backend/fixtures/native-workflow-demo-roofer/runner-execution-path-after-after-after-after-guard-fresh-chain-wiring-correction.json';
+const upstreamPostBuild131BlockedEvidenceFixturePath =
+  'backend/fixtures/native-workflow-demo-roofer/capture-post-build-131-runner-command-blocked-evidence.json';
+const upstreamFreshPreRunGuardAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath =
+  'backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-after-after-after-guard-fresh-chain-wiring-correction-approval-capture.json';
+const upstreamCaptureAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath =
+  'backend/fixtures/native-workflow-demo-roofer/capture-fresh-runner-execution-approval-after-after-after-after-guard-fresh-chain-wiring-correction.json';
+const upstreamAfterAfterAllGuardFreshChainWiringCorrectionFixturePath =
   'backend/fixtures/native-workflow-demo-roofer/runner-execution-path-after-after-after-guard-fresh-chain-wiring-correction.json';
-const upstreamPostBuild126BlockedEvidenceFixturePath =
-  'backend/fixtures/native-workflow-demo-roofer/capture-post-build-126-runner-command-blocked-evidence.json';
-const upstreamFreshPreRunGuardAfterAfterAfterGuardWiringCorrectionFixturePath =
-  'backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-after-after-guard-fresh-chain-wiring-correction-approval-capture.json';
-const upstreamCaptureAfterAfterAfterGuardWiringCorrectionFixturePath =
-  'backend/fixtures/native-workflow-demo-roofer/capture-fresh-runner-execution-approval-after-after-after-guard-fresh-chain-wiring-correction.json';
-const upstreamFreshDecisionAfterAfterAfterGuardWiringCorrectionFixturePath =
-  'backend/fixtures/native-workflow-demo-roofer/fresh-runner-execution-decision-after-after-after-guard-fresh-chain-wiring-correction.json';
-const upstreamAfterAfterGuardFreshChainWiringCorrectionFixturePath =
-  'backend/fixtures/native-workflow-demo-roofer/runner-execution-path-after-after-guard-fresh-chain-wiring-correction.json';
-const upstreamPostBuild121BlockedEvidenceFixturePath =
-  'backend/fixtures/native-workflow-demo-roofer/capture-post-build-121-runner-command-blocked-evidence.json';
 const upstreamScaffoldingBuildFixturePath =
   'backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-runner-scaffolding-build.json';
 const manifestPath =
@@ -60,21 +52,20 @@ const contextFirstPaidPath = 'docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.m
 const contextAgentGrokPath = 'docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md';
 const businessGuidePath = 'docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md';
 
-const SOURCE_OF_TRUTH_COMMIT = '59b74bf';
-const PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_COMMIT = '59b74bf';
-const PRIOR_POST_BUILD_126_BLOCKED_EVIDENCE_COMMIT = '0e7db2d';
-const PRIOR_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_AFTER_ALL_GUARD_COMMIT = '4597948';
-const PRIOR_CAPTURE_APPROVAL_COMMIT = '68c220d';
-const PRIOR_FRESH_DECISION_COMMIT = 'e96c82c';
-const PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_GUARD_COMMIT = 'c678189';
-const PRIOR_POST_BUILD_121_BLOCKED_EVIDENCE_COMMIT = '5e78db0';
+const SOURCE_OF_TRUTH_COMMIT = '1e2af98';
+const PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_COMMIT = '1e2af98';
+const PRIOR_POST_BUILD_131_BLOCKED_EVIDENCE_COMMIT = '0dc6d88';
+const PRIOR_FRESH_EXECUTION_PRE_RUN_GUARD_COMMIT = '55b65fd';
+const PRIOR_CAPTURE_APPROVAL_COMMIT = '7953121';
+const PRIOR_FRESH_DECISION_COMMIT = 'e3a576a';
+const PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_ALL_GUARD_COMMIT = '59b74bf';
 const RUNNER_SCAFFOLDING_BUILD_COMMIT = '145bf15';
 const FIXTURE_RUNNER_COMMAND_PATH_STATUS =
   'corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_after_after_after_guard_fresh_chain_wiring_correction';
-const CURRENT_RUNNER_COMMAND_PATH_STATUS =
-  'corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_after_after_guard_fresh_chain_wiring_correction';
 const FUTURE_COMMAND_STATUS =
   'blocked_until_fresh_runner_execution_approval_captured_after_after_after_after_guard_fresh_chain_wiring_correction';
+const STALE_BUILD_127_PRIMARY_NO_GO_MESSAGE =
+  'Build 127 consumed the post-Build-126 exact approved command attempt';
 
 const EXACT_WORKING_DIRECTORY = '/root/roofleadhq';
 const EXACT_COMMAND =
@@ -116,7 +107,7 @@ const EXACT_VALUE_FIELDS = [
 ];
 
 const FRESH_RUNNER_EXECUTION_TEMPLATE_CHECKS = [
-  'Build 103-128 upstream packets referenced and runner execution path after-after-after-guard fresh-chain wiring correction closed at 59b74bf',
+  'Build 103-133 upstream packets referenced and runner execution path after-after-after-after-guard fresh-chain wiring correction closed at 1e2af98',
   'runner command path exists executable and corrected fail-closed pending fresh decision after after-after-after-after-guard fresh-chain wiring correction',
   'manifest 30 scenarios all execution_status not_run and pass_fail_status not_captured',
   'fresh runner execution approval not captured and not signed',
@@ -129,7 +120,7 @@ const FRESH_RUNNER_EXECUTION_TEMPLATE_CHECKS = [
 ];
 
 const REQUIRED_APPROVAL_LANGUAGE = [
-  'I, Jason Lohse, explicitly approve one-time fresh runner execution for the exact scoped actual external/sandbox 30-scenario validation described below after Build 128 runner execution path after-after-after-guard fresh-chain wiring correction.',
+  'I, Jason Lohse, explicitly approve one-time fresh runner execution for the exact scoped actual external/sandbox 30-scenario validation described below after Build 133 runner execution path after-after-after-after-guard fresh-chain wiring correction.',
   'This fresh runner-execution approval is for fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_after_after_after_guard_fresh_chain_wiring_correction only.',
   'This fresh runner-execution approval does not approve live activation.',
   'This fresh runner-execution approval does not approve production data access.',
@@ -145,7 +136,7 @@ const REQUIRED_APPROVAL_LANGUAGE = [
   'This fresh runner-execution approval is one-time-use only.',
   'Any deviation from the exact values below requires new explicit Jason approval.',
   'Even if signed later, runner execution remains blocked until a separate fresh execution pre-run guard passes after after-after-after-after-guard fresh-chain wiring correction.',
-  'Prior Build 124/125/126 decision/approval/guard chain is not reusable after Build 127/128.',
+  'Prior Build 128/129/130/131 decision/approval/guard chain is not reusable after Build 132/133.',
   'Signature:',
   'Timestamp:',
   'Expiration:',
@@ -156,30 +147,27 @@ const REQUIRED_ASSERTIONS = [
   'approval_template_doc_present',
   'structured_fixture_present',
   'structured_fixture_valid_json',
-  'upstream_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_fixture_present',
-  'upstream_post_build_126_blocked_evidence_fixture_present',
-  'upstream_fresh_pre_run_guard_after_after_after_guard_wiring_correction_fixture_present',
-  'upstream_capture_fresh_runner_execution_approval_after_after_after_guard_wiring_correction_fixture_present',
-  'upstream_fresh_runner_execution_decision_after_after_after_guard_wiring_correction_fixture_present',
-  'upstream_runner_execution_path_after_after_guard_fresh_chain_wiring_correction_fixture_present',
-  'upstream_post_build_121_blocked_evidence_fixture_present',
+  'upstream_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_fixture_present',
+  'upstream_post_build_131_blocked_evidence_fixture_present',
+  'upstream_fresh_pre_run_guard_after_after_all_after_guard_fresh_chain_wiring_correction_fixture_present',
+  'upstream_capture_fresh_runner_execution_approval_after_after_all_after_guard_fresh_chain_wiring_correction_fixture_present',
+  'upstream_runner_execution_path_after_after_all_guard_fresh_chain_wiring_correction_fixture_present',
   'upstream_scaffolding_build_fixture_present',
   'manifest_fixture_present',
-  'source_of_truth_commit_59b74bf_referenced',
-  'prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_commit_59b74bf_referenced',
-  'prior_post_build_126_blocked_evidence_commit_0e7db2d_referenced',
+  'source_of_truth_commit_1e2af98_referenced',
+  'prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_commit_1e2af98_referenced',
+  'prior_post_build_131_blocked_evidence_commit_0dc6d88_referenced',
   'runner_scaffolding_build_commit_145bf15_referenced',
-  'build_128_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_referenced',
-  'build_127_post_build_126_blocked_evidence_referenced',
-  'build_126_fresh_pre_run_guard_after_after_after_guard_wiring_correction_referenced',
-  'build_125_capture_fresh_runner_execution_approval_after_after_after_guard_wiring_correction_referenced',
-  'build_124_fresh_runner_execution_decision_after_after_after_guard_wiring_correction_referenced',
-  'build_123_runner_execution_path_after_after_guard_fresh_chain_wiring_correction_referenced',
-  'build_122_post_build_121_blocked_evidence_referenced',
+  'build_133_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_referenced',
+  'build_132_post_build_131_blocked_evidence_referenced',
+  'build_131_fresh_pre_run_guard_after_after_all_after_guard_fresh_chain_wiring_correction_referenced',
+  'build_130_capture_fresh_runner_execution_approval_after_after_all_after_guard_fresh_chain_wiring_correction_referenced',
+  'build_129_fresh_runner_execution_decision_after_after_all_after_guard_fresh_chain_wiring_correction_referenced',
+  'build_128_runner_execution_path_after_after_all_guard_fresh_chain_wiring_correction_referenced',
   'build_103_runner_scaffolding_build_referenced',
-  'prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_status_closed',
-  'prior_post_build_126_command_attempt_consumption_status_consumed_by_blocked_fail_closed_result_after_build_126_guard',
-  'prior_build_127_consumed_attempt_status_consumed',
+  'prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_status_closed',
+  'prior_post_build_131_command_attempt_consumption_status_consumed_by_blocked_fail_closed_result_after_build_131_guard',
+  'prior_build_132_consumed_attempt_status_consumed',
   'immediate_rerun_allowed_false',
   'fresh_runner_execution_approval_required_after_after_after_after_guard_fresh_chain_wiring_correction_true',
   'fresh_execution_pre_run_guard_required_after_after_after_after_guard_fresh_chain_wiring_correction_true',
@@ -195,6 +183,9 @@ const REQUIRED_ASSERTIONS = [
   'runner_command_path_exists',
   'runner_command_path_executable',
   'runner_command_path_status_corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_after_after_after_guard_fresh_chain_wiring_correction',
+  'runner_command_after_after_after_after_guard_references_present',
+  'runner_command_build_132_consumed_post_build_131_attempt_documented',
+  'runner_command_no_stale_build_127_era_primary_no_go',
   'runner_execution_status_not_run_by_this_packet',
   'command_execution_status_not_run_by_this_packet',
   'runner_command_invoked_by_this_packet_false',
@@ -231,7 +222,7 @@ const REQUIRED_ASSERTIONS = [
   'packet_does_not_access_production_data',
   'packet_does_not_authorize_sms_email_calls_calendar_booking',
   'packet_does_not_contact_roofer_or_homeowner',
-  'packet_does_not_treat_prior_build_124_125_126_chain_as_reusable',
+  'packet_does_not_treat_prior_build_128_129_130_131_chain_as_reusable',
   'all_24_fresh_runner_execution_exact_values_not_approved_in_packet',
   'fixture_all_24_accepted_exact_values_blank',
   'fixture_all_24_approved_exact_values_blank',
@@ -256,14 +247,13 @@ const REQUIRED_ASSERTIONS = [
   'verifier_file_present',
 ];
 
-
 const PACKET_REFS = [
   'NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_DECISION_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION.md',
   'NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_DECISION_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_TEMPLATE.md',
   'run-native-workflow-fixture-fresh-runner-execution-decision-after-after-after-after-guard-fresh-chain-wiring-correction-dry-run.sh',
   'verify-native-workflow-fixture-fresh-runner-execution-decision-after-after-after-after-guard-fresh-chain-wiring-correction-readonly.js',
   'fresh-runner-execution-decision-after-after-after-after-guard-fresh-chain-wiring-correction.json',
-  'Native Workflow Fixture Fresh Runner-Execution Decision After After-After-After-Guard Fresh-Chain Wiring Correction',
+  'Native Workflow Fixture Fresh Runner-Execution Decision After After-After-After-After-Guard Fresh-Chain Wiring Correction',
   'native workflow fixture fresh runner execution decision after after after after guard fresh chain wiring correction',
   'fresh runner execution decision after after after after guard fresh chain wiring correction',
 ];
@@ -331,13 +321,11 @@ function isExecutable(p) {
 
 const packetDoc = read(packetDocPath);
 const approvalTemplateDoc = read(approvalTemplateDocPath);
-read(afterAfterAfterGuardFreshChainWiringCorrectionPacketDocPath);
-read(postBuild126BlockedEvidenceDocPath);
-read(freshPreRunGuardAfterAfterAfterGuardWiringCorrectionDocPath);
-read(captureAfterAfterAfterGuardWiringCorrectionPacketDocPath);
-read(freshDecisionAfterAfterAfterGuardWiringCorrectionDocPath);
-read(afterAfterGuardFreshChainWiringCorrectionPacketDocPath);
-read(postBuild121BlockedEvidenceDocPath);
+read(afterAfterAllAfterGuardFreshChainWiringCorrectionPacketDocPath);
+read(postBuild131BlockedEvidenceDocPath);
+read(freshPreRunGuardAfterAfterAllAfterGuardFreshChainWiringCorrectionDocPath);
+read(captureAfterAfterAllAfterGuardFreshChainWiringCorrectionPacketDocPath);
+read(afterAfterAllGuardFreshChainWiringCorrectionPacketDocPath);
 read(scaffoldingBuildDocPath);
 const wrapper = read(wrapperPath);
 const fullReadiness = read(fullReadinessPath);
@@ -356,53 +344,45 @@ mustHave(approvalTemplateDoc, 'fake-data/local-only/read-only/dry-run-only/revie
 
 mustHave(packetDoc, SOURCE_OF_TRUTH_COMMIT, 'packet doc');
 mustHave(approvalTemplateDoc, SOURCE_OF_TRUTH_COMMIT, 'approval template doc');
-passAssertion('source_of_truth_commit_59b74bf_referenced');
+passAssertion('source_of_truth_commit_1e2af98_referenced');
 
-mustHave(packetDoc, PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_COMMIT, 'packet doc');
-mustHave(approvalTemplateDoc, PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_COMMIT, 'approval template doc');
-passAssertion('prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_commit_59b74bf_referenced');
+mustHave(packetDoc, PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_COMMIT, 'packet doc');
+mustHave(approvalTemplateDoc, PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_COMMIT, 'approval template doc');
+passAssertion('prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_commit_1e2af98_referenced');
 
-mustHave(packetDoc, afterAfterAfterGuardFreshChainWiringCorrectionPacketDocPath, 'packet doc');
-mustHave(packetDoc, upstreamAfterAfterAfterGuardFreshChainWiringCorrectionFixturePath, 'packet doc');
-mustHave(packetDoc, 'Build 128', 'packet doc');
-passAssertion('build_128_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_referenced');
+mustHave(packetDoc, afterAfterAllAfterGuardFreshChainWiringCorrectionPacketDocPath, 'packet doc');
+mustHave(packetDoc, upstreamAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath, 'packet doc');
+mustHave(packetDoc, 'Build 133', 'packet doc');
+passAssertion('build_133_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_referenced');
 
-mustHave(packetDoc, postBuild126BlockedEvidenceDocPath, 'packet doc');
-mustHave(packetDoc, upstreamPostBuild126BlockedEvidenceFixturePath, 'packet doc');
-mustHave(packetDoc, PRIOR_POST_BUILD_126_BLOCKED_EVIDENCE_COMMIT, 'packet doc');
-mustHave(packetDoc, 'Build 127', 'packet doc');
-passAssertion('build_127_post_build_126_blocked_evidence_referenced');
-passAssertion('prior_post_build_126_blocked_evidence_commit_0e7db2d_referenced');
+mustHave(packetDoc, postBuild131BlockedEvidenceDocPath, 'packet doc');
+mustHave(packetDoc, upstreamPostBuild131BlockedEvidenceFixturePath, 'packet doc');
+mustHave(packetDoc, PRIOR_POST_BUILD_131_BLOCKED_EVIDENCE_COMMIT, 'packet doc');
+mustHave(packetDoc, 'Build 132', 'packet doc');
+passAssertion('build_132_post_build_131_blocked_evidence_referenced');
+passAssertion('prior_post_build_131_blocked_evidence_commit_0dc6d88_referenced');
 
-mustHave(packetDoc, freshPreRunGuardAfterAfterAfterGuardWiringCorrectionDocPath, 'packet doc');
-mustHave(packetDoc, upstreamFreshPreRunGuardAfterAfterAfterGuardWiringCorrectionFixturePath, 'packet doc');
-mustHave(packetDoc, PRIOR_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_AFTER_ALL_GUARD_COMMIT, 'packet doc');
-mustHave(packetDoc, 'Build 126', 'packet doc');
-passAssertion('build_126_fresh_pre_run_guard_after_after_after_guard_wiring_correction_referenced');
+mustHave(packetDoc, freshPreRunGuardAfterAfterAllAfterGuardFreshChainWiringCorrectionDocPath, 'packet doc');
+mustHave(packetDoc, upstreamFreshPreRunGuardAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath, 'packet doc');
+mustHave(packetDoc, PRIOR_FRESH_EXECUTION_PRE_RUN_GUARD_COMMIT, 'packet doc');
+mustHave(packetDoc, 'Build 131', 'packet doc');
+passAssertion('build_131_fresh_pre_run_guard_after_after_all_after_guard_fresh_chain_wiring_correction_referenced');
 
-mustHave(packetDoc, captureAfterAfterAfterGuardWiringCorrectionPacketDocPath, 'packet doc');
-mustHave(packetDoc, upstreamCaptureAfterAfterAfterGuardWiringCorrectionFixturePath, 'packet doc');
+mustHave(packetDoc, captureAfterAfterAllAfterGuardFreshChainWiringCorrectionPacketDocPath, 'packet doc');
+mustHave(packetDoc, upstreamCaptureAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath, 'packet doc');
 mustHave(packetDoc, PRIOR_CAPTURE_APPROVAL_COMMIT, 'packet doc');
-mustHave(packetDoc, 'Build 125', 'packet doc');
-passAssertion('build_125_capture_fresh_runner_execution_approval_after_after_after_guard_wiring_correction_referenced');
+mustHave(packetDoc, 'Build 130', 'packet doc');
+passAssertion('build_130_capture_fresh_runner_execution_approval_after_after_all_after_guard_fresh_chain_wiring_correction_referenced');
 
-mustHave(packetDoc, freshDecisionAfterAfterAfterGuardWiringCorrectionDocPath, 'packet doc');
-mustHave(packetDoc, upstreamFreshDecisionAfterAfterAfterGuardWiringCorrectionFixturePath, 'packet doc');
 mustHave(packetDoc, PRIOR_FRESH_DECISION_COMMIT, 'packet doc');
-mustHave(packetDoc, 'Build 124', 'packet doc');
-passAssertion('build_124_fresh_runner_execution_decision_after_after_after_guard_wiring_correction_referenced');
+mustHave(packetDoc, 'Build 129', 'packet doc');
+passAssertion('build_129_fresh_runner_execution_decision_after_after_all_after_guard_fresh_chain_wiring_correction_referenced');
 
-mustHave(packetDoc, afterAfterGuardFreshChainWiringCorrectionPacketDocPath, 'packet doc');
-mustHave(packetDoc, upstreamAfterAfterGuardFreshChainWiringCorrectionFixturePath, 'packet doc');
-mustHave(packetDoc, PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_GUARD_COMMIT, 'packet doc');
-mustHave(packetDoc, 'Build 123', 'packet doc');
-passAssertion('build_123_runner_execution_path_after_after_guard_fresh_chain_wiring_correction_referenced');
-
-mustHave(packetDoc, postBuild121BlockedEvidenceDocPath, 'packet doc');
-mustHave(packetDoc, upstreamPostBuild121BlockedEvidenceFixturePath, 'packet doc');
-mustHave(packetDoc, PRIOR_POST_BUILD_121_BLOCKED_EVIDENCE_COMMIT, 'packet doc');
-mustHave(packetDoc, 'Build 122', 'packet doc');
-passAssertion('build_122_post_build_121_blocked_evidence_referenced');
+mustHave(packetDoc, afterAfterAllGuardFreshChainWiringCorrectionPacketDocPath, 'packet doc');
+mustHave(packetDoc, upstreamAfterAfterAllGuardFreshChainWiringCorrectionFixturePath, 'packet doc');
+mustHave(packetDoc, PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_ALL_GUARD_COMMIT, 'packet doc');
+mustHave(packetDoc, 'Build 128', 'packet doc');
+passAssertion('build_128_runner_execution_path_after_after_all_guard_fresh_chain_wiring_correction_referenced');
 
 mustHave(packetDoc, scaffoldingBuildDocPath, 'packet doc');
 mustHave(packetDoc, upstreamScaffoldingBuildFixturePath, 'packet doc');
@@ -411,17 +391,17 @@ mustHave(packetDoc, 'Build 103', 'packet doc');
 passAssertion('build_103_runner_scaffolding_build_referenced');
 passAssertion('runner_scaffolding_build_commit_145bf15_referenced');
 
-mustHave(packetDoc, 'prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_status | closed', 'packet doc');
-mustHave(approvalTemplateDoc, 'prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_status | closed', 'approval template doc');
-passAssertion('prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_status_closed');
+mustHave(packetDoc, 'prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_status | closed', 'packet doc');
+mustHave(approvalTemplateDoc, 'prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_status | closed', 'approval template doc');
+passAssertion('prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_status_closed');
 
-mustHave(packetDoc, 'prior_post_build_126_command_attempt_consumption_status | consumed_by_blocked_fail_closed_result_after_build_126_guard', 'packet doc');
-mustHave(approvalTemplateDoc, 'prior_post_build_126_command_attempt_consumption_status | consumed_by_blocked_fail_closed_result_after_build_126_guard', 'approval template doc');
-passAssertion('prior_post_build_126_command_attempt_consumption_status_consumed_by_blocked_fail_closed_result_after_build_126_guard');
+mustHave(packetDoc, 'prior_command_attempt_consumption_status | consumed_by_blocked_fail_closed_result_after_build_131_guard', 'packet doc');
+mustHave(approvalTemplateDoc, 'prior_command_attempt_consumption_status | consumed_by_blocked_fail_closed_result_after_build_131_guard', 'approval template doc');
+passAssertion('prior_post_build_131_command_attempt_consumption_status_consumed_by_blocked_fail_closed_result_after_build_131_guard');
 
-mustHave(packetDoc, 'prior_build_127_consumed_attempt_status | consumed', 'packet doc');
-mustHave(approvalTemplateDoc, 'prior_build_127_consumed_attempt_status | consumed', 'approval template doc');
-passAssertion('prior_build_127_consumed_attempt_status_consumed');
+mustHave(packetDoc, 'prior_build_132_consumed_attempt_status | consumed', 'packet doc');
+mustHave(approvalTemplateDoc, 'prior_build_132_consumed_attempt_status | consumed', 'approval template doc');
+passAssertion('prior_build_132_consumed_attempt_status_consumed');
 
 mustHave(packetDoc, 'immediate_rerun_allowed | false', 'packet doc');
 mustHave(approvalTemplateDoc, 'immediate_rerun_allowed | false', 'approval template doc');
@@ -437,10 +417,10 @@ passAssertion('fresh_execution_pre_run_guard_required_after_after_after_after_gu
 
 mustHave(packetDoc, 'prior_fresh_runner_execution_approval_reusable_after_after_after_after_guard_fresh_chain_wiring_correction | false', 'packet doc');
 mustHave(packetDoc, 'prior_fresh_execution_pre_run_guard_reusable_after_after_after_after_guard_fresh_chain_wiring_correction | false', 'packet doc');
-mustHave(packetDoc, 'prior_build_124_125_126_decision_approval_guard_chain_reusable_after_build_127_128 | false', 'packet doc');
-mustHave(packetDoc, 'This packet **does not** treat prior Build 124/125/126 decision/approval/guard chain as reusable.', 'packet doc');
-mustHave(approvalTemplateDoc, '**Explicit note:** This template does **not** treat prior Build 124/125/126 decision/approval/guard chain as reusable.', 'approval template doc');
-passAssertion('packet_does_not_treat_prior_build_124_125_126_chain_as_reusable');
+mustHave(packetDoc, 'prior_build_128_129_130_131_decision_approval_guard_chain_reusable_after_build_132_133 | false', 'packet doc');
+mustHave(packetDoc, 'This packet **does not** treat prior Build 128/129/130/131 decision/approval/guard chain as reusable.', 'packet doc');
+mustHave(approvalTemplateDoc, '**Explicit note:** This template does **not** treat prior Build 128/129/130/131 decision/approval/guard chain as reusable.', 'approval template doc');
+passAssertion('packet_does_not_treat_prior_build_128_129_130_131_chain_as_reusable');
 
 mustHave(packetDoc, 'fresh_runner_execution_decision_template_status | created_review_only', 'packet doc');
 mustHave(packetDoc, 'fresh_runner_execution_approval_capture_status | not_captured', 'packet doc');
@@ -583,26 +563,30 @@ mustHave(packetDoc, 'demo_ready_with_live_automation_disabled | preserved', 'pac
 if (!fs.existsSync(path.join(root, fixturePath))) fail(`missing structured fixture: ${fixturePath}`);
 passAssertion('structured_fixture_present');
 
-if (!fs.existsSync(path.join(root, upstreamAfterAfterAfterGuardFreshChainWiringCorrectionFixturePath))) fail(`missing upstream after-after-after-guard fresh-chain wiring correction fixture: ${upstreamAfterAfterAfterGuardFreshChainWiringCorrectionFixturePath}`);
-passAssertion('upstream_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_fixture_present');
+if (!fs.existsSync(path.join(root, upstreamAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath))) {
+  fail(`missing upstream after-after-after-after-guard fresh-chain wiring correction fixture: ${upstreamAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath}`);
+}
+passAssertion('upstream_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_fixture_present');
 
-if (!fs.existsSync(path.join(root, upstreamPostBuild126BlockedEvidenceFixturePath))) fail(`missing upstream post-Build-126 blocked evidence fixture: ${upstreamPostBuild126BlockedEvidenceFixturePath}`);
-passAssertion('upstream_post_build_126_blocked_evidence_fixture_present');
+if (!fs.existsSync(path.join(root, upstreamPostBuild131BlockedEvidenceFixturePath))) {
+  fail(`missing upstream post-Build-131 blocked evidence fixture: ${upstreamPostBuild131BlockedEvidenceFixturePath}`);
+}
+passAssertion('upstream_post_build_131_blocked_evidence_fixture_present');
 
-if (!fs.existsSync(path.join(root, upstreamFreshPreRunGuardAfterAfterAfterGuardWiringCorrectionFixturePath))) fail(`missing upstream fresh pre-run guard after after-after-guard wiring correction fixture: ${upstreamFreshPreRunGuardAfterAfterAfterGuardWiringCorrectionFixturePath}`);
-passAssertion('upstream_fresh_pre_run_guard_after_after_after_guard_wiring_correction_fixture_present');
+if (!fs.existsSync(path.join(root, upstreamFreshPreRunGuardAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath))) {
+  fail(`missing upstream fresh pre-run guard after after-after-after-after-guard wiring correction fixture: ${upstreamFreshPreRunGuardAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath}`);
+}
+passAssertion('upstream_fresh_pre_run_guard_after_after_all_after_guard_fresh_chain_wiring_correction_fixture_present');
 
-if (!fs.existsSync(path.join(root, upstreamCaptureAfterAfterAfterGuardWiringCorrectionFixturePath))) fail(`missing upstream capture after after-after-guard wiring correction fixture: ${upstreamCaptureAfterAfterAfterGuardWiringCorrectionFixturePath}`);
-passAssertion('upstream_capture_fresh_runner_execution_approval_after_after_after_guard_wiring_correction_fixture_present');
+if (!fs.existsSync(path.join(root, upstreamCaptureAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath))) {
+  fail(`missing upstream capture after after-after-after-after-guard wiring correction fixture: ${upstreamCaptureAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath}`);
+}
+passAssertion('upstream_capture_fresh_runner_execution_approval_after_after_all_after_guard_fresh_chain_wiring_correction_fixture_present');
 
-if (!fs.existsSync(path.join(root, upstreamFreshDecisionAfterAfterAfterGuardWiringCorrectionFixturePath))) fail(`missing upstream fresh decision after after-after-guard wiring correction fixture: ${upstreamFreshDecisionAfterAfterAfterGuardWiringCorrectionFixturePath}`);
-passAssertion('upstream_fresh_runner_execution_decision_after_after_after_guard_wiring_correction_fixture_present');
-
-if (!fs.existsSync(path.join(root, upstreamAfterAfterGuardFreshChainWiringCorrectionFixturePath))) fail(`missing upstream after-after-guard fresh-chain wiring correction fixture: ${upstreamAfterAfterGuardFreshChainWiringCorrectionFixturePath}`);
-passAssertion('upstream_runner_execution_path_after_after_guard_fresh_chain_wiring_correction_fixture_present');
-
-if (!fs.existsSync(path.join(root, upstreamPostBuild121BlockedEvidenceFixturePath))) fail(`missing upstream post-Build-121 blocked evidence fixture: ${upstreamPostBuild121BlockedEvidenceFixturePath}`);
-passAssertion('upstream_post_build_121_blocked_evidence_fixture_present');
+if (!fs.existsSync(path.join(root, upstreamAfterAfterAllGuardFreshChainWiringCorrectionFixturePath))) {
+  fail(`missing upstream after-after-after-guard fresh-chain wiring correction fixture: ${upstreamAfterAfterAllGuardFreshChainWiringCorrectionFixturePath}`);
+}
+passAssertion('upstream_runner_execution_path_after_after_all_guard_fresh_chain_wiring_correction_fixture_present');
 
 if (!fs.existsSync(path.join(root, upstreamScaffoldingBuildFixturePath))) fail(`missing upstream scaffolding build fixture: ${upstreamScaffoldingBuildFixturePath}`);
 passAssertion('upstream_scaffolding_build_fixture_present');
@@ -611,27 +595,54 @@ if (!fs.existsSync(path.join(root, manifestPath))) fail(`missing manifest fixtur
 passAssertion('manifest_fixture_present');
 
 const fixture = readJson(fixturePath);
-readJson(upstreamAfterAfterAfterGuardFreshChainWiringCorrectionFixturePath);
-readJson(upstreamPostBuild126BlockedEvidenceFixturePath);
-readJson(upstreamFreshPreRunGuardAfterAfterAfterGuardWiringCorrectionFixturePath);
-readJson(upstreamCaptureAfterAfterAfterGuardWiringCorrectionFixturePath);
-readJson(upstreamFreshDecisionAfterAfterAfterGuardWiringCorrectionFixturePath);
-readJson(upstreamAfterAfterGuardFreshChainWiringCorrectionFixturePath);
-readJson(upstreamPostBuild121BlockedEvidenceFixturePath);
+readJson(upstreamAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath);
+readJson(upstreamPostBuild131BlockedEvidenceFixturePath);
+readJson(upstreamFreshPreRunGuardAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath);
+readJson(upstreamCaptureAfterAfterAllAfterGuardFreshChainWiringCorrectionFixturePath);
+readJson(upstreamAfterAfterAllGuardFreshChainWiringCorrectionFixturePath);
 readJson(upstreamScaffoldingBuildFixturePath);
 const manifest = readJson(manifestPath);
 
-if (fixture.source_of_truth_commit !== SOURCE_OF_TRUTH_COMMIT) fail('fixture source_of_truth_commit must be 59b74bf');
-if (fixture.prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_commit !== PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_COMMIT) fail('fixture prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_commit must be 59b74bf');
-if (fixture.prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_status !== 'closed') fail('fixture prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_status must be closed');
-if (fixture.prior_post_build_126_command_attempt_consumption_status !== 'consumed_by_blocked_fail_closed_result_after_build_126_guard') fail('fixture prior_post_build_126_command_attempt_consumption_status mismatch');
-if (fixture.prior_build_127_consumed_attempt_status !== 'consumed') fail('fixture prior_build_127_consumed_attempt_status must be consumed');
+if (fixture.source_of_truth_commit !== SOURCE_OF_TRUTH_COMMIT) fail('fixture source_of_truth_commit must be 1e2af98');
+if (fixture.prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_commit !== PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION_COMMIT) {
+  fail('fixture prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_commit must be 1e2af98');
+}
+if (fixture.prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_status !== 'closed') {
+  fail('fixture prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_status must be closed');
+}
+if (fixture.prior_post_build_131_blocked_evidence_commit !== PRIOR_POST_BUILD_131_BLOCKED_EVIDENCE_COMMIT) fail('fixture prior_post_build_131_blocked_evidence_commit must be 0dc6d88');
+if (fixture.prior_command_attempt_consumption_status !== 'consumed_by_blocked_fail_closed_result_after_build_131_guard') {
+  fail('fixture prior_command_attempt_consumption_status mismatch');
+}
+if (fixture.prior_build_132_consumed_attempt_status !== 'consumed') fail('fixture prior_build_132_consumed_attempt_status must be consumed');
 if (fixture.immediate_rerun_allowed !== false) fail('fixture immediate_rerun_allowed must be false');
-if (fixture.fresh_runner_execution_approval_required_after_after_after_after_guard_fresh_chain_wiring_correction !== true) fail('fixture fresh_runner_execution_approval_required_after_after_after_after_guard_fresh_chain_wiring_correction must be true');
-if (fixture.fresh_execution_pre_run_guard_required_after_after_after_after_guard_fresh_chain_wiring_correction !== true) fail('fixture fresh_execution_pre_run_guard_required_after_after_after_after_guard_fresh_chain_wiring_correction must be true');
-if (fixture.prior_fresh_runner_execution_approval_reusable_after_after_after_after_guard_fresh_chain_wiring_correction !== false) fail('fixture prior_fresh_runner_execution_approval_reusable_after_after_after_after_guard_fresh_chain_wiring_correction must be false');
-if (fixture.prior_fresh_execution_pre_run_guard_reusable_after_after_after_after_guard_fresh_chain_wiring_correction !== false) fail('fixture prior_fresh_execution_pre_run_guard_reusable_after_after_after_after_guard_fresh_chain_wiring_correction must be false');
-if (fixture.prior_build_124_125_126_decision_approval_guard_chain_reusable_after_build_127_128 !== false) fail('fixture prior_build_124_125_126_decision_approval_guard_chain_reusable_after_build_127_128 must be false');
+if (fixture.fresh_runner_execution_approval_required_after_after_after_after_guard_fresh_chain_wiring_correction !== true) {
+  fail('fixture fresh_runner_execution_approval_required_after_after_after_after_guard_fresh_chain_wiring_correction must be true');
+}
+if (fixture.fresh_execution_pre_run_guard_required_after_after_after_after_guard_fresh_chain_wiring_correction !== true) {
+  fail('fixture fresh_execution_pre_run_guard_required_after_after_after_after_guard_fresh_chain_wiring_correction must be true');
+}
+if (fixture.prior_fresh_runner_execution_approval_reusable_after_after_after_after_guard_fresh_chain_wiring_correction !== false) {
+  fail('fixture prior_fresh_runner_execution_approval_reusable_after_after_after_after_guard_fresh_chain_wiring_correction must be false');
+}
+if (fixture.prior_fresh_execution_pre_run_guard_reusable_after_after_after_after_guard_fresh_chain_wiring_correction !== false) {
+  fail('fixture prior_fresh_execution_pre_run_guard_reusable_after_after_after_after_guard_fresh_chain_wiring_correction must be false');
+}
+if (fixture.prior_build_128_129_130_131_decision_approval_guard_chain_reusable_after_build_132_133 !== false) {
+  fail('fixture prior_build_128_129_130_131_decision_approval_guard_chain_reusable_after_build_132_133 must be false');
+}
+if (fixture.prior_fresh_execution_pre_run_guard_after_after_all_after_guard_fresh_chain_wiring_correction_commit !== PRIOR_FRESH_EXECUTION_PRE_RUN_GUARD_COMMIT) {
+  fail('fixture prior_fresh_execution_pre_run_guard_after_after_all_after_guard_fresh_chain_wiring_correction_commit must be 55b65fd');
+}
+if (fixture.prior_capture_fresh_runner_execution_approval_after_after_all_after_guard_fresh_chain_wiring_correction_commit !== PRIOR_CAPTURE_APPROVAL_COMMIT) {
+  fail('fixture prior_capture_fresh_runner_execution_approval_after_after_all_after_guard_fresh_chain_wiring_correction_commit must be 7953121');
+}
+if (fixture.prior_fresh_runner_execution_decision_after_after_all_after_guard_fresh_chain_wiring_correction_commit !== PRIOR_FRESH_DECISION_COMMIT) {
+  fail('fixture prior_fresh_runner_execution_decision_after_after_all_after_guard_fresh_chain_wiring_correction_commit must be e3a576a');
+}
+if (fixture.prior_runner_execution_path_after_after_all_guard_fresh_chain_wiring_correction_commit !== PRIOR_RUNNER_EXECUTION_PATH_AFTER_AFTER_ALL_GUARD_COMMIT) {
+  fail('fixture prior_runner_execution_path_after_after_all_guard_fresh_chain_wiring_correction_commit must be 59b74bf');
+}
 if (fixture.runner_command_path !== EXACT_RUNNER_PATH) fail('fixture runner_command_path mismatch');
 if (fixture.runner_command_path_status !== FIXTURE_RUNNER_COMMAND_PATH_STATUS) fail('fixture runner_command_path_status mismatch');
 if (fixture.fresh_runner_execution_decision_template_status !== 'created_review_only') fail('fixture fresh_runner_execution_decision_template_status mismatch');
@@ -658,7 +669,9 @@ if (fixture.real_contact_made_by_this_packet !== false) fail('fixture real_conta
 if (fixture.sms_email_calls_calendar_booking_performed_by_this_packet !== false) fail('fixture sms_email_calls_calendar_booking_performed_by_this_packet must be false');
 if (fixture.demo_ready_with_live_automation_disabled !== 'preserved') fail('fixture demo_ready_with_live_automation_disabled must be preserved');
 if (fixture.safety_status !== 'demo_ready_with_live_automation_disabled') fail('fixture safety_status mismatch');
-if (fixture.fresh_runner_execution_decision_template.status !== 'FRESH_RUNNER_EXECUTION_TEMPLATE_ONLY_NOT_SIGNED_NOT_APPROVED_DO_NOT_EXECUTE') fail('fixture fresh_runner_execution_decision_template.status mismatch');
+if (fixture.fresh_runner_execution_decision_template.status !== 'FRESH_RUNNER_EXECUTION_TEMPLATE_ONLY_NOT_SIGNED_NOT_APPROVED_DO_NOT_EXECUTE') {
+  fail('fixture fresh_runner_execution_decision_template.status mismatch');
+}
 if (fixture.fresh_runner_execution_decision_template.signed !== false) fail('fixture fresh_runner_execution_decision_template.signed must be false');
 if (fixture.fresh_runner_execution_decision_template.approved !== false) fail('fixture fresh_runner_execution_decision_template.approved must be false');
 if (fixture.fresh_runner_execution_decision_template.captured !== false) fail('fixture fresh_runner_execution_decision_template.captured must be false');
@@ -676,7 +689,9 @@ for (const field of EXACT_VALUE_FIELDS) {
 passAssertion('fixture_all_24_accepted_exact_values_blank');
 passAssertion('fixture_all_24_approved_exact_values_blank');
 
-if (!Array.isArray(fixture.fresh_runner_execution_decision_template_checks) || fixture.fresh_runner_execution_decision_template_checks.length !== 10) fail('fixture fresh_runner_execution_decision_template_checks must contain 10 checks');
+if (!Array.isArray(fixture.fresh_runner_execution_decision_template_checks) || fixture.fresh_runner_execution_decision_template_checks.length !== 10) {
+  fail('fixture fresh_runner_execution_decision_template_checks must contain 10 checks');
+}
 for (let i = 0; i < FRESH_RUNNER_EXECUTION_TEMPLATE_CHECKS.length; i += 1) {
   const check = fixture.fresh_runner_execution_decision_template_checks[i];
   if (check.check !== i + 1) fail(`fixture fresh_runner_execution_decision_template_checks[${i}].check must be ${i + 1}`);
@@ -701,10 +716,17 @@ passAssertion('runner_command_path_executable');
 const runnerScript = read(runnerPath);
 mustHave(runnerScript, 'BLOCKED', 'runner script');
 mustHave(runnerScript, 'exit 1', 'runner script');
-mustHave(runnerScript, `runner_command_path_status: ${CURRENT_RUNNER_COMMAND_PATH_STATUS}`, 'runner script');
-mustHave(runnerScript, 'prior_command_attempt_consumption_status: consumed_by_blocked_fail_closed_result_after_build_126_guard (Build 127)', 'runner script');
+mustHave(runnerScript, `runner_command_path_status: ${FIXTURE_RUNNER_COMMAND_PATH_STATUS}`, 'runner script');
+mustHave(runnerScript, 'after_after_after_after_guard', 'runner script');
+mustHave(runnerScript, 'after-after-after-after-guard', 'runner script');
+mustHave(runnerScript, 'prior_command_attempt_consumption_status: consumed_by_blocked_fail_closed_result_after_build_131_guard', 'runner script');
+mustHave(runnerScript, 'Build 132 consumed the post-Build-131 exact approved command attempt', 'runner script');
 mustHave(runnerScript, 'immediate_rerun_allowed: false', 'runner script');
-mustNotHave(runnerScript, 'after_after_after_after_guard', 'runner script must not require after-after-after-after guard naming yet');
+mustNotHave(runnerScript, STALE_BUILD_127_PRIMARY_NO_GO_MESSAGE, 'runner script must not have stale Build 127-era primary NO-GO');
+mustNotHave(runnerScript, 'consumed_by_blocked_fail_closed_result_after_build_126_guard (Build 127)', 'runner script must not have stale Build 127-era primary consumption status');
+passAssertion('runner_command_after_after_after_after_guard_references_present');
+passAssertion('runner_command_build_132_consumed_post_build_131_attempt_documented');
+passAssertion('runner_command_no_stale_build_127_era_primary_no_go');
 
 try {
   execSync(`bash ${runnerPath}`, { cwd: root, stdio: 'pipe' });
@@ -746,7 +768,7 @@ mustHave(fullReadiness, 'npm --prefix backend run build', 'full safe readiness')
 passAssertion('full_safe_readiness_lane_preserved');
 
 mustHave(aggregate, verifierPath, 'aggregate readiness');
-mustHave(aggregate, 'Native Workflow Fixture Fresh Runner-Execution Decision After After-After-After-Guard Fresh-Chain Wiring Correction', 'aggregate readiness');
+mustHave(aggregate, 'Native Workflow Fixture Fresh Runner-Execution Decision After After-After-After-After-Guard Fresh-Chain Wiring Correction', 'aggregate readiness');
 mustHave(verifierIndex, packetDocPath, 'verifier index');
 mustHave(verifierIndex, approvalTemplateDocPath, 'verifier index');
 mustHave(verifierIndex, fixturePath, 'verifier index');
@@ -764,17 +786,17 @@ mustHave(wrapper, '#!/usr/bin/env bash', 'wrapper shebang');
 mustHave(wrapper, 'set -euo pipefail', 'wrapper strict mode');
 mustHave(wrapper, verifierPath, 'wrapper verifier');
 mustHave(wrapper, 'node --check', 'wrapper syntax checks');
-mustHave(wrapper, 'local fresh runner-execution decision/template after after-after-after-guard fresh-chain wiring correction only', 'wrapper mode');
+mustHave(wrapper, 'local fresh runner-execution decision/template after after-after-after-after-guard fresh-chain wiring correction only', 'wrapper mode');
 mustHave(wrapper, 'not signed', 'wrapper mode');
 mustHave(wrapper, 'not approved', 'wrapper mode');
 mustHave(wrapper, 'not runner execution', 'wrapper mode');
 mustHave(wrapper, 'not activation', 'wrapper mode');
 mustHave(wrapper, 'non-executing', 'wrapper mode');
-mustHave(wrapper, 'prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_status is closed', 'wrapper mode');
-mustHave(wrapper, 'prior_post_build_126_command_attempt_consumption_status is consumed_by_blocked_fail_closed_result_after_build_126_guard', 'wrapper mode');
-mustHave(wrapper, 'prior_build_127_consumed_attempt_status is consumed', 'wrapper mode');
+mustHave(wrapper, 'prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_status is closed', 'wrapper mode');
+mustHave(wrapper, 'prior_command_attempt_consumption_status is consumed_by_blocked_fail_closed_result_after_build_131_guard', 'wrapper mode');
+mustHave(wrapper, 'prior_build_132_consumed_attempt_status is consumed', 'wrapper mode');
 mustHave(wrapper, 'immediate_rerun_allowed is false', 'wrapper mode');
-mustHave(wrapper, 'prior Build 124/125/126 decision/approval/guard chain is not reusable after Build 127/128', 'wrapper mode');
+mustHave(wrapper, 'prior Build 128/129/130/131 decision/approval/guard chain is not reusable after Build 132/133', 'wrapper mode');
 mustHave(wrapper, 'fresh_runner_execution_approval_capture_status is not_captured', 'wrapper mode');
 mustHave(wrapper, 'fresh_runner_execution_jason_signed_approval_status is not_signed', 'wrapper mode');
 mustHave(wrapper, 'fresh_execution_pre_run_guard_status is not_passed', 'wrapper mode');
@@ -787,14 +809,16 @@ mustHave(wrapper, 'no SMS/email/calls/calendar booking', 'wrapper mode');
 mustHave(wrapper, SOURCE_OF_TRUTH_COMMIT, 'wrapper source of truth');
 mustHave(wrapper, `future_command_status is ${FUTURE_COMMAND_STATUS}`, 'wrapper mode');
 mustHave(wrapper, FIXTURE_RUNNER_COMMAND_PATH_STATUS, 'wrapper mode');
-mustHave(wrapper, 'Jason review/sign fresh runner-execution approval template after after-after-after-guard fresh-chain wiring correction', 'wrapper mode');
-mustHave(wrapper, 'Build 127 consumed the post-Build-126 attempt', 'wrapper mode');
+mustHave(wrapper, 'Jason review/sign fresh runner-execution approval template after after-after-after-after-guard fresh-chain wiring correction', 'wrapper mode');
+mustHave(wrapper, 'Build 132 consumed the post-Build-131 attempt', 'wrapper mode');
 mustNotHave(wrapper, 'verify-source-of-truth.sh', 'wrapper must not run source-of-truth check');
 mustNotHave(wrapper, 'verify-safe-readiness.sh', 'wrapper must not run full aggregate');
 mustNotHave(wrapper, `bash ${runnerPath}`, 'wrapper must not invoke runner');
 mustHave(wrapper, 'does NOT invoke scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh', 'wrapper');
 
-if (!isExecutable(wrapperPath)) fail(`fresh runner execution decision after after-after-after-guard fresh-chain wiring correction dry-run wrapper is not executable: ${wrapperPath}`);
+if (!isExecutable(wrapperPath)) {
+  fail(`fresh runner execution decision after after-after-after-after-guard fresh-chain wiring correction dry-run wrapper is not executable: ${wrapperPath}`);
+}
 passAssertion('fresh_runner_execution_decision_after_after_after_after_guard_fresh_chain_wiring_correction_dry_run_wrapper_present_and_safe');
 passAssertion('wrapper_does_not_invoke_runner');
 
@@ -808,7 +832,7 @@ if (REQUIRED_ASSERTIONS.length !== 102) {
 }
 
 console.log(
-  `PASS: Native Workflow Fixture Fresh Runner-Execution Decision After After-After-After-Guard Fresh-Chain Wiring Correction verified (${REQUIRED_ASSERTIONS.length} assertions).`,
+  `PASS: Native Workflow Fixture Fresh Runner-Execution Decision After After-After-After-After-Guard Fresh-Chain Wiring Correction verified (${REQUIRED_ASSERTIONS.length} assertions).`,
 );
 console.log(
   'PASS: Full aggregate regression lane preserved via scripts/verify-safe-readiness.sh.',

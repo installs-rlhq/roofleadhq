@@ -1,16 +1,18 @@
-# Native Workflow Fixture Fresh Runner-Execution Decision After After-After-After-Guard Fresh-Chain Wiring Correction Approval Template
+# Native Workflow Fixture Fresh Runner-Execution Decision After After-After-After-After-Guard Fresh-Chain Wiring Correction Approval Template
 
 ## Purpose
 
-This document is a **fake-data/local-only/read-only/dry-run-only/review-only/planning-only/template-only/not-approved/non-executing** fresh runner-execution approval template companion for the packet after Build 128 closed runner execution path after-after-after-guard fresh-chain wiring correction at commit `59b74bf`. It provides the single fenced copy/paste Jason fresh exact runner-execution approval template. This template does **not** capture approval, does **not** run the runner, does **not** pass a fresh pre-run guard, and does **not** grant any activation.
+This document is a **fake-data/local-only/read-only/dry-run-only/review-only/planning-only/template-only/not-approved/non-executing** fresh runner-execution approval template companion for the packet after Build 133 closed runner execution path after-after-after-after-guard fresh-chain wiring correction at commit `1e2af98`. It provides the single fenced copy/paste Jason fresh exact runner-execution approval template. This template does **not** capture approval, does **not** run the runner, does **not** pass a fresh pre-run guard, and does **not** grant any activation.
 
 | Field | Value |
 | --- | --- |
-| source_of_truth_commit | 59b74bf |
-| prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_commit | 59b74bf |
-| prior_runner_execution_path_after_after_after_guard_fresh_chain_wiring_correction_status | closed |
-| prior_post_build_126_command_attempt_consumption_status | consumed_by_blocked_fail_closed_result_after_build_126_guard |
-| prior_build_127_consumed_attempt_status | consumed |
+| source_of_truth_commit | 1e2af98 |
+| prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_commit | 1e2af98 |
+| prior_runner_execution_path_after_after_after_after_guard_fresh_chain_wiring_correction_status | closed |
+| prior_post_build_131_blocked_evidence_commit | 0dc6d88 |
+| prior_post_build_131_blocked_evidence_status | closed |
+| prior_command_attempt_consumption_status | consumed_by_blocked_fail_closed_result_after_build_131_guard |
+| prior_build_132_consumed_attempt_status | consumed |
 | immediate_rerun_allowed | false |
 | fresh_runner_execution_decision_template_status | created_review_only |
 | fresh_runner_execution_approval_capture_status | not_captured |
@@ -29,7 +31,7 @@ This document is a **fake-data/local-only/read-only/dry-run-only/review-only/pla
 
 **Explicit note:** This template does **not** pass a fresh execution pre-run guard.
 
-**Explicit note:** This template does **not** treat prior Build 124/125/126 decision/approval/guard chain as reusable.
+**Explicit note:** This template does **not** treat prior Build 128/129/130/131 decision/approval/guard chain as reusable.
 
 **Explicit note:** Exact runner execution scope fields are reference defaults only — not approval.
 
@@ -44,7 +46,7 @@ Jason must copy this block, fill or accept all 24 exact values, add signature, t
 ```text
 FRESH RUNNER EXECUTION TEMPLATE ONLY — NOT SIGNED — NOT APPROVED — DO NOT EXECUTE
 
-I, Jason Lohse, explicitly approve one-time fresh runner execution for the exact scoped actual external/sandbox 30-scenario validation described below after Build 128 runner execution path after-after-after-guard fresh-chain wiring correction.
+I, Jason Lohse, explicitly approve one-time fresh runner execution for the exact scoped actual external/sandbox 30-scenario validation described below after Build 133 runner execution path after-after-after-after-guard fresh-chain wiring correction.
 This fresh runner-execution approval is for fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_after_after_after_guard_fresh_chain_wiring_correction only.
 This fresh runner-execution approval does not approve live activation.
 This fresh runner-execution approval does not approve production data access.
@@ -60,11 +62,11 @@ No real contact may occur.
 This fresh runner-execution approval is one-time-use only.
 Any deviation from the exact values below requires new explicit Jason approval.
 Even if signed later, runner execution remains blocked until a separate fresh execution pre-run guard passes after after-after-after-after-guard fresh-chain wiring correction.
-Prior Build 124/125/126 decision/approval/guard chain is not reusable after Build 127/128.
+Prior Build 128/129/130/131 decision/approval/guard chain is not reusable after Build 132/133.
 
 EXACT VALUES — Jason must fill or explicitly accept each line (reference values are reference only, not approval):
 
-1. source_of_truth_commit: 59b74bf
+1. source_of_truth_commit: 1e2af98
 2. approval_scope: fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_after_after_after_guard_fresh_chain_wiring_correction
 3. exact_working_directory: /root/roofleadhq
 4. exact_command: bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh
