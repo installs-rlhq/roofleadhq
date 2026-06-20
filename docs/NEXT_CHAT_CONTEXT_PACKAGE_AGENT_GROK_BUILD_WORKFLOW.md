@@ -4084,6 +4084,42 @@ node backend/scripts/verify-native-workflow-fixture-build-runner-pre-run-guard-r
 
 Safety remains: local fake-data review-only build-runner-pre-run-guard-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Build-runner pre-run guard only; not runner build, not runner execution, not activation, non-executing. source_of_truth_commit 912b3aa. capture_signed_build_runner_approval_commit 912b3aa. build_runner_exact_approval_template_commit 07421c8. runner_design_commit 40d0d24. approval_scope build_actual_external_sandbox_30_scenario_runner_scaffolding_only. signed_approval_timestamp 06/19/2026 9:13pm Mountain Time. current_runner_gap_status existing_wrapper_is_local_only_not_actual_external_sandbox_runner. different_runner_required true. prior_proposed_runner_status design_only_not_built_not_approved_not_run. build_runner_approval_capture_status captured. build_runner_jason_signed_approval_status signed. build_runner_exact_values_required_count 19. build_runner_exact_values_accepted_count 19. build_runner_exact_values_approved_count 19. build_runner_pre_run_guard_status passed. build_runner_pre_run_guard_checks_required_count 20. build_runner_pre_run_guard_checks_passed_count 20. build_runner_pre_run_guard_failed_count 0. runner_execution_approval_status not_granted. external_calls_approval_status not_granted. credentials_access_approval_status not_granted. production_data_access_approval_status not_granted. runner_build_status not_built_by_this_packet. runner_execution_status not_run_by_this_packet. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_missing_count 30. actual_30_scenario_external_validation_status not_captured_by_this_run. future_command_status ready_for_build_runner_scaffolding_packet_review_only. command_execution_status not_run_by_this_packet. Next step separate runner scaffolding build packet, not execution. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Scaffolding Build
+
+The Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Scaffolding Build (native workflow fixture actual external sandbox 30 scenario runner scaffolding build / runner scaffolding build) creates local fail-closed scaffolding for the actual external/sandbox 30-scenario validation runner without running the runner, approving runner execution, or executing activation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_SCAFFOLDING_BUILD.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_ACTUAL_EXTERNAL_SANDBOX_30_SCENARIO_RUNNER_SCAFFOLDING_BUILD_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-scaffolding-build-readonly.js`
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-scaffolding-build-dry-run.sh`
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh`
+- `backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-runner-scaffolding-build.json`
+- `backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-validation-manifest.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Actual External/Sandbox 30-Scenario Runner Scaffolding Build" / "native workflow fixture actual external sandbox 30 scenario runner scaffolding build" / "runner scaffolding build" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-scaffolding-build-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-actual-external-sandbox-30-scenario-runner-scaffolding-build-readonly.js
+```
+
+Safety remains: local fake-data review-only runner-scaffolding-build-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner scaffolding build only; not runner execution, not activation, non-executing. source_of_truth_commit 640df59. build_runner_pre_run_guard_commit 640df59. capture_signed_build_runner_approval_commit 912b3aa. build_runner_exact_approval_template_commit 07421c8. runner_design_commit 40d0d24. approval_scope build_actual_external_sandbox_30_scenario_runner_scaffolding_only. signed_approval_timestamp 06/19/2026 9:13pm Mountain Time. current_runner_gap_status scaffolding_created_but_execution_not_approved_not_run. different_runner_required true. build_runner_approval_capture_status captured. build_runner_jason_signed_approval_status signed. build_runner_exact_values_required_count 19. build_runner_exact_values_accepted_count 19. build_runner_exact_values_approved_count 19. build_runner_pre_run_guard_status passed. build_runner_pre_run_guard_checks_required_count 20. build_runner_pre_run_guard_checks_passed_count 20. build_runner_pre_run_guard_failed_count 0. runner_scaffolding_build_status built_review_only. runner_command_path_status created_fail_closed_not_approved_to_run. total_manifest_scenarios_count 30. runner_execution_approval_status not_granted. external_calls_approval_status not_granted. credentials_access_approval_status not_granted. production_data_access_approval_status not_granted. runner_execution_status not_run_by_this_packet. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_missing_count 30. actual_30_scenario_external_validation_status not_captured_by_this_run. future_command_status blocked_until_runner_execution_exact_approval_captured_and_execution_pre_run_guard_passes. command_execution_status not_run_by_this_packet. Next step runner-execution exact approval template or stop/review, not execution. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
