@@ -9140,6 +9140,43 @@ Use preferred lead-to-inspection language (fresh runner-execution approval captu
 
 Safety: local fake-data review-only capture-fresh-runner-execution-approval-after-path-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Fresh Execution Pre-Run Guard After Path Correction Approval Capture
+
+Packet artifacts:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_PATH_CORRECTION_APPROVAL_CAPTURE.md`
+- `scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-path-correction-approval-capture-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-path-correction-approval-capture-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-path-correction-approval-capture.json`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Fresh Execution Pre-Run Guard After Path Correction Approval Capture" / "native workflow fixture fresh execution pre run guard after path correction approval capture" / "fresh execution pre run guard after path correction approval capture" across aggregate, index, contexts, and business guide.
+
+The fresh execution pre-run guard after path correction approval capture packet implements:
+
+- Local review-only fresh execution pre-run guard after Build 115 closed fresh runner-execution approval capture at ddd193f
+- source_of_truth_commit ddd193f; prior_capture_fresh_runner_execution_approval_after_path_correction_commit ddd193f; prior_capture_fresh_runner_execution_approval_after_path_correction_status closed
+- References Build 115 capture after path correction, Build 114 fresh decision after path correction, Build 113 path correction, Build 112 blocked evidence, Build 111 fresh pre-run guard (not reusable), Build 110 fresh signed approval capture (not reusable), and Build 103 runner scaffolding build packets
+- approval_scope fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_path_correction
+- fresh_runner_execution_approval_capture_status captured; fresh_runner_execution_jason_signed_approval_status signed
+- fresh_runner_execution_exact_values_required_count 24; fresh_runner_execution_exact_values_accepted_count 24; fresh_runner_execution_exact_values_approved_count 24
+- fresh_execution_pre_run_guard_status passed; fresh_execution_pre_run_guard_checks_required_count 30; fresh_execution_pre_run_guard_checks_passed_count 30; fresh_execution_pre_run_guard_failed_count 0
+- runner_command_path_status corrected_fail_closed_ready_for_exact_approved_execution_after_path_correction_guard
+- external_sandbox_calls_approval_status granted_scoped_test_mode_only_after_fresh_guard; credentials_access_approval_status granted_scoped_test_mode_only_no_secret_logging_after_fresh_guard; test_account_use_approval_status granted_scoped_test_accounts_only_after_fresh_guard
+- runner_command_invoked_by_this_packet false; runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- future_command_status ready_for_exact_approved_runner_execution_command_after_path_correction_guard_review_only
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet
+- approved_for_activation_now false; guard pass only; does not run runner; does not perform actual validation; prior Build 110/111 approvals not reusable
+- Next step exact approved runner execution command after path correction guard review only, not automatic execution
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not invoke runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, fresh-execution-pre-run-guard-passed-after-path-correction-not-run, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (fresh execution pre-run guard passed after path correction approval capture, fake data, runner not run, actual external 30-scenario validation not captured, exact approved command review next).
+
+Safety: local fake-data review-only fresh-execution-pre-run-guard-after-path-correction-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
