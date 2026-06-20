@@ -8822,6 +8822,46 @@ Use preferred lead-to-inspection language (blocked command attempt captured, run
 
 Safety: local fake-data review-only blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Runner State Wiring Correction
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_STATE_WIRING_CORRECTION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_STATE_WIRING_CORRECTION_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-runner-state-wiring-correction-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-runner-state-wiring-correction-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/runner-state-wiring-correction.json`
+
+Canonical source of truth: `4a618fa test(workflow): capture runner command blocked evidence`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Runner State Wiring Correction" / "native workflow fixture runner state wiring correction" / "runner state wiring correction" across aggregate, index, contexts, and business guide.
+
+The runner state wiring correction packet implements:
+
+- Corrects fail-closed runner blocked-state messaging after Build 107 blocked command evidence without rerunning the runner for validation or performing actual 30-scenario validation
+- source_of_truth_commit 4a618fa; references Build 107 capture runner command blocked evidence, Build 106 runner-execution pre-run guard, Build 105 signed runner-execution approval capture, Build 104 runner-execution exact approval template, and Build 103 runner scaffolding build packets
+- runner_state_wiring_gap_status_before_packet detected; runner_state_wiring_correction_status corrected_review_only
+- exact_command_attempted_once_status attempted_blocked_nonzero; prior_one_time_execution_attempt_consumption_status consumed_by_blocked_attempt
+- prior_runner_execution_approval_capture_status captured; prior_runner_execution_jason_signed_approval_status signed; prior_runner_execution_exact_values_required_count 24; prior_runner_execution_exact_values_accepted_count 24; prior_runner_execution_exact_values_approved_count 24
+- prior_execution_pre_run_guard_status passed; prior_execution_pre_run_guard_checks_required_count 30; prior_execution_pre_run_guard_checks_passed_count 30; prior_execution_pre_run_guard_failed_count 0
+- fresh_exact_execution_decision_required true; fresh_execution_pre_run_guard_required true
+- runner_command_path_status corrected_fail_closed_pending_fresh_exact_execution_decision; runner_direct_invocation_status_after_correction blocked_nonzero_expected
+- runner_command_rerun_by_this_packet false; runner_execution_status not_run_to_validation_by_this_packet; command_execution_status not_run_to_validation_by_this_packet
+- external_calls_made_by_this_packet false; credentials_accessed_by_this_packet false; production_data_accessed_by_this_packet false; real_contact_made_by_this_packet false; sms_email_calls_calendar_booking_performed_by_this_packet false
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- Upstream Build 107 blocked command evidence, Build 106 runner-execution pre-run guard, Build 105 signed runner-execution approval capture, Build 104 runner-execution exact approval template, and Build 103 runner scaffolding build fixture verification
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet
+- future_command_status blocked_until_fresh_exact_runner_execution_decision_and_fresh_execution_pre_run_guard_pass
+- approved_for_activation_now false; fixes runner state messaging/wiring only; does not rerun runner for validation; does not perform validation; does not make external calls in this packet
+- Next step fresh exact runner-execution decision/template and fresh execution pre-run guard, not immediate rerun
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier + fail-closed sanity check only; not validation; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, runner-state-wiring-correction-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (runner state wiring corrected review-only, fake data, runner not rerun for validation, actual external 30-scenario validation not captured, fresh exact runner-execution decision next).
+
+Safety: local fake-data review-only runner-state-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
