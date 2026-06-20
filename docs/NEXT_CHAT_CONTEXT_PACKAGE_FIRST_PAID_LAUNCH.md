@@ -9950,6 +9950,55 @@ node backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-command
 
 Safety remains: local fake-data review-only fresh-blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh blocked command evidence capture only; not runner rerun, not validation, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Runner Execution Path Correction
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_CORRECTION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_CORRECTION_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-runner-execution-path-correction-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/runner-execution-path-correction.json`
+- `scripts/run-native-workflow-fixture-runner-execution-path-correction-dry-run.sh`
+
+Updated files:
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh` (review-only messaging correction only)
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Runner Execution Path Correction" / "native workflow fixture runner execution path correction" / "runner execution path correction" across aggregate, index, contexts, and business guide.
+- Runner execution path correction — source_of_truth_commit 847592a, capture_fresh_runner_command_blocked_evidence_commit 847592a, fresh_execution_pre_run_guard_commit 135b367, capture_fresh_signed_runner_execution_approval_commit a1f4dd7, runner_state_wiring_correction_commit 77f2a00, capture_runner_command_blocked_evidence_commit 4a618fa.
+- prior_fresh_command_attempt_status attempted_blocked_nonzero; prior_fresh_command_exit_status nonzero_blocked.
+- prior_fresh_command_attempt_consumption_status consumed_by_blocked_fail_closed_result.
+- runner_execution_path_gap_status detected; runner_execution_path_correction_status design_or_corrected_review_only.
+- immediate_rerun_allowed false; fresh_decision_required_after_correction true; fresh_pre_run_guard_required_after_correction true.
+- incoming_future_command_status blocked_until_runner_execution_path_correction_and_fresh_decision.
+- future_command_status blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_runner_execution_path_correction.
+- runner_command_path_status corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_execution_path_correction.
+- fresh_runner_execution_approval_capture_status captured; fresh_runner_execution_jason_signed_approval_status signed.
+- fresh_execution_pre_run_guard_status passed; fresh_execution_pre_run_guard_checks_required_count 30; fresh_execution_pre_run_guard_checks_passed_count 30; fresh_execution_pre_run_guard_failed_count 0.
+- no_immediate_rerun_allowed true; no_immediate_runner_invocation_by_blocked_path true.
+- runner_command_rerun_by_this_packet false; runner_execution_status not_run_to_validation_by_this_packet; command_execution_status not_run_to_validation_by_this_packet.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet.
+- approved_for_activation_now false; correction/design only; does not rerun runner; does not perform validation; does not turn runner into executable external validation path.
+- Build 112 consumed the fresh one-time attempt. Next step fresh runner-execution decision/template and fresh execution pre-run guard pass, not immediate rerun.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-runner-execution-path-correction-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-runner-execution-path-correction-readonly.js
+```
+
+Safety remains: local fake-data review-only runner-execution-path-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner execution path correction/design only; not runner rerun for validation, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

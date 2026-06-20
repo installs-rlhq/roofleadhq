@@ -4426,6 +4426,39 @@ node backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-command
 
 Safety remains: local fake-data review-only fresh-blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh blocked command evidence capture only; not runner rerun, not validation, not activation, non-executing. source_of_truth_commit 135b367. fresh_execution_pre_run_guard_commit 135b367. capture_fresh_signed_runner_execution_approval_commit a1f4dd7. runner_state_wiring_correction_commit 77f2a00. capture_runner_command_blocked_evidence_commit 4a618fa. exact_command_attempted_from_working_directory /root/roofleadhq. fresh_runner_command_attempt_status attempted_blocked_nonzero. fresh_runner_command_exit_status nonzero_blocked. fresh_runner_command_attempt_consumption_status consumed_by_blocked_fail_closed_result. runner_direct_invocation_status_after_fresh_guard blocked_nonzero_expected. fresh_runner_execution_approval_capture_status captured. fresh_runner_execution_jason_signed_approval_status signed. fresh_execution_pre_run_guard_status passed. fresh_execution_pre_run_guard_checks_required_count 30. fresh_execution_pre_run_guard_checks_passed_count 30. fresh_execution_pre_run_guard_failed_count 0. no_immediate_rerun_allowed true. no_immediate_runner_invocation_by_blocked_path true. runner_execution_status not_run. command_execution_status not_run. validation_log_written_by_runner_attempt false. structured_evidence_written_by_runner_attempt false. future_command_status blocked_until_runner_execution_path_correction_and_fresh_decision. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Next step runner execution path correction/design and fresh decision path, not immediate rerun. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Runner Execution Path Correction
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_CORRECTION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_CORRECTION_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-runner-execution-path-correction-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/runner-execution-path-correction.json`
+- `scripts/run-native-workflow-fixture-runner-execution-path-correction-dry-run.sh`
+
+Updated files:
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh` (review-only messaging correction only)
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Runner Execution Path Correction" / "native workflow fixture runner execution path correction" / "runner execution path correction" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-runner-execution-path-correction-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-runner-execution-path-correction-readonly.js
+```
+
+Safety remains: local fake-data review-only runner-execution-path-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner execution path correction/design only; not runner rerun for validation, not activation, non-executing. source_of_truth_commit 847592a. capture_fresh_runner_command_blocked_evidence_commit 847592a. prior_fresh_command_attempt_status attempted_blocked_nonzero. prior_fresh_command_attempt_consumption_status consumed_by_blocked_fail_closed_result. runner_execution_path_gap_status detected. runner_execution_path_correction_status design_or_corrected_review_only. immediate_rerun_allowed false. future_command_status blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_runner_execution_path_correction. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Build 112 consumed the fresh attempt. Next step fresh runner-execution decision/template and fresh execution pre-run guard pass, not immediate rerun. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
