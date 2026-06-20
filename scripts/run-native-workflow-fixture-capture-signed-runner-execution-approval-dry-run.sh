@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+echo "== RoofLeadHQ Native Workflow Fixture Capture Signed Runner-Execution Approval Dry Run =="
+echo "Mode: local signed runner-execution approval capture only; review-only; not execution pre-run guard; not runner execution; not activation; non-executing."
+echo "This wrapper validates committed signed runner-execution approval capture packet artifacts — it does NOT run the runner, pass the execution pre-run guard, or execute activation."
+echo "No external calls, no credentials, no production data, no roofer/homeowner contact, no SMS/email/calls/calendar booking."
+echo "source_of_truth_commit is 67393ed. Build 104 runner-execution exact approval template packet (67393ed) and Build 103 runner scaffolding build (145bf15) are referenced."
+echo "approval_scope is run_actual_external_sandbox_30_scenario_validation_once_only."
+echo "signed_approval_timestamp is 06/19/2026 9:47pm MST."
+echo "exact_working_directory is /root/roofleadhq."
+echo "exact_command references scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh (documented only; not invoked by this wrapper)."
+echo "exact_runner_path is scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh."
+echo "exact_manifest_path is backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-validation-manifest.json."
+echo "exact_scenario_count is 30."
+echo "runner_execution_approval_capture_status is captured. runner_execution_jason_signed_approval_status is signed."
+echo "runner_execution_exact_values_required_count is 24. runner_execution_exact_values_accepted_count is 24. runner_execution_exact_values_approved_count is 24."
+echo "runner_execution_approval_status is granted_scoped_one_time_pending_execution_pre_run_guard."
+echo "external_sandbox_calls_approval_status is granted_scoped_test_mode_only (captured for future scoped run only; not performed by this packet)."
+echo "credentials_access_approval_status is granted_scoped_test_mode_only_no_secret_logging (captured for future scoped run only; not performed by this packet)."
+echo "test_account_use_approval_status is granted_scoped_test_accounts_only (captured for future scoped run only; not performed by this packet)."
+echo "production_data_access_approval_status is not_granted. production_supabase_write_approval_status is not_granted."
+echo "schema_auth_rls_security_change_approval_status is not_granted. live_activation_approval_status is not_granted."
+echo "real_homeowner_contact_approval_status is not_granted. real_roofer_contact_approval_status is not_granted."
+echo "sms_email_calls_calendar_booking_approval_status is not_granted_by_this_packet_until_execution_pre_run_guard_passes."
+echo "billing_payment_automation_approval_status is not_granted."
+echo "runner_scaffolding_build_status is built_review_only."
+echo "runner_command_path_status is created_fail_closed_not_approved_to_run_until_execution_pre_run_guard_passes."
+echo "runner_fail_closed_sanity_check_status is blocked_exit_code_1."
+echo "execution_pre_run_guard_status is not_passed_by_this_packet."
+echo "runner_execution_status is not_run_by_this_packet. command_execution_status is not_run_by_this_packet."
+echo "actual_30_scenario_external_validation remains 0 captured / 0 passed / 30 missing / not_captured_by_this_run."
+echo "Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted."
+echo "demo_ready_with_live_automation_disabled preserved."
+echo "future_command_status is blocked_until_runner_execution_pre_run_guard_passes."
+echo "approved_for_activation_now is false. Next step is separate execution pre-run guard, not execution."
+echo "No source-of-truth check inside this wrapper (agent worktrees can be ahead/behind main during branch review)."
+echo "Full aggregate regression remains available for milestone/high-risk review (Terminal 1)."
+
+node --check backend/scripts/verify-native-workflow-fixture-capture-signed-runner-execution-approval-readonly.js
+echo "PASS: signed runner-execution capture verifier syntax check (node --check) succeeded."
+
+node backend/scripts/verify-native-workflow-fixture-capture-signed-runner-execution-approval-readonly.js
+
+echo "PASS: Native Workflow Fixture Capture Signed Runner-Execution Approval Dry Run wrapper passed."
+echo "Note: This signed runner-execution approval capture does NOT run the runner or pass the execution pre-run guard."
+echo "Note: Signed runner-execution approval is captured for one-time scoped sandbox/test-mode run pending pre-run guard only."
+echo "Note: actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing."
+echo "Note: Controlled real roofer setup and live activation remain blocked."
+echo "Note: Next step is separate execution pre-run guard, not execution."

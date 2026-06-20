@@ -9566,6 +9566,52 @@ node backend/scripts/verify-native-workflow-fixture-runner-execution-exact-appro
 
 Safety remains: local fake-data review-only runner-execution-exact-approval-template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner-execution approval template only; not signed, not approved, not runner execution, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Capture Signed Runner-Execution Approval
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_EXECUTION_APPROVAL.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_EXECUTION_APPROVAL_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-capture-signed-runner-execution-approval-readonly.js`
+- `scripts/run-native-workflow-fixture-capture-signed-runner-execution-approval-dry-run.sh`
+- `backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-execution-approval.json`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Capture Signed Runner-Execution Approval" / "native workflow fixture capture signed runner execution approval" / "capture signed runner execution approval" across aggregate, index, contexts, and business guide.
+- Signed runner-execution approval capture — source_of_truth_commit 67393ed, runner_execution_exact_approval_template_commit 67393ed, runner_scaffolding_build_commit 145bf15.
+- approval_scope run_actual_external_sandbox_30_scenario_validation_once_only; signed_approval_timestamp 06/19/2026 9:47pm MST.
+- exact_working_directory /root/roofleadhq; exact_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh; exact_runner_path scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh; exact_manifest_path backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-validation-manifest.json; exact_scenario_count 30.
+- runner_scaffolding_build_status built_review_only; runner_command_path_status created_fail_closed_not_approved_to_run_until_execution_pre_run_guard_passes; runner_fail_closed_sanity_check_status blocked_exit_code_1.
+- runner_execution_approval_capture_status captured; runner_execution_jason_signed_approval_status signed; runner_execution_exact_values_required_count 24; runner_execution_exact_values_accepted_count 24; runner_execution_exact_values_approved_count 24.
+- runner_execution_approval_status granted_scoped_one_time_pending_execution_pre_run_guard; external_sandbox_calls_approval_status granted_scoped_test_mode_only; credentials_access_approval_status granted_scoped_test_mode_only_no_secret_logging; test_account_use_approval_status granted_scoped_test_accounts_only.
+- production_data_access_approval_status not_granted; production_supabase_write_approval_status not_granted; schema_auth_rls_security_change_approval_status not_granted; live_activation_approval_status not_granted; real_homeowner_contact_approval_status not_granted; real_roofer_contact_approval_status not_granted; sms_email_calls_calendar_booking_approval_status not_granted_by_this_packet_until_execution_pre_run_guard_passes; billing_payment_automation_approval_status not_granted.
+- execution_pre_run_guard_status not_passed_by_this_packet; runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- external_calls_allowed_by_this_packet false; credentials_access_allowed_by_this_packet false; production_data_access_allowed_by_this_packet false; sms_email_calls_calendar_booking_allowed_by_this_packet false.
+- demo_ready_with_live_automation_disabled preserved; approved_for_activation_now false.
+- future_command_status blocked_until_runner_execution_pre_run_guard_passes.
+- This packet captures signed runner-execution approval only; does not pass execution pre-run guard; does not run runner.
+- Next step is separate execution pre-run guard, not execution.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-capture-signed-runner-execution-approval-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-capture-signed-runner-execution-approval-readonly.js
+```
+
+Safety remains: local fake-data review-only signed-runner-execution-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Signed runner-execution approval capture only; not execution pre-run guard, not runner execution, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
