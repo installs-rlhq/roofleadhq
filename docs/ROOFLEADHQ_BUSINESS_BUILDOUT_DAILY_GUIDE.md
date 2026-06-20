@@ -8737,6 +8737,49 @@ Use preferred lead-to-inspection language (signed runner-execution approval capt
 
 Safety: local fake-data review-only signed-runner-execution-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Runner-Execution Pre-Run Guard
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PRE_RUN_GUARD.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PRE_RUN_GUARD_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-runner-execution-pre-run-guard-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-runner-execution-pre-run-guard-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/runner-execution-pre-run-guard.json`
+
+Canonical source of truth: `bb0bc14 test(workflow): capture signed runner execution approval`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Runner-Execution Pre-Run Guard" / "native workflow fixture runner execution pre run guard" / "runner execution pre run guard" across aggregate, index, contexts, and business guide.
+
+The runner-execution pre-run guard packet implements:
+
+- Verifies Jason signed one-time runner-execution approval captured at bb0bc14 and exact approved runner command eligibility without running the runner
+- source_of_truth_commit bb0bc14; references Build 105 signed runner-execution approval capture, Build 104 runner-execution exact approval template, and Build 103 runner scaffolding build packets
+- approval_scope run_actual_external_sandbox_30_scenario_validation_once_only; signed_approval_timestamp 06/19/2026 9:47pm MST
+- exact_working_directory /root/roofleadhq; exact_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh; exact_runner_path scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh; exact_manifest_path backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-validation-manifest.json; exact_scenario_count 30
+- runner_scaffolding_build_status built_review_only; runner_command_path_status created_fail_closed_pending_exact_approved_execution_command
+- runner_execution_approval_capture_status captured; runner_execution_jason_signed_approval_status signed; runner_execution_exact_values_required_count 24; runner_execution_exact_values_accepted_count 24; runner_execution_exact_values_approved_count 24
+- runner_execution_approval_status granted_scoped_one_time_pending_execution_pre_run_guard; external_sandbox_calls_approval_status granted_scoped_test_mode_only; credentials_access_approval_status granted_scoped_test_mode_only_no_secret_logging; test_account_use_approval_status granted_scoped_test_accounts_only
+- production_data_access_approval_status not_granted; production_supabase_write_approval_status not_granted; schema_auth_rls_security_change_approval_status not_granted; live_activation_approval_status not_granted; real_homeowner_contact_approval_status not_granted; real_roofer_contact_approval_status not_granted; billing_payment_automation_approval_status not_granted
+- execution_pre_run_guard_status passed; execution_pre_run_guard_checks_required_count 30; execution_pre_run_guard_checks_passed_count 30; execution_pre_run_guard_failed_count 0
+- runner_command_invoked_by_this_packet false; external_calls_made_by_this_packet false; credentials_accessed_by_this_packet false; production_data_accessed_by_this_packet false; real_contact_made_by_this_packet false; sms_email_calls_calendar_booking_performed_by_this_packet false
+- runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- Upstream Build 105 signed runner-execution approval capture, Build 104 runner-execution exact approval template, and Build 103 runner scaffolding build fixture verification
+- All 30 execution pre-run guard checks passed
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet
+- external_calls_allowed_by_this_packet false; credentials_access_allowed_by_this_packet false; production_data_access_allowed_by_this_packet false; sms_email_calls_calendar_booking_allowed_by_this_packet false
+- future_command_status ready_for_exact_approved_runner_execution_command_review_only
+- approved_for_activation_now false; does not run runner; does not invoke exact approved command; does not perform external calls in this packet
+- Next step exact approved runner command execution in Terminal 1 with no substitutions from /root/roofleadhq, or stop/review
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not invoke runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, execution-pre-run-guard-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (runner-execution pre-run guard passed, fake data, review-only, runner not run, actual external 30-scenario validation not captured, exact approved runner command execution review next).
+
+Safety: local fake-data review-only execution-pre-run-guard-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
