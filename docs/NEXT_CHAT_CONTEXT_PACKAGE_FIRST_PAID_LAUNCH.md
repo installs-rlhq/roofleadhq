@@ -10179,6 +10179,53 @@ node backend/scripts/verify-native-workflow-fixture-capture-post-build-116-runne
 
 Safety remains: local fake-data review-only post-build-116-blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Evidence capture only; not runner execution, not actual validation, not activation, non-executing. source_of_truth_commit 2f1bbe3. prior_fresh_execution_pre_run_guard_after_path_correction_status closed. future_command_status blocked_until_runner_execution_path_after_guard_wiring_correction_and_fresh_decision. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Runner Execution Path After-Guard Wiring Correction
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_AFTER_GUARD_WIRING_CORRECTION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_AFTER_GUARD_WIRING_CORRECTION_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-runner-execution-path-after-guard-wiring-correction-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/runner-execution-path-after-guard-wiring-correction.json`
+- `scripts/run-native-workflow-fixture-runner-execution-path-after-guard-wiring-correction-dry-run.sh`
+
+Updated files:
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh`
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Runner Execution Path After-Guard Wiring Correction" / "native workflow fixture runner execution path after guard wiring correction" / "runner execution path after guard wiring correction" across aggregate, index, contexts, and business guide.
+- After-guard wiring correction — source_of_truth_commit ae23997, prior_post_build_116_blocked_evidence_commit ae23997, prior_post_build_116_blocked_evidence_status closed.
+- prior_exact_command_attempt_after_build_116_status attempted_blocked_nonzero; prior_exact_command_exit_status nonzero_blocked.
+- prior_exact_command_attempt_consumption_status consumed_by_blocked_fail_closed_result_after_build_116_guard.
+- runner_output_state_before_after_guard_wiring_correction stale_pre_build_114_115_116_state_detected (removed).
+- runner_execution_path_after_guard_wiring_gap_status detected; runner_execution_path_after_guard_wiring_correction_status design_or_corrected_review_only.
+- fresh_runner_execution_decision_after_path_correction_status closed; fresh_runner_execution_approval_capture_after_path_correction_status captured_signed; fresh_execution_pre_run_guard_after_path_correction_status passed.
+- immediate_rerun_allowed false; fresh_decision_required_after_after_guard_wiring_correction true; fresh_pre_run_guard_required_after_after_guard_wiring_correction true.
+- runner_command_path_status corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_after_guard_wiring_correction.
+- runner_command_invoked_by_this_packet false; runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- incoming future_command_status blocked_until_runner_execution_path_after_guard_wiring_correction_and_fresh_decision.
+- future_command_status blocked_until_after_guard_wiring_correction_fresh_decision_and_fresh_guard.
+- approved_for_activation_now false; correction/design only; does not rerun runner; does not perform actual validation.
+- Next step fresh runner-execution decision and fresh execution pre-run guard after after-guard wiring correction, not immediate rerun.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-runner-execution-path-after-guard-wiring-correction-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-runner-execution-path-after-guard-wiring-correction-readonly.js
+```
+
+Safety remains: local fake-data review-only runner-execution-path-after-guard-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Correction/design only; not runner execution for validation, not actual validation, not activation, non-executing. source_of_truth_commit ae23997. prior_post_build_116_blocked_evidence_status closed. future_command_status blocked_until_after_guard_wiring_correction_fresh_decision_and_fresh_guard. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:
