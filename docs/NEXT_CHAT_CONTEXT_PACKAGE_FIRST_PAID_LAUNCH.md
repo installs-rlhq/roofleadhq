@@ -9754,6 +9754,53 @@ node backend/scripts/verify-native-workflow-fixture-runner-state-wiring-correcti
 
 Safety remains: local fake-data review-only runner-state-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Runner state wiring correction only; not runner rerun for validation, not validation, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Fresh Runner-Execution Exact Decision Template
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_EXACT_DECISION_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_EXACT_DECISION_TEMPLATE_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-fresh-runner-execution-exact-decision-template-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/fresh-runner-execution-exact-decision-template.json`
+- `scripts/run-native-workflow-fixture-fresh-runner-execution-exact-decision-template-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Fresh Runner-Execution Exact Decision Template" / "native workflow fixture fresh runner execution exact decision template" / "fresh runner execution exact decision template" across aggregate, index, contexts, and business guide.
+- Fresh runner-execution exact decision template — source_of_truth_commit 77f2a00, runner_state_wiring_correction_commit 77f2a00, capture_runner_command_blocked_evidence_commit 4a618fa, runner_execution_pre_run_guard_commit b834baa, capture_signed_runner_execution_approval_commit bb0bc14, runner_execution_exact_approval_template_commit 67393ed, runner_scaffolding_build_commit 145bf15.
+- runner_state_wiring_correction_status corrected_review_only; prior_one_time_execution_attempt_consumption_status consumed_by_blocked_attempt.
+- fresh_exact_execution_decision_required true; fresh_execution_pre_run_guard_required true.
+- fresh_runner_execution_decision_template_status created_review_only; fresh_runner_execution_approval_capture_status not_captured; fresh_runner_execution_jason_signed_approval_status not_signed.
+- fresh_runner_execution_exact_values_required_count 24; fresh_runner_execution_exact_values_accepted_count 0; fresh_runner_execution_exact_values_approved_count 0.
+- fresh_runner_execution_approval_status not_granted; fresh_execution_pre_run_guard_status not_passed.
+- exact_working_directory /root/roofleadhq; exact_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh; exact_scenario_count 30.
+- runner_command_path_status corrected_fail_closed_pending_fresh_exact_execution_decision; runner_command_invoked_by_this_packet false.
+- runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet.
+- external_calls_made_by_this_packet false; credentials_accessed_by_this_packet false; production_data_accessed_by_this_packet false; real_contact_made_by_this_packet false; sms_email_calls_calendar_booking_performed_by_this_packet false.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- demo_ready_with_live_automation_disabled preserved; approved_for_activation_now false.
+- future_command_status blocked_until_fresh_runner_execution_approval_captured.
+- This packet provides fresh exact decision/template only; does not capture approval; does not pass fresh pre-run guard; does not run runner.
+- Next step is Jason review/sign fresh exact runner-execution approval template, or stop/review, not execution.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-fresh-runner-execution-exact-decision-template-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-fresh-runner-execution-exact-decision-template-readonly.js
+```
+
+Safety remains: local fake-data review-only fresh-runner-execution-exact-decision-template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh exact decision template only; not approval capture, not fresh pre-run guard pass, not runner execution, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

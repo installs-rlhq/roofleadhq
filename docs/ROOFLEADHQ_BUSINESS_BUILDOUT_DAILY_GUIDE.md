@@ -8862,6 +8862,44 @@ Use preferred lead-to-inspection language (runner state wiring corrected review-
 
 Safety: local fake-data review-only runner-state-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Fresh Runner-Execution Exact Decision Template
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_EXACT_DECISION_TEMPLATE.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_EXACT_DECISION_TEMPLATE_NO_GO_REVIEW.md`
+- `scripts/run-native-workflow-fixture-fresh-runner-execution-exact-decision-template-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-fresh-runner-execution-exact-decision-template-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/fresh-runner-execution-exact-decision-template.json`
+
+Verifier enforces references to the packet artifacts and "Native Workflow Fixture Fresh Runner-Execution Exact Decision Template" / "native workflow fixture fresh runner execution exact decision template" / "fresh runner execution exact decision template" across aggregate, index, contexts, and business guide.
+
+The fresh runner-execution exact decision template packet implements:
+
+- Local review-only fresh exact decision/template for possible future Jason approval to rerun actual external/sandbox 30-scenario validation after Build 108 corrected runner state wiring
+- source_of_truth_commit 77f2a00; references Build 108 runner state wiring correction, Build 107 blocked command evidence, Build 106 runner-execution pre-run guard, Build 105 signed runner-execution approval capture, Build 104 runner-execution exact approval template, and Build 103 runner scaffolding build packets
+- runner_state_wiring_correction_status corrected_review_only; prior_one_time_execution_attempt_consumption_status consumed_by_blocked_attempt
+- fresh_exact_execution_decision_required true; fresh_execution_pre_run_guard_required true
+- fresh_runner_execution_decision_template_status created_review_only; fresh_runner_execution_approval_capture_status not_captured; fresh_runner_execution_jason_signed_approval_status not_signed
+- fresh_runner_execution_exact_values_required_count 24; fresh_runner_execution_exact_values_accepted_count 0; fresh_runner_execution_exact_values_approved_count 0
+- fresh_runner_execution_approval_status not_granted; fresh_execution_pre_run_guard_status not_passed
+- exact_working_directory /root/roofleadhq; exact_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh; exact_scenario_count 30
+- runner_command_path_status corrected_fail_closed_pending_fresh_exact_execution_decision; runner_command_invoked_by_this_packet false
+- runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet
+- external_calls_made_by_this_packet false; credentials_accessed_by_this_packet false; production_data_accessed_by_this_packet false; real_contact_made_by_this_packet false; sms_email_calls_calendar_booking_performed_by_this_packet false
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet
+- future_command_status blocked_until_fresh_runner_execution_approval_captured
+- approved_for_activation_now false; template only; does not capture approval; does not pass fresh pre-run guard; does not run runner; does not make external calls in this packet
+- Next step Jason review/sign fresh exact runner-execution approval template, or stop/review, not execution
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not invoke runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, fresh-runner-execution-exact-decision-template-only, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (fresh exact runner-execution decision template review-only, fake data, runner not run, actual external 30-scenario validation not captured, Jason review/sign fresh approval next).
+
+Safety: local fake-data review-only fresh-runner-execution-exact-decision-template-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
