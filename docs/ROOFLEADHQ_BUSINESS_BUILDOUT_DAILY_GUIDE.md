@@ -9676,6 +9676,46 @@ Use preferred lead-to-inspection language (after-after-after-guard fresh-chain w
 
 Safety: local fake-data review-only fresh-runner-execution-decision-after-after-after-after-guard-fresh-chain-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
 
+## Native Workflow Fixture Capture Fresh Runner-Execution Approval After After-After-After-Guard Fresh-Chain Wiring Correction
+
+Native Workflow Fixture Capture Fresh Runner-Execution Approval After After-After-After-Guard Fresh-Chain Wiring Correction / native workflow fixture capture fresh runner execution approval after after after after guard fresh chain wiring correction / capture fresh runner execution approval after after after after guard fresh chain wiring correction packet.
+
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_FRESH_RUNNER_EXECUTION_APPROVAL_AFTER_AFTER_AFTER_AFTER_GUARD_FRESH_CHAIN_WIRING_CORRECTION.md`
+- `scripts/run-native-workflow-fixture-capture-fresh-runner-execution-approval-after-after-after-after-guard-fresh-chain-wiring-correction-dry-run.sh`
+- `backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-execution-approval-after-after-after-after-guard-fresh-chain-wiring-correction-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/capture-fresh-runner-execution-approval-after-after-after-after-guard-fresh-chain-wiring-correction.json`
+
+The fresh runner-execution approval capture after after-after-after-guard fresh-chain wiring correction packet implements:
+
+- Local review-only fresh runner-execution approval evidence capture after Build 129 closed fresh decision/template at e3a576a
+- source_of_truth_commit e3a576a; prior_fresh_runner_execution_decision_after_after_after_after_guard_fresh_chain_wiring_correction_commit e3a576a; prior_fresh_runner_execution_decision_after_after_after_after_guard_fresh_chain_wiring_correction_status closed
+- References Build 129 fresh decision after after-after-after-guard fresh-chain wiring correction, Build 128 after-after-after-guard fresh-chain wiring correction, Build 127 post-Build-126 blocked evidence, Build 126 fresh pre-run guard after after-after-guard fresh-chain wiring correction, Build 125 capture after after-after-guard fresh-chain wiring correction, and Build 103 runner scaffolding build packets
+- signed_approval_capture_source chat; approval_scope fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_after_after_after_guard_fresh_chain_wiring_correction
+- fresh_runner_execution_signed_by Jason Lohse; fresh_runner_execution_signed_at 06/20/2026 2:17pm MST
+- fresh_runner_execution_approval_capture_status captured; fresh_runner_execution_jason_signed_approval_status signed
+- fresh_runner_execution_exact_values_required_count 24; fresh_runner_execution_exact_values_accepted_count 24; fresh_runner_execution_exact_values_approved_count 24
+- fresh_runner_execution_approval_status granted_scoped_one_time_pending_fresh_execution_pre_run_guard_after_after_after_after_guard_fresh_chain_wiring_correction
+- fresh_execution_pre_run_guard_status not_passed_by_this_packet
+- runner_command_path_status corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_after_after_after_guard_fresh_chain_wiring_correction
+- runner_command_invoked_by_this_packet false; runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run
+- future_command_status blocked_until_fresh_execution_pre_run_guard_passes_after_after_after_after_guard_fresh_chain_wiring_correction_approval_capture
+- prior_post_build_126_command_attempt_consumption_status consumed_by_blocked_fail_closed_result_after_build_126_guard; prior_build_127_consumed_attempt_status consumed
+- immediate_rerun_allowed false; fresh_runner_execution_approval_required_after_after_after_after_guard_fresh_chain_wiring_correction true; fresh_execution_pre_run_guard_required_after_after_after_after_guard_fresh_chain_wiring_correction true
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet
+- approved_for_activation_now false; approval capture only; does not pass fresh pre-run guard; does not run runner; does not perform actual validation
+- Build 127 consumed post-Build-126 attempt. Prior Build 124/125/126 decision/approval/guard chain not reusable.
+- Next step separate fresh execution pre-run guard after after-after-after-guard fresh-chain wiring correction approval capture, not execution
+- Controlled real roofer setup remains blocked
+- Read-only verifier and narrow dry-run wrapper (verifier only; does not invoke runner; full aggregate regression preserved)
+- Delivery posture: local-only, fake-data-only, read-only, dry-run-only, review-only, fresh-runner-execution-approval-captured-signed-after-after-after-after-guard-fresh-chain-wiring-correction, non-executing
+- demo_ready_with_live_automation_disabled preserved
+- Full aggregate regression via `scripts/verify-safe-readiness.sh` preserved
+
+Use preferred lead-to-inspection language (after-after-after-guard fresh-chain wiring correction approval captured at e3a576a, fake data, runner not run, actual external 30-scenario validation not captured, fresh execution pre-run guard review next).
+
+Safety: local fake-data review-only capture-fresh-runner-execution-approval-after-after-after-after-guard-fresh-chain-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. Wired into aggregate first-paid pilot readiness and documented in `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 - `docs/VERIFIER_QUIET_MODE_FAST_LANE_PERFORMANCE_CLEANUP.md`
