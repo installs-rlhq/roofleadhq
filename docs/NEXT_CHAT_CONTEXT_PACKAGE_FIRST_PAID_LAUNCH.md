@@ -9849,6 +9849,56 @@ node backend/scripts/verify-native-workflow-fixture-capture-fresh-signed-runner-
 
 Safety remains: local fake-data review-only fresh-signed-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh signed approval capture only; not fresh pre-run guard pass, not runner execution, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Fresh Execution Pre-Run Guard
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard.json`
+- `scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-dry-run.sh`
+
+Updated files:
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh` (corrected runner state wiring after fresh guard pass)
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Fresh Execution Pre-Run Guard" / "native workflow fixture fresh execution pre run guard" / "fresh execution pre run guard" across aggregate, index, contexts, and business guide.
+- Fresh execution pre-run guard — source_of_truth_commit a1f4dd7, capture_fresh_signed_runner_execution_approval_commit a1f4dd7, fresh_runner_execution_decision_template_commit 31019fb, runner_state_wiring_correction_commit 77f2a00, capture_runner_command_blocked_evidence_commit 4a618fa.
+- runner_state_wiring_correction_status corrected_review_only; corrected_runner_state_wiring_status verified.
+- fresh_runner_execution_approval_capture_status captured; fresh_runner_execution_jason_signed_approval_status signed.
+- fresh_runner_execution_exact_values_required_count 24; fresh_runner_execution_exact_values_accepted_count 24; fresh_runner_execution_exact_values_approved_count 24.
+- fresh_execution_pre_run_guard_status passed; fresh_execution_pre_run_guard_checks_required_count 30; fresh_execution_pre_run_guard_checks_passed_count 30; fresh_execution_pre_run_guard_failed_count 0.
+- runner_readiness_validation_status passed; manifest_readiness_validation_status passed; evidence_output_path_readiness_status passed; no_stale_runner_state_status passed.
+- approval_scope fresh_run_actual_external_sandbox_30_scenario_validation_once_only; signed_approval_timestamp 06/20/2026 9:54am MST.
+- exact_working_directory /root/roofleadhq; exact_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh; exact_scenario_count 30.
+- runner_command_path_status corrected_fail_closed_ready_for_exact_approved_execution_after_guard; no_immediate_runner_invocation_by_this_packet true; runner_command_invoked_by_this_packet false.
+- runner_execution_status not_run_by_this_packet; command_execution_status not_run_by_this_packet.
+- external_calls_made_by_this_packet false; credentials_accessed_by_this_packet false; secret_values_logged_by_this_packet false; production_data_accessed_by_this_packet false; real_contact_made_by_this_packet false; sms_email_calls_calendar_booking_performed_by_this_packet false.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- external_sandbox_calls_approval_status granted_scoped_test_mode_only_pending_exact_command; credentials_access_approval_status granted_scoped_test_mode_only_no_secret_logging_pending_exact_command; test_account_use_approval_status granted_scoped_test_accounts_only_pending_exact_command.
+- Live activation, real homeowner contact, real roofer contact, production Supabase writes, schema/auth/RLS/security changes, and billing/payment automation remain not_granted in this packet.
+- future_command_status ready_for_exact_approved_runner_execution_command_review_only.
+- approved_for_activation_now false; guard only; does not run runner; does not invoke exact approved command; does not make external calls.
+- Next step can be exact approved runner execution command review only after this packet is committed.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-readonly.js
+```
+
+Safety remains: local fake-data review-only fresh-execution-pre-run-guard-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh execution pre-run guard only; not runner execution, not activation, non-executing. No actual external/live 30-scenario sandbox/test-mode channel validation evidence captured. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 Added files:

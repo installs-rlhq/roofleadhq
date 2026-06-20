@@ -4359,6 +4359,41 @@ node backend/scripts/verify-native-workflow-fixture-capture-fresh-signed-runner-
 
 Safety remains: local fake-data review-only fresh-signed-approval-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh signed approval capture only; not fresh pre-run guard pass, not runner execution, not activation, non-executing. source_of_truth_commit 31019fb. fresh_runner_execution_decision_template_commit 31019fb. runner_state_wiring_correction_commit 77f2a00. capture_runner_command_blocked_evidence_commit 4a618fa. runner_state_wiring_correction_status corrected_review_only. prior_one_time_execution_attempt_consumption_status consumed_by_blocked_attempt. fresh_exact_execution_decision_required true. fresh_execution_pre_run_guard_required true. fresh_runner_execution_approval_capture_status captured. fresh_runner_execution_jason_signed_approval_status signed. fresh_runner_execution_exact_values_required_count 24. fresh_runner_execution_exact_values_accepted_count 24. fresh_runner_execution_exact_values_approved_count 24. fresh_runner_execution_approval_status granted_scoped_one_time_pending_fresh_execution_pre_run_guard. fresh_execution_pre_run_guard_status not_passed_by_this_packet. approval_scope fresh_run_actual_external_sandbox_30_scenario_validation_once_only. signed_approval_timestamp 06/20/2026 9:54am MST. exact_working_directory /root/roofleadhq. exact_command bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh. exact_scenario_count 30. runner_command_path_status corrected_fail_closed_pending_fresh_exact_execution_decision. runner_command_invoked_by_this_packet false. external_calls_made_by_this_packet false. credentials_accessed_by_this_packet false. production_data_accessed_by_this_packet false. real_contact_made_by_this_packet false. sms_email_calls_calendar_booking_performed_by_this_packet false. runner_execution_status not_run_by_this_packet. actual_30_scenario_external_validation_captured_count 0. actual_30_scenario_external_validation_passed_count 0. actual_30_scenario_external_validation_missing_count 30. actual_30_scenario_external_validation_status not_captured_by_this_run. future_command_status blocked_until_fresh_execution_pre_run_guard_passes. command_execution_status not_run_by_this_packet. Next step separate fresh execution pre-run guard, not execution. approved_for_activation_now false. Stop after gates and diff proof. Do not commit or push.
 
+## Native Workflow Fixture Fresh Execution Pre-Run Guard
+
+The Native Workflow Fixture Fresh Execution Pre-Run Guard (native workflow fixture fresh execution pre run guard / fresh execution pre run guard) provides a local review-only fresh execution pre-run guard packet that verifies Jason fresh signed one-time runner-execution approval captured at Build 110 without running the runner, invoking the exact approved command, or executing activation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard.json`
+- `scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-dry-run.sh`
+
+Updated files:
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh` (corrected runner state wiring after fresh guard pass)
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Fresh Execution Pre-Run Guard" / "native workflow fixture fresh execution pre run guard" / "fresh execution pre run guard" across aggregate, index, contexts, and business guide.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-readonly.js
+```
+
+Safety remains: local fake-data review-only fresh-execution-pre-run-guard-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Fresh execution pre-run guard only; not runner execution, not activation, non-executing. source_of_truth_commit a1f4dd7. capture_fresh_signed_runner_execution_approval_commit a1f4dd7. fresh_runner_execution_decision_template_commit 31019fb. runner_state_wiring_correction_commit 77f2a00. capture_runner_command_blocked_evidence_commit 4a618fa. runner_state_wiring_correction_status corrected_review_only. corrected_runner_state_wiring_status verified. fresh_runner_execution_approval_capture_status captured. fresh_runner_execution_jason_signed_approval_status signed. fresh_execution_pre_run_guard_status passed. fresh_execution_pre_run_guard_checks_required_count 30. fresh_execution_pre_run_guard_checks_passed_count 30. fresh_execution_pre_run_guard_failed_count 0. runner_readiness_validation_status passed. runner_command_path_status corrected_fail_closed_ready_for_exact_approved_execution_after_guard. no_immediate_runner_invocation_by_this_packet true. future_command_status ready_for_exact_approved_runner_execution_command_review_only. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Next step exact approved runner execution command review only after this packet is committed. Stop after gates and diff proof. Do not commit or push.
+
 ## Verifier Quiet Mode + Fast-Lane Performance Cleanup
 
 The Verifier Quiet Mode + Fast-Lane Performance Cleanup (verifier quiet mode fast lane performance cleanup / quiet mode fast lane performance cleanup) adds an additive fast verification lane for normal fixture/readiness builds while preserving the full aggregate regression lane.
