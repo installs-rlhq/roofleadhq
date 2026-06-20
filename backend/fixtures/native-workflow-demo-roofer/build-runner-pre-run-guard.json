@@ -1,0 +1,204 @@
+{
+  "packet_name": "native_workflow_fixture_build_runner_pre_run_guard",
+  "packet_status": "review_only",
+  "review_status": "build_runner_pre_run_guard_review_only",
+  "build_runner_pre_run_guard_packet_status": "passed_for_scoped_build_runner_scaffolding_only",
+  "build_runner_pre_run_guard_does_not_equal_runner_build": true,
+  "build_runner_pre_run_guard_does_not_equal_runner_execution": true,
+  "build_runner_pre_run_guard_does_not_approve_runner_execution": true,
+  "fixture_delivery_mode": "local_fake_data_review_only",
+  "data_classification": "fake_demo_data_only",
+  "source_of_truth_commit": "912b3aa",
+  "source_of_truth_label": "test(workflow): capture signed build runner approval",
+  "capture_signed_build_runner_approval_commit": "912b3aa",
+  "capture_signed_build_runner_approval_label": "test(workflow): capture signed build runner approval",
+  "build_runner_exact_approval_template_commit": "07421c8",
+  "build_runner_exact_approval_template_label": "test(workflow): add exact approval to build external runner",
+  "runner_design_commit": "40d0d24",
+  "runner_design_label": "test(workflow): add actual external sandbox 30 scenario runner design",
+  "capture_signed_build_runner_approval_packet_status": "completed_upstream",
+  "build_runner_exact_approval_template_packet_status": "completed_upstream_template",
+  "runner_design_packet_status": "completed_upstream",
+  "pilot_readiness_master_gate_decision": "NO_GO",
+  "approval_scope": "build_actual_external_sandbox_30_scenario_runner_scaffolding_only",
+  "signed_approval_timestamp": "06/19/2026 9:13pm Mountain Time",
+  "build_runner_approval_signature_name": "Jason Lohse",
+  "current_runner_gap_status": "existing_wrapper_is_local_only_not_actual_external_sandbox_runner",
+  "different_runner_required": true,
+  "prior_proposed_runner_status": "design_only_not_built_not_approved_not_run",
+  "build_runner_approval_capture_status": "captured",
+  "build_runner_jason_signed_approval_status": "signed",
+  "build_runner_exact_values_required_count": 19,
+  "build_runner_exact_values_accepted_count": 19,
+  "build_runner_exact_values_approved_count": 19,
+  "build_runner_pre_run_guard_status": "passed",
+  "build_runner_pre_run_guard_checks_required_count": 20,
+  "build_runner_pre_run_guard_checks_passed_count": 20,
+  "build_runner_pre_run_guard_failed_count": 0,
+  "runner_execution_approval_status": "not_granted",
+  "external_calls_approval_status": "not_granted",
+  "credentials_access_approval_status": "not_granted",
+  "production_data_access_approval_status": "not_granted",
+  "live_activation_approval_status": "not_granted",
+  "real_homeowner_contact_approval_status": "not_granted",
+  "real_roofer_contact_approval_status": "not_granted",
+  "production_supabase_write_approval_status": "not_granted",
+  "schema_auth_rls_security_change_approval_status": "not_granted",
+  "billing_payment_automation_approval_status": "not_granted",
+  "approved_for_activation_now": false,
+  "command_execution_status": "not_run_by_this_packet",
+  "runner_build_status": "not_built_by_this_packet",
+  "runner_execution_status": "not_run_by_this_packet",
+  "actual_30_scenario_external_validation_captured_count": 0,
+  "actual_30_scenario_external_validation_passed_count": 0,
+  "actual_30_scenario_external_validation_missing_count": 30,
+  "actual_30_scenario_external_validation_status": "not_captured_by_this_run",
+  "future_command_status": "ready_for_build_runner_scaffolding_packet_review_only",
+  "current_recommended_next_step": "CONSIDER_SEPARATE_BUILD_RUNNER_SCAFFOLDING_BUILD_PACKET_REVIEW_ONLY",
+  "external_calls_made": false,
+  "credentials_accessed": false,
+  "production_data_accessed": false,
+  "sms_email_calls_calendar_booking_performed": false,
+  "public_route_webhook_scheduler_cron_dispatcher_activated": false,
+  "build_runner_pre_run_guard_checks": [
+    {
+      "check": 1,
+      "name": "source_of_truth_commit_912b3aa_confirmed",
+      "status": "passed"
+    },
+    {
+      "check": 2,
+      "name": "signed_build_runner_approval_capture_packet_present",
+      "status": "passed"
+    },
+    {
+      "check": 3,
+      "name": "signed_approval_timestamp_present",
+      "status": "passed"
+    },
+    {
+      "check": 4,
+      "name": "approval_scope_scaffolding_only",
+      "status": "passed"
+    },
+    {
+      "check": 5,
+      "name": "all_19_exact_values_required_accepted_approved",
+      "status": "passed"
+    },
+    {
+      "check": 6,
+      "name": "runner_execution_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 7,
+      "name": "external_calls_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 8,
+      "name": "credentials_access_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 9,
+      "name": "production_data_access_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 10,
+      "name": "live_activation_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 11,
+      "name": "real_homeowner_contact_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 12,
+      "name": "real_roofer_contact_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 13,
+      "name": "production_supabase_writes_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 14,
+      "name": "schema_auth_rls_security_changes_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 15,
+      "name": "billing_payment_automation_not_granted",
+      "status": "passed"
+    },
+    {
+      "check": 16,
+      "name": "approved_for_activation_now_false",
+      "status": "passed"
+    },
+    {
+      "check": 17,
+      "name": "actual_30_scenario_external_validation_still_0_0_30",
+      "status": "passed"
+    },
+    {
+      "check": 18,
+      "name": "existing_wrapper_gap_and_different_runner_required_confirmed",
+      "status": "passed"
+    },
+    {
+      "check": 19,
+      "name": "runner_not_built_or_run_by_this_packet",
+      "status": "passed"
+    },
+    {
+      "check": 20,
+      "name": "demo_ready_with_live_automation_disabled_preserved",
+      "status": "passed"
+    }
+  ],
+  "safety_status": "demo_ready_with_live_automation_disabled",
+  "live_activation_allowed": false,
+  "sandbox_test_mode_activation_allowed": false,
+  "real_roofer_onboarding_contact_allowed": false,
+  "real_roofer_contact_allowed": false,
+  "real_homeowner_contact_allowed": false,
+  "controlled_real_roofer_validation_allowed": false,
+  "external_calls_allowed_by_this_packet": false,
+  "credentials_access_allowed_by_this_packet": false,
+  "production_data_access_allowed_by_this_packet": false,
+  "sms_email_calls_calendar_booking_allowed_by_this_packet": false,
+  "external_calls_allowed": false,
+  "credentials_access_allowed": false,
+  "production_data_access_allowed": false,
+  "schema_auth_rls_security_changes_allowed": false,
+  "public_route_webhook_scheduler_cron_dispatcher_allowed": false,
+  "billing_payment_automation_allowed": false,
+  "public_go_live_or_production_copy_changes_allowed": false,
+  "real_demo_sandbox_live_testing_allowed": false,
+  "demo_ready_with_live_automation_disabled": "preserved",
+  "old_90_day_plan_boundary": "old 90-day plan cannot override current source-of-truth direction",
+  "prior_packet_reference": "capture-signed-build-runner-approval",
+  "reviewed_upstream_capture_fixture": "backend/fixtures/native-workflow-demo-roofer/capture-signed-build-runner-approval.json",
+  "reviewed_upstream_template_fixture": "backend/fixtures/native-workflow-demo-roofer/exact-approval-to-build-actual-external-sandbox-30-scenario-runner.json",
+  "reviewed_upstream_runner_design_fixture": "backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-runner-design.json",
+  "packet_docs": [
+    "docs/NATIVE_WORKFLOW_FIXTURE_BUILD_RUNNER_PRE_RUN_GUARD.md",
+    "docs/NATIVE_WORKFLOW_FIXTURE_BUILD_RUNNER_PRE_RUN_GUARD_NO_GO_REVIEW.md"
+  ],
+  "delivery_posture": {
+    "delivery_mode": "local-only",
+    "data_mode": "fake-data-only",
+    "access_mode": "read-only",
+    "execution_mode": "dry-run-only",
+    "review_mode": "review-only",
+    "approval_mode": "build-runner-pre-run-guard-passed-not-built-not-run",
+    "activation_mode": "non-executing"
+  },
+  "public_website_go_live_copy_changed": false
+}
