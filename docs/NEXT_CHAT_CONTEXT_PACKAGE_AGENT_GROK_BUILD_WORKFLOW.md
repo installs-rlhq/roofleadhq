@@ -6307,3 +6307,21 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_command_status: blocked_until_fresh_pre_run_guard_pass_after_build_159_build_156_fresh_chain_wiring_correction_approval_capture
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 161 — Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 159 Build 156 Fresh Chain Wiring Correction Approval Capture
+
+- normalized reference: native workflow fixture fresh execution pre run guard after build 159 build 156 fresh chain wiring correction approval capture
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_BUILD_159_BUILD_156_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_CAPTURE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-159-build-156-fresh-chain-wiring-correction-approval-capture.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-159-build-156-fresh-chain-wiring-correction-approval-capture-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-159-build-156-fresh-chain-wiring-correction-approval-capture-dry-run.sh
+- source_of_truth_commit: 46ca819
+- prior_capture_fresh_runner_execution_approval_after_build_159_build_156_fresh_chain_wiring_correction_commit: 46ca819
+- approval_scope: fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_build_156_fresh_chain_wiring_correction
+- signed_approval_timestamp: 06/20/2026 10:22pm MST
+- fresh_execution_pre_run_guard_status: passed
+- fresh_execution_pre_run_guard_checks_passed_count: 30
+- future_command_status: ready_for_exact_approved_runner_execution_command_after_build_159_build_156_fresh_chain_wiring_correction_guard_review_only
+- command_execution_status: not_run_by_this_packet
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved

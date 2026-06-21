@@ -1840,3 +1840,11 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 // backend/fixtures/native-workflow-demo-roofer/capture-fresh-runner-execution-approval-after-build-159-build-156-fresh-chain-wiring-correction.json
 // backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-execution-approval-after-build-159-build-156-fresh-chain-wiring-correction-readonly.js
 // scripts/run-native-workflow-fixture-capture-fresh-runner-execution-approval-after-build-159-build-156-fresh-chain-wiring-correction-dry-run.sh
+
+// Build 161 registry reference:
+// Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 159 Build 156 Fresh Chain Wiring Correction Approval Capture
+// native workflow fixture fresh execution pre run guard after build 159 build 156 fresh chain wiring correction approval capture
+// docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_BUILD_159_BUILD_156_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_CAPTURE.md
+// backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-159-build-156-fresh-chain-wiring-correction-approval-capture.json
+// backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-159-build-156-fresh-chain-wiring-correction-approval-capture-readonly.js
+// scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-159-build-156-fresh-chain-wiring-correction-approval-capture-dry-run.sh
