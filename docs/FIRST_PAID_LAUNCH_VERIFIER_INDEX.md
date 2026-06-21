@@ -4847,3 +4847,20 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_command_status: blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_156_fresh_chain_wiring_correction
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 159 — Native Workflow Fixture Fresh Runner Execution Decision After Build 156 Fresh Chain Wiring Correction
+
+- normalized reference: native workflow fixture fresh runner execution decision after build 156 fresh chain wiring correction
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_DECISION_AFTER_BUILD_156_FRESH_CHAIN_WIRING_CORRECTION.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-runner-execution-decision-after-build-156-fresh-chain-wiring-correction.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-runner-execution-decision-after-build-156-fresh-chain-wiring-correction-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-runner-execution-decision-after-build-156-fresh-chain-wiring-correction-dry-run.sh
+- source_of_truth_commit: 28b6413
+- prior_runner_execution_path_after_build_156_fresh_chain_wiring_correction_commit: 28b6413
+- fresh_runner_execution_decision_template_gate_decision: NO_GO
+- approval_scope: fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_build_156_fresh_chain_wiring_correction
+- fresh_runner_execution_approval_status: not_granted
+- fresh_execution_pre_run_guard_status: not_passed
+- future_command_status: blocked_until_fresh_runner_execution_approval_captured_after_build_156_fresh_chain_wiring_correction
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved

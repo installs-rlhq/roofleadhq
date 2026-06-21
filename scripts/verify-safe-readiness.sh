@@ -61,3 +61,8 @@ echo "PASS: Safe readiness verification passed."
 # Native Workflow Fixture Runner Execution Path After Build 156 Fresh Chain Wiring Correction
 # native workflow fixture runner execution path after build 156 fresh chain wiring correction
 # scripts/run-native-workflow-fixture-runner-execution-path-after-build-156-fresh-chain-wiring-correction-dry-run.sh
+
+# Build 159 registry reference:
+# Native Workflow Fixture Fresh Runner Execution Decision After Build 156 Fresh Chain Wiring Correction
+# native workflow fixture fresh runner execution decision after build 156 fresh chain wiring correction
+# scripts/run-native-workflow-fixture-fresh-runner-execution-decision-after-build-156-fresh-chain-wiring-correction-dry-run.sh
