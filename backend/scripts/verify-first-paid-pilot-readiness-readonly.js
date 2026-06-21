@@ -1766,7 +1766,7 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // Build 151 aggregate readiness reference:
 // Native Workflow Fixture Fresh Execution Pre-Run Guard Build 149 Build 146 Fresh-Chain Wiring Correction Approval Capture
 
-Build 151 normalized reference: native workflow fixture fresh execution pre run guard after build 149 build 146 fresh chain wiring correction approval capture
+// Build 151 normalized reference: native workflow fixture fresh execution pre run guard after build 149 build 146 fresh chain wiring correction approval capture
 
 
 // Build 152 registry reference:
@@ -1848,3 +1848,11 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 // backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-159-build-156-fresh-chain-wiring-correction-approval-capture.json
 // backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-159-build-156-fresh-chain-wiring-correction-approval-capture-readonly.js
 // scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-159-build-156-fresh-chain-wiring-correction-approval-capture-dry-run.sh
+
+// Build 162 registry reference:
+// Native Workflow Fixture Capture Post Build 161 Runner Command Blocked Evidence
+// native workflow fixture capture post build 161 runner command blocked evidence
+// docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_161_RUNNER_COMMAND_BLOCKED_EVIDENCE.md
+// backend/fixtures/native-workflow-demo-roofer/capture-post-build-161-runner-command-blocked-evidence.json
+// backend/scripts/verify-native-workflow-fixture-capture-post-build-161-runner-command-blocked-evidence-readonly.js
+// scripts/run-native-workflow-fixture-capture-post-build-161-runner-command-blocked-evidence-dry-run.sh

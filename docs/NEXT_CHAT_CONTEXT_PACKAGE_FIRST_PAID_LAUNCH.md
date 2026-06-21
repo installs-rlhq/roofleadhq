@@ -11858,3 +11858,25 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - command_execution_status: not_run_by_this_packet
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 162 — Native Workflow Fixture Capture Post Build 161 Runner Command Blocked Evidence
+
+- normalized reference: native workflow fixture capture post build 161 runner command blocked evidence
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_161_RUNNER_COMMAND_BLOCKED_EVIDENCE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-post-build-161-runner-command-blocked-evidence.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-post-build-161-runner-command-blocked-evidence-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-post-build-161-runner-command-blocked-evidence-dry-run.sh
+- source_of_truth_commit: dd05289
+- prior_fresh_execution_pre_run_guard_commit: dd05289
+- prior_approval_capture_commit: 46ca819
+- prior_fresh_decision_commit: 0eefaf3
+- prior_runner_execution_path_commit: 28b6413
+- prior_post_build_156_blocked_evidence_commit: 5dde6ce
+- runner_command_attempt_status: attempted_blocked_nonzero
+- runner_command_exit_status: nonzero_blocked
+- runner_reported_source_of_truth_commit: 0c6abaf
+- runner_stale_state_status: stale_pre_build_158_159_160_161_state_detected
+- approval_guard_chain_consumed: true
+- runner_command_rerun_allowed: false
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved
