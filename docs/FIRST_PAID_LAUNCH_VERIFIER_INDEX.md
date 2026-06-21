@@ -180,6 +180,12 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture Fresh Runner Decision And Approval Template After Build 163 Correction wrapper: `scripts/run-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-dry-run.sh`
 - normalized reference: native workflow fixture fresh runner decision and approval template after build 163 correction
 - Build 164 next step: Jason must separately sign exact approval values after Build 164, then a fresh pre-run guard must pass before one exact runner command attempt; controlled test-roofer E2E remains review-only, not approved, and not run.
+- Native Workflow Fixture Capture Signed Runner Approval After Build 164 doc: `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_APPROVAL_AFTER_BUILD_164.md`
+- Native Workflow Fixture Capture Signed Runner Approval After Build 164 fixture: `backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-approval-after-build-164.json`
+- Native Workflow Fixture Capture Signed Runner Approval After Build 164 verifier: `node backend/scripts/verify-native-workflow-fixture-capture-signed-runner-approval-after-build-164-readonly.js`
+- Native Workflow Fixture Capture Signed Runner Approval After Build 164 wrapper: `scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-164-dry-run.sh`
+- normalized reference: native workflow fixture capture signed runner approval after build 164
+- Build 165 next step: separate fresh pre-run guard after signed approval capture, then one exact runner command attempt only if the guard passes; controlled test-roofer E2E remains review-only, not approved, and not run.
 - Production Tenant / Account Model Readiness Packet doc: `docs/PRODUCTION_TENANT_ACCOUNT_MODEL_READINESS_PACKET.md`
 - Production Tenant / Account Model Readiness Packet wrapper: `scripts/run-production-tenant-account-model-readiness-packet-dry-run.sh`
 - Production Tenant / Account Model Readiness Packet verifier: `node backend/scripts/verify-production-tenant-account-model-readiness-packet-readonly.js`

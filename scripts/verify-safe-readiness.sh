@@ -93,3 +93,9 @@ echo "PASS: Safe readiness verification passed."
 # native workflow fixture fresh runner decision and approval template after build 163 correction
 # scripts/run-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-dry-run.sh
 # next step: Jason signed approval capture, then fresh pre-run guard, before one exact runner command attempt
+
+# Build 165 registry reference:
+# Native Workflow Fixture Capture Signed Runner Approval After Build 164
+# native workflow fixture capture signed runner approval after build 164
+# scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-164-dry-run.sh
+# next step: separate fresh pre-run guard after Build 165 signed approval capture before one exact runner command attempt

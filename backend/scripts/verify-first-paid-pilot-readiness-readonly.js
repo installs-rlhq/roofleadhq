@@ -1874,3 +1874,12 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-readonly.js
 // scripts/run-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-dry-run.sh
 // next step: Jason signed approval capture, then fresh pre-run guard, before one exact runner command attempt
+
+// Build 165 registry reference:
+// Native Workflow Fixture Capture Signed Runner Approval After Build 164
+// native workflow fixture capture signed runner approval after build 164
+// docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_APPROVAL_AFTER_BUILD_164.md
+// backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-approval-after-build-164.json
+// backend/scripts/verify-native-workflow-fixture-capture-signed-runner-approval-after-build-164-readonly.js
+// scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-164-dry-run.sh
+// next step: separate fresh pre-run guard after Build 165 signed approval capture before one exact runner command attempt

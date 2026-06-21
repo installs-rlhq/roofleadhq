@@ -6386,3 +6386,24 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - controlled_test_roofer_e2e_status: review_only_not_approved_not_run
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 165 — Native Workflow Fixture Capture Signed Runner Approval After Build 164
+
+- normalized reference: native workflow fixture capture signed runner approval after build 164
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_APPROVAL_AFTER_BUILD_164.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-approval-after-build-164.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-signed-runner-approval-after-build-164-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-164-dry-run.sh
+- source_of_truth_commit: dfb932f
+- approval_capture_status: captured_signed
+- jason_signed_approval_status: signed
+- approval_signed_by: Jason Lohse
+- approval_signed_date_time: 06/21/2026, 11:19am MST, current chat
+- fresh_pre_run_guard_status: not_created_not_passed_by_this_packet
+- runner_command_attempt_status: not_attempted_by_this_packet
+- runner_execution_status: not_run_by_this_packet
+- future_command_status: blocked_until_fresh_pre_run_guard_after_build_165_signed_approval_capture
+- next step: separate fresh pre-run guard after Build 165 signed approval capture, then one exact runner attempt only if the guard passes
+- controlled_test_roofer_e2e_status: review_only_not_approved_not_run
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved
