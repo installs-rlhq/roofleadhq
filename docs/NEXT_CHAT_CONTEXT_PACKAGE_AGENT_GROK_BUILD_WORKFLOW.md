@@ -6198,3 +6198,23 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_command_status: blocked_until_fresh_runner_execution_approval_captured_after_build_151_fresh_chain_wiring_correction
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 155 — Native Workflow Fixture Capture Fresh Runner Execution Approval After Build 154 Build 151 Fresh Chain Wiring Correction
+
+- normalized reference: native workflow fixture capture fresh runner execution approval after build 154 build 151 fresh chain wiring correction
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_FRESH_RUNNER_EXECUTION_APPROVAL_AFTER_BUILD_154_BUILD_151_FRESH_CHAIN_WIRING_CORRECTION.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-fresh-runner-execution-approval-after-build-154-build-151-fresh-chain-wiring-correction.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-execution-approval-after-build-154-build-151-fresh-chain-wiring-correction-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-fresh-runner-execution-approval-after-build-154-build-151-fresh-chain-wiring-correction-dry-run.sh
+- source_of_truth_commit: 7e54c00
+- prior_fresh_runner_execution_decision_after_build_151_fresh_chain_wiring_correction_commit: 7e54c00
+- approval_scope: fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_build_151_fresh_chain_wiring_correction
+- signed_approval_timestamp: 06/20/2026 9:39pm MST
+- fresh_runner_execution_approval_capture_status: captured
+- fresh_runner_execution_jason_signed_approval_status: signed
+- fresh_runner_execution_exact_values_accepted_count: 24
+- fresh_runner_execution_exact_values_approved_count: 24
+- fresh_execution_pre_run_guard_status: not_passed_by_this_packet
+- future_command_status: blocked_until_fresh_execution_pre_run_guard_passes_after_build_154_build_151_fresh_chain_wiring_correction_approval_capture
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved
