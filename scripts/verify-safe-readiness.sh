@@ -81,3 +81,9 @@ echo "PASS: Safe readiness verification passed."
 # Native Workflow Fixture Capture Post Build 161 Runner Command Blocked Evidence
 # native workflow fixture capture post build 161 runner command blocked evidence
 # scripts/run-native-workflow-fixture-capture-post-build-161-runner-command-blocked-evidence-dry-run.sh
+
+# Build 163 registry reference:
+# Native Workflow Fixture Correct Current Runner Recognition And Test Roofer E2E Readiness
+# native workflow fixture correct current runner recognition and test roofer e2e readiness
+# scripts/run-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-dry-run.sh
+# next step: fresh decision, fresh approval capture, and fresh pre-run guard after Build 163 correction

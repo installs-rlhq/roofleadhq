@@ -168,6 +168,12 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Production Config / Env Readiness Audit Packet doc: `docs/PRODUCTION_CONFIG_ENV_READINESS_AUDIT_PACKET.md`
 - Production Config / Env Readiness Audit Packet wrapper: `scripts/run-production-config-env-readiness-audit-packet-dry-run.sh`
 - Production Config / Env Readiness Audit Packet verifier: `node backend/scripts/verify-production-config-env-readiness-audit-packet-readonly.js`
+- Native Workflow Fixture Correct Current Runner Recognition And Test Roofer E2E Readiness doc: `docs/NATIVE_WORKFLOW_FIXTURE_CORRECT_CURRENT_RUNNER_RECOGNITION_AND_TEST_ROOFER_E2E_READINESS.md`
+- Native Workflow Fixture Correct Current Runner Recognition And Test Roofer E2E Readiness fixture: `backend/fixtures/native-workflow-demo-roofer/correct-current-runner-recognition-and-test-roofer-e2e-readiness.json`
+- Native Workflow Fixture Correct Current Runner Recognition And Test Roofer E2E Readiness verifier: `node backend/scripts/verify-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-readonly.js`
+- Native Workflow Fixture Correct Current Runner Recognition And Test Roofer E2E Readiness wrapper: `scripts/run-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-dry-run.sh`
+- normalized reference: native workflow fixture correct current runner recognition and test roofer e2e readiness
+- Build 163 next step: fresh decision, fresh approval capture, and fresh pre-run guard are required before any actual runner attempt; controlled test-roofer E2E remains review-only, not approved, and not run.
 - Production Tenant / Account Model Readiness Packet doc: `docs/PRODUCTION_TENANT_ACCOUNT_MODEL_READINESS_PACKET.md`
 - Production Tenant / Account Model Readiness Packet wrapper: `scripts/run-production-tenant-account-model-readiness-packet-dry-run.sh`
 - Production Tenant / Account Model Readiness Packet verifier: `node backend/scripts/verify-production-tenant-account-model-readiness-packet-readonly.js`

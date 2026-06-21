@@ -6347,3 +6347,21 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - runner_command_rerun_allowed: false
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 163 — Native Workflow Fixture Correct Current Runner Recognition And Test Roofer E2E Readiness
+
+- normalized reference: native workflow fixture correct current runner recognition and test roofer e2e readiness
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CORRECT_CURRENT_RUNNER_RECOGNITION_AND_TEST_ROOFER_E2E_READINESS.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/correct-current-runner-recognition-and-test-roofer-e2e-readiness.json
+- verifier: backend/scripts/verify-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-dry-run.sh
+- source_of_truth_commit: 3f97a7f
+- runner_recognizes_build_158_159_160_161_162_chain: true
+- runner_stale_pre_build_158_159_160_161_state_retired_as_historical: true
+- prior_stale_runner_reported_source_of_truth_commit: 0c6abaf historical only, not current
+- approval_guard_chain_consumed: true
+- immediate_rerun_allowed: false
+- next step: fresh decision, fresh approval capture, and fresh pre-run guard after Build 163 correction
+- controlled_test_roofer_e2e_status: review_only_not_approved_not_run
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved

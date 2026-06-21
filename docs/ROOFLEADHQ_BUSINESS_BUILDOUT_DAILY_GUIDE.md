@@ -10797,3 +10797,13 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - runner_command_rerun_allowed: false
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+## Build 163 — Native Workflow Fixture Correct Current Runner Recognition And Test Roofer E2E Readiness
+
+- normalized reference: native workflow fixture correct current runner recognition and test roofer e2e readiness
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_CORRECT_CURRENT_RUNNER_RECOGNITION_AND_TEST_ROOFER_E2E_READINESS.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/correct-current-runner-recognition-and-test-roofer-e2e-readiness.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-dry-run.sh`
+- Current state: runner recognizes Build 158/159/160/161/162; stale `0c6abaf` runner state is historical only.
+- Next step: fresh decision, fresh approval capture, and fresh pre-run guard after Build 163 correction. Do not rerun the actual runner immediately.
+- Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.

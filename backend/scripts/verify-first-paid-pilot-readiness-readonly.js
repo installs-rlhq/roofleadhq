@@ -1856,3 +1856,12 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // backend/fixtures/native-workflow-demo-roofer/capture-post-build-161-runner-command-blocked-evidence.json
 // backend/scripts/verify-native-workflow-fixture-capture-post-build-161-runner-command-blocked-evidence-readonly.js
 // scripts/run-native-workflow-fixture-capture-post-build-161-runner-command-blocked-evidence-dry-run.sh
+
+// Build 163 registry reference:
+// Native Workflow Fixture Correct Current Runner Recognition And Test Roofer E2E Readiness
+// native workflow fixture correct current runner recognition and test roofer e2e readiness
+// docs/NATIVE_WORKFLOW_FIXTURE_CORRECT_CURRENT_RUNNER_RECOGNITION_AND_TEST_ROOFER_E2E_READINESS.md
+// backend/fixtures/native-workflow-demo-roofer/correct-current-runner-recognition-and-test-roofer-e2e-readiness.json
+// backend/scripts/verify-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-readonly.js
+// scripts/run-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-dry-run.sh
+// next step: fresh decision, fresh approval capture, and fresh pre-run guard after Build 163 correction
