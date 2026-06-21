@@ -10628,3 +10628,23 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_command_status: blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_151_fresh_chain_wiring_correction
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 154 — Native Workflow Fixture Fresh Runner Execution Decision After Build 151 Fresh Chain Wiring Correction
+
+- normalized reference: native workflow fixture fresh runner execution decision after build 151 fresh chain wiring correction
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_EXECUTION_DECISION_AFTER_BUILD_151_FRESH_CHAIN_WIRING_CORRECTION.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-runner-execution-decision-after-build-151-fresh-chain-wiring-correction.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-runner-execution-decision-after-build-151-fresh-chain-wiring-correction-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-runner-execution-decision-after-build-151-fresh-chain-wiring-correction-dry-run.sh
+- source_of_truth_commit: ae2a380
+- prior_runner_execution_path_after_build_151_fresh_chain_wiring_correction_commit: ae2a380
+- approval_scope: fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_build_151_fresh_chain_wiring_correction
+- fresh_runner_execution_decision_template_gate_decision: NO_GO
+- fresh_runner_execution_approval_capture_status: not_captured
+- fresh_runner_execution_jason_signed_approval_status: not_signed
+- fresh_runner_execution_exact_values_accepted_count: 0
+- fresh_runner_execution_exact_values_approved_count: 0
+- fresh_execution_pre_run_guard_status: not_passed
+- future_command_status: blocked_until_fresh_runner_execution_approval_captured_after_build_151_fresh_chain_wiring_correction
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved
