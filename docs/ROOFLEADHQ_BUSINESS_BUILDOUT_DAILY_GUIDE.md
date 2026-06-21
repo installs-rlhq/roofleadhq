@@ -10829,3 +10829,21 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Current state: Jason approval after Build 164 is signed and captured; fresh pre-run guard is not created/not passed, and runner is not run.
 - Next step: create and pass a separate fresh pre-run guard after Build 165 signed approval capture before one exact runner command attempt.
 - Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
+
+## Build 166 - Native Workflow Fixture Fresh Pre-Run Guard After Build 165 Signed Approval
+
+- normalized reference: native workflow fixture fresh pre run guard after build 165 signed approval
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_165_SIGNED_APPROVAL.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-165-signed-approval.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-dry-run.sh
+- source_of_truth_commit: 50d66cc
+- fresh_execution_pre_run_guard_status: passed
+- fresh_execution_pre_run_guard_checks_passed_count: 30
+- runner_command_attempt_status: not_attempted_by_this_packet
+- runner_execution_status: not_run_by_this_packet
+- future_command_status: ready_for_exact_approved_runner_execution_command_after_build_166_guard_review_only
+- next step: after Build 166 is committed, pushed, fetched, and source-of-truth verified, the exact approved runner command may be attempted once from Terminal 1 only
+- controlled_test_roofer_e2e_status: review_only_not_approved_not_run
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved

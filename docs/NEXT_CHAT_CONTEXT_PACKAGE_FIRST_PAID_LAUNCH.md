@@ -11940,3 +11940,14 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - controlled_test_roofer_e2e_status: review_only_not_approved_not_run
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 166 - Native Workflow Fixture Fresh Pre-Run Guard After Build 165 Signed Approval
+
+- normalized reference: native workflow fixture fresh pre run guard after build 165 signed approval
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_165_SIGNED_APPROVAL.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-165-signed-approval.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-dry-run.sh`
+- Current state: fresh pre-run guard after Build 165 signed approval passes 30/30; actual validation remains 0 captured / 0 passed / 30 missing.
+- Next step: after Build 166 is committed, pushed, fetched, and source-of-truth verified, the exact approved runner command may be attempted once from Terminal 1 only.
+- Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.

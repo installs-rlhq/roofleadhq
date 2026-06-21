@@ -99,3 +99,9 @@ echo "PASS: Safe readiness verification passed."
 # native workflow fixture capture signed runner approval after build 164
 # scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-164-dry-run.sh
 # next step: separate fresh pre-run guard after Build 165 signed approval capture before one exact runner command attempt
+
+# Build 166 registry reference:
+# Native Workflow Fixture Fresh Pre-Run Guard After Build 165 Signed Approval
+# native workflow fixture fresh pre run guard after build 165 signed approval
+# scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-dry-run.sh
+# guard passed 30/30; runner not run; next step only after Build 166 commit/push/fetch/source-of-truth verification
