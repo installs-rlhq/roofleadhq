@@ -66,3 +66,8 @@ echo "PASS: Safe readiness verification passed."
 # Native Workflow Fixture Fresh Runner Execution Decision After Build 156 Fresh Chain Wiring Correction
 # native workflow fixture fresh runner execution decision after build 156 fresh chain wiring correction
 # scripts/run-native-workflow-fixture-fresh-runner-execution-decision-after-build-156-fresh-chain-wiring-correction-dry-run.sh
+
+# Build 160 registry reference:
+# Native Workflow Fixture Capture Fresh Runner Execution Approval After Build 159 Build 156 Fresh Chain Wiring Correction
+# native workflow fixture capture fresh runner execution approval after build 159 build 156 fresh chain wiring correction
+# scripts/run-native-workflow-fixture-capture-fresh-runner-execution-approval-after-build-159-build-156-fresh-chain-wiring-correction-dry-run.sh

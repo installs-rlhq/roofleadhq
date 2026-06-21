@@ -6288,3 +6288,22 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_command_status: blocked_until_fresh_runner_execution_approval_captured_after_build_156_fresh_chain_wiring_correction
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 160 — Native Workflow Fixture Capture Fresh Runner Execution Approval After Build 159 Build 156 Fresh Chain Wiring Correction
+
+- normalized reference: native workflow fixture capture fresh runner execution approval after build 159 build 156 fresh chain wiring correction
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_FRESH_RUNNER_EXECUTION_APPROVAL_AFTER_BUILD_159_BUILD_156_FRESH_CHAIN_WIRING_CORRECTION.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-fresh-runner-execution-approval-after-build-159-build-156-fresh-chain-wiring-correction.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-execution-approval-after-build-159-build-156-fresh-chain-wiring-correction-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-fresh-runner-execution-approval-after-build-159-build-156-fresh-chain-wiring-correction-dry-run.sh
+- source_of_truth_commit: 0eefaf3
+- prior_fresh_runner_execution_decision_after_build_156_fresh_chain_wiring_correction_commit: 0eefaf3
+- approval_signed_by: Jason Lohse
+- approval_signed_at_mst: 06/20/2026 10:22pm MST
+- approval_scope: fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_build_156_fresh_chain_wiring_correction
+- fresh_runner_execution_approval_capture_status: captured
+- fresh_runner_execution_jason_signed_approval_status: signed
+- fresh_execution_pre_run_guard_status: not_passed
+- future_command_status: blocked_until_fresh_pre_run_guard_pass_after_build_159_build_156_fresh_chain_wiring_correction_approval_capture
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved
