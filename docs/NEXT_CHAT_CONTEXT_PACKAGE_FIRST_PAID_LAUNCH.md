@@ -10748,6 +10748,50 @@ node backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-executi
 
 Safety remains: local fake-data review-only capture-fresh-runner-execution-approval-after-build-134-after-after-after-after-guard-fresh-chain-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Approval capture only; not fresh pre-run guard pass, not runner execution, not activation, non-executing. source_of_truth_commit a07dda6. prior_fresh_runner_execution_decision_after_after_all_after_guard_fresh_chain_wiring_correction_status closed. future_command_status blocked_until_fresh_execution_pre_run_guard_passes_after_build_134_after_after_after_after_guard_fresh_chain_wiring_correction_approval_capture. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
 
+
+## Native Workflow Fixture Capture Post-Build-136 Runner Command Blocked Evidence
+
+The Native Workflow Fixture Capture Post-Build-136 Runner Command Blocked Evidence (native workflow fixture capture post build 136 runner command blocked evidence / capture post build 136 runner command blocked evidence) provides a local review-only post-Build-136 blocked runner command evidence capture packet that records the exact approved command attempt from /root/roofleadhq after Build 136 closed fresh execution pre-run guard after Build 134 approval capture at 7f9714e without rerunning the runner, invoking the exact approved command, or performing actual 30-scenario validation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_136_RUNNER_COMMAND_BLOCKED_EVIDENCE.md`
+- `backend/scripts/verify-native-workflow-fixture-capture-post-build-136-runner-command-blocked-evidence-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/capture-post-build-136-runner-command-blocked-evidence.json`
+- `scripts/run-native-workflow-fixture-capture-post-build-136-runner-command-blocked-evidence-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Capture Post-Build-136 Runner Command Blocked Evidence" / "native workflow fixture capture post build 136 runner command blocked evidence" / "capture post build 136 runner command blocked evidence" across aggregate, index, contexts, and business guide.
+- source_of_truth_commit 7f9714e; prior_fresh_execution_pre_run_guard_after_build_134_approval_capture_commit 7f9714e; prior_fresh_execution_pre_run_guard_after_build_134_approval_capture_status closed.
+- exact_command_attempted_after_build_136_status attempted_blocked_nonzero; exact_command_exit_status nonzero_blocked.
+- command_attempt_consumption_status consumed_by_blocked_fail_closed_result_after_build_136_guard.
+- runner_output_source_of_truth_commit_observed_after_build_136 0dc6d88; runner_output_state_after_build_136_status stale_pre_build_133_134_135_136_state_detected.
+- runner_recognized_build_128_129_130_131_chain_status true.
+- runner_did_not_recognize_build_133_after_after_all_after_guard_fresh_chain_wiring_correction_status true; runner_did_not_recognize_build_134_fresh_decision_status true; runner_did_not_recognize_build_135_approval_capture_status true; runner_did_not_recognize_build_136_pre_run_guard_status true.
+- runner_execution_path_after_build_136_fresh_chain_wiring_gap_status detected.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- approved_for_activation_now false; evidence capture only; does not run runner.
+- future_command_status blocked_until_runner_execution_path_after_build_136_fresh_chain_wiring_correction_and_fresh_decision. Next step is runner execution path after Build 136 fresh-chain wiring correction/design and fresh decision path, not immediate rerun.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-capture-post-build-136-runner-command-blocked-evidence-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-capture-post-build-136-runner-command-blocked-evidence-readonly.js
+```
+
+Safety remains: local fake-data review-only post-build-136-blocked-command-evidence-capture-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Evidence capture only; not runner execution, not actual validation, not activation, non-executing. source_of_truth_commit 7f9714e. prior_fresh_execution_pre_run_guard_after_build_134_approval_capture_status closed. future_command_status blocked_until_runner_execution_path_after_build_136_fresh_chain_wiring_correction_and_fresh_decision. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof.
+
 ## Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 134 Approval Capture
 
 The Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 134 Approval Capture (native workflow fixture fresh execution pre run guard after build 134 approval capture / fresh execution pre run guard after build 134 approval capture) provides a local review-only fresh execution pre-run guard packet after Build 135 closed fresh runner-execution approval capture at 9b736c0 verifies Jason signed approval after Build 134 after-after-after-after-guard fresh-chain wiring correction, all 24 exact values, exact command/manifest/runner readiness, and 30 guard checks without running the runner, invoking the exact approved command, or performing actual 30-scenario validation.
