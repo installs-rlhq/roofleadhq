@@ -1808,3 +1808,11 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 // backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-154-build-151-fresh-chain-wiring-correction-approval-capture.json
 // backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-154-build-151-fresh-chain-wiring-correction-approval-capture-readonly.js
 // scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-154-build-151-fresh-chain-wiring-correction-approval-capture-dry-run.sh
+
+// Build 157 registry reference:
+// Native Workflow Fixture Capture Post Build 156 Runner Command Blocked Evidence
+// native workflow fixture capture post build 156 runner command blocked evidence
+// docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_156_RUNNER_COMMAND_BLOCKED_EVIDENCE.md
+// backend/fixtures/native-workflow-demo-roofer/capture-post-build-156-runner-command-blocked-evidence.json
+// backend/scripts/verify-native-workflow-fixture-capture-post-build-156-runner-command-blocked-evidence-readonly.js
+// scripts/run-native-workflow-fixture-capture-post-build-156-runner-command-blocked-evidence-dry-run.sh

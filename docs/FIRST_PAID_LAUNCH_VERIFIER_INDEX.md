@@ -4813,3 +4813,21 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_command_status: ready_for_exact_approved_runner_execution_command_after_build_154_build_151_fresh_chain_wiring_correction_guard_review_only
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 157 — Native Workflow Fixture Capture Post Build 156 Runner Command Blocked Evidence
+
+- normalized reference: native workflow fixture capture post build 156 runner command blocked evidence
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_156_RUNNER_COMMAND_BLOCKED_EVIDENCE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-post-build-156-runner-command-blocked-evidence.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-post-build-156-runner-command-blocked-evidence-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-post-build-156-runner-command-blocked-evidence-dry-run.sh
+- source_of_truth_commit: 634d258
+- exact_command_attempted_after_build_156_status: attempted_blocked_nonzero
+- exact_command_exit_status: nonzero_blocked
+- command_attempt_consumption_status: consumed_by_blocked_fail_closed_result_after_build_156_guard
+- runner_output_source_of_truth_commit_observed_after_build_156: 0c6abaf
+- runner_output_state_after_build_156_status: stale_pre_build_154_155_156_state_detected
+- runner_did_not_recognize_build_154_155_156_chain: true
+- future_command_status: blocked_until_runner_execution_path_after_build_156_fresh_chain_wiring_correction_and_fresh_decision
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved
