@@ -1885,10 +1885,10 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // next step: separate fresh pre-run guard after Build 165 signed approval capture before one exact runner command attempt
 
 // Build 166 registry reference:
-// Native Workflow Fixture Fresh Pre-Run Guard After Build 165 Signed Approval
-// native workflow fixture fresh pre run guard after build 165 signed approval
-// docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_165_SIGNED_APPROVAL.md
-// backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-165-signed-approval.json
-// backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-readonly.js
-// scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-dry-run.sh
-// guard passed 30/30; runner not run; next step only after Build 166 commit/push/fetch/source-of-truth verification
+// Native Workflow Fixture Capture Premature Runner Command Blocked Before Guard Closeout
+// native workflow fixture capture premature runner command blocked before guard closeout
+// docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_PREMATURE_RUNNER_COMMAND_BLOCKED_BEFORE_GUARD_CLOSEOUT.md
+// backend/fixtures/native-workflow-demo-roofer/capture-premature-runner-command-blocked-before-guard-closeout.json
+// backend/scripts/verify-native-workflow-fixture-capture-premature-runner-command-blocked-before-guard-closeout-readonly.js
+// scripts/run-native-workflow-fixture-capture-premature-runner-command-blocked-before-guard-closeout-dry-run.sh
+// blocked evidence only; no immediate rerun; create a new fresh pre-run guard after Build 166 blocked evidence source-of-truth closeout

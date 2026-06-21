@@ -6408,13 +6408,13 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
 
-## Build 166 - Native Workflow Fixture Fresh Pre-Run Guard After Build 165 Signed Approval
+## Build 166 - Native Workflow Fixture Capture Premature Runner Command Blocked Before Guard Closeout
 
-- normalized reference: native workflow fixture fresh pre run guard after build 165 signed approval
-- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_165_SIGNED_APPROVAL.md`
-- Fixture: `backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-165-signed-approval.json`
-- Verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-readonly.js`
-- Wrapper: `bash scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-dry-run.sh`
-- Current state: Build 165 signed approval is captured; Build 166 fresh pre-run guard passes 30/30; runner is not run and command is not attempted by this packet.
-- Next step: after Build 166 is committed, pushed, fetched, and source-of-truth verified, the exact approved runner command may be attempted once from Terminal 1 only.
+- normalized reference: native workflow fixture capture premature runner command blocked before guard closeout
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_PREMATURE_RUNNER_COMMAND_BLOCKED_BEFORE_GUARD_CLOSEOUT.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/capture-premature-runner-command-blocked-before-guard-closeout.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-capture-premature-runner-command-blocked-before-guard-closeout-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-capture-premature-runner-command-blocked-before-guard-closeout-dry-run.sh`
+- Current state: Build 165 signed approval is captured at 50d66cc, but a premature runner command attempt blocked/nonzero before the Build 166 guard draft was source-of-truth closed.
+- Next step: after this blocked evidence is committed, pushed, fetched, and source-of-truth verified, create a new fresh pre-run guard packet before any runner command attempt.
 - Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.

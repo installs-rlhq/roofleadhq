@@ -4942,26 +4942,30 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
 
-## Build 166 - Native Workflow Fixture Fresh Pre-Run Guard After Build 165 Signed Approval
+## Build 166 - Native Workflow Fixture Capture Premature Runner Command Blocked Before Guard Closeout
 
-- normalized reference: native workflow fixture fresh pre run guard after build 165 signed approval
-- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_165_SIGNED_APPROVAL.md
-- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-165-signed-approval.json
-- verifier: backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-readonly.js
-- wrapper: scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-165-signed-approval-dry-run.sh
-- source_of_truth_commit: 50d66cc
+- normalized reference: native workflow fixture capture premature runner command blocked before guard closeout
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_PREMATURE_RUNNER_COMMAND_BLOCKED_BEFORE_GUARD_CLOSEOUT.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-premature-runner-command-blocked-before-guard-closeout.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-premature-runner-command-blocked-before-guard-closeout-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-premature-runner-command-blocked-before-guard-closeout-dry-run.sh
+- source_of_truth_commit_before_attempt: 50d66cc
+- latest_closed_commit_before_attempt: 50d66cc
 - prior_signed_approval_capture_commit: 50d66cc
 - prior_decision_template_commit: dfb932f
 - prior_runner_recognition_correction_commit: cf6d8c4
 - prior_post_build_161_blocked_evidence_commit: 3f97a7f
-- approval_capture_status: captured_signed
-- jason_signed_approval_status: signed
-- fresh_execution_pre_run_guard_status: passed
-- fresh_execution_pre_run_guard_checks_passed_count: 30
-- runner_command_attempt_status: not_attempted_by_this_packet
-- runner_execution_status: not_run_by_this_packet
-- future_command_status: ready_for_exact_approved_runner_execution_command_after_build_166_guard_review_only
-- next step: after Build 166 is committed, pushed, fetched, and source-of-truth verified, the exact approved runner command may be attempted once from Terminal 1 only
-- controlled_test_roofer_e2e_status: review_only_not_approved_not_run
+- premature_runner_command_attempt_status: attempted_blocked_nonzero_before_guard_closeout
+- runner_command_exit_status: nonzero_blocked
+- runner_reported_source_of_truth_commit: cf6d8c4
+- runner_reported_jason_signed_approval_status: not_signed
+- runner_reported_approval_capture_status: not_captured
+- runner_reported_fresh_pre_run_guard_status: not_created_not_passed
+- runner_reported_future_command_status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_164
+- draft_guard_source_of_truth_closeout_status: not_committed_not_pushed_not_fetched_not_source_of_truth_verified
+- draft_guard_valid_for_runner_execution: false
+- runner_command_rerun_allowed: false
+- fresh_pre_run_guard_required_after_build_166_blocked_evidence: true
+- runner_execution_status: not_run_validation_blocked_nonzero
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
