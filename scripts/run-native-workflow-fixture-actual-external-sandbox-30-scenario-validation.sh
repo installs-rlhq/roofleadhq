@@ -2,30 +2,30 @@
 set -euo pipefail
 
 # =============================================================================
-# BLOCKED / NO-GO — FAIL-CLOSED RUNNER (AFTER BUILD 141 FRESH-CHAIN WIRING CORRECTED REVIEW-ONLY)
+# BLOCKED / NO-GO — FAIL-CLOSED RUNNER (AFTER BUILD 146 FRESH-CHAIN WIRING CORRECTED REVIEW-ONLY)
 # =============================================================================
 # This script is scaffolding for the actual external/sandbox 30-scenario
 # validation runner. It remains NOT approved to run validation from direct
-# invocation. Direct invocation is always blocked fail-closed. Build 142
-# consumed the post-Build-141 exact approved command attempt.
+# invocation. Direct invocation is always blocked fail-closed. Build 147
+# consumed the post-Build-146 exact approved command attempt.
 #
-# source_of_truth_commit: 6d66f4f
-# prior_post_build_141_blocked_evidence_commit: 6d66f4f
-# prior_post_build_141_blocked_evidence_status: closed
-# prior_exact_command_attempt_after_build_141_status: attempted_blocked_nonzero
+# source_of_truth_commit: 0c6abaf
+# prior_post_build_146_blocked_evidence_commit: 0c6abaf
+# prior_post_build_146_blocked_evidence_status: closed
+# prior_exact_command_attempt_after_build_146_status: attempted_blocked_nonzero
 # prior_exact_command_exit_status: nonzero_blocked
-# prior_command_attempt_consumption_status: consumed_by_blocked_fail_closed_result_after_build_141_guard
-# runner_output_source_of_truth_commit_observed_before_correction: 5bd7509 (removed)
-# runner_output_state_after_build_141_status: stale_pre_build_138_139_140_141_state_detected (removed)
-# runner_execution_path_after_build_141_fresh_chain_wiring_gap_status: detected (corrected review-only messaging)
-# runner_execution_path_after_build_141_fresh_chain_wiring_correction_status: design_or_corrected_review_only
-# fresh_runner_execution_decision_after_build_136_fresh_chain_wiring_correction_status: closed (Build 139)
-# fresh_runner_execution_approval_capture_after_build_139_build_136_fresh_chain_wiring_correction_status: captured_signed (Build 140)
-# fresh_execution_pre_run_guard_after_build_139_build_136_fresh_chain_wiring_correction_approval_capture_status: passed (Build 141)
+# prior_command_attempt_consumption_status: consumed_by_blocked_fail_closed_result_after_build_146_guard
+# runner_output_source_of_truth_commit_observed_before_correction: 6d66f4f (removed)
+# runner_output_state_after_build_146_status: stale_pre_build_143_144_145_146_state_detected (removed)
+# runner_execution_path_after_build_146_fresh_chain_wiring_gap_status: detected (corrected review-only messaging)
+# runner_execution_path_after_build_146_fresh_chain_wiring_correction_status: design_or_corrected_review_only
+# fresh_runner_execution_decision_after_build_141_fresh_chain_wiring_correction_status: closed (Build 144)
+# fresh_runner_execution_approval_capture_after_build_144_build_141_fresh_chain_wiring_correction_status: captured_signed (Build 145)
+# fresh_execution_pre_run_guard_after_build_144_build_141_fresh_chain_wiring_correction_approval_capture_status: passed (Build 146)
 # immediate_rerun_allowed: false
-# fresh_decision_required_after_build_141_fresh_chain_wiring_correction: true
-# fresh_pre_run_guard_required_after_build_141_fresh_chain_wiring_correction: true
-# future_command_status: blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_141_fresh_chain_wiring_correction
+# fresh_decision_required_after_build_146_fresh_chain_wiring_correction: true
+# fresh_pre_run_guard_required_after_build_146_fresh_chain_wiring_correction: true
+# future_command_status: blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_146_fresh_chain_wiring_correction
 #
 # This runner must NOT:
 # - make external calls
@@ -47,30 +47,41 @@ PROPOSED_STRUCTURED_EVIDENCE_OUTPUT_PATH="backend/fixtures/native-workflow-demo-
 echo "== RoofLeadHQ Actual External/Sandbox 30-Scenario Validation Runner =="
 echo ""
 echo "BLOCKED: This runner remains fail-closed for direct invocation and is NOT approved to run validation from this blocked path."
-echo "NO-GO: Fresh runner-execution decision and fresh execution pre-run guard pass are required after runner execution path after Build 141 fresh-chain wiring correction — not automatic execution from this blocked path. Build 142 consumed the post-Build-141 exact approved command attempt; immediate rerun is not allowed."
+echo "NO-GO: Fresh runner-execution decision and fresh execution pre-run guard pass are required after runner execution path after Build 146 fresh-chain wiring correction — not automatic execution from this blocked path. Build 147 consumed the post-Build-146 exact approved command attempt; immediate rerun is not allowed."
 echo ""
-echo "source_of_truth_commit: 6d66f4f"
-echo "prior_post_build_141_blocked_evidence_commit: 6d66f4f (Build 142 closed)"
-echo "prior_post_build_141_blocked_evidence_status: closed"
+echo "source_of_truth_commit: 0c6abaf"
+echo "prior_post_build_146_blocked_evidence_commit: 0c6abaf (Build 147 closed)"
+echo "prior_post_build_146_blocked_evidence_status: closed"
 echo ""
-echo "-- After Build 141 fresh-chain wiring correction: recognizes closed Build 138/139/140/141 chain --"
+echo "-- After Build 146 fresh-chain wiring correction: recognizes closed Build 143/144/145/146 chain --"
+echo "runner_execution_path_after_build_141_fresh_chain_wiring_correction_status: design_or_corrected_review_only (Build 143)"
+echo "runner_execution_path_after_build_141_fresh_chain_wiring_correction_commit: c5a2c41"
+echo "fresh_runner_execution_decision_after_build_141_fresh_chain_wiring_correction_status: closed (Build 144)"
+echo "fresh_runner_execution_decision_after_build_141_fresh_chain_wiring_correction_commit: f4c3069"
+echo "fresh_runner_execution_approval_capture_after_build_144_build_141_fresh_chain_wiring_correction_status: captured_signed (Build 145)"
+echo "fresh_runner_execution_approval_capture_after_build_144_build_141_fresh_chain_wiring_correction_commit: 416a61c"
+echo "fresh_runner_execution_approval_capture_status: captured (Build 145)"
+echo "fresh_runner_execution_jason_signed_approval_status: signed (Build 145)"
+echo "fresh_runner_execution_exact_values_required_count: 24"
+echo "fresh_runner_execution_exact_values_accepted_count: 24"
+echo "fresh_runner_execution_exact_values_approved_count: 24"
+echo "fresh_execution_pre_run_guard_after_build_144_build_141_fresh_chain_wiring_correction_approval_capture_status: passed (Build 146)"
+echo "fresh_execution_pre_run_guard_after_build_144_build_141_fresh_chain_wiring_correction_approval_capture_commit: 628436a"
+echo "fresh_execution_pre_run_guard_status: passed (Build 146)"
+echo "fresh_execution_pre_run_guard_checks_required_count: 30"
+echo "fresh_execution_pre_run_guard_checks_passed_count: 30"
+echo "fresh_execution_pre_run_guard_failed_count: 0"
+echo ""
+echo "-- Historical upstream Build 138/139/140/141 chain (recognized, not reusable after Build 147 blocked evidence) --"
 echo "runner_execution_path_after_build_136_fresh_chain_wiring_correction_status: design_or_corrected_review_only (Build 138)"
 echo "runner_execution_path_after_build_136_fresh_chain_wiring_correction_commit: c57d733"
 echo "fresh_runner_execution_decision_after_build_136_fresh_chain_wiring_correction_status: closed (Build 139)"
 echo "fresh_runner_execution_decision_after_build_136_fresh_chain_wiring_correction_commit: debb60e"
 echo "fresh_runner_execution_approval_capture_after_build_139_build_136_fresh_chain_wiring_correction_status: captured_signed (Build 140)"
 echo "fresh_runner_execution_approval_capture_after_build_139_build_136_fresh_chain_wiring_correction_commit: 47fbba3"
-echo "fresh_runner_execution_approval_capture_status: captured (Build 140)"
-echo "fresh_runner_execution_jason_signed_approval_status: signed (Build 140)"
-echo "fresh_runner_execution_exact_values_required_count: 24"
-echo "fresh_runner_execution_exact_values_accepted_count: 24"
-echo "fresh_runner_execution_exact_values_approved_count: 24"
 echo "fresh_execution_pre_run_guard_after_build_139_build_136_fresh_chain_wiring_correction_approval_capture_status: passed (Build 141)"
 echo "fresh_execution_pre_run_guard_after_build_139_build_136_fresh_chain_wiring_correction_approval_capture_commit: db9b293"
-echo "fresh_execution_pre_run_guard_status: passed (Build 141)"
-echo "fresh_execution_pre_run_guard_checks_required_count: 30"
-echo "fresh_execution_pre_run_guard_checks_passed_count: 30"
-echo "fresh_execution_pre_run_guard_failed_count: 0"
+echo "runner_recognized_build_138_139_140_141_chain_status: true"
 echo ""
 echo "-- Historical upstream Build 133/134/135/136 chain (recognized, not reusable after Build 142 blocked evidence) --"
 echo "runner_execution_path_after_after_all_after_guard_fresh_chain_wiring_correction_status: design_or_corrected_review_only (Build 133)"
@@ -86,7 +97,7 @@ echo ""
 echo "-- Historical upstream Build 128/129/130/131 chain (recognized, not reusable after Build 137 blocked evidence) --"
 echo "runner_execution_path_after_after_all_guard_fresh_chain_wiring_correction_status: design_or_corrected_review_only (Build 128)"
 echo "runner_execution_path_after_after_all_guard_fresh_chain_wiring_correction_commit: 59b74bf"
-echo "fresh_runner_execution_decision_after_after_after_after_guard_fresh_chain_wiring_correction_status: closed (Build 129)"
+echo "fresh_runner_execution_decision_after_after_all_after_guard_fresh_chain_wiring_correction_status: closed (Build 129)"
 echo "fresh_runner_execution_decision_after_after_all_after_guard_fresh_chain_wiring_correction_commit: e3a576a"
 echo "fresh_runner_execution_approval_capture_after_after_all_after_guard_fresh_chain_wiring_correction_status: captured_signed (Build 130)"
 echo "fresh_runner_execution_approval_capture_after_after_all_after_guard_fresh_chain_wiring_correction_commit: 7953121"
@@ -125,33 +136,33 @@ echo "fresh_execution_pre_run_guard_after_path_correction_status: passed (Build 
 echo "fresh_execution_pre_run_guard_after_path_correction_commit: 2f1bbe3"
 echo "runner_recognized_build_114_115_116_chain_status: true"
 echo ""
-echo "prior_exact_command_attempt_after_build_141_status: attempted_blocked_nonzero (Build 142)"
-echo "prior_exact_command_exit_status: nonzero_blocked (Build 142)"
-echo "prior_command_attempt_consumption_status: consumed_by_blocked_fail_closed_result_after_build_141_guard (Build 142)"
-echo "runner_output_source_of_truth_commit_observed_before_correction: 5bd7509 (removed)"
-echo "runner_output_state_after_build_141_status: stale_pre_build_138_139_140_141_state_detected (removed)"
-echo "runner_did_not_recognize_build_138_after_build_136_fresh_chain_wiring_correction_status_before_correction: true (historical — corrected)"
-echo "runner_did_not_recognize_build_139_fresh_decision_status_before_correction: true (historical — corrected)"
-echo "runner_did_not_recognize_build_140_approval_capture_status_before_correction: true (historical — corrected)"
-echo "runner_did_not_recognize_build_141_pre_run_guard_status_before_correction: true (historical — corrected)"
+echo "prior_exact_command_attempt_after_build_146_status: attempted_blocked_nonzero (Build 147)"
+echo "prior_exact_command_exit_status: nonzero_blocked (Build 147)"
+echo "prior_command_attempt_consumption_status: consumed_by_blocked_fail_closed_result_after_build_146_guard (Build 147)"
+echo "runner_output_source_of_truth_commit_observed_before_correction: 6d66f4f (removed)"
+echo "runner_output_state_after_build_146_status: stale_pre_build_143_144_145_146_state_detected (removed)"
+echo "runner_did_not_recognize_build_143_after_build_141_fresh_chain_wiring_correction_status_before_correction: true (historical — corrected)"
+echo "runner_did_not_recognize_build_144_fresh_decision_status_before_correction: true (historical — corrected)"
+echo "runner_did_not_recognize_build_145_approval_capture_status_before_correction: true (historical — corrected)"
+echo "runner_did_not_recognize_build_146_pre_run_guard_status_before_correction: true (historical — corrected)"
 echo ""
-echo "-- Historical upstream chain (not reusable after Build 142 blocked evidence) --"
-echo "prior_runner_execution_path_after_build_136_fresh_chain_wiring_correction_status: closed (Build 138)"
-echo "prior_build_138_139_140_141_decision_approval_guard_chain_reusable_after_build_141_blocked_evidence: false"
+echo "-- Historical upstream chain (not reusable after Build 147 blocked evidence) --"
+echo "prior_runner_execution_path_after_build_141_fresh_chain_wiring_correction_status: closed (Build 143)"
+echo "prior_build_143_144_145_146_decision_approval_guard_chain_reusable_after_build_146_blocked_evidence: false"
 echo ""
-echo "runner_execution_path_after_build_141_fresh_chain_wiring_gap_status: detected"
-echo "runner_execution_path_after_build_141_fresh_chain_wiring_correction_status: design_or_corrected_review_only"
-echo "runner_command_path_status: corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_build_141_fresh_chain_wiring_correction"
+echo "runner_execution_path_after_build_146_fresh_chain_wiring_gap_status: detected"
+echo "runner_execution_path_after_build_146_fresh_chain_wiring_correction_status: design_or_corrected_review_only"
+echo "runner_command_path_status: corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_build_146_fresh_chain_wiring_correction"
 echo "runner_direct_invocation_status_after_correction: blocked_nonzero_expected"
 echo "runner_execution_status: not_run"
 echo "command_execution_status: not_run"
 echo "immediate_rerun_allowed: false"
-echo "fresh_decision_required_after_build_141_fresh_chain_wiring_correction: true"
-echo "fresh_pre_run_guard_required_after_build_141_fresh_chain_wiring_correction: true"
+echo "fresh_decision_required_after_build_146_fresh_chain_wiring_correction: true"
+echo "fresh_pre_run_guard_required_after_build_146_fresh_chain_wiring_correction: true"
 echo "no_immediate_rerun_allowed: true"
 echo "no_immediate_runner_invocation_by_blocked_path: true"
-echo "prior_future_command_status_build_142: future_command_status: blocked_until_runner_execution_path_after_build_141_fresh_chain_wiring_correction_and_fresh_decision"
-echo "future_command_status: blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_141_fresh_chain_wiring_correction"
+echo "prior_future_command_status_build_147: future_command_status: blocked_until_runner_execution_path_after_build_146_fresh_chain_wiring_correction_and_fresh_decision"
+echo "future_command_status: blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_146_fresh_chain_wiring_correction"
 echo ""
 echo "This runner does NOT make external calls."
 echo "This runner does NOT access credentials."
@@ -171,7 +182,7 @@ echo "Manifest reference (scaffolding only): ${MANIFEST_PATH}"
 echo "Proposed evidence log path (not written): ${PROPOSED_EVIDENCE_LOG_PATH}"
 echo "Proposed structured evidence output path (not written): ${PROPOSED_STRUCTURED_EVIDENCE_OUTPUT_PATH}"
 echo ""
-echo "Next step: fresh runner-execution decision/template and fresh execution pre-run guard pass after Build 141 fresh-chain wiring correction — NOT automatic execution from this blocked path and NOT immediate rerun."
+echo "Next step: fresh runner-execution decision/template and fresh execution pre-run guard pass after Build 146 fresh-chain wiring correction — NOT automatic execution from this blocked path and NOT immediate rerun."
 echo ""
 echo "EXIT: non-zero (blocked)"
 
