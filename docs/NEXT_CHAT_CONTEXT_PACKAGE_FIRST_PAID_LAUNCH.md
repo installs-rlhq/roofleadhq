@@ -10749,6 +10749,51 @@ node backend/scripts/verify-native-workflow-fixture-capture-fresh-runner-executi
 Safety remains: local fake-data review-only capture-fresh-runner-execution-approval-after-build-134-after-after-after-after-guard-fresh-chain-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Approval capture only; not fresh pre-run guard pass, not runner execution, not activation, non-executing. source_of_truth_commit a07dda6. prior_fresh_runner_execution_decision_after_after_all_after_guard_fresh_chain_wiring_correction_status closed. future_command_status blocked_until_fresh_execution_pre_run_guard_passes_after_build_134_after_after_after_after_guard_fresh_chain_wiring_correction_approval_capture. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
 
 
+
+## Native Workflow Fixture Runner Execution Path After Build 136 Fresh-Chain Wiring Correction
+
+The Native Workflow Fixture Runner Execution Path After Build 136 Fresh-Chain Wiring Correction (native workflow fixture runner execution path after build 136 fresh chain wiring correction / runner execution path after build 136 fresh chain wiring correction) provides a local review-only runner execution path after Build 136 fresh-chain wiring correction/design packet that diagnoses and corrects the after Build 136 fresh-chain wiring gap where Build 137 consumed the post-Build-136 exact approved command attempt while runner output still reflected stale Build 132-era 0dc6d88 state without rerunning the runner, performing validation, or executing activation.
+
+Added files:
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_AFTER_BUILD_136_FRESH_CHAIN_WIRING_CORRECTION.md`
+- `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_AFTER_BUILD_136_FRESH_CHAIN_WIRING_CORRECTION_NO_GO_REVIEW.md`
+- `backend/scripts/verify-native-workflow-fixture-runner-execution-path-after-build-136-fresh-chain-wiring-correction-readonly.js`
+- `backend/fixtures/native-workflow-demo-roofer/runner-execution-path-after-build-136-fresh-chain-wiring-correction.json`
+- `scripts/run-native-workflow-fixture-runner-execution-path-after-build-136-fresh-chain-wiring-correction-dry-run.sh`
+
+Updated files:
+- `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`
+- `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`
+- `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`
+- `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
+- `scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh` (review-only stale-state correction/messaging only)
+
+- Verifier enforces references to the packet artifacts and "Native Workflow Fixture Runner Execution Path After Build 136 Fresh-Chain Wiring Correction" / "native workflow fixture runner execution path after build 136 fresh chain wiring correction" / "runner execution path after build 136 fresh chain wiring correction" across aggregate, index, contexts, and business guide.
+- source_of_truth_commit 5bd7509; prior_post_build_136_blocked_evidence_commit 5bd7509; prior_post_build_136_blocked_evidence_status closed.
+- prior_exact_command_attempt_after_build_136_status attempted_blocked_nonzero; prior_exact_command_exit_status nonzero_blocked.
+- prior_command_attempt_consumption_status consumed_by_blocked_fail_closed_result_after_build_136_guard.
+- runner_output_source_of_truth_commit_observed_before_correction 0dc6d88 removed; runner_output_state_after_build_136_status stale_pre_build_133_134_135_136_state_detected removed.
+- runner recognizes closed Build 133/134/135/136 chain in corrected messaging.
+- runner_execution_path_after_build_136_fresh_chain_wiring_gap_status detected; runner_execution_path_after_build_136_fresh_chain_wiring_correction_status design_or_corrected_review_only.
+- actual_30_scenario_external_validation_captured_count 0; actual_30_scenario_external_validation_passed_count 0; actual_30_scenario_external_validation_missing_count 30; actual_30_scenario_external_validation_status not_captured_by_this_run.
+- approved_for_activation_now false; correction/design only; does not run runner.
+- future_command_status blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_136_fresh_chain_wiring_correction. Next step is fresh runner-execution decision/template and fresh execution pre-run guard after Build 136 fresh-chain wiring correction, not immediate rerun.
+
+Dry-run command:
+
+```bash
+bash scripts/run-native-workflow-fixture-runner-execution-path-after-build-136-fresh-chain-wiring-correction-dry-run.sh
+```
+
+Read-only verifier:
+
+```bash
+node backend/scripts/verify-native-workflow-fixture-runner-execution-path-after-build-136-fresh-chain-wiring-correction-readonly.js
+```
+
+Safety remains: local fake-data review-only runner-execution-path-after-build-136-fresh-chain-wiring-correction-only. No Supabase, no schema, no migrations, no auth/RLS, no production data, no sandbox credentials, no production credentials, no env value logging, no live automation, no test-mode automation, no integrations, no external calls, no CRM sync, no live CSV delivery, no billing/payment actions, no public routes, no scheduler/cron/dispatcher. No roofer contact, no email, no SMS, no calls. demo_ready_with_live_automation_disabled. Correction/design only; not runner execution, not actual validation, not activation, non-executing. source_of_truth_commit 5bd7509. prior_post_build_136_blocked_evidence_status closed. future_command_status blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_136_fresh_chain_wiring_correction. approved_for_activation_now false. actual 30-scenario external validation remains 0 captured / 0 passed / 30 missing. Stop after gates and diff proof. Do not commit or push.
+
 ## Native Workflow Fixture Capture Post-Build-136 Runner Command Blocked Evidence
 
 The Native Workflow Fixture Capture Post-Build-136 Runner Command Blocked Evidence (native workflow fixture capture post build 136 runner command blocked evidence / capture post build 136 runner command blocked evidence) provides a local review-only post-Build-136 blocked runner command evidence capture packet that records the exact approved command attempt from /root/roofleadhq after Build 136 closed fresh execution pre-run guard after Build 134 approval capture at 7f9714e without rerunning the runner, invoking the exact approved command, or performing actual 30-scenario validation.
