@@ -1767,3 +1767,12 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // Native Workflow Fixture Fresh Execution Pre-Run Guard Build 149 Build 146 Fresh-Chain Wiring Correction Approval Capture
 
 Build 151 normalized reference: native workflow fixture fresh execution pre run guard after build 149 build 146 fresh chain wiring correction approval capture
+
+
+// Build 152 registry reference:
+// Native Workflow Fixture Capture Post Build 151 Runner Command Blocked Evidence
+// native workflow fixture capture post build 151 runner command blocked evidence
+// docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_151_RUNNER_COMMAND_BLOCKED_EVIDENCE.md
+// backend/fixtures/native-workflow-demo-roofer/capture-post-build-151-runner-command-blocked-evidence.json
+// backend/scripts/verify-native-workflow-fixture-capture-post-build-151-runner-command-blocked-evidence-readonly.js
+// scripts/run-native-workflow-fixture-capture-post-build-151-runner-command-blocked-evidence-dry-run.sh

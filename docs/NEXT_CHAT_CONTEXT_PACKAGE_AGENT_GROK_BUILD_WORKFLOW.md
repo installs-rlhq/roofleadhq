@@ -6143,3 +6143,21 @@ Safety remains: local read-only/dry-run only. No Supabase, no schema, no migrati
 - demo_ready_with_live_automation_disabled: preserved
 
 Build 151 normalized reference: native workflow fixture fresh execution pre run guard after build 149 build 146 fresh chain wiring correction approval capture
+
+
+## Build 152 — Native Workflow Fixture Capture Post Build 151 Runner Command Blocked Evidence
+
+- normalized reference: native workflow fixture capture post build 151 runner command blocked evidence
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_151_RUNNER_COMMAND_BLOCKED_EVIDENCE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-post-build-151-runner-command-blocked-evidence.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-post-build-151-runner-command-blocked-evidence-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-post-build-151-runner-command-blocked-evidence-dry-run.sh
+- source_of_truth_commit: 01a27cf
+- exact_command_attempted_after_build_151_status: attempted_blocked_nonzero
+- exact_command_exit_status: nonzero_blocked
+- command_attempt_consumption_status: consumed_by_blocked_fail_closed_result_after_build_151_guard
+- runner_output_source_of_truth_commit_observed_after_build_151: 0c6abaf
+- runner_output_state_after_build_151_status: stale_pre_build_148_149_150_151_state_detected
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- future_command_status: blocked_until_runner_execution_path_after_build_151_fresh_chain_wiring_correction_and_fresh_decision
+- demo_ready_with_live_automation_disabled: preserved
