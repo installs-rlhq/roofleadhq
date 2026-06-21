@@ -1892,3 +1892,13 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // backend/scripts/verify-native-workflow-fixture-capture-premature-runner-command-blocked-before-guard-closeout-readonly.js
 // scripts/run-native-workflow-fixture-capture-premature-runner-command-blocked-before-guard-closeout-dry-run.sh
 // blocked evidence only; no immediate rerun; create a new fresh pre-run guard after Build 166 blocked evidence source-of-truth closeout
+
+// Build 167 registry reference:
+// Native Workflow Fixture Fresh Pre-Run Guard After Build 166 Blocked Evidence Cleanup
+// native workflow fixture fresh pre run guard after build 166 blocked evidence cleanup
+// docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_166_BLOCKED_EVIDENCE_CLEANUP.md
+// backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup.json
+// backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup-readonly.js
+// scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup-dry-run.sh
+// ready only after Build 167 is committed, pushed, fetched, source-of-truth verified, and final git status is blank
+// actual validation remains 0 captured / 0 passed / 30 missing

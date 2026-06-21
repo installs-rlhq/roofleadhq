@@ -10849,3 +10849,20 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - controlled_test_roofer_e2e_status: review_only_not_approved_not_run
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 167 - Native Workflow Fixture Fresh Pre-Run Guard After Build 166 Blocked Evidence Cleanup
+
+- normalized reference: native workflow fixture fresh pre run guard after build 166 blocked evidence cleanup
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_166_BLOCKED_EVIDENCE_CLEANUP.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup-dry-run.sh
+- source_of_truth_commit: bc7ea24
+- fresh_execution_pre_run_guard_status: passed
+- fresh_execution_pre_run_guard_checks_passed_count: 30
+- runner_command_attempt_status: not_attempted_by_this_packet
+- runner_execution_status: not_run_by_this_packet
+- future_command_status: ready_for_exact_approved_runner_execution_command_after_build_167_guard_source_of_truth_closeout
+- ready only after Build 167 is committed, pushed, fetched, source-of-truth verified, and final git status is blank
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved

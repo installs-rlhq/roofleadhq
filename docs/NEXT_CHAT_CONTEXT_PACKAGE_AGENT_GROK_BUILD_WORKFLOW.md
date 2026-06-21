@@ -6418,3 +6418,15 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Current state: Build 165 signed approval is captured at 50d66cc, but a premature runner command attempt blocked/nonzero before the Build 166 guard draft was source-of-truth closed.
 - Next step: after this blocked evidence is committed, pushed, fetched, and source-of-truth verified, create a new fresh pre-run guard packet before any runner command attempt.
 - Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
+
+## Build 167 - Native Workflow Fixture Fresh Pre-Run Guard After Build 166 Blocked Evidence Cleanup
+
+- normalized reference: native workflow fixture fresh pre run guard after build 166 blocked evidence cleanup
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_166_BLOCKED_EVIDENCE_CLEANUP.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup-dry-run.sh`
+- Current state: fresh pre-run guard passed 30/30 at source_of_truth_commit bc7ea24; actual runner execution is not run by this packet.
+- Future command status: ready only after Build 167 is committed, pushed, fetched, source-of-truth verified, and final git status is blank.
+- If the future command blocks/nonzero/stale, stop and do not rerun. If the future command succeeds, stop and capture validation evidence.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
