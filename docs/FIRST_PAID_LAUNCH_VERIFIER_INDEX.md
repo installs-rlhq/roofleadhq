@@ -4987,3 +4987,29 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - if future command blocks/nonzero/stale, stop and do not rerun; if it succeeds, stop and capture validation evidence
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 168 - Native Workflow Fixture Capture Post Build 167 Runner Blocked Stale Evidence
+
+- normalized reference: native workflow fixture capture post build 167 runner blocked stale evidence
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_167_RUNNER_BLOCKED_STALE_EVIDENCE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-post-build-167-runner-blocked-stale-evidence.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-post-build-167-runner-blocked-stale-evidence-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-post-build-167-runner-blocked-stale-evidence-dry-run.sh
+- source_of_truth_commit_before_attempt: e0be19f
+- latest_closed_commit_before_attempt: e0be19f
+- prior_build_167_fresh_guard_commit: e0be19f
+- post_build_167_runner_command_attempt_status: attempted_blocked_nonzero_or_treated_as_consumed_from_pasted_log
+- runner_command_exit_status: nonzero_blocked
+- runner_reported_source_of_truth_commit: cf6d8c4
+- runner_reported_jason_signed_approval_status: not_signed
+- runner_reported_approval_capture_status: not_captured
+- runner_reported_fresh_pre_run_guard_status: not_created_not_passed
+- runner_output_stale_after_build_167_guard: true
+- runner_recognized_build_165_signed_approval_capture: false
+- runner_recognized_build_167_fresh_guard: false
+- runner_command_rerun_allowed: false
+- fresh_correction_required_after_build_168_blocked_evidence: true
+- future_runner_attempt_status: blocked_until_runner_state_correction_and_new_approval_guard_chain
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- actual validation remains 0 captured / 0 passed / 30 missing
+- demo_ready_with_live_automation_disabled: preserved

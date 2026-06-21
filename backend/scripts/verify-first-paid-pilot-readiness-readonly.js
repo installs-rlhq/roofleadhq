@@ -1902,3 +1902,14 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-166-blocked-evidence-cleanup-dry-run.sh
 // ready only after Build 167 is committed, pushed, fetched, source-of-truth verified, and final git status is blank
 // actual validation remains 0 captured / 0 passed / 30 missing
+
+// Build 168 registry reference:
+// Native Workflow Fixture Capture Post Build 167 Runner Blocked Stale Evidence
+// native workflow fixture capture post build 167 runner blocked stale evidence
+// docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_167_RUNNER_BLOCKED_STALE_EVIDENCE.md
+// backend/fixtures/native-workflow-demo-roofer/capture-post-build-167-runner-blocked-stale-evidence.json
+// backend/scripts/verify-native-workflow-fixture-capture-post-build-167-runner-blocked-stale-evidence-readonly.js
+// scripts/run-native-workflow-fixture-capture-post-build-167-runner-blocked-stale-evidence-dry-run.sh
+// Build 167 guard closed at e0be19f, but pasted runner output stayed stale at cf6d8c4 / Build 164 template-only state
+// future_runner_attempt_status: blocked_until_runner_state_correction_and_new_approval_guard_chain
+// actual validation remains 0 captured / 0 passed / 30 missing

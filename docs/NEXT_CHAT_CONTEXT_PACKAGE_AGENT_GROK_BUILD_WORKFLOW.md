@@ -6430,3 +6430,16 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Future command status: ready only after Build 167 is committed, pushed, fetched, source-of-truth verified, and final git status is blank.
 - If the future command blocks/nonzero/stale, stop and do not rerun. If the future command succeeds, stop and capture validation evidence.
 - Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
+
+## Build 168 - Native Workflow Fixture Capture Post Build 167 Runner Blocked Stale Evidence
+
+- normalized reference: native workflow fixture capture post build 167 runner blocked stale evidence
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_POST_BUILD_167_RUNNER_BLOCKED_STALE_EVIDENCE.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/capture-post-build-167-runner-blocked-stale-evidence.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-capture-post-build-167-runner-blocked-stale-evidence-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-capture-post-build-167-runner-blocked-stale-evidence-dry-run.sh`
+- Current state: Build 167 fresh guard closed at e0be19f, but the pasted post-Build-167 runner output remained stale at cf6d8c4 / Build 164 template-only state and blocked/nonzero.
+- Runner recognition: did not recognize Build 165 signed approval capture or Build 167 fresh guard.
+- Future command status: blocked_until_runner_state_correction_and_new_approval_guard_chain.
+- No immediate rerun is allowed. A correction packet is required before any future approval/guard/attempt chain.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
