@@ -2,28 +2,29 @@
 set -euo pipefail
 
 # =============================================================================
-# BLOCKED / NO-GO - FAIL-CLOSED RUNNER AFTER BUILD 163 RECOGNITION CORRECTION
+# BLOCKED / NO-GO - FAIL-CLOSED RUNNER AFTER BUILD 164 DECISION/TEMPLATE
 # =============================================================================
 # This script is scaffolding for the actual external/sandbox 30-scenario
 # validation runner. Direct invocation remains blocked and exits nonzero.
-# Build 162 captured that the post-Build-161 exact command attempt was
-# blocked/nonzero and consumed the prior one-time approval/guard chain.
+# Build 164 closes a review-only fresh decision and approval template. It does
+# not capture Jason approval, does not create/pass a fresh guard, and does not
+# allow immediate runner execution.
 #
-# source_of_truth_commit: 3f97a7f
+# source_of_truth_commit: cf6d8c4
+# prior_runner_recognition_correction_commit: cf6d8c4
 # prior_post_build_161_blocked_evidence_commit: 3f97a7f
 # prior_fresh_execution_pre_run_guard_commit: dd05289
 # prior_approval_capture_commit: 46ca819
 # prior_fresh_decision_commit: 0eefaf3
 # prior_runner_execution_path_commit: 28b6413
-# prior_post_build_156_blocked_evidence_commit: 5dde6ce
 # prior_stale_runner_reported_source_of_truth_commit: 0c6abaf (historical only, not current)
-# runner_recognizes_build_158_159_160_161_162_chain: true
-# runner_stale_pre_build_158_159_160_161_state_retired_as_historical: true
-# approval_guard_chain_consumed: true
+# fresh_runner_execution_decision_after_build_163_correction_status: review_only_no_go_until_signed_approval_and_guard
+# approval_template_status: template_only_not_signed_not_captured_not_granted
+# jason_signed_approval_status: not_signed
+# approval_capture_status: not_captured
+# fresh_pre_run_guard_status: not_created_not_passed
 # immediate_rerun_allowed: false
-# fresh_decision_required_after_build_163_correction: true
-# fresh_approval_capture_required_after_build_163_correction: true
-# fresh_pre_run_guard_required_after_build_163_correction: true
+# future_command_status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_164
 # =============================================================================
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -36,15 +37,15 @@ PROPOSED_STRUCTURED_EVIDENCE_OUTPUT_PATH="backend/fixtures/native-workflow-demo-
 echo "== RoofLeadHQ Actual External/Sandbox 30-Scenario Validation Runner =="
 echo ""
 echo "BLOCKED: This runner remains fail-closed for direct invocation and is NOT approved to run validation from this blocked path."
-echo "NO-GO: Build 162 captured the post-Build-161 exact command attempt as blocked/nonzero. That attempt consumed the prior one-time approval/guard chain. Immediate rerun is not allowed."
+echo "NO-GO: Build 164 closes decision/template only. Jason signed approval capture and a fresh pre-run guard after Build 164 are required before one exact command attempt."
 echo ""
-echo "source_of_truth_commit: 3f97a7f"
+echo "source_of_truth_commit: cf6d8c4"
+echo "prior_runner_recognition_correction_commit: cf6d8c4"
 echo "prior_post_build_161_blocked_evidence_commit: 3f97a7f"
 echo "prior_fresh_execution_pre_run_guard_commit: dd05289"
 echo "prior_approval_capture_commit: 46ca819"
 echo "prior_fresh_decision_commit: 0eefaf3"
 echo "prior_runner_execution_path_commit: 28b6413"
-echo "prior_post_build_156_blocked_evidence_commit: 5dde6ce"
 echo "prior_stale_runner_reported_source_of_truth_commit: 0c6abaf (historical only, not current)"
 echo ""
 echo "-- Current recognized Build 158/159/160/161/162 chain --"
@@ -58,25 +59,32 @@ echo "runner_stale_pre_build_158_159_160_161_state_retired_as_historical: true"
 echo "runner_old_build_146_chain_status: historical_only_not_current"
 echo "stale_0c6abaf_current_state_allowed: false"
 echo ""
-echo "-- Consumed prior chain --"
-echo "approval_guard_chain_consumed: true"
-echo "prior_one_time_approval_guard_chain_consumed_by_blocked_build_161_command_attempt: true"
-echo "prior_exact_command_attempt_after_build_161_status: attempted_blocked_nonzero"
-echo "prior_exact_command_exit_status: nonzero_blocked"
+echo "-- Build 164 decision/template status --"
+echo "fresh_runner_execution_decision_after_build_163_correction_status: review_only_no_go_until_signed_approval_and_guard"
+echo "approval_template_status: template_only_not_signed_not_captured_not_granted"
+echo "jason_signed_approval_status: not_signed"
+echo "approval_capture_status: not_captured"
+echo "fresh_pre_run_guard_status: not_created_not_passed"
 echo ""
-echo "-- Required next chain after Build 163 correction --"
-echo "runner_direct_invocation_status_after_correction: blocked_nonzero_expected"
+echo "-- Exact values present as unsigned template only --"
+echo "exact_working_directory: /root/roofleadhq"
+echo "exact_command: bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh"
+echo "exact_runner_path: scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh"
+echo "exact_manifest_path: backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-validation-manifest.json"
+echo "exact_scenario_count: 30"
+echo ""
+echo "-- Required next chain after Build 164 --"
+echo "runner_direct_invocation_status_after_decision_template: blocked_nonzero_expected"
+echo "runner_command_attempt_status: not_attempted_by_this_packet"
 echo "runner_execution_status: not_run"
 echo "command_execution_status: not_run"
 echo "immediate_rerun_allowed: false"
 echo "runner_command_rerun_allowed: false"
-echo "fresh_decision_required_after_build_163_correction: true"
-echo "fresh_approval_capture_required_after_build_163_correction: true"
-echo "fresh_pre_run_guard_required_after_build_163_correction: true"
-echo "future_command_status: blocked_until_fresh_decision_fresh_approval_capture_and_fresh_pre_run_guard_after_build_163_correction"
+echo "future_command_status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_164"
 echo ""
 echo "This runner does NOT make external calls."
 echo "This runner does NOT access credentials."
+echo "This runner does NOT expose secrets."
 echo "This runner does NOT access production data."
 echo "This runner does NOT write production Supabase data."
 echo "This runner does NOT send SMS, email, or calls."
@@ -97,7 +105,7 @@ echo "Manifest reference (scaffolding only): ${MANIFEST_PATH}"
 echo "Proposed evidence log path (not written): ${PROPOSED_EVIDENCE_LOG_PATH}"
 echo "Proposed structured evidence output path (not written): ${PROPOSED_STRUCTURED_EVIDENCE_OUTPUT_PATH}"
 echo ""
-echo "Next step: fresh runner-execution decision, fresh approval capture, and fresh pre-run guard after Build 163 correction. This direct path remains blocked."
+echo "Next step: Jason signed approval capture after Build 164, then a fresh pre-run guard. This direct path remains blocked."
 echo ""
 echo "EXIT: non-zero (blocked)"
 

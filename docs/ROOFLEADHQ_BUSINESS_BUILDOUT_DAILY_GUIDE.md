@@ -10807,3 +10807,14 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Current state: runner recognizes Build 158/159/160/161/162; stale `0c6abaf` runner state is historical only.
 - Next step: fresh decision, fresh approval capture, and fresh pre-run guard after Build 163 correction. Do not rerun the actual runner immediately.
 - Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
+
+## Build 164 — Native Workflow Fixture Fresh Runner Decision And Approval Template After Build 163 Correction
+
+- normalized reference: native workflow fixture fresh runner decision and approval template after build 163 correction
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AND_APPROVAL_TEMPLATE_AFTER_BUILD_163_CORRECTION.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/fresh-runner-decision-and-approval-template-after-build-163-correction.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-dry-run.sh`
+- Current state: decision/template only; Jason approval is not signed, not captured, and not granted.
+- Next step: Jason must separately sign exact approval values after Build 164, then a fresh pre-run guard must pass before one exact runner attempt.
+- Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.

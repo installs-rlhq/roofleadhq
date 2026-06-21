@@ -174,6 +174,12 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Native Workflow Fixture Correct Current Runner Recognition And Test Roofer E2E Readiness wrapper: `scripts/run-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-dry-run.sh`
 - normalized reference: native workflow fixture correct current runner recognition and test roofer e2e readiness
 - Build 163 next step: fresh decision, fresh approval capture, and fresh pre-run guard are required before any actual runner attempt; controlled test-roofer E2E remains review-only, not approved, and not run.
+- Native Workflow Fixture Fresh Runner Decision And Approval Template After Build 163 Correction doc: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AND_APPROVAL_TEMPLATE_AFTER_BUILD_163_CORRECTION.md`
+- Native Workflow Fixture Fresh Runner Decision And Approval Template After Build 163 Correction fixture: `backend/fixtures/native-workflow-demo-roofer/fresh-runner-decision-and-approval-template-after-build-163-correction.json`
+- Native Workflow Fixture Fresh Runner Decision And Approval Template After Build 163 Correction verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-readonly.js`
+- Native Workflow Fixture Fresh Runner Decision And Approval Template After Build 163 Correction wrapper: `scripts/run-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-dry-run.sh`
+- normalized reference: native workflow fixture fresh runner decision and approval template after build 163 correction
+- Build 164 next step: Jason must separately sign exact approval values after Build 164, then a fresh pre-run guard must pass before one exact runner command attempt; controlled test-roofer E2E remains review-only, not approved, and not run.
 - Production Tenant / Account Model Readiness Packet doc: `docs/PRODUCTION_TENANT_ACCOUNT_MODEL_READINESS_PACKET.md`
 - Production Tenant / Account Model Readiness Packet wrapper: `scripts/run-production-tenant-account-model-readiness-packet-dry-run.sh`
 - Production Tenant / Account Model Readiness Packet verifier: `node backend/scripts/verify-production-tenant-account-model-readiness-packet-readonly.js`

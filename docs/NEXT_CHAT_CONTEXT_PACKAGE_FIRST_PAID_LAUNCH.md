@@ -11898,3 +11898,24 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - controlled_test_roofer_e2e_status: review_only_not_approved_not_run
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 164 — Native Workflow Fixture Fresh Runner Decision And Approval Template After Build 163 Correction
+
+- normalized reference: native workflow fixture fresh runner decision and approval template after build 163 correction
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AND_APPROVAL_TEMPLATE_AFTER_BUILD_163_CORRECTION.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-runner-decision-and-approval-template-after-build-163-correction.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-dry-run.sh
+- source_of_truth_commit: cf6d8c4
+- fresh_runner_execution_decision_after_build_163_correction_status: review_only_no_go_until_signed_approval_and_guard
+- approval_template_status: template_only_not_signed_not_captured_not_granted
+- jason_signed_approval_status: not_signed
+- approval_capture_status: not_captured
+- fresh_pre_run_guard_status: not_created_not_passed
+- runner_command_attempt_status: not_attempted_by_this_packet
+- runner_execution_status: not_run_by_this_packet
+- future_command_status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_164
+- next step: Jason must separately sign exact approval values after Build 164, then fresh guard, then one exact runner attempt
+- controlled_test_roofer_e2e_status: review_only_not_approved_not_run
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved

@@ -1865,3 +1865,12 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // backend/scripts/verify-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-readonly.js
 // scripts/run-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-dry-run.sh
 // next step: fresh decision, fresh approval capture, and fresh pre-run guard after Build 163 correction
+
+// Build 164 registry reference:
+// Native Workflow Fixture Fresh Runner Decision And Approval Template After Build 163 Correction
+// native workflow fixture fresh runner decision and approval template after build 163 correction
+// docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AND_APPROVAL_TEMPLATE_AFTER_BUILD_163_CORRECTION.md
+// backend/fixtures/native-workflow-demo-roofer/fresh-runner-decision-and-approval-template-after-build-163-correction.json
+// backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-readonly.js
+// scripts/run-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-dry-run.sh
+// next step: Jason signed approval capture, then fresh pre-run guard, before one exact runner command attempt

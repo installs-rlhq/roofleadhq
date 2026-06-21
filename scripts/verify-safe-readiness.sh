@@ -87,3 +87,9 @@ echo "PASS: Safe readiness verification passed."
 # native workflow fixture correct current runner recognition and test roofer e2e readiness
 # scripts/run-native-workflow-fixture-correct-current-runner-recognition-and-test-roofer-e2e-readiness-dry-run.sh
 # next step: fresh decision, fresh approval capture, and fresh pre-run guard after Build 163 correction
+
+# Build 164 registry reference:
+# Native Workflow Fixture Fresh Runner Decision And Approval Template After Build 163 Correction
+# native workflow fixture fresh runner decision and approval template after build 163 correction
+# scripts/run-native-workflow-fixture-fresh-runner-decision-and-approval-template-after-build-163-correction-dry-run.sh
+# next step: Jason signed approval capture, then fresh pre-run guard, before one exact runner command attempt
