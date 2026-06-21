@@ -6161,3 +6161,20 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
 - future_command_status: blocked_until_runner_execution_path_after_build_151_fresh_chain_wiring_correction_and_fresh_decision
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 153 — Native Workflow Fixture Runner Execution Path After Build 151 Fresh Chain Wiring Correction
+
+- normalized reference: native workflow fixture runner execution path after build 151 fresh chain wiring correction
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_EXECUTION_PATH_AFTER_BUILD_151_FRESH_CHAIN_WIRING_CORRECTION.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/runner-execution-path-after-build-151-fresh-chain-wiring-correction.json
+- verifier: backend/scripts/verify-native-workflow-fixture-runner-execution-path-after-build-151-fresh-chain-wiring-correction-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-runner-execution-path-after-build-151-fresh-chain-wiring-correction-dry-run.sh
+- source_of_truth_commit: ac96217
+- prior_post_build_151_blocked_evidence_commit: ac96217
+- runner_output_source_of_truth_commit_observed_before_correction: 0c6abaf
+- runner_output_state_after_build_151_status: stale_pre_build_148_149_150_151_state_detected
+- runner_execution_path_after_build_151_fresh_chain_wiring_gap_status: detected
+- runner_execution_path_after_build_151_fresh_chain_wiring_correction_status: design_or_corrected_review_only
+- future_command_status: blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_151_fresh_chain_wiring_correction
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- demo_ready_with_live_automation_disabled: preserved

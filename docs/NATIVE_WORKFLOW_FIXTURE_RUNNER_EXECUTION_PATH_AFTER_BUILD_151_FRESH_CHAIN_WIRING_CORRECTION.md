@@ -1,0 +1,133 @@
+# Native Workflow Fixture Runner Execution Path After Build 151 Fresh Chain Wiring Correction
+
+## 1. Purpose and Scope
+
+This packet is a **fake-data/local-only/read-only/dry-run-only/review-only/path-correction-only/non-executing** packet. It documents the runner execution path correction required after the post-Build-151 exact command attempt blocked fail-closed and consumed the Build 151 approval/guard chain.
+
+This packet does **not** rerun the runner, does **not** invoke the exact command, does **not** perform actual 30-scenario validation, does **not** make external calls, does **not** access credentials or secret values, does **not** access production data, does **not** contact real homeowners or roofers, does **not** send SMS/email/calls, does **not** create calendar bookings, and does **not** activate live or sandbox/test-mode automation.
+
+## 2. Correction Summary
+
+| Field | Value |
+| --- | --- |
+| packet_name | Native Workflow Fixture Runner Execution Path After Build 151 Fresh Chain Wiring Correction |
+| packet_status | review_only |
+| review_status | runner_execution_path_after_build_151_fresh_chain_wiring_correction_review_only |
+| runner_execution_path_after_build_151_fresh_chain_wiring_correction_packet_status | design_or_corrected_review_only |
+| runner_execution_path_after_build_151_fresh_chain_wiring_correction_does_not_equal_runner_execution | true |
+| runner_execution_path_after_build_151_fresh_chain_wiring_correction_does_not_rerun_runner | true |
+| runner_execution_path_after_build_151_fresh_chain_wiring_correction_does_not_perform_validation | true |
+| source_of_truth_commit | ac96217 |
+| source_of_truth_label | test(workflow): capture post build 151 runner command blocked evidence |
+| prior_post_build_151_blocked_evidence_commit | ac96217 |
+| prior_post_build_151_blocked_evidence_label | test(workflow): capture post build 151 runner command blocked evidence |
+| prior_post_build_151_blocked_evidence_status | closed |
+| prior_fresh_execution_pre_run_guard_after_build_149_build_146_fresh_chain_wiring_correction_approval_capture_commit | 01a27cf |
+| prior_fresh_execution_pre_run_guard_after_build_149_build_146_fresh_chain_wiring_correction_approval_capture_status | closed |
+| prior_capture_fresh_runner_execution_approval_after_build_149_build_146_fresh_chain_wiring_correction_commit | 09bf972 |
+| prior_capture_fresh_runner_execution_approval_after_build_149_build_146_fresh_chain_wiring_correction_status | closed |
+| prior_fresh_runner_execution_decision_after_build_146_fresh_chain_wiring_correction_commit | df9fee3 |
+| prior_fresh_runner_execution_decision_after_build_146_fresh_chain_wiring_correction_status | closed |
+| prior_runner_execution_path_after_build_146_fresh_chain_wiring_correction_commit | 135b26c |
+| prior_runner_execution_path_after_build_146_fresh_chain_wiring_correction_status | closed |
+| prior_post_build_146_blocked_evidence_commit | 0c6abaf |
+| prior_post_build_146_blocked_evidence_status | closed |
+| approval_scope | fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_build_146_fresh_chain_wiring_correction |
+| signed_approval_timestamp | 06/20/2026 8:25pm MST |
+| fresh_runner_execution_approval_signature_name | Jason Lohse |
+| runner_command_path | scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh |
+| exact_command | bash scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh |
+| exact_runner_path | scripts/run-native-workflow-fixture-actual-external-sandbox-30-scenario-validation.sh |
+| exact_manifest_path | backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-validation-manifest.json |
+| exact_scenario_count | 30 |
+| prior_exact_command_attempt_after_build_151_status | attempted_blocked_nonzero |
+| prior_exact_command_exit_status | nonzero_blocked |
+| prior_command_attempt_consumption_status | consumed_by_blocked_fail_closed_result_after_build_151_guard |
+| prior_build_148_149_150_151_decision_approval_guard_chain_reusable_after_build_151_blocked_evidence | false |
+| runner_output_source_of_truth_commit_observed_before_correction | 0c6abaf |
+| runner_output_prior_post_build_146_blocked_evidence_commit_observed_before_correction | 0c6abaf |
+| runner_output_state_after_build_151_status | stale_pre_build_148_149_150_151_state_detected |
+| observed_stale_runner_output_state_before_correction | stale_pre_build_148_149_150_151_state_detected |
+| observed_stale_no_go_message_before_correction | NO-GO: Fresh runner-execution decision and fresh execution pre-run guard pass are required after runner execution path after Build 146 fresh-chain wiring correction — not automatic execution from this blocked path. Build 147 consumed the post-Build-146 exact approved command attempt; immediate rerun is not allowed. |
+| observed_stale_future_command_status_before_correction | blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_146_fresh_chain_wiring_correction |
+| runner_recognized_build_143_144_145_146_chain_status | true |
+| runner_recognized_build_138_139_140_141_chain_status | true |
+| runner_did_not_recognize_build_148_runner_execution_path_after_build_146_fresh_chain_wiring_correction_status_before_correction | true |
+| runner_did_not_recognize_build_149_fresh_decision_after_build_146_fresh_chain_wiring_correction_status_before_correction | true |
+| runner_did_not_recognize_build_150_approval_capture_after_build_149_build_146_fresh_chain_wiring_correction_status_before_correction | true |
+| runner_did_not_recognize_build_151_pre_run_guard_after_build_149_build_146_fresh_chain_wiring_correction_status_before_correction | true |
+| runner_execution_path_after_build_151_fresh_chain_wiring_gap_status | detected |
+| runner_execution_path_after_build_151_fresh_chain_wiring_gap_reason | repo_reached_ready_for_exact_approved_runner_execution_command_after_build_149_build_146_fresh_chain_wiring_correction_guard_review_only_in_build_151_but_runner_blocked_using_stale_post_build_146_0c6abaf_state_without_recognizing_closed_build_148_149_150_151_chain |
+| runner_execution_path_after_build_151_fresh_chain_wiring_correction_status | design_or_corrected_review_only |
+| runner_command_path_status | corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_build_151_fresh_chain_wiring_correction |
+| runner_direct_invocation_status_after_correction | blocked_nonzero_expected |
+| stale_build_147_era_0c6abaf_primary_state_removed | true |
+| stale_build_148_149_150_151_non_recognition_removed | true |
+| fresh_runner_execution_decision_after_build_146_fresh_chain_wiring_correction_status | closed |
+| fresh_runner_execution_approval_capture_after_build_149_build_146_fresh_chain_wiring_correction_status | captured_signed |
+| fresh_execution_pre_run_guard_after_build_149_build_146_fresh_chain_wiring_correction_approval_capture_status | passed |
+| fresh_runner_execution_approval_capture_status | captured |
+| fresh_runner_execution_jason_signed_approval_status | signed |
+| fresh_runner_execution_exact_values_required_count | 24 |
+| fresh_runner_execution_exact_values_accepted_count | 24 |
+| fresh_runner_execution_exact_values_approved_count | 24 |
+| fresh_execution_pre_run_guard_status | passed |
+| fresh_execution_pre_run_guard_checks_required_count | 30 |
+| fresh_execution_pre_run_guard_checks_passed_count | 30 |
+| fresh_execution_pre_run_guard_failed_count | 0 |
+| fresh_decision_required_after_build_151_fresh_chain_wiring_correction | true |
+| fresh_pre_run_guard_required_after_build_151_fresh_chain_wiring_correction | true |
+| no_immediate_runner_invocation_by_blocked_path | true |
+| incoming_future_command_status_before_correction | blocked_until_runner_execution_path_after_build_151_fresh_chain_wiring_correction_and_fresh_decision |
+| future_command_status | blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_151_fresh_chain_wiring_correction |
+| production_data_access_approval_status | not_granted |
+| production_supabase_write_approval_status | not_granted |
+| schema_auth_rls_security_change_approval_status | not_granted |
+| live_activation_approval_status | not_granted |
+| real_homeowner_contact_approval_status | not_granted |
+| real_roofer_contact_approval_status | not_granted |
+| billing_payment_automation_approval_status | not_granted |
+| command_execution_status | not_run_by_this_packet |
+| runner_execution_status | not_run_by_this_packet |
+| runner_command_rerun_by_this_packet | false |
+| runner_command_invoked_by_this_packet | false |
+| external_calls_made_by_this_packet | false |
+| credentials_accessed_by_this_packet | false |
+| production_data_accessed_by_this_packet | false |
+| real_contact_made_by_this_packet | false |
+| sms_email_calls_calendar_booking_performed_by_this_packet | false |
+| actual_30_scenario_external_validation_captured_count | 0 |
+| actual_30_scenario_external_validation_passed_count | 0 |
+| actual_30_scenario_external_validation_missing_count | 30 |
+| actual_30_scenario_external_validation_status | not_captured_by_this_run |
+| safety_status | demo_ready_with_live_automation_disabled |
+| controlled_real_roofer_validation_allowed | false |
+| reviewed_upstream_post_build_151_blocked_evidence_fixture | backend/fixtures/native-workflow-demo-roofer/capture-post-build-151-runner-command-blocked-evidence.json |
+| reviewed_upstream_fresh_pre_run_guard_after_build_149_build_146_fixture | backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture.json |
+| reviewed_upstream_capture_after_build_149_build_146_fixture | backend/fixtures/native-workflow-demo-roofer/capture-fresh-runner-execution-approval-after-build-149-build-146-fresh-chain-wiring-correction.json |
+| reviewed_upstream_fresh_decision_after_build_146_fixture | backend/fixtures/native-workflow-demo-roofer/fresh-runner-execution-decision-after-build-146-fresh-chain-wiring-correction.json |
+| reviewed_upstream_runner_execution_path_after_build_146_fixture | backend/fixtures/native-workflow-demo-roofer/runner-execution-path-after-build-146-fresh-chain-wiring-correction.json |
+| reviewed_upstream_post_build_146_blocked_evidence_fixture | backend/fixtures/native-workflow-demo-roofer/capture-post-build-146-runner-command-blocked-evidence.json |
+| reviewed_upstream_scaffolding_build_fixture | backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-runner-scaffolding-build.json |
+
+## 3. Stale State Being Corrected
+
+The post-Build-151 exact command attempt observed stale runner state:
+
+- runner output source observed before correction: `0c6abaf`
+- runner output state: `stale_pre_build_148_149_150_151_state_detected`
+- runner recognized the older Build 143/144/145/146 chain
+- runner did not recognize the newer Build 148/149/150/151 path/decision/approval/guard chain
+- actual validation remained `0 captured / 0 passed / 30 missing`
+
+## 4. Corrected Boundary
+
+The corrected path status remains fail-closed:
+
+- `runner_execution_path_after_build_151_fresh_chain_wiring_correction_status: design_or_corrected_review_only`
+- `runner_command_path_status: corrected_fail_closed_direct_invocation_always_blocked_pending_fresh_decision_after_build_151_fresh_chain_wiring_correction`
+- `future_command_status: blocked_until_fresh_decision_and_fresh_pre_run_guard_pass_after_build_151_fresh_chain_wiring_correction`
+
+## 5. Next Required Step
+
+The next safe packet is a **fresh runner-execution decision/template after Build 151 fresh-chain wiring correction**, not a rerun and not actual validation.
