@@ -56,3 +56,8 @@ echo "PASS: Safe readiness verification passed."
 # Native Workflow Fixture Capture Post Build 156 Runner Command Blocked Evidence
 # native workflow fixture capture post build 156 runner command blocked evidence
 # scripts/run-native-workflow-fixture-capture-post-build-156-runner-command-blocked-evidence-dry-run.sh
+
+# Build 158 registry reference:
+# Native Workflow Fixture Runner Execution Path After Build 156 Fresh Chain Wiring Correction
+# native workflow fixture runner execution path after build 156 fresh chain wiring correction
+# scripts/run-native-workflow-fixture-runner-execution-path-after-build-156-fresh-chain-wiring-correction-dry-run.sh
