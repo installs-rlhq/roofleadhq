@@ -11976,3 +11976,27 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Future command status: blocked_until_runner_state_correction_and_new_approval_guard_chain.
 - No immediate rerun is allowed. A correction packet is required before any future approval/guard/attempt chain.
 - Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
+
+## Build 169 - Native Workflow Fixture Runner State Correction After Build 168 Stale Evidence
+
+- normalized reference: native workflow fixture runner state correction after build 168 stale evidence
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_STATE_CORRECTION_AFTER_BUILD_168_STALE_EVIDENCE.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/runner-state-correction-after-build-168-stale-evidence.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-runner-state-correction-after-build-168-stale-evidence-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-runner-state-correction-after-build-168-stale-evidence-dry-run.sh`
+- Current state: correction only after Build 168 stale evidence; Build 167 guard is not reusable after stale evidence.
+- Next step: fresh decision, fresh signed approval capture, and fresh pre-run guard are required before any future exact runner attempt.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
+
+## Build 170 - Native Workflow Fixture Fresh Runner Decision After Build 169 Correction
+
+- normalized reference: native workflow fixture fresh runner decision after build 169 correction
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AFTER_BUILD_169_CORRECTION.md`
+- Approval template: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AFTER_BUILD_169_CORRECTION_APPROVAL_TEMPLATE.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/fresh-runner-decision-after-build-169-correction.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-dry-run.sh`
+- Current state: decision/template only; approval template is unsigned/not captured/not granted, no fresh guard is created or passed, and the runner is not invoked.
+- Next step: Jason must separately sign the exact approval values, then a separate approval capture and fresh pre-run guard are required before one future exact runner attempt.
+- Future command status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_170_decision.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.

@@ -120,3 +120,17 @@ echo "PASS: Safe readiness verification passed."
 # Build 167 guard closed at e0be19f, but pasted runner output stayed stale at cf6d8c4 / Build 164 template-only state
 # future_runner_attempt_status: blocked_until_runner_state_correction_and_new_approval_guard_chain
 # no immediate rerun; correction packet required before any future approval/guard/attempt chain
+
+# Build 169 registry reference:
+# Native Workflow Fixture Runner State Correction After Build 168 Stale Evidence
+# native workflow fixture runner state correction after build 168 stale evidence
+# scripts/run-native-workflow-fixture-runner-state-correction-after-build-168-stale-evidence-dry-run.sh
+# Build 167 guard is not reusable after Build 168 stale evidence
+# next step: fresh decision, fresh approval capture, and fresh pre-run guard before any future runner attempt
+
+# Build 170 registry reference:
+# Native Workflow Fixture Fresh Runner Decision After Build 169 Correction
+# native workflow fixture fresh runner decision after build 169 correction
+# scripts/run-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-dry-run.sh
+# approval template unsigned/not captured/not granted; guard not created/passed; runner not invoked
+# future_command_status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_170_decision

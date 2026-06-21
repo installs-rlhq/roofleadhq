@@ -10887,3 +10887,26 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_runner_attempt_status: blocked_until_runner_state_correction_and_new_approval_guard_chain
 - actual validation remains 0 captured / 0 passed / 30 missing
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 169 - Native Workflow Fixture Runner State Correction After Build 168 Stale Evidence
+
+- normalized reference: native workflow fixture runner state correction after build 168 stale evidence
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_STATE_CORRECTION_AFTER_BUILD_168_STALE_EVIDENCE.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/runner-state-correction-after-build-168-stale-evidence.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-runner-state-correction-after-build-168-stale-evidence-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-runner-state-correction-after-build-168-stale-evidence-dry-run.sh`
+- Current state: runner-state correction only; Build 167 guard is not reusable after Build 168 stale evidence.
+- Next step: fresh decision, separately signed Jason approval capture, and fresh pre-run guard before any future exact runner attempt.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Live automation remains disabled.
+
+## Build 170 - Native Workflow Fixture Fresh Runner Decision After Build 169 Correction
+
+- normalized reference: native workflow fixture fresh runner decision after build 169 correction
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AFTER_BUILD_169_CORRECTION.md`
+- Approval template: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AFTER_BUILD_169_CORRECTION_APPROVAL_TEMPLATE.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/fresh-runner-decision-after-build-169-correction.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-dry-run.sh`
+- Current state: review-only fresh decision and unsigned approval template; no approval captured, no guard created/passed, and no runner invoked.
+- Next step: Jason separately signs exact approval values, then separate approval capture and fresh guard before one future exact runner attempt.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Live automation remains disabled.

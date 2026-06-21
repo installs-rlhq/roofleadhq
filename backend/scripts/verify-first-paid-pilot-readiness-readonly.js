@@ -1656,6 +1656,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Fresh Runner Decision After Build 169 Correction (Build 170 review-only decision/unsigned approval template; no approval capture, no fresh guard, no runner invocation; actual validation remains 0 captured / 0 passed / 30 missing; live automation remains disabled)',
+    script: 'backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
@@ -1912,4 +1917,26 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // scripts/run-native-workflow-fixture-capture-post-build-167-runner-blocked-stale-evidence-dry-run.sh
 // Build 167 guard closed at e0be19f, but pasted runner output stayed stale at cf6d8c4 / Build 164 template-only state
 // future_runner_attempt_status: blocked_until_runner_state_correction_and_new_approval_guard_chain
+// actual validation remains 0 captured / 0 passed / 30 missing
+
+// Build 169 registry reference:
+// Native Workflow Fixture Runner State Correction After Build 168 Stale Evidence
+// native workflow fixture runner state correction after build 168 stale evidence
+// docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_STATE_CORRECTION_AFTER_BUILD_168_STALE_EVIDENCE.md
+// backend/fixtures/native-workflow-demo-roofer/runner-state-correction-after-build-168-stale-evidence.json
+// backend/scripts/verify-native-workflow-fixture-runner-state-correction-after-build-168-stale-evidence-readonly.js
+// scripts/run-native-workflow-fixture-runner-state-correction-after-build-168-stale-evidence-dry-run.sh
+// Build 169 corrected runner state after stale evidence; Build 167 guard is not reusable
+// next step: fresh decision, fresh approval capture, and fresh pre-run guard before any future runner attempt
+
+// Build 170 registry reference:
+// Native Workflow Fixture Fresh Runner Decision After Build 169 Correction
+// native workflow fixture fresh runner decision after build 169 correction
+// docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AFTER_BUILD_169_CORRECTION.md
+// docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AFTER_BUILD_169_CORRECTION_APPROVAL_TEMPLATE.md
+// backend/fixtures/native-workflow-demo-roofer/fresh-runner-decision-after-build-169-correction.json
+// backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-readonly.js
+// scripts/run-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-dry-run.sh
+// approval template unsigned/not captured/not granted; guard not created/passed; runner not invoked
+// future_command_status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_170_decision
 // actual validation remains 0 captured / 0 passed / 30 missing

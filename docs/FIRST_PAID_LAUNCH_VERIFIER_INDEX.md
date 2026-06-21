@@ -69,6 +69,7 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - Schema blockers packet verifier: `node backend/scripts/verify-first-paid-launch-schema-blockers-packet-readonly.js`
 - SMS dispatcher messages write test-only: `node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js`
 - SMS dispatcher follow-ups update test-only: `node backend/scripts/verify-sms-dispatcher-followups-update-testonly.js`
+- Native Workflow Fixture Fresh Runner Decision After Build 169 Correction verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-readonly.js`
 - First Roofer Execution Day Runbook doc: `docs/FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md`
 - First Roofer Execution Day Runbook wrapper: `scripts/run-first-roofer-execution-day-dry-run.sh`
 - First Roofer Execution Day Runbook verifier: `node backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js`
@@ -5011,5 +5012,41 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - fresh_correction_required_after_build_168_blocked_evidence: true
 - future_runner_attempt_status: blocked_until_runner_state_correction_and_new_approval_guard_chain
 - actual_30_scenario_external_validation_status: not_captured_by_this_run
+- actual validation remains 0 captured / 0 passed / 30 missing
+- demo_ready_with_live_automation_disabled: preserved
+
+## Build 169 - Native Workflow Fixture Runner State Correction After Build 168 Stale Evidence
+
+- normalized reference: native workflow fixture runner state correction after build 168 stale evidence
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_RUNNER_STATE_CORRECTION_AFTER_BUILD_168_STALE_EVIDENCE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/runner-state-correction-after-build-168-stale-evidence.json
+- verifier: backend/scripts/verify-native-workflow-fixture-runner-state-correction-after-build-168-stale-evidence-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-runner-state-correction-after-build-168-stale-evidence-dry-run.sh
+- source_of_truth_commit: d43cf77
+- committed source-of-truth for next packet: 06ae3ce
+- runner_state_correction_status: corrected_review_only
+- Build 167 guard is not reusable after Build 168 stale evidence.
+- next step: fresh decision, fresh approval capture, and fresh pre-run guard are required before any future runner attempt.
+- actual validation remains 0 captured / 0 passed / 30 missing
+- demo_ready_with_live_automation_disabled: preserved
+
+## Build 170 - Native Workflow Fixture Fresh Runner Decision After Build 169 Correction
+
+- normalized reference: native workflow fixture fresh runner decision after build 169 correction
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AFTER_BUILD_169_CORRECTION.md
+- approval template: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_RUNNER_DECISION_AFTER_BUILD_169_CORRECTION_APPROVAL_TEMPLATE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-runner-decision-after-build-169-correction.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-dry-run.sh
+- source_of_truth_commit: 06ae3ce
+- fresh_runner_execution_decision_status: created_review_only
+- fresh_runner_execution_approval_template_status: created_review_only_unsigned
+- fresh_runner_execution_approval_capture_status: not_captured
+- fresh_runner_execution_jason_signed_approval_status: not_signed
+- fresh_runner_execution_approval_status: not_granted
+- fresh_pre_run_guard_status: not_created_not_passed
+- runner_command_invoked_by_this_packet: false
+- runner_execution_status: not_run_by_this_packet
+- future_command_status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_170_decision
 - actual validation remains 0 captured / 0 passed / 30 missing
 - demo_ready_with_live_automation_disabled: preserved
