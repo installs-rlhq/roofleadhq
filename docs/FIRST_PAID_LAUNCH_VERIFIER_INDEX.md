@@ -4678,3 +4678,44 @@ Scope: dry-run/internal-only completion final lock for the extended archive acce
 - Purpose: read-only fail-closed guard validating quiet-mode/fast-lane documentation, scripts, wiring, and safety posture without removing full aggregate regression.
 - Required references enforced in: `backend/scripts/verify-first-paid-pilot-readiness-readonly.js`, `docs/FIRST_PAID_LAUNCH_VERIFIER_INDEX.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_FIRST_PAID_LAUNCH.md`, `docs/NEXT_CHAT_CONTEXT_PACKAGE_AGENT_GROK_BUILD_WORKFLOW.md`, `docs/ROOFLEADHQ_BUSINESS_BUILDOUT_DAILY_GUIDE.md`
 - Safety: read-only. No production activation of any kind.
+
+
+<!-- Build 151: Native Workflow Fixture Fresh Execution Pre-Run Guard After Build 149 Build 146 Fresh-Chain Wiring Correction Approval Capture
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_BUILD_149_BUILD_146_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_CAPTURE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture-dry-run.sh
+- source_of_truth_commit: 09bf972
+- prior_capture_fresh_runner_execution_approval_after_build_149_build_146_fresh_chain_wiring_correction_commit: 09bf972
+- prior_fresh_runner_execution_decision_after_build_146_fresh_chain_wiring_correction_commit: df9fee3
+- prior_runner_execution_path_after_build_146_fresh_chain_wiring_correction_commit: 135b26c
+- prior_post_build_146_blocked_evidence_commit: 0c6abaf
+- fresh_execution_pre_run_guard_status: passed
+- command_execution_status: not_run_by_this_packet
+- runner_execution_status: not_run_by_this_packet
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- future_command_status: ready_for_exact_approved_runner_execution_command_after_build_149_build_146_fresh_chain_wiring_correction_guard_review_only
+- demo_ready_with_live_automation_disabled: preserved
+-->
+
+
+## Build 151 — Native Workflow Fixture Fresh Execution Pre-Run Guard Build 149 Build 146 Fresh-Chain Wiring Correction Approval Capture
+
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_BUILD_149_BUILD_146_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_CAPTURE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture-dry-run.sh
+- source_of_truth_commit: 09bf972
+- prior_capture_fresh_runner_execution_approval_after_build_149_build_146_fresh_chain_wiring_correction_commit: 09bf972
+- prior_fresh_runner_execution_decision_after_build_146_fresh_chain_wiring_correction_commit: df9fee3
+- prior_runner_execution_path_after_build_146_fresh_chain_wiring_correction_commit: 135b26c
+- prior_post_build_146_blocked_evidence_commit: 0c6abaf
+- fresh_execution_pre_run_guard_status: passed
+- command_execution_status: not_run_by_this_packet
+- runner_execution_status: not_run_by_this_packet
+- runner_command_invoked_by_this_packet: false
+- actual_30_scenario_external_validation_status: not_captured_by_this_run
+- future_command_status: ready_for_exact_approved_runner_execution_command_after_build_149_build_146_fresh_chain_wiring_correction_guard_review_only
+- demo_ready_with_live_automation_disabled: preserved
+
+Build 151 normalized reference: native workflow fixture fresh execution pre run guard after build 149 build 146 fresh chain wiring correction approval capture

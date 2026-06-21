@@ -1751,3 +1751,19 @@ if (process.exitCode) {
 }
 
 console.log('PASS: First paid pilot readiness aggregate verification passed.');
+
+
+// Build 151 registry reference only:
+// docs/NATIVE_WORKFLOW_FIXTURE_FRESH_EXECUTION_PRE_RUN_GUARD_AFTER_BUILD_149_BUILD_146_FRESH_CHAIN_WIRING_CORRECTION_APPROVAL_CAPTURE.md
+// backend/fixtures/native-workflow-demo-roofer/fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture.json
+// backend/scripts/verify-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture-readonly.js
+// scripts/run-native-workflow-fixture-fresh-execution-pre-run-guard-after-build-149-build-146-fresh-chain-wiring-correction-approval-capture-dry-run.sh
+// source_of_truth_commit: 09bf972
+// future_command_status: ready_for_exact_approved_runner_execution_command_after_build_149_build_146_fresh_chain_wiring_correction_guard_review_only
+// command_execution_status: not_run_by_this_packet
+// runner_execution_status: not_run_by_this_packet
+
+// Build 151 aggregate readiness reference:
+// Native Workflow Fixture Fresh Execution Pre-Run Guard Build 149 Build 146 Fresh-Chain Wiring Correction Approval Capture
+
+Build 151 normalized reference: native workflow fixture fresh execution pre run guard after build 149 build 146 fresh chain wiring correction approval capture
