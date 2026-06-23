@@ -5096,3 +5096,15 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_command_status: ready_only_after_build_172_committed_pushed_fetched_source_of_truth_verified_and_final_git_status_blank
 - actual validation remains 0 captured / 0 passed / 30 missing
 - demo_ready_with_live_automation_disabled: preserved
+
+<!-- BUILD 175 FRESH SIGNED RUNNER APPROVAL AFTER BUILD 174 -->
+## Build 175 — Fresh signed runner approval after Build 174
+
+- Commit pending from source-of-truth before packet: `a67205c`
+- Packet: approval capture only.
+- Approval scope: `fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_build_174_ambiguous_attempt_capture_and_future_fresh_guard`
+- Fresh guard: not created / not passed by this packet.
+- Runner: not attempted / not run by this packet.
+- Actual validation remains `0 captured / 0 passed / 30 missing`.
+- Safety remains `demo_ready_with_live_automation_disabled`.
+- Next safe step: Build 176 fresh pre-run guard after Build 175 approval capture.
