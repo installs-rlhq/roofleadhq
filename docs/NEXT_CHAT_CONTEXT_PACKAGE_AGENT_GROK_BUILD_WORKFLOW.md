@@ -6466,3 +6466,14 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Current state: review-only decision and unsigned approval template only; approval is not captured, Jason has not signed, approval is not granted, no guard is created or passed, and the runner is not invoked.
 - Next step: Jason must separately sign the exact values, then a future packet must capture that signed approval, then a fresh pre-run guard must pass before one future exact runner attempt.
 - Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
+
+## Build 171 - Native Workflow Fixture Capture Signed Runner Approval After Build 170
+
+- normalized reference: native workflow fixture capture signed runner approval after build 170
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_APPROVAL_AFTER_BUILD_170.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-approval-after-build-170.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-capture-signed-runner-approval-after-build-170-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-170-dry-run.sh`
+- Current state: signed approval captured after Build 170 decision/template; no guard is created or passed, and no runner command is invoked.
+- Next step: separate fresh pre-run guard after Build 171 signed approval capture before one exact runner command attempt.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.

@@ -10910,3 +10910,14 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Current state: review-only fresh decision and unsigned approval template; no approval captured, no guard created/passed, and no runner invoked.
 - Next step: Jason separately signs exact approval values, then separate approval capture and fresh guard before one future exact runner attempt.
 - Actual validation remains 0 captured / 0 passed / 30 missing. Live automation remains disabled.
+
+## Build 171 - Native Workflow Fixture Capture Signed Runner Approval After Build 170
+
+- normalized reference: native workflow fixture capture signed runner approval after build 170
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_APPROVAL_AFTER_BUILD_170.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-approval-after-build-170.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-capture-signed-runner-approval-after-build-170-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-170-dry-run.sh`
+- Current state: signed approval capture only; fresh guard not created/passed, runner not invoked.
+- Next step: separate fresh pre-run guard after Build 171 signed approval capture before one future exact runner attempt.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Live automation remains disabled.

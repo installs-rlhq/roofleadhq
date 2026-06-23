@@ -5050,3 +5050,23 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_command_status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_170_decision
 - actual validation remains 0 captured / 0 passed / 30 missing
 - demo_ready_with_live_automation_disabled: preserved
+
+## Build 171 - Native Workflow Fixture Capture Signed Runner Approval After Build 170
+
+- normalized reference: native workflow fixture capture signed runner approval after build 170
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_APPROVAL_AFTER_BUILD_170.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-approval-after-build-170.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-signed-runner-approval-after-build-170-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-170-dry-run.sh
+- source_of_truth_commit: 932b7a4
+- approval_capture_status: captured_signed
+- jason_signed_approval_status: signed
+- approval_signed_by: Jason Lohse
+- approval_signed_date_time: 06/23/2026, current chat
+- approval_template_status: template_from_build_170_now_signed_and_captured_by_build_171
+- fresh_pre_run_guard_status: not_created_not_passed_by_this_packet
+- runner_command_invoked_by_this_packet: false
+- runner_execution_status: not_run_by_this_packet
+- future_command_status: blocked_until_fresh_pre_run_guard_after_build_171_signed_approval_capture
+- actual validation remains 0 captured / 0 passed / 30 missing
+- demo_ready_with_live_automation_disabled: preserved

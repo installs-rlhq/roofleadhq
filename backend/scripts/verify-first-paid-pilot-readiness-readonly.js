@@ -1940,3 +1940,14 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // approval template unsigned/not captured/not granted; guard not created/passed; runner not invoked
 // future_command_status: blocked_until_jason_signed_approval_capture_and_fresh_pre_run_guard_after_build_170_decision
 // actual validation remains 0 captured / 0 passed / 30 missing
+
+// Build 171 registry reference:
+// Native Workflow Fixture Capture Signed Runner Approval After Build 170
+// native workflow fixture capture signed runner approval after build 170
+// docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_APPROVAL_AFTER_BUILD_170.md
+// backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-approval-after-build-170.json
+// backend/scripts/verify-native-workflow-fixture-capture-signed-runner-approval-after-build-170-readonly.js
+// scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-170-dry-run.sh
+// approval captured/signed; guard not created/passed; runner not invoked
+// future_command_status: blocked_until_fresh_pre_run_guard_after_build_171_signed_approval_capture
+// actual validation remains 0 captured / 0 passed / 30 missing
