@@ -70,6 +70,7 @@ node backend/scripts/verify-first-paid-pilot-readiness-readonly.js
 - SMS dispatcher messages write test-only: `node backend/scripts/verify-sms-dispatcher-messages-write-testonly.js`
 - SMS dispatcher follow-ups update test-only: `node backend/scripts/verify-sms-dispatcher-followups-update-testonly.js`
 - Native Workflow Fixture Fresh Runner Decision After Build 169 Correction verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-runner-decision-after-build-169-correction-readonly.js`
+- Native Workflow Fixture Fresh Pre-Run Guard After Build 171 Signed Approval Capture verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-171-signed-approval-capture-readonly.js`
 - First Roofer Execution Day Runbook doc: `docs/FIRST_ROOFER_EXECUTION_DAY_RUNBOOK.md`
 - First Roofer Execution Day Runbook wrapper: `scripts/run-first-roofer-execution-day-dry-run.sh`
 - First Roofer Execution Day Runbook verifier: `node backend/scripts/verify-first-roofer-execution-day-runbook-readonly.js`
@@ -5068,5 +5069,30 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - runner_command_invoked_by_this_packet: false
 - runner_execution_status: not_run_by_this_packet
 - future_command_status: blocked_until_fresh_pre_run_guard_after_build_171_signed_approval_capture
+- actual validation remains 0 captured / 0 passed / 30 missing
+- demo_ready_with_live_automation_disabled: preserved
+
+## Build 172 - Native Workflow Fixture Fresh Pre-Run Guard After Build 171 Signed Approval Capture
+
+- normalized reference: native workflow fixture fresh pre run guard after build 171 signed approval capture
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_171_SIGNED_APPROVAL_CAPTURE.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-171-signed-approval-capture.json
+- verifier: backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-171-signed-approval-capture-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-171-signed-approval-capture-dry-run.sh
+- source_of_truth_commit: 46a704b
+- source_of_truth_label: test(workflow): capture signed runner approval after build 170
+- prior_signed_approval_capture_commit: 46a704b
+- prior_fresh_runner_decision_commit: 932b7a4
+- prior_runner_state_correction_commit: 06ae3ce
+- approval_scope: fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_build_169_correction_decision_and_future_fresh_guard
+- approval_capture_status: captured_signed
+- jason_signed_approval_status: signed
+- approval_signed_by: Jason Lohse
+- approval_signed_date_time: 06/23/2026, current chat MST
+- fresh_pre_run_guard_status: passed_by_this_packet
+- fresh_pre_run_guard_result: pass
+- runner_command_invoked_by_this_packet: false
+- runner_execution_status: not_run_by_this_packet
+- future_command_status: ready_only_after_build_172_committed_pushed_fetched_source_of_truth_verified_and_final_git_status_blank
 - actual validation remains 0 captured / 0 passed / 30 missing
 - demo_ready_with_live_automation_disabled: preserved

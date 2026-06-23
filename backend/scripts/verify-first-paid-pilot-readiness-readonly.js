@@ -1661,6 +1661,11 @@ const commands = [
     args: []
   },
   {
+    name: 'Native Workflow Fixture Fresh Pre-Run Guard After Build 171 Signed Approval Capture (Build 172 review-only fresh guard; no runner invocation; actual validation remains 0 captured / 0 passed / 30 missing; future exact command remains blocked until Build 172 is committed, pushed, fetched, source-of-truth verified, and final git status is blank)',
+    script: 'backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-171-signed-approval-capture-readonly.js',
+    args: []
+  },
+  {
     name: 'SMS dispatcher follow-ups update test-only',
     script: 'backend/scripts/verify-sms-dispatcher-followups-update-testonly.js',
     args: []
@@ -1950,4 +1955,14 @@ console.log('PASS: First paid pilot readiness aggregate verification passed.');
 // scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-170-dry-run.sh
 // approval captured/signed; guard not created/passed; runner not invoked
 // future_command_status: blocked_until_fresh_pre_run_guard_after_build_171_signed_approval_capture
+// actual validation remains 0 captured / 0 passed / 30 missing
+
+// Build 172 registry reference:
+// Native Workflow Fixture Fresh Pre-Run Guard After Build 171 Signed Approval Capture
+// native workflow fixture fresh pre run guard after build 171 signed approval capture
+// docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_171_SIGNED_APPROVAL_CAPTURE.md
+// backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-171-signed-approval-capture.json
+// backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-171-signed-approval-capture-readonly.js
+// scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-171-signed-approval-capture-dry-run.sh
+// guard passed; runner not invoked; future command remains ready only after Build 172 closeout
 // actual validation remains 0 captured / 0 passed / 30 missing

@@ -141,3 +141,10 @@ echo "PASS: Safe readiness verification passed."
 # scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-170-dry-run.sh
 # approval captured/signed; guard not created/passed; runner not invoked
 # future_command_status: blocked_until_fresh_pre_run_guard_after_build_171_signed_approval_capture
+
+# Build 172 registry reference:
+# Native Workflow Fixture Fresh Pre-Run Guard After Build 171 Signed Approval Capture
+# native workflow fixture fresh pre run guard after build 171 signed approval capture
+# scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-171-signed-approval-capture-dry-run.sh
+# guard passed; runner not invoked; future command remains ready only after Build 172 closeout
+# future_command_status: ready_only_after_build_172_committed_pushed_fetched_source_of_truth_verified_and_final_git_status_blank

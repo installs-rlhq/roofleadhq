@@ -12012,3 +12012,15 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Next step: a separate fresh pre-run guard must pass before one future exact runner attempt.
 - Future command status: blocked_until_fresh_pre_run_guard_after_build_171_signed_approval_capture.
 - Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
+
+## Build 172 - Native Workflow Fixture Fresh Pre-Run Guard After Build 171 Signed Approval Capture
+
+- normalized reference: native workflow fixture fresh pre run guard after build 171 signed approval capture
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_FRESH_PRE_RUN_GUARD_AFTER_BUILD_171_SIGNED_APPROVAL_CAPTURE.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/fresh-pre-run-guard-after-build-171-signed-approval-capture.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-fresh-pre-run-guard-after-build-171-signed-approval-capture-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-fresh-pre-run-guard-after-build-171-signed-approval-capture-dry-run.sh`
+- Current state: fresh pre-run guard only after Build 171 signed approval capture; no runner invocation, and the one-time future command remains blocked until Build 172 is committed, pushed, fetched, source-of-truth verified, and final git status is blank.
+- Next step: only after Build 172 closeout may the one exact runner command be attempted from `/root/roofleadhq`.
+- Future command status: ready_only_after_build_172_committed_pushed_fetched_source_of_truth_verified_and_final_git_status_blank.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
