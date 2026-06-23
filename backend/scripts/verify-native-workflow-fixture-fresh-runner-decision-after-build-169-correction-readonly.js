@@ -4,7 +4,7 @@ const path = require('path');
 const { buildStatus } = require('./show-pilot-readiness-status');
 
 const expectedRoot =
-  '/root/roofleadhq-worktrees/native-workflow-fixture-fresh-runner-decision-after-build-169-correction';
+  '/root/roofleadhq';
 const root = path.resolve(__dirname, '../..');
 
 const packetDocPath =
