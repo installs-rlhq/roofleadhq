@@ -5131,3 +5131,23 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Actual validation remains `0 captured / 0 passed / 30 missing`.
 - Safety remains `demo_ready_with_live_automation_disabled`.
 - Next safe step after clean closeout: Jason may sign the fresh approval text, then approval capture only.
+
+## Build 180 - Native Workflow Fixture Capture Signed Runner Approval After Build 179
+
+- normalized reference: native workflow fixture capture signed runner approval after build 179
+- packet doc: docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_APPROVAL_AFTER_BUILD_179.md
+- fixture: backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-approval-after-build-179.json
+- verifier: backend/scripts/verify-native-workflow-fixture-capture-signed-runner-approval-after-build-179-readonly.js
+- wrapper: scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-179-dry-run.sh
+- source_of_truth_commit: 5c491ac
+- approval_capture_status: captured_signed
+- jason_signed_approval_status: signed
+- approval_signed_by: Jason Lohse
+- approval_signed_date_time: 06/24/2026, current chat MST
+- approval_template_status: template_from_build_179_now_signed_and_captured_by_build_180
+- fresh_pre_run_guard_status: not_created_not_passed_by_this_packet
+- runner_command_invoked_by_this_packet: false
+- runner_execution_status: not_run_by_this_packet
+- future_command_status: blocked_until_fresh_pre_run_guard_after_build_180_signed_approval_capture
+- actual validation remains 0 captured / 0 passed / 30 missing
+- demo_ready_with_live_automation_disabled: preserved

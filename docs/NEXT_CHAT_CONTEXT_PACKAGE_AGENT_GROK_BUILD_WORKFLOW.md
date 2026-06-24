@@ -6524,3 +6524,15 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Actual validation remains `0 captured / 0 passed / 30 missing`.
 - Safety remains `demo_ready_with_live_automation_disabled`.
 - Next safe step after clean closeout: Jason may sign the fresh approval text, then approval capture only.
+
+<!-- BUILD 180 CAPTURE SIGNED RUNNER APPROVAL AFTER BUILD 179 -->
+## Build 180 - Native Workflow Fixture Capture Signed Runner Approval After Build 179
+
+- normalized reference: native workflow fixture capture signed runner approval after build 179
+- Packet: `docs/NATIVE_WORKFLOW_FIXTURE_CAPTURE_SIGNED_RUNNER_APPROVAL_AFTER_BUILD_179.md`
+- Fixture: `backend/fixtures/native-workflow-demo-roofer/capture-signed-runner-approval-after-build-179.json`
+- Verifier: `node backend/scripts/verify-native-workflow-fixture-capture-signed-runner-approval-after-build-179-readonly.js`
+- Wrapper: `bash scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-179-dry-run.sh`
+- Current state: signed approval captured after Build 179 decision/template; no guard is created or passed, and no runner command is invoked.
+- Next step: separate fresh pre-run guard after Build 180 signed approval capture before one exact runner command attempt.
+- Actual validation remains 0 captured / 0 passed / 30 missing. Test-roofer E2E is review-only, not approved, and not run. Live automation remains disabled.
