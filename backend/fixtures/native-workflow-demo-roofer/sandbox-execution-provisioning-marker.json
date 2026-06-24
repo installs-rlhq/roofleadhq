@@ -1,0 +1,64 @@
+{
+  "marker_name": "sandbox_execution_provisioning_marker",
+  "data_classification": "local_readiness_marker_names_only",
+  "purpose": "Machine-checkable presence markers for sandbox-execution readiness. Records ONLY config NAMES and boolean provisioned flags plus supervised-test readiness booleans. Contains NO secret values, NO credentials, NO env values, NO production data. Jason flips booleans to true in his own copy AFTER provisioning credentials in his own secret store/env — values are NEVER recorded here or pasted into Claude.",
+  "contains_secret_values": false,
+  "values_recorded": false,
+  "names_only": true,
+  "approved_channel_for_first_test": "sms",
+  "explicit_sandbox_execution_approval_signed": false,
+  "explicit_controlled_live_approval_signed": false,
+  "config_presence_markers": {
+    "sms": [
+      { "config_name": "TWILIO_TEST_ACCOUNT_SID", "provisioned": false },
+      { "config_name": "TWILIO_TEST_AUTH_TOKEN", "provisioned": false },
+      { "config_name": "TWILIO_TEST_FROM_NUMBER", "provisioned": false }
+    ],
+    "voice": [
+      { "config_name": "VAPI_TEST_API_KEY", "provisioned": false },
+      { "config_name": "VAPI_TEST_ASSISTANT_ID", "provisioned": false }
+    ],
+    "email": [
+      { "config_name": "RESEND_TEST_API_KEY", "provisioned": false },
+      { "config_name": "RESEND_TEST_FROM_EMAIL", "provisioned": false }
+    ],
+    "calendar": [
+      { "config_name": "GOOGLE_CALENDAR_TEST_CLIENT_ID", "provisioned": false },
+      { "config_name": "GOOGLE_CALENDAR_TEST_CLIENT_SECRET", "provisioned": false }
+    ],
+    "lead": [
+      { "config_name": "SANDBOX_SUPABASE_TEST_URL", "provisioned": false },
+      { "config_name": "SANDBOX_SUPABASE_TEST_ANON_KEY", "provisioned": false }
+    ],
+    "review": [
+      { "config_name": "SANDBOX_SUPABASE_TEST_URL", "provisioned": false },
+      { "config_name": "SANDBOX_SUPABASE_TEST_ANON_KEY", "provisioned": false }
+    ],
+    "report": [
+      { "config_name": "SANDBOX_SUPABASE_TEST_URL", "provisioned": false },
+      { "config_name": "SANDBOX_SUPABASE_TEST_ANON_KEY", "provisioned": false }
+    ],
+    "audit": [
+      { "config_name": "SANDBOX_SUPABASE_TEST_URL", "provisioned": false },
+      { "config_name": "SANDBOX_SUPABASE_TEST_ANON_KEY", "provisioned": false }
+    ],
+    "stop": [
+      { "config_name": "SANDBOX_SUPABASE_TEST_URL", "provisioned": false },
+      { "config_name": "SANDBOX_SUPABASE_TEST_ANON_KEY", "provisioned": false }
+    ]
+  },
+  "supervised_test_readiness": {
+    "pilot_roofer_named": false,
+    "written_roofer_consent_on_file": false,
+    "approved_channel_confirmed": false,
+    "test_contact_identity_named": false,
+    "test_contact_consent_on_file": false,
+    "supervised_window_30_60_min_scheduled": false,
+    "stop_rollback_owner_named": false,
+    "stop_rollback_procedure_documented": false,
+    "channel_cap_limit_set_for_first_test": false,
+    "staging_sandbox_supabase_only_confirmed": false,
+    "no_production_data_confirmed": false,
+    "sandbox_credentials_provisioned_in_jason_controlled_store": false
+  }
+}

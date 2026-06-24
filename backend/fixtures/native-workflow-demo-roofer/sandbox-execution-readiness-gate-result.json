@@ -1,0 +1,120 @@
+{
+  "gate_name": "native_workflow_fixture_sandbox_execution_readiness_gate",
+  "data_classification": "local_readiness_marker_names_only",
+  "mode": "readiness_only",
+  "reads_marker": "backend/fixtures/native-workflow-demo-roofer/sandbox-execution-provisioning-marker.json",
+  "reads_build_181_result": "backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-local-validation-result.json",
+  "reads_build_182_result": "backend/fixtures/native-workflow-demo-roofer/channel-adapter-execution-engine-mock-result.json",
+  "inspects_config_names_only": true,
+  "reads_secret_values": false,
+  "performed_external_call": false,
+  "performed_sandbox_call": false,
+  "performed_live_action": false,
+  "invoked_actual_external_sandbox_runner_stub": false,
+  "approved_channel_for_first_test": "sms",
+  "prior_evidence": {
+    "build_181_local_evidence_present": true,
+    "build_182_mock_evidence_present": true
+  },
+  "config_readiness_by_channel": {
+    "sms": false,
+    "voice": false,
+    "email": false,
+    "lead": false,
+    "review": false,
+    "calendar": false,
+    "report": false,
+    "audit": false,
+    "stop": false
+  },
+  "missing_config_names_by_channel": {
+    "sms": [
+      "TWILIO_TEST_ACCOUNT_SID",
+      "TWILIO_TEST_AUTH_TOKEN",
+      "TWILIO_TEST_FROM_NUMBER"
+    ],
+    "voice": [
+      "VAPI_TEST_API_KEY",
+      "VAPI_TEST_ASSISTANT_ID"
+    ],
+    "email": [
+      "RESEND_TEST_API_KEY",
+      "RESEND_TEST_FROM_EMAIL"
+    ],
+    "lead": [
+      "SANDBOX_SUPABASE_TEST_URL",
+      "SANDBOX_SUPABASE_TEST_ANON_KEY"
+    ],
+    "review": [
+      "SANDBOX_SUPABASE_TEST_URL",
+      "SANDBOX_SUPABASE_TEST_ANON_KEY"
+    ],
+    "calendar": [
+      "GOOGLE_CALENDAR_TEST_CLIENT_ID",
+      "GOOGLE_CALENDAR_TEST_CLIENT_SECRET"
+    ],
+    "report": [
+      "SANDBOX_SUPABASE_TEST_URL",
+      "SANDBOX_SUPABASE_TEST_ANON_KEY"
+    ],
+    "audit": [
+      "SANDBOX_SUPABASE_TEST_URL",
+      "SANDBOX_SUPABASE_TEST_ANON_KEY"
+    ],
+    "stop": [
+      "SANDBOX_SUPABASE_TEST_URL",
+      "SANDBOX_SUPABASE_TEST_ANON_KEY"
+    ]
+  },
+  "supervised_test_readiness": {
+    "pilot_roofer_named": false,
+    "written_roofer_consent_on_file": false,
+    "approved_channel_confirmed": false,
+    "test_contact_identity_named": false,
+    "test_contact_consent_on_file": false,
+    "supervised_window_30_60_min_scheduled": false,
+    "stop_rollback_owner_named": false,
+    "stop_rollback_procedure_documented": false,
+    "channel_cap_limit_set_for_first_test": false,
+    "staging_sandbox_supabase_only_confirmed": false,
+    "no_production_data_confirmed": false,
+    "sandbox_credentials_provisioned_in_jason_controlled_store": false
+  },
+  "unmet_supervised_items": [
+    "pilot_roofer_named",
+    "written_roofer_consent_on_file",
+    "approved_channel_confirmed",
+    "test_contact_identity_named",
+    "test_contact_consent_on_file",
+    "supervised_window_30_60_min_scheduled",
+    "stop_rollback_owner_named",
+    "stop_rollback_procedure_documented",
+    "channel_cap_limit_set_for_first_test",
+    "staging_sandbox_supabase_only_confirmed",
+    "no_production_data_confirmed",
+    "sandbox_credentials_provisioned_in_jason_controlled_store"
+  ],
+  "explicit_sandbox_execution_approval_signed": false,
+  "explicit_controlled_live_approval_signed": false,
+  "sandbox_execution_ready": false,
+  "controlled_live_ready": false,
+  "blocked_reasons": [
+    "explicit_sandbox_execution_approval_not_signed",
+    "approved_channel_sandbox_config_not_provisioned:sms",
+    "supervised_item_unmet:pilot_roofer_named",
+    "supervised_item_unmet:written_roofer_consent_on_file",
+    "supervised_item_unmet:approved_channel_confirmed",
+    "supervised_item_unmet:test_contact_identity_named",
+    "supervised_item_unmet:test_contact_consent_on_file",
+    "supervised_item_unmet:supervised_window_30_60_min_scheduled",
+    "supervised_item_unmet:stop_rollback_owner_named",
+    "supervised_item_unmet:stop_rollback_procedure_documented",
+    "supervised_item_unmet:channel_cap_limit_set_for_first_test",
+    "supervised_item_unmet:staging_sandbox_supabase_only_confirmed",
+    "supervised_item_unmet:no_production_data_confirmed",
+    "supervised_item_unmet:sandbox_credentials_provisioned_in_jason_controlled_store",
+    "explicit_controlled_live_approval_not_signed"
+  ],
+  "gate_decision": "SANDBOX_EXECUTION_BLOCKED",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
