@@ -12048,4 +12048,14 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Corrected runner requirement: no terminal-closing `exit`; shell must remain open for output and exit status capture.
 - Actual validation remains `0 captured / 0 passed / 30 missing`.
 - Safety remains `demo_ready_with_live_automation_disabled`.
-- Future command status: ready only after Build 176 is committed, pushed, fetched, source-of-truth verified, and final `git status --short` is blank.
+- Future command status: ready only after Build 176 is committed, pushed, fetched, source-of-truth verified, and final `git status --short` is blank.\n\n<!-- BUILD 179 FRESH RUNNER DECISION AFTER BUILD 178 -->
+## Build 179 — Fresh runner decision after Build 178 correction
+
+- Commit pending from source-of-truth before packet: `dc7d570`
+- Packet: review-only decision / approval template.
+- Approval status: template only, not signed, not captured, not granted.
+- Fresh guard: not created / not passed by this packet.
+- Runner: not attempted / not run by this packet.
+- Actual validation remains `0 captured / 0 passed / 30 missing`.
+- Safety remains `demo_ready_with_live_automation_disabled`.
+- Next safe step after clean closeout: Jason may sign the fresh approval text, then approval capture only.
