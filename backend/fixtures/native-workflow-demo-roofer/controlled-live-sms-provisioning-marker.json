@@ -8,16 +8,16 @@
   "approved_channel_for_controlled_live_test": "sms",
   "channel_only_sms": true,
 
-  "explicit_controlled_live_sms_one_message_approval_signed": false,
-  "explicit_controlled_live_sms_one_message_approval_signed_by": null,
-  "explicit_controlled_live_sms_one_message_approval_signed_date_time": null,
-  "explicit_controlled_live_sms_one_message_approval_scope": null,
+  "explicit_controlled_live_sms_one_message_approval_signed": true,
+  "explicit_controlled_live_sms_one_message_approval_signed_by": "Jason Lohse",
+  "explicit_controlled_live_sms_one_message_approval_signed_date_time": "06/24/2026 3:59pm MST",
+  "explicit_controlled_live_sms_one_message_approval_scope": "controlled_live_sms_one_message_only_to_jason_own_consenting_test_identity_after_build_184",
 
   "live_config_presence_markers": {
     "sms": [
-      { "config_name": "TWILIO_LIVE_ACCOUNT_SID", "provisioned_in_jason_controlled_store": false },
-      { "config_name": "TWILIO_LIVE_AUTH_TOKEN", "provisioned_in_jason_controlled_store": false },
-      { "config_name": "TWILIO_LIVE_FROM_NUMBER", "provisioned_in_jason_controlled_store": false }
+      { "config_name": "TWILIO_LIVE_ACCOUNT_SID", "provisioned_in_jason_controlled_store": true },
+      { "config_name": "TWILIO_LIVE_AUTH_TOKEN", "provisioned_in_jason_controlled_store": true },
+      { "config_name": "TWILIO_LIVE_FROM_NUMBER", "provisioned_in_jason_controlled_store": true }
     ]
   },
   "live_credentials_location_requirement": "jason_controlled_secret_store_or_environment_only_never_in_repo",

@@ -32,12 +32,8 @@
       "TWILIO_LIVE_AUTH_TOKEN",
       "TWILIO_LIVE_FROM_NUMBER"
     ],
-    "missing_live_config_names": [
-      "TWILIO_LIVE_ACCOUNT_SID",
-      "TWILIO_LIVE_AUTH_TOKEN",
-      "TWILIO_LIVE_FROM_NUMBER"
-    ],
-    "live_credentials_provisioned_in_jason_controlled_store": false,
+    "missing_live_config_names": [],
+    "live_credentials_provisioned_in_jason_controlled_store": true,
     "live_credentials_location_requirement": "jason_controlled_secret_store_or_environment_only_never_in_repo"
   },
   "one_message_live_readiness": {
@@ -58,8 +54,8 @@
   },
   "unmet_one_message_readiness_items": [],
   "one_message_cap_value": 1,
-  "explicit_controlled_live_sms_one_message_approval_signed": false,
-  "controlled_live_sms_ready": false,
+  "explicit_controlled_live_sms_one_message_approval_signed": true,
+  "controlled_live_sms_ready": true,
   "requires_before_any_real_sms": [
     "explicit_signed_one_message_controlled_live_sms_approval",
     "live_twilio_credentials_provisioned_only_in_jason_controlled_secret_store",
@@ -70,10 +66,7 @@
     "no_real_homeowner_contact",
     "no_billing_payment_deposit_quote_estimate_invoice_automation"
   ],
-  "blocked_reasons": [
-    "explicit_controlled_live_sms_one_message_approval_not_signed",
-    "live_twilio_credentials_not_provisioned_in_jason_controlled_store:TWILIO_LIVE_ACCOUNT_SID+TWILIO_LIVE_AUTH_TOKEN+TWILIO_LIVE_FROM_NUMBER"
-  ],
-  "gate_decision": "CONTROLLED_LIVE_SMS_BLOCKED",
+  "blocked_reasons": [],
+  "gate_decision": "CONTROLLED_LIVE_SMS_PERMITTED",
   "safety_status": "demo_ready_with_live_automation_disabled"
 }
