@@ -12036,3 +12036,16 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - Actual validation remains `0 captured / 0 passed / 30 missing`.
 - Safety remains `demo_ready_with_live_automation_disabled`.
 - Next safe step: Build 176 fresh pre-run guard after Build 175 approval capture.
+
+<!-- BUILD 176 FRESH PRE-RUN GUARD AFTER BUILD 175 -->
+## Build 176 — Fresh pre-run guard after Build 175 approval capture
+
+- Commit pending from source-of-truth before packet: `5ed0089`
+- Packet: fresh pre-run guard only.
+- Approval scope: `fresh_run_actual_external_sandbox_30_scenario_validation_once_only_after_build_174_ambiguous_attempt_capture_and_future_fresh_guard`
+- Fresh guard: passed by this packet.
+- Runner: not attempted / not run by this packet.
+- Corrected runner requirement: no terminal-closing `exit`; shell must remain open for output and exit status capture.
+- Actual validation remains `0 captured / 0 passed / 30 missing`.
+- Safety remains `demo_ready_with_live_automation_disabled`.
+- Future command status: ready only after Build 176 is committed, pushed, fetched, source-of-truth verified, and final `git status --short` is blank.
