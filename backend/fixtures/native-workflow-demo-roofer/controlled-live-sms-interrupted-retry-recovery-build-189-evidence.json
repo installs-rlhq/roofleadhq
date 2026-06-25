@@ -1,0 +1,109 @@
+{
+  "evidence_name": "controlled_live_sms_interrupted_retry_recovery_build_189_evidence",
+  "build": 189,
+  "data_classification": "local_only_interrupted_session_recovery_evidence_names_and_booleans_only",
+  "mode": "interrupted_session_evidence_capture_only_no_live_action",
+  "purpose": "Local-only recovery evidence capturing the state after Build 189 (interrupted live-SMS retry session) was lost to a Claude/server connection drop. This file performs and authorizes NOTHING live. It records, from committed repo evidence only, whether the interrupted prior session left any send attempt, whether any SMS was sent, and what the next live step requires. No live send, no retry, no Twilio/external call was performed by this recovery.",
+
+  "recovery_classification": {
+    "no_live_action_during_recovery": true,
+    "live_retry_executed_by_recovery": false,
+    "recovery_send_attempt_count": 0,
+    "recovery_performed_external_call": false,
+    "recovery_performed_external_twilio_call": false,
+    "recovery_performed_live_action": false,
+    "recovery_sent_sms": false,
+    "recovery_invoked_live_execution_runner": false,
+    "recovery_invoked_actual_external_sandbox_runner_stub": false,
+    "prior_session_state": "ambiguous_unknown"
+  },
+
+  "prior_session_state_basis_from_repo_evidence_only": {
+    "interrupted_build": 189,
+    "interruption_cause_label": "claude_or_server_connection_lost_during_build_189",
+    "build_189_artifacts_found_in_repo": false,
+    "any_file_references_build_189_in_repo": false,
+    "repo_clean_at_recovery_start": true,
+    "head_commit_at_recovery_start_label": "build_188_corrected_preflight_readiness_commit",
+    "why_ambiguous_unknown": "No Build 189 artifact, fixture, evidence file, or commit exists in the repo, and no committed file references Build 189. Because the prior session was interrupted, the absence of committed evidence neither proves a Build 189 send attempt occurred nor definitively proves one did not (an in-flight action could have been lost before any evidence was written). The honest, fail-safe classification from repo evidence alone is therefore ambiguous_unknown. The qualifying facts below show any Build 189 live send would have been UNAUTHORIZED regardless, and no recovery send will be made.",
+    "qualifying_facts": {
+      "build_184_one_message_approval_already_consumed_by_build_186": true,
+      "no_active_signed_live_sms_approval_existed_going_into_build_189": true,
+      "build_188_corrected_preflight_gate_decision": "CONTROLLED_LIVE_SMS_CORRECTED_PREFLIGHT_BLOCKED",
+      "build_188_credential_self_check_passed": false,
+      "build_188_fresh_one_message_approval_signed": false,
+      "therefore_any_build_189_live_send_would_have_been_unauthorized": true
+    }
+  },
+
+  "last_recorded_send_attempt_in_repo_names_only": {
+    "build": 186,
+    "send_attempt_count": 1,
+    "sms_was_sent": false,
+    "auto_retry_on_failure": false,
+    "auto_retry_performed": false,
+    "delivery_was_simulated_or_live": "none_no_send_performed",
+    "twilio_result_metadata": null,
+    "send_error_metadata_names_codes_only": {
+      "name": "Error",
+      "code": 20003,
+      "status": 401
+    },
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+    "diagnosis_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-failed-attempt-build-187-diagnosis.json",
+    "final_decision_label": "CONTROLLED_LIVE_SMS_SEND_ATTEMPTED_FAILED_NO_RETRY"
+  },
+
+  "approval_and_retry_posture": {
+    "ever_signed_live_sms_approval_label": "build_184_one_message_approval",
+    "ever_signed_approval_consumed_state": "one_time_approval_consumed_by_build_186_no_further_controlled_live_sms_permitted",
+    "active_signed_live_sms_approval_present_now": false,
+    "no_retry_permitted_under_any_existing_authorization": true,
+    "retry_count": 0,
+    "one_message_cap_value": 1,
+    "fresh_unsigned_template_present_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-one-message-retry-approval-build-188-template.json",
+    "fresh_template_status": "TEMPLATE_ONLY_NOT_GRANTED_NOT_SIGNED_NOT_APPROVED"
+  },
+
+  "next_live_step_requirement": {
+    "requires_jason_review_and_fresh_instruction": true,
+    "no_recovery_initiated_send_permitted": true,
+    "before_any_future_controlled_live_sms_all_must_hold": [
+      "jason_independently_revalidates_live_twilio_credential_values_in_his_controlled_store_never_in_repo_after_build_186_401",
+      "account_sid_auth_token_and_from_number_confirmed_same_active_account",
+      "from_number_confirmed_sms_capable_and_authorized_for_destination",
+      "a_fresh_explicit_signed_one_message_approval_is_required_build_184_approval_is_consumed",
+      "one_message_cap_of_exactly_1_enforced_retry_count_zero_no_retry_loop",
+      "recipient_remains_jason_own_consenting_test_identity",
+      "all_other_live_automation_remains_disabled"
+    ]
+  },
+
+  "channel": "sms",
+  "channel_only_sms": true,
+  "recipient_identity_label": "Jason Lohse / Test Roofing (own consenting test identity)",
+  "recipient_is_real_homeowner": false,
+  "recipient_number_recorded_in_evidence": false,
+
+  "reads_secret_values": false,
+  "records_secret_values": false,
+  "prints_secret_values": false,
+  "inspects_only_local_committed_evidence": true,
+  "inspects_config_names_and_booleans_only": true,
+  "authorizes_send_now": false,
+  "authorizes_retry_now": false,
+
+  "production_data_used": false,
+  "used_production_supabase": false,
+  "real_homeowner_contact": false,
+  "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+  "schema_auth_rls_security_changes": false,
+  "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+  "channel_expanded_beyond_sms": false,
+  "other_live_automation_remains_disabled": true,
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "rollback_status": "no_send_performed_during_recovery_nothing_to_roll_back",
+  "final_decision": "BUILD_189_INTERRUPTED_SESSION_RECOVERY_CAPTURED_NO_LIVE_ACTION_NEXT_LIVE_STEP_REQUIRES_JASON_FRESH_INSTRUCTION",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
