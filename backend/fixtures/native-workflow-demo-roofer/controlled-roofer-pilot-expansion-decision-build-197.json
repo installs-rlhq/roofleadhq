@@ -1,0 +1,101 @@
+{
+  "packet_name": "controlled_roofer_pilot_expansion_decision_build_197",
+  "build": 197,
+  "data_classification": "controlled_roofer_pilot_expansion_decision_names_booleans_only_no_secret_values",
+  "summary": "Build 197 prepares a controlled pilot expansion DECISION packet only. It does NOT approve expansion and does NOT activate anything. The decision evaluates to EXPANSION_NOT_APPROVED_REVIEW_REQUIRED. It includes an UNSIGNED expansion options template (one more roofer / same roofer second message / hold) and the no-go blockers that must each be cleared by Jason before any expansion. Names/booleans only; LOCAL-ONLY; no live action; safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "post_pilot_observation_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-post-pilot-observation-build-197.json",
+
+  "expansion_readiness_decision": {
+    "decision": "EXPANSION_NOT_APPROVED_REVIEW_REQUIRED",
+    "unrestricted_launch": false,
+    "live_automation_remains_disabled": true,
+    "expansion_requires_fresh_signed_approval": true
+  },
+
+  "expansion_options_template_unsigned": {
+    "approval_granted": false,
+    "approval_signed": false,
+    "authorizes_expansion_now": false,
+    "selected_option": "none",
+    "options": {
+      "option_a": {
+        "label": "one_more_consenting_roofer_one_sms_no_retry",
+        "description_names_only": "add exactly one additional consenting test roofer; SMS only; one message maximum; no retry",
+        "sms_only": true,
+        "one_message_maximum": true,
+        "retry_allowed": false,
+        "requires_new_consent_marker": true
+      },
+      "option_b": {
+        "label": "same_roofer_second_controlled_message_one_sms_no_retry",
+        "description_names_only": "send one additional controlled message to the same consenting test roofer; SMS only; one message maximum; no retry",
+        "sms_only": true,
+        "one_message_maximum": true,
+        "retry_allowed": false,
+        "requires_new_consent_marker": false
+      },
+      "option_c": {
+        "label": "hold_no_expansion",
+        "description_names_only": "hold; no expansion; observe only",
+        "sms_only": true,
+        "one_message_maximum": false,
+        "retry_allowed": false,
+        "requires_new_consent_marker": false
+      }
+    }
+  },
+
+  "expansion_no_go_blockers": {
+    "missing_fresh_signed_expansion_approval": true,
+    "missing_explicit_option_selection": true,
+    "missing_consent_marker_for_any_additional_roofer": true,
+    "any_homeowner_contact": false,
+    "any_production_data": false,
+    "any_non_sms_channel": false,
+    "any_retry_or_automation_beyond_one_message": false
+  },
+  "expansion_no_go_blockers_outstanding_count": 3,
+  "all_expansion_blockers_cleared": false,
+
+  "what_this_decision_does_not_do": {
+    "approve_expansion": false,
+    "select_an_option": false,
+    "activate_live_automation": false,
+    "send_sms": false,
+    "make_external_call": false,
+    "contact_any_roofer_or_homeowner": false,
+    "use_production_data": false,
+    "add_public_routes_webhooks_cron_schedulers_dispatchers": false,
+    "store_secrets_or_phone_numbers_in_repo_or_chat": false,
+    "authorize_unrestricted_launch": false
+  },
+
+  "expansion_decision_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "email_call_calendar_crm_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_reviews_options_clears_blockers_and_signs_a_fresh_expansion_approval_if_he_chooses_to_expand",
+  "next_step_is_unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

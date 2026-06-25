@@ -1,0 +1,66 @@
+{
+  "packet_name": "controlled_roofer_pilot_post_pilot_observation_build_197",
+  "build": 197,
+  "data_classification": "controlled_roofer_pilot_post_pilot_observation_names_booleans_only_no_secret_values",
+  "summary": "Build 197 is a LOCAL-ONLY post-pilot observation capture for the already-completed Jason-operated controlled roofer pilot one-message SMS send. It records, as names/booleans only, what the repo evidence already shows about the pilot send (one message sent, 1 attempt, no retry) and is explicit that final delivery confirmation and roofer feedback are NOT recorded by the build. It performs NO live action: no SMS, no Twilio, no network/external call, no retry, no roofer/homeowner contact, and reads/records no secret values, SIDs, tokens, credential values, phone numbers, or production data. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "ae60897",
+  "prior_build_196_reference": {
+    "closeout_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-closeout-build-196.json",
+    "launch_readiness_summary_path": "backend/fixtures/native-workflow-demo-roofer/launch-readiness-summary-build-196.json",
+    "build_196_final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT"
+  },
+  "manual_execution_evidence_reference": {
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+    "preserved_unchanged": true,
+    "twilio_send_status_in_evidence_label": "queued",
+    "twilio_sid_present_in_evidence": true,
+    "recipient_number_recorded_in_evidence": false
+  },
+
+  "pilot_send_captured": true,
+  "pilot_sms_sent": true,
+  "send_attempt_count": 1,
+  "retry_performed": false,
+
+  "delivery_observation_status": "send_accepted_queued_in_repo_evidence_no_final_delivery_confirmation_recorded_by_build",
+  "roofer_feedback_status": "not_recorded_by_build",
+
+  "no_live_action_during_observation_capture": true,
+  "no_secret_values_recorded": true,
+  "no_phone_number_recorded": true,
+
+  "observation_scope_notes": {
+    "delivery_confirmation_is_external_signal_not_collected_by_build": true,
+    "roofer_feedback_is_external_signal_not_collected_by_build": true,
+    "any_future_observation_capture_remains_names_booleans_only": true,
+    "no_external_call_used_to_gather_observation": true
+  },
+
+  "post_pilot_observation_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent_during_observation": false,
+    "network_or_external_call_made": false,
+    "real_roofer_contacted_during_observation": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "email_call_calendar_crm_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_controlled_pilot_expansion_decision_local_only",
+  "next_step_is_unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
