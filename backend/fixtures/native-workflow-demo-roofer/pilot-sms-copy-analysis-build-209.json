@@ -1,0 +1,186 @@
+{
+  "packet_name": "pilot_sms_copy_analysis_build_209",
+  "build": 209,
+  "data_classification": "pilot_sms_workflow_message_copy_analysis_and_revision_packet_names_booleans_codes_only_no_secret_values",
+  "summary": "Build 209 is a LOCAL-ONLY SMS workflow/message-copy analysis and revision packet for the next controlled pilot send. The real-customer pilot SMS (Jason-operated, Build 205) proved live delivery TECHNICALLY, but the message content was generic delivery-test copy only ('RoofLeadHQ controlled live test: one-message SMS to your own consenting test identity (Test Roofing). No action needed.') that did NOT validate RoofLeadHQ value. This build analyzes that gap and drafts revised roofer-facing SMS copy variants for review, records the homeowner-facing copy boundary (NOT approved now), records the next decision packet (COPY_REVISED_REVIEW_REQUIRED, recommended_next_option=review_copy_before_any_live_send), and includes an UNSIGNED next-send approval template. It performs NO live action: no SMS, no Twilio, no network/external call, no retry, no roofer/homeowner contact, and reads/records no secret values, SIDs, tokens, credential values, phone numbers, or production data. It does NOT approve any send, expansion, homeowner contact, live automation, or unrestricted launch. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "1c57e28",
+
+  "prior_build_208_reference": {
+    "feedback_path": "backend/fixtures/native-workflow-demo-roofer/real-customer-pilot-feedback-build-208.json",
+    "build_208_decision": "MESSAGE_COPY_ANALYSIS_REQUIRED_BEFORE_NEXT_LIVE_SEND",
+    "build_208_recommended_option": "A_revise_message_copy_only_no_send"
+  },
+  "manual_execution_evidence_reference": {
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+    "preserved_unchanged": true,
+    "twilio_send_status_in_evidence_label": "queued",
+    "twilio_sid_present_in_evidence": true,
+    "recipient_number_recorded_in_evidence": false
+  },
+
+  "message_copy_analysis_evidence": {
+    "current_message_was_generic_delivery_test": true,
+    "delivery_test_proven": true,
+    "value_messaging_not_validated": true,
+    "workflow_copy_revision_required": true,
+    "no_live_action_during_copy_analysis": true,
+    "no_secret_values_recorded": true,
+    "no_phone_number_recorded": true,
+    "current_message_label_only": "generic_delivery_test_copy_no_value_messaging",
+    "current_message_text_for_analysis": "RoofLeadHQ controlled live test: one-message SMS to your own consenting test identity (Test Roofing). No action needed.",
+    "analysis_notes": "The text above proved the live SMS delivery path works end-to-end (one message, Jason-operated, no retry), but it is a pure delivery probe: it describes the test itself, asks for no action, and demonstrates none of RoofLeadHQ's value (fast lead response, inspection-request handling, missed-lead prevention, faster follow-up). The next controlled send should use workflow-appropriate roofer-facing copy that reflects an actual RoofLeadHQ moment, while keeping all messaging honest (no guarantees, no booked-jobs claims, no estimate/quote/invoice/payment/deposit claims) and SMS-only."
+  },
+
+  "roofer_facing_sms_copy_variants": {
+    "audience": "roofer_only_not_homeowner",
+    "channel_only_sms": true,
+    "messaging_rules": {
+      "no_guarantee_language": true,
+      "no_booked_jobs_claims": true,
+      "no_estimate_quote_invoice_payment_deposit_claims": true,
+      "focus_on_lead_response_inspection_requests_missed_lead_prevention_faster_follow_up": true,
+      "include_opt_out_language_when_appropriate": true,
+      "sms_only": true
+    },
+    "variants": [
+      {
+        "id": "R1",
+        "label": "new_lead_fast_response_alert",
+        "intent": "lead_response",
+        "text": "RoofLeadHQ: New roofing lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out."
+      },
+      {
+        "id": "R2",
+        "label": "missed_lead_prevention_nudge",
+        "intent": "missed_lead_prevention",
+        "text": "RoofLeadHQ: A lead from earlier still has no first reply. A short follow-up now helps you avoid losing them to a faster response elsewhere. Reply STOP to opt out."
+      },
+      {
+        "id": "R3",
+        "label": "inspection_request_flag",
+        "intent": "inspection_requests",
+        "text": "RoofLeadHQ: A homeowner asked about a roof inspection. Want us to flag it for follow-up? Reply with your next step. Reply STOP to opt out."
+      },
+      {
+        "id": "R4",
+        "label": "faster_follow_up_daily_nudge",
+        "intent": "faster_follow_up",
+        "text": "RoofLeadHQ: A few new leads are still waiting on a first reply today. Faster follow-up keeps more of them engaged. Reply STOP to opt out."
+      },
+      {
+        "id": "R5",
+        "label": "open_follow_up_recap",
+        "intent": "faster_follow_up",
+        "text": "RoofLeadHQ recap: leads received and follow-ups still open today. Reply RECAP for the list. Reply STOP to opt out."
+      }
+    ],
+    "variant_count": 5,
+    "selected_variant": "pending_jason_review",
+    "no_variant_approved_for_send": true
+  },
+
+  "homeowner_facing_copy_boundary": {
+    "homeowner_facing_sms_approved_now": false,
+    "requires_separate_consent_and_approval": true,
+    "homeowner_contact_authorized": false,
+    "status_label": "homeowner_facing_sms_not_approved_draft_principles_only",
+    "draft_principles_only": [
+      "identify the roofing business clearly by name in the first line",
+      "reference the homeowner's own prior inquiry or inspection request (never cold contact)",
+      "obtain and record per-homeowner consent BEFORE any homeowner SMS",
+      "state plainly why they are being contacted and what to do next",
+      "include clear opt-out language (Reply STOP to opt out)",
+      "honor quiet hours in the roofer's local timezone",
+      "no guarantees, no pressure, no booked-jobs or estimate/quote/invoice/payment/deposit claims"
+    ],
+    "placeholder_examples_not_approved": [
+      {
+        "id": "H1_DRAFT_NOT_APPROVED",
+        "label": "homeowner_inspection_followup_draft",
+        "text": "[DRAFT - NOT APPROVED] Hi, this is [Roofer Name] following up on your roof inspection request. Reply YES to set a time, or STOP to opt out."
+      }
+    ],
+    "placeholder_note": "The homeowner example above is a DRAFT for future review only. It is NOT approved, NOT consented, and NOT to be sent. Any homeowner-facing message requires separate, explicit consent capture and a separate signed approval."
+  },
+
+  "next_decision_packet": {
+    "decision": "COPY_REVISED_REVIEW_REQUIRED",
+    "recommended_next_option": "review_copy_before_any_live_send",
+    "unrestricted_launch": false,
+    "homeowner_contact_authorized": false,
+    "live_automation_remains_disabled": true,
+    "next_live_send_requires_fresh_signed_approval": true
+  },
+
+  "unsigned_next_send_approval_template": {
+    "template_name": "pilot_next_send_unsigned_approval_template_build_209",
+    "purpose": "UNSIGNED template for a future controlled pilot send AFTER Jason reviews the revised copy. This file authorizes NOTHING. It documents the shape of the per-attempt signed approval Jason would complete OUTSIDE this build before any live send. It contains no secret values, no phone numbers, no SIDs, no tokens, and no production data.",
+    "approval_signed": false,
+    "approval_granted": false,
+    "authorizes_live_action_now": false,
+    "selected_message_variant": "pending_jason_review",
+    "authorizes_homeowner_message": false,
+    "authorizes_live_automation": false,
+    "authorizes_production_data": false,
+    "required_fields_to_be_completed_outside_repo_by_jason": [
+      "reviewed_and_selected_roofer_facing_variant_id",
+      "consenting_roofer_identity_label_only",
+      "approved_destination_marker_only_no_number",
+      "opt_out_language_final_marker",
+      "single_message_scope_acknowledgement",
+      "no_retry_acknowledgement",
+      "rollback_owner_acknowledgement"
+    ],
+    "scope_if_ever_signed": {
+      "max_message_count": 1,
+      "retry_allowed": false,
+      "channel_only_sms": true,
+      "jason_operated_send_only": true,
+      "build_environment_send": false,
+      "per_attempt_approval_required": true,
+      "homeowner_message_requires_separate_approval": true
+    },
+    "must_remain_false_in_this_build": {
+      "approval_signed": false,
+      "approval_granted": false,
+      "authorizes_live_action_now": false,
+      "authorizes_homeowner_message": false,
+      "authorizes_live_automation": false
+    }
+  },
+
+  "copy_analysis_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent_during_copy_analysis": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "real_roofer_contacted_during_copy_analysis": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_reviews_the_revised_roofer_facing_sms_copy_variants_and_selects_one_before_any_further_live_send_copy_revised_review_required_not_unrestricted_launch_any_further_live_send_requires_a_new_explicit_per_attempt_signed_approval",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_copy_review_required": true,
+  "homeowner_contact_authorized": false,
+  "unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
