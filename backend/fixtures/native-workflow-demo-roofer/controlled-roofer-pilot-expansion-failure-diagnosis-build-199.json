@@ -1,0 +1,84 @@
+{
+  "diagnosis_name": "controlled_roofer_pilot_expansion_failure_diagnosis_build_199",
+  "build": 199,
+  "data_classification": "controlled_roofer_pilot_expansion_failure_diagnosis_names_booleans_codes_only_no_secret_values",
+  "summary": "Build 199 diagnosis of the failed Jason-operated Option B expansion one-message SMS attempt, derived from RECORDED METADATA ONLY (error_code=21211, error_status=400, name=Error). No live action, no Twilio call, no network/external call, no retry, no secret values, no phone numbers. Diagnosis is metadata-only and does not assert the destination value itself (which was never recorded).",
+
+  "evidence_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+  "closeout_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-failure-closeout-build-199.json",
+
+  "observed_metadata_only": {
+    "error_name": "Error",
+    "error_code": 21211,
+    "error_status": 400,
+    "send_attempt_count": 1,
+    "sms_was_sent": false,
+    "twilio_result_metadata": null,
+    "auto_retry_performed": false
+  },
+
+  "root_cause_class": "recipient_destination_validation_rejection",
+  "likely_issue": "approved destination value/format/carrier/reachability rejected by Twilio",
+  "diagnosis_confidence_label": "metadata_consistent_destination_validation_rejection_value_not_recorded_so_not_certain",
+  "diagnosis_is_metadata_only": true,
+  "destination_value_recorded": false,
+  "destination_value_inspected": false,
+
+  "ruled_out": {
+    "missing_gate": true,
+    "missing_approval": true,
+    "missing_credential_presence": true,
+    "retry_loop": true,
+    "homeowner_contact": true,
+    "production_data": true,
+    "secret_leak": true
+  },
+  "ruled_out_basis": {
+    "missing_gate": "gate_decision_before_execution_recorded_CONTROLLED_LIVE_SMS_PERMITTED",
+    "missing_approval": "build_198_final_send_approval_signed_and_approval_consumed_true",
+    "missing_credential_presence": "live_credential_presence_names_only_all_true_in_evidence",
+    "retry_loop": "send_attempt_count_1_and_auto_retry_performed_false_and_retry_performed_false",
+    "homeowner_contact": "recipient_identity_label_own_consenting_test_identity_real_homeowner_contact_false",
+    "production_data": "production_data_used_false_used_production_supabase_false",
+    "secret_leak": "no_secret_values_recorded_no_phone_number_recorded_no_sid_or_token_recorded"
+  },
+
+  "what_this_diagnosis_does_not_claim": {
+    "claims_specific_destination_digits": false,
+    "claims_carrier_identity": false,
+    "claims_secret_or_token_at_fault": false,
+    "claims_build_environment_sent": false,
+    "claims_retry_should_run_now": false
+  },
+
+  "next_step": "jason_validates_approved_destination_number_in_controlled_store_then_fresh_signed_approval_before_any_further_attempt",
+  "next_step_requires_fresh_signed_approval": true,
+  "next_step_requires_destination_validation_first": true,
+  "next_step_is_retry_of_consumed_approval": false,
+  "next_step_is_unrestricted_launch": false,
+
+  "diagnosis_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
