@@ -1,0 +1,54 @@
+{
+  "template_name": "controlled_roofer_pilot_approval_build_193_template",
+  "build": 193,
+  "data_classification": "fresh_unsigned_pilot_approval_template_names_booleans_only_no_secret_values",
+  "summary": "Fresh UNSIGNED controlled real-roofer pilot approval template. This is a blank gate, NOT an approval. It grants nothing: approval_granted=false, approval_signed=false, authorizes_live_pilot_now=false. A future controlled pilot interaction requires Jason to fill, sign, and date this with a one-message SMS-only scope to one consenting test roofer, AND all Build 193 no-go blockers cleared. No secret values, SIDs, tokens, or phone numbers belong in this file.",
+
+  "approval_granted": false,
+  "approval_signed": false,
+  "authorizes_live_pilot_now": false,
+
+  "approval_owner_label": "Jason Lohse",
+  "approval_signature_label": "",
+  "approval_signed_date": "",
+
+  "approved_scope": {
+    "one_consenting_test_roofer_only": false,
+    "sms_only_first": false,
+    "one_controlled_pilot_interaction_at_a_time": false,
+    "maximum_pilot_message_count": 1,
+    "no_retry": true,
+    "no_homeowner_contact": true,
+    "no_production_data": true,
+    "no_non_sms_channel": true,
+    "all_broader_automation_disabled": true
+  },
+
+  "required_markers_before_sign": {
+    "roofer_consent_marker_present": false,
+    "roofer_test_identity_marker_present": false,
+    "approved_destination_marker_present_no_number_stored": false,
+    "all_build_193_no_go_blockers_cleared": false
+  },
+
+  "no_secret_values_in_template": true,
+  "no_phone_number_in_template": true,
+  "no_recipient_number_in_template": true,
+
+  "template_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "sms_sent": false,
+    "live_automation_activated": false,
+    "production_data_used": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
