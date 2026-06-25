@@ -1,0 +1,169 @@
+{
+  "assessment_name": "fastest_path_to_live_assessment_build_201",
+  "build": 201,
+  "data_classification": "assessment_names_booleans_codes_counts_only_no_secret_values",
+  "summary": "Build 201 is a LOCAL-ONLY application assessment and fastest-path-to-live recommendation. It reviews the RoofLeadHQ repo, evidence chain, build history, readiness summaries, and launch blockers, and recommends the fastest, smartest, safest way to get the application to a useful live pilot. It performs NO live action: no SMS, no Twilio, no network/external call, no roofer/homeowner contact, no secrets/tokens/SIDs/phone numbers/production data, no live automation, no schema/auth/RLS changes. Names/booleans/codes/counts only. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "fce6035",
+  "as_of_decision": "ASSESSMENT_FASTEST_PATH_TO_LIVE_STOP_FIXTURE_CEREMONY_DO_ONE_HUMAN_SEND_THEN_ONBOARD_ONE_REAL_ROOFER",
+
+  "repo_scale_snapshot": {
+    "backend_src_loc_approx": 4509,
+    "docs_count_approx": 496,
+    "root_scripts_count_approx": 321,
+    "backend_scripts_count_approx": 458,
+    "native_workflow_fixtures_count_approx": 185,
+    "workflow_build_commits_approx": 79,
+    "interpretation": "small_capable_core_app_wrapped_in_very_large_doc_script_fixture_ceremony"
+  },
+
+  "executive_assessment": {
+    "already_proven": {
+      "local_suite_passed": true,
+      "local_suite_ratio": "30/30",
+      "mock_adapter_suite_passed": true,
+      "mock_adapter_suite_ratio": "30/30",
+      "sandbox_test_sms_simulated_safely": true,
+      "controlled_live_sms_to_jason_one_message_succeeded": true,
+      "first_controlled_test_identity_one_message_send_succeeded": true,
+      "sms_safety_primitives_exist": true,
+      "sms_safety_primitives": ["opt_out", "quiet_hours", "duplicate_send_detection", "template_approval", "invalid_phone_guard", "missing_field_guard"],
+      "mock_and_live_sms_adapters_exist": true,
+      "fail_closed_one_message_runner_exists": true,
+      "roofer_onboarding_scaffold_exists": true,
+      "legal_privacy_and_tos_present": true,
+      "safety_gating_demonstrably_holds_across_79_builds": true
+    },
+    "not_proven": {
+      "real_paying_or_real_pilot_roofer_onboarded": false,
+      "end_to_end_live_lead_to_qualification_to_outreach_with_real_homeowner": false,
+      "production_supabase_writes_exercised_live": false,
+      "vapi_voice_live_exercised": false,
+      "calendar_live_exercised": false,
+      "email_resend_live_exercised": false,
+      "controlled_expansion_retry_send_executed": false,
+      "second_distinct_consenting_roofer_validated": false
+    },
+    "blocked": {
+      "technically_blocked_items": "none",
+      "only_gating_is_deliberate_human_operated_live_send": true,
+      "note": "Live sends are gated behind a Jason-operated manual action BY DESIGN; this is the safety posture, not a defect."
+    },
+    "over_engineered_or_slowing_launch": {
+      "build_ceremony_loop_is_dominant_cost": true,
+      "pattern": "each_build_emits_json_fixtures_plus_bespoke_verifier_plus_dry_run_wrapper_plus_one_or_two_docs",
+      "near_duplicate_first_paid_launch_doc_packets": true,
+      "extremely_long_chained_filenames_present": true,
+      "verifier_and_wrapper_per_build_not_consolidated": true,
+      "state_transitions_modeled_as_separate_builds": ["approve", "preflight", "send", "closeout", "diagnose", "re_approve"]
+    },
+    "truly_required_before_first_real_pilot": [
+      "execute_one_jason_operated_controlled_one_message_send_successfully",
+      "onboard_one_real_roofer_via_existing_onboarding_scaffold",
+      "run_one_real_lead_through_manual_qualification_and_manual_or_sms_outreach",
+      "confirm_homeowner_sms_consent_and_optout_language_is_final"
+    ]
+  },
+
+  "fastest_path_to_live": {
+    "minimum_viable_live_pilot_path": "One real roofer + Jason-operated manual lead qualification + one approved SMS template + existing opt-out/quiet-hours safety + manual booking. No new automation.",
+    "next_steps_3_to_7": [
+      {"step": 1, "owner": "Jason", "type": "human", "action": "Run the already-approved Build 200 one-message expansion send in your shell (fail-closed runner, one message, no retry) to prove a real controlled send succeeds with the validated destination."},
+      {"step": 2, "owner": "Claude", "type": "build", "action": "Single LOCAL-ONLY closeout build capturing that send outcome (names/codes only), mirroring Build 196/199 — do NOT split into multiple builds."},
+      {"step": 3, "owner": "Jason", "type": "human", "action": "Onboard ONE real consenting roofer via scripts/onboard-roofer.sh; confirm SMS template + opt-out/quiet-hours config."},
+      {"step": 4, "owner": "Jason", "type": "human", "action": "Take ONE real homeowner lead, qualify it manually, send ONE approved SMS via the same fail-closed/manual path in your controlled shell."},
+      {"step": 5, "owner": "Claude", "type": "build", "action": "One consolidated pilot-result evidence build (intake -> outreach -> outcome), not one build per state."},
+      {"step": 6, "owner": "Jason+Claude", "type": "decision", "action": "Go/No-Go review against the launch gating checklist; decide whether to widen to a second roofer or harden automation."}
+    ],
+    "stop_building_now": [
+      "additional_approval_preflight_closeout_fixture_trios_for_the_same_single_send",
+      "new_near_duplicate_first_paid_launch_doc_packets",
+      "new_bespoke_per_build_verifier_plus_wrapper_when_an_existing_one_can_be_parameterized",
+      "longer_chained_filename_session_archive_lock_docs"
+    ],
+    "can_wait_until_after_first_customer_validation": [
+      "live_production_supabase_writes_at_scale",
+      "vapi_voice_live",
+      "calendar_live_sync",
+      "email_resend_live",
+      "cron_scheduler_dispatcher_automation",
+      "public_webhook_routes_live",
+      "billing_quote_invoice_deposit_automation",
+      "multi_roofer_blast_automation"
+    ]
+  },
+
+  "risk_assessment": {
+    "operational": ["single_operator_jason_is_sole_runner_and_rollback_owner", "manual_steps_are_error_prone_without_a_one_page_runbook", "build_ceremony_creates_false_sense_of_progress_without_a_real_customer"],
+    "compliance_sms_consent": ["homeowner_consent_and_optout_language_must_be_final_before_any_real_homeowner_sms", "quiet_hours_and_optout_already_implemented_but_must_be_verified_against_real_roofer_timezone", "tcpa_style_consent_record_should_exist_per_homeowner"],
+    "secret_handling": ["secrets_must_remain_in_jason_shell_only", "no_sid_token_phone_number_in_repo_or_chat_has_held_for_79_builds", "live_credentials_never_committed_keep_using_env_in_shell"],
+    "repo_process": ["doc_script_fixture_sprawl_raises_navigation_and_maintenance_cost", "per_build_verifier_proliferation", "very_long_filenames_risk_tooling_and_path_limits", "source_of_truth_discipline_is_strong_keep_it"],
+    "product_customer": ["no_real_customer_has_validated_value_yet", "risk_of_polishing_safety_ceremony_instead_of_selling_outcomes", "first_roofer_must_get_a_real_qualified_lead_or_pilot_proves_nothing"]
+  },
+
+  "recommended_architecture_path": {
+    "stay_local_or_manual_for_now": ["lead_qualification_decisioning", "sms_send_trigger_jason_operated", "booking_confirmation", "roofer_onboarding"],
+    "move_to_production_later": ["supabase_persistence_of_leads_and_outcomes", "inbound_lead_webhook_intake", "automated_follow_up_cadence_after_one_roofer_proves_value"],
+    "do_not_automate_yet": ["outbound_sms_blast", "voice_vapi_outbound", "calendar_auto_booking", "email_sequences", "billing_invoice_deposit", "cron_schedulers_dispatchers"]
+  },
+
+  "launch_gating_recommendation": {
+    "controlled_pilot_launch_criteria": ["one_real_controlled_send_succeeded", "one_real_roofer_onboarded_and_consenting", "approved_sms_template_and_optout_language_final", "homeowner_consent_capture_defined", "jason_available_as_operator_and_rollback_owner"],
+    "go_no_go_checklist": ["safety_posture_demo_ready_with_live_automation_disabled_preserved", "no_secrets_in_repo", "opt_out_and_quiet_hours_verified", "one_message_no_retry_discipline_intact", "rollback_owner_identified"],
+    "rollback_stop_procedure": "Stop sending immediately; do not retry; preserve outcome as names/codes only; capture a LOCAL-ONLY closeout; Jason owns stop/rollback.",
+    "owner_responsibilities": {"operator": "Jason Lohse", "rollback_owner": "Jason Lohse", "builder": "Claude (local-only artifacts, no live action)"}
+  },
+
+  "token_time_cost_reduction": {
+    "reduce_build_count": ["consolidate_approval_preflight_send_closeout_into_one_build_per_real_event", "stop_emitting_a_new_verifier_and_wrapper_per_build", "parameterize_one_reusable_verifier_over_a_fixtures_manifest"],
+    "batch_future_work": ["one_pilot_result_build_instead_of_intake_outreach_outcome_as_three_builds", "group_doc_updates_into_a_single_living_readiness_doc_instead_of_new_packets"],
+    "reduce_prompts_and_permission_interruptions": ["keep_autonomy_authorization_blocks_like_this_one", "predeclare_allowed_local_only_commands", "avoid_new_long_chained_filenames"],
+    "jason_manual_vs_claude_build": {"jason_manual": ["live_sends", "real_roofer_onboarding", "secret_handling", "real_homeowner_consent"], "claude_build": ["local_only_evidence_capture", "verifiers", "docs", "safety_gating_checks"]}
+  },
+
+  "build_recommendation": {
+    "single_best_next_build_after_201": "Build 202 = ONE consolidated LOCAL-ONLY closeout of the Jason-operated Build 200 expansion retry send (capture outcome names/codes only, update launch-readiness, single verifier+wrapper) — only AFTER Jason actually runs the send.",
+    "estimated_builds_remaining_until_useful_live_pilot": "2_to_4",
+    "estimated_builds_remaining_until_useful_live_pilot_low": 2,
+    "estimated_builds_remaining_until_useful_live_pilot_high": 4,
+    "estimated_builds_remaining_until_unrestricted_launch": "not_recommended_as_a_build_target_gate_on_real_customer_validation_and_compliance_signoff_instead",
+    "unrestricted_launch_is_a_business_decision_not_a_build_milestone": true
+  },
+
+  "top_5_recommendations": [
+    "Stop the per-state fixture-ceremony loop; one build per real event, not one per approval/preflight/closeout.",
+    "Have Jason execute the already-approved Build 200 one-message send to prove a real controlled send succeeds.",
+    "Onboard ONE real roofer and run ONE real lead end-to-end manually before building any more automation.",
+    "Finalize homeowner SMS consent/opt-out language before any real-homeowner message.",
+    "Consolidate verifiers/docs (one reusable verifier over a manifest; one living readiness doc) to cut build count, tokens, and maintenance."
+  ],
+
+  "assessment_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_runs_already_approved_build_200_one_message_send_then_single_consolidated_local_only_closeout_build_202",
+  "next_step_is_unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
