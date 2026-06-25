@@ -1,0 +1,86 @@
+{
+  "packet_name": "controlled_roofer_pilot_closeout_build_196",
+  "build": 196,
+  "data_classification": "controlled_roofer_pilot_closeout_names_booleans_codes_only_no_secret_values",
+  "summary": "Build 196 is a LOCAL-ONLY closeout that captures the SUCCESSFUL result of the already-completed Jason-operated controlled roofer pilot one-message SMS send. The send itself was performed separately by Jason in his own controlled environment with live credentials and the approved destination; this build performs NO live action. It records, as names/booleans/codes only, that exactly one message was sent (1 attempt, no retry) and the manual execution evidence is preserved. No SMS is sent, no Twilio/network/external call is made, no retry is run, and no secret values, SIDs, tokens, credential values, phone numbers, or production data are read, printed, or recorded. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "2dc53dd",
+  "prior_build_195_reference": {
+    "final_send_approval_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-final-send-approval-build-195-signed.json",
+    "send_time_preflight_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-send-time-preflight-build-195.json",
+    "build_195_send_time_preflight_decision": "READY_FOR_JASON_OPERATED_ONE_MESSAGE_SEND"
+  },
+  "manual_execution_evidence_reference": {
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+    "preserved_unchanged": true,
+    "gate_decision_before_execution": "CONTROLLED_LIVE_SMS_PERMITTED",
+    "pre_flight_permitted": true,
+    "final_decision_in_evidence": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT"
+  },
+
+  "pilot_manual_attempt_captured": true,
+  "send_attempt_count": 1,
+  "sms_was_sent": true,
+  "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+  "retry_performed": false,
+  "no_live_action_during_closeout": true,
+  "no_secret_values_recorded": true,
+  "no_phone_number_recorded": true,
+  "build_environment_send": false,
+  "jason_operated_send": true,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+
+  "pilot_scope_confirmation": {
+    "one_consenting_test_roofer_only": true,
+    "sms_only": true,
+    "one_message_maximum": true,
+    "approved_destination_marker_only_no_phone_number_in_repo": true,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "non_sms_channel_used": false,
+    "one_time_approval_consumed": true,
+    "rollback_status_label": "one_message_delivered_one_time_approval_consumed_no_further_sends"
+  },
+
+  "what_this_closeout_does_not_do": {
+    "send_sms": false,
+    "construct_twilio_client": false,
+    "call_messages_create": false,
+    "run_retry": false,
+    "make_external_call": false,
+    "contact_any_roofer_or_homeowner": false,
+    "use_production_data": false,
+    "activate_live_automation": false,
+    "add_public_routes_webhooks_cron_schedulers_dispatchers": false,
+    "store_secrets_or_phone_numbers_in_repo_or_chat": false,
+    "authorize_unrestricted_launch": false
+  },
+
+  "closeout_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent_during_closeout": false,
+    "network_or_external_call_made": false,
+    "real_roofer_contacted_during_closeout": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "email_call_calendar_crm_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "post_pilot_observation_then_controlled_pilot_expansion_decision_local_only",
+  "next_step_is_unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

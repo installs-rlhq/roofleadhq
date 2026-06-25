@@ -1,0 +1,67 @@
+{
+  "summary_name": "launch_readiness_summary_build_196",
+  "build": 196,
+  "data_classification": "launch_readiness_summary_names_only_no_secret_values",
+  "as_of_decision": "CONTROLLED_ROOFER_PILOT_ONE_MESSAGE_SMS_SENT_CLOSEOUT_CAPTURED",
+
+  "readiness_lanes": {
+    "local_suite": {
+      "label": "local",
+      "passed": 30,
+      "total": 30,
+      "all_passed": true
+    },
+    "mock_adapter_suite": {
+      "label": "mock_adapter",
+      "passed": 30,
+      "total": 30,
+      "all_passed": true
+    },
+    "sandbox_test_sms": {
+      "label": "sandbox_test_sms_simulated",
+      "simulated_safely": true,
+      "live_send": false
+    },
+    "controlled_live_sms_to_jason": {
+      "label": "controlled_live_sms_to_jason_one_message",
+      "send_attempt_count": 1,
+      "sms_was_sent": true,
+      "retry_performed": false,
+      "one_message_succeeded": true,
+      "one_time_approval_consumed": true
+    },
+    "controlled_roofer_pilot_one_message_sms": {
+      "label": "controlled_roofer_pilot_one_message_sms_jason_operated",
+      "pilot_manual_attempt_captured": true,
+      "send_attempt_count": 1,
+      "sms_was_sent": true,
+      "retry_performed": false,
+      "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+      "build_environment_send": false,
+      "jason_operated_send": true,
+      "no_live_action_during_closeout": true
+    }
+  },
+
+  "broader_live_automation_status": {
+    "all_broader_live_automation_remains_disabled": true,
+    "sms_blast_automation_enabled": false,
+    "calendar_live_enabled": false,
+    "vapi_outbound_live_enabled": false,
+    "resend_live_enabled": false,
+    "lindy_live_enabled": false,
+    "cron_scheduler_dispatcher_enabled": false,
+    "public_live_routes_webhooks_enabled": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_enabled": false
+  },
+
+  "next_step": "post_pilot_observation_then_controlled_pilot_expansion_decision_local_only",
+  "next_step_is_unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+
+  "no_live_action_during_summary": true,
+  "no_secret_values_recorded": true,
+  "no_recipient_number_recorded": true,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
