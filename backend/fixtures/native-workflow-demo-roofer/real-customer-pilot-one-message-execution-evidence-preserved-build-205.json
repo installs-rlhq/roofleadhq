@@ -1,0 +1,58 @@
+{
+  "preserved_evidence_name": "real_customer_pilot_one_message_execution_evidence_preserved_build_205",
+  "build": 205,
+  "data_classification": "preserved_controlled_live_execution_evidence_names_booleans_codes_only_no_secret_values",
+  "purpose": "LOCAL-ONLY preserved snapshot of the recorded manual real-customer pilot one-message SMS execution evidence. The canonical execution evidence file is overwritten in place by the existing fail-closed runner on each Jason-operated send, so Build 205 preserves the successful real-customer pilot outcome here as names/booleans/codes only. This snapshot is captured from recorded metadata; it performs NO live action, makes NO network/external/Twilio call, runs NO retry, and records NO secret values, SIDs, tokens, phone numbers, or production data.",
+
+  "captured_from_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+  "source_of_truth_commit": "03b33c4",
+  "evidence_label": [
+    "controlled_live_sms_one_message",
+    "real_customer_pilot",
+    "jason_operated_send",
+    "after_build_204_signed_approval",
+    "after_gate_permitted"
+  ],
+
+  "gate_decision_before_execution": "CONTROLLED_LIVE_SMS_PERMITTED",
+  "pre_flight_permitted": true,
+  "channel": "sms",
+  "channel_only_sms": true,
+  "transport_is_live": true,
+  "one_message_cap": 1,
+  "send_attempt_count": 1,
+  "auto_retry_on_failure": false,
+  "auto_retry_performed": false,
+  "retry_performed": false,
+  "sms_was_sent": true,
+  "delivery_was_simulated_or_live": "live",
+
+  "twilio_result_metadata_names_only": {
+    "sid_present": true,
+    "status": "queued",
+    "error_code": null,
+    "error_message": null,
+    "num_segments": "1",
+    "direction": "outbound-api"
+  },
+  "send_error_metadata": null,
+
+  "build_environment_send": false,
+  "jason_operated_send": true,
+  "homeowner_contact_authorized": false,
+  "real_homeowner_contact": false,
+  "contacted_only_approved_real_roofer_customer_test_identity": true,
+
+  "recipient_number_recorded_in_evidence": false,
+  "reads_secret_values": false,
+  "secret_values_printed_logged_or_committed": false,
+  "production_data_used": false,
+  "used_production_supabase": false,
+
+  "other_live_automation_remains_disabled": true,
+  "rollback_status": "one_message_delivered_one_time_approval_consumed_no_further_sends",
+  "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+  "exit_status": 0,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

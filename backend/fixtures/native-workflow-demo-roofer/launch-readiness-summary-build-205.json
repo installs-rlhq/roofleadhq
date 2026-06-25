@@ -1,0 +1,110 @@
+{
+  "summary_name": "launch_readiness_summary_build_205",
+  "build": 205,
+  "data_classification": "launch_readiness_summary_names_only_no_secret_values",
+  "as_of_decision": "REAL_CUSTOMER_PILOT_ONE_MESSAGE_SMS_SENT_AND_CLOSED_OUT_NEXT_STEP_POST_PILOT_OBSERVATION_AND_CUSTOMER_FEEDBACK_BROADER_LIVE_AUTOMATION_DISABLED_NOT_UNRESTRICTED_LAUNCH",
+
+  "source_of_truth_commit": "03b33c4",
+
+  "readiness_lanes": {
+    "local_suite": {
+      "label": "local",
+      "passed": 30,
+      "total": 30,
+      "all_passed": true
+    },
+    "mock_adapter_suite": {
+      "label": "mock_adapter",
+      "passed": 30,
+      "total": 30,
+      "all_passed": true
+    },
+    "sandbox_test_sms": {
+      "label": "sandbox_test_sms_simulated",
+      "simulated_safely": true,
+      "live_send": false
+    },
+    "controlled_live_sms_to_jason": {
+      "label": "controlled_live_sms_to_jason_one_message",
+      "send_attempt_count": 1,
+      "sms_was_sent": true,
+      "retry_performed": false,
+      "one_message_succeeded": true
+    },
+    "first_controlled_roofer_pilot_one_message_sms": {
+      "label": "first_controlled_roofer_pilot_one_message_sms_jason_operated",
+      "pilot_manual_attempt_captured": true,
+      "send_attempt_count": 1,
+      "sms_was_sent": true,
+      "retry_performed": false,
+      "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+      "build_environment_send": false,
+      "jason_operated_send": true,
+      "first_controlled_roofer_pilot_succeeded": true
+    },
+    "controlled_pilot_expansion_retry_send": {
+      "label": "controlled_pilot_expansion_retry_send_jason_operated_build_202",
+      "expansion_retry_manual_attempt_captured": true,
+      "send_attempt_count": 1,
+      "sms_was_sent": true,
+      "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+      "retry_performed": false,
+      "build_environment_send": false,
+      "jason_operated_send": true,
+      "controlled_pilot_expansion_retry_succeeded": true
+    },
+    "real_customer_pilot_one_message_sms": {
+      "label": "real_customer_pilot_one_message_sms_jason_operated_build_205",
+      "real_customer_pilot_manual_attempt_captured": true,
+      "gate_decision_before_execution": "CONTROLLED_LIVE_SMS_PERMITTED",
+      "pre_flight_permitted": true,
+      "send_attempt_count": 1,
+      "sms_was_sent": true,
+      "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+      "exit_status": 0,
+      "retry_performed": false,
+      "build_environment_send": false,
+      "jason_operated_send": true,
+      "homeowner_contact_authorized": false,
+      "ran_under_build_204_signed_approval": true,
+      "build_204_approval_consumed": true,
+      "real_customer_pilot_one_message_sms_succeeded": true
+    }
+  },
+
+  "narrative": {
+    "controlled_live_sms_to_jason_succeeded": true,
+    "first_controlled_roofer_pilot_succeeded": true,
+    "controlled_expansion_retry_succeeded": true,
+    "real_customer_pilot_one_message_sms_succeeded": true,
+    "no_homeowner_contact_authorized": true,
+    "broader_live_automation_remains_disabled": true,
+    "next_step_is_post_pilot_observation_and_customer_feedback_not_unrestricted_launch": true
+  },
+
+  "broader_live_automation_status": {
+    "all_broader_live_automation_remains_disabled": true,
+    "sms_blast_automation_enabled": false,
+    "calendar_live_enabled": false,
+    "vapi_outbound_live_enabled": false,
+    "resend_live_enabled": false,
+    "lindy_live_enabled": false,
+    "cron_scheduler_dispatcher_enabled": false,
+    "public_live_routes_webhooks_enabled": false,
+    "crm_sync_automation_enabled": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_enabled": false
+  },
+
+  "next_step": "post_pilot_observation_and_customer_feedback_collection_not_unrestricted_launch_any_further_live_send_requires_a_new_explicit_per_attempt_signed_approval",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_post_pilot_observation_customer_feedback": true,
+  "next_step_is_real_customer_pilot_decision_and_consent": false,
+  "next_step_is_jason_operated_one_message_real_customer_pilot_send": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+
+  "no_live_action_during_summary": true,
+  "no_secret_values_recorded": true,
+  "no_recipient_number_recorded": true,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
