@@ -16,6 +16,15 @@
   "transport_mode": "controlled_live_twilio_sms",
   "transport_is_live": true,
   "one_message_cap": 1,
+  "message_binding": {
+    "bound_to_approved_selected_variant": true,
+    "approved_variant_source_path": "backend/fixtures/native-workflow-demo-roofer/r1-sms-send-approval-build-211.json",
+    "selected_variant": "R1",
+    "selected_variant_label": "new_lead_fast_response_alert",
+    "outbound_body_equals_approved_selected_variant": true,
+    "outbound_body_is_stale_generic_delivery_test_copy": false,
+    "hardcoded_generic_body_used": false
+  },
   "pre_flight_permitted": true,
   "blocked_reasons": [],
   "live_credential_presence_names_only": {

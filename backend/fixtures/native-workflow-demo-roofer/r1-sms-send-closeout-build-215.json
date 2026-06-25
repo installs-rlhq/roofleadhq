@@ -1,0 +1,193 @@
+{
+  "packet_name": "r1_sms_guarded_send_successful_closeout_build_215",
+  "build": 215,
+  "data_classification": "r1_sms_guarded_send_successful_closeout_capture_names_booleans_codes_only_no_secret_values_no_phone_numbers_no_raw_sids_no_production_data",
+  "summary": "Build 215 is a LOCAL-ONLY packet that CLOSES OUT the one approved, Jason-operated, SUCCESSFUL guarded controlled live roofer SMS send of Build 210/211/214 selected variant R1 (new_lead_fast_response_alert) using the Build 213 fixed/guarded message binding. It records the observed terminal result of that single approved guarded attempt — names/booleans/codes ONLY — gate_decision_before_execution=CONTROLLED_LIVE_SMS_PERMITTED, message_binding bound_to_approved_selected_variant=true and outbound_body_equals_approved_selected_variant=true, preflight_status=PERMITTED, send_attempt_count=1, sms_sent=true, retry_performed=false, final_decision=CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT, exit_status=0, the single-use approval is now consumed/expired, and the post-send env-clear check passed. CRITICAL NEW PROOF: Jason confirmed the actual received text matched the approved R1 message EXACTLY (not the stale generic delivery-test copy), so the R1 message binding is now validated LIVE and R1 value-message delivery is proven end-to-end. It records the strategic next decision packet (GUARDED_R1_LIVE_DELIVERY_CONFIRMED_SMALL_ROOFER_PILOT_READY_FOR_APPROVAL, recommended_next_option=small_consenting_roofer_workflow_validation_packet, authorizes_send_now=false), a lean fastest-pilot-path to small consenting roofer workflow validation/selling, and a lean feedback-capture template. This build performs NO live action: no SMS, no retry, no Twilio, no Twilio client, no messages.create, no network/external call, no roofer/homeowner contact, no confirm-token arming, and reads/records NO secret values, SIDs, tokens, credential values, phone numbers, or production data. Capturing the closeout does NOT send. Any further live send requires a NEW, fresh, signed, per-attempt approval. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "ce31505",
+
+  "prior_build_214_reference": {
+    "approval_path": "backend/fixtures/native-workflow-demo-roofer/r1-sms-send-approval-build-214.json",
+    "summary_path": "backend/fixtures/native-workflow-demo-roofer/launch-readiness-summary-build-214.json",
+    "doc_path": "docs/NATIVE_WORKFLOW_FIXTURE_R1_SMS_SEND_APPROVAL_BUILD_214.md",
+    "build_214_decision": "R1_GUARDED_SIGNED_APPROVAL_CAPTURED_SEND_TIME_PREFLIGHT_REQUIRED",
+    "build_214_recommended_option": "run_send_time_preflight_then_one_guarded_jason_operated_sms_attempt",
+    "build_214_approval_signed": true,
+    "build_214_approval_granted": true,
+    "build_214_guarded_message_binding_required": true,
+    "build_214_selected_variant": "R1",
+    "build_214_selected_variant_label": "new_lead_fast_response_alert",
+    "build_214_approval_expires_after_one_attempt_whether_sent_or_failed": true
+  },
+  "prior_build_213_reference": {
+    "binding_fix_packet_path": "backend/fixtures/native-workflow-demo-roofer/r1-sms-content-mismatch-feedback-build-213.json",
+    "build_213_decision": "R1_SMS_MESSAGE_BINDING_FIXED_AND_VERIFIED_LOCALLY_NEW_SIGNED_APPROVAL_REQUIRED_BEFORE_NEXT_SEND",
+    "build_213_message_binding_fix_applied": true,
+    "build_213_resolved_outbound_message_equals_r1": true,
+    "build_213_resolved_outbound_message_equals_generic": false
+  },
+  "manual_execution_evidence_reference": {
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+    "preserved_unchanged": true,
+    "twilio_send_status_in_evidence_label": "queued",
+    "twilio_sid_present_in_evidence": true,
+    "message_binding_bound_to_approved_selected_variant_in_evidence": true,
+    "outbound_body_equals_approved_selected_variant_in_evidence": true,
+    "recipient_number_recorded_in_evidence": false,
+    "message_body_recorded_in_evidence": false
+  },
+
+  "guarded_r1_send_closeout_evidence": {
+    "guarded_r1_send_closeout_captured": true,
+    "gate_decision_before_execution": "CONTROLLED_LIVE_SMS_PERMITTED",
+    "message_binding_bound_to_approved_selected_variant": true,
+    "outbound_body_equals_approved_selected_variant": true,
+    "preflight_status": "PERMITTED",
+    "send_attempt_count": 1,
+    "sms_sent": true,
+    "retry_performed": false,
+    "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+    "exit_status": 0,
+    "selected_variant": "R1",
+    "selected_variant_label": "new_lead_fast_response_alert",
+    "approved_message_text": "RoofLeadHQ: New roofing lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.",
+    "recipient_confirmed_sms_received": true,
+    "recipient_confirmed_actual_text_matches_r1": true,
+    "recipient_confirmed_generic_copy_not_received": true,
+    "r1_message_binding_validated_live": true,
+    "r1_value_message_delivery_validated": true,
+    "approval_consumed": true,
+    "approval_expired_after_attempt": true,
+    "env_clear_check_passed": true,
+    "no_retry_allowed_after_success": true,
+    "sid_present_label_only": true,
+    "recipient_number_recorded": false,
+    "raw_sid_recorded": false,
+    "closeout_notes": "This records the observed terminal result of the ONE approved, Jason-operated, GUARDED controlled live roofer R1 SMS attempt. The gate permitted execution (CONTROLLED_LIVE_SMS_PERMITTED), the message binding was bound to the approved selected variant and the outbound body equalled the approved R1 text exactly, send-time preflight was PERMITTED, exactly one send attempt was made, the SMS was sent (sms_sent=true), no retry was performed, the final decision was CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT, and exit_status was 0. Jason (the recipient/operator on his own consenting test identity) confirmed the actual received text matched the approved R1 message EXACTLY and that the stale generic delivery-test copy was NOT received this time — so the R1 message binding is now validated LIVE and R1 value-message delivery is proven end-to-end (the Build 212 content mismatch did not recur). The single-use approval is now consumed and expired; no retry is allowed or performed after success. The post-send env-clear check passed. Names/booleans/codes only — no secret values, raw SIDs, tokens, credential values, phone numbers, or production data are recorded here."
+  },
+
+  "post_send_env_clear_check": {
+    "env_clear_check_passed": true,
+    "checked_names_only": true,
+    "secret_values_read_in_this_build": false,
+    "cleared_env_names": [
+      "TWILIO_LIVE_ACCOUNT_SID",
+      "TWILIO_LIVE_AUTH_TOKEN",
+      "TWILIO_LIVE_FROM_NUMBER",
+      "CONTROLLED_LIVE_SMS_TO_NUMBER",
+      "CONTROLLED_LIVE_SMS_CONFIRM",
+      "RAW_NUMBER",
+      "CLEAN_NUMBER"
+    ],
+    "all_listed_env_names_cleared": true,
+    "note": "Observed post-send env-clear status reported by name only (cleared booleans); no secret value, phone number, SID, or token value is read or recorded by capturing this closeout."
+  },
+
+  "safety_evidence": {
+    "no_live_action_during_closeout": true,
+    "no_additional_sms_sent_during_closeout": true,
+    "no_twilio_call_during_closeout": true,
+    "no_network_external_call_during_closeout": true,
+    "no_roofer_or_homeowner_contact_during_closeout": true,
+    "no_secret_values_recorded": true,
+    "no_phone_number_recorded": true,
+    "no_raw_sid_recorded": true,
+    "no_production_data_used": true,
+    "live_automation_remains_disabled": true
+  },
+
+  "next_decision_packet": {
+    "decision": "GUARDED_R1_LIVE_DELIVERY_CONFIRMED_SMALL_ROOFER_PILOT_READY_FOR_APPROVAL",
+    "recommended_next_option": "small_consenting_roofer_workflow_validation_packet",
+    "authorizes_send_now": false,
+    "next_live_send_requires_new_fresh_signed_approval": true,
+    "unrestricted_launch": false,
+    "homeowner_contact_authorized": false,
+    "live_automation_remains_disabled": true
+  },
+
+  "fastest_pilot_path": {
+    "path_name": "fastest_path_to_small_consenting_roofer_workflow_validation_and_selling_build_215",
+    "purpose": "The leanest next-step path from the now-proven guarded R1 live SMS to small consenting roofer workflow validation and selling. Move immediately from proof SMS to a sales/pilot conversation. No infrastructure scaffolding.",
+    "steps": [
+      "select_1_to_3_consenting_roofer_pilot_recipients",
+      "use_guarded_message_binding_only_outbound_body_must_equal_approved_copy",
+      "send_one_approved_sms_per_recipient_or_one_small_batch_only_after_explicit_signed_approval",
+      "validate_three_things_only_message_received_and_matched_expected_copy_and_roofer_understands_value_and_roofer_wants_to_continue",
+      "move_immediately_from_proof_sms_to_sales_or_pilot_conversation"
+    ],
+    "validate_only": [
+      "message_received_and_matched_expected_copy",
+      "roofer_understands_value",
+      "roofer_wants_to_continue_into_workflow_validation_or_sales_conversation"
+    ],
+    "no_homeowner_contact_yet_unless_separately_approved": true,
+    "no_unrestricted_launch": true,
+    "no_live_automation_activation_beyond_explicitly_approved_jason_operated_sms_attempts": true,
+    "each_recipient_requires_its_own_fresh_signed_approval_before_send": true,
+    "move_immediately_from_proof_sms_to_sales_pilot_conversation": true
+  },
+
+  "feedback_capture_template": {
+    "template_name": "small_consenting_roofer_pilot_feedback_capture_template_build_215",
+    "purpose": "Capture-only template for the small consenting roofer pilot. Feedback is collected OUTSIDE this build by Jason. No send occurs during feedback capture. All fields start pending until real roofer feedback / Jason review is recorded.",
+    "sms_received_status": "pending",
+    "message_match_status": "pending",
+    "value_understood_status": "pending",
+    "useful_for_roofer_status": "pending",
+    "wants_next_step_status": "pending",
+    "sales_or_pilot_interest_status": "pending",
+    "requested_changes_summary": "pending",
+    "no_send_during_feedback_capture_required": true
+  },
+
+  "homeowner_facing_copy_boundary": {
+    "homeowner_facing_sms_approved_now": false,
+    "requires_separate_consent_and_approval": true,
+    "homeowner_contact_authorized": false,
+    "approved_for_homeowner_send": false,
+    "status_label": "homeowner_facing_sms_not_approved_sent_message_was_roofer_facing_only",
+    "note": "The one sent R1 SMS was roofer-facing only. No homeowner-facing message is approved, consented, or to be sent. Any homeowner-facing message requires separate, explicit consent capture and a separate signed approval."
+  },
+
+  "closeout_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "raw_sid_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent_during_closeout": false,
+    "additional_sms_sent_during_closeout": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "confirm_token_armed": false,
+    "live_runner_executed_live": false,
+    "real_roofer_contacted_during_closeout": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_decides_the_small_consenting_roofer_workflow_validation_packet_select_1_to_3_consenting_roofers_each_with_its_own_fresh_signed_per_attempt_guarded_approval_then_move_immediately_from_proof_sms_to_sales_or_pilot_conversation_guarded_r1_live_delivery_confirmed_small_roofer_pilot_ready_for_approval_not_send_now_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_small_consenting_roofer_workflow_validation": true,
+  "next_step_is_send_now": false,
+  "next_live_send_requires_new_fresh_signed_approval": true,
+  "authorizes_send_now": false,
+  "homeowner_contact_authorized": false,
+  "unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
