@@ -1,0 +1,65 @@
+{
+  "marker_name": "controlled_roofer_pilot_expansion_destination_validation_build_200",
+  "build": 200,
+  "data_classification": "controlled_roofer_pilot_expansion_destination_validation_names_booleans_codes_only_no_secret_values_no_destination_number",
+  "summary": "Build 200 LOCAL-ONLY corrected destination validation marker. After the Build 199 failed Option B expansion attempt (Twilio error code 21211 / status 400, sms_was_sent=false, no retry, approval consumed), Jason independently reviewed the approved destination number in HIS OWN controlled environment and corrected or validated it OUTSIDE the repo and chat. This marker records ONLY names/booleans/codes that the validation occurred and that the corrected destination is ready to be supplied in Jason's shell at send time. It performs NO live action: no SMS, no Twilio, no network/external call, no retry, no roofer/homeowner contact. The destination value itself is NOT stored, inspected, printed, or committed. Names/booleans/codes only; safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "e0ea285",
+  "prior_failure_closeout_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-failure-closeout-build-199.json",
+  "prior_failure_diagnosis_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-failure-diagnosis-build-199.json",
+  "prior_failure_error_code": 21211,
+  "prior_failure_error_status": 400,
+  "addresses_root_cause_class": "recipient_destination_validation_rejection",
+
+  "destination_validation_performed_by_label": "Jason Lohse",
+  "destination_validated_or_corrected_outside_repo": true,
+  "destination_validation_status": "validated_or_corrected_outside_repo_in_jason_controlled_environment",
+  "destination_validation_done_in_jason_controlled_environment_only": true,
+  "destination_validation_independent_of_build_environment": true,
+  "corrected_destination_ready_for_jason_operated_send": true,
+  "corrected_destination_supplied_in_jason_shell_only": true,
+
+  "destination_value_recorded": false,
+  "destination_value_inspected_by_build": false,
+  "destination_value_printed_or_committed": false,
+  "phone_number_recorded": false,
+
+  "what_this_marker_does_not_claim": {
+    "claims_specific_destination_digits": false,
+    "claims_carrier_identity": false,
+    "claims_build_environment_inspected_or_stored_destination": false,
+    "claims_live_action_occurred": false,
+    "claims_retry_should_run_under_consumed_approval": false
+  },
+
+  "destination_validation_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "destination_number_recorded": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "capture_fresh_signed_expansion_approval_and_send_time_preflight_then_jason_operated_one_message_send",
+  "next_step_requires_fresh_signed_approval": true,
+  "next_step_is_retry_of_consumed_approval": false,
+  "next_step_is_unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

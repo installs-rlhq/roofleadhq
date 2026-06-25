@@ -1,0 +1,98 @@
+{
+  "packet_name": "controlled_roofer_pilot_expansion_final_send_approval_build_200_signed",
+  "build": 200,
+  "data_classification": "controlled_roofer_pilot_expansion_final_send_approval_names_booleans_only_no_secret_values",
+  "summary": "Build 200 captures Jason's FRESH signed one-message SEND approval for a Jason-operated controlled expansion retry to the SAME consenting test roofer, AFTER the Build 200 corrected destination validation marker (which addresses the Build 199 21211/400 destination-validation rejection). This is a NEW one-time approval, NOT a retry of the Build 198 approval that was already consumed by the failed Build 199 attempt. It authorizes a fail-closed, JASON-OPERATED one-message send to be run separately by Jason in his own controlled environment with live credentials and the corrected/validated destination. It does NOT authorize Claude or the build environment to send SMS or make any external call. LOCAL-ONLY: no SMS, no Twilio, no network/external call, no roofer/homeowner contact, no secret values, SIDs, tokens, or phone numbers recorded. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "e0ea285",
+  "selected_option": "B_same_roofer_second_controlled_sms",
+  "destination_validation_marker_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-destination-validation-build-200.json",
+  "prior_consumed_approval_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-final-send-approval-build-198-signed.json",
+  "prior_failure_closeout_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-failure-closeout-build-199.json",
+
+  "is_fresh_signed_approval": true,
+  "is_retry_of_consumed_approval": false,
+  "prior_build_198_approval_consumed": true,
+  "destination_validation_confirmed_before_approval": true,
+
+  "jason_approval_statement_recorded": true,
+  "jason_approval_statement_scope_label": "build_200_capture_corrected_destination_validation_markers_and_fresh_controlled_expansion_approval_and_send_time_preflight_only",
+  "approval_owner_label": "Jason Lohse",
+  "approval_signature_label": "Jason Lohse",
+
+  "approval_signed": true,
+  "authorizes_jason_operated_one_message_send": true,
+  "authorizes_build_environment_send": false,
+
+  "sms_only": true,
+  "max_message_count": 1,
+  "retry_allowed": false,
+  "homeowner_contact_allowed": false,
+  "production_data_allowed": false,
+  "approved_destination_number_recorded": false,
+
+  "non_sms_channel_allowed": false,
+  "broader_live_automation_allowed": false,
+  "same_consenting_test_roofer_only": true,
+  "additional_roofer_added": false,
+
+  "jason_operated_send_conditions": {
+    "operated_by_label": "Jason Lohse",
+    "run_in_jason_controlled_environment_only": true,
+    "env_vars_supplied_in_jason_shell_only": true,
+    "uses_existing_fail_closed_one_message_runner": true,
+    "runner_path": "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js",
+    "deliberate_confirm_token_required": true,
+    "exactly_one_run": true,
+    "no_retry": true,
+    "corrected_validated_destination_supplied_in_jason_shell_only": true,
+    "evidence_preserved_names_codes_only": true
+  },
+
+  "what_this_approval_does_not_authorize": {
+    "claude_or_build_environment_send_sms": false,
+    "claude_or_build_environment_make_external_call": false,
+    "contact_any_homeowner": false,
+    "use_production_data": false,
+    "non_sms_channel": false,
+    "more_than_one_message": false,
+    "retry": false,
+    "retry_of_consumed_build_198_approval": false,
+    "add_a_second_roofer": false,
+    "activate_live_automation": false,
+    "add_public_routes_webhooks_cron_schedulers_dispatchers": false,
+    "store_secrets_or_phone_numbers_in_repo_or_chat": false,
+    "authorize_unrestricted_launch": false
+  },
+
+  "final_send_approval_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "approved_destination_number_recorded": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "email_call_calendar_crm_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_operated_one_message_expansion_send_in_controlled_environment_with_validated_destination_then_local_only_closeout",
+  "next_step_is_unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
