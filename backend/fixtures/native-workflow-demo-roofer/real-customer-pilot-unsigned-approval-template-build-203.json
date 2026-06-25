@@ -1,0 +1,51 @@
+{
+  "template_name": "real_customer_pilot_unsigned_approval_template_build_203",
+  "build": 203,
+  "data_classification": "unsigned_approval_template_names_booleans_codes_only_no_secret_values",
+  "purpose": "UNSIGNED template for a future real-customer pilot approval. This file authorizes NOTHING. It documents the shape of the per-attempt signed approval Jason would have to complete OUTSIDE this build before any live send. It contains no secret values, no phone numbers, no SIDs, no tokens, and no production data. Filling this in does not happen in this build.",
+
+  "approval_signed": false,
+  "approval_granted": false,
+  "authorizes_real_customer_pilot_now": false,
+
+  "authorizes_build_environment_send": false,
+  "authorizes_claude_to_send": false,
+  "authorizes_homeowner_message": false,
+  "authorizes_live_automation": false,
+  "authorizes_production_data": false,
+
+  "required_fields_to_be_completed_outside_repo_by_jason": [
+    "consenting_roofer_identity_label_only",
+    "approved_destination_marker_only_no_number",
+    "approved_sms_template_label",
+    "opt_out_language_final_marker",
+    "single_message_scope_acknowledgement",
+    "no_retry_acknowledgement",
+    "rollback_owner_acknowledgement"
+  ],
+
+  "scope_if_ever_signed": {
+    "max_message_count": 1,
+    "retry_allowed": false,
+    "channel_only_sms": true,
+    "jason_operated_send_only": true,
+    "build_environment_send": false,
+    "per_attempt_approval_required": true,
+    "homeowner_message_requires_separate_approval": true
+  },
+
+  "must_remain_false_in_this_build": {
+    "approval_signed": false,
+    "approval_granted": false,
+    "authorizes_real_customer_pilot_now": false,
+    "authorizes_homeowner_message": false,
+    "authorizes_build_environment_send": false,
+    "authorizes_live_automation": false
+  },
+
+  "recipient_number_recorded": false,
+  "secret_values_recorded": false,
+  "rollback_stop_owner": "Jason Lohse",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

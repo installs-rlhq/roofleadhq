@@ -1,0 +1,93 @@
+{
+  "decision_name": "real_customer_pilot_decision_build_203",
+  "build": 203,
+  "data_classification": "real_customer_pilot_decision_packet_names_booleans_codes_only_no_secret_values",
+  "summary": "Build 203 is a LOCAL-ONLY real-customer pilot DECISION + consent/onboarding packet. It prepares the decision to review a first real-customer pilot WITHOUT approving, authorizing, or activating anything. After Build 202 closed out the successful Jason-operated controlled Option B expansion retry (1 send, SMS sent, no retry, fresh one-time approval consumed), the next step is a real-customer pilot decision/consent review — NOT unrestricted launch. This packet records the decision marker, a recommended narrow pilot scope, a consent/onboarding checklist, a go/no-go checklist, and an UNSIGNED approval template. It performs NO live action: no SMS, no Twilio, no network/external call, no roofer/homeowner contact, no retry, no secret values/SIDs/tokens/phone numbers/production data, no live automation. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "493060b",
+  "prior_build_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-retry-closeout-build-202.json",
+  "prior_summary_reference": "backend/fixtures/native-workflow-demo-roofer/launch-readiness-summary-build-202.json",
+
+  "decision": "REAL_CUSTOMER_PILOT_REVIEW_REQUIRED",
+  "unrestricted_launch": false,
+  "live_automation_remains_disabled": true,
+  "real_customer_pilot_authorized_now": false,
+  "homeowner_contact_authorized_now": false,
+
+  "pilot_scope_recommendation": {
+    "one_consenting_roofer": true,
+    "one_manually_selected_lead": true,
+    "jason_coordinated_workflow": true,
+    "sms_only": true,
+    "sms_only_after_fresh_approval": true,
+    "no_retry_by_default": true,
+    "no_production_automation": true,
+    "no_billing_quote_invoice_deposit_automation": true,
+    "scope_label": "one_consenting_roofer_one_manual_lead_jason_coordinated_sms_only_after_fresh_approval_no_retry_no_production_automation_no_billing"
+  },
+
+  "consent_onboarding_checklist": {
+    "roofer_consent_captured_outside_repo": true,
+    "permitted_sms_recipient_identified_outside_repo": true,
+    "homeowner_consent_rules_reviewed_before_any_homeowner_message": true,
+    "stop_opt_out_language_finalized_before_homeowner_facing_sms": true,
+    "rollback_stop_owner": "Jason Lohse",
+    "consent_values_recorded_in_repo": false,
+    "recipient_number_recorded_in_repo": false
+  },
+
+  "go_no_go_checklist": {
+    "consent_marker_present": true,
+    "approved_destination_marker_present_no_number_stored": true,
+    "fresh_signed_approval_required_before_any_live_send": true,
+    "no_homeowner_message_without_separate_approval": true,
+    "no_production_data_until_separately_approved": true,
+    "safety_posture_preserved": true,
+    "rollback_owner_identified": true
+  },
+
+  "unsigned_approval_template_reference": "backend/fixtures/native-workflow-demo-roofer/real-customer-pilot-unsigned-approval-template-build-203.json",
+
+  "no_live_action_during_decision": true,
+  "no_network_or_external_call_during_decision": true,
+  "no_twilio_call_during_decision": true,
+  "no_retry_during_decision": true,
+  "no_secret_values_recorded": true,
+  "no_phone_number_recorded": true,
+  "no_sid_or_token_recorded": true,
+  "production_data_used": false,
+  "real_roofer_contacted_during_decision": false,
+  "real_homeowner_contacted_during_decision": false,
+
+  "decision_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_reviews_real_customer_pilot_decision_and_captures_consent_outside_repo_then_requests_fresh_per_attempt_signed_approval_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_real_customer_pilot_decision_and_consent": true,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
