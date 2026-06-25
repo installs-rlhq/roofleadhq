@@ -1,0 +1,49 @@
+{
+  "gate_name": "native_workflow_fixture_controlled_live_sms_corrected_one_message_preflight_gate",
+  "build": 188,
+  "data_classification": "local_readiness_marker_names_and_booleans_only",
+  "mode": "readiness_and_approval_only",
+  "supersedes_pre_186_readiness_gate": true,
+  "reads_self_check_result": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-credential-readiness-self-check-result.json",
+  "reads_fresh_approval_template": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-one-message-retry-approval-build-188-template.json",
+  "reads_provisioning_marker": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-provisioning-marker.json",
+  "reads_revalidation_marker": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-credential-revalidation-marker.json",
+  "inspects_config_names_and_booleans_only": true,
+  "reads_secret_values": false,
+  "prints_secret_values": false,
+  "performed_external_call": false,
+  "performed_external_twilio_call": false,
+  "performed_live_action": false,
+  "sent_sms": false,
+  "invoked_actual_external_sandbox_runner_stub": false,
+  "approved_channel_for_controlled_live_test": "sms",
+  "channel_only_sms": true,
+  "recipient_identity_label": "Jason Lohse / Test Roofing (own consenting test identity)",
+  "preconditions": {
+    "credential_self_check_passed": false,
+    "fresh_one_message_approval_signed": false,
+    "fresh_approval_does_not_carry_over": true,
+    "one_message_cap_confirmed_value_1": true,
+    "recipient_is_jason_own_consenting_test_identity_by_marker": true,
+    "retry_count_is_zero": true,
+    "other_live_automation_remains_disabled": true,
+    "markers_are_names_only": true
+  },
+  "proposed_retry_count": 0,
+  "one_message_cap_value": 1,
+  "requires_before_any_corrected_live_sms": [
+    "corrected_credential_readiness_self_check_passes_after_build_186_failure",
+    "fresh_explicit_signed_one_message_controlled_live_sms_approval_build_188_template",
+    "live_twilio_credential_values_independently_revalidated_only_in_jason_controlled_secret_store",
+    "one_message_cap_of_exactly_1_enforced",
+    "recipient_remains_jason_own_consenting_test_identity",
+    "retry_count_zero_no_retry_loop",
+    "all_other_live_automation_remains_disabled"
+  ],
+  "blocked_reasons": [
+    "credential_readiness_self_check_not_passed",
+    "fresh_one_message_approval_not_signed"
+  ],
+  "gate_decision": "CONTROLLED_LIVE_SMS_CORRECTED_PREFLIGHT_BLOCKED",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

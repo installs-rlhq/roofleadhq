@@ -1,0 +1,64 @@
+{
+  "template_name": "controlled_live_sms_corrected_one_message_retry_approval_build_188_template",
+  "build": 188,
+  "data_classification": "local_only_unsigned_approval_template_names_only",
+  "status": "TEMPLATE_ONLY_NOT_GRANTED_NOT_SIGNED_NOT_APPROVED",
+  "purpose": "Fresh UNSIGNED local template for a POSSIBLE future corrected single live SMS retry, created after the Build 186 authentication failure (HTTP 401 / code 20003) and the Build 187 diagnosis. Creating or committing this template authorizes nothing. No retry is approved. Neither the Build 184 approval (consumed by Build 186) nor the Build 187 template carries over.",
+  "supersedes": {
+    "build_184_one_message_approval": {
+      "consumed_by_build": 186,
+      "consumed_state": "one_time_approval_consumed_no_further_controlled_live_sms_permitted",
+      "carries_over": false
+    },
+    "build_187_corrected_retry_approval_template": {
+      "path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-retry-approval-template.json",
+      "status_was": "TEMPLATE_ONLY_NOT_GRANTED_NOT_SIGNED_NOT_APPROVED",
+      "carries_over": false
+    }
+  },
+
+  "approval_granted": false,
+  "approval_signed": false,
+  "approval_signed_by": null,
+  "approval_signed_date_time": null,
+  "approval_signature": null,
+
+  "proposed_scope_string_unsigned": "controlled_live_sms_one_message_CORRECTED_RETRY_only_to_jason_own_consenting_test_identity_after_build_186_authentication_failure_and_credential_revalidation",
+  "proposed_action_single": "send_exactly_one_live_sms_message",
+  "proposed_channel_only_sms": true,
+  "proposed_one_message_cap_value": 1,
+  "proposed_retry_count": 0,
+  "proposed_recipient_identity_label": "Jason Lohse / Test Roofing (own consenting test identity)",
+  "proposed_recipient_is_real_homeowner": false,
+  "stop_rollback_owner_label": "Jason Lohse",
+
+  "prerequisites_that_must_all_hold_before_any_corrected_retry": [
+    "fresh_explicit_signed_one_message_controlled_live_sms_approval_this_build_188_template_completed",
+    "credential_readiness_self_check_passes_after_build_186_authentication_failure",
+    "live_twilio_credential_values_independently_revalidated_by_jason_in_controlled_store_never_in_repo",
+    "account_sid_auth_token_and_from_number_confirmed_same_active_account",
+    "from_number_confirmed_sms_capable_and_authorized_for_destination",
+    "recipient_remains_jason_own_consenting_test_identity",
+    "one_message_cap_of_exactly_1_enforced_no_retry_loop",
+    "retry_count_is_zero",
+    "stop_rollback_owner_and_procedure_in_place",
+    "no_production_supabase_or_data",
+    "no_real_homeowner_contact",
+    "no_billing_payment_deposit_quote_estimate_invoice_automation",
+    "all_other_live_automation_remains_disabled"
+  ],
+
+  "signature_block_leave_blank_until_a_future_approved_build": {
+    "approved_by_name": "",
+    "one_message_scope_string": "",
+    "credentials_revalidated_confirmation": "",
+    "date_time_with_zone": "",
+    "signature": ""
+  },
+
+  "reads_secret_values": false,
+  "records_secret_values": false,
+  "authorizes_send_now": false,
+  "authorizes_retry_now": false,
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

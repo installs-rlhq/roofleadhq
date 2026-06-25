@@ -155,3 +155,11 @@ echo "PASS: Safe readiness verification passed."
 # scripts/run-native-workflow-fixture-capture-signed-runner-approval-after-build-179-dry-run.sh
 # approval captured/signed; guard not created/passed; runner not invoked
 # future_command_status: blocked_until_fresh_pre_run_guard_after_build_180_signed_approval_capture
+
+# Build 188 registry reference:
+# Native Workflow Fixture Corrected Live SMS Pre-Flight Readiness (credential self-check + corrected one-message gate + fresh unsigned approval template)
+# native workflow fixture controlled live sms corrected preflight readiness build 188
+# scripts/run-native-workflow-fixture-controlled-live-sms-corrected-preflight-readiness-build-188-dry-run.sh
+# backend/scripts/verify-native-workflow-fixture-controlled-live-sms-corrected-preflight-readiness-build-188-readonly.js
+# self-check + corrected pre-flight gate are FAIL-CLOSED and BLOCKED; names/metadata/booleans only; no secret values; no SMS; no retry
+# corrected_preflight_status: CONTROLLED_LIVE_SMS_CORRECTED_PREFLIGHT_BLOCKED until credential VALUES are revalidated by Jason and a fresh one-message approval is signed
