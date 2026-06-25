@@ -1,0 +1,317 @@
+{
+  "packet_name": "jason_owned_workflow_validation_build_216",
+  "build": 216,
+  "data_classification": "jason_owned_workflow_validation_labels_booleans_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_production_data",
+  "summary": "Build 216 is a LOCAL-ONLY packet that PIVOTS the active pilot path from 'small consenting roofer pilot recipients' (no such consenting candidates exist yet) to 'Jason-owned test identity workflow validation,' without losing the business goal of getting RoofLeadHQ to live workflow testing and selling within the next few days. It records: (1) the Jason-owned pilot constraint evidence; (2) owned test identities defined by LABEL ONLY (no raw phone/email values); (3) the leanest Jason-owned live workflow validation plan (lead in -> recognized as roofing/inspection request -> only an explicitly approved Jason-operated notification to a Jason-owned roofer identity -> exact guarded message binding -> Jason confirms receipt/value -> local lead status/follow-up summary -> showable in a sales conversation); (4) a small set of validation scenarios (3-5); (5) a concise roofer-facing message set with opt-out language and no guarantee/booked-jobs/estimate/quote/invoice/payment/deposit claims, homeowner-facing copy DRAFT-ONLY/not approved; (6) the Lindy decision (Lindy does NOT own the product workflow; temporary internal-notify/organize bridge only; pending_lindy_audit); (7) a short sales-demo-readiness checklist; and (8) the strategic next decision packet. This build performs NO live action: no SMS, no email, no Twilio, no call/calendar provider, no network/external call, no roofer/homeowner contact, no confirm-token arming, and it reads/records NO secret values, tokens, SIDs, credential values, phone numbers, email addresses, or production data. Raw operational contact details Jason provided in chat are intentionally NOT recorded here. Capturing this packet is NOT a send. Any further live send requires a NEW, fresh, signed, per-attempt approval. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "b071733",
+
+  "prior_build_215_reference": {
+    "closeout_path": "backend/fixtures/native-workflow-demo-roofer/r1-sms-send-closeout-build-215.json",
+    "summary_path": "backend/fixtures/native-workflow-demo-roofer/launch-readiness-summary-build-215.json",
+    "doc_path": "docs/NATIVE_WORKFLOW_FIXTURE_R1_SMS_SEND_CLOSEOUT_BUILD_215.md",
+    "build_215_decision": "GUARDED_R1_LIVE_DELIVERY_CONFIRMED_SMALL_ROOFER_PILOT_READY_FOR_APPROVAL",
+    "build_215_guarded_r1_live_sms_sent_successfully": true,
+    "build_215_recipient_confirmed_actual_text_matches_r1": true,
+    "build_215_recommended_next_option": "small_consenting_roofer_workflow_validation_packet",
+    "pivot_reason": "no_consenting_real_roofer_pilot_candidates_available_yet_so_initial_testing_uses_jason_owned_channels_first"
+  },
+
+  "jason_owned_pilot_constraint": {
+    "no_real_roofer_pilot_candidates_available": true,
+    "initial_testing_uses_jason_owned_channels": true,
+    "actual_phone_email_values_recorded": false,
+    "label_only_test_identities_required": true,
+    "homeowner_contact_authorized": false,
+    "real_roofer_contact_authorized": false,
+    "live_automation_remains_disabled": true,
+    "note": "All initial roofer testing will be done through Jason-owned phone/email/etc. as owned test identities. No consenting real roofer pilot candidates exist yet. Jason's actual phone number, email address, and other destination values are NOT recorded in repo/docs/logs; labels only."
+  },
+
+  "owned_test_identities": {
+    "definition_mode": "labels_only_no_raw_phone_or_email_values",
+    "identities": [
+      { "label": "jason_as_test_roofer_label", "role": "test_roofer", "raw_value_recorded": false },
+      { "label": "jason_as_test_homeowner_label", "role": "test_homeowner_draft_only_not_contacted", "raw_value_recorded": false },
+      { "label": "jason_as_operator_label", "role": "operator", "raw_value_recorded": false },
+      { "label": "owned_sms_destination_label_only", "role": "owned_sms_destination", "raw_value_recorded": false },
+      { "label": "owned_email_destination_label_only", "role": "owned_email_destination", "raw_value_recorded": false }
+    ],
+    "operational_labels": {
+      "jason_operator_label": "jason_operator",
+      "jason_owned_sms_destination_label": "jason_owned_sms_destination",
+      "jason_owned_email_destination_label": "jason_owned_email_destination",
+      "test_business_label": "Test Roofing",
+      "twilio_sender_label": "test_roofing_twilio_sender"
+    },
+    "raw_phone_values_recorded": false,
+    "raw_email_values_recorded": false
+  },
+
+  "owned_workflow_validation_plan": {
+    "plan_name": "fastest_jason_owned_live_workflow_validation_plan_build_216",
+    "purpose": "The leanest path to validate the full lead-to-roofer workflow using Jason-owned phone/email labels first, then package that proof for sales conversations. Validate ONLY the business-critical workflow.",
+    "business_critical_workflow_steps": [
+      "fake_or_owned_lead_comes_in",
+      "roofleadhq_recognizes_it_as_a_roofing_lead_or_inspection_request",
+      "system_prepares_or_sends_only_an_explicitly_approved_jason_operated_notification_to_jason_owned_roofer_identity",
+      "message_binding_is_exact_and_guarded_outbound_body_must_equal_approved_copy",
+      "jason_confirms_receipt_and_value",
+      "lead_status_or_follow_up_summary_is_visible_locally",
+      "output_can_be_shown_in_a_sales_conversation"
+    ],
+    "uses_jason_owned_channels_first": true,
+    "live_action_allowed_only_after_fresh_signed_per_attempt_approval": true,
+    "no_homeowner_contact": true,
+    "no_real_roofer_contact": true
+  },
+
+  "validation_scenarios": {
+    "scenario_count": 5,
+    "max_allowed": 5,
+    "scenarios": [
+      {
+        "scenario_label": "new_roof_inspection_lead_alert",
+        "required": true,
+        "inbound_lead_type": "new_roof_inspection_request_owned_test_lead",
+        "expected_roofer_facing_output": "Concise SMS alert to the Jason-owned roofer identity that a new roof inspection lead arrived and a quick first reply helps reach them while still looking.",
+        "channel": "sms",
+        "live_action_allowed_only_after_fresh_approval": true,
+        "feedback_question": "Did the new-lead alert arrive, match the approved copy exactly, and read as useful to a roofer?"
+      },
+      {
+        "scenario_label": "missed_or_slow_lead_follow_up_nudge",
+        "required": true,
+        "inbound_lead_type": "existing_owned_test_lead_with_no_first_reply_yet",
+        "expected_roofer_facing_output": "Concise SMS nudge to the Jason-owned roofer identity that a roof inspection lead is still waiting on a first reply and a quick follow-up keeps it warm.",
+        "channel": "sms",
+        "live_action_allowed_only_after_fresh_approval": true,
+        "feedback_question": "Did the follow-up nudge arrive at the right moment and feel like a helpful reminder rather than noise?"
+      },
+      {
+        "scenario_label": "daily_open_lead_recap",
+        "required": true,
+        "inbound_lead_type": "aggregate_of_owned_test_leads_still_open",
+        "expected_roofer_facing_output": "Internal daily recap showing how many open roof inspection leads are still waiting on a first reply, with a prompt to open RoofLeadHQ.",
+        "channel": "internal",
+        "live_action_allowed_only_after_fresh_approval": true,
+        "feedback_question": "Is the daily recap clear, accurate to the open owned-test leads, and something a roofer would check each morning?"
+      },
+      {
+        "scenario_label": "lead_source_routing_flag",
+        "required": false,
+        "optional_if_already_supported_locally": true,
+        "inbound_lead_type": "owned_test_lead_with_a_source_label",
+        "expected_roofer_facing_output": "Internal flag showing the lead source/routing label and that the lead was recognized as a roof inspection request for follow-up.",
+        "channel": "internal",
+        "live_action_allowed_only_after_fresh_approval": true,
+        "feedback_question": "Is the lead source/routing flag visible locally and does it route the owned-test lead to the right follow-up?"
+      },
+      {
+        "scenario_label": "homeowner_consent_boundary_reminder",
+        "required": false,
+        "optional_if_already_supported_locally": true,
+        "inbound_lead_type": "owned_test_lead_that_would_imply_homeowner_outreach",
+        "expected_roofer_facing_output": "Internal reminder that homeowner-facing messages are DRAFT-ONLY and not approved, and that homeowners are contacted only after consent and a separate approval.",
+        "channel": "internal",
+        "live_action_allowed_only_after_fresh_approval": true,
+        "feedback_question": "Does the consent boundary reminder make the homeowner-contact gate obvious and keep homeowner outreach blocked until separately approved?"
+      }
+    ],
+    "live_action_allowed_only_after_fresh_approval_for_all_scenarios": true
+  },
+
+  "message_set": {
+    "message_set_name": "jason_owned_workflow_validation_message_set_build_216",
+    "roofer_facing_only": true,
+    "no_guarantee_language": true,
+    "no_booked_jobs_claims": true,
+    "no_estimate_quote_invoice_payment_deposit_claims": true,
+    "opt_out_language_included_where_sms": true,
+    "roofer_facing_messages": [
+      {
+        "message_id": "M1",
+        "scenario_label": "new_roof_inspection_lead_alert",
+        "channel": "sms",
+        "text": "RoofLeadHQ: New roof inspection lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.",
+        "requires_fresh_signed_approval_before_send": true
+      },
+      {
+        "message_id": "M2",
+        "scenario_label": "missed_or_slow_lead_follow_up_nudge",
+        "channel": "sms",
+        "text": "RoofLeadHQ: A roof inspection lead is still waiting on a first reply. A quick follow-up now keeps it warm. Reply STOP to opt out.",
+        "requires_fresh_signed_approval_before_send": true
+      },
+      {
+        "message_id": "M3",
+        "scenario_label": "daily_open_lead_recap",
+        "channel": "internal",
+        "text": "RoofLeadHQ daily recap: you have open roof inspection leads still waiting on a first reply. Open RoofLeadHQ to see them.",
+        "requires_fresh_signed_approval_before_send": true
+      },
+      {
+        "message_id": "M4",
+        "scenario_label": "lead_source_routing_flag",
+        "channel": "internal",
+        "text": "RoofLeadHQ: New lead routed from its source and flagged as a roof inspection request for follow-up.",
+        "requires_fresh_signed_approval_before_send": true
+      },
+      {
+        "message_id": "M5",
+        "scenario_label": "homeowner_consent_boundary_reminder",
+        "channel": "internal",
+        "text": "RoofLeadHQ reminder: homeowner-facing messages are draft-only and not approved. Contact homeowners only after consent and a separate approval.",
+        "requires_fresh_signed_approval_before_send": true
+      }
+    ],
+    "homeowner_facing_messages_draft_only": [
+      {
+        "message_id": "H1_DRAFT",
+        "channel": "draft_only_not_approved",
+        "status": "draft_only_not_approved",
+        "approved_for_send": false,
+        "text": "RoofLeadHQ (DRAFT, NOT APPROVED): Thanks for your roof inspection request. A local roofer will follow up with you soon.",
+        "note": "Homeowner-facing copy is draft-only and NOT approved. Requires separate consent capture and a separate signed approval before it could ever be considered for send."
+      }
+    ]
+  },
+
+  "lindy_decision": {
+    "lindy_should_own_product_workflow": false,
+    "lindy_temporary_bridge_allowed_for_internal_notify_or_organize_only": true,
+    "lindy_must_not_autonomously_text": true,
+    "lindy_must_not_autonomously_email": true,
+    "lindy_must_not_autonomously_call": true,
+    "lindy_must_not_autonomously_book": true,
+    "lindy_must_not_sync_crm": true,
+    "lindy_must_not_contact_homeowners": true,
+    "lindy_must_not_contact_roofers": true,
+    "lindy_audit_status": "pending_lindy_audit",
+    "recommended_lindy_pilot_mode": "internal_notify_or_organize_only",
+    "lindy_live_enabled": false,
+    "note": "Lindy should NOT own the product workflow. It may remain a temporary bridge only if it helps capture/organize owned test leads or notify Jason internally. It must not autonomously text/email/call/book/sync CRM/contact homeowners/contact roofers. Lindy audit is pending."
+  },
+
+  "sales_demo_readiness": {
+    "checklist_name": "what_jason_needs_before_selling_build_216",
+    "checklist": [
+      { "item": "owned_workflow_proof_complete", "status": "pending", "detail": "Jason-owned identity workflow validation run completed and confirmed (after fresh approval)." },
+      { "item": "one_clean_demo_story", "status": "pending", "detail": "A single, repeatable lead-to-roofer story to walk a prospect through." },
+      { "item": "one_screenshot_or_evidence_packet_no_secrets_phone_email", "status": "pending", "detail": "Evidence packet that contains NO secrets, phone numbers, or email addresses." },
+      { "item": "simple_offer", "status": "ready", "detail": "$399-$799/mo + $499 setup, 14-day trial after go-live." },
+      { "item": "sales_conversation_script_points", "status": "ready", "detail": "See sales_conversation_script_points below." },
+      { "item": "pilot_next_step_line", "status": "ready", "detail": "I can test this with your inbound leads under manual approval first." }
+    ],
+    "simple_offer": {
+      "monthly_low": 399,
+      "monthly_high": 799,
+      "setup_fee": 499,
+      "trial_days_after_go_live": 14,
+      "currency": "USD",
+      "no_guarantee_language": true,
+      "no_booked_jobs_claims": true
+    },
+    "sales_conversation_script_points": [
+      "You get a new roof inspection lead and RoofLeadHQ recognizes it instantly.",
+      "It alerts you fast so you can be first to reply while the homeowner is still looking.",
+      "If a lead goes cold, it nudges you to follow up; each morning you get a recap of open leads.",
+      "Everything is under your manual approval first - nothing goes out without you saying yes.",
+      "We make no promises about outcomes - just faster, more organized lead follow-up."
+    ],
+    "pilot_next_step_line": "I can test this with your inbound leads under manual approval first."
+  },
+
+  "next_decision_packet": {
+    "decision": "JASON_OWNED_WORKFLOW_VALIDATION_READY_FOR_APPROVAL",
+    "recommended_next_option": "run_owned_identity_workflow_validation_scenarios_after_fresh_approval",
+    "authorizes_send_now": false,
+    "next_live_send_requires_new_fresh_signed_approval": true,
+    "unrestricted_launch": false,
+    "homeowner_contact_authorized": false,
+    "real_roofer_contact_authorized": false,
+    "live_automation_remains_disabled": true
+  },
+
+  "active_context_handoff": {
+    "active_path": "jason_owned_test_identity_workflow_validation_first",
+    "make_this_the_active_path": true,
+    "active_path_steps": [
+      "jason_owned_testing_first_using_label_only_identities",
+      "sales_and_demo_readiness_within_days",
+      "recruit_real_roofer_pilots_after_owned_workflow_proof",
+      "fewer_bigger_strategic_builds_only"
+    ],
+    "supersedes_prior_active_path": "small_consenting_roofer_workflow_validation_packet_build_215_which_assumed_consenting_roofer_candidates_that_do_not_exist_yet",
+    "business_goal_preserved": "get_roofleadhq_to_live_workflow_testing_and_selling_within_the_next_few_days"
+  },
+
+  "safety_evidence": {
+    "no_live_action_during_build": true,
+    "no_sms_sent": true,
+    "no_email_sent": true,
+    "no_twilio_call": true,
+    "no_call_or_calendar_provider_call": true,
+    "no_network_external_call": true,
+    "no_roofer_or_homeowner_contact": true,
+    "no_secret_values_recorded": true,
+    "no_phone_number_recorded": true,
+    "no_email_address_recorded": true,
+    "no_raw_sid_recorded": true,
+    "no_production_data_used": true,
+    "live_automation_remains_disabled": true
+  },
+
+  "homeowner_facing_copy_boundary": {
+    "homeowner_facing_sms_approved_now": false,
+    "requires_separate_consent_and_approval": true,
+    "homeowner_contact_authorized": false,
+    "approved_for_homeowner_send": false,
+    "status_label": "homeowner_facing_copy_draft_only_not_approved",
+    "note": "Homeowner-facing copy is draft-only and not approved. Any homeowner-facing message requires separate, explicit consent capture and a separate signed approval."
+  },
+
+  "build_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "email_address_recorded": false,
+    "raw_sid_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "email_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "confirm_token_armed": false,
+    "live_runner_executed_live": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "lindy_live_workflow_execution": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "jason_operator",
+  "next_step": "jason_decides_to_run_the_owned_identity_workflow_validation_scenarios_using_label_only_jason_owned_test_identities_each_live_step_requires_its_own_fresh_signed_per_attempt_approval_then_package_the_proof_for_sales_conversations_and_recruit_real_roofer_pilots_jason_owned_workflow_validation_ready_for_approval_not_send_now_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_jason_owned_workflow_validation": true,
+  "next_step_is_send_now": false,
+  "next_live_send_requires_new_fresh_signed_approval": true,
+  "authorizes_send_now": false,
+  "homeowner_contact_authorized": false,
+  "real_roofer_contact_authorized": false,
+  "unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
