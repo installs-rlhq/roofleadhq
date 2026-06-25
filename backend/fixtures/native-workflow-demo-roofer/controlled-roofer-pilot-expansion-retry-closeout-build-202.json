@@ -1,0 +1,96 @@
+{
+  "closeout_name": "controlled_roofer_pilot_expansion_retry_closeout_build_202",
+  "build": 202,
+  "data_classification": "controlled_roofer_pilot_expansion_retry_closeout_names_booleans_codes_only_no_secret_values",
+  "summary": "Build 202 is a LOCAL-ONLY consolidated closeout of the SUCCESSFUL Jason-operated controlled pilot Option B expansion retry one-message SMS. After Build 199 closed out the failed first Option B attempt (Twilio 21211/400, no retry, approval consumed) and Build 200 captured the corrected destination validation OUTSIDE the repo plus a fresh signed one-message approval and a READY preflight, Jason ran the separate, fail-closed, Jason-operated one-message send in his own controlled environment. The gate reported CONTROLLED_LIVE_SMS_PERMITTED, pre-flight was PERMITTED, exactly one send was attempted, the SMS WAS sent, evidence was written, the final decision was CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT, exit status 0, and no retry was run. Build 202 captures and preserves that successful outcome from recorded metadata only (names/booleans/codes), consuming the one-time fresh expansion approval. It performs NO live action: no SMS, no Twilio, no network/external call, no retry, no roofer/homeowner contact, no secret values/SIDs/tokens/phone numbers/production data. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "159c6ed",
+  "expansion_option": "B_same_roofer_second_controlled_sms",
+
+  "manual_execution_evidence_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+  "destination_validation_marker_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-destination-validation-build-200.json",
+  "fresh_final_send_approval_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-final-send-approval-build-200-signed.json",
+  "send_time_preflight_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-send-time-preflight-build-200.json",
+  "prior_failure_closeout_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-failure-closeout-build-199.json",
+
+  "gate_decision_before_execution": "CONTROLLED_LIVE_SMS_PERMITTED",
+  "pre_flight_permitted": true,
+
+  "expansion_retry_manual_attempt_captured": true,
+  "send_attempt_count": 1,
+  "sms_was_sent": true,
+  "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+  "exit_status": 0,
+  "retry_performed": false,
+  "auto_retry_on_failure": false,
+  "auto_retry_performed": false,
+
+  "is_retry_of_failed_first_option_b_attempt": true,
+  "is_retry_of_consumed_approval": false,
+  "ran_under_fresh_build_200_signed_approval": true,
+  "destination_validation_corrected_outside_repo": true,
+  "destination_validation_status": "validated_or_corrected_outside_repo_in_jason_controlled_environment",
+  "addressed_prior_failure_error_code": 21211,
+  "addressed_prior_failure_error_status": 400,
+
+  "twilio_result_metadata_names_only": {
+    "sid_present": true,
+    "status": "queued",
+    "error_code": null,
+    "error_message": null,
+    "num_segments": "1",
+    "direction": "outbound-api"
+  },
+  "send_error_metadata": null,
+
+  "fresh_approval_consumed": true,
+  "fresh_approval_was_one_time": true,
+
+  "build_environment_send": false,
+  "jason_operated_send": true,
+
+  "no_live_action_during_closeout": true,
+  "no_network_or_external_call_during_closeout": true,
+  "no_twilio_call_during_closeout": true,
+  "no_retry_during_closeout": true,
+  "no_secret_values_recorded": true,
+  "no_phone_number_recorded": true,
+  "no_sid_or_token_recorded": true,
+  "production_data_used": false,
+  "real_roofer_contacted_during_closeout": false,
+  "real_homeowner_contacted": false,
+
+  "manual_evidence_preserved": true,
+  "manual_evidence_unmodified_by_closeout": true,
+  "rollback_status": "one_message_delivered_one_time_approval_consumed_no_further_sends",
+
+  "closeout_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_makes_real_customer_pilot_decision_with_explicit_per_attempt_approval_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_real_customer_pilot_decision": true,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

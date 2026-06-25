@@ -1,0 +1,125 @@
+{
+  "summary_name": "launch_readiness_summary_build_202",
+  "build": 202,
+  "data_classification": "launch_readiness_summary_names_only_no_secret_values",
+  "as_of_decision": "CONTROLLED_PILOT_EXPANSION_RETRY_SUCCEEDED_ONE_MESSAGE_SENT_BROADER_LIVE_AUTOMATION_DISABLED_NEXT_IS_REAL_CUSTOMER_PILOT_DECISION",
+
+  "source_of_truth_commit": "159c6ed",
+
+  "readiness_lanes": {
+    "local_suite": {
+      "label": "local",
+      "passed": 30,
+      "total": 30,
+      "all_passed": true
+    },
+    "mock_adapter_suite": {
+      "label": "mock_adapter",
+      "passed": 30,
+      "total": 30,
+      "all_passed": true
+    },
+    "sandbox_test_sms": {
+      "label": "sandbox_test_sms_simulated",
+      "simulated_safely": true,
+      "live_send": false
+    },
+    "controlled_live_sms_to_jason": {
+      "label": "controlled_live_sms_to_jason_one_message",
+      "send_attempt_count": 1,
+      "sms_was_sent": true,
+      "retry_performed": false,
+      "one_message_succeeded": true
+    },
+    "first_controlled_roofer_pilot_one_message_sms": {
+      "label": "first_controlled_roofer_pilot_one_message_sms_jason_operated",
+      "pilot_manual_attempt_captured": true,
+      "send_attempt_count": 1,
+      "sms_was_sent": true,
+      "retry_performed": false,
+      "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+      "build_environment_send": false,
+      "jason_operated_send": true,
+      "first_controlled_roofer_pilot_succeeded": true
+    },
+    "controlled_pilot_expansion_option_b_first_attempt": {
+      "label": "controlled_pilot_expansion_option_b_jason_operated_first_attempt",
+      "manual_attempt_captured": true,
+      "send_attempt_count": 1,
+      "sms_was_sent": false,
+      "final_decision": "CONTROLLED_LIVE_SMS_SEND_ATTEMPTED_FAILED_NO_RETRY",
+      "error_code": 21211,
+      "error_status": 400,
+      "retry_performed": false,
+      "approval_consumed": true,
+      "build_environment_send": false,
+      "jason_operated_send": true,
+      "first_expansion_attempt_failed": true
+    },
+    "controlled_pilot_expansion_destination_validation": {
+      "label": "controlled_pilot_expansion_destination_validation_build_200",
+      "destination_validated_or_corrected_outside_repo": true,
+      "destination_validation_status": "validated_or_corrected_outside_repo_in_jason_controlled_environment",
+      "addresses_root_cause_class": "recipient_destination_validation_rejection",
+      "destination_value_recorded": false
+    },
+    "controlled_pilot_expansion_fresh_approval": {
+      "label": "controlled_pilot_expansion_fresh_final_send_approval_build_200_signed",
+      "approval_signed": true,
+      "is_fresh_signed_approval": true,
+      "is_retry_of_consumed_approval": false,
+      "max_message_count": 1,
+      "retry_allowed": false,
+      "authorizes_build_environment_send": false,
+      "jason_operated_send": true,
+      "fresh_approval_consumed": true
+    },
+    "controlled_pilot_expansion_retry_send": {
+      "label": "controlled_pilot_expansion_retry_send_jason_operated_build_202",
+      "expansion_retry_manual_attempt_captured": true,
+      "send_attempt_count": 1,
+      "sms_was_sent": true,
+      "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+      "retry_performed": false,
+      "is_retry_of_failed_first_option_b_attempt": true,
+      "is_retry_of_consumed_approval": false,
+      "ran_under_fresh_build_200_signed_approval": true,
+      "build_environment_send": false,
+      "jason_operated_send": true,
+      "controlled_pilot_expansion_retry_succeeded": true
+    }
+  },
+
+  "narrative": {
+    "first_controlled_roofer_pilot_succeeded": true,
+    "option_b_expansion_initially_failed_21211_400": true,
+    "destination_validation_corrected_outside_repo": true,
+    "expansion_retry_succeeded": true,
+    "broader_live_automation_remains_disabled": true,
+    "next_step_is_real_customer_pilot_decision_not_unrestricted_launch": true
+  },
+
+  "broader_live_automation_status": {
+    "all_broader_live_automation_remains_disabled": true,
+    "sms_blast_automation_enabled": false,
+    "calendar_live_enabled": false,
+    "vapi_outbound_live_enabled": false,
+    "resend_live_enabled": false,
+    "lindy_live_enabled": false,
+    "cron_scheduler_dispatcher_enabled": false,
+    "public_live_routes_webhooks_enabled": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_enabled": false
+  },
+
+  "next_step": "jason_makes_real_customer_pilot_decision_with_explicit_per_attempt_approval_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_real_customer_pilot_decision": true,
+  "next_step_is_jason_operated_one_message_retry": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+
+  "no_live_action_during_summary": true,
+  "no_secret_values_recorded": true,
+  "no_recipient_number_recorded": true,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
