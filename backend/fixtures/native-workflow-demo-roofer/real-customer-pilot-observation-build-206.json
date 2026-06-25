@@ -1,0 +1,142 @@
+{
+  "packet_name": "real_customer_pilot_observation_build_206",
+  "build": 206,
+  "data_classification": "real_customer_pilot_observation_and_feedback_decision_packet_names_booleans_codes_only_no_secret_values",
+  "summary": "Build 206 is a LOCAL-ONLY post-real-customer-pilot observation + customer-feedback decision packet. After Build 205 closed out the SUCCESSFUL Jason-operated real-customer pilot one-message SMS (1 send attempt, SMS sent, no retry, one-time Build 204 approval consumed), this build captures, from recorded repo metadata only (names/booleans/codes), the post-pilot observation status; provides an unfilled customer-feedback capture template; and records the next decision packet (POST_PILOT_FEEDBACK_REQUIRED) and four UNSIGNED options for the next step. It performs NO live action: no SMS, no Twilio, no network/external call, no retry, no roofer/homeowner contact, and reads/records no secret values, SIDs, tokens, credential values, phone numbers, or production data. It does NOT approve expansion, homeowner contact, or unrestricted launch. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "832f93d",
+
+  "prior_build_205_reference": {
+    "closeout_path": "backend/fixtures/native-workflow-demo-roofer/real-customer-pilot-sms-closeout-build-205.json",
+    "launch_readiness_summary_path": "backend/fixtures/native-workflow-demo-roofer/launch-readiness-summary-build-205.json",
+    "build_205_final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT"
+  },
+  "manual_execution_evidence_reference": {
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+    "preserved_unchanged": true,
+    "twilio_send_status_in_evidence_label": "queued",
+    "twilio_sid_present_in_evidence": true,
+    "recipient_number_recorded_in_evidence": false
+  },
+
+  "post_pilot_observation_evidence": {
+    "real_customer_pilot_sms_sent": true,
+    "send_attempt_count": 1,
+    "retry_performed": false,
+    "delivery_confirmation_status": "not_recorded_by_build",
+    "roofer_feedback_status": "not_recorded_by_build",
+    "customer_value_validation_status": "pending_human_feedback",
+    "no_live_action_during_observation_capture": true,
+    "no_secret_values_recorded": true,
+    "no_phone_number_recorded": true,
+    "observation_notes": {
+      "send_accepted_status_in_repo_evidence_label": "queued",
+      "final_delivery_confirmation_is_external_signal_not_collected_by_build": true,
+      "roofer_feedback_is_external_signal_not_collected_by_build": true,
+      "customer_value_validation_requires_human_feedback_not_collected_by_build": true,
+      "no_external_call_used_to_gather_observation": true
+    }
+  },
+
+  "customer_feedback_capture_template": {
+    "instructions": "To be completed by Jason from the roofer after the real-customer pilot SMS. Names/booleans/codes only; do NOT record phone numbers, SIDs, tokens, secret values, or production data.",
+    "status": "unfilled_pending_human_feedback",
+    "questions": [
+      {
+        "id": "received_sms",
+        "question": "Did the roofer receive the SMS?",
+        "answer": null
+      },
+      {
+        "id": "understood_product",
+        "question": "Did the roofer understand what RoofLeadHQ does?",
+        "answer": null
+      },
+      {
+        "id": "message_useful",
+        "question": "Was the message useful?",
+        "answer": null
+      },
+      {
+        "id": "what_should_change",
+        "question": "What should change before the next real pilot interaction?",
+        "answer": null
+      },
+      {
+        "id": "proceed_pause_revise",
+        "question": "Should we proceed, pause, or revise?",
+        "answer": null
+      }
+    ]
+  },
+
+  "next_decision_packet": {
+    "decision": "POST_PILOT_FEEDBACK_REQUIRED",
+    "unrestricted_launch": false,
+    "homeowner_contact_authorized": false,
+    "live_automation_remains_disabled": true,
+    "next_live_send_requires_fresh_signed_approval": true
+  },
+
+  "next_step_options_unsigned": {
+    "options": [
+      {
+        "id": "A",
+        "label": "collect_roofer_feedback_only_no_send",
+        "description": "Collect roofer feedback only. No send."
+      },
+      {
+        "id": "B",
+        "label": "one_more_real_customer_pilot_sms_one_message_no_retry",
+        "description": "One more real-customer pilot SMS, one message, no retry."
+      },
+      {
+        "id": "C",
+        "label": "prepare_homeowner_facing_consent_copy_no_send",
+        "description": "Prepare homeowner-facing consent copy. No send."
+      },
+      {
+        "id": "D",
+        "label": "pause_live_testing_and_improve_product_flow",
+        "description": "Pause live testing and improve product flow."
+      }
+    ],
+    "approval_signed": false,
+    "approval_granted": false,
+    "authorizes_live_action_now": false
+  },
+
+  "observation_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent_during_observation": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "real_roofer_contacted_during_observation": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "collect_roofer_feedback_then_jason_decision_post_pilot_feedback_required_not_unrestricted_launch_any_further_live_send_requires_a_new_explicit_per_attempt_signed_approval",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_post_pilot_feedback_required": true,
+  "homeowner_contact_authorized": false,
+  "unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
