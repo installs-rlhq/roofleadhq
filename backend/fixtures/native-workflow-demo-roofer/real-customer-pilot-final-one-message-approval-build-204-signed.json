@@ -1,0 +1,51 @@
+{
+  "approval_name": "real_customer_pilot_final_one_message_approval_build_204_signed",
+  "build": 204,
+  "data_classification": "signed_one_message_approval_names_booleans_codes_only_no_secret_values",
+  "purpose": "Final signed Build 204 one-message approval. Jason has signed this approval OUTSIDE the repo/chat to authorize a Jason-operated, fail-closed, SMS-only, one-message, no-retry real-customer pilot send that Jason may run separately in his own controlled environment with live credentials, the approved destination, and a deliberate confirm token. This approval does NOT authorize Claude or the build environment to send SMS or make external calls, does NOT authorize homeowner contact, and does NOT authorize unrestricted launch. It contains no secret values, no phone numbers, no SIDs, and no tokens.",
+
+  "source_of_truth_commit": "2fef89c",
+  "consent_readiness_reference": "backend/fixtures/native-workflow-demo-roofer/real-customer-pilot-consent-readiness-build-204.json",
+
+  "approval_signed": true,
+  "authorizes_jason_operated_one_message_send": true,
+  "authorizes_build_environment_send": false,
+  "authorizes_homeowner_contact": false,
+  "authorizes_unrestricted_launch": false,
+
+  "signed_by_label": "Jason Lohse",
+  "approval_is_one_time": true,
+  "approval_is_per_attempt": true,
+
+  "approved_scope": {
+    "max_message_count": 1,
+    "retry_allowed": false,
+    "channel_only_sms": true,
+    "jason_operated_send_only": true,
+    "build_environment_send": false,
+    "homeowner_contact_authorized": false,
+    "production_automation_allowed": false,
+    "unrestricted_launch": false,
+    "scope_label": "one_consenting_real_roofer_customer_jason_operated_sms_only_one_message_no_retry_no_homeowner_contact_no_production_automation"
+  },
+
+  "must_remain_false_in_this_build": {
+    "authorizes_build_environment_send": false,
+    "authorizes_claude_to_send": false,
+    "authorizes_homeowner_contact": false,
+    "authorizes_unrestricted_launch": false,
+    "authorizes_live_automation": false,
+    "authorizes_production_data": false,
+    "sms_sent_by_build": false
+  },
+
+  "recipient_number_recorded": false,
+  "secret_values_recorded": false,
+  "sid_or_token_recorded": false,
+
+  "no_live_action_by_this_approval": true,
+  "no_network_or_external_call_by_this_approval": true,
+  "stop_rollback_owner_label": "Jason Lohse",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

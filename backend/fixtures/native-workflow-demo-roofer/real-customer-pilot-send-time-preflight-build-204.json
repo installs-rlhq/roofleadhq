@@ -1,0 +1,73 @@
+{
+  "preflight_name": "real_customer_pilot_send_time_preflight_build_204",
+  "build": 204,
+  "data_classification": "send_time_preflight_gate_names_booleans_codes_only_no_secret_values",
+  "purpose": "Send-time preflight gate artifact for the Jason-operated real-customer pilot one-message send. It records that, as of Build 204, consent/readiness markers are captured and the final one-message approval is signed, so the next step is READY for a Jason-operated, fail-closed, SMS-only, one-message, no-retry send that Jason runs separately in his own controlled environment. This artifact performs NO live action and arms NO confirm token: send_attempt_count=0, sms_sent=false, live_send_executed_by_build=false. It records no secret values, no phone numbers, no SIDs, and no tokens.",
+
+  "source_of_truth_commit": "2fef89c",
+  "consent_readiness_reference": "backend/fixtures/native-workflow-demo-roofer/real-customer-pilot-consent-readiness-build-204.json",
+  "signed_approval_reference": "backend/fixtures/native-workflow-demo-roofer/real-customer-pilot-final-one-message-approval-build-204-signed.json",
+
+  "decision": "READY_FOR_JASON_OPERATED_REAL_CUSTOMER_PILOT_ONE_MESSAGE_SEND",
+  "send_attempt_count": 0,
+  "sms_sent": false,
+  "live_send_executed_by_build": false,
+  "no_network_external_action": true,
+  "no_secret_values_recorded": true,
+  "no_phone_number_recorded": true,
+
+  "preflight_preconditions_recorded": {
+    "real_roofer_customer_consent_marker_present": true,
+    "approved_destination_marker_present": true,
+    "approved_destination_number_recorded": false,
+    "stop_opt_out_language_finalized": true,
+    "approval_signed": true,
+    "authorizes_jason_operated_one_message_send": true,
+    "authorizes_build_environment_send": false,
+    "authorizes_homeowner_contact": false,
+    "sms_only": true,
+    "max_message_count": 1,
+    "retry_allowed": false,
+    "production_automation_allowed": false,
+    "unrestricted_launch": false
+  },
+
+  "existing_fail_closed_runner_reference": "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js",
+  "confirm_token_armed_by_build": false,
+  "confirm_token_name_only": "CONTROLLED_LIVE_SMS_CONFIRM",
+  "jason_operated_send_only": true,
+  "build_environment_send": false,
+
+  "preflight_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "confirm_token_armed": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_runs_the_existing_fail_closed_one_message_runner_exactly_once_no_retry_in_his_controlled_environment_under_the_signed_build_204_approval_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_jason_operated_one_message_real_customer_pilot_send": true,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
