@@ -1,0 +1,280 @@
+{
+  "packet_name": "jason_owned_integrated_workflow_build_217",
+  "build": 217,
+  "data_classification": "jason_owned_integrated_workflow_labels_booleans_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_production_data",
+  "summary": "Build 217 builds an INTEGRATED LOCAL execution path for all five Build 216 scenarios that EXERCISES the existing native RoofLeadHQ workflow modules (not fixture-string comparison) using deterministic synthetic data, and produces sanitized sales-demo proof. One consolidated runner compiles and calls the native production modules (lead-intake-recognition, roofer-alert-binding, sms-safety, sms-dispatcher-planner, sms-send-intent-planner), maps each scenario to actual native logic, records expected-versus-actual and pass/fail, records local lead/follow-up state, computes a deterministic open-lead count, binds the exact approved M1/M2 copy, keeps homeowner outreach blocked, and prepares guarded FUTURE M1/M2 live-send support that is permission-only and fails closed (no send). This build performs NO live action: no SMS, no email, no Twilio, no provider client, no network/external call, no credential load, no raw phone/email value, no production record, no retry, no confirm-token arming. M1 and M2 future live validation remain SEPARATELY approval-gated; each future attempt needs its own fresh signed scenario-specific approval (M1 approval never authorizes M2 and vice versa). Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "8a7ad6b",
+
+  "prior_build_216_reference": {
+    "packet_path": "backend/fixtures/native-workflow-demo-roofer/jason-owned-workflow-validation-build-216.json",
+    "summary_path": "backend/fixtures/native-workflow-demo-roofer/launch-readiness-summary-build-216.json",
+    "doc_path": "docs/NATIVE_WORKFLOW_FIXTURE_JASON_OWNED_WORKFLOW_VALIDATION_BUILD_216.md",
+    "build_216_decision": "JASON_OWNED_WORKFLOW_VALIDATION_READY_FOR_APPROVAL",
+    "build_216_active_path": "jason_owned_test_identity_workflow_validation_first",
+    "advances_to": "integrated_local_owned_identity_validation_through_native_modules"
+  },
+
+  "scenario_to_native_module_map": {
+    "note": "Each scenario is mapped to the existing native module(s) that implement the step. The integrated runner executes these modules; it does not merely compare two fixture strings.",
+    "concerns": {
+      "synthetic_lead_intake": "lead-intake-recognition.service (recognizeLeadIntake)",
+      "roofing_inspection_request_recognition": "lead-intake-recognition.service (recognizeRoofInspectionRequest)",
+      "lead_source_and_routing": "lead-intake-recognition.service (normalizeSourceLabel + routedFor)",
+      "roofer_notification_preparation": "roofer-alert-binding.service (bindRooferAlert)",
+      "exact_outbound_message_binding": "roofer-alert-binding.service (assertExactRooferAlertBinding)",
+      "lead_status_and_follow_up_state": "sms-dispatcher-planner.service (planSmsDispatch) + sms-safety.service (evaluateSmsSafety) + local lead/follow-up state",
+      "open_lead_recap_generation": "roofer-alert-binding.service (buildDailyOpenLeadRecap)",
+      "homeowner_consent_blocking": "roofer-alert-binding.service (prepareHomeownerOutreach, HOMEOWNER_CONTACT_AUTHORIZED=false)",
+      "outbound_send_intent_preparation_no_send": "sms-send-intent-planner.service (planSmsSendIntent, noSmsSent=true)"
+    },
+    "new_native_modules_added_this_build": [
+      {
+        "module": "backend/src/services/lead-intake-recognition.service.ts",
+        "reason": "smallest reusable production-aligned connection for roof-inspection recognition and source/routing; pure, no network, no database, no secrets"
+      },
+      {
+        "module": "backend/src/services/roofer-alert-binding.service.ts",
+        "reason": "smallest reusable production-aligned connection for exact roofer-facing message binding, homeowner-consent block, and guarded permission-only future-send support; pure, no network, no provider client, no secrets"
+      }
+    ],
+    "reused_existing_native_modules": [
+      "backend/src/services/sms-safety.service.ts",
+      "backend/src/services/sms-dispatcher-planner.service.ts",
+      "backend/src/services/sms-send-intent-planner.service.ts"
+    ]
+  },
+
+  "scenarios": [
+    {
+      "scenario_key": "new_roof_inspection_lead_alert",
+      "required": true,
+      "integration_mode": "native_module_execution",
+      "proves": [
+        "synthetic owned test lead enters the workflow",
+        "recognized as a roof-inspection request",
+        "source/routing state captured",
+        "M1 selected",
+        "prepared outbound body equals approved M1 exactly",
+        "no message is sent",
+        "local lead record/status visible"
+      ],
+      "message_id": "M1",
+      "channel": "sms"
+    },
+    {
+      "scenario_key": "missed_or_slow_lead_follow_up_nudge",
+      "required": true,
+      "integration_mode": "native_module_execution",
+      "proves": [
+        "synthetic owned lead remains without a first reply",
+        "follow-up condition recognized via native dispatcher planner",
+        "M2 selected",
+        "prepared outbound body equals approved M2 exactly",
+        "no message is sent",
+        "follow-up state visible locally"
+      ],
+      "message_id": "M2",
+      "channel": "sms"
+    },
+    {
+      "scenario_key": "daily_open_lead_recap",
+      "required": true,
+      "integration_mode": "native_module_execution",
+      "proves": [
+        "deterministic open-lead count computed from synthetic state",
+        "M3/internal recap prepared",
+        "structured evidence includes the actual open-lead count",
+        "no external notification sent"
+      ],
+      "message_id": "M3",
+      "channel": "internal"
+    },
+    {
+      "scenario_key": "lead_source_routing_flag",
+      "required": false,
+      "integration_mode": "native_module_execution",
+      "proves": [
+        "synthetic source label retained",
+        "lead recognized and routed for roof-inspection follow-up",
+        "routing result visible locally"
+      ],
+      "channel": "internal"
+    },
+    {
+      "scenario_key": "homeowner_consent_boundary_reminder",
+      "required": false,
+      "integration_mode": "native_module_execution",
+      "proves": [
+        "homeowner-facing copy remains draft-only",
+        "no homeowner send is prepared or authorized",
+        "workflow emits an internal blocked/approval-required result",
+        "homeowner_contact_authorized=false remains enforced"
+      ],
+      "channel": "internal"
+    }
+  ],
+
+  "exact_message_binding": {
+    "M1_scenario": "new_roof_inspection_lead_alert",
+    "M1_text": "RoofLeadHQ: New roof inspection lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.",
+    "M2_scenario": "missed_or_slow_lead_follow_up_nudge",
+    "M2_text": "RoofLeadHQ: A roof inspection lead is still waiting on a first reply. A quick follow-up now keeps it warm. Reply STOP to opt out.",
+    "binding_is_exact_fail_closed_on_empty_generic_substituted_or_wrong_scenario": true,
+    "binding_source_module": "backend/src/services/roofer-alert-binding.service.ts"
+  },
+
+  "guarded_future_live_m1_m2_support": {
+    "purpose": "Minimum guarded execution support for FUTURE Jason-owned M1 and M2 live SMS validation. Permission-only; performs NO send in Build 217.",
+    "no_send_during_build_217": true,
+    "no_twilio_call": true,
+    "no_credential_value_loaded_or_inspected": true,
+    "m1_and_m2_are_separate_scenario_specific_attempts": true,
+    "each_future_attempt_requires_its_own_fresh_signed_approval": true,
+    "m1_approval_never_authorizes_m2": true,
+    "m2_approval_never_authorizes_m1": true,
+    "exact_message_binding_mandatory": true,
+    "empty_generic_substituted_or_wrong_scenario_copy_fails_closed": true,
+    "destination_entered_silently_at_execution_time_never_persisted": true,
+    "exactly_one_attempt_maximum_per_approval": true,
+    "no_retry": true,
+    "approval_expires_after_the_attempt_whether_successful_failed_or_blocked": true,
+    "default_invocation_remains_dry_run_local": true,
+    "live_capable_path_fails_closed_without_all_approval_and_confirmation_requirements": true,
+    "no_broad_live_automation_schedulers_webhooks_or_autonomous_dispatch_created": true,
+    "approval_ready_artifact_path": "backend/fixtures/native-workflow-demo-roofer/m1-m2-guarded-live-validation-approval-ready-build-217.json"
+  },
+
+  "execution_evidence_reference": {
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/integrated-workflow-execution-evidence-build-217.json",
+    "demo_proof_path": "docs/NATIVE_WORKFLOW_DEMO_PROOF_JASON_OWNED_INTEGRATED_WORKFLOW_BUILD_217.md",
+    "runner_path": "backend/scripts/run-jason-owned-integrated-workflow-build-217.js",
+    "runner_exercises_native_workflow_logic": true,
+    "fixture_only_validation": false
+  },
+
+  "lindy_status_update": {
+    "lindy_audit_status": "completed",
+    "fillout_trigger_1_status": "removed_from_active_triggers",
+    "fillout_trigger_2_status": "removed_from_active_triggers",
+    "removed_trigger_count": 2,
+    "trigger_ran_during_removal": false,
+    "email_sent_during_removal": false,
+    "sms_sent_during_removal": false,
+    "payment_link_sent_during_removal": false,
+    "calendar_action_during_removal": false,
+    "other_external_action_during_removal": false,
+    "daily_brief_remains_enabled": true,
+    "daily_brief_destination_scope": "jason_only",
+    "other_configuration_changed": false,
+    "remaining_auto_customer_contact_paths": 0,
+    "remaining_auto_roofer_contact_paths": 0,
+    "remaining_auto_homeowner_contact_paths": 0,
+    "lindy_pilot_mode": "safe_internal_assistance_and_jason_only_daily_brief",
+    "lindy_owns_product_workflow": false,
+    "lindy_remains_temporary_internal_assistance_tool_not_the_engine": true,
+    "lindy_safe_for_pilot_mode": true
+  },
+
+  "next_decision_packet": {
+    "decision": "JASON_OWNED_INTEGRATED_WORKFLOW_LOCALLY_VALIDATED_LIVE_M1_M2_APPROVALS_AVAILABLE",
+    "recommended_next_option": "select_and_sign_separate_m1_and_m2_jason_owned_live_validation_approvals",
+    "authorizes_send_now": false,
+    "m1_approved": false,
+    "m2_approved": false,
+    "next_live_send_requires_fresh_signed_scenario_specific_approval": true,
+    "homeowner_contact_authorized": false,
+    "real_roofer_contact_authorized": false,
+    "unrestricted_launch": false,
+    "live_automation_remains_disabled": true
+  },
+
+  "active_context_handoff": {
+    "active_path": "jason_owned_integrated_local_owned_identity_validation",
+    "make_this_the_active_path": true,
+    "active_path_steps": [
+      "integrated_local_owned_identity_validation_through_native_modules_is_the_current_milestone",
+      "future_m1_and_m2_live_sends_remain_separately_approval_gated",
+      "no_real_roofer_or_homeowner_contact_authorized",
+      "package_owned_workflow_proof_for_sales_conversations",
+      "fewer_bigger_strategic_builds_only"
+    ],
+    "supersedes_prior_active_path": "jason_owned_test_identity_workflow_validation_first_build_216_capture_only",
+    "business_goal_preserved": "get_roofleadhq_to_a_repeatable_jason_owned_workflow_demonstration_and_sales_readiness_within_days"
+  },
+
+  "safety_evidence": {
+    "no_live_action_during_build": true,
+    "no_sms_sent": true,
+    "no_email_sent": true,
+    "no_twilio_call": true,
+    "no_provider_client_constructed": true,
+    "no_network_external_call": true,
+    "no_credentials_loaded": true,
+    "no_roofer_or_homeowner_contact": true,
+    "no_secret_values_recorded": true,
+    "no_phone_number_recorded": true,
+    "no_email_address_recorded": true,
+    "no_raw_sid_recorded": true,
+    "no_raw_destination_values_recorded": true,
+    "no_production_data_used": true,
+    "no_production_records_created": true,
+    "live_automation_remains_disabled": true
+  },
+
+  "homeowner_facing_copy_boundary": {
+    "homeowner_facing_sms_approved_now": false,
+    "requires_separate_consent_and_approval": true,
+    "homeowner_contact_authorized": false,
+    "approved_for_homeowner_send": false,
+    "status_label": "homeowner_facing_copy_draft_only_not_approved",
+    "enforced_by_module": "backend/src/services/roofer-alert-binding.service.ts (prepareHomeownerOutreach)"
+  },
+
+  "build_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "email_address_recorded": false,
+    "raw_sid_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "email_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "confirm_token_armed": false,
+    "live_runner_executed_live": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "lindy_live_workflow_execution": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "jason_operator",
+  "next_step": "jason_selects_and_signs_separate_fresh_per_attempt_m1_and_m2_jason_owned_live_validation_approvals_each_scenario_specific_each_single_use_each_requiring_send_time_confirmation_then_runs_each_guarded_one_message_attempt_exactly_once_with_no_retry_entering_the_jason_owned_destination_silently_outside_repo_chat_logs_jason_owned_integrated_workflow_locally_validated_live_m1_m2_approvals_available_not_send_now_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_jason_owned_integrated_validation": true,
+  "next_step_is_send_now": false,
+  "next_live_send_requires_fresh_signed_scenario_specific_approval": true,
+  "authorizes_send_now": false,
+  "m1_approved": false,
+  "m2_approved": false,
+  "homeowner_contact_authorized": false,
+  "real_roofer_contact_authorized": false,
+  "unrestricted_launch": false,
+  "live_automation_remains_disabled": true,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

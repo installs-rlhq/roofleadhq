@@ -1,0 +1,286 @@
+{
+  "evidence_name": "jason_owned_integrated_workflow_execution_evidence_build_217",
+  "build": 217,
+  "generated_for": "build_217_local_integrated_runner",
+  "data_classification": "labels_booleans_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_production_data",
+  "source_of_truth_commit": "8a7ad6b",
+  "local_integrated_runner_executed": true,
+  "runner_exercises_native_workflow_logic": true,
+  "fixture_only_validation": false,
+  "scenario_count": 5,
+  "required_scenario_count": 3,
+  "optional_scenario_count": 2,
+  "required_scenarios_passed": 3,
+  "optional_scenarios_passed": 2,
+  "all_required_scenarios_passed": true,
+  "native_workflow_modules_exercised": [
+    "lead-intake-recognition.service",
+    "roofer-alert-binding.service",
+    "sms-dispatcher-planner.service",
+    "sms-safety.service",
+    "sms-send-intent-planner.service"
+  ],
+  "expected_actual_match": [
+    {
+      "scenario_key": "new_roof_inspection_lead_alert",
+      "required": true,
+      "integration_mode": "native_module_execution",
+      "pass": true
+    },
+    {
+      "scenario_key": "missed_or_slow_lead_follow_up_nudge",
+      "required": true,
+      "integration_mode": "native_module_execution",
+      "pass": true
+    },
+    {
+      "scenario_key": "daily_open_lead_recap",
+      "required": true,
+      "integration_mode": "native_module_execution",
+      "pass": true
+    },
+    {
+      "scenario_key": "lead_source_routing_flag",
+      "required": false,
+      "integration_mode": "native_module_execution",
+      "pass": true
+    },
+    {
+      "scenario_key": "homeowner_consent_boundary_reminder",
+      "required": false,
+      "integration_mode": "native_module_execution",
+      "pass": true
+    }
+  ],
+  "message_binding_match": {
+    "M1": true,
+    "M2": true
+  },
+  "m1_binding_equals_exact_approved_and_fixture": true,
+  "m2_binding_equals_exact_approved_and_fixture": true,
+  "synthetic_open_lead_count": 3,
+  "routing_result": "roof_inspection_follow_up",
+  "homeowner_contact_blocked": true,
+  "local_lead_state": {
+    "owned_test_lead_new_inspection": {
+      "status": "new",
+      "first_reply_at": null,
+      "recognized_type": "roof_inspection_request",
+      "routed_for": "roof_inspection_follow_up"
+    },
+    "owned_test_lead_slow_no_reply": {
+      "status": "new",
+      "first_reply_at": null,
+      "recognized_type": "roof_inspection_request",
+      "routed_for": "roof_inspection_follow_up"
+    },
+    "owned_test_lead_routed_referral": {
+      "status": "new",
+      "first_reply_at": null,
+      "recognized_type": "roof_inspection_request",
+      "routed_for": "roof_inspection_follow_up",
+      "source_label": "referral"
+    }
+  },
+  "local_follow_up_state": {
+    "fu_owned_new_alert": {
+      "state": "roofer_alert_prepared",
+      "sent": false,
+      "send_intent_built": true,
+      "no_sms_sent": true
+    },
+    "fu_owned_slow_nudge": {
+      "state": "nudge_prepared",
+      "sent": false,
+      "dispatch_decision": "send",
+      "dispatch_reason": "eligible",
+      "template_type": "followup_2h"
+    }
+  },
+  "guarded_future_live_m1_m2_support": {
+    "m1_future_send_permitted": false,
+    "m1_future_blocked_reasons": [
+      "approval_not_signed",
+      "approval_not_granted",
+      "approval_scenario_mismatch",
+      "approval_variant_text_mismatch",
+      "approval_max_message_count_not_1",
+      "approval_retry_not_disallowed",
+      "approval_homeowner_contact_must_be_false",
+      "live_confirm_token_absent"
+    ],
+    "m2_future_send_permitted": false,
+    "m2_future_blocked_reasons": [
+      "approval_not_signed",
+      "approval_not_granted",
+      "approval_scenario_mismatch",
+      "approval_variant_text_mismatch",
+      "approval_max_message_count_not_1",
+      "approval_retry_not_disallowed",
+      "approval_homeowner_contact_must_be_false",
+      "live_confirm_token_absent"
+    ],
+    "m2_approval_never_authorizes_m1": true,
+    "m2_signed_still_requires_confirm_token": true,
+    "no_send_performed": true,
+    "no_provider_client_constructed": true,
+    "no_credential_read": true
+  },
+  "scenarios": [
+    {
+      "scenario_key": "new_roof_inspection_lead_alert",
+      "required": true,
+      "integration_mode": "native_module_execution",
+      "native_modules_exercised": [
+        "lead-intake-recognition.service",
+        "roofer-alert-binding.service",
+        "sms-send-intent-planner.service",
+        "sms-safety.service"
+      ],
+      "e164_inputs_valid": true,
+      "matched_keywords": [
+        "roof",
+        "inspection",
+        "inspect",
+        "leak",
+        "storm"
+      ],
+      "expected": {
+        "recognized_roof_inspection": true,
+        "routed_for": "roof_inspection_follow_up",
+        "message_id": "M1",
+        "binding_matches_approved": true,
+        "outbound_send_intent_prepared": true,
+        "sms_sent": false
+      },
+      "actual": {
+        "recognized_roof_inspection": true,
+        "routed_for": "roof_inspection_follow_up",
+        "message_id": "M1",
+        "binding_matches_approved": true,
+        "outbound_send_intent_prepared": true,
+        "sms_sent": false
+      },
+      "pass": true
+    },
+    {
+      "scenario_key": "missed_or_slow_lead_follow_up_nudge",
+      "required": true,
+      "integration_mode": "native_module_execution",
+      "native_modules_exercised": [
+        "lead-intake-recognition.service",
+        "sms-dispatcher-planner.service",
+        "sms-safety.service",
+        "roofer-alert-binding.service"
+      ],
+      "expected": {
+        "follow_up_condition_recognized": true,
+        "native_dispatch_action": "send",
+        "template_mapped": true,
+        "message_id": "M2",
+        "binding_matches_approved": true,
+        "sms_sent": false
+      },
+      "actual": {
+        "follow_up_condition_recognized": true,
+        "native_dispatch_action": "send",
+        "template_mapped": true,
+        "message_id": "M2",
+        "binding_matches_approved": true,
+        "sms_sent": false
+      },
+      "pass": true
+    },
+    {
+      "scenario_key": "daily_open_lead_recap",
+      "required": true,
+      "integration_mode": "native_module_execution",
+      "native_modules_exercised": [
+        "roofer-alert-binding.service"
+      ],
+      "recap_body": "RoofLeadHQ daily recap: you have 3 open roof inspection leads still waiting on a first reply. Open RoofLeadHQ to see them.",
+      "expected": {
+        "message_id": "M3",
+        "channel": "internal",
+        "open_lead_count": 3,
+        "recap_body_includes_count": true,
+        "external_notification_sent": false
+      },
+      "actual": {
+        "message_id": "M3",
+        "channel": "internal",
+        "open_lead_count": 3,
+        "recap_body_includes_count": true,
+        "external_notification_sent": false
+      },
+      "pass": true
+    },
+    {
+      "scenario_key": "lead_source_routing_flag",
+      "required": false,
+      "integration_mode": "native_module_execution",
+      "native_modules_exercised": [
+        "lead-intake-recognition.service"
+      ],
+      "expected": {
+        "source_label_retained": "referral",
+        "source_label_recognized": true,
+        "recognized_roof_inspection": true,
+        "routed_for": "roof_inspection_follow_up"
+      },
+      "actual": {
+        "source_label_retained": "referral",
+        "source_label_recognized": true,
+        "recognized_roof_inspection": true,
+        "routed_for": "roof_inspection_follow_up"
+      },
+      "pass": true
+    },
+    {
+      "scenario_key": "homeowner_consent_boundary_reminder",
+      "required": false,
+      "integration_mode": "native_module_execution",
+      "native_modules_exercised": [
+        "roofer-alert-binding.service"
+      ],
+      "homeowner_contact_module_authorized_constant": false,
+      "expected": {
+        "homeowner_contact_authorized": false,
+        "status": "blocked_approval_required",
+        "draft_only": true,
+        "prepared_send_is_null": true
+      },
+      "actual": {
+        "homeowner_contact_authorized": false,
+        "status": "blocked_approval_required",
+        "draft_only": true,
+        "prepared_send_is_null": true
+      },
+      "pass": true
+    }
+  ],
+  "safety": {
+    "live_sms_sent": false,
+    "email_sent": false,
+    "network_call_made": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "credentials_loaded": false,
+    "production_data_used": false,
+    "production_records_created": false,
+    "raw_destination_values_recorded": false,
+    "raw_phone_number_recorded": false,
+    "raw_email_address_recorded": false,
+    "live_automation_remains_disabled": true,
+    "default_mode_local_dry_run": true
+  },
+  "decision": "JASON_OWNED_INTEGRATED_WORKFLOW_LOCALLY_VALIDATED_LIVE_M1_M2_APPROVALS_AVAILABLE",
+  "authorizes_send_now": false,
+  "m1_approved": false,
+  "m2_approved": false,
+  "next_live_send_requires_fresh_signed_scenario_specific_approval": true,
+  "homeowner_contact_authorized": false,
+  "real_roofer_contact_authorized": false,
+  "unrestricted_launch": false,
+  "safety_posture": "demo_ready_with_live_automation_disabled"
+}

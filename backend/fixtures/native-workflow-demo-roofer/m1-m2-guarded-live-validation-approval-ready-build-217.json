@@ -1,0 +1,96 @@
+{
+  "artifact_name": "m1_m2_guarded_live_validation_approval_ready_build_217",
+  "build": 217,
+  "data_classification": "approval_ready_templates_unsigned_labels_booleans_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_production_data",
+  "status": "approval_ready_unsigned_not_approved",
+  "purpose": "Lean, UNSIGNED, approval-ready decision artifact containing TWO DISTINCT, scenario-specific approval templates for FUTURE Jason-owned live SMS validation: one for M1 and one for M2. Neither is approved or signed. Capturing this artifact is NOT an approval and NOT a send. Selecting a future live attempt requires signing exactly ONE of these templates as a fresh, single-use, scenario-specific approval; an M1 approval never authorizes M2 and an M2 approval never authorizes M1.",
+
+  "source_of_truth_commit": "8a7ad6b",
+
+  "shared_constraints": {
+    "channel_only_sms": true,
+    "jason_operated_send_only": true,
+    "exactly_one_attempt_maximum_per_approval": true,
+    "no_retry": true,
+    "approval_is_single_use_and_expires_after_the_attempt_whether_successful_failed_or_blocked": true,
+    "send_time_confirmation_token_required": true,
+    "exact_message_binding_mandatory_fail_closed_on_empty_generic_substituted_or_wrong_scenario_copy": true,
+    "destination_entered_silently_at_execution_time_never_persisted_in_repo_chat_or_logs": true,
+    "no_homeowner_contact_authorized": true,
+    "no_real_roofer_contact_authorized": true,
+    "no_live_automation_activation_authorized": true,
+    "no_unrestricted_launch_authorized": true,
+    "no_production_data_authorized": true,
+    "secrets_phone_numbers_email_addresses_not_recorded_required": true,
+    "binding_module": "backend/src/services/roofer-alert-binding.service.ts",
+    "guarded_support_function": "prepareGuardedFutureSend (permission-only; never sends)"
+  },
+
+  "approval_templates": [
+    {
+      "template_id": "M1_LIVE_VALIDATION_APPROVAL_TEMPLATE",
+      "scenario_key": "new_roof_inspection_lead_alert",
+      "message_id": "M1",
+      "channel": "sms",
+      "selected_variant_text": "RoofLeadHQ: New roof inspection lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.",
+      "max_message_count": 1,
+      "retry_allowed": false,
+      "homeowner_contact_authorized": false,
+      "approval_signed": false,
+      "approval_granted": false,
+      "authorizes_m2": false,
+      "exact_approval_statement_template": "I, Jason Lohse, approve exactly ONE Jason-operated, SMS-only, controlled live validation send of scenario new_roof_inspection_lead_alert (M1) using only this exact text: \"RoofLeadHQ: New roof inspection lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.\" Scope: one SMS only; SMS-only; no retry; this approval authorizes M1 ONLY and never M2; no homeowner contact; no real roofer contact; no live automation activation; no unrestricted launch; no production data; no secrets/phone numbers/email addresses recorded in repo/chat/logs; destination entered silently at execution time; send-time confirmation required; approval is single-use and expires after the attempt whether successful, failed, or blocked.",
+      "note": "UNSIGNED. Signing this template authorizes M1 only. It does not authorize M2."
+    },
+    {
+      "template_id": "M2_LIVE_VALIDATION_APPROVAL_TEMPLATE",
+      "scenario_key": "missed_or_slow_lead_follow_up_nudge",
+      "message_id": "M2",
+      "channel": "sms",
+      "selected_variant_text": "RoofLeadHQ: A roof inspection lead is still waiting on a first reply. A quick follow-up now keeps it warm. Reply STOP to opt out.",
+      "max_message_count": 1,
+      "retry_allowed": false,
+      "homeowner_contact_authorized": false,
+      "approval_signed": false,
+      "approval_granted": false,
+      "authorizes_m1": false,
+      "exact_approval_statement_template": "I, Jason Lohse, approve exactly ONE Jason-operated, SMS-only, controlled live validation send of scenario missed_or_slow_lead_follow_up_nudge (M2) using only this exact text: \"RoofLeadHQ: A roof inspection lead is still waiting on a first reply. A quick follow-up now keeps it warm. Reply STOP to opt out.\" Scope: one SMS only; SMS-only; no retry; this approval authorizes M2 ONLY and never M1; no homeowner contact; no real roofer contact; no live automation activation; no unrestricted launch; no production data; no secrets/phone numbers/email addresses recorded in repo/chat/logs; destination entered silently at execution time; send-time confirmation required; approval is single-use and expires after the attempt whether successful, failed, or blocked.",
+      "note": "UNSIGNED. Signing this template authorizes M2 only. It does not authorize M1."
+    }
+  ],
+
+  "homeowner_facing_send_template": {
+    "included": false,
+    "reason": "homeowner_contact_not_authorized_draft_only_requires_separate_consent_and_separate_approval"
+  },
+
+  "safety_attestations": {
+    "approval_signed": false,
+    "approval_granted": false,
+    "authorizes_send_now": false,
+    "sms_sent": false,
+    "email_sent": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "network_or_external_call_made": false,
+    "confirm_token_armed": false,
+    "credentials_loaded": false,
+    "phone_number_recorded": false,
+    "email_address_recorded": false,
+    "raw_sid_recorded": false,
+    "production_data_used": false,
+    "live_automation_activated": false
+  },
+
+  "authorizes_send_now": false,
+  "m1_approved": false,
+  "m2_approved": false,
+  "next_live_send_requires_fresh_signed_scenario_specific_approval": true,
+  "homeowner_contact_authorized": false,
+  "real_roofer_contact_authorized": false,
+  "unrestricted_launch": false,
+  "live_automation_remains_disabled": true,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

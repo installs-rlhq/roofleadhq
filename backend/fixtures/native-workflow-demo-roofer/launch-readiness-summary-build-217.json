@@ -1,0 +1,135 @@
+{
+  "summary_name": "launch_readiness_summary_build_217",
+  "build": 217,
+  "data_classification": "launch_readiness_summary_labels_only_no_secret_values_no_phone_numbers_no_email_addresses",
+  "as_of_decision": "JASON_OWNED_INTEGRATED_LOCAL_WORKFLOW_VALIDATED_THROUGH_NATIVE_MODULES_ALL_FIVE_BUILD_216_SCENARIOS_EXECUTED_AGAINST_REAL_NATIVE_LOGIC_M1_AND_M2_EXACT_BINDING_PROVEN_LOCALLY_HOMEOWNER_CONTACT_BLOCKED_GUARDED_FUTURE_M1_M2_LIVE_SUPPORT_PERMISSION_ONLY_FAILS_CLOSED_NO_SEND_LINDY_AUDIT_COMPLETE_BOTH_FILLOUT_TRIGGERS_REMOVED_DAILY_BRIEF_JASON_ONLY_DECISION_JASON_OWNED_INTEGRATED_WORKFLOW_LOCALLY_VALIDATED_LIVE_M1_M2_APPROVALS_AVAILABLE_NEXT_STEP_SELECT_AND_SIGN_SEPARATE_M1_AND_M2_LIVE_VALIDATION_APPROVALS_NOT_SEND_NOW_LIVE_AUTOMATION_DISABLED_NOT_UNRESTRICTED_LAUNCH",
+
+  "source_of_truth_commit": "8a7ad6b",
+
+  "readiness_lanes": {
+    "local_suite": { "label": "local", "passed": 30, "total": 30, "all_passed": true },
+    "mock_adapter_suite": { "label": "mock_adapter", "passed": 30, "total": 30, "all_passed": true },
+    "r1_sms_guarded_send_closeout": {
+      "label": "r1_sms_guarded_successful_send_closeout_build_215",
+      "selected_message_variant": "R1",
+      "sms_sent": true,
+      "recipient_confirmed_actual_text_matches_r1": true,
+      "r1_value_message_delivery_validated": true,
+      "decision": "GUARDED_R1_LIVE_DELIVERY_CONFIRMED_SMALL_ROOFER_PILOT_READY_FOR_APPROVAL"
+    },
+    "jason_owned_workflow_validation_capture": {
+      "label": "jason_owned_test_identity_workflow_validation_build_216",
+      "validation_scenario_count": 5,
+      "decision": "JASON_OWNED_WORKFLOW_VALIDATION_READY_FOR_APPROVAL"
+    },
+    "jason_owned_integrated_workflow_validation": {
+      "label": "jason_owned_integrated_local_workflow_validation_build_217",
+      "runner_exercises_native_workflow_logic": true,
+      "fixture_only_validation": false,
+      "scenario_count": 5,
+      "required_scenario_count": 3,
+      "optional_scenario_count": 2,
+      "required_scenarios_passed": 3,
+      "optional_scenarios_passed": 2,
+      "all_required_scenarios_passed": true,
+      "m1_exact_binding_proven_locally": true,
+      "m2_exact_binding_proven_locally": true,
+      "synthetic_open_lead_count_computed": true,
+      "homeowner_contact_blocked": true,
+      "guarded_future_m1_m2_support_permission_only_fails_closed": true,
+      "live_sms_sent": false,
+      "email_sent": false,
+      "network_call_made": false,
+      "production_data_used": false,
+      "live_automation_remains_disabled": true,
+      "decision": "JASON_OWNED_INTEGRATED_WORKFLOW_LOCALLY_VALIDATED_LIVE_M1_M2_APPROVALS_AVAILABLE",
+      "recommended_next_option": "select_and_sign_separate_m1_and_m2_jason_owned_live_validation_approvals"
+    }
+  },
+
+  "lindy_status": {
+    "lindy_audit_status": "completed",
+    "fillout_trigger_1_status": "removed_from_active_triggers",
+    "fillout_trigger_2_status": "removed_from_active_triggers",
+    "removed_trigger_count": 2,
+    "trigger_ran_during_removal": false,
+    "email_sent_during_removal": false,
+    "sms_sent_during_removal": false,
+    "payment_link_sent_during_removal": false,
+    "calendar_action_during_removal": false,
+    "other_external_action_during_removal": false,
+    "daily_brief_remains_enabled": true,
+    "daily_brief_destination_scope": "jason_only",
+    "other_configuration_changed": false,
+    "remaining_auto_customer_contact_paths": 0,
+    "remaining_auto_roofer_contact_paths": 0,
+    "remaining_auto_homeowner_contact_paths": 0,
+    "lindy_pilot_mode": "safe_internal_assistance_and_jason_only_daily_brief",
+    "lindy_owns_product_workflow": false,
+    "lindy_remains_temporary_internal_assistance_tool_not_the_engine": true,
+    "lindy_safe_for_pilot_mode": true,
+    "lindy_live_enabled": false
+  },
+
+  "narrative": {
+    "integrated_local_owned_identity_validation_through_native_modules_completed": true,
+    "all_five_build_216_scenarios_executed_against_real_native_logic": true,
+    "not_fixture_string_comparison": true,
+    "m1_and_m2_exact_binding_proven_locally": true,
+    "homeowner_contact_remains_blocked": true,
+    "guarded_future_m1_m2_live_support_is_permission_only_and_fails_closed_no_send": true,
+    "future_m1_and_m2_live_sends_remain_separately_approval_gated": true,
+    "m1_approval_never_authorizes_m2_and_vice_versa": true,
+    "lindy_audit_complete_both_fillout_triggers_removed": true,
+    "lindy_has_no_remaining_automatic_customer_roofer_or_homeowner_contact_path": true,
+    "lindy_daily_brief_remains_jason_only": true,
+    "lindy_is_safe_for_pilot_mode_and_is_not_the_engine": true,
+    "no_real_roofer_or_homeowner_contact_authorized": true,
+    "broader_live_automation_remains_disabled": true,
+    "next_step_is_not_unrestricted_launch": true,
+    "next_live_send_requires_fresh_signed_scenario_specific_approval": true,
+    "fewer_bigger_strategic_builds_only": true
+  },
+
+  "broader_live_automation_status": {
+    "all_broader_live_automation_remains_disabled": true,
+    "sms_blast_automation_enabled": false,
+    "calendar_live_enabled": false,
+    "vapi_outbound_live_enabled": false,
+    "resend_live_enabled": false,
+    "lindy_live_enabled": false,
+    "cron_scheduler_dispatcher_enabled": false,
+    "public_live_routes_webhooks_enabled": false,
+    "crm_sync_automation_enabled": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_enabled": false
+  },
+
+  "primary_remaining_objective": {
+    "objective": "get_roofleadhq_to_a_repeatable_jason_owned_workflow_demonstration_and_sales_readiness_within_days",
+    "fewest_build_path": [
+      "build_215_proved_guarded_r1_live_sms_delivery_and_exact_approved_copy_binding_DONE",
+      "build_216_pivoted_active_path_to_jason_owned_test_identity_workflow_validation_capture_DONE",
+      "build_217_built_integrated_local_runner_that_exercises_native_modules_for_all_five_scenarios_DONE",
+      "jason_selects_and_signs_separate_fresh_per_attempt_m1_and_m2_live_validation_approvals_each_single_use_each_send_time_confirmed",
+      "package_the_owned_workflow_proof_for_sales_conversations_then_recruit_real_roofer_pilots"
+    ]
+  },
+
+  "next_step": "jason_selects_and_signs_separate_fresh_per_attempt_m1_and_m2_jason_owned_live_validation_approvals_each_scenario_specific_each_single_use_each_send_time_confirmed_then_runs_each_guarded_one_message_attempt_exactly_once_with_no_retry_entering_the_jason_owned_destination_silently_outside_repo_chat_logs_then_packages_the_proof_for_sales_conversations_jason_owned_integrated_workflow_locally_validated_live_m1_m2_approvals_available_not_send_now_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_jason_owned_integrated_validation": true,
+  "next_step_is_send_now": false,
+  "next_live_send_requires_fresh_signed_scenario_specific_approval": true,
+  "authorizes_send_now": false,
+  "m1_approved": false,
+  "m2_approved": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+
+  "no_live_action_during_summary": true,
+  "no_secret_values_recorded": true,
+  "no_recipient_number_recorded": true,
+  "no_email_address_recorded": true,
+  "no_raw_sid_recorded": true,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
