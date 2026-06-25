@@ -30,14 +30,17 @@
   "send_attempt_count": 1,
   "auto_retry_on_failure": false,
   "auto_retry_performed": false,
-  "sms_was_sent": false,
-  "delivery_was_simulated_or_live": "none_no_send_performed",
-  "twilio_result_metadata": null,
-  "send_error_metadata": {
-    "name": "Error",
-    "code": 20003,
-    "status": 401
+  "sms_was_sent": true,
+  "delivery_was_simulated_or_live": "live",
+  "twilio_result_metadata": {
+    "sid_present": true,
+    "status": "queued",
+    "error_code": null,
+    "error_message": null,
+    "num_segments": "1",
+    "direction": "outbound-api"
   },
+  "send_error_metadata": null,
   "recipient_identity_label": "Jason Lohse / Test Roofing (own consenting test identity)",
   "recipient_number_recorded_in_evidence": false,
   "production_data_used": false,
@@ -51,7 +54,7 @@
   "other_live_automation_remains_disabled": true,
   "stop_after_result_captured": true,
   "stop_rollback_owner_label": "Jason Lohse",
-  "rollback_status": "no_send_performed_nothing_to_roll_back",
-  "final_decision": "CONTROLLED_LIVE_SMS_SEND_ATTEMPTED_FAILED_NO_RETRY",
+  "rollback_status": "one_message_delivered_one_time_approval_consumed_no_further_sends",
+  "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
   "safety_status": "demo_ready_with_live_automation_disabled"
 }

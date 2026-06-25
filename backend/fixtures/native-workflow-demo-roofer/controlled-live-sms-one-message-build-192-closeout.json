@@ -1,0 +1,53 @@
+{
+  "closeout_name": "controlled_live_sms_one_message_build_192_closeout",
+  "build": 192,
+  "data_classification": "controlled_live_execution_closeout_names_only_no_secret_values",
+  "summary": "Build 192 captures and closes out the result of Jason's already-completed, human-operated controlled live SMS attempt. The pre-flight gate returned CONTROLLED_LIVE_SMS_PERMITTED, exactly one send attempt was made, and one SMS was delivered to Jason's own consenting test identity. The single one-time approval is now consumed. No retry was run. This closeout build is LOCAL-ONLY: it performs no live action, sends no SMS, makes no Twilio/network/external call, and records no secret values, SIDs, tokens, or recipient phone numbers. It only preserves the manual execution evidence and records names/booleans/codes about the outcome. Broader live automation remains disabled.",
+
+  "execution_evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+  "execution_runner_path": "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js",
+
+  "manual_attempt_captured": true,
+  "manual_attempt_human_operated_by": "Jason Lohse",
+  "gate_decision_before_execution": "CONTROLLED_LIVE_SMS_PERMITTED",
+  "pre_flight_permitted": true,
+  "send_attempt_count": 1,
+  "sms_was_sent": true,
+  "delivery_was_simulated_or_live": "live",
+  "auto_retry_on_failure": false,
+  "auto_retry_performed": false,
+  "retry_performed": false,
+
+  "one_time_approval_consumed": true,
+  "no_further_sends_under_this_approval": true,
+
+  "final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT",
+
+  "no_live_action_during_closeout": true,
+  "no_secret_values_recorded": true,
+  "no_recipient_number_recorded": true,
+
+  "closeout_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "recipient_number_recorded_in_evidence": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "real_homeowner_contact": false,
+    "contacted_only_approved_test_identity": true,
+    "channel_expanded_beyond_sms": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true,
+    "no_network_call_during_closeout": true,
+    "no_twilio_client_constructed_during_closeout": true,
+    "no_messages_create_called_during_closeout": true
+  },
+
+  "rollback_status": "one_message_delivered_one_time_approval_consumed_no_further_sends",
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "controlled_live_roofer_pilot_readiness_not_unrestricted_launch",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
