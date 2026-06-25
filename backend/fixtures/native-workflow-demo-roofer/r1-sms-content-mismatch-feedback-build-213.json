@@ -1,0 +1,216 @@
+{
+  "packet_name": "r1_sms_content_mismatch_feedback_and_message_binding_fix_build_213",
+  "build": 213,
+  "data_classification": "r1_sms_post_send_feedback_discrepancy_root_cause_triage_and_local_message_binding_fix_names_booleans_codes_only_no_secret_values_no_phone_numbers_no_raw_sids_no_production_data",
+  "summary": "Build 213 is a LOCAL-ONLY packet that (1) CAPTURES the post-send recipient feedback discrepancy on the one approved, Jason-operated controlled live roofer SMS send closed out in Build 212, (2) ROOT-CAUSES it locally, and (3) FIXES the local send-message binding now (no live action). Delivery mechanics were validated (sms_received=yes, one attempt, no retry, approval consumed/expired), but R1 VALUE messaging was NOT validated: the actual received text remained the older GENERIC delivery-test copy instead of Build 210/211 selected variant R1 (new_lead_fast_response_alert). Root cause: the existing fail-closed one-message runner carried a HARDCODED generic message body with NO binding to the selected approved variant. FIX APPLIED IN THIS BUILD: the runner's outbound body is now BOUND to the approved selected variant text read from the current signed approval packet (signed_approval_capture_evidence.selected_variant_text), the hardcoded generic literal is removed from the send path, and a FAIL-CLOSED guard blocks any live send unless the resolved outbound message EXACTLY equals the approved selected variant text (and explicitly rejects the stale generic copy). A local read-only verifier proves resolveOutboundBody()===R1 and !==generic and that the guard permits R1 but blocks generic/any-non-approved body — all WITHOUT any send, Twilio client, or network call (requiring the runner module is side-effect-free). This build performs NO live action: no SMS, no retry, no Twilio, no Twilio client, no messages.create, no network/external call, no roofer/homeowner contact, no confirm-token arming, no live-runner live execution, and reads/records NO secret values, SIDs, tokens, credential values, phone numbers, or production data. The fix is a local code change only; it does NOT send. The immediate next step is to capture a NEW, fresh, signed, per-attempt approval, then a send-time preflight, before any one Jason-operated R1 SMS (the prior approval was consumed/expired in Build 212). Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "9509113",
+
+  "prior_build_212_reference": {
+    "closeout_path": "backend/fixtures/native-workflow-demo-roofer/r1-sms-send-closeout-build-212.json",
+    "summary_path": "backend/fixtures/native-workflow-demo-roofer/launch-readiness-summary-build-212.json",
+    "doc_path": "docs/NATIVE_WORKFLOW_FIXTURE_R1_SMS_SEND_CLOSEOUT_BUILD_212.md",
+    "build_212_decision": "R1_CONTROLLED_LIVE_SMS_SENT_FEEDBACK_REQUIRED",
+    "build_212_recommended_option": "collect_roofer_feedback_only_no_send",
+    "build_212_sms_sent": true,
+    "build_212_send_attempt_count": 1,
+    "build_212_retry_performed": false,
+    "build_212_approval_consumed": true,
+    "build_212_approval_expired_after_attempt": true,
+    "build_212_final_decision": "CONTROLLED_LIVE_SMS_ONE_MESSAGE_SENT"
+  },
+  "prior_build_211_reference": {
+    "approval_path": "backend/fixtures/native-workflow-demo-roofer/r1-sms-send-approval-build-211.json",
+    "build_211_selected_variant": "R1",
+    "build_211_selected_variant_label": "new_lead_fast_response_alert",
+    "build_211_approval_signed": true,
+    "build_211_approval_granted": true,
+    "build_211_is_approved_variant_source_for_binding": true
+  },
+  "prior_build_210_reference": {
+    "selection_path": "backend/fixtures/native-workflow-demo-roofer/pilot-sms-copy-selection-build-210.json",
+    "build_210_selected_variant_id": "R1",
+    "build_210_selected_variant_label": "new_lead_fast_response_alert"
+  },
+  "manual_execution_evidence_reference": {
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+    "preserved_unchanged": true,
+    "twilio_send_status_in_evidence_label": "queued",
+    "twilio_sid_present_in_evidence": true,
+    "recipient_number_recorded_in_evidence": false,
+    "message_body_recorded_in_evidence": false
+  },
+
+  "feedback_discrepancy_evidence": {
+    "feedback_captured": true,
+    "feedback_source_label": "Jason Lohse (recipient own consenting test identity)",
+    "sms_received_status": "yes",
+    "actual_received_message_label": "generic_delivery_test_copy",
+    "actual_received_message_text_for_analysis": "RoofLeadHQ controlled live test: one-message SMS to your own consenting test identity (Test Roofing). No action needed.",
+    "expected_selected_variant": "R1",
+    "expected_selected_variant_label": "new_lead_fast_response_alert",
+    "expected_r1_text": "RoofLeadHQ: New roofing lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.",
+    "actual_message_matches_expected_r1": false,
+    "delivery_mechanics_validated": true,
+    "r1_value_messaging_validated": false,
+    "approval_consumed": true,
+    "approval_expired_after_attempt": true,
+    "retry_allowed": false,
+    "no_retry_performed": true,
+    "jason_note_label": "this_is_just_a_test_text_types_of_texts_evaluated_and_adjusted_at_live_roofer_testing_time",
+    "feedback_notes": "Recipient confirms the SMS was received (delivery succeeded), but the actual received text was still the older GENERIC delivery-test copy, NOT the Build 210/211 selected R1 value message. Delivery mechanics are validated; R1 value messaging is NOT validated. The single-use approval is already consumed and expired; no retry is allowed and none was performed."
+  },
+
+  "root_cause_triage": {
+    "triage_is_local_file_inspection_only": true,
+    "no_live_action_during_triage": true,
+    "root_cause_status": "send_script_hardcoded_generic_body_and_missing_selected_variant_binding",
+    "hardcoded_generic_text_in_send_script": true,
+    "missing_selected_variant_binding": true,
+    "stale_fixture_lookup": false,
+    "wrong_fixture_reference": false,
+    "selected_variant_source_explicit_and_verified_in_send_path_before_fix": false,
+    "send_body_read_from_approved_variant_before_fix": false,
+    "send_body_was_static_string_literal_before_fix": true,
+    "hardcoded_body_label": "generic_delivery_test_copy",
+    "hardcoded_body_location_name_only": "run-native-workflow-fixture-controlled-live-sms-one-message-execution.js:messages_create.body",
+    "send_path_references_to_R1_or_selected_variant_before_fix_count": 0,
+    "code_predates_r1_copy_selection_build_210": true,
+    "root_cause_summary": "The existing fail-closed one-message runner (originally Build 186) constructed the Twilio messages.create body from a HARDCODED generic delivery-test string literal and contained NO reference to, lookup of, or binding to the Build 210/211 selected approved variant R1. Because the send body was static and predated the Build 210 R1 copy selection, the one approved Jason-operated send delivered the generic delivery-test copy regardless of the R1 selection/approval. This was NOT a stale-fixture lookup or wrong-fixture reference (the body was not sourced from any fixture at all); the defect was a hardcoded generic body plus a missing selected-variant binding, with no selected-variant-equals-sent-body assertion in the send-time preflight.",
+    "local_files_inspected": [
+      "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js",
+      "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+      "backend/fixtures/native-workflow-demo-roofer/r1-sms-send-closeout-build-212.json",
+      "backend/fixtures/native-workflow-demo-roofer/r1-sms-send-approval-build-211.json",
+      "backend/fixtures/native-workflow-demo-roofer/pilot-sms-copy-selection-build-210.json"
+    ],
+    "secrets_phone_numbers_raw_sids_tokens_recorded_during_triage": false
+  },
+
+  "message_binding_fix": {
+    "fix_applied_in_this_build": true,
+    "fix_is_local_code_change_only_no_live_action": true,
+    "fixed_file": "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js",
+    "approved_variant_source_path": "backend/fixtures/native-workflow-demo-roofer/r1-sms-send-approval-build-211.json",
+    "approved_variant_source_field_name_only": "signed_approval_capture_evidence.selected_variant_text",
+    "outbound_body_now_bound_to_approved_selected_variant": true,
+    "hardcoded_generic_body_removed_from_send_path": true,
+    "resolved_outbound_message_equals_r1": true,
+    "resolved_outbound_message_equals_generic": false,
+    "selected_variant_source_explicit_and_verified": true,
+    "runner_require_is_side_effect_free_no_send_no_exit": true,
+    "no_sms_sent_during_fix": true,
+    "no_twilio_call_during_fix": true,
+    "no_network_external_call_during_fix": true,
+    "fix_notes": "The runner now resolves the outbound body from the approved selected variant text in the current signed approval packet (explicit, verified source) instead of a hardcoded generic literal. Pure helpers resolveApprovedVariant()/resolveOutboundBody()/assertOutboundBodyMatchesApprovedVariant() are exported so a read-only verifier can prove the resolved outbound message equals R1 and not generic copy without any send, Twilio client, or network call. The live send path is guarded behind require.main===module so requiring the module performs no send and no process.exit."
+  },
+
+  "fail_closed_message_guard": {
+    "guard_name": "selected_approved_variant_equals_outbound_body_fail_closed_guard",
+    "guard_added_to_live_runner_in_this_build": true,
+    "guard_function_name": "assertOutboundBodyMatchesApprovedVariant",
+    "blocks_send_unless_outbound_body_exactly_equals_approved_selected_variant": true,
+    "blocks_stale_generic_delivery_test_copy_explicitly": true,
+    "blocks_any_non_approved_body": true,
+    "blocks_when_approval_packet_not_signed_or_granted": true,
+    "fails_closed_when_approved_variant_unavailable": true,
+    "asserted_at_preflight_gate_and_again_immediately_before_messages_create": true,
+    "gate_decision_name_only": "CONTROLLED_LIVE_SMS_PERMITTED",
+    "no_live_send_may_proceed_from_stale_generic_message_copy": true,
+    "guard_notes": "Fail-closed: the resolved outbound body must equal the approved selected variant text from the current signed approval packet, or the runner blocks (no send) and exits nonzero. The known stale generic delivery-test copy is rejected explicitly. The guard is evaluated as a preflight gate and re-asserted immediately before messages.create (defense in depth). Capturing/adding the guard does not send."
+  },
+
+  "future_send_blocker": {
+    "decision": "R1_SMS_MESSAGE_BINDING_FIXED_AND_VERIFIED_LOCALLY_NEW_SIGNED_APPROVAL_REQUIRED_BEFORE_NEXT_SEND",
+    "recommended_next_option": "capture_new_fresh_signed_approval_then_send_time_preflight_before_one_jason_operated_r1_sms",
+    "content_mismatch_root_cause_fixed_locally": true,
+    "message_binding_verified_locally_equals_r1_not_generic": true,
+    "authorizes_send_now": false,
+    "next_live_send_requires_new_fresh_signed_approval": true,
+    "unrestricted_launch": false,
+    "homeowner_contact_authorized": false,
+    "live_automation_remains_disabled": true,
+    "blocker_notes": "The content-mismatch root cause is now fixed and verified LOCALLY: the outbound body is bound to the approved selected variant and a fail-closed guard blocks any send from stale/non-approved copy. This build still performs NO send. The prior signed approval was consumed/expired in Build 212; any further live send requires a NEW, fresh, signed, per-attempt approval, then a send-time preflight, before one Jason-operated R1 SMS."
+  },
+
+  "discrepancy_and_fix_safety_evidence": {
+    "no_live_action_in_this_build": true,
+    "no_sms_sent": true,
+    "no_retry": true,
+    "no_twilio_call": true,
+    "no_twilio_client_constructed": true,
+    "no_messages_create_called": true,
+    "no_network_external_call": true,
+    "no_roofer_or_homeowner_contact": true,
+    "no_confirm_token_armed": true,
+    "live_runner_executed_live": false,
+    "live_runner_send_message_binding_corrected": true,
+    "fix_is_code_change_only_not_a_send": true,
+    "no_secret_values_recorded": true,
+    "no_phone_number_recorded": true,
+    "no_raw_sid_recorded": true,
+    "no_production_data_used": true,
+    "live_automation_remains_disabled": true
+  },
+
+  "homeowner_facing_copy_boundary": {
+    "homeowner_facing_sms_approved_now": false,
+    "requires_separate_consent_and_approval": true,
+    "homeowner_contact_authorized": false,
+    "approved_for_homeowner_send": false,
+    "status_label": "homeowner_facing_sms_not_approved_fix_is_roofer_facing_only",
+    "note": "This discrepancy, triage, and message-binding fix concern the one roofer-facing controlled live test SMS only. No homeowner-facing message is approved, consented, or to be sent. Any homeowner-facing message requires separate, explicit consent capture and a separate signed approval."
+  },
+
+  "build_213_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "raw_sid_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "additional_sms_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "confirm_token_armed": false,
+    "live_runner_executed_live": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "strategic_recommendation": {
+    "fewest_build_path_to_live_roofer_workflow_validation": [
+      "build_214_capture_new_fresh_signed_per_attempt_approval_for_one_jason_operated_r1_sms_now_that_binding_is_fixed_and_guarded",
+      "build_214_or_jason_run_send_time_preflight_then_the_guarded_one_message_runner_exactly_once_in_jasons_controlled_env_no_retry",
+      "build_215_close_out_the_send_and_capture_roofer_feedback_confirming_the_received_text_equals_r1_value_message_validating_r1_value_messaging",
+      "then_decide_pilot_expansion_to_a_small_set_of_consenting_roofers_each_with_its_own_signed_approval_before_any_selling"
+    ],
+    "rationale_label": "binding_fixed_and_guarded_so_the_next_live_send_can_validate_r1_value_messaging_in_one_attempt_then_feedback_closes_the_loop",
+    "still_gated_by": "new_fresh_signed_approval_then_send_time_preflight_no_unrestricted_launch_no_homeowner_contact"
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "capture_a_new_fresh_signed_per_attempt_approval_for_one_jason_operated_r1_sms_then_a_send_time_preflight_before_any_send_now_that_the_message_binding_is_fixed_and_guarded_r1_sms_message_binding_fixed_and_verified_locally_new_signed_approval_required_before_next_send_not_send_now_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_capture_new_fresh_signed_approval_then_preflight": true,
+  "next_step_is_send_now": false,
+  "next_live_send_requires_new_fresh_signed_approval": true,
+  "authorizes_send_now": false,
+  "homeowner_contact_authorized": false,
+  "unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
