@@ -1,0 +1,66 @@
+{
+  "artifact_name": "twilio_sdk_readiness_build_191",
+  "build": 191,
+  "data_classification": "local_only_sdk_readiness_names_only_no_secret_values",
+  "purpose": "Local-only correction of the Build 190 not-armable condition twilio_sdk_not_installed_in_build_environment by confirming the Twilio SDK dependency is declared, locked, installed, and importable by the existing fail-closed one-message live SMS runner WITHOUT any network call or SMS send.",
+  "scope_label": [
+    "local_only_dependency_and_readiness_correction",
+    "twilio_sdk_import_resolution_proof_only",
+    "no_live_action_no_network_call_no_sms_send",
+    "does_not_consume_pending_approved_build_190_attempt"
+  ],
+
+  "twilio_sdk_dependency_present": true,
+  "dependency_manifest_path": "backend/package.json",
+  "dependency_declared_in_manifest": true,
+  "dependency_name": "twilio",
+  "dependency_version_range_declared": "^6.0.2",
+  "lockfile_path": "backend/package-lock.json",
+  "dependency_present_in_lockfile": true,
+  "locked_version_names_only": "6.0.2",
+  "installed_in_node_modules": true,
+  "resolvable_from_runner_directory": true,
+  "runner_path_that_requires_sdk": "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js",
+  "runner_require_statement_present": true,
+  "module_loads_without_constructing_client": true,
+
+  "no_live_action": true,
+  "no_network_call": true,
+  "no_sms_sent": true,
+  "send_attempt_count": 0,
+
+  "readiness_check_method_names_only": {
+    "require_resolve_twilio_from_runner_directory": true,
+    "require_load_twilio_module_export_is_function": true,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "process_env_secret_values_read": false,
+    "network_socket_opened": false,
+    "confirm_token_set": false
+  },
+
+  "build_190_relationship": {
+    "build_190_preflight_decision": "CONTROLLED_LIVE_SMS_CORRECTED_PREFLIGHT_PERMITTED",
+    "build_190_send_attempt_count": 0,
+    "build_190_sms_was_sent": false,
+    "build_190_approval_still_pending_unconsumed": true,
+    "build_191_consumes_build_190_approval": false,
+    "reason_build_190_approval_not_consumed": "Build 191 performs no live send attempt; it only installs/verifies SDK import readiness. The single approved Build 190 attempt remains pending Jason's human-operated execution in his controlled environment.",
+    "corrects_build_190_not_armable_reason": "twilio_sdk_not_installed_in_build_environment"
+  },
+
+  "reads_secret_values": false,
+  "secret_values_printed_logged_or_committed": false,
+  "recipient_number_recorded": false,
+  "production_data_used": false,
+  "used_production_supabase": false,
+  "real_homeowner_contact": false,
+  "channel_expanded_beyond_sms": false,
+  "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+  "schema_auth_rls_security_changes": false,
+  "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+  "other_live_automation_remains_disabled": true,
+
+  "final_decision": "TWILIO_SDK_DEPENDENCY_PRESENT_AND_IMPORTABLE_LOCALLY_NO_LIVE_ACTION_NO_NETWORK_NO_SMS_BUILD_190_APPROVAL_UNCONSUMED",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
