@@ -1,0 +1,89 @@
+{
+  "packet_name": "controlled_roofer_pilot_final_send_approval_build_195_signed",
+  "build": 195,
+  "data_classification": "controlled_roofer_pilot_final_send_approval_names_booleans_only_no_secret_values",
+  "summary": "Build 195 captures Jason's FINAL signed controlled real-roofer pilot one-message SEND approval as names/booleans only, on top of the Build 194 setup capture (preflight READY_FOR_FINAL_SEND_APPROVAL). It authorizes a fail-closed, JASON-OPERATED one-message send to be run separately by Jason in his own controlled environment with live credentials and the approved destination. It does NOT authorize Claude or the build environment to send SMS or make any external call. It is LOCAL-ONLY: no SMS, no Twilio, no network/external call, no real roofer or homeowner contact, no secret values, SIDs, tokens, or phone numbers recorded. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "6de8cd7",
+  "prior_setup_reference": {
+    "signed_setup_approval_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-setup-approval-build-194-signed.json",
+    "blocker_closure_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-no-go-blocker-closure-build-194.json",
+    "preflight_gate_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-preflight-gate-build-194.json",
+    "build_194_preflight_decision": "READY_FOR_FINAL_SEND_APPROVAL"
+  },
+
+  "jason_approval_statement_recorded": true,
+  "jason_approval_statement_scope_label": "build_195_capture_final_controlled_roofer_pilot_one_message_send_approval_and_send_time_preflight_only",
+  "approval_owner_label": "Jason Lohse",
+  "approval_signature_label": "Jason Lohse",
+
+  "approval_signed": true,
+  "authorizes_jason_operated_one_message_send": true,
+  "authorizes_build_environment_send": false,
+
+  "sms_only": true,
+  "max_message_count": 1,
+  "retry_allowed": false,
+  "homeowner_contact_allowed": false,
+  "production_data_allowed": false,
+  "approved_destination_number_recorded": false,
+
+  "non_sms_channel_allowed": false,
+  "broader_live_automation_allowed": false,
+  "one_consenting_test_roofer_only": true,
+
+  "jason_operated_send_conditions": {
+    "operated_by_label": "Jason Lohse",
+    "run_in_jason_controlled_environment_only": true,
+    "env_vars_supplied_in_jason_shell_only": true,
+    "uses_existing_fail_closed_one_message_runner": true,
+    "runner_path": "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js",
+    "deliberate_confirm_token_required": true,
+    "exactly_one_run": true,
+    "no_retry": true,
+    "evidence_preserved_names_codes_only": true
+  },
+
+  "what_this_approval_does_not_authorize": {
+    "claude_or_build_environment_send_sms": false,
+    "claude_or_build_environment_make_external_call": false,
+    "contact_any_homeowner": false,
+    "use_production_data": false,
+    "non_sms_channel": false,
+    "more_than_one_message": false,
+    "retry": false,
+    "activate_live_automation": false,
+    "add_public_routes_webhooks_cron_schedulers_dispatchers": false,
+    "store_secrets_or_phone_numbers_in_repo_or_chat": false
+  },
+
+  "final_send_approval_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "approved_destination_number_recorded": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "email_call_calendar_crm_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_operated_one_message_pilot_send_in_controlled_environment_then_local_only_closeout",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "next_step_is_unrestricted_launch": false,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
