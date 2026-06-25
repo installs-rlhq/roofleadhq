@@ -188,8 +188,11 @@ const requiredApproval = {
   max_message_count: 1,
   retry_allowed: false,
   approval_single_use: true,
-  approval_consumed: false,
-  approval_expired: false,
+  // Build 220 update: the single-use M2 approval was CONSUMED/EXPIRED by the one authorized live
+  // validation send (see m2-live-validation-closeout-evidence-build-220.json). It is now permanently
+  // consumed and can never be reused — the runner's guard blocks any consumed approval.
+  approval_consumed: true,
+  approval_expired: true,
   authorizes_m2: true,
   authorizes_m1: false,
   m1_approved: false,
@@ -204,9 +207,11 @@ for (const [k, v] of Object.entries(requiredApproval)) {
   if (a[k] !== v) fail('approval signed_m2_approval ' + k + ' must be ' + JSON.stringify(v) + ' (got ' + JSON.stringify(a[k]) + ')');
 }
 if (a.exact_signed_statement !== SIGNED_STATEMENT) fail('approval exact_signed_statement must be preserved EXACTLY');
-// Independent: the runner approval guard must accept this exact on-disk approval object.
-if (runner.assertSignedApprovalValid(approval).length !== 0) fail('runner approval guard must accept the on-disk Build 219 M2 approval (reasons: ' + runner.assertSignedApprovalValid(approval).join(', ') + ')');
-pass('build_219_approval_artifact_signed_m2_only_bound_to_8d92939_and_21b840b_statement_preserved');
+// Build 220 update: the M2 approval is now permanently consumed/expired. The runner approval guard
+// must therefore REJECT this exact on-disk approval object (no reuse is ever possible).
+const consumedReasons = runner.assertSignedApprovalValid(approval);
+if (!consumedReasons.includes('approval_already_consumed') || !consumedReasons.includes('approval_already_expired')) fail('runner approval guard must now REJECT the permanently consumed M2 approval (reasons: ' + consumedReasons.join(', ') + ')');
+pass('build_219_approval_artifact_signed_m2_only_bound_to_8d92939_and_21b840b_statement_preserved_now_permanently_consumed');
 
 // Approval safety attestations.
 const aatt = approval.approval_capture_safety_attestations || {};
@@ -222,7 +227,8 @@ const requiredDecision = {
   m1_live_validation_confirmed: true,
   m1_approval_consumed: true,
   m2_approved: true,
-  m2_approval_consumed: false,
+  // Build 220 update: the one authorized M2 attempt consumed/expired the approval (preserved runtime mutation).
+  m2_approval_consumed: true,
   m2_send_time_preflight_required: true,
   next_live_attempt_maximum: 1,
   retry_allowed: false,
@@ -256,9 +262,14 @@ const nb = preflight.native_workflow_body_production || {};
 if (nb.body_produced_by_native_bindRooferAlert !== true || nb.produced_body_equals_signed_m2_exactly !== true) fail('preflight must show native bindRooferAlert produced exact M2');
 if (nb.produced_body_is_m1 !== false || nb.produced_body_is_generic_or_stale !== false || nb.hardcoded_or_env_provided_body_used !== false) fail('preflight native body must not be M1/generic/env-provided');
 const ag = preflight.approval_guard || {};
-for (const k of ['approval_artifact_present', 'approval_valid_m2_only', 'approval_bound_to_build_217_commit_8d92939', 'approval_bound_to_build_218_commit_21b840b', 'm2_approved', 'm1_unapproved', 'approval_unconsumed']) {
+for (const k of ['approval_artifact_present', 'approval_bound_to_build_217_commit_8d92939', 'approval_bound_to_build_218_commit_21b840b', 'm2_approved', 'm1_unapproved']) {
   if (ag[k] !== true) fail('preflight approval_guard ' + k + ' must be true');
 }
+// Build 220 update: the M2 approval is now permanently consumed, so the live preflight reports the
+// approval as no-longer-valid and consumed. The send remains blocked (would_permit_live_send=false,
+// checked above) — proving the consumed approval can never be reused.
+if (ag.approval_valid_m2_only !== false) fail('preflight approval_guard approval_valid_m2_only must now be false (approval permanently consumed)');
+if (ag.approval_unconsumed !== false) fail('preflight approval_guard approval_unconsumed must now be false (approval permanently consumed)');
 const mg = preflight.m1_consumption_guard || {};
 if (mg.m1_approval_artifact_present !== true || mg.m1_remains_consumed_and_expired !== true) fail('preflight must confirm M1 remains permanently consumed');
 const psa = preflight.preflight_safety_attestations || {};

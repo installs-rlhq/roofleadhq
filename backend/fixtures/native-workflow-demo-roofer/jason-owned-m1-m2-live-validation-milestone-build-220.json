@@ -1,0 +1,110 @@
+{
+  "milestone_name": "jason_owned_m1_m2_live_validation_milestone_build_220",
+  "build": 220,
+  "data_classification": "jason_owned_live_validation_milestone_labels_booleans_codes_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_destination_values_no_production_data",
+  "summary": "Build 220 records that the Jason-owned live SMS validation loop is COMPLETE for both native workflow message scenarios. Build 217 validated five native workflow scenarios locally through the actual native modules. M1 (new_roof_inspection_lead_alert) was live-validated: the exact signed M1 copy was delivered, Jason confirmed receipt and exact-copy match, and the M1 approval was consumed and expired permanently. M2 (missed_or_slow_lead_follow_up_nudge) was live-validated: the exact signed M2 copy was delivered, Jason confirmed receipt and exact-copy match, and the M2 approval was consumed and expired permanently. Native workflow message binding is now proven live for both M1 and M2. The remaining native workflow scenarios (daily open-lead recap, lead source/routing flag, homeowner-consent boundary) remain locally validated only. Lindy remains in safe pilot mode and does not own the product workflow. No homeowner contact and no real-roofer contact is authorized. Unrestricted launch remains false. All other live automation remains disabled.",
+
+  "source_of_truth_commit": "8d92939",
+  "verified_build_218_commit": "21b840b",
+  "verified_build_219_commit": "2fe42d3",
+
+  "chain_reference": {
+    "build_217_integrated_workflow_packet": "backend/fixtures/native-workflow-demo-roofer/jason-owned-integrated-workflow-build-217.json",
+    "build_218_m1_signed_approval": "backend/fixtures/native-workflow-demo-roofer/m1-live-validation-signed-approval-build-218.json",
+    "build_219_m1_closeout_evidence": "backend/fixtures/native-workflow-demo-roofer/m1-live-validation-closeout-evidence-build-219.json",
+    "build_219_m2_signed_approval": "backend/fixtures/native-workflow-demo-roofer/m2-live-validation-signed-approval-build-219.json",
+    "build_220_m2_closeout_evidence": "backend/fixtures/native-workflow-demo-roofer/m2-live-validation-closeout-evidence-build-220.json"
+  },
+
+  "build_217_local_validation": {
+    "runner_exercises_native_workflow_logic": true,
+    "validated_scenario_count": 5,
+    "five_native_workflow_scenarios_validated_locally": true,
+    "m1_exact_binding_proven_locally": true,
+    "m2_exact_binding_proven_locally": true,
+    "decision": "JASON_OWNED_INTEGRATED_WORKFLOW_LOCALLY_VALIDATED_LIVE_M1_M2_APPROVALS_AVAILABLE"
+  },
+
+  "m1_live_validation": {
+    "scenario_key": "new_roof_inspection_lead_alert",
+    "message_id": "M1",
+    "channel": "sms",
+    "native_workflow_path_validated_live": true,
+    "exact_signed_m1_body_sent": true,
+    "sms_sent": true,
+    "recipient_confirmed_sms_received": true,
+    "recipient_confirmed_actual_text_matches_m1": true,
+    "recipient_confirmed_wrong_or_generic_copy_received": false,
+    "one_attempt_only": true,
+    "retry_performed": false,
+    "m1_approval_consumed": true,
+    "m1_approval_expired": true,
+    "m1_approval_permanently_consumed_and_never_reusable": true
+  },
+
+  "m2_live_validation": {
+    "scenario_key": "missed_or_slow_lead_follow_up_nudge",
+    "message_id": "M2",
+    "channel": "sms",
+    "native_workflow_path_validated_live": true,
+    "exact_signed_m2_body_sent": true,
+    "sms_sent": true,
+    "recipient_confirmed_sms_received": true,
+    "recipient_confirmed_actual_text_matches_m2": true,
+    "recipient_confirmed_wrong_or_generic_copy_received": false,
+    "one_attempt_only": true,
+    "retry_performed": false,
+    "m2_approval_consumed": true,
+    "m2_approval_expired": true,
+    "m2_approval_permanently_consumed_and_never_reusable": true
+  },
+
+  "native_workflow_message_binding_proven_live": {
+    "new_roof_inspection_lead_alert_m1": true,
+    "missed_or_slow_lead_follow_up_nudge_m2": true,
+    "binding_source_module": "backend/src/services/roofer-alert-binding.service.ts",
+    "both_m1_and_m2_live_exact_copy_validations_complete": true
+  },
+
+  "remaining_scenarios_locally_validated_only": {
+    "daily_open_lead_recap": true,
+    "lead_source_routing_flag": true,
+    "homeowner_consent_boundary_reminder": true,
+    "note": "Daily recap, routing flag, and the homeowner-consent boundary remain locally validated only; no live external send is authorized for these. Homeowner-facing outreach remains blocked pending separate consent and approval."
+  },
+
+  "lindy_status": {
+    "lindy_pilot_mode": "safe_internal_assistance_and_jason_only_daily_brief",
+    "lindy_owns_product_workflow": false,
+    "lindy_safe_for_pilot_mode": true,
+    "lindy_live_enabled": false
+  },
+
+  "authorization_boundaries": {
+    "authorizes_send_now": false,
+    "homeowner_contact_authorized": false,
+    "real_roofer_contact_authorized": false,
+    "unrestricted_launch": false,
+    "live_automation_remains_disabled": true
+  },
+
+  "milestone_safety_attestations": {
+    "sms_sent_during_build_220": false,
+    "twilio_called_during_build_220": false,
+    "credentials_loaded_or_inspected_during_build_220": false,
+    "destination_value_recorded": false,
+    "phone_number_recorded": false,
+    "email_address_recorded": false,
+    "raw_sid_recorded": false,
+    "secret_values_recorded": false,
+    "network_or_external_call_made_during_build_220": false,
+    "production_data_used": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "decision": "JASON_OWNED_M1_M2_LIVE_VALIDATION_COMPLETE",
+  "recommended_next_option": "prepare_sales_demo_surface_and_recruit_real_roofer_pilots",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

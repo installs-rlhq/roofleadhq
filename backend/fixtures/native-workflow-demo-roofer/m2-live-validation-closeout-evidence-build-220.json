@@ -1,0 +1,107 @@
+{
+  "evidence_name": "m2_live_validation_closeout_evidence_build_220",
+  "build": 220,
+  "data_classification": "m2_live_validation_closeout_labels_booleans_codes_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_destination_values_no_production_data",
+  "summary": "Build 220 truthfully CLOSES OUT the one authorized M2 live-validation send approved (signed, single-use) in Build 219. Outside this build, Jason ran the guarded M2 runner: the non-mutating send-time preflight passed, then exactly ONE Jason-operated, SMS-only controlled live validation send of scenario missed_or_slow_lead_follow_up_nudge (M2) was attempted with the native-workflow-produced body (Build 217 bindRooferAlert). The SMS was sent, Jason confirmed he received it, and the received text matched the signed M2 copy EXACTLY (no M1, generic, empty, substituted, or wrong-scenario copy). No retry occurred. The single-use approval was consumed and expired and can never be reused. All live credential and destination environment values were cleared after the attempt. This closeout records labels/booleans/codes only: no secret values, phone numbers, email addresses, raw SIDs, or destination values. No homeowner or real-roofer contact occurred. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "8d92939",
+  "verified_build_218_commit": "21b840b",
+  "verified_build_219_commit": "2fe42d3",
+
+  "m2_approval_packet_reference": {
+    "approval_path": "backend/fixtures/native-workflow-demo-roofer/m2-live-validation-signed-approval-build-219.json",
+    "runner_path": "backend/scripts/run-native-workflow-fixture-m2-guarded-live-validation-execution-build-219.js",
+    "scenario_key": "missed_or_slow_lead_follow_up_nudge",
+    "message_id": "M2",
+    "channel": "sms",
+    "bound_build_217_source_commit": "8d92939",
+    "approval_was_single_use": true
+  },
+
+  "m2_non_mutating_preflight": {
+    "native_body_produced_by_bindRooferAlert": true,
+    "produced_body_equals_signed_m2_exactly": true,
+    "m2_approval_valid_and_unconsumed_before_attempt": true,
+    "m1_remained_consumed_before_attempt": true,
+    "would_permit_live_send_after_confirm_token": true,
+    "preflight_is_non_mutating": true,
+    "preflight_left_git_status_unchanged": true,
+    "preflight_made_no_send": true
+  },
+
+  "m2_authorized_live_attempt": {
+    "send_attempt_count": 1,
+    "retry_performed": false,
+    "sms_sent": true,
+    "approval_consumed": true,
+    "approval_expired": true,
+    "send_exit_status": 0,
+    "one_attempt_only": true,
+    "native_m2_message_binding_validated_live": true,
+    "exact_signed_m2_body_sent": true,
+    "m1_or_generic_or_substituted_or_wrong_scenario_copy_sent": false,
+    "empty_copy_sent": false
+  },
+
+  "recipient_confirmation": {
+    "recipient_label": "jason_operator_own_consenting_test_identity",
+    "recipient_confirmed_sms_received": true,
+    "recipient_confirmed_actual_text_matches_m2": true,
+    "recipient_confirmed_wrong_or_generic_copy_received": false,
+    "received_text_matches_signed_m2_exactly": true,
+    "received_text_recorded_verbatim_in_evidence": false,
+    "note": "Jason confirmed receipt and that the received text matched the signed M2 copy exactly. The verbatim received text is the approved, non-secret roofer-facing M2 copy already owned by the Build 217 native binding catalog (roofer-alert-binding.service bindRooferAlert); this evidence records the boolean match only and never records any destination value."
+  },
+
+  "post_attempt_environment_clearing": {
+    "twilio_live_account_sid_cleared": true,
+    "twilio_live_auth_token_cleared": true,
+    "twilio_live_from_number_cleared": true,
+    "m2_live_validation_to_number_cleared": true,
+    "m2_live_validation_confirm_cleared": true,
+    "raw_number_cleared": true,
+    "clean_number_cleared": true,
+    "all_live_env_values_cleared_after_attempt": true
+  },
+
+  "m2_permanent_consumption": {
+    "m2_approval_consumed": true,
+    "m2_approval_expired": true,
+    "m2_approval_single_use": true,
+    "m2_approval_permanently_consumed_and_never_reusable": true,
+    "m2_cannot_be_reauthorized_by_any_later_packet": true,
+    "m2_approval_never_authorized_m1": true
+  },
+
+  "m1_remains_permanently_consumed": {
+    "m1_approval_consumed": true,
+    "m1_approval_expired": true,
+    "m1_approval_permanently_consumed_and_never_reusable": true,
+    "m1_cannot_be_reauthorized_by_any_later_packet": true
+  },
+
+  "closeout_safety_attestations": {
+    "sms_sent_during_build_220": false,
+    "twilio_called_during_build_220": false,
+    "twilio_client_constructed_during_build_220": false,
+    "messages_create_called_during_build_220": false,
+    "credentials_loaded_or_inspected_during_build_220": false,
+    "destination_value_recorded": false,
+    "phone_number_recorded": false,
+    "email_address_recorded": false,
+    "raw_sid_recorded": false,
+    "secret_values_recorded": false,
+    "network_or_external_call_made_during_build_220": false,
+    "retry_performed": false,
+    "homeowner_contacted": false,
+    "real_roofer_contacted": false,
+    "production_data_used": false,
+    "unrestricted_launch": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "decision": "M2_LIVE_VALIDATION_CONFIRMED_CLOSED_OUT_APPROVAL_PERMANENTLY_CONSUMED",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

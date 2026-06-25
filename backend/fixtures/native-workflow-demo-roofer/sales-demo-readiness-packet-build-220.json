@@ -1,0 +1,84 @@
+{
+  "packet_name": "sales_demo_readiness_packet_build_220",
+  "build": 220,
+  "data_classification": "sales_demo_readiness_labels_booleans_codes_and_sanitized_prose_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_destination_values_no_production_data",
+  "summary": "Build 220 produces the smallest useful sanitized sales-demo readiness packet Jason can use immediately in manual sales conversations. It contains a demo story, proof bullets, sales positioning, the offer, and a sales next-step line. It contains no phone numbers, email addresses, secrets, raw SIDs, credential values, or production data.",
+
+  "source_of_truth_commit": "8d92939",
+  "verified_build_219_commit": "2fe42d3",
+
+  "demo_story": [
+    "A roof inspection lead comes in.",
+    "RoofLeadHQ recognizes and organizes it.",
+    "An M1 alert is prepared from native workflow logic and was validated live.",
+    "If the lead remains unanswered, an M2 follow-up is prepared from native workflow logic and was validated live.",
+    "Open leads can be summarized in a daily recap locally.",
+    "Source and routing information remains visible locally.",
+    "Homeowner outreach remains blocked pending consent and separate approval."
+  ],
+
+  "proof_bullets": {
+    "local_integrated_scenarios_passed": true,
+    "m1_live_exact_copy_proof_passed": true,
+    "m2_live_exact_copy_proof_passed": true,
+    "no_autonomous_external_automation": true,
+    "lindy_safe_pilot_mode": true,
+    "no_homeowner_contact": true,
+    "no_unrestricted_launch": true
+  },
+
+  "sales_positioning": {
+    "positioning_statement": "RoofLeadHQ helps roofing contractors respond faster to roof inspection leads and avoid letting open leads sit without follow-up.",
+    "avoid_guarantee_language": true,
+    "avoid_booked_jobs_claims": true,
+    "avoid_estimates_quotes_invoices_payments_deposits_claims": true
+  },
+
+  "offer": {
+    "monthly_price_range_usd": "399-799",
+    "setup_fee_usd": "499",
+    "trial": "14-day trial after go-live",
+    "pilot_terms": "manual-approval pilot first"
+  },
+
+  "sales_next_step_line": "I can test this with your inbound leads under manual approval first.",
+
+  "demo_surface_status": {
+    "true_product_demo_ui_wired_to_native_workflow_exists": false,
+    "existing_marketing_website_present": true,
+    "existing_static_sample_demo_pages_present": true,
+    "existing_sanitized_evidence_reports_present": true,
+    "ui_screenshot_fabricated_in_this_build": false,
+    "note": "A real product demo UI wired to the live native M1/M2 workflow does NOT yet exist. What exists today is a sanitized marketing website, static sample/mockup pages under website/demo, and sanitized evidence reports/runners that prove the workflow. The exact-copy live SMS proof for M1 and M2 is real and recorded. Building a genuine demo surface that shows the native workflow on synthetic data is identified as the next strategic build target. No UI screenshot was fabricated in this build.",
+    "next_strategic_build_target": "build_a_genuine_demo_surface_showing_the_native_m1_m2_workflow_on_synthetic_data_or_finalize_a_sanitized_evidence_report_as_the_demo_surface"
+  },
+
+  "recommended_smallest_next_steps_to_selling": {
+    "A_stop_building_new_sms_proof_unless_a_defect_appears": true,
+    "B_create_or_confirm_one_usable_sales_demo_surface_existing_sanitized_ui_or_evidence_report": true,
+    "C_prepare_real_roofer_outreach_list": true,
+    "D_conduct_sales_conversations_manually": true,
+    "E_for_any_real_roofer_pilot_capture_consent_and_run_manual_approval_workflow_only": true,
+    "F_do_not_contact_homeowners_until_separate_consent_and_approval_exists": true
+  },
+
+  "packet_safety_attestations": {
+    "phone_number_recorded": false,
+    "email_address_recorded": false,
+    "secret_values_recorded": false,
+    "raw_sid_recorded": false,
+    "credential_values_recorded": false,
+    "production_data_used": false,
+    "destination_value_recorded": false,
+    "guarantee_language_used": false,
+    "booked_jobs_claim_used": false,
+    "estimates_quotes_invoices_payments_deposits_claim_used": false,
+    "ui_screenshot_fabricated": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "decision": "SALES_DEMO_READINESS_PACKET_READY",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

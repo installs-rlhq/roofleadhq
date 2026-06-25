@@ -3,10 +3,8 @@
   "build": 219,
   "data_classification": "m2_live_validation_signed_approval_capture_labels_booleans_codes_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_production_data",
   "summary": "Build 219 is a LOCAL-ONLY packet that CAPTURES Jason's fresh, signed, single-use, scenario-specific approval for exactly ONE future Jason-operated, SMS-only, controlled live validation send of scenario missed_or_slow_lead_follow_up_nudge (M2) using the Build 217 native workflow message binding. It also finalizes the guarded M2 execution path (future live runner) and a fail-closed, NON-MUTATING send-time source guard/preflight. Capturing this approval is NOT a send and does NOT arm any confirmation token. This approval authorizes M2 ONLY and never M1; M1 remains permanently consumed and can never be reauthorized by this packet. This build performs NO live action: no SMS, no Twilio, no Twilio client, no messages.create, no provider call, no network/external call, no credential load/inspection, no destination value recorded, no confirm-token arming, no retry, no homeowner or real-roofer contact, no live automation activation. The single next step is a NON-MUTATING send-time preflight (which never sends and never modifies a tracked file), then at most ONE guarded M2 attempt only after the preflight passes and a scenario-specific confirmation token is deliberately supplied. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
-
   "source_of_truth_commit": "8d92939",
   "verified_build_218_commit": "21b840b",
-
   "source_binding": {
     "note": "This signed M2 approval and the future M2 send-time guard bind to the VERIFIED Build 217 source commit 8d92939 (the foundational integrated-workflow commit) and the VERIFIED Build 218 commit 21b840b (which captured and then consumed the M1 approval). Because a commit cannot contain its own final hash, Build 219 is validated DYNAMICALLY at send time by its commit subject; the Build 219 future hash is never hardcoded.",
     "bound_build_217_source_commit": "8d92939",
@@ -14,7 +12,6 @@
     "future_execution_validates_build_219_dynamically_at_send_time": true,
     "build_219_future_hash_is_not_hardcoded": true
   },
-
   "prior_chain_reference": {
     "build_217_packet_path": "backend/fixtures/native-workflow-demo-roofer/jason-owned-integrated-workflow-build-217.json",
     "build_217_approval_ready_path": "backend/fixtures/native-workflow-demo-roofer/m1-m2-guarded-live-validation-approval-ready-build-217.json",
@@ -25,7 +22,6 @@
     "build_219_m1_live_validation_confirmed_and_closed_out": true,
     "m1_approval_permanently_consumed": true
   },
-
   "signed_m2_approval": {
     "approval_signed": true,
     "approval_granted": true,
@@ -40,8 +36,8 @@
     "max_message_count": 1,
     "retry_allowed": false,
     "approval_single_use": true,
-    "approval_consumed": false,
-    "approval_expired": false,
+    "approval_consumed": true,
+    "approval_expired": true,
     "authorizes_m2": true,
     "authorizes_m1": false,
     "m1_approved": false,
@@ -61,9 +57,9 @@
     "send_time_confirmation_required": true,
     "approval_expires_after_attempt_whether_successful_failed_or_blocked": true,
     "exact_signed_statement": "I, Jason Lohse, approve exactly ONE Jason-operated, SMS-only, controlled live validation send of scenario missed_or_slow_lead_follow_up_nudge (M2) using only this exact text: \"RoofLeadHQ: A roof inspection lead is still waiting on a first reply. A quick follow-up now keeps it warm. Reply STOP to opt out.\" Scope: one SMS only; SMS-only; no retry; this approval authorizes M2 ONLY and never M1; no homeowner contact; no real roofer contact; no live automation activation; no unrestricted launch; no production data; no secrets/phone numbers/email addresses recorded in repo/chat/logs; destination entered silently at execution time; send-time confirmation required; approval is single-use and expires after the attempt whether successful, failed, or blocked.",
-    "approval_capture_notes": "This captures Jason's fresh, single-use, scenario-specific signed approval for exactly ONE future Jason-operated, SMS-only controlled live validation send of M2 (missed_or_slow_lead_follow_up_nudge). The outbound body MUST be produced by the Build 217 native workflow binding (bindRooferAlert) and MUST equal the exact signed M2 text above. Capturing this approval does NOT send anything and does NOT arm any confirm token. A NON-MUTATING send-time preflight is required before any attempt; the preflight never sends and never modifies any tracked repository file. The guarded runner must verify the native-workflow-produced body equals this exact M2 text and fail closed on M1, empty, generic, substituted, modified, environment-overridden, or wrong-scenario copy. It must also require that M1 remains consumed. Exactly one attempt is permitted; no retry. The approval is single-use and is consumed/expired after any attempt whether successful, failed, or blocked. No secret values, SIDs, tokens, phone numbers, email addresses, or production data are recorded by capturing this approval."
+    "approval_capture_notes": "This captures Jason's fresh, single-use, scenario-specific signed approval for exactly ONE future Jason-operated, SMS-only controlled live validation send of M2 (missed_or_slow_lead_follow_up_nudge). The outbound body MUST be produced by the Build 217 native workflow binding (bindRooferAlert) and MUST equal the exact signed M2 text above. Capturing this approval does NOT send anything and does NOT arm any confirm token. A NON-MUTATING send-time preflight is required before any attempt; the preflight never sends and never modifies any tracked repository file. The guarded runner must verify the native-workflow-produced body equals this exact M2 text and fail closed on M1, empty, generic, substituted, modified, environment-overridden, or wrong-scenario copy. It must also require that M1 remains consumed. Exactly one attempt is permitted; no retry. The approval is single-use and is consumed/expired after any attempt whether successful, failed, or blocked. No secret values, SIDs, tokens, phone numbers, email addresses, or production data are recorded by capturing this approval.",
+    "approval_consumed_outcome": "attempted"
   },
-
   "guarded_m2_execution_path_reference": {
     "runner_path": "backend/scripts/run-native-workflow-fixture-m2-guarded-live-validation-execution-build-219.js",
     "negative_guard_tests_path": "backend/scripts/verify-m2-guarded-live-validation-negative-guards-build-219-readonly.js",
@@ -83,7 +79,6 @@
     "destination_entered_silently_never_printed_or_persisted": true,
     "preflight_is_non_mutating_writes_no_tracked_file": true
   },
-
   "next_decision_packet": {
     "decision": "M1_LIVE_VALIDATION_CONFIRMED_M2_GUARDED_SIGNED_APPROVAL_CAPTURED_SEND_TIME_PREFLIGHT_REQUIRED",
     "recommended_next_option": "run_non_mutating_m2_send_time_preflight_then_one_guarded_m2_attempt",
@@ -91,7 +86,7 @@
     "m1_live_validation_confirmed": true,
     "m1_approval_consumed": true,
     "m2_approved": true,
-    "m2_approval_consumed": false,
+    "m2_approval_consumed": true,
     "m2_send_time_preflight_required": true,
     "next_live_attempt_maximum": 1,
     "retry_allowed": false,
@@ -101,7 +96,6 @@
     "live_automation_remains_disabled": true,
     "authorizes_send_during_build_219": false
   },
-
   "homeowner_facing_copy_boundary": {
     "homeowner_facing_sms_approved_now": false,
     "requires_separate_consent_and_approval": true,
@@ -110,7 +104,6 @@
     "status_label": "homeowner_facing_sms_not_approved_approval_is_roofer_facing_m2_only",
     "note": "This approval is for one roofer-facing M2 SMS only. No homeowner-facing message is approved, consented, or to be sent. Any homeowner-facing message requires separate, explicit consent capture and a separate signed approval. This approval never authorizes M1."
   },
-
   "approval_capture_safety_attestations": {
     "reads_secret_values": false,
     "secret_values_printed_logged_or_committed": false,
@@ -142,7 +135,6 @@
     "m1_reauthorized": false,
     "other_live_automation_remains_disabled": true
   },
-
   "stop_rollback_owner_label": "Jason Lohse",
   "next_step": "jason_runs_the_non_mutating_m2_send_time_preflight_which_never_sends_and_never_modifies_a_tracked_file_then_after_it_passes_and_a_scenario_specific_confirmation_token_is_deliberately_supplied_runs_exactly_one_guarded_jason_operated_m2_sms_attempt_with_no_retry_entering_the_destination_silently_at_execution_time_outside_repo_chat_logs_m2_guarded_signed_approval_captured_send_time_preflight_required_not_send_now_not_unrestricted_launch",
   "next_step_is_unrestricted_launch": false,
