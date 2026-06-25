@@ -1,0 +1,159 @@
+{
+  "summary_name": "launch_readiness_summary_build_219",
+  "build": 219,
+  "data_classification": "launch_readiness_summary_labels_only_no_secret_values_no_phone_numbers_no_email_addresses",
+  "as_of_decision": "M1_LIVE_VALIDATION_CONFIRMED_AND_CLOSED_OUT_NATIVE_WORKFLOW_PATH_VALIDATED_LIVE_EXACT_SIGNED_M1_BODY_SENT_ONE_ATTEMPT_ONLY_RECIPIENT_CONFIRMED_RECEIPT_AND_EXACT_COPY_MATCH_NO_GENERIC_OR_SUBSTITUTED_COPY_NO_RETRY_APPROVAL_CONSUMED_AND_EXPIRED_PERMANENTLY_ENV_VALUES_CLEARED_M2_SIGNED_SINGLE_USE_SCENARIO_SPECIFIC_APPROVAL_CAPTURED_BOUND_TO_VERIFIED_BUILD_217_SOURCE_COMMIT_8D92939_AND_VERIFIED_BUILD_218_COMMIT_21B840B_GUARDED_M2_RUNNER_PRODUCES_BODY_VIA_NATIVE_WORKFLOW_AND_FAILS_CLOSED_ON_M1_GENERIC_EMPTY_MODIFIED_ENV_OVERRIDDEN_COPY_MISSING_UNSIGNED_CONSUMED_APPROVAL_WRONG_SOURCE_CHAIN_M1_REUSE_DIRTY_WORKTREE_WRONG_BRANCH_HEAD_SUBJECT_MISSING_WRONG_CONFIRM_TOKEN_MISSING_MULTIPLE_DESTINATION_MISSING_CREDENTIALS_AND_RETRY_NON_MUTATING_SEND_TIME_PREFLIGHT_LEAVES_GIT_STATUS_UNCHANGED_NO_SMS_DURING_BUILD_219_DECISION_M1_LIVE_VALIDATION_CONFIRMED_M2_GUARDED_SIGNED_APPROVAL_CAPTURED_SEND_TIME_PREFLIGHT_REQUIRED_NEXT_STEP_RUN_NON_MUTATING_M2_SEND_TIME_PREFLIGHT_THEN_AT_MOST_ONE_GUARDED_ATTEMPT_NOT_SEND_NOW_LIVE_AUTOMATION_DISABLED_NOT_UNRESTRICTED_LAUNCH",
+
+  "source_of_truth_commit": "8d92939",
+  "verified_build_218_commit": "21b840b",
+
+  "source_binding": {
+    "bound_build_217_source_commit": "8d92939",
+    "verified_build_218_commit": "21b840b",
+    "note": "Build 219 binds the M2 chain to the verified Build 217 source commit 8d92939 (foundational integrated workflow) and the verified Build 218 commit 21b840b (which captured then consumed the M1 approval). Build 219 is validated dynamically at send time by its commit subject; its future hash is never hardcoded."
+  },
+
+  "readiness_lanes": {
+    "local_suite": { "label": "local", "passed": 30, "total": 30, "all_passed": true },
+    "mock_adapter_suite": { "label": "mock_adapter", "passed": 30, "total": 30, "all_passed": true },
+    "jason_owned_integrated_workflow_validation": {
+      "label": "jason_owned_integrated_local_workflow_validation_build_217",
+      "runner_exercises_native_workflow_logic": true,
+      "validated_scenario_count": 5,
+      "m1_exact_binding_proven_locally": true,
+      "m2_exact_binding_proven_locally": true,
+      "decision": "JASON_OWNED_INTEGRATED_WORKFLOW_LOCALLY_VALIDATED_LIVE_M1_M2_APPROVALS_AVAILABLE"
+    },
+    "m1_live_validation_closeout": {
+      "label": "m1_live_validation_confirmed_and_closed_out_build_219",
+      "native_workflow_path_validated_live": true,
+      "exact_signed_m1_body_sent": true,
+      "send_attempt_count": 1,
+      "retry_performed": false,
+      "sms_sent": true,
+      "recipient_confirmed_sms_received": true,
+      "recipient_confirmed_actual_text_matches_m1": true,
+      "recipient_confirmed_wrong_or_generic_copy_received": false,
+      "m1_approval_consumed": true,
+      "m1_approval_expired": true,
+      "m1_approval_permanently_consumed_and_never_reusable": true,
+      "live_env_values_cleared_after_attempt": true,
+      "decision": "M1_LIVE_VALIDATION_CONFIRMED_CLOSED_OUT_APPROVAL_PERMANENTLY_CONSUMED"
+    }
+  },
+
+  "m2_guarded_approval_lane": {
+    "label": "m2_guarded_signed_approval_and_execution_path_build_219",
+    "decision": "M1_LIVE_VALIDATION_CONFIRMED_M2_GUARDED_SIGNED_APPROVAL_CAPTURED_SEND_TIME_PREFLIGHT_REQUIRED",
+    "recommended_next_option": "run_non_mutating_m2_send_time_preflight_then_one_guarded_m2_attempt",
+    "m2_signed_and_scenario_specific": true,
+    "m1_remains_consumed_and_unreusable": true,
+    "signer_label": "jason_operator",
+    "signed_date": "2026-06-25",
+    "signed_timezone": "America/Denver",
+    "exact_clock_time_recorded": false,
+    "bound_build_217_source_commit": "8d92939",
+    "verified_build_218_commit": "21b840b",
+    "native_workflow_produced_body_equals_signed_m2": true,
+    "guarded_runner_fails_closed": true,
+    "negative_guard_tests_passed": true,
+    "send_time_preflight_is_non_mutating": true,
+    "send_time_preflight_leaves_git_status_unchanged": true,
+    "send_time_preflight_required": true,
+    "no_send_during_build_219": true,
+    "next_live_attempt_maximum": 1,
+    "retry_allowed": false,
+    "m2_approval_consumed": false,
+    "m2_approval_expired": false,
+    "confirm_token_armed": false,
+    "destination_value_recorded": false,
+    "credentials_loaded_or_inspected": false,
+    "authorizes_send_now": false,
+    "authorizes_m2": true,
+    "authorizes_m1": false,
+    "homeowner_contact_authorized": false,
+    "real_roofer_contact_authorized": false,
+    "unrestricted_launch": false,
+    "live_automation_remains_disabled": true
+  },
+
+  "lindy_status": {
+    "lindy_audit_status": "completed",
+    "fillout_trigger_1_status": "removed_from_active_triggers",
+    "fillout_trigger_2_status": "removed_from_active_triggers",
+    "removed_trigger_count": 2,
+    "daily_brief_remains_enabled": true,
+    "daily_brief_destination_scope": "jason_only",
+    "remaining_auto_customer_contact_paths": 0,
+    "remaining_auto_roofer_contact_paths": 0,
+    "remaining_auto_homeowner_contact_paths": 0,
+    "lindy_pilot_mode": "safe_internal_assistance_and_jason_only_daily_brief",
+    "lindy_owns_product_workflow": false,
+    "lindy_safe_for_pilot_mode": true,
+    "lindy_live_enabled": false
+  },
+
+  "narrative": {
+    "build_217_validated_five_native_workflow_scenarios_locally": true,
+    "m1_passed_live_delivery_and_exact_copy_validation": true,
+    "m1_approval_is_consumed_permanently": true,
+    "m2_is_signed_but_not_sent": true,
+    "lindy_remains_in_safe_pilot_mode": true,
+    "m2_is_the_final_jason_owned_sms_scenario_awaiting_guarded_execution": true,
+    "after_m2_remaining_product_gap_is_genuine_ui_demo_packaging_then_real_roofer_pilot_recruitment": true,
+    "no_homeowner_contact_authorized": true,
+    "no_send_occurred_during_build_219": true,
+    "send_time_preflight_is_non_mutating_and_leaves_git_status_unchanged": true,
+    "next_step_is_not_unrestricted_launch": true,
+    "m2_approval_never_authorizes_m1": true,
+    "m1_can_never_be_reauthorized": true,
+    "fewer_bigger_strategic_builds_only": true
+  },
+
+  "broader_live_automation_status": {
+    "all_broader_live_automation_remains_disabled": true,
+    "sms_blast_automation_enabled": false,
+    "calendar_live_enabled": false,
+    "vapi_outbound_live_enabled": false,
+    "resend_live_enabled": false,
+    "lindy_live_enabled": false,
+    "cron_scheduler_dispatcher_enabled": false,
+    "public_live_routes_webhooks_enabled": false,
+    "crm_sync_automation_enabled": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_enabled": false
+  },
+
+  "primary_remaining_objective": {
+    "objective": "get_roofleadhq_to_a_repeatable_jason_owned_workflow_demonstration_and_sales_readiness_within_days",
+    "fewest_build_path": [
+      "build_215_proved_guarded_r1_live_sms_delivery_and_exact_approved_copy_binding_DONE",
+      "build_217_built_integrated_local_runner_that_exercises_native_modules_for_all_five_scenarios_DONE",
+      "build_218_captured_m1_signed_approval_and_finalized_guarded_m1_execution_path_DONE",
+      "build_219_confirmed_and_closed_out_m1_live_validation_and_captured_m2_signed_approval_with_non_mutating_send_time_preflight_DONE",
+      "jason_runs_the_non_mutating_m2_send_time_preflight_then_at_most_one_guarded_m2_attempt_single_use_send_time_confirmed",
+      "then_build_genuine_ui_demo_packaging_then_recruit_first_real_roofer_pilot"
+    ],
+    "estimated_strategic_builds_remaining_to_jason_owned_sales_demo_readiness": 2,
+    "estimated_strategic_builds_remaining_note": "After Jason runs the guarded M2 attempt (closing the last Jason-owned SMS scenario), roughly two larger strategic builds remain: (1) genuine UI/demo packaging of the owned workflow proof, and (2) first real-roofer pilot recruitment and onboarding. No homeowner contact is authorized."
+  },
+
+  "next_step": "jason_runs_the_non_mutating_m2_send_time_preflight_which_never_sends_and_never_modifies_a_tracked_file_then_after_it_passes_and_a_scenario_specific_confirmation_token_is_deliberately_supplied_runs_at_most_one_guarded_jason_operated_m2_sms_attempt_with_no_retry_entering_the_destination_silently_at_execution_time_outside_repo_chat_logs_m2_guarded_signed_approval_captured_send_time_preflight_required_not_send_now_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_non_mutating_m2_send_time_preflight_then_one_guarded_attempt": true,
+  "next_step_is_send_now": false,
+  "authorizes_send_now": false,
+  "m1_live_validation_confirmed": true,
+  "m1_approval_consumed": true,
+  "m2_approved": true,
+  "m2_approval_consumed": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+
+  "no_live_action_during_summary": true,
+  "no_secret_values_recorded": true,
+  "no_recipient_number_recorded": true,
+  "no_destination_value_recorded": true,
+  "no_email_address_recorded": true,
+  "no_raw_sid_recorded": true,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

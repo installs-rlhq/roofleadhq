@@ -142,8 +142,11 @@ const requiredApproval = {
   max_message_count: 1,
   retry_allowed: false,
   approval_single_use: true,
-  approval_consumed: false,
-  approval_expired: false,
+  // Build 219 update: the single-use M1 approval was CONSUMED/EXPIRED by the one authorized live
+  // validation send (see m1-live-validation-closeout-evidence-build-219.json). It is now permanently
+  // consumed and can never be reused — the runner's guard blocks any consumed approval.
+  approval_consumed: true,
+  approval_expired: true,
   authorizes_m1: true,
   authorizes_m2: false,
   m2_approved: false,
@@ -174,7 +177,8 @@ const requiredDecision = {
   authorizes_send_now: false,
   m1_approved: true,
   m2_approved: false,
-  approval_consumed: false,
+  // Build 219 update: M1 approval permanently consumed after the one authorized live attempt.
+  approval_consumed: true,
   send_time_preflight_required: true,
   next_live_attempt_maximum: 1,
   retry_allowed: false,
