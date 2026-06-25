@@ -1,0 +1,71 @@
+{
+  "diagnosis_name": "controlled_live_sms_one_message_build_187_failed_attempt_diagnosis",
+  "build": 187,
+  "data_classification": "local_only_diagnosis_from_non_secret_evidence_metadata_names_only",
+  "mode": "inspection_and_diagnosis_only",
+  "inspects_only_local_committed_evidence": true,
+  "reads_secret_values": false,
+  "performed_external_call": false,
+  "performed_external_twilio_call": false,
+  "performed_live_action": false,
+  "sent_sms": false,
+  "rich_inputs": {
+    "build_186_evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+    "build_186_closeout_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-build-186-closeout.json",
+    "build_186_source_commit": "0d3ceff53ff0b6451a260661d255bff9a3208b73"
+  },
+  "observed_outcome_from_evidence": {
+    "gate_decision_before_execution": "CONTROLLED_LIVE_SMS_PERMITTED",
+    "pre_flight_permitted": true,
+    "send_attempt_count": 1,
+    "auto_retry_on_failure": false,
+    "auto_retry_performed": false,
+    "sms_was_sent": false,
+    "delivery_was_simulated_or_live": "none_no_send_performed",
+    "twilio_result_metadata": null,
+    "final_decision": "CONTROLLED_LIVE_SMS_SEND_ATTEMPTED_FAILED_NO_RETRY"
+  },
+  "captured_error_metadata_names_only": {
+    "name": "Error",
+    "code": 20003,
+    "status": 401,
+    "no_secret_values_in_error_metadata": true,
+    "recipient_number_recorded_in_evidence": false
+  },
+  "root_cause_class": "twilio_authentication_rejection_at_transport_layer",
+  "root_cause_explanation": "The single permitted live SMS attempt was rejected by Twilio at the authentication layer before any message was accepted for delivery. HTTP status 401 with Twilio error code 20003 (authenticate / permission denied) indicates the live Twilio credentials presented by the runner were not accepted by Twilio. The evidence records only the live credential NAMES as present (TWILIO_LIVE_ACCOUNT_SID, TWILIO_LIVE_AUTH_TOKEN, TWILIO_LIVE_FROM_NUMBER); a name-present marker does not prove the underlying value is valid, current, and matched to the account/from-number. The failure is therefore a credential validity/configuration fault in Jason's controlled secret store, not a workflow, gate, cap, consent, or recipient fault.",
+  "ruled_out_causes": [
+    "safety_gate_misfire_gate_correctly_returned_permitted_under_signed_one_time_approval",
+    "recipient_consent_missing_recipient_was_jason_own_consenting_test_identity",
+    "one_message_cap_breach_cap_was_1_and_exactly_1_attempt_made",
+    "auto_retry_loop_no_retry_was_configured_or_performed",
+    "real_homeowner_contact_no_real_homeowner_involved",
+    "production_data_or_supabase_none_used",
+    "secret_value_leak_no_secret_values_read_logged_or_committed"
+  ],
+  "what_held_correctly": {
+    "gate_permitted_under_signed_one_time_approval": true,
+    "pre_flight_permitted": true,
+    "one_message_cap_enforced_value_1": true,
+    "exactly_one_attempt_made": true,
+    "no_retry_after_failure": true,
+    "no_secret_values_recorded": true,
+    "recipient_was_approved_consenting_test_identity": true,
+    "one_time_approval_consumed_after_attempt": true,
+    "safety_posture_preserved": true
+  },
+  "corrective_direction_for_any_future_retry_not_authorized_now": [
+    "jason_independently_revalidates_live_twilio_credential_values_in_his_controlled_store_never_in_repo",
+    "confirm_account_sid_auth_token_and_from_number_belong_to_the_same_active_twilio_account",
+    "confirm_from_number_is_sms_capable_and_authorized_for_the_destination",
+    "a_fresh_explicit_signed_one_message_approval_is_required_because_the_build_184_approval_is_consumed",
+    "no_retry_is_approved_under_the_consumed_build_186_approval"
+  ],
+  "approval_status_for_any_corrected_retry": "not_granted_not_signed_template_only",
+  "corrected_retry_approval_template_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-retry-approval-template.json",
+  "no_send_performed_in_build_187": true,
+  "no_retry_performed_in_build_187": true,
+  "rollback_status": "no_send_performed_nothing_to_roll_back",
+  "stop_rollback_owner_label": "Jason Lohse",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

@@ -1,0 +1,79 @@
+{
+  "gate_name": "native_workflow_fixture_controlled_live_sms_one_message_readiness_gate",
+  "build": 185,
+  "data_classification": "local_readiness_marker_names_only",
+  "mode": "readiness_and_approval_only",
+  "reads_marker": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-provisioning-marker.json",
+  "reads_build_181_result": "backend/fixtures/native-workflow-demo-roofer/actual-external-sandbox-30-scenario-local-validation-result.json",
+  "reads_build_182_result": "backend/fixtures/native-workflow-demo-roofer/channel-adapter-execution-engine-mock-result.json",
+  "reads_build_183_gate_result": "backend/fixtures/native-workflow-demo-roofer/sandbox-execution-readiness-gate-result.json",
+  "reads_build_184_evidence": "backend/fixtures/native-workflow-demo-roofer/supervised-sandbox-sms-execution-evidence.json",
+  "inspects_config_names_only": true,
+  "reads_secret_values": false,
+  "performed_external_call": false,
+  "performed_external_twilio_call": false,
+  "performed_live_action": false,
+  "sent_sms": false,
+  "invoked_actual_external_sandbox_runner_stub": false,
+  "approved_channel_for_controlled_live_test": "sms",
+  "channel_only_sms": true,
+  "scope_string": "controlled_live_sms_one_message_only_to_jason_own_consenting_test_identity_after_build_184",
+  "recipient_identity_label": "Jason Lohse / Test Roofing (own consenting test identity)",
+  "prior_chain_evidence": {
+    "build_181_local_30_30_present": true,
+    "build_182_mock_30_30_present": true,
+    "build_183_sandbox_execution_permitted": true,
+    "build_184_sandbox_sms_simulated_not_sent": true
+  },
+  "prior_chain_complete": true,
+  "live_config_readiness": {
+    "required_live_config_names": [
+      "TWILIO_LIVE_ACCOUNT_SID",
+      "TWILIO_LIVE_AUTH_TOKEN",
+      "TWILIO_LIVE_FROM_NUMBER"
+    ],
+    "missing_live_config_names": [
+      "TWILIO_LIVE_ACCOUNT_SID",
+      "TWILIO_LIVE_AUTH_TOKEN",
+      "TWILIO_LIVE_FROM_NUMBER"
+    ],
+    "live_credentials_provisioned_in_jason_controlled_store": false,
+    "live_credentials_location_requirement": "jason_controlled_secret_store_or_environment_only_never_in_repo"
+  },
+  "one_message_live_readiness": {
+    "recipient_is_jason_own_consenting_test_identity": true,
+    "recipient_identity_label": "Jason Lohse / Test Roofing (own consenting test identity)",
+    "recipient_consent_on_file": true,
+    "recipient_is_not_a_real_homeowner": true,
+    "one_message_cap_set": true,
+    "one_message_cap_value": 1,
+    "stop_rollback_owner_named": true,
+    "stop_rollback_owner_label": "Jason Lohse",
+    "stop_rollback_procedure_documented": true,
+    "no_production_supabase_or_data_confirmed": true,
+    "no_real_homeowner_contact_confirmed": true,
+    "no_billing_payment_deposit_quote_estimate_invoice_automation_confirmed": true,
+    "live_automation_disabled_except_future_one_message_sms_confirmed": true,
+    "supervised_window_scheduled": true
+  },
+  "unmet_one_message_readiness_items": [],
+  "one_message_cap_value": 1,
+  "explicit_controlled_live_sms_one_message_approval_signed": false,
+  "controlled_live_sms_ready": false,
+  "requires_before_any_real_sms": [
+    "explicit_signed_one_message_controlled_live_sms_approval",
+    "live_twilio_credentials_provisioned_only_in_jason_controlled_secret_store",
+    "recipient_remains_jason_own_consenting_test_identity",
+    "one_message_cap_of_1_enforced",
+    "stop_rollback_owner_and_procedure_in_place",
+    "no_production_supabase_or_data",
+    "no_real_homeowner_contact",
+    "no_billing_payment_deposit_quote_estimate_invoice_automation"
+  ],
+  "blocked_reasons": [
+    "explicit_controlled_live_sms_one_message_approval_not_signed",
+    "live_twilio_credentials_not_provisioned_in_jason_controlled_store:TWILIO_LIVE_ACCOUNT_SID+TWILIO_LIVE_AUTH_TOKEN+TWILIO_LIVE_FROM_NUMBER"
+  ],
+  "gate_decision": "CONTROLLED_LIVE_SMS_BLOCKED",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

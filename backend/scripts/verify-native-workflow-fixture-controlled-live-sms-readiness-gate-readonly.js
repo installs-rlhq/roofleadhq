@@ -15,6 +15,14 @@
  * homeowner, and no-billing requirements are encoded; the gate has no env/network/secret/live-
  * client surface; no public-route/webhook/cron/scheduler/dispatcher is created; and the demo
  * safety posture is preserved.
+ *
+ * BUILD 187 RECONCILIATION (versioned): the live gate-result file legitimately advanced from
+ * CONTROLLED_LIVE_SMS_BLOCKED to CONTROLLED_LIVE_SMS_PERMITTED in Build 186 under the signed
+ * one-time approval (now consumed). To avoid a stale failing assertion, the historical Build 185
+ * BLOCKED state is verified against a VERSIONED snapshot
+ * (controlled-live-sms-readiness-gate-result-build-185-blocked.json), and the live file is asserted
+ * to hold the legitimate Build 186 PERMITTED advance. Both states are representable; nothing here
+ * sends, retries, or reads any secret value.
  */
 
 const fs = require('fs');
@@ -25,7 +33,10 @@ const root = path.resolve(__dirname, '../..');
 const FIXTURE_DIR = 'backend/fixtures/native-workflow-demo-roofer';
 
 const markerPath = `${FIXTURE_DIR}/controlled-live-sms-provisioning-marker.json`;
-const gateResultPath = `${FIXTURE_DIR}/controlled-live-sms-readiness-gate-result.json`;
+// Build 187: the historical Build 185 BLOCKED state is verified against a versioned snapshot,
+// because the live gate-result file legitimately advanced to PERMITTED in Build 186.
+const gateResultPath = `${FIXTURE_DIR}/controlled-live-sms-readiness-gate-result-build-185-blocked.json`;
+const liveGateResultPath = `${FIXTURE_DIR}/controlled-live-sms-readiness-gate-result.json`;
 const gateRunnerPath = 'backend/scripts/run-native-workflow-fixture-controlled-live-sms-readiness-gate.js';
 const wrapperPath = 'scripts/run-native-workflow-fixture-controlled-live-sms-readiness-gate-dry-run.sh';
 const docPath = 'docs/NATIVE_WORKFLOW_FIXTURE_CONTROLLED_LIVE_SMS_BLOCKED_READINESS_GATE_AFTER_BUILD_184.md';
@@ -67,6 +78,19 @@ if (!gate.blocked_reasons.some((r) => r.startsWith('live_twilio_credentials_not_
   fail('blocked_reasons must include live credentials not provisioned');
 }
 pass('gate_is_fail_closed_and_blocked_with_unsigned_approval_and_unprovisioned_live_creds');
+
+// --- Build 187 reconciliation: live gate-result legitimately advanced to PERMITTED in Build 186 ---
+// The historical BLOCKED state above lives in a versioned snapshot; the live file now holds the
+// Build 186 PERMITTED advance (signed one-time approval, since consumed). This is intentional, not
+// stale: both states are represented, so neither assertion is in conflict.
+const liveGate = readJson(liveGateResultPath);
+if (liveGate.gate_decision !== 'CONTROLLED_LIVE_SMS_PERMITTED') {
+  fail('live gate-result must reflect the Build 186 CONTROLLED_LIVE_SMS_PERMITTED advance');
+}
+if (gate.gate_decision === liveGate.gate_decision) {
+  fail('versioned snapshot and live gate-result must represent DISTINCT states (BLOCKED vs PERMITTED)');
+}
+pass('historical_blocked_snapshot_and_live_permitted_advance_both_represented_no_stale_conflict');
 
 // --- Gate performed nothing live: no send, no external/twilio call, no secret values ---
 for (const k of ['performed_external_call', 'performed_external_twilio_call', 'performed_live_action', 'sent_sms', 'reads_secret_values', 'invoked_actual_external_sandbox_runner_stub']) {
