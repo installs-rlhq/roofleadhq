@@ -1,0 +1,65 @@
+{
+  "approval_name": "controlled_live_sms_corrected_one_message_approval_signed_build_190",
+  "build": 190,
+  "data_classification": "local_only_signed_approval_evidence_names_and_booleans_only",
+  "status": "APPROVAL_SIGNED_AND_GRANTED_ONE_ATTEMPT_ONLY",
+  "purpose": "Fresh SIGNED one-message controlled live SMS retry approval captured for Build 190 from Jason Lohse's explicit signed approval statement. This authorizes EXACTLY ONE controlled live SMS send attempt, SMS only, to Jason's own consenting test identity by existing marker only, after Jason independently revalidated the live Twilio credential values in his controlled store. No retry. Expires after one attempt or any gate failure. Names/booleans only; no secret values, SIDs, tokens, or recipient number recorded.",
+
+  "supersedes": {
+    "build_184_one_message_approval": {
+      "consumed_by_build": 186,
+      "consumed_state": "one_time_approval_consumed_no_carry_over",
+      "carries_over": false
+    },
+    "build_187_corrected_retry_approval_template": {
+      "path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-retry-approval-template.json",
+      "carries_over": false
+    },
+    "build_188_corrected_one_message_retry_approval_template": {
+      "path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-one-message-retry-approval-build-188-template.json",
+      "status_was": "TEMPLATE_ONLY_NOT_GRANTED_NOT_SIGNED_NOT_APPROVED",
+      "now_completed_as_signed_build_190": true
+    }
+  },
+
+  "approval_granted": true,
+  "approval_signed": true,
+  "approval_signed_by": "Jason Lohse",
+  "approval_signature": "Signed: Jason Lohse",
+  "approval_basis": "jason_lohse_build_190_signed_approval_statement",
+
+  "scope_string_signed": "controlled_live_sms_one_message_CORRECTED_RETRY_only_to_jason_own_consenting_test_identity_after_build_186_authentication_failure_and_jason_credential_revalidation",
+  "approved_action_single": "send_exactly_one_live_sms_message",
+  "approved_channel_only_sms": true,
+  "approved_one_message_cap_value": 1,
+  "approved_retry_count": 0,
+  "retry_permitted": false,
+  "approved_recipient_identity_label": "Jason Lohse / Test Roofing (own consenting test identity)",
+  "approved_recipient_is_real_homeowner": false,
+  "recipient_by_existing_marker_only": true,
+  "recipient_number_recorded_in_approval": false,
+
+  "approval_limited_to_build_190": true,
+  "approval_expires_after_one_attempt_or_any_gate_failure": true,
+
+  "approval_explicit_prohibitions": {
+    "no_retry": true,
+    "no_other_channels": true,
+    "no_production_data": true,
+    "no_real_homeowner_contact": true,
+    "no_billing_payment_quote_invoice_deposit_automation": true,
+    "no_public_routes_webhooks_cron_schedulers": true,
+    "no_schema_auth_rls_security_changes": true,
+    "no_secret_values_or_recipient_number_logged_or_committed": true
+  },
+
+  "credential_revalidation_attested_by_jason": true,
+  "credential_revalidation_attestation_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-credential-revalidation-attestation-build-190.json",
+
+  "reads_secret_values": false,
+  "records_secret_values": false,
+  "authorizes_send_now": true,
+  "authorizes_retry_now": false,
+  "stop_rollback_owner_label": "Jason Lohse",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

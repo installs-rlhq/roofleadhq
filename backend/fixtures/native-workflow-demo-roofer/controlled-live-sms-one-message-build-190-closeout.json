@@ -1,0 +1,49 @@
+{
+  "closeout_name": "controlled_live_sms_one_message_build_190_closeout",
+  "build": 190,
+  "data_classification": "controlled_live_execution_closeout_names_only_no_secret_values",
+  "summary": "Build 190 captured a fresh SIGNED one-message controlled live SMS retry approval and Jason's signed attestation that he independently revalidated the live Twilio credential values in his controlled store after the Build 186 401/20003 failure. The corrected credential self-check PASSED and the corrected pre-flight gate returned CONTROLLED_LIVE_SMS_CORRECTED_PREFLIGHT_PERMITTED. The single approved live SMS attempt was NOT executed in the build environment because the live Twilio credentials, the approved recipient number, the Twilio SDK, and the deliberate confirm token live ONLY in Jason's controlled environment (never in the repo or build/assistant environment), and the assistant must not obtain or handle secrets or phone numbers. No SMS was sent; zero send attempts; no retry. The one approved attempt is pending Jason's human-operated execution in his controlled environment.",
+  "approval_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-one-message-approval-signed-build-190.json",
+  "revalidation_attestation_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-credential-revalidation-attestation-build-190.json",
+  "self_check_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-credential-readiness-self-check-result-build-190.json",
+  "gate_result_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-preflight-gate-result-build-190.json",
+  "execution_evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence-build-190.json",
+  "execution_runner_path": "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js",
+
+  "approval_signed": true,
+  "approval_signed_by": "Jason Lohse",
+  "credential_revalidation_attested_by_jason": true,
+  "credential_self_check_passed": true,
+  "gate_decision": "CONTROLLED_LIVE_SMS_CORRECTED_PREFLIGHT_PERMITTED",
+
+  "pre_flight_permitted": true,
+  "live_send_armable_in_build_environment": false,
+  "send_attempt_count": 0,
+  "sms_was_sent": false,
+  "auto_retry_on_failure": false,
+  "auto_retry_performed": false,
+  "retry_performed": false,
+
+  "single_approved_attempt_pending_jason_controlled_execution": true,
+  "approval_expires_after_one_attempt_or_any_gate_failure": true,
+  "no_retry_under_this_approval": true,
+
+  "safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "recipient_number_recorded_in_evidence": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "real_homeowner_contact": false,
+    "contacted_only_approved_test_identity": true,
+    "channel_expanded_beyond_sms": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+  "rollback_status": "no_send_performed_during_build_190_nothing_to_roll_back",
+  "stop_rollback_owner_label": "Jason Lohse",
+  "final_decision": "CONTROLLED_LIVE_SMS_CORRECTED_PREFLIGHT_PERMITTED_SEND_NOT_ARMABLE_IN_BUILD_ENVIRONMENT_SINGLE_ATTEMPT_PENDING_JASON_CONTROLLED_EXECUTION",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

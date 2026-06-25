@@ -1,0 +1,89 @@
+{
+  "evidence_name": "controlled_live_sms_one_message_execution_evidence_build_190",
+  "build": 190,
+  "data_classification": "controlled_live_execution_evidence_names_only_no_secret_values",
+  "evidence_label": [
+    "controlled_live_sms_one_message_corrected_retry",
+    "to_jason_own_consenting_test_identity",
+    "after_build_186_authentication_failure",
+    "after_build_190_signed_approval_and_credential_revalidation",
+    "preflight_permitted_send_not_armable_in_build_environment"
+  ],
+  "signed_approval_scope": "controlled_live_sms_one_message_CORRECTED_RETRY_only_to_jason_own_consenting_test_identity_after_build_186_authentication_failure_and_jason_credential_revalidation",
+  "signed_approval_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-one-message-approval-signed-build-190.json",
+  "gate_decision_before_execution": "CONTROLLED_LIVE_SMS_CORRECTED_PREFLIGHT_PERMITTED",
+  "gate_result_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-corrected-preflight-gate-result-build-190.json",
+  "timestamp": "controlled-live-sms-one-message-corrected-retry-build-190",
+  "channel": "sms",
+  "channel_only_sms": true,
+  "transport_mode": "controlled_live_twilio_sms",
+  "transport_is_live": true,
+  "one_message_cap": 1,
+
+  "pre_flight_permitted": true,
+
+  "live_send_armable_in_build_environment": false,
+  "live_send_armed": false,
+  "build_environment_live_send_arming_check_names_only": {
+    "TWILIO_LIVE_ACCOUNT_SID_present": false,
+    "TWILIO_LIVE_AUTH_TOKEN_present": false,
+    "TWILIO_LIVE_FROM_NUMBER_present": false,
+    "CONTROLLED_LIVE_SMS_TO_NUMBER_present": false,
+    "CONTROLLED_LIVE_SMS_CONFIRM_token_present": false,
+    "twilio_sdk_installed_in_build_environment": false
+  },
+  "not_armable_reasons": [
+    "live_twilio_credentials_absent_from_build_environment_by_design_present_only_in_jason_controlled_store",
+    "approved_recipient_destination_number_absent_from_build_environment_by_design",
+    "deliberate_confirm_token_not_set_in_build_environment",
+    "twilio_sdk_not_installed_in_build_environment",
+    "assistant_must_not_obtain_or_handle_secrets_credentials_tokens_or_phone_numbers"
+  ],
+
+  "reads_secret_values": false,
+  "secret_values_printed_logged_or_committed": false,
+
+  "send_attempt_count": 0,
+  "auto_retry_on_failure": false,
+  "auto_retry_performed": false,
+  "retry_performed": false,
+  "sms_was_sent": false,
+  "delivery_was_simulated_or_live": "none_no_send_performed",
+  "twilio_result_metadata": null,
+  "send_error_metadata": null,
+  "provider_response_metadata_names_codes_only": null,
+
+  "recipient_identity_label": "Jason Lohse / Test Roofing (own consenting test identity)",
+  "recipient_number_recorded_in_evidence": false,
+
+  "production_data_used": false,
+  "used_production_supabase": false,
+  "real_homeowner_contact": false,
+  "contacted_only_approved_test_identity": true,
+  "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+  "schema_auth_rls_security_changes": false,
+  "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+  "channel_expanded_beyond_sms": false,
+  "other_live_automation_remains_disabled": true,
+
+  "approved_single_attempt_pending_jason_controlled_execution": true,
+  "how_jason_fires_the_single_approved_attempt": {
+    "runner_path": "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js",
+    "human_operated_in_jason_controlled_environment_only": true,
+    "requires_env_names_only": [
+      "TWILIO_LIVE_ACCOUNT_SID",
+      "TWILIO_LIVE_AUTH_TOKEN",
+      "TWILIO_LIVE_FROM_NUMBER",
+      "CONTROLLED_LIVE_SMS_TO_NUMBER",
+      "CONTROLLED_LIVE_SMS_CONFIRM"
+    ],
+    "exactly_one_attempt_no_retry": true,
+    "runner_re_gates_fail_closed_at_send_time": true
+  },
+
+  "stop_after_result_captured": true,
+  "stop_rollback_owner_label": "Jason Lohse",
+  "rollback_status": "no_send_performed_during_build_190_nothing_to_roll_back",
+  "final_decision": "CONTROLLED_LIVE_SMS_CORRECTED_PREFLIGHT_PERMITTED_SEND_NOT_ARMABLE_IN_BUILD_ENVIRONMENT_SINGLE_ATTEMPT_PENDING_JASON_CONTROLLED_EXECUTION",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
