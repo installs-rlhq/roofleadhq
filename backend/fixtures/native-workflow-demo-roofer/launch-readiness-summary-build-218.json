@@ -1,0 +1,142 @@
+{
+  "summary_name": "launch_readiness_summary_build_218",
+  "build": 218,
+  "data_classification": "launch_readiness_summary_labels_only_no_secret_values_no_phone_numbers_no_email_addresses",
+  "as_of_decision": "M1_GUARDED_SIGNED_APPROVAL_CAPTURED_AND_GUARDED_M1_EXECUTION_PATH_FINALIZED_M1_SIGNED_AND_SCENARIO_SPECIFIC_BOUND_TO_VERIFIED_BUILD_217_SOURCE_COMMIT_8D92939_NOT_THE_BUILD_216_BASE_8A7AD6B_NATIVE_WORKFLOW_PRODUCED_BODY_EQUALS_SIGNED_M1_EXACTLY_RUNNER_FAILS_CLOSED_ON_M2_GENERIC_EMPTY_MODIFIED_ENV_OVERRIDDEN_COPY_MISSING_UNSIGNED_CONSUMED_APPROVAL_WRONG_SOURCE_CHAIN_DIRTY_WORKTREE_WRONG_BRANCH_HEAD_SUBJECT_MISSING_WRONG_CONFIRM_TOKEN_MISSING_MULTIPLE_DESTINATION_MISSING_CREDENTIALS_AND_RETRY_SEND_TIME_PREFLIGHT_COMPUTED_FAIL_CLOSED_NO_SEND_M2_REMAINS_UNSIGNED_AND_UNAPPROVED_NO_SMS_DURING_BUILD_218_DECISION_M1_GUARDED_SIGNED_APPROVAL_CAPTURED_SEND_TIME_PREFLIGHT_REQUIRED_NEXT_STEP_RUN_M1_SEND_TIME_PREFLIGHT_THEN_AT_MOST_ONE_GUARDED_ATTEMPT_NOT_SEND_NOW_LIVE_AUTOMATION_DISABLED_NOT_UNRESTRICTED_LAUNCH",
+
+  "source_of_truth_commit": "8d92939",
+
+  "source_binding_correction": {
+    "incorrect_prior_binding_commit": "8a7ad6b",
+    "corrected_bound_build_217_source_commit": "8d92939",
+    "note": "Build 217 unsigned approval-ready artifact recorded 8a7ad6b (the Build 216 base used to build Build 217). The Build 218 signed approval and send-time guard bind to the verified Build 217 source commit 8d92939. Build 218 itself is validated dynamically at send time by its commit subject, never by a hardcoded future hash."
+  },
+
+  "readiness_lanes": {
+    "local_suite": { "label": "local", "passed": 30, "total": 30, "all_passed": true },
+    "mock_adapter_suite": { "label": "mock_adapter", "passed": 30, "total": 30, "all_passed": true },
+    "r1_sms_guarded_send_closeout": {
+      "label": "r1_sms_guarded_successful_send_closeout_build_215",
+      "selected_message_variant": "R1",
+      "sms_sent": true,
+      "recipient_confirmed_actual_text_matches_r1": true,
+      "decision": "GUARDED_R1_LIVE_DELIVERY_CONFIRMED_SMALL_ROOFER_PILOT_READY_FOR_APPROVAL"
+    },
+    "jason_owned_integrated_workflow_validation": {
+      "label": "jason_owned_integrated_local_workflow_validation_build_217",
+      "runner_exercises_native_workflow_logic": true,
+      "fixture_only_validation": false,
+      "validated_scenario_count": 5,
+      "m1_exact_binding_proven_locally": true,
+      "m2_exact_binding_proven_locally": true,
+      "decision": "JASON_OWNED_INTEGRATED_WORKFLOW_LOCALLY_VALIDATED_LIVE_M1_M2_APPROVALS_AVAILABLE"
+    }
+  },
+
+  "m1_guarded_approval_lane": {
+    "label": "m1_guarded_signed_approval_and_execution_path_build_218",
+    "decision": "M1_GUARDED_SIGNED_APPROVAL_CAPTURED_SEND_TIME_PREFLIGHT_REQUIRED",
+    "recommended_next_option": "run_m1_send_time_preflight_then_one_guarded_attempt",
+    "m1_signed_and_scenario_specific": true,
+    "m2_unsigned_and_unapproved": true,
+    "signer_label": "jason_operator",
+    "signed_date": "2026-06-25",
+    "signed_timezone": "America/Denver",
+    "exact_clock_time_recorded": false,
+    "bound_build_217_source_commit": "8d92939",
+    "native_workflow_produced_body_equals_signed_m1": true,
+    "guarded_runner_fails_closed": true,
+    "negative_guard_tests_passed": true,
+    "send_time_preflight_computed_no_send": true,
+    "send_time_preflight_required": true,
+    "no_send_during_build_218": true,
+    "next_live_attempt_maximum": 1,
+    "retry_allowed": false,
+    "approval_consumed": false,
+    "approval_expired": false,
+    "confirm_token_armed": false,
+    "destination_value_recorded": false,
+    "credentials_loaded_or_inspected": false,
+    "authorizes_send_now": false,
+    "homeowner_contact_authorized": false,
+    "real_roofer_contact_authorized": false,
+    "unrestricted_launch": false,
+    "live_automation_remains_disabled": true
+  },
+
+  "lindy_status": {
+    "lindy_audit_status": "completed",
+    "fillout_trigger_1_status": "removed_from_active_triggers",
+    "fillout_trigger_2_status": "removed_from_active_triggers",
+    "removed_trigger_count": 2,
+    "daily_brief_remains_enabled": true,
+    "daily_brief_destination_scope": "jason_only",
+    "remaining_auto_customer_contact_paths": 0,
+    "remaining_auto_roofer_contact_paths": 0,
+    "remaining_auto_homeowner_contact_paths": 0,
+    "lindy_pilot_mode": "safe_internal_assistance_and_jason_only_daily_brief",
+    "lindy_owns_product_workflow": false,
+    "lindy_safe_for_pilot_mode": true,
+    "lindy_live_enabled": false
+  },
+
+  "narrative": {
+    "build_217_validated_five_native_workflow_scenarios_locally": true,
+    "m1_now_signed_and_scenario_specific": true,
+    "m2_remains_unsigned_and_unapproved": true,
+    "no_send_occurred_during_build_218": true,
+    "guarded_m1_execution_path_finalized_permission_only_until_send_time_preflight_passes": true,
+    "next_action_after_verification_is_send_time_preflight_then_at_most_one_guarded_m1_attempt": true,
+    "attempt_not_authorized_until_preflight_passes_and_scenario_specific_confirmation_token_deliberately_supplied": true,
+    "approval_is_single_use_and_expires_after_any_attempt_whether_successful_failed_or_blocked": true,
+    "lindy_remains_in_safe_pilot_mode": true,
+    "no_homeowner_or_real_roofer_contact_authorized": true,
+    "broader_live_automation_remains_disabled": true,
+    "next_step_is_not_unrestricted_launch": true,
+    "m1_approval_never_authorizes_m2": true,
+    "fewer_bigger_strategic_builds_only": true
+  },
+
+  "broader_live_automation_status": {
+    "all_broader_live_automation_remains_disabled": true,
+    "sms_blast_automation_enabled": false,
+    "calendar_live_enabled": false,
+    "vapi_outbound_live_enabled": false,
+    "resend_live_enabled": false,
+    "lindy_live_enabled": false,
+    "cron_scheduler_dispatcher_enabled": false,
+    "public_live_routes_webhooks_enabled": false,
+    "crm_sync_automation_enabled": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_enabled": false
+  },
+
+  "primary_remaining_objective": {
+    "objective": "get_roofleadhq_to_a_repeatable_jason_owned_workflow_demonstration_and_sales_readiness_within_days",
+    "fewest_build_path": [
+      "build_215_proved_guarded_r1_live_sms_delivery_and_exact_approved_copy_binding_DONE",
+      "build_217_built_integrated_local_runner_that_exercises_native_modules_for_all_five_scenarios_DONE",
+      "build_218_captured_m1_signed_approval_and_finalized_guarded_m1_execution_path_with_send_time_source_guard_DONE",
+      "jason_runs_the_m1_send_time_preflight_then_at_most_one_guarded_m1_attempt_single_use_send_time_confirmed",
+      "optionally_sign_a_separate_fresh_m2_approval_then_package_the_owned_workflow_proof_for_sales_conversations"
+    ]
+  },
+
+  "next_step": "jason_runs_the_m1_send_time_preflight_which_never_sends_then_after_it_passes_and_a_scenario_specific_confirmation_token_is_deliberately_supplied_runs_at_most_one_guarded_jason_operated_m1_sms_attempt_with_no_retry_entering_the_destination_silently_at_execution_time_outside_repo_chat_logs_m1_guarded_signed_approval_captured_send_time_preflight_required_not_send_now_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_m1_send_time_preflight_then_one_guarded_attempt": true,
+  "next_step_is_send_now": false,
+  "authorizes_send_now": false,
+  "m1_approved": true,
+  "m2_approved": false,
+  "approval_consumed": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+
+  "no_live_action_during_summary": true,
+  "no_secret_values_recorded": true,
+  "no_recipient_number_recorded": true,
+  "no_destination_value_recorded": true,
+  "no_email_address_recorded": true,
+  "no_raw_sid_recorded": true,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

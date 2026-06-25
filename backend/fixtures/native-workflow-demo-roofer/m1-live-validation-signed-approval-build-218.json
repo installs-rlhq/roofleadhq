@@ -1,0 +1,169 @@
+{
+  "packet_name": "m1_live_validation_signed_approval_build_218",
+  "build": 218,
+  "data_classification": "m1_live_validation_signed_approval_capture_labels_booleans_codes_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_production_data",
+  "summary": "Build 218 is a LOCAL-ONLY packet that CAPTURES Jason's fresh, signed, single-use, scenario-specific approval for exactly ONE future Jason-operated, SMS-only, controlled live validation send of scenario new_roof_inspection_lead_alert (M1) using the Build 217 native workflow message binding. It also finalizes the guarded M1 execution path (future live runner) and a fail-closed send-time source guard. Capturing this approval is NOT a send and does NOT arm any confirmation token. This approval authorizes M1 ONLY and never M2. This build performs NO live action: no SMS, no Twilio, no Twilio client, no messages.create, no provider call, no network/external call, no credential load/inspection, no destination value recorded, no confirm-token arming, no retry, no homeowner or real-roofer contact, no live automation activation. The single next step is a send-time preflight (which never sends), then at most ONE guarded M1 attempt only after the preflight passes and a scenario-specific confirmation token is deliberately supplied. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "8d92939",
+
+  "source_binding_correction": {
+    "note": "The Build 217 unsigned approval-ready artifact recorded source_of_truth_commit=8a7ad6b, which was the Build 216 base commit used to BUILD Build 217. That value must NOT bind this signed approval or any future execution. This signed approval and the future send-time guard bind to the VERIFIED Build 217 source commit 8d92939.",
+    "incorrect_prior_binding_commit": "8a7ad6b",
+    "corrected_bound_build_217_source_commit": "8d92939",
+    "future_execution_validates_build_218_dynamically_at_send_time": true,
+    "build_218_future_hash_is_not_hardcoded": true
+  },
+
+  "prior_build_217_reference": {
+    "packet_path": "backend/fixtures/native-workflow-demo-roofer/jason-owned-integrated-workflow-build-217.json",
+    "approval_ready_path": "backend/fixtures/native-workflow-demo-roofer/m1-m2-guarded-live-validation-approval-ready-build-217.json",
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/integrated-workflow-execution-evidence-build-217.json",
+    "summary_path": "backend/fixtures/native-workflow-demo-roofer/launch-readiness-summary-build-217.json",
+    "build_217_decision": "JASON_OWNED_INTEGRATED_WORKFLOW_LOCALLY_VALIDATED_LIVE_M1_M2_APPROVALS_AVAILABLE",
+    "build_217_verified_source_commit": "8d92939",
+    "build_217_native_workflow_modules_exercised": true,
+    "build_217_m1_exact_binding_proven_locally": true,
+    "build_217_m2_exact_binding_proven_locally": true,
+    "build_217_homeowner_contact_blocked": true,
+    "build_217_guarded_future_m1_m2_support_permission_only_fails_closed": true
+  },
+
+  "signed_m1_approval": {
+    "approval_signed": true,
+    "approval_granted": true,
+    "signer_label": "jason_operator",
+    "approved_by_label": "Jason Lohse",
+    "signed_date": "2026-06-25",
+    "signed_timezone": "America/Denver",
+    "exact_clock_time_recorded": false,
+
+    "scenario_key": "new_roof_inspection_lead_alert",
+    "message_id": "M1",
+    "channel": "sms",
+    "selected_variant_text": "RoofLeadHQ: New roof inspection lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.",
+
+    "max_message_count": 1,
+    "retry_allowed": false,
+    "approval_single_use": true,
+    "approval_consumed": false,
+    "approval_expired": false,
+
+    "authorizes_m1": true,
+    "authorizes_m2": false,
+    "m2_approved": false,
+
+    "destination_value_recorded": false,
+    "bound_build_217_source_commit": "8d92939",
+    "authorizes_send_during_build_218": false,
+
+    "jason_operated_send_only": true,
+    "homeowner_contact_authorized": false,
+    "real_roofer_contact_authorized": false,
+    "live_automation_activation_authorized": false,
+    "unrestricted_launch_authorized": false,
+    "production_data_authorized": false,
+    "destination_entry_silent_at_execution_time_required": true,
+    "send_time_confirmation_required": true,
+    "approval_expires_after_attempt_whether_successful_failed_or_blocked": true,
+
+    "exact_signed_statement": "I, Jason Lohse, approve exactly ONE Jason-operated, SMS-only, controlled live validation send of scenario new_roof_inspection_lead_alert (M1) using only this exact text: \"RoofLeadHQ: New roof inspection lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.\" Scope: one SMS only; SMS-only; no retry; this approval authorizes M1 ONLY and never M2; no homeowner contact; no real roofer contact; no live automation activation; no unrestricted launch; no production data; no secrets/phone numbers/email addresses recorded in repo/chat/logs; destination entered silently at execution time; send-time confirmation required; approval is single-use and expires after the attempt whether successful, failed, or blocked.",
+
+    "approval_capture_notes": "This captures Jason's fresh, single-use, scenario-specific signed approval for exactly ONE future Jason-operated, SMS-only controlled live validation send of M1 (new_roof_inspection_lead_alert). The outbound body MUST be produced by the Build 217 native workflow binding and MUST equal the exact signed M1 text above. Capturing this approval does NOT send anything and does NOT arm any confirm token. A send-time preflight is required before any attempt; the preflight never sends. The guarded runner must verify the native-workflow-produced body equals this exact M1 text and fail closed on M2, empty, generic, substituted, modified, or wrong-scenario copy. Exactly one attempt is permitted; no retry. The approval is single-use and is consumed/expired after any attempt whether successful, failed, or blocked. No secret values, SIDs, tokens, phone numbers, email addresses, or production data are recorded by capturing this approval."
+  },
+
+  "guarded_m1_execution_path_reference": {
+    "runner_path": "backend/scripts/run-native-workflow-fixture-m1-guarded-live-validation-execution-build-218.js",
+    "negative_guard_tests_path": "backend/scripts/verify-m1-guarded-live-validation-negative-guards-build-218-readonly.js",
+    "preflight_result_path": "backend/fixtures/native-workflow-demo-roofer/m1-guarded-send-time-preflight-result-build-218.json",
+    "native_binding_module": "backend/src/services/roofer-alert-binding.service.ts",
+    "native_binding_function": "bindRooferAlert('new_roof_inspection_lead_alert')",
+    "scenario_specific_confirm_token_name_only": "M1_LIVE_VALIDATION_CONFIRM",
+    "scenario_specific_confirm_token_value_armed_by_build": false,
+    "destination_env_name_only": "M1_LIVE_VALIDATION_TO_NUMBER",
+    "required_credential_env_names_only": [
+      "TWILIO_LIVE_ACCOUNT_SID",
+      "TWILIO_LIVE_AUTH_TOKEN",
+      "TWILIO_LIVE_FROM_NUMBER"
+    ],
+    "outbound_body_bound_to_native_workflow_produced_body": true,
+    "outbound_body_must_equal_signed_m1_exactly": true,
+    "fail_closed_on_m2_empty_generic_substituted_modified_or_wrong_scenario": true,
+    "exactly_one_attempt_no_retry": true,
+    "approval_consumed_and_expired_after_any_attempt": true,
+    "destination_entered_silently_never_printed_or_persisted": true
+  },
+
+  "next_decision_packet": {
+    "decision": "M1_GUARDED_SIGNED_APPROVAL_CAPTURED_SEND_TIME_PREFLIGHT_REQUIRED",
+    "recommended_next_option": "run_m1_send_time_preflight_then_one_guarded_attempt",
+    "authorizes_send_now": false,
+    "authorizes_send_during_build_218": false,
+    "m1_approved": true,
+    "m2_approved": false,
+    "approval_consumed": false,
+    "send_time_preflight_required": true,
+    "next_live_attempt_maximum": 1,
+    "retry_allowed": false,
+    "homeowner_contact_authorized": false,
+    "real_roofer_contact_authorized": false,
+    "unrestricted_launch": false,
+    "live_automation_remains_disabled": true
+  },
+
+  "homeowner_facing_copy_boundary": {
+    "homeowner_facing_sms_approved_now": false,
+    "requires_separate_consent_and_approval": true,
+    "homeowner_contact_authorized": false,
+    "approved_for_homeowner_send": false,
+    "status_label": "homeowner_facing_sms_not_approved_approval_is_roofer_facing_m1_only",
+    "note": "This approval is for one roofer-facing M1 SMS only. No homeowner-facing message is approved, consented, or to be sent. Any homeowner-facing message requires separate, explicit consent capture and a separate signed approval. This approval never authorizes M2."
+  },
+
+  "approval_capture_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "credentials_loaded_or_inspected": false,
+    "phone_number_recorded": false,
+    "email_address_recorded": false,
+    "raw_sid_recorded": false,
+    "destination_value_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent_during_approval_capture": false,
+    "email_sent": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "confirm_token_armed": false,
+    "live_runner_executed_live": false,
+    "real_roofer_contacted_during_approval_capture": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_runs_the_m1_send_time_preflight_which_never_sends_then_after_it_passes_and_a_scenario_specific_confirmation_token_is_deliberately_supplied_runs_exactly_one_guarded_jason_operated_m1_sms_attempt_with_no_retry_entering_the_destination_silently_at_execution_time_outside_repo_chat_logs_m1_guarded_signed_approval_captured_send_time_preflight_required_not_send_now_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_send_time_preflight_then_one_guarded_attempt": true,
+  "next_step_is_send_now": false,
+  "authorizes_send_now": false,
+  "authorizes_send_during_build_218": false,
+  "m1_approved": true,
+  "m2_approved": false,
+  "homeowner_contact_authorized": false,
+  "real_roofer_contact_authorized": false,
+  "unrestricted_launch": false,
+  "live_automation_remains_disabled": true,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

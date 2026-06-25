@@ -1,0 +1,69 @@
+{
+  "result_name": "m1_guarded_send_time_preflight_result_build_218",
+  "build": 218,
+  "runner_name": "native_workflow_fixture_m1_guarded_live_validation_execution_build_218",
+  "mode": "preflight",
+  "data_classification": "labels_booleans_codes_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_destination_values_no_production_data",
+  "bound_build_217_source_commit": "8d92939",
+  "expected_build_218_subject": "test(workflow): capture m1 live validation approval build 218",
+  "build_218_validated_dynamically_at_send_time": true,
+  "source_state": {
+    "branch_is_main": true,
+    "head_equals_origin_main": true,
+    "worktree_clean": false,
+    "head_subject_is_build_218": false
+  },
+  "native_workflow_body_production": {
+    "body_produced_by_native_bindRooferAlert": true,
+    "produced_message_id": "M1",
+    "produced_scenario_key": "new_roof_inspection_lead_alert",
+    "produced_body_equals_signed_m1_exactly": true,
+    "produced_body_is_m2": false,
+    "produced_body_is_generic_or_stale": false,
+    "hardcoded_or_env_provided_body_used": false
+  },
+  "approval_guard": {
+    "approval_artifact_present": true,
+    "approval_valid_m1_only": true,
+    "approval_bound_to_build_217_commit_8d92939": true,
+    "m1_approved": true,
+    "m2_unapproved": true,
+    "approval_unconsumed": true
+  },
+  "execution_inputs_presence_only": {
+    "exactly_one_destination_present": false,
+    "destination_value_recorded": false,
+    "required_credential_names_present": false,
+    "scenario_specific_confirm_token_present": false,
+    "scenario_specific_confirm_token_armed_by_build": false
+  },
+  "would_permit_live_send": false,
+  "blocked_reasons": [
+    "worktree_not_clean",
+    "head_subject_not_build_218",
+    "destination_missing",
+    "required_credential_names_absent",
+    "scenario_specific_confirm_token_absent_or_wrong"
+  ],
+  "send_time_preflight_required": true,
+  "authorizes_send_now": false,
+  "preflight_safety_attestations": {
+    "sms_sent": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "credentials_loaded_or_inspected": false,
+    "destination_value_recorded": false,
+    "phone_number_recorded": false,
+    "email_address_recorded": false,
+    "raw_sid_recorded": false,
+    "network_or_external_call_made": false,
+    "confirm_token_armed": false,
+    "retry_performed": false,
+    "live_automation_remains_disabled": true
+  },
+  "decision": "M1_GUARDED_SEND_TIME_PREFLIGHT_COMPUTED_NO_SEND",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
