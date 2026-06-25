@@ -1,0 +1,95 @@
+{
+  "packet_name": "controlled_roofer_pilot_expansion_decision_build_198_signed",
+  "build": 198,
+  "data_classification": "controlled_roofer_pilot_expansion_decision_names_booleans_only_no_secret_values",
+  "summary": "Build 198 captures Jason's SIGNED controlled pilot expansion DECISION as names/booleans only, selecting Option B (same consenting test roofer, second controlled SMS, one message maximum, no retry). It clears the Build 197 expansion no-go blockers FOR DECISION/PREFLIGHT ONLY. It does NOT authorize a live send now and does NOT authorize unrestricted launch. LOCAL-ONLY: no SMS, no Twilio, no network/external call, no roofer/homeowner contact, no secret values, SIDs, tokens, or phone numbers recorded. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "76b44e0",
+  "prior_build_197_reference": {
+    "post_pilot_observation_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-post-pilot-observation-build-197.json",
+    "expansion_decision_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-decision-build-197.json",
+    "build_197_expansion_decision": "EXPANSION_NOT_APPROVED_REVIEW_REQUIRED"
+  },
+
+  "jason_approval_statement_recorded": true,
+  "jason_approval_statement_scope_label": "build_198_capture_controlled_pilot_expansion_decision_and_final_one_message_send_approval_and_preflight_only",
+  "approval_owner_label": "Jason Lohse",
+  "approval_signature_label": "Jason Lohse",
+
+  "selected_option": "B_same_roofer_second_controlled_sms",
+  "approval_signed": true,
+  "approval_granted_for_expansion_decision": true,
+  "unrestricted_launch": false,
+  "live_automation_remains_disabled": true,
+  "authorizes_live_pilot_send_now": false,
+
+  "selected_option_scope": {
+    "label": "same_roofer_second_controlled_message_one_sms_no_retry",
+    "same_consenting_test_roofer_only": true,
+    "additional_roofer_added": false,
+    "requires_new_consent_marker": false,
+    "sms_only": true,
+    "one_message_maximum": true,
+    "retry_allowed": false,
+    "homeowner_contact_allowed": false,
+    "production_data_allowed": false,
+    "non_sms_channel_allowed": false,
+    "broader_live_automation_allowed": false
+  },
+
+  "expansion_no_go_blockers_status_for_decision_preflight_only": {
+    "missing_fresh_signed_expansion_approval": "cleared",
+    "missing_explicit_option_selection": "cleared_option_B_selected",
+    "missing_consent_marker_for_any_additional_roofer": "not_applicable_same_roofer_option_B",
+    "any_homeowner_contact": "not_present",
+    "any_production_data": "not_present",
+    "any_non_sms_channel": "not_present",
+    "any_retry_or_automation_beyond_one_message": "not_present"
+  },
+  "decision_preflight_blockers_cleared": true,
+  "live_send_still_requires_separate_jason_operated_run": true,
+
+  "what_this_decision_does_not_authorize": {
+    "send_sms_now": false,
+    "claude_or_build_environment_send": false,
+    "contact_any_homeowner": false,
+    "use_production_data": false,
+    "non_sms_channel": false,
+    "more_than_one_message": false,
+    "retry": false,
+    "add_a_second_roofer": false,
+    "activate_live_automation": false,
+    "add_public_routes_webhooks_cron_schedulers_dispatchers": false,
+    "store_secrets_or_phone_numbers_in_repo_or_chat": false,
+    "authorize_unrestricted_launch": false
+  },
+
+  "expansion_decision_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "email_call_calendar_crm_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "capture_final_one_message_send_approval_and_send_time_preflight_then_jason_operated_send",
+  "next_step_is_unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

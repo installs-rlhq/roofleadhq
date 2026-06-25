@@ -1,0 +1,76 @@
+{
+  "gate_name": "controlled_roofer_pilot_expansion_send_time_preflight_build_198",
+  "build": 198,
+  "data_classification": "controlled_roofer_pilot_expansion_send_time_preflight_names_booleans_only_no_secret_values",
+  "summary": "Build 198 send-time preflight gate for the controlled pilot Option B expansion one-message send (same consenting test roofer, second controlled SMS). With Jason's signed expansion decision and final one-message send approval captured, this gate evaluates to READY_FOR_JASON_OPERATED_ONE_MESSAGE_EXPANSION_SEND. It performs NO live action: send_attempt_count=0, sms_sent=false, live_send_executed_by_build=false, no network/external call, no Twilio, no secret values or phone numbers recorded. It does NOT itself send; the next step is a separate, fail-closed, Jason-operated one-message send in Jason's controlled environment. Names/booleans only; LOCAL-ONLY; safety posture preserved.",
+
+  "selected_option": "B_same_roofer_second_controlled_sms",
+  "signed_expansion_decision_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-decision-build-198-signed.json",
+  "final_send_approval_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-expansion-final-send-approval-build-198-signed.json",
+  "prior_pilot_send_evidence_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+
+  "preflight_inputs": {
+    "selected_option": "B_same_roofer_second_controlled_sms",
+    "expansion_decision_approval_signed": true,
+    "final_send_approval_signed": true,
+    "authorizes_jason_operated_one_message_send": true,
+    "authorizes_build_environment_send": false,
+    "same_consenting_test_roofer_only": true,
+    "additional_roofer_added": false,
+    "sms_only": true,
+    "max_message_count": 1,
+    "retry_allowed": false,
+    "homeowner_contact_allowed": false,
+    "production_data_allowed": false,
+    "approved_destination_number_recorded": false,
+    "decision_preflight_blockers_cleared": true
+  },
+
+  "decision": "READY_FOR_JASON_OPERATED_ONE_MESSAGE_EXPANSION_SEND",
+  "send_attempt_count": 0,
+  "sms_sent": false,
+  "live_send_executed_by_build": false,
+  "live_send_armed_by_build": false,
+  "no_network_external_action": true,
+  "no_secret_values_recorded": true,
+  "no_phone_number_recorded": true,
+
+  "jason_operated_send_requirements_outside_repo": {
+    "readiness_gate_must_report_permitted_at_send_time": true,
+    "live_credentials_supplied_in_jason_shell_only": true,
+    "approved_destination_supplied_in_jason_shell_only": true,
+    "deliberate_confirm_token_required": true,
+    "exactly_one_run_no_retry": true,
+    "operated_by_label": "Jason Lohse",
+    "live_credentials_present_in_repo": false,
+    "approved_destination_number_recorded": false,
+    "confirm_token_set_in_repo": false
+  },
+
+  "send_time_preflight_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_runs_fail_closed_one_message_send_in_controlled_environment_then_local_only_closeout",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "next_step_is_unrestricted_launch": false,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
