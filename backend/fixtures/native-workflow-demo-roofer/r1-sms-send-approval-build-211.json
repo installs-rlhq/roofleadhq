@@ -1,0 +1,138 @@
+{
+  "packet_name": "r1_sms_send_approval_build_211",
+  "build": 211,
+  "data_classification": "r1_sms_send_signed_approval_capture_names_booleans_codes_only_no_secret_values_no_phone_numbers_no_production_data",
+  "summary": "Build 211 is a LOCAL-ONLY packet that CAPTURES Jason's fresh, signed, per-attempt approval for ONE Jason-operated controlled live roofer SMS send using Build 210 selected variant R1 (new_lead_fast_response_alert). It records approval_signed=true and approval_granted=true together with the exact approved scope (one SMS, SMS-only, no retry, no homeowner contact, no live automation activation, no unrestricted launch, no production data, destination entered silently outside repo/chat/logs, secrets/phone numbers not recorded, send-time preflight required, approval expires after one attempt whether sent or failed). It records the next decision packet (R1_SIGNED_APPROVAL_CAPTURED_SEND_TIME_PREFLIGHT_REQUIRED, recommended_next_option=run_send_time_preflight_before_one_jason_operated_sms_attempt, authorizes_send_now=false) and a fail-closed send-time preflight checklist. This build performs NO live action: no SMS, no Twilio, no Twilio client, no messages.create, no network/external call, no retry, no roofer/homeowner contact, no confirm-token arming, and reads/records NO secret values, SIDs, tokens, credential values, phone numbers, or production data. Capturing approval does NOT send. The immediate next step is a send-time preflight before any one Jason-operated SMS attempt. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "94299ff",
+
+  "prior_build_210_reference": {
+    "selection_path": "backend/fixtures/native-workflow-demo-roofer/pilot-sms-copy-selection-build-210.json",
+    "summary_path": "backend/fixtures/native-workflow-demo-roofer/launch-readiness-summary-build-210.json",
+    "doc_path": "docs/NATIVE_WORKFLOW_FIXTURE_PILOT_SMS_COPY_SELECTION_BUILD_210.md",
+    "build_210_decision": "R1_COPY_SELECTED_NEXT_SEND_APPROVAL_REQUIRED",
+    "build_210_recommended_option": "fresh_signed_approval_then_send_time_preflight_before_one_jason_operated_sms",
+    "build_210_selected_variant": "R1",
+    "build_210_selected_variant_label": "new_lead_fast_response_alert"
+  },
+  "manual_execution_evidence_reference": {
+    "evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-live-sms-one-message-execution-evidence.json",
+    "preserved_unchanged": true,
+    "twilio_send_status_in_evidence_label": "queued",
+    "twilio_sid_present_in_evidence": true,
+    "recipient_number_recorded_in_evidence": false
+  },
+
+  "signed_approval_capture_evidence": {
+    "approval_signed": true,
+    "approval_granted": true,
+    "approved_by_label": "Jason Lohse",
+    "selected_message_variant": "R1",
+    "selected_variant_label": "new_lead_fast_response_alert",
+    "selected_variant_text": "RoofLeadHQ: New roofing lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.",
+    "max_message_count": 1,
+    "sms_only": true,
+    "retry_allowed": false,
+    "jason_operated_send_only": true,
+    "build_environment_send": false,
+    "homeowner_contact_authorized": false,
+    "live_automation_activation_authorized": false,
+    "unrestricted_launch_authorized": false,
+    "production_data_authorized": false,
+    "destination_entry_silent_outside_repo_chat_logs_required": true,
+    "secrets_phone_numbers_not_recorded_required": true,
+    "send_time_preflight_required": true,
+    "approval_expires_after_one_attempt_whether_sent_or_failed": true,
+    "exact_approval_statement_text": "I, Jason Lohse, approve one Jason-operated controlled live roofer SMS send using Build 210 selected variant R1 only: \"RoofLeadHQ: New roofing lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.\" Scope: one SMS only, SMS-only, no retry, no homeowner contact, no live automation activation, no unrestricted launch, no production data, no secrets/phone numbers recorded in repo/chat/logs, destination entered silently outside repo/chat/logs, send-time preflight required before any attempt, and approval expires after one attempt whether sent or failed.",
+    "approval_capture_notes": "This captures Jason's fresh, per-attempt signed approval for exactly ONE Jason-operated, SMS-only live roofer send of variant R1. Capturing the approval does NOT send anything and does NOT arm any confirm token. A send-time preflight is required before any attempt. The approval is single-use and expires after one attempt whether the send succeeds or fails. No secret values, SIDs, tokens, phone numbers, or production data are recorded by capturing this approval."
+  },
+
+  "next_decision_packet": {
+    "decision": "R1_SIGNED_APPROVAL_CAPTURED_SEND_TIME_PREFLIGHT_REQUIRED",
+    "recommended_next_option": "run_send_time_preflight_before_one_jason_operated_sms_attempt",
+    "authorizes_send_now": false,
+    "send_time_preflight_required": true,
+    "unrestricted_launch": false,
+    "homeowner_contact_authorized": false,
+    "live_automation_remains_disabled": true
+  },
+
+  "send_time_preflight_checklist": {
+    "checklist_name": "r1_send_time_preflight_checklist_build_211",
+    "purpose": "Fail-closed send-time preflight checklist Jason would follow OUTSIDE this build, AFTER this captured approval and BEFORE any one Jason-operated SMS attempt. This build performs none of these steps. No secret values, phone numbers, SIDs, or tokens are read or recorded here.",
+    "armed_by_build": false,
+    "executed_by_build": false,
+    "checklist": [
+      "source secrets from /root/roofleadhq-local-secrets/live-sms.env",
+      "enter destination silently outside repo/chat/logs",
+      "convert destination to E.164",
+      "names-only env presence check",
+      "verify selected R1 message text",
+      "verify exactly one attempt",
+      "verify no retry",
+      "verify no homeowner contact",
+      "verify no live automation activation",
+      "unset env values after attempt"
+    ],
+    "secret_source_path_name_only": "/root/roofleadhq-local-secrets/live-sms.env",
+    "secret_values_read_in_this_build": false,
+    "destination_recorded_in_repo": false,
+    "destination_converted_to_e164_outside_repo": true,
+    "names_only_env_presence_check": true,
+    "verify_selected_r1_message_text": true,
+    "verify_exactly_one_attempt": true,
+    "verify_no_retry": true,
+    "verify_no_homeowner_contact": true,
+    "verify_no_live_automation_activation": true,
+    "unset_env_values_after_attempt": true,
+    "confirm_token_name_only": "CONTROLLED_LIVE_SMS_CONFIRM",
+    "confirm_token_armed_by_build": false,
+    "existing_fail_closed_runner_reference": "backend/scripts/run-native-workflow-fixture-controlled-live-sms-one-message-execution.js"
+  },
+
+  "homeowner_facing_copy_boundary": {
+    "homeowner_facing_sms_approved_now": false,
+    "requires_separate_consent_and_approval": true,
+    "homeowner_contact_authorized": false,
+    "approved_for_homeowner_send": false,
+    "status_label": "homeowner_facing_sms_not_approved_approval_is_roofer_facing_only",
+    "note": "This approval is for one roofer-facing R1 SMS only. No homeowner-facing message is approved, consented, or to be sent. Any homeowner-facing message requires separate, explicit consent capture and a separate signed approval."
+  },
+
+  "approval_capture_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent_during_approval_capture": false,
+    "network_or_external_call_made": false,
+    "retry_performed": false,
+    "confirm_token_armed": false,
+    "real_roofer_contacted_during_approval_capture": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "crm_sync_automation_added": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "email_call_calendar_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "jason_runs_a_send_time_preflight_before_one_jason_operated_sms_attempt_using_selected_variant_r1_in_his_controlled_environment_r1_signed_approval_captured_send_time_preflight_required_not_send_now_not_unrestricted_launch",
+  "next_step_is_unrestricted_launch": false,
+  "next_step_is_send_time_preflight": true,
+  "next_step_is_send_now": false,
+  "authorizes_send_now": false,
+  "homeowner_contact_authorized": false,
+  "unrestricted_launch": false,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
