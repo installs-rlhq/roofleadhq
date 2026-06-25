@@ -1,0 +1,76 @@
+{
+  "packet_name": "controlled_roofer_pilot_setup_approval_build_194_signed",
+  "build": 194,
+  "data_classification": "controlled_roofer_pilot_setup_approval_names_booleans_only_no_secret_values",
+  "summary": "Build 194 captures Jason's signed controlled real-roofer pilot SETUP/APPROVAL markers as names/booleans only, on top of the Build 193 readiness packet. Jason has independently cleared the pilot setup blockers OUTSIDE the repo (one consenting test roofer exists, roofer test identity marker exists, approved destination marker exists WITHOUT storing any phone number in repo/chat, pilot is SMS-only, max one message, no retry, no homeowner contact). This packet records that the setup markers are present and the approval is SIGNED FOR SETUP CAPTURE ONLY. It does NOT authorize sending SMS now. It is LOCAL-ONLY: no SMS, no Twilio, no network/external call, no real roofer or homeowner contact, no secret values, SIDs, tokens, or phone numbers recorded. Launch remains pilot-gated, NOT unrestricted. Safety posture preserved: demo_ready_with_live_automation_disabled.",
+
+  "source_of_truth_commit": "d92cc42",
+  "prior_readiness_reference": {
+    "readiness_evidence_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-readiness-build-193-evidence.json",
+    "approval_template_path": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-approval-build-193-template.json",
+    "build_193_pilot_gate_decision": "NO_GO"
+  },
+
+  "jason_approval_statement_recorded": true,
+  "jason_approval_statement_scope_label": "build_194_capture_controlled_roofer_pilot_setup_approval_markers_only",
+  "approval_owner_label": "Jason Lohse",
+  "approval_signature_label": "Jason Lohse",
+
+  "approval_signed": true,
+  "approval_granted_for_setup_capture": true,
+  "authorizes_live_pilot_send_now": false,
+
+  "consenting_test_roofer_marker_present": true,
+  "roofer_test_identity_marker_present": true,
+  "approved_destination_marker_present": true,
+  "approved_destination_number_recorded": false,
+
+  "sms_only": true,
+  "max_message_count": 1,
+  "retry_allowed": false,
+  "homeowner_contact_allowed": false,
+
+  "blockers_cleared_outside_repo_by_jason": true,
+  "markers_captured_as_names_booleans_only": true,
+
+  "what_this_approval_does_not_authorize": {
+    "send_sms_now": false,
+    "contact_the_roofer_now": false,
+    "contact_any_homeowner": false,
+    "use_production_data": false,
+    "make_external_calls": false,
+    "activate_live_automation": false,
+    "add_public_routes_webhooks_cron_schedulers_dispatchers": false,
+    "store_secrets_or_phone_numbers": false
+  },
+
+  "setup_capture_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "approved_destination_number_recorded": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "billing_payment_deposit_quote_estimate_invoice_automation_added": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "email_call_calendar_crm_automation_added": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "produce_final_one_message_pilot_send_approval_and_preflight_then_separately_approve_send",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "next_step_is_unrestricted_launch": false,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

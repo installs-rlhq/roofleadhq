@@ -1,0 +1,70 @@
+{
+  "gate_name": "controlled_roofer_pilot_preflight_gate_build_194",
+  "build": 194,
+  "data_classification": "controlled_roofer_pilot_preflight_gate_names_booleans_only_no_secret_values",
+  "summary": "Build 194 preflight gate for the controlled real-roofer one-message pilot. With Jason's signed setup/approval markers captured and the setup/preflight blockers cleared, this gate evaluates to READY_FOR_FINAL_SEND_APPROVAL. It is NOT SENT and NOT ACTIVE: it performs no network/external action, sends no SMS, calls no Twilio, records no secret values or phone numbers, and does NOT authorize a live send. A live send still requires a separate final one-message send approval and a fresh pass through the existing fail-closed runner. Names/booleans only; LOCAL-ONLY; safety posture preserved.",
+
+  "signed_setup_approval_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-setup-approval-build-194-signed.json",
+  "blocker_closure_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-no-go-blocker-closure-build-194.json",
+
+  "preflight_inputs": {
+    "approval_signed": true,
+    "approval_granted_for_setup_capture": true,
+    "consenting_test_roofer_marker_present": true,
+    "roofer_test_identity_marker_present": true,
+    "approved_destination_marker_present": true,
+    "approved_destination_number_recorded": false,
+    "sms_only": true,
+    "max_message_count": 1,
+    "retry_allowed": false,
+    "homeowner_contact_allowed": false,
+    "all_setup_preflight_blockers_cleared": true
+  },
+
+  "preflight_gate_decision": "READY_FOR_FINAL_SEND_APPROVAL",
+  "sent": false,
+  "active": false,
+  "live_send_armed": false,
+  "authorizes_live_pilot_send_now": false,
+
+  "what_is_still_required_before_send": {
+    "separate_final_one_message_send_approval_signed": false,
+    "final_preflight_at_send_time_via_existing_failclosed_runner": false,
+    "live_credentials_present_in_repo": false,
+    "approved_destination_number_recorded": false,
+    "confirm_token_set": false
+  },
+
+  "no_network_or_external_action": true,
+  "no_twilio_call": true,
+  "no_sms_sent": true,
+  "no_secret_values_recorded": true,
+  "no_phone_number_recorded": true,
+
+  "preflight_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "twilio_client_constructed": false,
+    "messages_create_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "used_production_supabase": false,
+    "channel_expanded_beyond_sms": false,
+    "live_automation_activated": false,
+    "public_live_routes_webhooks_cron_schedulers_dispatchers_created": false,
+    "schema_auth_rls_security_changes": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "next_step": "obtain_separate_final_one_message_pilot_send_approval_and_run_send_time_preflight",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "next_step_is_unrestricted_launch": false,
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

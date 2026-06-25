@@ -1,0 +1,56 @@
+{
+  "packet_name": "controlled_roofer_pilot_no_go_blocker_closure_build_194",
+  "build": 194,
+  "data_classification": "controlled_roofer_pilot_no_go_blocker_closure_names_booleans_only_no_secret_values",
+  "summary": "Build 194 records closure of the Build 193 controlled roofer pilot no-go blockers FOR SETUP/PREFLIGHT ONLY, based on Jason's signed setup/approval markers (captured outside the repo as names/booleans). It does NOT clear the gate for a live pilot SEND: a live pilot send remains BLOCKED until a separate final preflight/send approval is signed. Names/booleans only; no secret values or phone numbers; LOCAL-ONLY; no network/external action.",
+
+  "signed_setup_approval_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-setup-approval-build-194-signed.json",
+  "prior_blockers_reference": "backend/fixtures/native-workflow-demo-roofer/controlled-roofer-pilot-readiness-build-193-evidence.json",
+
+  "blocker_closure_scope": "setup_and_preflight_only_not_live_send",
+
+  "blockers_status": {
+    "missing_consent_marker": "cleared",
+    "missing_approved_test_identity_marker": "cleared",
+    "missing_fresh_signed_pilot_approval": "cleared_for_setup_capture_only",
+    "any_request_for_secrets_or_phone_numbers_in_repo_or_chat": "not_present",
+    "any_production_data_or_real_homeowner_scope": "not_present",
+    "any_non_sms_channel": "not_present"
+  },
+
+  "setup_preflight_blockers_cleared_count": 6,
+  "setup_preflight_blockers_outstanding_count": 0,
+  "all_setup_preflight_blockers_cleared": true,
+
+  "live_send_gate": {
+    "live_pilot_send_blocked": true,
+    "live_pilot_send_requires_separate_final_preflight_send_approval": true,
+    "final_one_message_send_approval_signed": false,
+    "live_credentials_present_in_repo": false,
+    "approved_destination_number_recorded": false,
+    "confirm_token_set": false
+  },
+
+  "no_live_action_during_closure": true,
+  "no_secret_values_recorded": true,
+  "no_phone_number_recorded": true,
+
+  "closure_safety_attestations": {
+    "reads_secret_values": false,
+    "secret_values_printed_logged_or_committed": false,
+    "phone_number_recorded": false,
+    "twilio_called": false,
+    "sms_sent": false,
+    "network_or_external_call_made": false,
+    "real_roofer_contacted": false,
+    "real_homeowner_contacted": false,
+    "production_data_used": false,
+    "live_automation_activated": false,
+    "other_live_automation_remains_disabled": true
+  },
+
+  "stop_rollback_owner_label": "Jason Lohse",
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}
