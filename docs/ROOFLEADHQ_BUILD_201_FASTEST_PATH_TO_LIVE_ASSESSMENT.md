@@ -164,12 +164,59 @@ only; capture a LOCAL-ONLY closeout. **Stop/rollback owner: Jason Lohse.**
 
 ## Top 5 recommendations
 
-1. **Stop the per-state fixture-ceremony loop** — one build per real event.
-2. **Jason runs the already-approved Build 200 send** to prove a real controlled send succeeds.
-3. **Onboard one real roofer and run one real lead end-to-end manually** before building more automation.
-4. **Finalize homeowner SMS consent/opt-out language** before any real-homeowner message.
-5. **Consolidate verifiers/docs** (one reusable verifier over a manifest; one living readiness doc) to
-   cut build count, tokens, and maintenance.
+1. **Stop the per-state fixture-ceremony loop** — **one consolidated pilot packet per controlled
+   milestone**, not many micro-builds for the same narrow SMS use case.
+2. **Jason runs the already-approved Build 200 send** (or explicitly decides to stop expansion) to turn
+   a sunk approval into a real learning, then closes out **once** locally.
+3. **Onboard one consenting roofer/test participant and run one real SMS interaction end-to-end
+   manually** before building more automation.
+4. **Finalize homeowner SMS consent/opt-out language and keep messaging honest** — "book inspections,"
+   not "guaranteed jobs"; no live billing/CRM/quote claims — before any real-homeowner message.
+5. **Cut build/token/permission overhead** — one reusable verifier over a manifest, one living readiness
+   doc, run Claude in `--permission-mode auto` scoped to `/root/roofleadhq`, and keep secrets in a local
+   secret file outside the repo.
+
+---
+
+## 8. Business framing (folds into the above)
+
+**Core promise (keep it honest):** close the gap between a roofing lead and a **booked inspection** —
+respond fast, qualify, route/flag, move toward an inspection appointment, and give the contractor
+reporting/visibility. **Say "book inspections/appointments," not "guaranteed jobs."** Do **not** claim
+estimates, quotes, invoices, payments, deposits, CRM sync, or calendar booking as live until they are
+actually implemented and approved.
+
+**Target customer:** small-to-mid roofing contractors who miss leads, respond slowly, lack follow-up
+discipline, or want better intake/reporting. **Initial pilot stays very narrow:** one consenting
+roofer/test identity, SMS only, one controlled interaction at a time.
+
+**Commercial model (exists on paper — billing correctly deferred):** $399–$799/mo tiers + $499 setup;
+14-day trial starting at go-live; pre-payment email ~2 days before the first charge; first billing on
+day 15 unless canceled; cancel anytime in trial. **The pilot does not require billing — do not automate
+payment/billing yet.** This is a commercial-readiness item, not a technical blocker to a learning pilot.
+
+### Minimum viable pilot (useful, not perfect)
+
+A useful live pilot does **not** require unrestricted launch. It requires: one clearly consenting
+roofer/test participant · a valid SMS destination controlled by Jason (never stored in repo/chat) · one
+SMS interaction at a time · no retry unless separately approved · manual/Jason-operated send while gates
+stay fail-closed · a local-only closeout after each live action · a simple observation loop (delivered?
+responded? useful? what to change?). **Shortest path to learning from a roofer:** run one controlled SMS
+interaction, observe, capture feedback manually, then decide proceed/pause.
+
+### Decision branches (pick one; do not run all three as separate build trios)
+
+- **A — Continue expansion:** Jason runs the already-approved Build 200 retry once → **one** consolidated
+  local-only closeout (Build 202).
+- **B — Pause expansion:** stop expansion; build **one** post-pilot customer-feedback + product-priority
+  backlog packet instead of more send scaffolding.
+- **C — First real pilot:** build **one** consolidated pilot launch packet (consent + one-message scope +
+  manual send + observation form + rollback rules + go/no-go).
+
+**Recommended sequence: A → C.** Run the already-approved send to bank a real result and close it out in
+one build, then go straight to one consolidated pilot packet. Use **B** only if the controlled send
+shows the workflow needs product changes first. **Do not** re-run approve/preflight/closeout as separate
+builds for the same narrow SMS use case.
 
 ---
 

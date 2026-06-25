@@ -117,12 +117,13 @@
   "token_time_cost_reduction": {
     "reduce_build_count": ["consolidate_approval_preflight_send_closeout_into_one_build_per_real_event", "stop_emitting_a_new_verifier_and_wrapper_per_build", "parameterize_one_reusable_verifier_over_a_fixtures_manifest"],
     "batch_future_work": ["one_pilot_result_build_instead_of_intake_outreach_outcome_as_three_builds", "group_doc_updates_into_a_single_living_readiness_doc_instead_of_new_packets"],
-    "reduce_prompts_and_permission_interruptions": ["keep_autonomy_authorization_blocks_like_this_one", "predeclare_allowed_local_only_commands", "avoid_new_long_chained_filenames"],
+    "reduce_prompts_and_permission_interruptions": ["keep_autonomy_authorization_blocks_like_this_one", "predeclare_allowed_local_only_commands", "avoid_new_long_chained_filenames", "run_claude_in_permission_mode_auto_scoped_to_root_roofleadhq", "optionally_dangerously_skip_permissions_only_inside_root_roofleadhq_if_jason_accepts_repo_risk", "keep_secrets_in_a_local_secret_file_outside_repo_and_phone_numbers_out_of_repo_and_chat"],
     "jason_manual_vs_claude_build": {"jason_manual": ["live_sends", "real_roofer_onboarding", "secret_handling", "real_homeowner_consent"], "claude_build": ["local_only_evidence_capture", "verifiers", "docs", "safety_gating_checks"]}
   },
 
   "build_recommendation": {
-    "single_best_next_build_after_201": "Build 202 = ONE consolidated LOCAL-ONLY closeout of the Jason-operated Build 200 expansion retry send (capture outcome names/codes only, update launch-readiness, single verifier+wrapper) — only AFTER Jason actually runs the send.",
+    "single_best_next_build_after_201": "Build 202 = ONE consolidated LOCAL-ONLY closeout of the Jason-operated Build 200 expansion retry send (capture outcome names/codes only, update launch-readiness, single verifier+wrapper) — only AFTER Jason actually runs the send. If Jason instead pauses expansion, substitute branch B (one feedback+backlog packet); if going straight to a real pilot, substitute branch C (one consolidated pilot launch packet).",
+    "see_decision_branches": "decision_branches",
     "estimated_builds_remaining_until_useful_live_pilot": "2_to_4",
     "estimated_builds_remaining_until_useful_live_pilot_low": 2,
     "estimated_builds_remaining_until_useful_live_pilot_high": 4,
@@ -131,12 +132,57 @@
   },
 
   "top_5_recommendations": [
-    "Stop the per-state fixture-ceremony loop; one build per real event, not one per approval/preflight/closeout.",
-    "Have Jason execute the already-approved Build 200 one-message send to prove a real controlled send succeeds.",
-    "Onboard ONE real roofer and run ONE real lead end-to-end manually before building any more automation.",
-    "Finalize homeowner SMS consent/opt-out language before any real-homeowner message.",
-    "Consolidate verifiers/docs (one reusable verifier over a manifest; one living readiness doc) to cut build count, tokens, and maintenance."
+    "Stop the per-state fixture-ceremony loop; ONE consolidated pilot packet per controlled milestone, not many micro-builds for the same narrow SMS use case.",
+    "Have Jason execute the already-approved Build 200 one-message send (or explicitly decide to stop expansion) to convert sunk approval into a real learning, then close out once locally.",
+    "Onboard ONE consenting roofer/test participant and run ONE real SMS interaction end-to-end manually before building any more automation.",
+    "Finalize homeowner SMS consent/opt-out language and keep messaging honest (book inspections, not guaranteed jobs; no live billing/CRM/quote claims) before any real-homeowner message.",
+    "Cut build/token/permission overhead: one reusable verifier over a manifest, one living readiness doc, run Claude in --permission-mode auto scoped to /root/roofleadhq, and keep secrets in a local secret file outside the repo."
   ],
+
+  "supplemental_business_context": {
+    "core_promise": "Close the gap between a roofing lead and a booked inspection: respond fast, qualify, route/flag, move toward an inspection appointment, and give the contractor reporting/visibility.",
+    "target_customer": "Small-to-mid roofing contractors who miss leads, respond slowly, lack follow-up discipline, or want better intake/reporting.",
+    "initial_pilot_shape": "Very narrow: one consenting roofer/test identity, SMS only, one controlled interaction at a time.",
+    "messaging_guardrails": {
+      "say_book_inspections_not_guaranteed_jobs": true,
+      "do_not_claim_guaranteed_booked_jobs": true,
+      "do_not_claim_live_unless_implemented_and_approved": ["estimates", "quotes", "invoices", "payments", "deposits", "crm_sync", "calendar_booking"],
+      "use_language": "book inspections/appointments"
+    },
+    "commercial_model": {
+      "monthly_tiers_usd": "399_to_799",
+      "setup_fee_usd": 499,
+      "trial_days": 14,
+      "trial_starts": "after_go_live",
+      "pre_payment_email_days_before_first_charge": 2,
+      "first_billing_day_if_not_canceled": 15,
+      "cancel_anytime_during_trial": true,
+      "billing_automation_status": "deferred_do_not_automate_yet",
+      "pilot_requires_billing": false
+    }
+  },
+
+  "decision_branches": {
+    "branch_a_continue_expansion": "Jason runs the already-approved Build 200 expansion retry once; then ONE consolidated local-only closeout (Build 202).",
+    "branch_b_pause_expansion": "Stop expansion; build ONE post-pilot customer-feedback + product-priority backlog packet instead of more send scaffolding.",
+    "branch_c_first_real_pilot": "Build ONE consolidated pilot launch packet (consent + one-message scope + manual send + observation form + rollback rules + go/no-go) for a single consenting roofer.",
+    "recommended_sequence": "A then C: run the already-approved send to bank a real result and close it out in one build, then go straight to ONE consolidated pilot packet (branch C). Use branch B only if the controlled send teaches that the workflow needs product changes first.",
+    "do_not": "Do not re-run the approve/preflight/closeout trio as separate builds for the same narrow SMS use case."
+  },
+
+  "minimum_viable_pilot_framing": {
+    "goal": "A useful live pilot, NOT a perfect product or unrestricted launch.",
+    "useful_pilot_requirements": [
+      "one_clearly_consenting_roofer_or_test_participant",
+      "valid_sms_destination_controlled_by_jason_never_stored_in_repo_or_chat",
+      "one_sms_interaction_at_a_time",
+      "no_retry_unless_separately_approved",
+      "manual_jason_operated_send_while_gates_remain_fail_closed",
+      "local_only_closeout_after_each_live_action",
+      "simple_observation_loop_delivered_responded_useful_what_to_change"
+    ],
+    "shortest_path_to_learning_from_a_roofer": "Run one controlled SMS interaction, observe delivery + response + usefulness, capture feedback manually, then decide proceed/pause."
+  },
 
   "assessment_safety_attestations": {
     "reads_secret_values": false,

@@ -124,6 +124,29 @@ pass('build_201_build_recommendation_names_next_build_and_estimates');
 if (!Array.isArray(a.top_5_recommendations) || a.top_5_recommendations.length !== 5) fail('top_5_recommendations must have exactly 5 items');
 pass('build_201_top_5_recommendations_present');
 
+// --- Supplemental business context: honest messaging guardrails + deferred billing ---
+const sbc = a.supplemental_business_context || {};
+const guards = sbc.messaging_guardrails || {};
+if (guards.do_not_claim_guaranteed_booked_jobs !== true) fail('messaging guardrails must forbid guaranteed-jobs claims');
+if (guards.say_book_inspections_not_guaranteed_jobs !== true) fail('messaging guardrails must say book inspections, not guaranteed jobs');
+const commercial = sbc.commercial_model || {};
+if (commercial.billing_automation_status !== 'deferred_do_not_automate_yet') fail('commercial model must keep billing automation deferred');
+if (commercial.pilot_requires_billing !== false) fail('commercial model must record that the pilot does not require billing');
+pass('build_201_supplemental_business_context_honest_messaging_and_deferred_billing');
+
+// --- Decision branches: three branches + a recommended sequence ---
+const branches = a.decision_branches || {};
+for (const k of ['branch_a_continue_expansion', 'branch_b_pause_expansion', 'branch_c_first_real_pilot', 'recommended_sequence']) {
+  if (!branches[k]) fail('decision_branches missing: ' + k);
+}
+pass('build_201_decision_branches_present_with_recommended_sequence');
+
+// --- Minimum viable pilot framing: useful-not-perfect requirements ---
+const mvp = a.minimum_viable_pilot_framing || {};
+if (!Array.isArray(mvp.useful_pilot_requirements) || mvp.useful_pilot_requirements.length < 5) fail('minimum viable pilot framing must list the useful-pilot requirements');
+if (!mvp.goal || !mvp.goal.includes('NOT')) fail('minimum viable pilot framing goal must emphasize useful-not-perfect');
+pass('build_201_minimum_viable_pilot_framing_useful_not_perfect');
+
 // --- Safety attestations all false / disabled (local-only) ---
 const att = a.assessment_safety_attestations || {};
 const mustBeFalse = ['reads_secret_values', 'secret_values_printed_logged_or_committed', 'phone_number_recorded',
