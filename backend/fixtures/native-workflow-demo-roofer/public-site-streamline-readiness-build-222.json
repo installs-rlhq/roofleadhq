@@ -1,0 +1,56 @@
+{
+  "artifact_name": "public_site_streamline_readiness_build_222",
+  "build": 222,
+  "source_of_truth_commit": "42b6c76",
+  "starting_commit_subject": "test(workflow): add sanitized sales demo surface build 221",
+  "site_cleanup_completed": true,
+  "primary_paths_updated": [
+    "website/index.html",
+    "website/styles.css"
+  ],
+  "design_cleanup_summary": [
+    "Tightened hero hierarchy: collapsed three stacked subheads into one scannable value subhead plus the existing 'you stay in control of sales decisions' manual-control line; promoted the 'never miss another roofing lead' hook.",
+    "Replaced run-on sentence headings with short headlines plus supporting copy (Inside RoofLeadHQ -> 'A Clear View of Every Lead.').",
+    "De-duplicated the final CTA: removed the wall-of-text paragraph that repeated the checklist verbatim; replaced with one concise control-forward line.",
+    "Trimmed the repeated 'responds fast, follows up automatically, recovers missed leads, books homeowner inspections' boilerplate across hero card, demo, how-it-works, guided-setup, pricing, why-trust-us, and footer subheads for easier scanning.",
+    "Standardized section vertical rhythm (mixed lg:py-32 -> consistent lg:py-28 across 7 sections).",
+    "Added CSS polish: scroll-margin-top so in-page nav anchors clear the sticky header, and a visible :focus-visible ring for keyboard accessibility.",
+    "Adopted the favicon and control-language edits already present in the working tree (RLHQ-favicon-32x32.png)."
+  ],
+  "mobile_responsiveness_checked": true,
+  "mobile_responsiveness_notes": "No responsive structure removed; existing Tailwind breakpoints (sm/lg) and mobile menu, mobile sticky CTA, and mobile card scroller preserved. Padding standardization keeps mobile py-20 unchanged.",
+  "safe_copy_guardrails_preserved": true,
+  "guardrails_detail": {
+    "no_guarantee_language": true,
+    "no_booked_jobs_or_revenue_claims": true,
+    "no_invoice_payment_deposit_estimate_quote_claims": true,
+    "no_fake_testimonials_or_live_customer_usage": true,
+    "no_implication_homeowner_contact_already_approved": true,
+    "no_unrestricted_launch_implication": true,
+    "footer_does_not_promise_disclaimer_intact": true,
+    "manual_control_language_present": true,
+    "pricing_unchanged": "399/699/999 per month plus setup fees left as-is; site pricing not modified"
+  },
+  "no_sensitive_values": true,
+  "no_live_external_actions": true,
+  "build_221_demo_surface_preserved": true,
+  "build_221_demo_surface_path": "website/demo/sales-demo.html",
+  "sales_site_ready": true,
+  "sales_demo_surface_ready": true,
+  "remaining_blocker": null,
+  "decision": "PUBLIC_SITE_STREAMLINED_FOR_MANUAL_ROOFER_OUTREACH",
+  "recommended_next_option": "review_site_and_begin_manual_denver_roofer_outreach",
+  "authorizes_send_now": false,
+  "homeowner_contact_authorized": false,
+  "real_roofer_contact_authorized": false,
+  "unrestricted_launch": false,
+  "live_automation_remains_disabled": true,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled",
+  "verification": {
+    "safe_readiness_fast_lane": "PASS (17 checks, includes backend build + live_automation disabled for sms/calendar/vapi_outbound/resend/lindy)",
+    "secret_sid_phone_email_scan_changed_files": "clean (no matches)",
+    "html_tag_balance_check": "PASS (section/div/nav/footer/article/details/form/p all balanced)"
+  }
+}

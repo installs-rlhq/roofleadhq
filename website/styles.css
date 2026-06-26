@@ -157,17 +157,23 @@ details summary:hover {
 }
 
 /* Website copy/layout polish additions */
-.pricing-card {
-  border-width: 2px;
-  border-color: #cbd5e1;
-}
-
-.pricing-card.popular {
-  box-shadow: 0 0 0 4px rgba(2, 132, 200, 0.15);
-}
-
 details summary {
   user-select: none;
+}
+
+/* Keep in-page nav anchors clear of the sticky header */
+section[id],
+[id^="get-started"] {
+  scroll-margin-top: 88px;
+}
+
+/* Visible keyboard focus for accessibility and polish */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 details[open] summary span:first-child {
@@ -175,34 +181,9 @@ details[open] summary span:first-child {
   display: inline-block;
 }
 
-.outside-lead-card, .phone-lead-card {
-  transition: all 0.2s ease;
-}
-
-.outside-lead-card:hover, .phone-lead-card:hover {
-  border-color: #94a3b8;
-  transform: translateY(-1px);
-}
-
-.reality-card h3,
-.kpi-card h4 {
-  text-align: center;
-}
-
 /* Ensure report photo cards show top of image */
 .screenshot-card img[alt*="dashboard" i],
 .screenshot-card img[alt*="weekly" i],
 .screenshot-card img[alt*="monthly" i] {
   object-position: top;
-}
-
-/* Comparison table vertical dividers weight matching horizontals */
-.comparison-table th,
-.comparison-table td {
-  border-right: 1px solid #e2e8f0;
-}
-
-.comparison-table th:last-child,
-.comparison-table td:last-child {
-  border-right: none;
 }
