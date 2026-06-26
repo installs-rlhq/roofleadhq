@@ -17,6 +17,13 @@ export interface SmsDispatcherDryRunExecutorInput {
   currentTime?: string | Date;
   limit?: number;
   dryRun?: boolean;
+  /**
+   * Schema-readiness gate for the human-takeover pause column. Defaults to false so the live
+   * `follow_ups`/`leads` query is byte-identical to today and CANNOT fail on a not-yet-applied
+   * `leads.needs_human_takeover` column. Set true only once the Build 225 migration is applied; the
+   * executor then selects + surfaces the flag so a taken-over lead is planned as a skip, not a send.
+   */
+  humanTakeoverSchemaReady?: boolean;
 }
 
 export interface SmsDispatcherDryRunPlanResult {
@@ -87,6 +94,12 @@ export async function executeSmsDispatcherDryRun(
   const limit = input.limit || 10;
   const result = emptyDryRunResult(false);
 
+  // Gated, schema-safe: only request the takeover column once the migration is confirmed applied.
+  // Default leaves the projection exactly as it has always been (no runtime risk on missing column).
+  const leadColumns = input.humanTakeoverSchemaReady
+    ? 'id, phone, status, needs_human_takeover'
+    : 'id, phone, status';
+
   const { data, error } = await input.supabase
     .from('follow_ups')
     .select(`
@@ -97,7 +110,7 @@ export async function executeSmsDispatcherDryRun(
       followup_type,
       scheduled_for,
       message_body,
-      leads(id, phone, status),
+      leads(${leadColumns}),
       roofers(id, business_name, sms_confirmation_enabled, timezone)
     `)
     .eq('status', 'scheduled')
@@ -148,7 +161,8 @@ export async function executeSmsDispatcherDryRun(
       lead: {
         id: lead.id,
         phone: lead.phone,
-        status: lead.status
+        status: lead.status,
+        needs_human_takeover: lead.needs_human_takeover
       },
       roofer: {
         id: roofer.id,

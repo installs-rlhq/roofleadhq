@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
 import config from '../config/config';
+import { getPendingReview, isHumanTakeoverSchemaReady } from '../services/lead-takeover.service';
 
 const router = Router();
 
@@ -292,7 +293,22 @@ router.get('/overview', async (req: Request, res: Response) => {
       };
     });
 
+    // Build 225 Pending Review (human takeover). Schema-gated: pre-migration this returns an empty,
+    // schema-not-ready placeholder WITHOUT touching the not-yet-existing takeover columns, so the
+    // overview stays fully functional. Once HUMAN_TAKEOVER_SCHEMA_READY=true it surfaces live counts.
+    const pendingReviewResult = await getPendingReview({
+      supabase,
+      schemaReady: isHumanTakeoverSchemaReady(),
+      rooferId,
+    });
+    const pendingReview = {
+      schemaReady: pendingReviewResult.schemaReady,
+      count: pendingReviewResult.count,
+      leads: pendingReviewResult.pendingReview,
+    };
+
     const recommendedActions: string[] = [];
+    if (pendingReview.schemaReady && pendingReview.count > 0) recommendedActions.push('Review leads in Pending Review (human takeover).');
     if ((needsAttentionCount || 0) > 0) recommendedActions.push('Review leads needing attention today.');
     if (topSources.some((source) => source.sourcePath === 'manual')) recommendedActions.push('Keep sending marketplace/referral leads into RoofLeadHQ.');
     if (leadsNeedingAttention.some((lead) => lead.sourcePath === 'phone')) recommendedActions.push('Review phone leads that requested callbacks.');
@@ -311,6 +327,7 @@ router.get('/overview', async (req: Request, res: Response) => {
         { label: 'Digital Leads', value: topSources.filter((source) => source.sourcePath === 'digital').reduce((sum, source) => sum + source.leads, 0) },
       ],
       leadsNeedingAttention,
+      pendingReview,
       upcomingInspections,
       topSources,
       followUpPerformance,

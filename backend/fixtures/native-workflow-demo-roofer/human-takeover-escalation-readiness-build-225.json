@@ -1,0 +1,100 @@
+{
+  "artifact_name": "human_takeover_escalation_readiness_build_225",
+  "build": 225,
+  "starting_commit": "887c5ee",
+  "starting_commit_subject": "test(workflow): align public pricing offer build 224",
+
+  "human_takeover_schema_applied": false,
+  "human_takeover_pause_gate_added": true,
+  "live_sms_sent": false,
+  "provider_calls_made": false,
+  "production_data_accessed": false,
+  "credentials_accessed": false,
+  "dashboard_runtime_safe": true,
+  "endpoints_added": true,
+  "homeowner_contact": false,
+  "roofer_contact": false,
+  "live_supabase_migration_applied": false,
+
+  "exact_blocker": null,
+  "blocker_detail": "No blocker. The human-takeover columns are not applied to live schema, but every code path that needs them is gated behind HUMAN_TAKEOVER_SCHEMA_READY (default false), so no runtime failure is possible pre-migration. Routes are mounted and return a documented 503 schema_not_applied (writes) / empty 200 placeholder (pending-review) until the gate is enabled.",
+
+  "schema_readiness_gate_env": "HUMAN_TAKEOVER_SCHEMA_READY",
+  "schema_readiness_default": false,
+
+  "runtime_code_depends_on_unapplied_schema": "no_unconditional_dependency",
+  "runtime_dependence_detail": "evaluateSmsSafety + planner: pure boolean input, default false, behavior unchanged. dry-run executor: requests needs_human_takeover ONLY when humanTakeoverSchemaReady=true; default projection is byte-identical to today. lead-takeover service + route + dashboard pendingReview: return schema_not_applied / empty placeholder without querying new columns until the gate is enabled.",
+
+  "files_added": [
+    "docs/HUMAN_TAKEOVER_SCHEMA_READINESS.md",
+    "backend/src/services/lead-takeover.service.ts",
+    "backend/src/routes/lead-takeover.ts",
+    "backend/scripts/verify-human-takeover-escalation-build-225-readonly.js",
+    "backend/scripts/test-human-takeover-service-build-225.js",
+    "scripts/run-human-takeover-escalation-build-225-dry-run.sh",
+    "backend/fixtures/native-workflow-demo-roofer/human-takeover-escalation-readiness-build-225.json"
+  ],
+  "files_modified": [
+    "backend/src/services/sms-safety.service.ts",
+    "backend/src/services/sms-dispatcher-planner.service.ts",
+    "backend/src/services/sms-dispatcher-dry-run-executor.service.ts",
+    "backend/src/services/roofer-alert-binding.service.ts",
+    "backend/src/routes/dashboard.ts",
+    "backend/src/index.ts"
+  ],
+
+  "proposed_schema_not_applied": {
+    "table": "leads",
+    "columns": [
+      "needs_human_takeover boolean NOT NULL DEFAULT false",
+      "human_takeover_at timestamptz",
+      "human_takeover_by uuid REFERENCES roofers(id)",
+      "human_takeover_notes text",
+      "human_takeover_resolved_at timestamptz"
+    ],
+    "index": "idx_leads_pending_review ON leads (roofer_id, human_takeover_at DESC) WHERE needs_human_takeover = true",
+    "workflow_event_types_added_if_enum": [
+      "human_takeover_started",
+      "human_takeover_released",
+      "human_takeover_resolved"
+    ],
+    "ddl_location": "docs/HUMAN_TAKEOVER_SCHEMA_READINESS.md (proposed only, NOT applied)"
+  },
+
+  "endpoints": [
+    "POST /api/leads/:id/takeover",
+    "POST /api/leads/:id/release",
+    "GET /api/leads/pending-review"
+  ],
+  "endpoint_auth": "existing dashboard token pattern (x-dashboard-access-token / ?token -> sha256 -> roofers.dashboard_access_token_hash, dashboard_access_enabled=true); ownership verified before mutation; 404 for non-owned lead; 401 for bad/missing token",
+
+  "alert_copy": {
+    "scenario_key": "hot_lead_needs_review_alert",
+    "message_id": "M4",
+    "channel": "internal",
+    "live_capable": false,
+    "live_send_path": "none (fail-closed scenario_not_live_capable)",
+    "template": "RoofLeadHQ: Hot lead needs review — [name], [issue summary], [area]. Reply or open dashboard.",
+    "builder": "buildHotLeadReviewAlert(name, issueSummary, area)"
+  },
+
+  "verification": {
+    "human_takeover_service_unit_test": "PASS (9 checks; schema gate, takeover/release/markHandled, idempotency, ownership 404, phone masking, no SMS/messages access)",
+    "human_takeover_gate_verifier": "PASS (4 checks; safety gate human_takeover skip, dispatcher skip-when-taken-over + unchanged-when-gate-off, M4 internal-only fail-closed, non-mutating git-status before==after)",
+    "regression_sms_safety_service_verifier": "PASS",
+    "regression_sms_dispatcher_dry_run_executor_verifier": "PASS",
+    "safe_readiness_fast_lane": "PASS (17 checks, includes backend build + live_automation disabled for sms/calendar/vapi_outbound/resend/lindy + no schema/RLS markers in backend/src)",
+    "safe_readiness_full_source_of_truth_lane": "PASS (229 checks, 0 failures, exit 0; includes backend build)",
+    "backend_build": "PASS (tsc, exit 0)"
+  },
+
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "live_automation_remains_disabled": true,
+  "launch_status": "pilot_gated_not_unrestricted",
+
+  "decision": "HUMAN_TAKEOVER_ESCALATION_MVP_READY_FOR_SCHEMA_APPLICATION_REVIEW",
+  "recommended_next_option": "review_proposed_sql_then_apply_build_225_migration_in_supabase_add_workflow_event_enum_values_if_enum_then_set_HUMAN_TAKEOVER_SCHEMA_READY_true_and_re_run_dry_run_wrapper",
+
+  "commit_pushed": false,
+  "awaiting_jason_approval_to_commit": true
+}

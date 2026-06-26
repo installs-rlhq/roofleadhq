@@ -8,6 +8,7 @@ export type SmsSafetyReason =
   | 'booked'
   | 'cancelled'
   | 'lost'
+  | 'human_takeover'
   | 'follow_up_not_due'
   | 'template_not_approved'
   | 'duplicate_send'
@@ -24,6 +25,12 @@ export interface SmsSafetyInput {
   rooferTimezone: string;
   templateType: string;
   duplicateSendExists?: boolean;
+  /**
+   * When true, a roofer has taken this lead over for manual handling. Automation is paused for THIS
+   * lead only: every outbound automated send is skipped with reason 'human_takeover' until the lead
+   * is released. Defaults to false (absent flag never blocks a normal send).
+   */
+  needsHumanTakeover?: boolean;
 }
 
 export interface SmsSafetyDecision {
@@ -195,6 +202,13 @@ export function evaluateSmsSafety(input: SmsSafetyInput): SmsSafetyDecision {
   const blockedStatusReason = BLOCKED_LEAD_STATUS_REASON[input.leadStatus];
   if (blockedStatusReason) {
     return { allowed: false, action: 'skip', reason: blockedStatusReason };
+  }
+
+  // Human takeover pauses automation for this lead only. Checked before due/quiet-hours logic so a
+  // taken-over lead is never sent to, regardless of follow-up timing. Never reschedules; the lead
+  // simply resumes its existing scheduled follow-ups once released (flag cleared).
+  if (input.needsHumanTakeover) {
+    return { allowed: false, action: 'skip', reason: 'human_takeover' };
   }
 
   if (input.followUpStatus !== 'scheduled') {

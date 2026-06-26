@@ -18,12 +18,13 @@
 export type RooferAlertScenarioKey =
   | 'new_roof_inspection_lead_alert'
   | 'missed_or_slow_lead_follow_up_nudge'
-  | 'daily_open_lead_recap';
+  | 'daily_open_lead_recap'
+  | 'hot_lead_needs_review_alert';
 
 export type RooferAlertChannel = 'sms' | 'internal';
 
 export interface ApprovedRooferAlert {
-  message_id: 'M1' | 'M2' | 'M3';
+  message_id: 'M1' | 'M2' | 'M3' | 'M4';
   channel: RooferAlertChannel;
   /** True when this scenario is eligible to be a future Jason-owned live SMS validation send. */
   live_capable: boolean;
@@ -52,6 +53,15 @@ export const APPROVED_ROOFER_ALERTS: Record<RooferAlertScenarioKey, ApprovedRoof
     channel: 'internal',
     live_capable: false,
     text: 'RoofLeadHQ daily recap: you have open roof inspection leads still waiting on a first reply. Open RoofLeadHQ to see them.'
+  },
+  // M4 — human-takeover escalation notice. INTERNAL ONLY, never a live external send (live_capable
+  // false). Parameterized form is produced by buildHotLeadReviewAlert(); this fixed entry holds the
+  // labeled template so the catalog stays verifiable and bindRooferAlert can echo the template shape.
+  hot_lead_needs_review_alert: {
+    message_id: 'M4',
+    channel: 'internal',
+    live_capable: false,
+    text: 'RoofLeadHQ: Hot lead needs review — [name], [issue summary], [area]. Reply or open dashboard.'
   }
 };
 
@@ -154,6 +164,37 @@ export function buildDailyOpenLeadRecap(openLeadCount: number): {
     messageId: 'M3',
     openLeadCount: safeCount,
     body: `RoofLeadHQ daily recap: you have ${safeCount} ${noun} still waiting on a first reply. Open RoofLeadHQ to see them.`
+  };
+}
+
+/**
+ * Build the INTERNAL human-takeover escalation notice (M4) for a specific lead. Internal only — this
+ * is NOT an external send and has no live-capable path; it is the copy a roofer would see in-app /
+ * future internal channel when a hot or complex lead is flagged for review. Inputs are sanitized to a
+ * single line; empty fields fall back to neutral placeholders so no blank/garbled copy is produced.
+ */
+export function buildHotLeadReviewAlert(input: {
+  name?: string | null;
+  issueSummary?: string | null;
+  area?: string | null;
+}): {
+  channel: 'internal';
+  messageId: 'M4';
+  liveSend: false;
+  body: string;
+} {
+  const oneLine = (value: string | null | undefined, fallback: string): string => {
+    const cleaned = (value || '').replace(/\s+/g, ' ').trim();
+    return cleaned.length > 0 ? cleaned : fallback;
+  };
+  const name = oneLine(input.name, 'a lead');
+  const issue = oneLine(input.issueSummary, 'no issue summary');
+  const area = oneLine(input.area, 'unspecified area');
+  return {
+    channel: 'internal',
+    messageId: 'M4',
+    liveSend: false,
+    body: `RoofLeadHQ: Hot lead needs review — ${name}, ${issue}, ${area}. Reply or open dashboard.`
   };
 }
 

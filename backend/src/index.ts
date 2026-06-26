@@ -1,6 +1,7 @@
 import express from 'express';
 import config from './config/config';
 import leadsRouter from './routes/leads';
+import leadTakeoverRouter from './routes/lead-takeover';
 import callsRouter from './routes/calls';
 import webhooksRouter from './routes/webhooks';
 import vapiWebhooksRouter from './routes/vapi-webhooks';
@@ -16,6 +17,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/leads', leadsRouter);
+app.use('/api/leads', leadTakeoverRouter);
 app.use('/api/calls', callsRouter);
 app.use('/webhooks', webhooksRouter);
 app.use('/webhooks/vapi', vapiWebhooksRouter);

@@ -16,6 +16,11 @@ export interface SmsDispatcherPlannerInput {
     id: string;
     phone?: string | null;
     status?: string | null;
+    /**
+     * Optional human-takeover pause flag. Surfaced by the dry-run executor only when the takeover
+     * schema is applied (gated); absent/undefined coerces to false, leaving behavior unchanged.
+     */
+    needs_human_takeover?: boolean | null;
   };
   roofer: {
     id: string;
@@ -102,7 +107,8 @@ export function planSmsDispatch(input: SmsDispatcherPlannerInput): SmsDispatcher
     currentTime: input.currentTime,
     rooferTimezone: roofer.timezone || 'America/Denver',
     templateType,
-    duplicateSendExists: input.duplicateSendExists
+    duplicateSendExists: input.duplicateSendExists,
+    needsHumanTakeover: Boolean(lead.needs_human_takeover)
   });
 
   return {
