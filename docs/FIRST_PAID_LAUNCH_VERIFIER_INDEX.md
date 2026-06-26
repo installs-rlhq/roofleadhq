@@ -5151,3 +5151,20 @@ Build 151 normalized reference: native workflow fixture fresh execution pre run 
 - future_command_status: blocked_until_fresh_pre_run_guard_after_build_180_signed_approval_capture
 - actual validation remains 0 captured / 0 passed / 30 missing
 - demo_ready_with_live_automation_disabled: preserved
+
+## Website Build 224 Public Source-of-Truth verifier
+
+- Read-only verifier: `backend/scripts/verify-website-build-224-source-of-truth-readonly.js`
+- Dry-run wrapper: `scripts/run-website-build-224-source-of-truth-dry-run.sh`
+- Readiness doc: `docs/PUBLIC_SITE_PRICING_OFFER_UPDATE_BUILD_224.md`
+- Authoritative gate for the post-Build-224 public website source of truth: Starter/Growth/Elite
+  volume-only pricing ($199 setup; $199->$299 / $399->$599 / $899; 25/75/150 leads/mo), customized
+  founder-led setup + "Book a Founder-Led Setup Call", no 14-day/free-trial, unbuilt features
+  (email-forward intake, human takeover, CSV export, bot protection, webhook destinations) framed as
+  roadmap and not claimed live, no guarantee or competitor claims, v3 layout invariants preserved.
+- Superseded (now read-only passthroughs delegating to the Build 224 gate):
+  `verify-website-pricing-volume-guardrail-readonly.js`, `verify-website-trial-direction-regression-readonly.js`,
+  `verify-website-copy-layout-polish-readonly.js`, `verify-website-founder-led-launch-copy-readonly.js`,
+  `verify-website-founder-led-conversion-polish-readonly.js`, `verify-website-positioning-recovery-readonly.js`,
+  `verify-website-lead-to-inspection-positioning-update-readonly.js`.
+- Verification (pre-commit): node --check backend/scripts/verify-website-build-224-source-of-truth-readonly.js ; node backend/scripts/verify-website-build-224-source-of-truth-readonly.js ; scripts/run-website-build-224-source-of-truth-dry-run.sh

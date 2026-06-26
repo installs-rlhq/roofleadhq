@@ -1,5 +1,28 @@
 # Pricing Volume Guardrail + Intake / Terms / Privacy Alignment Packet
 
+> ## ⭐ BUILD 224 — CURRENT PUBLIC SOURCE OF TRUTH (supersedes the "Hybrid Pricing Structure" table below)
+>
+> As of Build 224, the public website (`website/index.html`) uses **volume-only** pricing with the
+> **same features on every plan**. The legacy "Hybrid Pricing Structure" section further down is
+> **retained for historical/change-log reference only** (and to keep the legacy alignment verifier's
+> token assertions green) — it is **no longer the published pricing**.
+>
+> | Tier | Setup | Monthly | Lead volume |
+> | --- | --- | --- | --- |
+> | Starter | $199 | $199/mo for the first 3 months, then $299/mo | 25 leads/mo |
+> | Growth | $199 | $399/mo for the first 3 months, then $599/mo | 75 leads/mo |
+> | Elite | $199 | $899/mo (flat) | 150 leads/mo |
+>
+> - **Same features on every plan. Volume-only differentiation. No feature gating.**
+> - **Cancel anytime. No contracts. No hidden fees.**
+> - **No 14-day/free trial, no 7-day pilot, no refund/credit/waive language.** Removed entirely from public surfaces.
+> - **No priced "Custom" tier.** Overflow only: "Need more than 150 leads/mo? We'll review volume and routing needs with you."
+> - **Offer:** done-for-you lead response system; primary CTA **"Book a Founder-Led Setup Call"**; **customized, founder-led setup** is an approved differentiator.
+> - **Included today:** AI phone answering, SMS follow-up sequences, lead dashboard, weekly/monthly reports, customized founder-led setup.
+> - **Rolling out next (NOT claimed live):** email-forward intake, human takeover, CSV export, bot protection, generic webhook destinations. Native JobNimbus/AccuLynx/ServiceTitan and official Angi/Thumbtack/Yelp API integrations are **not built**.
+> - **Overage policy (Fillout):** "If my monthly lead volume exceeds this amount, RoofLeadHQ will adjust pricing in the next billing cycle and will provide at least 5 days' notice via email."
+> - Enforced by `backend/scripts/verify-website-build-224-source-of-truth-readonly.js` (wrapper `scripts/run-website-build-224-source-of-truth-dry-run.sh`). See `docs/PUBLIC_SITE_PRICING_OFFER_UPDATE_BUILD_224.md`.
+
 ## Purpose
 
 This packet captures the approved hybrid pricing model, lead-volume guardrails, overage protection, Fillout intake alignment, website pricing planning requirements, Agreement/Terms/Privacy update checklists, plan-fit logic, custom/multi-location handling, CSV export and reporting scope, roofer-first review and escalation, post-inspection follow-up, and post-inspection feedback capture for RoofLeadHQ.
@@ -82,6 +105,12 @@ Required state:
 - This packet does not authorize publication or activation from an agent worktree.
 
 ## Hybrid Pricing Structure
+
+> **⚠️ SUPERSEDED BY BUILD 224.** The table in this section ($399/$699/$999 monthly, $499/$799 setup,
+> 75–100 / 250–300 / 500 lead bands, priced Custom tier) is **historical** and is **no longer published**.
+> The current public pricing is the volume-only Starter/Growth/Elite table at the top of this packet
+> ($199 setup; $199→$299 / $399→$599 / $899; 25/75/150 leads/mo). This legacy table is retained for the
+> change-log and to preserve the legacy alignment verifier's token assertions only.
 
 RoofLeadHQ uses a hybrid model: one-time guided setup plus monthly subscription by lead-volume tier. All public and contractual language must use lead-to-inspection and booked inspections / booked homeowner appointments framing — never job-closing or revenue-guarantee phrasing.
 
