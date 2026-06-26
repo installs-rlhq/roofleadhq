@@ -1,0 +1,33 @@
+{
+  "artifact_name": "sales_demo_surface_readiness_build_221",
+  "build": 221,
+  "source_of_truth_commit": "1a8c700",
+  "demo_surface_created": true,
+  "demo_surface_type": "static_html_demo_surface_generated_from_native_workflow_modules_on_synthetic_data",
+  "demo_surface_path_or_route": "website/demo/sales-demo.html",
+  "is_real_app_ui": false,
+  "is_static_demo_ui": true,
+  "is_report_only": false,
+  "synthetic_data_only": true,
+  "native_workflow_logic_used": true,
+  "native_modules_used": [
+    "lead-intake-recognition.service",
+    "roofer-alert-binding.service"
+  ],
+  "m1_m2_proof_summarized": true,
+  "no_sensitive_values": true,
+  "sales_demo_ready": true,
+  "remaining_blocker": null,
+  "decision": "SANITIZED_SALES_DEMO_SURFACE_READY_FOR_MANUAL_ROOFER_OUTREACH",
+  "recommended_next_option": "prepare_roofer_outreach_list_and_start_manual_sales_conversations",
+  "authorizes_send_now": false,
+  "homeowner_contact_authorized": false,
+  "real_roofer_contact_authorized": false,
+  "unrestricted_launch": false,
+  "live_automation_remains_disabled": true,
+  "sales_demo_surface_ready": true,
+  "m1_m2_live_validation_complete": true,
+  "launch_status": "pilot_gated_not_unrestricted",
+  "safety_posture": "demo_ready_with_live_automation_disabled",
+  "safety_status": "demo_ready_with_live_automation_disabled"
+}

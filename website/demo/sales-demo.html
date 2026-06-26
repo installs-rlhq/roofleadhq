@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoofLeadHQ • Sales Demo Surface (Sample / Demo)</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .sd-hero { background: linear-gradient(90deg, #0f172a, #1e293b); color: #fff; padding: 28px 0; }
+    .sd-hero-inner { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+    .sd-hero h1 { margin: 0 0 6px; font-size: 26px; }
+    .sd-hero p { margin: 0; color: #cbd5e1; font-size: 15px; max-width: 760px; }
+    .sd-step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #e2e8f0; }
+    .sd-step:last-child { border-bottom: 0; }
+    .sd-num { flex: 0 0 30px; height: 30px; width: 30px; border-radius: 9999px; background: #0284c8; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .sd-step-body h3 { margin: 2px 0 4px; font-size: 15px; }
+    .sd-step-body p { margin: 0; color: #475569; font-size: 14px; }
+    .sd-msg { background: #f8fafc; border: 1px solid #cbd5e1; border-left: 4px solid #0284c8; border-radius: 8px; padding: 10px 12px; margin-top: 8px; font-size: 14px; color: #0f172a; }
+    .sd-msg .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .5px; color: #0284c8; margin-bottom: 4px; }
+    .sd-blocked { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 10px 12px; margin-top: 8px; font-size: 14px; color: #92400e; }
+    .sd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 720px) { .sd-grid { grid-template-columns: 1fr; } }
+    .sd-kv { font-size: 14px; }
+    .sd-kv div { padding: 5px 0; border-bottom: 1px dashed #e2e8f0; display: flex; justify-content: space-between; gap: 12px; }
+    .sd-kv div:last-child { border-bottom: 0; }
+    .sd-kv .k { color: #64748b; }
+    .sd-kv .v { font-weight: 600; text-align: right; }
+    .sd-proof li { margin-bottom: 6px; font-size: 14px; }
+    .sd-offer { font-size: 15px; }
+    .sd-offer .price { font-size: 22px; font-weight: 800; color: #0f172a; }
+    .muted { color: #94a3b8; font-style: italic; }
+    .ok { color: #166534; font-weight: 700; }
+    .block { color: #b45309; font-weight: 700; }
+  </style>
+</head>
+<body class="bg-slate-100">
+  <!-- Demo Banner -->
+  <div class="demo-banner">
+    <div class="flex items-center gap-3" style="display:flex;align-items:center;gap:12px;">
+      <span class="demo-badge">SAMPLE / DEMO</span>
+      <span>RoofLeadHQ Sales Demo Surface — synthetic data only. Not a live production automation screen.</span>
+    </div>
+    <span class="demo-label">Manual approval pilot first. No autonomous customer contact.</span>
+  </div>
+
+  <!-- Hero -->
+  <div class="sd-hero">
+    <div class="sd-hero-inner">
+      <h1>RoofLeadHQ</h1>
+      <p>RoofLeadHQ helps roofing contractors respond faster to roof inspection leads and avoid letting open leads sit without follow-up.</p>
+    </div>
+  </div>
+
+  <div class="demo-container" style="max-width:980px;margin:0 auto;padding:24px 20px;">
+
+    <!-- The story -->
+    <div class="demo-card">
+      <div class="demo-section-title">How it works — a roof inspection lead, end to end</div>
+
+      <div class="sd-step">
+        <div class="sd-num">1</div>
+        <div class="sd-step-body">
+          <h3>A new roof inspection lead arrives</h3>
+          <p>A homeowner submits a request through the contractor's intake. <span class="muted">Synthetic example: "Demo Homeowner", Demo Service Area.</span></p>
+        </div>
+      </div>
+
+      <div class="sd-step">
+        <div class="sd-num">2</div>
+        <div class="sd-step-body">
+          <h3>RoofLeadHQ recognizes and organizes it</h3>
+          <p>The native intake logic classifies it as a <strong>roof inspection request</strong> and routes it for <strong>roof inspection follow up</strong>. Source label: <strong>Website form</strong> (recognized: yes).</p>
+        </div>
+      </div>
+
+      <div class="sd-step">
+        <div class="sd-num">3</div>
+        <div class="sd-step-body">
+          <h3>An M1 alert is prepared from native workflow logic</h3>
+          <p>The contractor gets a fast first-reply nudge. This exact copy is produced by the native roofer-alert binding and was validated live (exact-copy match).</p>
+          <div class="sd-msg"><span class="tag">M1 • ROOFER ALERT (SMS)</span><br>RoofLeadHQ: New roof inspection lead just came in. A quick first reply now helps you reach them while they're still looking. Reply STOP to opt out.</div>
+        </div>
+      </div>
+
+      <div class="sd-step">
+        <div class="sd-num">4</div>
+        <div class="sd-step-body">
+          <h3>If unanswered, an M2 follow-up is prepared from native workflow logic</h3>
+          <p>When the lead is still awaiting a first reply, RoofLeadHQ prepares a follow-up nudge. This exact copy is produced by the native logic and was validated live (exact-copy match).</p>
+          <div class="sd-msg"><span class="tag">M2 • FOLLOW-UP NUDGE (SMS)</span><br>RoofLeadHQ: A roof inspection lead is still waiting on a first reply. A quick follow-up now keeps it warm. Reply STOP to opt out.</div>
+        </div>
+      </div>
+
+      <div class="sd-step">
+        <div class="sd-num">5</div>
+        <div class="sd-step-body">
+          <h3>Open leads appear in a simple recap</h3>
+          <p>An internal daily recap keeps open leads from sitting. Produced by native logic (count is synthetic):</p>
+          <div class="sd-msg"><span class="tag">M3 • DAILY RECAP (INTERNAL)</span><br>RoofLeadHQ daily recap: you have 3 open roof inspection leads still waiting on a first reply. Open RoofLeadHQ to see them.</div>
+        </div>
+      </div>
+
+      <div class="sd-step">
+        <div class="sd-num">6</div>
+        <div class="sd-step-body">
+          <h3>Source &amp; routing stay visible</h3>
+          <p>Every lead carries its source and routing label so the contractor always knows where it came from and what happens next.</p>
+        </div>
+      </div>
+
+      <div class="sd-step">
+        <div class="sd-num">7</div>
+        <div class="sd-step-body">
+          <h3>Homeowner outreach is blocked pending consent and separate approval</h3>
+          <p>RoofLeadHQ never contacts a homeowner on its own. <strong>No homeowner outreach without consent and separate approval.</strong></p>
+          <div class="sd-blocked"><strong>Homeowner outreach: blocked approval required</strong> — draft only, no send prepared. Reason: homeowner contact not authorized requires consent and separate approval.</div>
+        </div>
+      </div>
+
+      <div class="sd-step">
+        <div class="sd-num">8</div>
+        <div class="sd-step-body">
+          <h3>Manual approval pilot, always</h3>
+          <p><strong>Manual approval pilot first. No autonomous customer contact.</strong> A person approves before anything goes out.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sd-grid" style="margin-top:18px;">
+      <!-- Synthetic lead card -->
+      <div class="demo-card">
+        <div class="demo-section-title">Sample lead (synthetic)</div>
+        <div class="sd-kv">
+          <div><span class="k">Homeowner</span><span class="v">Demo Homeowner</span></div>
+          <div><span class="k">Property area</span><span class="v">Demo Service Area</span></div>
+          <div><span class="k">Lead source</span><span class="v">Website form</span></div>
+          <div><span class="k">Request type</span><span class="v">Roof inspection</span></div>
+          <div><span class="k">Status</span><span class="v">New / awaiting first reply</span></div>
+          <div><span class="k">Follow-up</span><span class="v">Follow-up recommended</span></div>
+          <div><span class="k">Phone</span><span class="v muted">hidden (label-only placeholder)</span></div>
+          <div><span class="k">Email</span><span class="v muted">hidden (label-only placeholder)</span></div>
+        </div>
+      </div>
+
+      <!-- Proof card -->
+      <div class="demo-card">
+        <div class="demo-section-title">What's proven (sanitized)</div>
+        <ul class="sd-proof" style="margin:0;padding-left:18px;">
+          <li><span class="ok">&#10003;</span> Build 217 local integrated scenarios passed</li>
+          <li><span class="ok">&#10003;</span> M1 live exact-copy proof passed</li>
+          <li><span class="ok">&#10003;</span> M2 live exact-copy proof passed</li>
+          <li><span class="block">&#9679;</span> Lindy in safe pilot mode only</li>
+          <li><span class="block">&#9679;</span> No autonomous external automation</li>
+          <li><span class="block">&#9679;</span> No homeowner contact</li>
+          <li><span class="block">&#9679;</span> No unrestricted launch</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Offer -->
+    <div class="demo-card" style="margin-top:18px;">
+      <div class="demo-section-title">The offer</div>
+      <div class="sd-offer">
+        <div class="price">$399-$799/mo + $499 setup</div>
+        <p style="margin:6px 0 0;color:#475569;">14-day trial after go-live. Manual approval pilot first.</p>
+        <p style="margin:10px 0 0;font-weight:600;">"I can test this with your inbound leads under manual approval first."</p>
+      </div>
+    </div>
+
+    <div class="demo-footer" style="margin-top:18px;color:#64748b;font-size:12px;">
+      Sample / demo surface. Synthetic data only. Generated from RoofLeadHQ native workflow logic
+      (lead-intake-recognition + roofer-alert-binding). Not a live production automation screen.
+      No autonomous customer contact. No homeowner outreach without consent and separate approval.
+    </div>
+  </div>
+</body>
+</html>

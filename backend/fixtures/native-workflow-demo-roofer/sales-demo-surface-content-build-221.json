@@ -1,0 +1,14 @@
+{
+  "content_name": "sales_demo_surface_content_build_221",
+  "build": 221,
+  "data_classification": "sanitized_display_content_strings_only_no_secret_values_no_phone_numbers_no_email_addresses_no_raw_sids_no_destination_values_no_production_data",
+  "proof_bullets": [
+    { "kind": "ok", "text": "Build 217 local integrated scenarios passed" },
+    { "kind": "ok", "text": "M1 live exact-copy proof passed" },
+    { "kind": "ok", "text": "M2 live exact-copy proof passed" },
+    { "kind": "block", "text": "Lindy in safe pilot mode only" },
+    { "kind": "block", "text": "No autonomous external automation" },
+    { "kind": "block", "text": "No homeowner contact" },
+    { "kind": "block", "text": "No unrestricted launch" }
+  ]
+}
