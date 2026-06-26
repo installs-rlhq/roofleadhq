@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /$
+Allow: /index.html
+Disallow: /demo/
+Disallow: /dashboard/
+
+Sitemap: https://roofleadhq.com/sitemap.xml
