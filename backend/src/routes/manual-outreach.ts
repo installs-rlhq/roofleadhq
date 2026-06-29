@@ -38,7 +38,8 @@ router.post('/test', async (req: Request, res: Response) => {
       dry_run: true,
       lead_id: result.lead_id,
       follow_up_count: result.follow_up_count,
-      workflow_event_count: result.workflow_event_count
+      workflow_event_count: result.workflow_event_count,
+      duplicate_schedule_skipped: result.duplicate_schedule_skipped === true
     });
 
   } catch (err: any) {
