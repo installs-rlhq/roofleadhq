@@ -9,6 +9,7 @@ interface Config {
   supabaseKey: string;
   supabaseServiceRoleKey: string;
   vapiApiKey: string;
+  vapiWebhookSecret: string;
 }
 
 const config: Config = {
@@ -18,6 +19,7 @@ const config: Config = {
   supabaseKey: process.env.SUPABASE_ANON_KEY || '',
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
   vapiApiKey: process.env.VAPI_API_KEY || '',
+  vapiWebhookSecret: process.env.VAPI_WEBHOOK_SECRET || '',
 };
 
 export default config;

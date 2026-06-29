@@ -1,9 +1,12 @@
 import { Router, Request, Response } from 'express';
 import { processVapiCallCompleted } from '../services/vapi-webhook.service';
+import { requireVapiWebhookSecret } from '../middleware/vapi-webhook-auth';
 
 const router = Router();
 
-router.post('/call-completed', async (req: Request, res: Response) => {
+// Build 232: fail-closed shared-secret guard runs BEFORE the handler, so unauthenticated traffic
+// is rejected before any service/Supabase write path is reached.
+router.post('/call-completed', requireVapiWebhookSecret, async (req: Request, res: Response) => {
   try {
     const result = await processVapiCallCompleted(req.body);
 
