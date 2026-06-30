@@ -1,0 +1,14 @@
+{
+  "_comment": "Fake/sanitized Vapi Conversation Update (interim, non-terminal). No PII. Build 244 fixture.",
+  "message": {
+    "type": "conversation-update",
+    "call": {
+      "id": "call_fake_conv_001",
+      "type": "webCall"
+    },
+    "conversation": [
+      { "role": "assistant", "content": "Hello, how can I help with your roof today?" },
+      { "role": "user", "content": "Just looking at the website widget." }
+    ]
+  }
+}

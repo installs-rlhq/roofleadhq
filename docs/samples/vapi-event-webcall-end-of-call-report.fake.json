@@ -1,0 +1,19 @@
+{
+  "_comment": "Fake/sanitized Vapi End Of Call Report for a browser/webCall. No PSTN caller or destination number (both normalize to null); no PII. Build 244 fixture.",
+  "message": {
+    "type": "end-of-call-report",
+    "call": {
+      "id": "call_fake_webcall_eocr_001",
+      "type": "webCall",
+      "transport": "web",
+      "startedAt": "2026-06-30T18:00:00Z",
+      "endedAt": "2026-06-30T18:02:00Z"
+    },
+    "durationSeconds": 120,
+    "transcript": "AI: Hi, this is a browser test call. Tester: Just checking the web widget.",
+    "summary": "Browser web test call; no PSTN caller or destination number present.",
+    "analysis": {
+      "successEvaluation": "test"
+    }
+  }
+}

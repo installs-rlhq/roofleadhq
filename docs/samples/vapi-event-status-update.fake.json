@@ -1,0 +1,11 @@
+{
+  "_comment": "Fake/sanitized Vapi Status Update (interim, non-terminal). No PII. Build 244 fixture.",
+  "message": {
+    "type": "status-update",
+    "status": "in-progress",
+    "call": {
+      "id": "call_fake_status_001",
+      "type": "webCall"
+    }
+  }
+}

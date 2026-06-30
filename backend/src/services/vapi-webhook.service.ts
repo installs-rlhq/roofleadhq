@@ -35,6 +35,14 @@ type VapiCallCompletedResult = {
   provider_call_id?: string;
   matched_lead_id?: string | null;
   booking_id?: string | null;
+  // Build 244: payload-shape routing. A non-terminal Vapi server-message event, or a
+  // browser/webCall final report with no PSTN routing target, is acknowledged as a no-op
+  // (`acknowledged: true`, `processed: false`) rather than processed as a phone-lead call.
+  acknowledged?: boolean;
+  processed?: boolean;
+  web_call?: boolean;
+  event_type?: string | null;
+  reason?: string;
   error?:
     | 'missing_required_field'
     | 'unknown_roofer'
@@ -343,6 +351,162 @@ export function normalizeVapiCallCompletedPayload(
   };
 }
 
+// Build 244: Vapi message/event-type routing.
+//
+// Vapi delivers ALL server-message types (End Of Call Report, Status Update, Conversation Update,
+// Speech Update, …) to the same webhook URL. Before Build 244 every event was processed as a
+// call-completion and any browser/webCall or interim event returned HTTP 400 (missing_required_field).
+//
+// These sets use the repo's existing event/type conventions: the legacy fixtures carry
+// `event: "call.completed"`, while Vapi's native server messages use `message.type:
+// "end-of-call-report" | "status-update" | "conversation-update" | "speech-update"`.
+const TERMINAL_EVENT_TYPES = new Set([
+  'end-of-call-report',
+  'call.completed',
+  'call-completed',
+]);
+
+const KNOWN_NON_TERMINAL_EVENT_TYPES = new Set([
+  'status-update',
+  'conversation-update',
+  'speech-update',
+]);
+
+function normalizeEventType(...values: unknown[]): string | null {
+  const value = firstStringValue(...values);
+
+  if (!value) {
+    return null;
+  }
+
+  return value.trim().toLowerCase().replace(/[\s_]+/g, '-');
+}
+
+export function extractVapiEventType(payload: VapiWebhookPayload): string | null {
+  const message = payload.message ?? {};
+
+  return normalizeEventType(
+    payload.type,
+    payload.event,
+    payload.event_type,
+    payload.eventType,
+    message.type,
+    message.event,
+    message.event_type,
+    message.eventType
+  );
+}
+
+export function detectVapiCallTransport(
+  payload: VapiWebhookPayload,
+  normalized: NormalizedVapiCallCompletedPayload
+): 'web' | 'phone' | 'unknown' {
+  const message = payload.message ?? {};
+  const call = payload.call ?? message.call ?? {};
+
+  const callType = (firstStringValue(call.type, call.transport, message.call?.type) ?? '')
+    .toLowerCase();
+
+  if (callType.includes('web')) {
+    return 'web';
+  }
+
+  if (callType.includes('phone') || callType.includes('pstn')) {
+    return 'phone';
+  }
+
+  // No explicit transport marker: a present PSTN destination number implies a phone call.
+  if (normalized.roofer_destination_number) {
+    return 'phone';
+  }
+
+  return 'unknown';
+}
+
+export type VapiWebhookRoutingDecision =
+  | 'process_call_completed'
+  | 'acknowledge_non_terminal'
+  | 'acknowledge_web_call';
+
+export type VapiWebhookEventClassification = {
+  event_type: string | null;
+  terminal: boolean;
+  known_non_terminal: boolean;
+  transport: 'web' | 'phone' | 'unknown';
+  has_roofer_destination: boolean;
+  decision: VapiWebhookRoutingDecision;
+  reason: string;
+};
+
+/**
+ * Build 244: decide how a Vapi webhook payload should be handled, BEFORE any Supabase access.
+ *
+ *  - Known interim event types (status/conversation/speech update) and any unrecognized non-terminal
+ *    type are acknowledged with a no-op so full lead/booking processing is attempted only for a
+ *    genuine final call report.
+ *  - A browser/webCall final report with no PSTN roofer destination is treated as a synthetic,
+ *    non-routed web call (no-op) — it must not become a phone-lead/booking candidate and must not
+ *    fail the phone-keyed required-field gate with a 400.
+ *  - A terminal report that carries a PSTN roofer destination enters the existing full processing
+ *    path, where the phone-keyed required-field gate still protects real phone-lead behavior.
+ *
+ * This function is pure (no Supabase, no network) so it is unit-testable in isolation.
+ */
+export function classifyVapiWebhookEvent(
+  payload: VapiWebhookPayload,
+  normalized?: NormalizedVapiCallCompletedPayload
+): VapiWebhookEventClassification {
+  const normalizedPayload =
+    normalized ?? normalizeVapiCallCompletedPayload(payload);
+
+  const eventType = extractVapiEventType(payload);
+  const transport = detectVapiCallTransport(payload, normalizedPayload);
+  const hasRooferDestination = Boolean(normalizedPayload.roofer_destination_number);
+  const knownNonTerminal =
+    eventType !== null && KNOWN_NON_TERMINAL_EVENT_TYPES.has(eventType);
+  // A null/absent event type is treated as terminal-eligible to preserve legacy/typeless payloads.
+  const terminal = eventType === null || TERMINAL_EVENT_TYPES.has(eventType);
+
+  const base = {
+    event_type: eventType,
+    terminal,
+    known_non_terminal: knownNonTerminal,
+    transport,
+    has_roofer_destination: hasRooferDestination,
+  };
+
+  if (knownNonTerminal) {
+    return {
+      ...base,
+      decision: 'acknowledge_non_terminal',
+      reason: `non_terminal_event:${eventType}`,
+    };
+  }
+
+  if (eventType !== null && !terminal) {
+    return {
+      ...base,
+      decision: 'acknowledge_non_terminal',
+      reason: `unrecognized_event:${eventType}`,
+    };
+  }
+
+  if (!hasRooferDestination && transport !== 'phone') {
+    return {
+      ...base,
+      decision: 'acknowledge_web_call',
+      reason:
+        transport === 'web' ? 'web_call_no_destination' : 'no_roofer_destination',
+    };
+  }
+
+  return {
+    ...base,
+    decision: 'process_call_completed',
+    reason: 'terminal_phone_call',
+  };
+}
+
 async function findExistingCallId(
   supabase: any,
   providerCallId: string
@@ -515,6 +679,44 @@ export async function processVapiCallCompleted(
 ): Promise<VapiCallCompletedResult> {
   const normalized = normalizeVapiCallCompletedPayload(payload);
 
+  // Build 244: route by Vapi message/event type and call transport before any write path.
+  const classification = classifyVapiWebhookEvent(payload, normalized);
+
+  if (classification.decision === 'acknowledge_non_terminal') {
+    // Interim Vapi server-message events (status/conversation/speech update) and any unrecognized
+    // non-terminal type are acknowledged as a no-op so Vapi stops retrying and no lead/booking is
+    // created. Auth still ran first in the route middleware, so this path is only reached when
+    // authorized.
+    return {
+      ok: true,
+      dry_run: false,
+      acknowledged: true,
+      processed: false,
+      event_type: classification.event_type,
+      reason: classification.reason,
+      normalized,
+    };
+  }
+
+  if (classification.decision === 'acknowledge_web_call') {
+    // Browser/webCall final report with no PSTN roofer destination: handle as a synthetic,
+    // non-routed web call. No lead/booking is created and it does NOT fail the phone-keyed
+    // required-field gate with a 400.
+    return {
+      ok: true,
+      dry_run: false,
+      acknowledged: true,
+      processed: false,
+      web_call: true,
+      event_type: classification.event_type,
+      reason: classification.reason,
+      normalized,
+    };
+  }
+
+  // decision === 'process_call_completed': a terminal report with a PSTN roofer destination enters
+  // the existing full processing path. The phone-keyed required-field gate below still protects
+  // real phone-lead behavior (e.g. a PSTN report missing caller_phone still returns 400).
   if (
     !normalized.provider_call_id ||
     !normalized.caller_phone ||

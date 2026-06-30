@@ -1,0 +1,12 @@
+{
+  "_comment": "Fake/sanitized Vapi Speech Update (interim, non-terminal). No PII. Build 244 fixture.",
+  "message": {
+    "type": "speech-update",
+    "status": "started",
+    "role": "assistant",
+    "call": {
+      "id": "call_fake_speech_001",
+      "type": "webCall"
+    }
+  }
+}

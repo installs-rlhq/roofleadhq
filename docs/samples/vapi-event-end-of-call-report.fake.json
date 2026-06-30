@@ -1,0 +1,21 @@
+{
+  "_comment": "Fake/sanitized Vapi End Of Call Report (PSTN). Reserved fictional 555-01xx numbers only; no real PII. Build 244 fixture.",
+  "message": {
+    "type": "end-of-call-report",
+    "call": {
+      "id": "call_fake_eocr_pstn_001",
+      "type": "inboundPhoneCall",
+      "customer": { "number": "+15555550123" },
+      "phoneNumber": { "number": "+15555550199" },
+      "startedAt": "2026-06-30T17:00:00Z",
+      "endedAt": "2026-06-30T17:04:10Z"
+    },
+    "durationSeconds": 250,
+    "transcript": "AI: Hello, roofing services. Homeowner: I have a roof leak. AI: Booking an inspection for tomorrow afternoon. Homeowner: Yes please.",
+    "summary": "Homeowner reported a roof leak and accepted an inspection appointment.",
+    "analysis": {
+      "structuredData": { "appointment_booked": true, "appointment_time": "2026-07-01T14:00:00Z" },
+      "successEvaluation": "appointment_booked"
+    }
+  }
+}
