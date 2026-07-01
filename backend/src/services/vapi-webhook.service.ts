@@ -150,6 +150,91 @@ function firstTimestampValue(...values: unknown[]): string | null {
   return date.toISOString();
 }
 
+// Build 281: Vapi "Structured Outputs" ingestion.
+//
+// Vapi has TWO distinct analysis features that both surface user-defined fields:
+//   1. Legacy "Structured Data" — a single analysis JSON schema delivered at
+//      `message.analysis.structuredData` (already read directly above).
+//   2. Newer "Structured Outputs" — one or more named output objects delivered at
+//      `message.analysis.structuredOutputs`, keyed differently from structuredData.
+//
+// Build 279 evidence shows Jason configured the Test Roofing Assistant via Analysis -> Structured
+// Outputs, so the live Build 280 EOCR delivered appointment_booked/appointment_time/appointment_requested
+// under `structuredOutputs` — a path the normalizer did not read, so it normalized them false/null and
+// createVapiBooking was gated off (booking_id=null) even though the UI/transcript showed a booked visit.
+//
+// Vapi's structuredOutputs container shape is not fixed across versions, so this reader is
+// shape-tolerant. It resolves a single named field from any of these observed shapes:
+//   A. array of entries:            [{ name: 'appointment_booked', result: true }, ...]
+//   B. object keyed by field name:  { appointment_booked: true }
+//   C. object keyed by name -> box: { appointment_booked: { result: true } }
+//   D. object keyed by output id:   { 'so_abc123': { name: 'appointment_booked', result: true } }
+// It returns `undefined` when the field is absent, so callers can fall through to other candidates
+// without changing any existing structuredData behavior.
+function unwrapStructuredOutputEntry(entry: unknown): unknown {
+  if (entry && typeof entry === 'object' && !Array.isArray(entry)) {
+    const box = entry as Record<string, unknown>;
+
+    if ('result' in box) {
+      return box.result;
+    }
+
+    if ('value' in box) {
+      return box.value;
+    }
+  }
+
+  return entry;
+}
+
+function extractStructuredOutputValue(
+  container: unknown,
+  targetName: string
+): unknown {
+  if (!container || typeof container !== 'object') {
+    return undefined;
+  }
+
+  // Shape A: array of named entries.
+  if (Array.isArray(container)) {
+    for (const entry of container) {
+      if (entry && typeof entry === 'object') {
+        const box = entry as Record<string, unknown>;
+        const name = firstStringValue(box.name, box.key, box.title);
+
+        if (name === targetName) {
+          return unwrapStructuredOutputEntry(entry);
+        }
+      }
+    }
+
+    return undefined;
+  }
+
+  const record = container as Record<string, unknown>;
+
+  // Shapes B/C: object keyed directly by the field name.
+  if (Object.prototype.hasOwnProperty.call(record, targetName)) {
+    return unwrapStructuredOutputEntry(record[targetName]);
+  }
+
+  // Shape D: object keyed by output id, each carrying its own `name`.
+  for (const key of Object.keys(record)) {
+    const entry = record[key];
+
+    if (entry && typeof entry === 'object' && !Array.isArray(entry)) {
+      const box = entry as Record<string, unknown>;
+      const name = firstStringValue(box.name, box.key, box.title);
+
+      if (name === targetName) {
+        return unwrapStructuredOutputEntry(entry);
+      }
+    }
+  }
+
+  return undefined;
+}
+
 export function normalizeVapiCallCompletedPayload(
   payload: VapiWebhookPayload
 ): NormalizedVapiCallCompletedPayload {
@@ -174,6 +259,16 @@ export function normalizeVapiCallCompletedPayload(
     payload.structuredData ??
     payload.structured_data ??
     {};
+  // Build 281: Vapi "Structured Outputs" container (distinct from legacy structuredData). Read from the
+  // same analysis/message/payload precedence. Left null when absent so the extractor short-circuits.
+  const structuredOutputs =
+    analysis.structuredOutputs ??
+    analysis.structured_outputs ??
+    message.structuredOutputs ??
+    message.structured_outputs ??
+    payload.structuredOutputs ??
+    payload.structured_outputs ??
+    null;
 
   const providerCallId = firstStringValue(
     payload.provider_call_id,
@@ -239,7 +334,11 @@ export function normalizeVapiCallCompletedPayload(
     structuredData.appointmentBooked,
     structuredData.booked,
     analysis.appointment_booked,
-    analysis.appointmentBooked
+    analysis.appointmentBooked,
+    // Build 281: fall through to Vapi Structured Outputs when structuredData is absent.
+    extractStructuredOutputValue(structuredOutputs, 'appointment_booked'),
+    extractStructuredOutputValue(structuredOutputs, 'appointmentBooked'),
+    extractStructuredOutputValue(structuredOutputs, 'booked')
   );
 
   const appointmentRequested = firstBooleanValue(
@@ -252,7 +351,11 @@ export function normalizeVapiCallCompletedPayload(
     structuredData.requested_appointment,
     structuredData.requestedAppointment,
     analysis.appointment_requested,
-    analysis.appointmentRequested
+    analysis.appointmentRequested,
+    // Build 281: fall through to Vapi Structured Outputs when structuredData is absent.
+    extractStructuredOutputValue(structuredOutputs, 'appointment_requested'),
+    extractStructuredOutputValue(structuredOutputs, 'appointmentRequested'),
+    extractStructuredOutputValue(structuredOutputs, 'requested_appointment')
   );
 
   const callStartedAt = firstTimestampValue(
@@ -331,7 +434,11 @@ export function normalizeVapiCallCompletedPayload(
     structuredData.appointment_time,
     structuredData.appointmentTime,
     structuredData.booked_time,
-    structuredData.bookedTime
+    structuredData.bookedTime,
+    // Build 281: fall through to Vapi Structured Outputs when structuredData is absent.
+    extractStructuredOutputValue(structuredOutputs, 'appointment_time'),
+    extractStructuredOutputValue(structuredOutputs, 'appointmentTime'),
+    extractStructuredOutputValue(structuredOutputs, 'booked_time')
   );
 
   return {
