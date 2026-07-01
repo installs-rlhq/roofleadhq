@@ -1,0 +1,25 @@
+{
+  "_comment": "Build 277 fixture. Fake/sanitized Vapi End Of Call Report (PSTN) representing EXACTLY what the Test Roofing Assistant's EOCR will carry AFTER Jason configures its structured-data / analysis schema (the Build 277 approval packet). It mirrors the Build 276 verbal-appointment call (same homeowner intent: a Thursday 2 PM site visit verbally agreed) but now the assistant EMITS the structured appointment fields under message.analysis.structuredData: appointment_booked (boolean), appointment_time (ISO 8601 datetime), and appointment_requested (boolean). The backend normalizer already reads these exact paths (analysis.structuredData.appointment_booked / appointment_time / appointment_requested), so with NO code change the mapped roofer resolves, lead + call persist, and createVapiBooking now creates the booking (booking_id present). This fixture is the post-config offline proof for Build 277: it demonstrates that once the assistant emits this schema, the same call that produced booking_id=null in Build 274/276 will instead create a booking. The mapping lives in the roofer row, not this payload; destination +1555-0188 is a reserved fictional number standing in for the mapped clean Vapi number (last-4 0389). Reserved fictional 555-01xx numbers only; no real PII, no real clean Vapi number, no real UUID/call-id.",
+  "message": {
+    "type": "end-of-call-report",
+    "call": {
+      "id": "call_fake_structured_appt_post_config_277",
+      "type": "inboundPhoneCall",
+      "customer": { "number": "+15555550142" },
+      "phoneNumber": { "number": "+15555550188" },
+      "startedAt": "2026-07-01T18:00:00Z",
+      "endedAt": "2026-07-01T18:06:44Z"
+    },
+    "durationSeconds": 404,
+    "transcript": "AI: Thanks for calling, roofing services, how can I help? Homeowner: I have a leak over the garage and need someone to come look at it. AI: Absolutely, I can set up a free site visit. Does Thursday at 2 PM work for you? Homeowner: Thursday at 2 works great, please schedule it. AI: Great, you're all set for Thursday at 2 PM.",
+    "summary": "Homeowner reported a garage roof leak and agreed to a site visit on Thursday at 2 PM. The appointment was arranged during the conversation.",
+    "analysis": {
+      "structuredData": {
+        "appointment_booked": true,
+        "appointment_time": "2026-07-02T14:00:00Z",
+        "appointment_requested": true
+      },
+      "successEvaluation": "appointment_booked"
+    }
+  }
+}
