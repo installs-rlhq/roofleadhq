@@ -1,0 +1,21 @@
+{
+  "_comment": "Build 271 fixture. Fake/sanitized Vapi End Of Call Report (PSTN) representing a clean Vapi-managed number whose destination IS mapped to a demo/pilot roofer's roofers.twilio_number for first-roofer-test-wiring readiness. The mapping lives in the roofer row, not in this payload; destination +1555-0188 is a reserved fictional number standing in for the mapped clean Vapi number. Reserved fictional 555-01xx numbers only; no real PII, no real clean Vapi number. Appointment booked so full final-report processing (lead + booking + call) is exercised.",
+  "message": {
+    "type": "end-of-call-report",
+    "call": {
+      "id": "call_fake_mapped_clean_eocr_271",
+      "type": "inboundPhoneCall",
+      "customer": { "number": "+15555550142" },
+      "phoneNumber": { "number": "+15555550188" },
+      "startedAt": "2026-07-01T15:00:00Z",
+      "endedAt": "2026-07-01T15:05:12Z"
+    },
+    "durationSeconds": 312,
+    "transcript": "AI: Thanks for calling, roofing services. Homeowner: My roof started leaking after the storm last night. AI: I'm sorry to hear that — I can book a free inspection for tomorrow afternoon. Homeowner: Yes, please book it.",
+    "summary": "Homeowner reported storm-related roof damage with an active leak and accepted a next-day inspection appointment.",
+    "analysis": {
+      "structuredData": { "appointment_booked": true, "appointment_time": "2026-07-02T16:00:00Z" },
+      "successEvaluation": "appointment_booked"
+    }
+  }
+}
