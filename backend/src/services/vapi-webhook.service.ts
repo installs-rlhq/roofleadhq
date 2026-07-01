@@ -764,10 +764,27 @@ export async function processVapiCallCompleted(
   }
 
   if (!roofer) {
+    // Build 268: the terminal end-of-call report carried a PSTN destination number that is not
+    // mapped to any roofer's `twilio_number` (e.g. the clean Vapi-managed Test Number used for
+    // pre-launch PSTN validation). Before Build 268 this returned the unknown_roofer error, which
+    // the route mapped to HTTP 404 — and Vapi treats a 404 EOCR response as a failed delivery and
+    // retries it. An unmapped destination is not an error: the report simply isn't routable to a
+    // roofer yet. So acknowledge it as a controlled no-op with an explicit sanitized reason (no
+    // phone value logged), writing no lead/booking/call. A genuinely routed roofer whose
+    // destination number IS mapped still processes normally below. The route's `unknown_roofer`
+    // → 404 branch is retained defensively but is no longer reached from this path.
+    console.warn('Vapi EOCR destination not mapped to a roofer; acknowledged as controlled no-op', {
+      reason: 'unknown_roofer_destination_unmapped',
+      event_type: classification.event_type,
+    });
+
     return {
-      ok: false,
+      ok: true,
       dry_run: false,
-      error: 'unknown_roofer',
+      acknowledged: true,
+      processed: false,
+      event_type: classification.event_type,
+      reason: 'unknown_roofer_destination_unmapped',
       normalized,
     };
   }
