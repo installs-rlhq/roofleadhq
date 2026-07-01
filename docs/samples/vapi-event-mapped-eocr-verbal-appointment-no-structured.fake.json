@@ -1,0 +1,20 @@
+{
+  "_comment": "Build 276 fixture. Fake/sanitized Vapi End Of Call Report (PSTN) for a clean Vapi-managed number whose destination IS mapped to a demo/pilot roofer's roofers.twilio_number. This reproduces the corrected Build 274 symptom: the homeowner VERBALLY scheduled a site visit (see transcript + summary), but the assistant's EOCR carried NO structured appointment fields (no analysis.structuredData.appointment_booked / appointment_time, no appointment_requested, no booked successEvaluation). The backend normalizer reads appointment signals ONLY from structured payload fields and has NO transcript/summary fallback, so it normalizes appointment_booked=false, appointment_requested=false, appointment_time=null. The mapped roofer still resolves and lead + call persist (inserted:true, matched_lead_id present), but createVapiBooking is gated off (booking_id=null). Reserved fictional 555-01xx numbers only; no real PII, no real clean Vapi number.",
+  "message": {
+    "type": "end-of-call-report",
+    "call": {
+      "id": "call_fake_verbal_appt_no_structured_276",
+      "type": "inboundPhoneCall",
+      "customer": { "number": "+15555550142" },
+      "phoneNumber": { "number": "+15555550188" },
+      "startedAt": "2026-07-01T18:00:00Z",
+      "endedAt": "2026-07-01T18:06:44Z"
+    },
+    "durationSeconds": 404,
+    "transcript": "AI: Thanks for calling, roofing services, how can I help? Homeowner: I have a leak over the garage and need someone to come look at it. AI: Absolutely, I can set up a free site visit. Does Thursday at 2 PM work for you? Homeowner: Thursday at 2 works great, please schedule it. AI: Great, you're all set for Thursday at 2 PM.",
+    "summary": "Homeowner reported a garage roof leak and verbally agreed to a site visit on Thursday at 2 PM. The appointment was arranged during the conversation.",
+    "analysis": {
+      "successEvaluation": "Homeowner engaged and a site visit was discussed during the call."
+    }
+  }
+}
