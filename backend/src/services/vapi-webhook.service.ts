@@ -235,6 +235,124 @@ function extractStructuredOutputValue(
   return undefined;
 }
 
+// Build 284: conservative summary/transcript booking fallback.
+//
+// Build 283 live evidence: with the Build 281 structuredOutputs fix DEPLOYED, a real mapped-roofer
+// PSTN call still normalized appointment_booked=false / appointment_requested=false /
+// appointment_time=null (booking_id=null) even though the Vapi summary AND transcript clearly stated
+// an in-person site visit was scheduled for "Thursday, July 2nd, at 2 PM". So the live call-completed
+// webhook payload carried NO usable structured appointment fields at backend-processing time (neither
+// structuredData nor structuredOutputs) — the structured-only path (opt1) is insufficient live.
+//
+// This fallback derives a booking ONLY when the structured signal is absent (not booked, or no time),
+// and only from TRUSTED Vapi analysis text (summary preferred, then transcript). It is deliberately
+// strict to avoid over-eager bookings: it requires ALL of
+//   (a) explicit confirmed-booking language (scheduled / booked / arranged / confirmed / "all set" /
+//       "agreed to a … visit"), AND
+//   (b) an appointment noun (site visit / appointment / inspection / visit), AND
+//   (c) an explicit CALENDAR DATE (month name + day-of-month) — a bare weekday like "Thursday" is too
+//       ambiguous to auto-create a booking, so it is intentionally NOT sufficient, AND
+//   (d) an explicit clock time (e.g. "2 PM").
+// Vague interest, callback-only, or emergency-without-a-scheduled-visit conversations do NOT book.
+// The clock time is interpreted in UTC to stay consistent with the rest of this normalizer (which
+// treats all timestamps via new Date(...).toISOString(), matching the structured fixtures' ...Z times).
+const BOOKING_LANGUAGE =
+  /\b(scheduled|booked|arranged|reserved|confirmed|all set|agreed to (?:a |an |the )?(?:free )?(?:in[-\s]?person |on[-\s]?site )?(?:site\s?visit|appointment|inspection|visit))\b/i;
+const APPOINTMENT_NOUN = /\b(site\s?visit|appointment|inspection|visit)\b/i;
+const MONTH_INDEX: Record<string, number> = {
+  january: 0, jan: 0, february: 1, feb: 1, march: 2, mar: 2, april: 3, apr: 3,
+  may: 4, june: 5, jun: 5, july: 6, jul: 6, august: 7, aug: 7,
+  september: 8, sept: 8, sep: 8, october: 9, oct: 9, november: 10, nov: 10,
+  december: 11, dec: 11,
+};
+
+function extractClockTimeFromText(text: string): { hour: number; minute: number } | null {
+  const m = text.match(/\b(1[0-2]|0?[1-9])(?::([0-5]\d))?\s*(a\.?m\.?|p\.?m\.?)\b/i);
+
+  if (!m) {
+    return null;
+  }
+
+  let hour = parseInt(m[1], 10);
+  const minute = m[2] ? parseInt(m[2], 10) : 0;
+  const meridiem = m[3].replace(/\./g, '').toLowerCase();
+
+  if (meridiem === 'pm' && hour < 12) {
+    hour += 12;
+  }
+
+  if (meridiem === 'am' && hour === 12) {
+    hour = 0;
+  }
+
+  return { hour, minute };
+}
+
+function extractCalendarDateFromText(text: string): { month: number; day: number } | null {
+  // Require an explicit month name + day-of-month. Longer month names precede abbreviations so the
+  // fuller token wins. A bare weekday is intentionally NOT accepted here.
+  const m = text.match(
+    /\b(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sept|sep|october|oct|november|nov|december|dec)\.?\s+(\d{1,2})(?:st|nd|rd|th)?\b/i
+  );
+
+  if (!m) {
+    return null;
+  }
+
+  const month = MONTH_INDEX[m[1].toLowerCase()];
+  const day = parseInt(m[2], 10);
+
+  if (month === undefined || day < 1 || day > 31) {
+    return null;
+  }
+
+  return { month, day };
+}
+
+// Returns an ISO timestamp for a confidently-scheduled appointment described in `text`, anchored to
+// the call date for the year, or null when the strict booking criteria are not all met.
+function deriveBookingTimeFromText(
+  text: string | null,
+  anchorIso: string | null
+): string | null {
+  if (!text || !anchorIso) {
+    return null;
+  }
+
+  if (!BOOKING_LANGUAGE.test(text) || !APPOINTMENT_NOUN.test(text)) {
+    return null;
+  }
+
+  const time = extractClockTimeFromText(text);
+  const date = extractCalendarDateFromText(text);
+
+  if (!time || !date) {
+    return null;
+  }
+
+  const anchor = new Date(anchorIso);
+
+  if (Number.isNaN(anchor.getTime())) {
+    return null;
+  }
+
+  const DAY_MS = 86400000;
+  const year = anchor.getUTCFullYear();
+  let ms = Date.UTC(year, date.month, date.day, time.hour, time.minute);
+
+  // Year rollover: a call late in the year referencing an early-year month resolves to next year.
+  if (ms < anchor.getTime() - 2 * DAY_MS) {
+    ms = Date.UTC(year + 1, date.month, date.day, time.hour, time.minute);
+  }
+
+  // Forward-window guard: the appointment must fall on/around/after the call, within ~1 year.
+  if (ms < anchor.getTime() - 2 * DAY_MS || ms > anchor.getTime() + 370 * DAY_MS) {
+    return null;
+  }
+
+  return new Date(ms).toISOString();
+}
+
 export function normalizeVapiCallCompletedPayload(
   payload: VapiWebhookPayload
 ): NormalizedVapiCallCompletedPayload {
@@ -441,6 +559,27 @@ export function normalizeVapiCallCompletedPayload(
     extractStructuredOutputValue(structuredOutputs, 'booked_time')
   );
 
+  // Build 284: conservative summary/transcript fallback. Structured fields (structuredData ->
+  // structuredOutputs) take precedence; this only runs when the structured signal did NOT yield a
+  // booked appointment with a time. Prefer summary, then transcript. See deriveBookingTimeFromText
+  // for the strict guards (booking language + appointment noun + explicit calendar date + clock time).
+  let finalAppointmentBooked = appointmentBooked;
+  let finalAppointmentRequested = appointmentRequested;
+  let finalAppointmentTime = appointmentTime;
+
+  if (!finalAppointmentBooked || !finalAppointmentTime) {
+    const anchorIso = callStartedAt ?? callEndedAt;
+    const derivedTime =
+      deriveBookingTimeFromText(summary, anchorIso) ??
+      deriveBookingTimeFromText(transcript, anchorIso);
+
+    if (derivedTime) {
+      finalAppointmentBooked = true;
+      finalAppointmentRequested = true;
+      finalAppointmentTime = finalAppointmentTime ?? derivedTime;
+    }
+  }
+
   return {
     provider_call_id: providerCallId,
     caller_phone: callerPhone,
@@ -451,10 +590,10 @@ export function normalizeVapiCallCompletedPayload(
     transcript,
     summary,
     outcome,
-    appointment_booked: appointmentBooked,
-    appointment_requested: appointmentRequested,
+    appointment_booked: finalAppointmentBooked,
+    appointment_requested: finalAppointmentRequested,
     recording_url: recordingUrl,
-    appointment_time: appointmentTime,
+    appointment_time: finalAppointmentTime,
   };
 }
 

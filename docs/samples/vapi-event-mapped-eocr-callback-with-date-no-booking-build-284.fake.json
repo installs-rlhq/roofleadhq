@@ -1,0 +1,20 @@
+{
+  "_comment": "Build 284 NEGATIVE fixture. Fake/sanitized Vapi End Of Call Report (PSTN) for a mapped clean Vapi number where the homeowner only requested a phone CALLBACK — no in-person site visit was booked. It deliberately contains an explicit calendar date and clock time ('July 2nd at 2 PM') AND booking-ish language ('scheduled'), but the scheduled thing is a CALLBACK / phone call, with NO appointment noun (no site visit / appointment / inspection / visit) anywhere in the summary or transcript. The Build 284 fallback requires an appointment noun, so this must NOT create a booking: appointment_booked stays false, appointment_time stays null, booking_id=null. Proves the fallback does not over-book from callback-only conversations even when a confident-sounding date and time are present. Reserved fictional 555-01xx numbers only; no real PII, no real clean Vapi number, no real UUID/call-id.",
+  "message": {
+    "type": "end-of-call-report",
+    "call": {
+      "id": "call_fake_callback_with_date_no_booking_284",
+      "type": "inboundPhoneCall",
+      "customer": { "number": "+15555550143" },
+      "phoneNumber": { "number": "+15555550188" },
+      "startedAt": "2026-07-01T18:00:00Z",
+      "endedAt": "2026-07-01T18:03:20Z"
+    },
+    "durationSeconds": 200,
+    "transcript": "AI: Thanks for calling, roofing services, how can I help? Homeowner: I'm just gathering info, can someone call me back later? AI: Of course, I'll have someone give you a callback. Homeowner: Maybe try July 2nd around 2 PM. AI: Sure, we'll aim to call you back then.",
+    "summary": "Homeowner requested a phone callback only. A callback was scheduled for July 2nd at 2 PM.",
+    "analysis": {
+      "successEvaluation": "Homeowner requested a callback only; nothing in person was booked."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "_comment": "Build 284 fixture. Fake/sanitized Vapi End Of Call Report (PSTN) representing the SECOND live booking-observation call (Build 283-approved, consumed once, no retry). It reproduces the exact live gap: the mapped clean Vapi number's EOCR reached the backend and normalized appointment_booked=false / appointment_requested=false / appointment_time=null (booking_id=null) EVEN THOUGH the Build 281 structuredOutputs fix was DEPLOYED — because the live call-completed payload carried NO usable structured appointment fields (no analysis.structuredData, no analysis.structuredOutputs). The booking intent lived ONLY in the trusted Vapi summary + transcript, which clearly state an in-person site visit was scheduled for Thursday, July 2nd, at 2 PM (an EXPLICIT calendar date, not just a weekday). The Build 284 conservative summary/transcript fallback derives appointment_booked=true / appointment_requested=true / appointment_time populated from this text, so with the mapped roofer resolving, lead + call persist AND createVapiBooking now creates the booking (booking_id present) offline. The mapping lives in the roofer row, not this payload; destination +1555-0188 is a reserved fictional number standing in for the mapped clean Vapi number (last-4 0389). Raw live transcript/body is NOT committed; this is a minimal sanitized paraphrase. Reserved fictional 555-01xx numbers only; no real PII, no real clean Vapi number, no real UUID/call-id, no recording URL.",
+  "message": {
+    "type": "end-of-call-report",
+    "call": {
+      "id": "call_fake_summary_booking_no_structured_284",
+      "type": "inboundPhoneCall",
+      "customer": { "number": "+15555550142" },
+      "phoneNumber": { "number": "+15555550188" },
+      "startedAt": "2026-07-01T18:00:00Z",
+      "endedAt": "2026-07-01T18:07:10Z"
+    },
+    "durationSeconds": 430,
+    "transcript": "AI: Thanks for calling, roofing services, how can I help? Homeowner: I have an emergency leak over the garage and need someone out fast. AI: I can get an emergency in-person site visit scheduled. Does Thursday, July 2nd, at 2 PM work? Homeowner: Yes, Thursday, July 2nd at 2 PM is perfect, please book it. AI: You're all set — your in-person site visit is booked for Thursday, July 2nd, at 2 PM.",
+    "summary": "Homeowner reported an emergency garage roof leak. An emergency in-person site visit was scheduled for Thursday, July 2nd, at 2 PM.",
+    "analysis": {
+      "successEvaluation": "Homeowner engaged and an in-person site visit was scheduled during the call."
+    }
+  }
+}
