@@ -27,10 +27,16 @@ app.use('/api/internal', internalAdminRouter);
 
 // Health check
 app.get('/health', (req, res) => {
+  // Build 282: `commit` reports the deployed git SHA (Railway-injected RAILWAY_GIT_COMMIT_SHA), so a
+  // deploy can be confirmed via an unauthenticated GET /health with no secret and no dashboard access.
+  // Empty string (reported as 'unknown') means the running build predates this marker.
+  const commit = config.gitCommitSha || 'unknown';
   res.json({
     status: 'ok',
     message: 'RoofLeadHQ backend is running',
     environment: config.nodeEnv,
+    commit,
+    commit_short: commit === 'unknown' ? 'unknown' : commit.slice(0, 7),
   });
 });
 
